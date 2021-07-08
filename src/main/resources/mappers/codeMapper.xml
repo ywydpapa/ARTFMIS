@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="code">
+
+<select id="detailCode"
+ 		resultType="codeDto">
+ 		SELECT * from GHT_CAT_02 where CAT_ID=#{CAT_ID}
+ </select>
+ 
+ <select id="detailCode01"
+ 		resultType="codeDto">
+ 		SELECT * from GHT_CAT_01 where CAT_ID=#{CAT_ID}
+ </select>
+
+ <select id="detailCode02"
+ 		resultType="codeDto">
+ 		SELECT * from GHT_CAT_02 where CAT_ID=#{CAT_ID}
+ </select>
+
+ <select id="listCode01"
+ 		resultType="codeDto">
+ 		select * from GHT_CAT_01 
+ </select>
+
+ <select id="listbaseCode"
+ 		resultType="codeDto">
+ 		select * from GHT_BASE_CODE order by BCD_ID
+ </select>
+ 
+  <select id="listconBcode"
+ 		resultType="codeDto">
+ 		select * from GHT_BASE_CODE where BCD_CAT_TYPE=#{BCD_CAT_TYPE} order by BCD_ORDER
+ </select>
+
+  <select id="listconBcodedos1"
+ 		resultType="codeDto">
+ 		with tt as (select '122' BCD_ID,'전통식' BCD_TITLE
+		union all
+		select '121' BCD_ID,'현대식' BCD_TITLE)
+		select * from tt order by BCD_ID 
+ </select>
+ 
+ <select id="listCode02"
+ 		resultType="codeDto">
+ 		select a.*, b.CAT_TITLE TITLE01 from GHT_CAT_02 a
+ 		LEFT JOIN GHT_CAT_01 b
+ 		ON a.CAT_01= b.CAT_ID
+ </select>
+
+ <select id="listCode020n"
+ 		resultType="codeDto">
+ 		select * from GHT_CAT_02 where CAT_01=#{code01} 
+ </select>
+
+ <select id="listCode0201"
+ 		resultType="codeDto">
+ 		select * from GHT_CAT_02 where CAT_01=1 
+ </select>
+ 
+ <select id="listCode0202"
+ 		resultType="codeDto">
+ 		select * from GHT_CAT_02 where CAT_01=2 
+ </select>
+ 
+ <select id="listCode0203"
+ 		resultType="codeDto">
+ 		select * from GHT_CAT_02 where CAT_01=3 
+ </select>
+
+ <select id="listCode0204"
+ 		resultType="codeDto">
+ 		select * from GHT_CAT_02 where CAT_01=4 
+ </select>
+ 
+ <select id="listCode03"
+ 		resultType="codeDto">
+ 		select * from GHT_CAT_03 
+ </select>
+
+ <select id="listCodealtar"
+ 		resultType="codeDto">
+ 		select CAT_ID, CAT_TITLE from GHT_CAT_02 where CAT_01=9 and CAT_USE_YN='Y'
+ </select>
+ 
+ <select id="listCodeftable"
+ 		resultType="codeDto">
+ 		select CAT_ID, CAT_TITLE from GHT_CAT_02 where CAT_01=10 and CAT_USE_YN='Y'
+ </select>
+
+ 
+ <update id="updateCode">
+ 		update GHT_GOODS set 
+			CAT_01_ID=#{CAT_01_ID},
+			CAT_02_ID=#{CAT_02_ID},
+			CAT_03_ID=#{CAT_03_ID},
+			GOODS_TITLE=#{GOODS_TITLE},
+			GOODS_SPEC=#{GOODS_SPEC},
+			GOODS_UNIT=#{GOODS_UNIT},
+			GOODS_UNIT_QTY=#{GOODS_UNIT_QTY},
+			GOODS_SALE_UNIT=#{GOODS_SALE_UNIT},
+			GOODS_SALE_PRICE=#{GOODS_SALE_PRICE},
+			GOODS_CAT=#{GOODS_CAT},
+			GOODS_RETURN_YN=#{GOODS_RETURN_YN},
+			GOODS_REFG_YN=#{GOODS_REFG_YN},
+			GOODS_INIT_ORDER=#{GOODS_INIT_ORDER},
+			GOODS_INIT_BASIC=#{GOODS_INIT_BASIC},
+			GOODS_ADD_SALE=#{GOODS_ADD_SALE},
+			GOODS_3RDPTY_YN=#{GOODS_3RDPTY_YN},
+			GOODS_SALE_TYP=#{GOODS_SALE_TYP},
+			GOODS_REMARK=#{GOODS_REMARK},
+			GOODS_ORDER=#{GOODS_ORDER},
+			GOODS_USE_YN=#{GOODS_USE_YN},
+			GOODS_MOD_USER=#{GOODS_MOD_USER},
+			GOODS_MOD_DATETIME=#{GOODS_MOD_DATETIME}
+ 		where GOODS_ID=#{GOODS_ID}
+ </update>
+
+<insert id="insertCode01">
+	INSERT INTO GHT_CAT_01
+	(	CAT_LVL,
+		CAT_TITLE,
+		CAT_REMARK,
+		CAT_USE_YN,
+		CAT_TIMESTAMP
+	) VALUES
+	(	1,
+		#{CAT_TITLE},
+		#{CAT_REMARK},
+		#{CAT_USE_YN},
+		now()
+	)
+</insert>
+<update id="updateCode01">
+	UPDATE GHT_CAT_01 SET
+		CAT_LVL = 1,
+		CAT_TITLE = #{CAT_TITLE},
+		CAT_REMARK = #{CAT_REMARK},
+		CAT_USE_YN = #{CAT_USE_YN},
+		CAT_TIMESTAMP = now() 
+		WHERE CAT_ID = #{CAT_ID}
+</update>
+
+<insert id="insertCode02">
+	INSERT INTO GHT_CAT_02
+	(	CAT_LVL,
+		CAT_TITLE,
+		CAT_REMARK,
+		CAT_USE_YN,
+		CAT_03_YN,
+		CAT_ORDER,
+		CAT_01,
+		CAT_REG_DATETIME
+	) VALUES
+	(	2,
+		#{CAT_TITLE},
+		#{CAT_REMARK},
+		#{CAT_USE_YN},
+		#{CAT_03_YN},
+		#{CAT_ORDER},
+		#{CAT_01},
+		now()
+	)
+</insert>
+
+<update id="updateCode02">
+	UPDATE GHT_CAT_02 SET
+		CAT_TITLE = #{CAT_TITLE},
+		CAT_REMARK = #{CAT_REMARK},
+		CAT_USE_YN = #{CAT_USE_YN},
+		CAT_03_YN = #{CAT_03_YN},
+		CAT_ORDER = #{CAT_ORDER},
+		CAT_MOD_DATETIME = now()
+		WHERE CAT_ID = #{CAT_ID}
+</update>
+  <insert id="insertCode">
+  			INSERT INTO GHT_GOODS 
+  			(
+				CAT_01_ID
+				,CAT_02_ID
+				,CAT_03_ID
+				,GOODS_TITLE
+				,GOODS_SPEC
+				,GOODS_UNIT
+				,GOODS_UNIT_QTY
+				,GOODS_SALE_UNIT
+				,GOODS_SALE_PRICE
+				,GOODS_CAT
+				,GOODS_RETURN_YN
+				,GOODS_REFG_YN
+				,GOODS_INIT_ORDER
+				,GOODS_INIT_BASIC
+				,GOODS_ADD_SALE
+				,GOODS_3RDPTY_YN
+				,GOODS_SALE_TYP
+				,GOODS_REMARK
+				,GOODS_ORDER
+				,GOODS_USE_YN
+				,GOODS_REG_USER
+  			) VALUES
+  			(
+				#{CAT_01_ID}
+				,#{CAT_02_ID}
+				,#{CAT_03_ID}
+				,#{GOODS_TITLE}
+				,#{GOODS_SPEC}
+				,#{GOODS_UNIT}
+				,#{GOODS_UNIT_QTY}
+				,#{GOODS_SALE_UNIT}
+				,#{GOODS_SALE_PRICE}
+				,#{GOODS_CAT}
+				,#{GOODS_RETURN_YN}
+				,#{GOODS_REFG_YN}
+				,#{GOODS_INIT_ORDER}
+				,#{GOODS_INIT_BASIC}
+				,#{GOODS_ADD_SALE}
+				,#{GOODS_3RDPTY_YN}
+				,#{GOODS_SALE_TYP}
+				,#{GOODS_REMARK}
+				,#{GOODS_ORDER}
+				,#{GOODS_USE_YN}
+				,#{GOODS_REG_USER}
+  			)
+  </insert>
+  
+  <insert id ="insertbCode">
+  insert into GHT_BASE_CODE
+  ( BCD_CAT,
+  	BCD_CAT_TYPE,
+	BCD_TITLE,
+	BCD_DETAIL,
+	BCD_REMARK,
+	BCD_ORDER,
+	BCD_USE_YN,
+	BCD_EDIT_YN,
+	BCD_REG_USER,
+	BCD_REG_DATETIME
+  ) values
+  ( #{BCD_CAT},
+  	#{BCD_CAT_TYPE},
+	#{BCD_TITLE},
+	#{BCD_DETAIL},
+	#{BCD_REMARK},
+	#{BCD_ORDER},
+	#{BCD_USE_YN},
+	#{BCD_EDIT_YN},
+	#{BCD_REG_USER},
+	now()
+  )
+  </insert>
+  
+  <update id="updatebCode">
+  UPDATE GHT_BASE_CODE set
+	BCD_CAT = #{BCD_CAT},
+	BCD_TITLE = #{BCD_TITLE},
+	BCD_DETAIL = #{BCD_DETAIL},
+	BCD_REMARK = #{BCD_REMARK},
+	BCD_ORDER = #{BCD_ORDER},
+	BCD_USE_YN = #{BCD_USE_YN},
+	BCD_EDIT_YN = #{BCD_EDIT_YN},
+	BCD_REG_USER = #{BCD_REG_USER},
+	BCD_REG_DATETIME = now()
+	where BCD_ID=#{BCD_ID}
+  </update>
+</mapper>

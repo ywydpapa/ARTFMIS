@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="goods">
+
+<select id="detailGoods"
+ 		resultType="goodsDto">
+ 		SELECT * from GHT_GOODS where GOODS_ID=#{GOODS_ID}
+ </select>
+ 
+ <select id="listGoods"
+ 		resultType="goodsDto">
+ 		select a.*, b.CAT_TITLE CAT_01_TITLE, c.CAT_TITLE CAT_02_TITLE from GHT_GOODS a 
+ 		left join GHT_CAT_01 b on a.CAT_01_ID=b.CAT_ID
+ 		left join GHT_CAT_02 c on a.CAT_02_ID=c.CAT_ID 
+ 		ORDER BY CAT_01_ID, CAT_02_ID,CAT_03_ID
+ </select>
+ 
+  <select id="listGoods1"
+ 		resultType="goodsDto">
+ 		select a.*, b.CAT_TITLE CAT_01_TITLE, c.CAT_TITLE CAT_02_TITLE from GHT_GOODS a 
+ 		left join GHT_CAT_01 b on a.CAT_01_ID=b.CAT_ID
+ 		left join GHT_CAT_02 c on a.CAT_02_ID=c.CAT_ID
+ 		WHERE a.CAT_01_ID = 1
+ 		ORDER BY CAT_01_ID, CAT_02_ID,CAT_03_ID
+ </select>
+ 
+   <select id="listGoods01"
+ 		resultType="goodsDto">
+ 		select a.*, b.CAT_TITLE CAT_01_TITLE, c.CAT_TITLE CAT_02_TITLE from GHT_GOODS a 
+ 		left join GHT_CAT_01 b on a.CAT_01_ID=b.CAT_ID
+ 		left join GHT_CAT_02 c on a.CAT_02_ID=c.CAT_ID
+ 		WHERE a.CAT_02_ID = #{CAT_02_ID}
+ 		ORDER BY CAT_01_ID, CAT_02_ID,CAT_03_ID, a.GOODS_ORDER
+ </select>
+
+   <select id="listGoods02"
+ 		resultType="goodsDto">
+ 		select a.*, b.CAT_TITLE CAT_01_TITLE, c.CAT_TITLE CAT_02_TITLE from GHT_GOODS a 
+ 		left join GHT_CAT_01 b on a.CAT_01_ID=b.CAT_ID
+ 		left join GHT_CAT_02 c on a.CAT_02_ID=c.CAT_ID
+ 		WHERE a.CAT_02_ID = #{CAT_02_ID}
+ 		ORDER BY CAT_01_ID, CAT_02_ID,CAT_03_ID, a.GOODS_ORDER
+ </select>
+
+   <select id="listGoods03"
+ 		resultType="goodsDto">
+ 		select a.*, b.CAT_TITLE CAT_01_TITLE, c.CAT_TITLE CAT_02_TITLE from GHT_GOODS a 
+ 		left join GHT_CAT_01 b on a.CAT_01_ID=b.CAT_ID
+ 		left join GHT_CAT_02 c on a.CAT_02_ID=c.CAT_ID
+ 		WHERE a.CAT_02_ID = #{CAT_02_ID}
+ 		ORDER BY CAT_01_ID, CAT_02_ID,CAT_03_ID, a.GOODS_ORDER
+ </select>
+
+   <select id="listGoods04"
+ 		resultType="goodsDto">
+ 		select a.*, b.CAT_TITLE CAT_01_TITLE, c.CAT_TITLE CAT_02_TITLE from GHT_GOODS a 
+ 		left join GHT_CAT_01 b on a.CAT_01_ID=b.CAT_ID
+ 		left join GHT_CAT_02 c on a.CAT_02_ID=c.CAT_ID
+ 		WHERE a.CAT_02_ID = #{CAT_02_ID}
+ 		ORDER BY CAT_01_ID, CAT_02_ID,CAT_03_ID, a.GOODS_ORDER
+ </select>
+
+ 
+  <select id="listGoods2"
+ 		resultType="goodsDto">
+ 		select a.*, b.CAT_TITLE CAT_01_TITLE, c.CAT_TITLE CAT_02_TITLE from GHT_GOODS a 
+ 		left join GHT_CAT_01 b on a.CAT_01_ID=b.CAT_ID
+ 		left join GHT_CAT_02 c on a.CAT_02_ID=c.CAT_ID
+ 		WHERE a.CAT_01_ID = 2 
+ 		ORDER BY CAT_01_ID, CAT_02_ID,CAT_03_ID
+ </select>
+ 
+  <select id="listGoods3"
+ 		resultType="goodsDto">
+ 		select a.*, b.CAT_TITLE CAT_01_TITLE, c.CAT_TITLE CAT_02_TITLE from GHT_GOODS a 
+ 		left join GHT_CAT_01 b on a.CAT_01_ID=b.CAT_ID
+ 		left join GHT_CAT_02 c on a.CAT_02_ID=c.CAT_ID
+ 		WHERE a.CAT_01_ID = 3 
+ 		ORDER BY CAT_01_ID, CAT_02_ID,CAT_03_ID
+ </select>
+
+  <select id="dosdefaultlist3"
+ 		resultType="goodsDto">
+	select b.CAT_TITLE, a.*, c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_STORE_ORD c on a.GOODS_ID = c.STORE_GOODS_ID and c.STORE_ORD_FROOM_ID = #{STORE_ORD_FROOM_ID}
+	left join GHT_BASE_CODE d on c.STORE_ORD_FROOM_ID = d.BCD_ID
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='3') 
+	and GOODS_USE_YN = 'Y' 
+	order by CAT_02_ID, GOODS_ORDER
+ </select>
+
+  <select id="dosdefaultlist2"
+ 		resultType="goodsDto">
+	select b.CAT_TITLE, a.*, c.MESSR_GOODS_INIT_QTY, c.MESSR_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_MESSR_ORD c on a.GOODS_ID = c.MESSR_GOODS_ID and c.MESSR_ORD_FROOM_ID = #{MESSR_ORD_FROOM_ID}
+	left join GHT_BASE_CODE d on c.MESSR_ORD_FROOM_ID = d.BCD_ID
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='2')
+	and GOODS_USE_YN = 'Y' 
+	order by CAT_02_ID, GOODS_ORDER
+ </select>
+
+  <select id="dosdefaultlist1"
+ 		resultType="goodsDto">
+	select b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_FNRSUPP_ORD c on a.GOODS_ID = c.FNRS_GOODS_ID and c.FNRS_ORD_FROOM_ID = #{FNRS_ORD_FROOM_ID}
+	left join GHT_BASE_CODE d on c.FNRS_ORD_FROOM_ID = d.BCD_ID
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='1')
+	and GOODS_USE_YN = 'Y' 
+	order by CAT_02_ID, GOODS_ORDER
+ </select>
+ 
+   <select id="dosdefaultlist1-121"
+ 		resultType="goodsDto">
+	select b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_FNRSUPP_ORD c on a.GOODS_ID = c.FNRS_GOODS_ID and c.FNRS_ORD_FROOM_ID = 121
+	left join GHT_BASE_CODE d on c.FNRS_ORD_FROOM_ID = d.BCD_ID
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='1')
+	and GOODS_USE_YN = 'Y' 
+	and (GOODS_MODERN = '121' or GOODS_MODERN = '123')
+	order by CAT_02_ID, GOODS_ORDER
+ </select>
+ 
+ <select id="dosdefaultlist1-122"
+ 		resultType="goodsDto">
+	select b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_FNRSUPP_ORD c on a.GOODS_ID = c.FNRS_GOODS_ID and c.FNRS_ORD_FROOM_ID = 122
+	left join GHT_BASE_CODE d on c.FNRS_ORD_FROOM_ID = d.BCD_ID
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='1')
+	and GOODS_USE_YN = 'Y' 
+	and (GOODS_MODERN = '122' or GOODS_MODERN = '123')
+	order by CAT_02_ID, GOODS_ORDER
+ </select>
+ 
+ 
+
+ <update id="updateGoods">
+ 		update GHT_GOODS set 
+			CAT_01_ID=#{CAT_01_ID},
+			CAT_02_ID=#{CAT_02_ID},
+			CAT_03_ID=#{CAT_03_ID},
+			GOODS_TITLE=#{GOODS_TITLE},
+			GOODS_SPEC=#{GOODS_SPEC},
+			GOODS_UNIT=#{GOODS_UNIT},
+			GOODS_UNIT_QTY=#{GOODS_UNIT_QTY},
+			GOODS_SALE_UNIT=#{GOODS_SALE_UNIT},
+			GOODS_SALE_PRICE=#{GOODS_SALE_PRICE},
+			GOODS_NET_PRICE=#{GOODS_NET_PRICE},
+			GOODS_MODERN=#{GOODS_MODERN},
+			GOODS_RETURN_YN=#{GOODS_RETURN_YN},
+			GOODS_REFG_YN=#{GOODS_REFG_YN},
+			GOODS_INIT_ORDER=#{GOODS_INIT_ORDER},
+			GOODS_INIT_BASIC=#{GOODS_INIT_BASIC},
+			GOODS_ADD_SALE=#{GOODS_ADD_SALE},
+			GOODS_3RDPTY_YN=#{GOODS_3RDPTY_YN},
+			GOODS_SALE_TYP=#{GOODS_SALE_TYP},
+			GOODS_FROOM_ORDER=#{GOODS_FROOM_ORDER},
+			GOODS_REMARK=#{GOODS_REMARK},
+			GOODS_ORDER=#{GOODS_ORDER},
+			GOODS_USE_YN=#{GOODS_USE_YN},
+			GOODS_REG_DEPT=#{GOODS_REG_DEPT},
+			GOODS_MOD_USER=#{GOODS_MOD_USER},
+			GOODS_MOD_DATETIME=now()
+ 		where GOODS_ID=#{GOODS_ID}
+ </update>
+  
+  <insert id="insertGoods">
+  			INSERT INTO GHT_GOODS 
+  			(
+				CAT_01_ID
+				,CAT_02_ID
+				,CAT_03_ID
+				,GOODS_TITLE
+				,GOODS_SPEC
+				,GOODS_UNIT
+				,GOODS_UNIT_QTY
+				,GOODS_SALE_UNIT
+				,GOODS_SALE_PRICE
+				,GOODS_MODERN
+				,GOODS_RETURN_YN
+				,GOODS_REFG_YN
+				,GOODS_INIT_ORDER
+				,GOODS_INIT_BASIC
+				,GOODS_ADD_SALE
+				,GOODS_3RDPTY_YN
+				,GOODS_SALE_TYP
+				,GOODS_FROOM_ORDER
+				,GOODS_REMARK
+				,GOODS_ORDER
+				,GOODS_USE_YN
+				,GOODS_REG_DEPT
+				,GOODS_NET_PRICE
+  			) VALUES
+  			(
+				#{CAT_01_ID}
+				,#{CAT_02_ID}
+				,#{CAT_03_ID}
+				,#{GOODS_TITLE}
+				,#{GOODS_SPEC}
+				,#{GOODS_UNIT}
+				,#{GOODS_UNIT_QTY}
+				,#{GOODS_SALE_UNIT}
+				,#{GOODS_SALE_PRICE}
+				,#{GOODS_MODERN}
+				,#{GOODS_RETURN_YN}
+				,#{GOODS_REFG_YN}
+				,#{GOODS_INIT_ORDER}
+				,#{GOODS_INIT_BASIC}
+				,#{GOODS_ADD_SALE}
+				,#{GOODS_3RDPTY_YN}
+				,#{GOODS_SALE_TYP}
+				,#{GOODS_FROOM_ORDER}
+				,#{GOODS_REMARK}
+				,#{GOODS_ORDER}
+				,#{GOODS_USE_YN}
+				,#{GOODS_REG_DEPT}
+				,#{GOODS_NET_PRICE}
+  			)
+  </insert>
+  <insert id="insertRoom">
+  			INSERT INTO GHT_FROOM 
+  			(FROOM_TITLE,
+				FROOM_CAT,
+				FROOM_TYP,
+				FROOM_DAY_PRICE,
+				FROOM_TIME_PRICE,
+				FROOM_MAX_PERS,
+				FROOM_AREA,
+				FROOM_AREA_KOR,
+				FROOM_REMARK,
+				CONT_ID,
+				FROOM_RENT_FR,
+				FROOM_RENT_TO,
+				FROOM_CHK_INOUT,
+				FROOM_PASSWD,
+				FROOM_TML_CODE,
+				FROOM_ALIS,
+				FROOM_USE_YN,
+				FROOM_REG_DATETIME,
+				CLEAN_CHARGE,
+				IMSI_YN,
+				FROOM_PC,
+				FROOM_ORDNO,
+  			 	FROOM_IMAGE
+  			) VALUES
+  			( #{FROOM_TITLE},
+				#{FROOM_CAT},
+				#{FROOM_TYP},
+				#{FROOM_DAY_PRICE},
+				#{FROOM_TIME_PRICE},
+				#{FROOM_MAX_PERS},
+				#{FROOM_AREA},
+				#{FROOM_AREA_KOR},
+				#{FROOM_REMARK},
+				#{CONT_ID},
+				#{FROOM_RENT_FR},
+				#{FROOM_RENT_TO},
+				#{FROOM_CHK_INOUT},
+				#{FROOM_PASSWD},
+				#{FROOM_TML_CODE},
+				#{FROOM_ALIS},
+				#{FROOM_USE_YN},
+				now(),
+				#{CLEAN_CHARGE},
+				#{IMSI_YN},
+				#{FROOM_PC},
+				#{FROOM_ORDNO},
+  			 	#{FROOM_IMAGE}
+  			)
+  </insert>
+
+<update id="updateRoom">
+	update GHT_FROOM set
+				FROOM_CAT =#{FROOM_CAT},
+				FROOM_TITLE =#{FROOM_TITLE},
+				FROOM_TYP =#{FROOM_TYP},
+				FROOM_DAY_PRICE =#{FROOM_DAY_PRICE},
+				FROOM_TIME_PRICE =#{FROOM_TIME_PRICE},
+				FROOM_MAX_PERS =#{FROOM_MAX_PERS},
+				FROOM_AREA =#{FROOM_AREA},
+				FROOM_AREA_KOR =#{FROOM_AREA_KOR},
+				FROOM_REMARK =#{FROOM_REMARK},
+				FROOM_TML_CODE =#{FROOM_TML_CODE},
+				FROOM_ALIS =#{FROOM_ALIS},
+				FROOM_USE_YN =#{FROOM_USE_YN},
+				FROOM_MOD_DATETIME = NOW(),
+				CLEAN_CHARGE = #{CLEAN_CHARGE},
+				IMSI_YN =#{IMSI_YN},
+				FROOM_PC=#{FROOM_PC},
+				FROOM_ORDNO=#{FROOM_ORDNO},
+				FROOM_MOD_DATETIME = now(),
+				FROOM_IMAGE = #{FROOM_IMAGE}
+	WHERE FROOM_ID=#{FROOM_ID}
+			
+
+</update>
+
+
+<select id="listRoom" resultType="goodsDto">
+ 		SELECT * from GHT_FROOM where FROOM_TYP=#{roomType}
+</select>
+
+<select id="setlistRoom" resultType="goodsDto">
+select b.SETL_TITLE, b.SETL_REMARK , b.SETL_USE_YN, a.* from GHT_FROOM a
+left join GHT_SETL_RULE b on a.FROOM_ID = b.SETL_FROOM_ID and b.MOD_DATE is null
+where FROOM_TYP = #{FROOM_TYP}
+</select> 
+ 
+ <select id="listAltar" resultType="goodsDto">
+ 		SELECT * from GHT_ALTAR where ALTAR_CAT = #{ALTAR_CAT}
+ </select>
+ 
+ <select id="listFtable" resultType="goodsDto">
+ 		select gbc.BCD_TITLE , gf.* from GHT_FTABLE gf
+		left join GHT_BASE_CODE gbc on gbc.BCD_ID = gf.FTABLE_CAT
+		where FTABLE_CAT=#{FTABLE_CAT}
+ </select>
+
+<select id="detailRoom" resultType="goodsDto">
+ 		SELECT * from GHT_FROOM where FROOM_ID=#{FROOM_ID}
+ </select>
+
+<select id="detailAltar" resultType="goodsDto">
+ 		SELECT * from GHT_ALTAR where ALTAR_ID=#{ALTAR_ID}
+ </select>
+
+<select id="detailFtable" resultType="goodsDto">
+ 		SELECT * from GHT_FTABLE where FTABLE_ID=#{FTABLE_ID}
+ </select>
+
+
+<select id="menu008" resultType="goodsDto">
+ 		SELECT CAT_ID, CAT_TITLE from GHT_CAT_02 where CAT_01='8' and CAT_USE_YN='Y' 
+ </select>
+<select id="menu006" resultType="goodsDto">
+ 		SELECT CAT_ID, CAT_TITLE from GHT_CAT_02 where CAT_01='6' and CAT_USE_YN='Y'
+ </select>
+
+<insert id="insertAltar">
+		insert into GHT_ALTAR(
+		ALTAR_TITLE,
+		ALTAR_CAT,
+		ALTAR_AMOUNT,
+		ALTAR_NET_PRICE,
+		ALTAR_QTY,
+		ALTAR_REMARK,
+		ALTAR_USE_YN,
+		ALTAR_REG_DATETIME,
+		ALTAR_IMAGE
+		) 
+		values (
+		#{ALTAR_TITLE},
+		#{ALTAR_CAT},
+		#{ALTAR_AMOUNT},
+		#{ALTAR_NET_PRICE},
+		#{ALTAR_QTY},
+		#{ALTAR_REMARK},
+		#{ALTAR_USE_YN},
+		now(),
+		#{ALTAR_IMAGE}
+		)
+</insert> 
+
+<update id="updateAltar">
+		update GHT_ALTAR set 
+		ALTAR_TITLE =#{ALTAR_TITLE},
+		ALTAR_CAT = #{ALTAR_CAT},
+		ALTAR_AMOUNT = #{ALTAR_AMOUNT},
+		ALTAR_NET_PRICE=#{ALTAR_NET_PRICE},
+		ALTAR_QTY=#{ALTAR_QTY},
+		ALTAR_REMARK = #{ALTAR_REMARK},
+		ALTAR_USE_YN = #{ALTAR_USE_YN},
+		ALTAR_MOD_DATETIME = now(),
+		ALTAR_IMAGE = #{ALTAR_IMAGE}
+		where ALTAR_ID=#{ALTAR_ID}
+</update>
+
+<insert id="insertFtable">
+		insert into GHT_FTABLE(
+		FTABLE_TITLE,
+		FTABLE_CAT,
+		FTABLE_AMOUNT,
+		FTABLE_REMARK,
+		FTABLE_USE_YN,
+		FTABLE_REG_DATETIME,
+		FTABLE_UNIT,
+		FTABLE_ORDER,
+		FTABLE_IMAGE
+		) 
+		values (
+		#{FTABLE_TITLE},
+		#{FTABLE_CAT},
+		#{FTABLE_AMOUNT},
+		#{FTABLE_REMARK},
+		#{FTABLE_USE_YN},
+		now(),
+		#{FTABLE_UNIT},
+		#{FTABLE_ORDER},
+		#{FTABLE_IMAGE}
+		)
+</insert> 
+
+<update id="updateFtable">
+		update GHT_FTABLE set 
+		FTABLE_TITLE =#{FTABLE_TITLE},
+		FTABLE_CAT =#{FTABLE_CAT},
+		FTABLE_AMOUNT = #{FTABLE_AMOUNT},
+		FTABLE_REMARK = #{FTABLE_REMARK},
+		FTABLE_USE_YN = #{FTABLE_USE_YN},
+		FTABLE_MOD_DATETIME = now(),
+		FTABLE_UNIT = #{FTABLE_UNIT},
+		FTABLE_ORDER = #{FTABLE_ORDER},
+		FTABLE_IMAGE = #{FTABLE_IMAGE}
+		where FTABLE_ID=#{FTABLE_ID}
+		
+</update> 
+
+<delete id="deleteDos1">
+		delete from GHT_FNRSUPP_ORD where FNRS_ORD_FROOM_ID = #{FNRS_ORD_FROOM_ID};
+</delete>
+
+<delete id="deleteDos2">
+		delete from GHT_MESSR_ORD where MESSR_ORD_FROOM_ID = #{MESSR_ORD_FROOM_ID};
+</delete>
+
+<delete id="deleteDos3">
+		delete from GHT_STORE_ORD where STORE_ORD_FROOM_ID = #{STORE_ORD_FROOM_ID};
+</delete>
+
+<insert id="insertDos1">
+
+		insert into GHT_FNRSUPP_ORD(
+		FNRS_ORD_FROOM_ID
+		,FNRS_GOODS_ID
+		,FNRS_GOODS_SALE_PRICE
+		,FNRS_GOODS_INIT_QTY		
+		,FNRS_GOODS_ADD_QTY
+		,FNRS_ORD_REG_DATETIME
+		) 
+		values (
+		#{FNRS_ORD_FROOM_ID}
+		,#{FNRS_GOODS_ID}
+		,#{FNRS_GOODS_SALE_PRICE}
+		,#{FNRS_GOODS_INIT_QTY}		
+		,#{FNRS_GOODS_ADD_QTY}
+		,now()
+		)
+</insert>
+
+<insert id="insertDos2">
+		insert into GHT_MESSR_ORD(
+		MESSR_ORD_FROOM_ID
+		,MESSR_GOODS_ID
+		,MESSR_GOODS_SALE_PRICE
+		,MESSR_GOODS_INIT_QTY		
+		,MESSR_GOODS_ADD_QTY
+		,MESSR_ORD_REG_DATETIME
+		) 
+		values (
+		#{MESSR_ORD_FROOM_ID}
+		,#{MESSR_GOODS_ID}
+		,#{MESSR_GOODS_SALE_PRICE}
+		,#{MESSR_GOODS_INIT_QTY}		
+		,#{MESSR_GOODS_ADD_QTY}
+		,now()
+		)
+</insert>
+
+
+<insert id="insertDos3">
+		insert into GHT_STORE_ORD(
+		STORE_ORD_FROOM_ID
+		,STORE_GOODS_ID
+		,STORE_GOODS_SALE_PRICE
+		,STORE_GOODS_INIT_QTY		
+		,STORE_GOODS_ADD_QTY
+		,STORE_ORD_REG_DATETIME
+		) 
+		values (
+		#{STORE_ORD_FROOM_ID}
+		,#{STORE_GOODS_ID}
+		,#{STORE_GOODS_SALE_PRICE}
+		,#{STORE_GOODS_INIT_QTY}		
+		,#{STORE_GOODS_ADD_QTY}
+		,now()
+		)
+</insert>
+
+  
+</mapper>

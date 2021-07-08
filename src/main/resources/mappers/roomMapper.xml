@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="room">
+
+<select id="Checkroom"
+ 		resultType="String">
+ 		SELECT FROOM_ID from GHT_USER_MST where USER_LOGINID=#{USER_LOGINID} 
+ </select>
+
+<select id="restOrdlist" resultType="roomDto">
+ SELECT b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, a.* from GHT_REST_ORDERSHEET a 
+ left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
+ where a.CONTRACT_ID=#{CONTRACT_ID} and a.MOD_DATE is NULL		 
+ </select>
+ 
+ <select id="storeOrdlist" resultType="roomDto">
+ SELECT b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, a.* from GHT_STORE_ORDSHEET a 
+ left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
+ where a.CONTRACT_ID=#{CONTRACT_ID} and a.MOD_DATE is NULL
+ </select>
+
+<select id="restaddOrdlist" resultType="roomDto">
+ SELECT b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, a.* from GHT_REST_ORDERSHEET a 
+ left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
+ where a.CONTRACT_ID=#{CONTRACT_ID} and a.MOD_DATE is NULL and ORD_TYPE = 2		 
+ </select>
+ 
+ <select id="storeaddOrdlist" resultType="roomDto">
+ SELECT b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, a.* from GHT_STORE_ORDSHEET a 
+ left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
+ where a.CONTRACT_ID=#{CONTRACT_ID} and a.MOD_DATE is NULL and ORD_TYPE = 2
+ </select>
+
+<select id="restOrdlistall" resultType="roomDto">
+SELECT b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, c.FROOM_TITLE , a.* from GHT_REST_ORDERSHEET a 
+left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID
+left join GHT_FROOM c on a.ROOM_TITLE = c.FROOM_ID 
+where a.CONTRACT_ID in (select CONTRACT_ID from GHT_CONT where SETT_DATE is NULL) and a.MOD_DATE is NULL		 
+ </select>
+ 
+ <select id="storeOrdlistall" resultType="roomDto">
+SELECT b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, c.FROOM_TITLE , a.* from GHT_STORE_ORDSHEET a 
+left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID
+left join GHT_FROOM c on a.ROOM_TITLE = c.FROOM_ID 
+where a.CONTRACT_ID in (select CONTRACT_ID from GHT_CONT where SETT_DATE is NULL) and a.MOD_DATE is NULL
+ </select>
+ 
+ <select id="iniFtableOrdlist" resultType="roomDto">
+SELECT b.FTABLE_TITLE,b.FTABLE_CAT, d.BCD_TITLE ,c.FROOM_TITLE , a.* from GHT_FTAB_ORDERSHEET a 
+left join GHT_FTABLE b on b.FTABLE_ID = a.FTABLE_CODE 
+left join GHT_FROOM c on a.ROOM_TITLE = c.FROOM_ID
+left join GHT_BASE_CODE d on d.BCD_ID = b.FTABLE_CAT 
+where a.CONTRACT_ID = #{CONTRACT_ID} and a.MOD_DATE is NULL and a.CONF_DATE is NULL
+</select>
+
+<select id="iniAltarOrdlist" resultType="roomDto">
+SELECT b.ALTAR_TITLE, d.BCD_TITLE ,c.FROOM_TITLE , a.* from GHT_ALTAR_ORDERSHEET a 
+left join GHT_ALTAR b on b.ALTAR_ID = a.ALTAR_ID 
+left join GHT_FROOM c on a.ROOM_TITLE = c.FROOM_ID
+left join GHT_BASE_CODE d on d.BCD_ID = b.ALTAR_CAT 
+where a.CONTRACT_ID = #{CONTRACT_ID} and a.MOD_DATE is NULL and a.CONF_DATE is NULL
+ </select>
+
+<select id="iniFgoodsOrdlist" resultType="roomDto">
+SELECT d.CAT_TITLE ,b.GOODS_TITLE, c.FROOM_TITLE , a.* from GHT_FNRSUPP_ORDERSHEET a 
+left join GHT_GOODS b on b.GOODS_ID = a.GOODS_CODE and b.CAT_01_ID = 1 
+left join GHT_FROOM c on a.ROOM_TITLE = c.FROOM_ID
+left join GHT_CAT_02 d on d.CAT_ID = b.CAT_02_ID 
+where a.CONTRACT_ID = #{CONTRACT_ID} and a.MOD_DATE is NULL and a.CONF_DATE is NULL
+</select>
+
+<update id="cfnrestord">
+update GHT_REST_ORDERSHEET set CONF_DATE = now() where REST_ORD_ID = #{REST_ORD_ID}
+</update>
+
+<update id="cfnstoreord">
+update GHT_STORE_ORDSHEET set CONF_DATE = now() where STORE_ORD_ID = #{STORE_ORD_ID}
+</update>
+
+<update id="cfnftord">
+update GHT_FTAB_ORDERSHEET set CONF_DATE = now() where FTABLE_ORD_ID = #{FTABLE_ORD_ID}
+</update>
+
+<update id="cfnaltord">
+update GHT_ALTAR_ORDERSHEET set CONF_DATE = now() where ALTAR_ORD_ID = #{ALTAR_ORD_ID}
+</update>
+
+<update id="cfnfgord">
+update GHT_FNRSUPP_ORDERSHEET set CONF_DATE = now() where FNRSUPP_ORD_ID = #{FNRSUPP_ORD_ID}
+</update>
+
+<select id="restOrdlistRM" resultType="roomDto">
+  SELECT b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, a.* from GHT_REST_ORDERSHEET a left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID where a.CONTRACT_ID=#{CONTRACT_ID} and a.MOD_DATE is NULL and a.CONF_DATE is NULL		 
+ </select>
+ 
+ <select id="storeOrdlistRM" resultType="roomDto">
+ SELECT b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, a.* from GHT_STORE_ORDSHEET a left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID where a.CONTRACT_ID=#{CONTRACT_ID} and a.MOD_DATE is NULL and a.CONF_DATE is NULL
+ </select>
+
+
+  
+</mapper>

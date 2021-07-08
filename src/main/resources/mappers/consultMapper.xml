@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="consult">
+
+<select id="detailConsult"
+ 		resultType="consultDto">
+ 		SELECT * from GHT_CONSULT where CONSULT_ID=#{CONSULT_ID}
+ </select>
+ 
+ <select id="listConsult"
+ 		resultType="consultDto">
+		select * from GHT_CONSULT
+ </select>
+ 
+ <update id="updateConsult">
+ 		update GHT_CONSULT set 
+ 		CONSULT_DATE = #{CONSULT_DATE},
+		PATI_NAME = #{PATI_NAME},
+		BFAMILY_NAME = #{BFAMILY_NAME},
+		FAMILY_RELATION = #{FAMILY_RELATION},
+		RELATION_TITLE = #{RELATION_TITLE},
+		TEL_NO = #{TEL_NO},
+		HOSPITAL = #{HOSPITAL},
+		RELIGION = #{RELIGION},
+		RELIGION_NAME = #{RELIGION_NAME},
+		BURI_YN = #{BURI_YN},
+		REMARK = #{REMARK},
+		CONSULTANT_ID = #{CONSULTANT_ID}
+ 		where CONSULT_ID=#{CONSULT_ID}
+ </update>
+  
+  <insert id="insertConsult">
+  			INSERT INTO GHT_CONSULT 
+  			(
+				CONSULT_DATE,
+				PATI_NAME
+  			) VALUES
+  			(
+				#{CONSULT_DATE},
+				#{PATI_NAME}
+  			)
+  </insert>
+</mapper>

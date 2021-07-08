@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+<select id="loginCheck"
+ 		resultType="String">
+ 		SELECT USER_NAMK from GHT_USER_MST where USER_LOGINID=#{USER_LOGINID} and (USER_PASSWD=PASSWORD(#{USER_PASSWD}) or USER_PASSWD=#{USER_PASSWD}) 
+ </select>
+
+<select id="viewUser"
+ 		resultType="userDto">
+ 		SELECT * from GHT_USER_MST where USER_LOGINID=#{USER_LOGINID}
+ </select>
+ 
+ <select id="userList"
+ 		resultType="userDto">
+ 		select * from GHT_USER_MST where USER_LOGINID=#{USER_LOGINID}
+ </select>
+ 
+ <update id="updateUser">
+ 		update GHT_USER_MST set 
+		USER_NAMK = #{USER_NAMK}
+		,USER_RANK = #{USER_RANK}
+		,USER_DEPT = #{USER_DEPT}
+		,USER_TELNO = #{USER_TELNO}
+		,USER_MOBNO = #{USER_MOBNO}
+		,USER_EMAIL = #{USER_EMAIL}
+		,USER_POSTNO = #{USER_POSTNO}
+		,USER_ADDR1 = #{USER_ADDR1} 
+		,USER_ADDR2 = #{USER_ADDR2}
+		,USER_INDAT = #{USER_INDAT}
+		,USER_JOB_STYL = #{USER_JOB_STYL} 
+		,USER_JOB_STAT = #{USER_JOB_STAT}
+		,USER_OUTDAT = #{USER_OUTDAT}
+		,USER_REST_FRDAT = #{USER_REST_FRDAT}
+		,USER_REST_TODAT = #{USER_REST_TODAT}
+		,USER_PASSWD = PASSWORD(#{USER_PASSWD})
+		,USER_ROLE1 = #{USER_ROLE1}
+		,USER_ROLE_GRP = #{USER_ROLE_GRP}
+		,USER_REMARK = #{USER_REMARK}
+ 		where USER_LOGINID=#{USER_LOGINID}
+ </update>
+
+<update id = "updPasswd">
+	update GHT_USER_MST set USER_PASSWD = PASSWORD(#{Npasswd}) where USER_LOGINID=#{USER_LOGINID} and (USER_PASSWD = PASSWORD(#{Ppasswd}) or USER_PASSWD = #{Ppasswd})
+</update>
+
+  
+</mapper>
