@@ -1,0 +1,694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cont">
+
+<select id="detailCont"
+ 		resultType="contDto">
+ 		SELECT * from GHT_CONT where CONTRACT_ID=#{CONTRACT_ID}
+ </select>
+ 
+ <select id="listCont" resultType="contDto">
+ 	select gf.FROOM_TITLE, case when gc.SETT_DATE is null then '입실' else '퇴실' end inRoom, substr(gc.START_DATE,1,10) STDATE,substr(gc.END_DATE,1,10) EDDATE, gc.* from GHT_CONT gc left join GHT_FROOM gf on gf.FROOM_ID = gc.FROOM_ID
+ </select>
+ 
+ <select id="listContcombo" resultType="contDto">
+select gc.CONTRACT_ID , gc.START_DATE, gc.END_DATE, gc.FROOM_ID, gf.FROOM_TITLE  from GHT_CONT gc left join GHT_FROOM gf on gf.FROOM_ID = gc.FROOM_ID where SETT_DATE is NULL group by gc.FROOM_ID
+</select>
+
+ <select id="listAltar"  resultType="contDto">
+	 SELECT * from GHT_ALTAR where ALTAR_CAT IN (102,103) and ALTAR_USE_YN = 'Y' order by ALTAR_CAT 	
+ </select>
+ 
+ <select id="listFroom" resultType="contDto">
+ 	SELECT a.*, b.CONTRACT_ID from GHT_FROOM a 
+ 	left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.SETT_DATE is null
+	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' group by a.FROOM_ID 
+ </select>
+ 
+  <select id="checkFroom" resultType="_integer">
+ 	SELECT COUNT(CONTRACT_ID) from GHT_CONT where END_DATE >= #{START_DATE} and FROOM_ID = #{FROOM_ID}   
+ </select>
+  
+ <select id="listFtable" resultType="contDto">
+ select gbc.BCD_TITLE , gf.* from GHT_FTABLE gf left join GHT_BASE_CODE gbc on gbc.BCD_ID = 
+gf.FTABLE_CAT where FTABLE_CAT IN (24,31,32,34,35,36,72,73,74,75,77,76)
+ </select>
+ 
+ <select id="listEtcroom" resultType="contDto">
+ select * from GHT_FROOM where FROOM_TYP != 1 and FROOM_USE_YN = 'Y' and FROOM_TYP != 5 
+ </select>
+
+ <select id="listEtcroom2" resultType="contDto">
+ select * from GHT_FROOM where FROOM_TYP != 1 and FROOM_USE_YN = 'Y' and FROOM_TYP = 5
+ </select>
+ 
+ 
+ <select id="listFgoodsM"  resultType="contDto">
+select b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS 
+a left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID left join GHT_FNRSUPP_ORD c on a.GOODS_ID 
+= c.FNRS_GOODS_ID and c.FNRS_ORD_FROOM_ID = 121 left join GHT_BASE_CODE d on c.FNRS_ORD_FROOM_ID 
+= d.BCD_ID where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='1') and GOODS_USE_YN 
+= 'Y' and (GOODS_MODERN = '121' or GOODS_MODERN = '123') and a.CAT_02_ID not in (13,14,15,16,17,18) order by CAT_02_ID, GOODS_ORDER    	  	
+ </select>
+
+ <select id="listFgoodsMn"  resultType="contDto">
+select b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS 
+a left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID left join GHT_FNRSUPP_ORD c on a.GOODS_ID 
+= c.FNRS_GOODS_ID and c.FNRS_ORD_FROOM_ID = 121 left join GHT_BASE_CODE d on c.FNRS_ORD_FROOM_ID 
+= d.BCD_ID where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='1') and GOODS_USE_YN 
+= 'Y' and (GOODS_MODERN = '121' or GOODS_MODERN = '123') and a.CAT_02_ID = #{CAT_02_ID} order by CAT_02_ID, GOODS_ORDER    	  	
+ </select>
+ 
+ <select id="listFgoodsT"  resultType="contDto">
+select b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS 
+a left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID left join GHT_FNRSUPP_ORD c on a.GOODS_ID 
+= c.FNRS_GOODS_ID and c.FNRS_ORD_FROOM_ID = 121 left join GHT_BASE_CODE d on c.FNRS_ORD_FROOM_ID 
+= d.BCD_ID where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='1') and GOODS_USE_YN 
+= 'Y' and (GOODS_MODERN = '122' or GOODS_MODERN = '123') and a.CAT_02_ID not in (13,14,15,16,17,18) order by CAT_02_ID, GOODS_ORDER    	  	
+ </select>
+
+ <select id="listFgoodsTn"  resultType="contDto">
+select b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS 
+a left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID left join GHT_FNRSUPP_ORD c on a.GOODS_ID 
+= c.FNRS_GOODS_ID and c.FNRS_ORD_FROOM_ID = 121 left join GHT_BASE_CODE d on c.FNRS_ORD_FROOM_ID 
+= d.BCD_ID where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='1') and GOODS_USE_YN 
+= 'Y' and (GOODS_MODERN = '122' or GOODS_MODERN = '123') and a.CAT_02_ID = #{CAT_02_ID} order by CAT_02_ID, GOODS_ORDER    	  	
+ </select>
+
+ <select id="doslist2Cont" resultType="contDto">
+select b.CAT_TITLE, a.*, c.MESSR_GOODS_INIT_QTY, c.MESSR_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_MESSR_ORD c on a.GOODS_ID = c.MESSR_GOODS_ID and c.MESSR_ORD_FROOM_ID = #{CONT_FROOM_ID}
+	left join GHT_BASE_CODE d on c.MESSR_ORD_FROOM_ID = d.BCD_ID
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='2')
+	and GOODS_USE_YN = 'Y' 
+	and GOODS_INIT_ORDER = 'Y'
+	and MESSR_GOODS_INIT_QTY > 0 
+	order by CAT_02_ID, GOODS_ORDER 
+ </select>
+
+<select id="doslist2ContFroom" resultType="contDto">
+select b.CAT_TITLE, a.*, c.MESSR_GOODS_INIT_QTY, c.MESSR_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_MESSR_ORD c on a.GOODS_ID = c.MESSR_GOODS_ID and c.MESSR_ORD_FROOM_ID = #{CONT_FROOM_ID}
+	left join GHT_BASE_CODE d on c.MESSR_ORD_FROOM_ID = d.BCD_ID
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='2')
+	and GOODS_USE_YN = 'Y' 
+	and GOODS_INIT_ORDER = 'Y'
+	and MESSR_GOODS_INIT_QTY > 0
+	and GOODS_FROOM_ORDER = 'Y' 
+	order by CAT_02_ID, GOODS_ORDER 
+ </select>
+
+<select id="doslist3Cont" resultType="contDto">
+select b.CAT_TITLE, a.*, c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_STORE_ORD c on a.GOODS_ID = c.STORE_GOODS_ID and c.STORE_ORD_FROOM_ID = #{CONT_FROOM_ID}
+	left join GHT_BASE_CODE d on c.STORE_ORD_FROOM_ID = d.BCD_ID
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='3') 
+	and GOODS_USE_YN = 'Y'
+	and GOODS_INIT_ORDER = 'Y' 
+	and STORE_GOODS_INIT_QTY > 0
+	order by CAT_02_ID, GOODS_ORDER 
+ </select>
+ 
+ <select id="doslist3ContFroom" resultType="contDto">
+select b.CAT_TITLE, a.*, c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_STORE_ORD c on a.GOODS_ID = c.STORE_GOODS_ID and c.STORE_ORD_FROOM_ID = #{CONT_FROOM_ID}
+	left join GHT_BASE_CODE d on c.STORE_ORD_FROOM_ID = d.BCD_ID
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='3') 
+	and GOODS_USE_YN = 'Y'
+	and GOODS_INIT_ORDER = 'Y' 
+	and STORE_GOODS_INIT_QTY > 0
+	and GOODS_FROOM_ORDER = 'Y'
+	order by CAT_02_ID, GOODS_ORDER 
+ </select>
+  
+ <update id="updateCont">
+update GHT_CONT set
+ START_DATE = #{START_DATE}
+,END_DATE = #{END_DATE}
+,SANGJO = #{SANGJO}
+,DPERSON_NAME = #{DPERSON_NAME}
+,DPERSON_MW = #{DPERSON_MW}
+,DPERSON_AGE = #{DPERSON_AGE}
+,DPERSON_JMNO = #{DPERSON_JMNO} 
+,DPERSON_ADDR1 = #{DPERSON_ADDR1} 
+,DPERSON_ADDR2 = #{DPERSON_ADDR2}
+,DPERSON_ORI_NAME = #{DPERSON_ORI_NAME}
+,REGION = #{REGION}
+,REGION_NAME = #{REGION_NAME}
+,DDATE = #{DDATE}
+,DPLACE = #{DPLACE}
+,DTYPE = #{DTYPE}
+,CREMATION_YN = #{CREMATION_YN}
+,SANGJU_NAME = #{SANGJU_NAME} 
+,SANGJU_JMNO = #{SANGJU_JMNO}
+,SANGJU_ADDR1 = #{SANGJU_ADDR1}
+,SANGJU_ADDR2 = #{SANGJU_ADDR2}
+,SANGJU_TEL = #{SANGJU_TEL}
+,ANCHI_REALDATE = #{ANCHI_REALDATE} 
+,ANCHI_DATE = #{ANCHI_DATE}
+,COFFIN_DATE = #{COFFIN_DATE}
+,DEPART_DATE = #{DEPART_DATE}
+,JANGJI = #{JANGJI}
+,REMARK = #{REMARK} 
+,MOD_DATE = now()
+WHERE CONTRACT_ID = #{CONTRACT_ID}
+ </update>
+  
+ <insert id="insertCont">
+INSERT INTO GHT_CONT (
+ INS_DATE
+,INS_TIME
+,CONSULT_ID
+,START_DATE
+,END_DATE
+,CONTRACT_DAYS
+,SANGJO
+,DPERSON_NAME
+,DPERSON_MW
+,DPERSON_AGE
+,DPERSON_JMNO
+,DPERSON_POSTNO
+,DPERSON_ADDR1
+,DPERSON_ADDR2
+,DPERSON_ORI_NAME
+,REGION
+,REGION_NAME
+,DDATE
+,DTIME
+,DPLACE
+,DTYPE
+,CREMATION_YN
+,SANGJU_NAME
+,SANGJU_JMNO
+,SANGJU_POSTNO
+,SANGJU_ADDR1
+,SANGJU_ADDR2
+,RELATION
+,RELATION_TITLE
+,SANGJU_TEL
+,ANCHI_REALDATE
+,ANCHI_REALTIME
+,ANCHI_DATE
+,ANCHI_TIME
+,COFFIN_DATE
+,COFFIN_TIME
+,DEPART_DATE
+,DEPART_TIME
+,JANGJI
+,REMARK
+,REG_DATE
+,FROOM_ID
+) VALUES (
+ #{INS_DATE}
+,#{INS_TIME}
+,#{CONSULT_ID}
+,#{START_DATE}
+,#{END_DATE}
+,#{CONTRACT_DAYS}
+,#{SANGJO}
+,#{DPERSON_NAME}
+,#{DPERSON_MW}
+,#{DPERSON_AGE}
+,#{DPERSON_JMNO}
+,#{DPERSON_POSTNO}
+,#{DPERSON_ADDR1}
+,#{DPERSON_ADDR2}
+,#{DPERSON_ORI_NAME}
+,#{REGION}
+,#{REGION_NAME}
+,#{DDATE}
+,#{DTIME}
+,#{DPLACE}
+,#{DTYPE}
+,#{CREMATION_YN}
+,#{SANGJU_NAME}
+,#{SANGJU_JMNO}
+,#{SANGJU_POSTNO}
+,#{SANGJU_ADDR1}
+,#{SANGJU_ADDR2}
+,#{RELATION}
+,#{RELATION_TITLE}
+,#{SANGJU_TEL}
+,#{ANCHI_REALDATE}
+,#{ANCHI_REALTIME}
+,#{ANCHI_DATE}
+,#{ANCHI_TIME}
+,#{COFFIN_DATE}
+,#{COFFIN_TIME}
+,#{DEPART_DATE}
+,#{DEPART_TIME}
+,#{JANGJI}
+,#{REMARK}
+,now()
+,#{FROOM_ID}
+)
+<selectKey keyProperty="CONTRACT_ID" resultType="integer"  order="AFTER">
+		 SELECT LAST_INSERT_ID()
+	 </selectKey>
+ </insert>
+ 
+ <insert id="sruleins">
+ update GHT_SETL_RULE
+ SET
+ MOD_DATE = now()
+ where SETL_FROOM_ID = #{SETL_FROOM_ID};
+ 
+ insert into GHT_SETL_RULE (
+ SETL_FROOM_ID,
+SETL_TITLE,
+SETL_REMARK,
+SETL_USE_YN, 
+REG_DATE
+ ) values (
+ #{SETL_FROOM_ID},
+#{SETL_TITLE},
+#{SETL_REMARK},
+#{SETL_USE_YN},
+now()
+ ); 
+ </insert>
+ 
+ <update id = "sruleuppd">
+ update GHT_SETL_RULE
+ SET
+ MOD_DATE = now()
+ where SETL_FROOM_ID = #{SETL_FROOM_ID}
+ </update>
+ 
+ <insert id="contp2">
+ insert into GHT_CONT_FROOM
+ (
+ CONTRACT_ID
+,FROOM_ID
+,DAYS
+,TIMES
+,RCHARGE
+,REMARK
+,REG_DATE
+ ) values (
+ #{CONTRACT_ID}
+,#{FROOM_ID}
+,#{DAYS}
+,#{TIMES}
+,#{RCHARGE} 
+,#{REMARK}
+,now()
+ )
+ </insert>
+ 
+ <insert id="contp3">
+ insert into GHT_FTAB_ORDERSHEET
+ (
+CONTRACT_ID
+,ROOM_TITLE
+,FTABLE_CODE
+,FTABLE_NET_PRICE
+,QUTY
+,ORD_AMOUNT
+,ORD_REMARK
+,ORD_DATE
+,ORD_TIME
+,REG_DATE
+,ORD_TYPE
+)values(
+#{CONTRACT_ID}
+,#{ROOM_TITLE}
+,#{FTABLE_CODE}
+,#{FTABLE_NET_PRICE}
+,#{QUTY}
+,#{ORD_AMOUNT}
+,#{ORD_REMARK}
+,#{ORD_DATE}
+,#{ORD_TIME}
+,now()
+,#{ORD_TYPE}
+);
+</insert>
+
+ <insert id="contp4">
+insert into GHT_FNRSUPP_ORDERSHEET
+(
+CONTRACT_ID
+,ROOM_TITLE
+,GOODS_CODE
+,SPEC
+,ORD_TYPE
+,SALES_UNIT
+,SALES_PRICE
+,QUTY_PERUNIT
+,UNIT_PERQUTY
+,NET_PRICE
+,ORD_QUTY
+,ORD_AMOUNT
+,ADD_AMOUNT
+,CONF_YN
+,CANC_YN
+,PARTNER_YN
+,ORD_DATE
+,ORD_TIME
+,CONF_DATE
+,CONF_TIME
+,CANC_DATE
+,CANC_TIME
+,REMARK
+,REG_DATE
+) values
+(
+#{CONTRACT_ID}
+,#{ROOM_TITLE}
+,#{GOODS_CODE}
+,#{SPEC}
+,#{ORD_TYPE}
+,#{SALES_UNIT}
+,#{SALES_PRICE}
+,#{QUTY_PERUNIT}
+,#{UNIT_PERQUTY}
+,#{NET_PRICE}
+,#{ORD_QUTY}
+,#{ORD_AMOUNT}
+,#{ADD_AMOUNT}
+,#{CONF_YN}
+,#{CANC_YN}
+,#{PARTNER_YN}
+,#{ORD_DATE}
+,#{ORD_TIME}
+,#{CONF_DATE}
+,#{CONF_TIME}
+,#{CANC_DATE}
+,#{CANC_TIME}
+,#{REMARK}
+,now()
+) 
+</insert>
+
+ <insert id="contp5">
+ insert into GHT_ALTAR_ORDERSHEET
+ (
+ CONTRACT_ID
+,ROOM_TITLE
+,ALTAR_CAT
+,ALTAR_ID
+,NET_PRICE
+,QUTY
+,ORD_PRICE
+,ORD_REMARK
+,ORD_DATE
+,ORD_TIME
+,REG_DATE
+,ORD_TYPE
+ ) values
+ (
+#{CONTRACT_ID}
+,#{ROOM_TITLE}
+,#{ALTAR_CAT}
+,#{ALTAR_ID}
+,#{NET_PRICE}
+,#{QUTY}
+,#{ORD_PRICE}
+,#{ORD_REMARK}
+,#{ORD_DATE}
+,#{ORD_TIME}
+,now()
+,#{ORD_TYPE}
+ )
+ </insert>
+ 
+ <insert id="contp6">
+ insert into GHT_REST_ORDERSHEET
+ (
+ CONTRACT_ID
+,ROOM_TITLE
+,GOODS_CODE
+,ORD_TYPE
+,SALES_UNIT
+,UNIT_PRICE
+,UNIT_QUTY
+,UNIT_QUTY_UNIT
+,NET_PRICE
+,ORD_QUTY
+,ORD_AMOUNT
+,SANGJU_YN
+,CANC_YN
+,PARTNER_YN
+,ORD_DATE
+,ORD_TIME
+,CONF_DATE
+,CONF_TIME
+,CANC_DATE
+,CANC_TIME
+,ROOM_TRANS_OPT
+,REMARK
+,REG_DATE
+ ) values
+ (
+ #{CONTRACT_ID}
+,#{ROOM_TITLE}
+,#{GOODS_CODE}
+,#{ORD_TYPE}
+,#{SALES_UNIT}
+,#{UNIT_PRICE}
+,#{UNIT_QUTY}
+,#{UNIT_QUTY_UNIT}
+,#{NET_PRICE}
+,#{ORD_QUTY}
+,#{ORD_AMOUNT}
+,#{SANGJU_YN}
+,#{CANC_YN}
+,#{PARTNER_YN}
+,now()
+,#{ORD_TIME}
+,#{CONF_DATE}
+,#{CONF_TIME}
+,#{CANC_DATE}
+,#{CANC_TIME}
+,#{ROOM_TRANS_OPT}
+,#{REMARK}
+,now()
+ )
+ </insert>
+ 
+ <insert id="contp7">
+insert into GHT_STORE_ORDSHEET
+(
+CONTRACT_ID
+,ROOM_TITLE
+,GOODS_CODE
+,ORD_TYPE
+,SALES_UNIT
+,SALES_PRICE
+,UNIT_QUTY
+,UNIT_PERQUTY
+,NET_PRICE
+,ORD_QUTY
+,ORD_AMOUNT
+,CONF_YN
+,CANC_YN
+,PARTNER_YN
+,ORD_DATE
+,ORD_TIME
+,CONF_DATE
+,CONF_TIME
+,CANC_DATE
+,CANC_TIME
+,ROOM_TRANS_OPT
+,REMARK
+,REG_DATE
+)values
+(
+#{CONTRACT_ID}
+,#{ROOM_TITLE}
+,#{GOODS_CODE}
+,#{ORD_TYPE}
+,#{SALES_UNIT}
+,#{SALES_PRICE}
+,#{UNIT_QUTY}
+,#{UNIT_PERQUTY}
+,#{NET_PRICE}
+,#{ORD_QUTY}
+,#{ORD_AMOUNT}
+,#{CONF_YN}
+,#{CANC_YN}
+,#{PARTNER_YN}
+,now()
+,#{ORD_TIME}
+,#{CONF_DATE}
+,#{CONF_TIME}
+,#{CANC_DATE}
+,#{CANC_TIME}
+,#{ROOM_TRANS_OPT}
+,#{REMARK}
+,now()
+)
+ </insert>
+ 
+ <insert id="contp8">
+ insert into GHT_CONT_FROOM
+ (
+ CONTRACT_ID
+,FROOM_ID
+,DAYS
+,TIMES
+,RCHARGE
+,REMARK
+,REG_DATE
+ ) values (
+ #{CONTRACT_ID}
+,#{FROOM_ID}
+,#{DAYS}
+,#{TIMES}
+,#{RCHARGE} 
+,#{REMARK}
+,now()
+ )
+ </insert>
+ 
+ <insert id="contp9">
+ 
+ </insert>
+ 
+ <update id="updcontp2">
+ update GHT_CONT_FROOM
+ set MOD_DATE = now() where CONTRACT_ID = #{CONTRACT_ID} and FROOM_ID not in (select froom_id from GHT_FROOM where FROOM_TYP = '5')
+ </update>
+ 
+ <update id="updcontp3">
+update GHT_FTAB_ORDERSHEET
+set MOD_DATE = now() where CONTRACT_ID = #{CONTRACT_ID} 
+ </update>
+ 
+ <update id="updcontp4">
+update GHT_FNRSUPP_ORDERSHEET 
+set MOD_DATE = now() where CONTRACT_ID = #{CONTRACT_ID}
+ </update>
+ 
+ <update id="updcontp5">
+update GHT_ALTAR_ORDERSHEET
+ set MOD_DATE = now() where CONTRACT_ID = #{CONTRACT_ID}
+ </update>
+ 
+ <update id="updcontp6">
+update GHT_REST_ORDERSHEET
+set MOD_DATE = now()
+where CONTRACT_ID = #{CONTRACT_ID} and ORD_TYPE = '1'
+ </update>
+ 
+ <update id="updcontp7">
+update GHT_STORE_ORDSHEET
+set MOD_DATE = now() 
+where CONTRACT_ID = #{CONTRACT_ID} and ORD_TYPE = '1'
+ </update>
+ 
+ <update id="updcontp8">
+ update GHT_CONT_FROOM
+ set MOD_DATE = now() where CONTRACT_ID = #{CONTRACT_ID} and FROOM_ID in (select froom_id from GHT_FROOM where FROOM_TYP = '5')
+ </update>
+ 
+ <update id="updcontp9">
+ 
+ </update>
+ 
+ <insert id="insertYujok">
+ insert into GHT_CONT_SANGJU
+ (
+CONTRACT_ID
+,FROOM_ID
+,RELATION_CODE
+,RELATION_TITLE
+,SANGJU_NAMEs
+,REG_DATE 
+ ) values
+ (
+#{CONTRACT_ID}
+,#{FROOM_ID}
+,#{RELATION_CODE}
+,#{RELATION_TITLE}
+,#{SANGJU_NAMEs}
+,now() )
+<selectKey keyProperty="CONT_SANGJU_ID" resultType="integer"  order="AFTER">
+		 SELECT LAST_INSERT_ID()
+	 </selectKey>
+ </insert>
+
+ <insert id="updateYujok">
+ update GHT_CONT_SANGJU
+ set MOD_DATE = now() where CONT_SANGJU_ID = #{CONT_SANGJU_ID} 
+ </insert>
+
+<select id="contCheck" resultType="_integer">
+ 	SELECT CONTRACT_ID from GHT_CONT where FROOM_ID = #{FROOM_ID} and #{NOWDATE} between START_DATE and END_DATE   
+ </select>
+
+<select id="reloadContp2" resultType="contDto">
+select b.DAYS, b.TIMEs, b.RCHARGE, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' else 'N' end CHKED from GHT_FROOM a
+left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL
+where a.FROOM_TYP = 1 and a.FROOM_USE_YN = 'Y'
+</select> 
+<select id="reloadContp3" resultType="contDto">
+	select gfo.QUTY,gfo.ORD_AMOUNT, gbc.BCD_TITLE, gf.*, CASE WHEN IFNULL(gfo.ORD_AMOUNT,0)>0 then 'Y' else 'N' end CHKED from GHT_FTABLE gf 
+ left join GHT_BASE_CODE gbc on gbc.BCD_ID = gf.FTABLE_CAT 
+ left join GHT_FTAB_ORDERSHEET gfo on gfo.FTABLE_CODE = gf.FTABLE_ID and CONTRACT_ID = #{CONTRACT_ID} and gfo.MOD_DATE is NULL
+ where FTABLE_CAT IN (24,31,32,34,35,36,72,73,74,75,77,76) order by FTABLE_CAT
+</select>
+<select id="reloadContp4m" resultType="contDto">
+	select e.ORD_QUTY , e.ORD_AMOUNT , b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID 
+	left join GHT_FNRSUPP_ORD c on a.GOODS_ID = c.FNRS_GOODS_ID and c.FNRS_ORD_FROOM_ID = 121 
+	left join GHT_BASE_CODE d on c.FNRS_ORD_FROOM_ID = d.BCD_ID 
+	left join GHT_FNRSUPP_ORDERSHEET e on a.GOODS_ID = e.GOODS_CODE and e.CONTRACT_ID = #{CONTRACT_ID} and e.MOD_DATE IS NULL
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='1') and GOODS_USE_YN 
+	= 'Y' and (GOODS_MODERN = '121' or GOODS_MODERN = '123') order by CAT_02_ID, GOODS_ORDER    
+</select>
+<select id="reloadContp4t" resultType="contDto">
+	select e.ORD_QUTY , e.ORD_AMOUNT , b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID 
+	left join GHT_FNRSUPP_ORD c on a.GOODS_ID = c.FNRS_GOODS_ID and c.FNRS_ORD_FROOM_ID = 121 
+	left join GHT_BASE_CODE d on c.FNRS_ORD_FROOM_ID = d.BCD_ID 
+	left join GHT_FNRSUPP_ORDERSHEET e on a.GOODS_ID = e.GOODS_CODE and e.CONTRACT_ID = #{CONTRACT_ID} and e.MOD_DATE IS NULL
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='1') and GOODS_USE_YN 
+	= 'Y' and (GOODS_MODERN = '122' or GOODS_MODERN = '123') order by CAT_02_ID, GOODS_ORDER    
+</select>
+<select id="reloadContp5" resultType="contDto">
+ SELECT b.QUTY ,b.ORD_PRICE ,a.*, CASE WHEN IFNULL(b.ORD_PRICE,0)>0 then 'Y' else 'N' end CHKED from GHT_ALTAR a 
+ left join GHT_ALTAR_ORDERSHEET b on a.ALTAR_ID = b.ALTAR_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL
+ where a.ALTAR_CAT IN (102,103) and a.ALTAR_USE_YN = 'Y' order by a.ALTAR_CAT
+</select>
+<select id="reloadContp6" resultType="contDto">
+	select e.ORD_QUTY , e.ORD_AMOUNT , b.CAT_TITLE, a.*, c.MESSR_GOODS_INIT_QTY, c.MESSR_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_MESSR_ORD c on a.GOODS_ID = c.MESSR_GOODS_ID and c.MESSR_ORD_FROOM_ID = #{CONT_FROOM_ID}
+	left join GHT_BASE_CODE d on c.MESSR_ORD_FROOM_ID = d.BCD_ID
+	left join GHT_REST_ORDERSHEET e on e.GOODS_CODE = a.GOODS_ID and e.CONTRACT_ID = #{CONTRACT_ID} and e.MOD_DATE IS NULL
+	where a.CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='2')
+	and a.GOODS_USE_YN = 'Y' 
+	and a.GOODS_INIT_ORDER = 'Y'
+	and c.MESSR_GOODS_INIT_QTY > 0 
+	order by a.CAT_02_ID, a.GOODS_ORDER 
+</select>
+<select id="reloadContp7" resultType="contDto">
+	select e.ORD_QUTY, e.ORD_AMOUNT, b.CAT_TITLE , a.* ,c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_STORE_ORD c on a.GOODS_ID = c.STORE_GOODS_ID and c.STORE_ORD_FROOM_ID = #{CONT_FROOM_ID}
+	left join GHT_BASE_CODE d on c.STORE_ORD_FROOM_ID = d.BCD_ID
+	left join GHT_STORE_ORDSHEET e on e.GOODS_CODE = a.GOODS_ID and e.MOD_DATE IS NULL and e.CONTRACT_ID = #{CONTRACT_ID} 
+	where a.CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='3') 
+	and a.GOODS_USE_YN = 'Y'
+	and a.GOODS_INIT_ORDER = 'Y' 
+	and c.STORE_GOODS_INIT_QTY > 0
+	order by a.CAT_02_ID, a.GOODS_ORDER 
+</select>
+<select id="reloadContp8" resultType="contDto">
+	SELECT * FROM GHT_ETC_ORDERSHEET where CONTRACT_ID = #{CONTRACT_ID} and MOD_DATE IS NULL
+</select>
+<select id="reloadContp9" resultType="contDto">
+	SELECT * FROM GHT_CONT_CFN where CONTRACT_ID = #{CONTRACT_ID} and MOD_DATE IS NULL
+</select>
+<select id="listYujok" resultType="contDto">
+	SELECT * FROM GHT_CONT_SANGJU where CONTRACT_ID = #{CONTRACT_ID} and MOD_DATE IS NULL
+</select>
+</mapper>
