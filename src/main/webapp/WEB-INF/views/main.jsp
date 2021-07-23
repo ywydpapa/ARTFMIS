@@ -84,6 +84,7 @@ function fnSetPage(url, data){
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/code/write.do')">코드설정</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/code/listview.do')">코드리스트뷰</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/code/bcodelistview.do')">베이스코드리스트뷰</a>
+              <a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/listview.do')">문구설정</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/settleRule.do')">정산규칙설정</a>
 			</div>
           </li>
