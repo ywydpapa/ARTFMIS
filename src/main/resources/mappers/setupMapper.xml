@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="setup">
+
+<select id="detailSetup"
+ 		resultType="setupDto">
+ 		SELECT * from GHT_SETUP where SETUP_ID=#{SETUP_ID}
+ </select>
+ 
+ <select id="listSetup"
+ 		resultType="setupDto">
+ 		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%'
+ </select>
+  
+<insert id="insert">
+  insert into GHT_SETUP 
+  (SETUP_TITLE,SETUP_CONTENTS,SETUP_KEY,SETUP_DESC,REG_DATE,ATTRIB,USE_YN)
+  values
+  (#{SETUP_TITLE},#{SETUP_CONTENTS},#{SETUP_KEY},#{SETUP_DESC},now(),'10000',#{USE_YN})
+</insert>
+
+<update id="update">
+	update GHT_SETUP
+	set
+	SETUP_TITLE = #{SETUP_TITLE},
+	SETUP_CONTENTS = #{SETUP_CONTENTS},
+	SETUP_KEY = #{SETUP_KEY},
+	SETUP_DESC = #{SETUP_DESC},
+	MOD_DATE = now(),
+	USE_YN = #{USE_YN}
+	where SETUP_ID = #{SETUP_ID}
+</update>
+
+<update id="delete">
+	update GHT_SETUP
+	set
+	MOD_DATE = now(),
+	ATTRIB = 'XXXXX'
+	where SETUP_ID = #{SETUP_ID}
+</update>
+  
+  
+</mapper>
