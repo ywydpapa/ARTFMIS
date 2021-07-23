@@ -115,6 +115,7 @@ public class UserController {
 			session.setAttribute("USER_NAMK", userInfo.getUSER_NAMK());
 			session.setAttribute("USER_FROOM_ID", userInfo.getFROOM_ID());
 		}else{
+			mav.addObject("msg", "Fail");
 			mav.setViewName("user/login");
 		}
 		return mav;

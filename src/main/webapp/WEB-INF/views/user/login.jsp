@@ -97,6 +97,7 @@
 </body>
 <script>
 $(document).ready(function(){
+	<c:if test="${msg eq 'Fail'}">alert("아이디와 암호를 확인해 주세요.");</c:if>
 	$("#btnlogin").click(function(){
 		var USER_LOGINID=$("#USER_LOGINID").val();
 		var USER_PASSWD=$("#USER_PASSWD").val();
