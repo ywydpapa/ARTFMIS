@@ -58,9 +58,9 @@ public class ConsultController {
 		mav.addObject("listFgoodsM", contService.doslistFgoodsM());
 		mav.addObject("listFgoodsM13", contService.doslistFgoodsMn(13));
 		mav.addObject("listFgoodsM14", contService.doslistFgoodsMn(14));
-		mav.addObject("listFgoodsM15", contService.doslistFgoodsMn(14));
-		mav.addObject("listFgoodsM16", contService.doslistFgoodsMn(15));
-		mav.addObject("listFgoodsM17", contService.doslistFgoodsMn(16));
+		mav.addObject("listFgoodsM15", contService.doslistFgoodsMn(15));
+		mav.addObject("listFgoodsM16", contService.doslistFgoodsMn(16));
+		mav.addObject("listFgoodsM17", contService.doslistFgoodsMn(17));
 		mav.addObject("listFgoodsM18", contService.doslistFgoodsMn(18));
 		mav.addObject("listFgoodsT", contService.doslistFgoodsT());
 		mav.addObject("listFgoodsT13", contService.doslistFgoodsTn(13));
@@ -78,6 +78,7 @@ public class ConsultController {
 	@RequestMapping("/defaultConsult/{CONSULT_ID}")
 	public ModelAndView defaultcon(@PathVariable("CONSULT_ID") int CONSULT_ID, ModelAndView mav) {
 		mav.addObject("cst", consultService.detailConsult(CONSULT_ID));
+		mav.addObject("listEtcroom", contService.doslistEtcroom());
 		mav.addObject("regioncode", codeService.listconBcode("3"));
 		mav.addObject("setu", setupService.listSetup());
 		mav.setViewName("consult/default");
@@ -96,6 +97,31 @@ public class ConsultController {
 		}
 		return ResponseEntity.ok(param);
 	}
+	
+	@RequestMapping("insertCstFtable.do")
+	public ResponseEntity<?> insertcstFtable(@ModelAttribute ConsultDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int consultInsert = consultService.insertCstFtable(dto);
+		if (consultInsert >0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+	
+	@RequestMapping("deleteCstFtable.do")
+	public ResponseEntity<?> deletecstFtable(@ModelAttribute ConsultDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int consultInsert = consultService.deleteCstFtable(dto);
+		if (consultInsert >0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
 
 	@RequestMapping("updateConsult.do")
 	public ResponseEntity<?> updateconsult(@ModelAttribute ConsultDTO dto) {

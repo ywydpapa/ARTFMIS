@@ -11,23 +11,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  <select id="listConsult"
  		resultType="consultDto">
-		select * from GHT_CONSULT
+		select * from GHT_CONSULT where ATTRIB not LIKE 'XXX%'
  </select>
  
  <update id="updateConsult">
  		update GHT_CONSULT set 
- 		CONSULT_DATE = #{CONSULT_DATE},
 		PATI_NAME = #{PATI_NAME},
 		BFAMILY_NAME = #{BFAMILY_NAME},
-		FAMILY_RELATION = #{FAMILY_RELATION},
-		RELATION_TITLE = #{RELATION_TITLE},
 		TEL_NO = #{TEL_NO},
 		HOSPITAL = #{HOSPITAL},
 		RELIGION = #{RELIGION},
-		RELIGION_NAME = #{RELIGION_NAME},
 		BURI_YN = #{BURI_YN},
-		REMARK = #{REMARK},
-		CONSULTANT_ID = #{CONSULTANT_ID}
+		REMARK = #{REMARK}
  		where CONSULT_ID=#{CONSULT_ID}
  </update>
   
@@ -35,11 +30,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   			INSERT INTO GHT_CONSULT 
   			(
 				CONSULT_DATE,
-				PATI_NAME
+				PATI_NAME,
+				ATTRIB
   			) VALUES
   			(
 				#{CONSULT_DATE},
-				#{PATI_NAME}
+				#{PATI_NAME},
+				'10000'
   			)
-  </insert>
+ </insert>
+ 
+ <insert id="insertCstFtable">
+	INSERT INTO GHT_CONSULT_FTAB
+	(CONSULT_ID,
+		FTABLE_CODE,
+		NET_PRICE,
+		ORD_QUTY,
+		ORD_AMOUNT,
+		REMARK,		
+		attrib
+	)VALUES
+	(#{CONSULT_ID},
+		#{FTABLE_CODE},
+		#{NET_PRICE},
+		#{ORD_QUTY},
+		#{ORD_AMOUNT},
+		#{REMARK},
+		'10000'
+	) 
+ </insert>
+ 
+ <update id="updateCstFtable">
+ 	UPDATE GHT_CONSULT_FTAB
+ 	set
+ 	attrib = 'XXXXX'
+ 	where CONSULT_ID = #{CONSULT_ID} 
+ </update>
+ 
+ 
+ <update id="deleteConsult">
+ update GHT_CONSULT set
+  ATTRIB='XXXXX'
+  where CONSULT_ID=#{CONSULT_ID}
+ </update>
 </mapper>
