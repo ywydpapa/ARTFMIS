@@ -26,68 +26,114 @@
 
 .h-container .item {
 	float: left;
-	width: 20%;
+	width: 10%;
 	height: 100%;
 	text-align: center;
 	background: white;
 	border-right: 1px solid #ddd;
 }
 
+.h-container .item.dash {
+	float: left;
+	width: 40%;
+	border-right: none;
+	text-align: center;
+} 
+
 .h-container .item.cont {
 	float: left;
-	width: 78%;
+	width: 48%;
 	border-right: none;
 	text-align: center;
 }
 </style>
 <div class="listcont">
-	<div class="page-header2">
-		<div class="row align-items-end">
-			<div class="col-lg-12">
-				<div class="page-header-title">
-					<div class="d-inline">
-						<h3>상담관리</h3>
-					</div>
-				</div>
+	<div class="listcategory">
+		<table class="table table-bordered nowrap" style="width: 80%;">
+		<colgroup>
+			<col width="20%" />
+			<col width="60%" />
+			<col width="20%" />
+		</colgroup>
+		<tr>
+			<td>문구 위치</td>
+			<td><select id="consult_list" class="form-control form-control-sm">
+				<c:forEach var="row" items="${listconsult}">
+				<option value="${row.CONSULT_ID}">${row.PATI_NAME}:${row.CONSULT_DATE}</option>
+				</c:forEach>				
+			</select></td>
+			<td>
+			<div class="btn_wr text-right mt-3">
+			<button class="btn btn-md btn-success" value="불러오기" onClick="fn_ReloadConsult()">불러오기</button>
+			<button class="btn btn-md btn-success" value="추가" onClick="fn_newConsult()">추가</button>
 			</div>
-		</div>
-	</div>
+			</td>
+		</tr>
+		</table>
+	</div>			
+<hr>
 	<div class="h-container">
 		<div class="item">
-			<table class="table table-bordered nowrap"
-				id="roomTable">
+		<table class="table table-bordered nowrap" id="listTable">
 				<thead>
 					<tr>
-      			<th scope="col" width="150" align="center">환자명</th>
-      			<th scope="col" width="300" align="center">상담일자</th>
+						<th scope="col" width="200" align="center"></th>
 					</tr>
 				</thead>
 				<tbody>
-    <c:forEach var="row" items="${listconsult}">
-    <tr>
-      <td><a href="javascript:fnSetftabledetail('${path}/consult/detailConsult/${row.CONSULT_ID}')">${row.PATI_NAME}</a></td>
-      <td style="text-align : right">${row.CONSULT_DATE}</td>
-    </tr>
-    </c:forEach>
+						<tr>
+							<td><a href="javascript:tab01active()">[1] 상담기본</a></td>
+						</tr>
+						<tr>
+							<td><a href="javascript:tab02active()">[2] 분향실</a></td>
+						</tr>
+						<tr>
+							<td><a href="javascript:tab03active()">[3] 제물상</a></td>
+						</tr>
+						<tr>
+							<td><a href="javascript:tab04active()">[4] 장의용품</a></td>
+						</tr>
+						<tr>
+							<td><a href="javascript:tab05active()">[5] 제단</a></td>
+						</tr>
+						<tr>
+							<td><a href="javascript:tab08active()">[6] 기타시설</a></td>
+						</tr>
 				</tbody>
-			</table>
-			<div class="btn_wr text-right mt-3">
-				<button class="btn btn-md btn-success" value="추가"
-					onClick="fn_newConsult()">추가</button>
+			</table>		</div>
+		<div class="item dash">
+			<div id="defaultTable" class="defaultTable">
 			</div>
-
 		</div>
 		<div class="item cont">
-			<div id="detailftable" class="detailftable"></div>
+			<div id="detailTable" class="detailTable"></div>
 		</div>
 	</div>
 </div>
 <script>
+function fn_ReloadConsult(){
+	var num=$("#consult_list").val();
+	var url = "${path}/consult/detailConsult/"+num;
+	fnSetConsultdefault(url);
+	fnSetConsultdetail(url);
+}
 
-function fnSetftabledetail(url, data){
+
+
+
+function fnSetConsultdetail(url, data){
 	<!-- $.LoadingOverlay("show", true); -->
-	    $("#detailftable").empty();
-		$("#detailftable").load(url, data, function(){
+	    $("#detailTable").empty();
+		$("#detailTable").load(url, data, function(){
+			setTimeout(function(){
+			}, 500);
+	});
+}
+
+function fnSetConsultdefault(url, data){
+	<!-- $.LoadingOverlay("show", true); -->
+	    $("#defaultTable").empty();
+		$("#defaultTable").load(url, data, function(){
 			setTimeout(function(){
 			}, 500);
 	});
@@ -129,4 +175,28 @@ function fnSetftabledetail(url, data){
 	    return zero + n;
 	}
 	
+	function tab01active(){
+		$('.tab-pane').removeClass('active');
+		$('#tab01').addClass('active');
+	}
+	function tab02active(){
+		$('.tab-pane').removeClass('active');
+		$('#tab02').addClass('active');
+	}
+	function tab03active(){
+		$('.tab-pane').removeClass('active');
+		$('#tab03').addClass('active');
+	}
+	function tab04active(){
+		$('.tab-pane').removeClass('active');
+		$('#tab04').addClass('active');
+	}
+	function tab05active(){
+		$('.tab-pane').removeClass('active');
+		$('#tab05').addClass('active');
+	}
+	function tab08active(){
+		$('.tab-pane').removeClass('active');
+		$('#tab08').addClass('active');
+	}
 </script>
