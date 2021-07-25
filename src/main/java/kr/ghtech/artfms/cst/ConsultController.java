@@ -17,6 +17,7 @@ import kr.ghtech.artfms.cont.service.ContService;
 import kr.ghtech.artfms.cst.dto.ConsultDTO;
 import kr.ghtech.artfms.cst.service.ConsultService;
 import kr.ghtech.artfms.goods.service.GoodsService;
+import kr.ghtech.artfms.setup.service.SetupService;
 
 @Controller
 
@@ -34,6 +35,9 @@ public class ConsultController {
 	
 	@Inject
 	ConsultService consultService;
+	
+	@Inject
+	SetupService setupService;
 	
 	@RequestMapping("listview.do")
 	public ModelAndView listview(ModelAndView mav) {
@@ -68,6 +72,14 @@ public class ConsultController {
 		mav.addObject("code0201", codeService.listCode0201());
 		mav.addObject("regioncode", codeService.listconBcode("3"));
 		mav.setViewName("consult/detail");
+		return mav;
+	}
+
+	@RequestMapping("/defaultConsult/{CONSULT_ID}")
+	public ModelAndView defaultcon(@PathVariable("CONSULT_ID") int CONSULT_ID, ModelAndView mav) {
+		mav.addObject("cst", consultService.detailConsult(CONSULT_ID));
+		mav.addObject("regioncode", codeService.listconBcode("3"));
+		mav.addObject("setu", setupService.listSetup());
 		mav.setViewName("consult/default");
 		return mav;
 	}
