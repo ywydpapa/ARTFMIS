@@ -42,6 +42,7 @@ public class ConsultController {
 		return mav;
 	}
 	
+
 	@RequestMapping("/detailConsult/{CONSULT_ID}")
 	public ModelAndView detail(@PathVariable("CONSULT_ID") int CONSULT_ID, ModelAndView mav) {
 		mav.addObject("cst", consultService.detailConsult(CONSULT_ID));
@@ -66,10 +67,11 @@ public class ConsultController {
 		mav.addObject("listFgoodsT18", contService.doslistFgoodsTn(18));
 		mav.addObject("code0201", codeService.listCode0201());
 		mav.addObject("regioncode", codeService.listconBcode("3"));
-		mav.addObject("frelation", codeService.listconBcode("5"));
 		mav.setViewName("consult/detail");
+		mav.setViewName("consult/default");
 		return mav;
 	}
+
 	
 	@RequestMapping("insertConsult.do")
 	public ResponseEntity<?> insertconsult(@ModelAttribute ConsultDTO dto) {
