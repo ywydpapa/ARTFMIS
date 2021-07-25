@@ -175,10 +175,6 @@ function fnSetConsultdefault(url, data){
 	    return zero + n;
 	}
 	
-	function tab01active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab01').addClass('active');
-	}
 	function tab02active(){
 		$('.tab-pane').removeClass('active');
 		$('#tab02').addClass('active');
