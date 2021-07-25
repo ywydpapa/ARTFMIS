@@ -63,10 +63,10 @@
 			<col width="20%" />
 		</colgroup>
 		<tr>
-			<td>문구 위치</td>
+			<td>조회가능한 상담목록</td>
 			<td><select id="consult_list" class="form-control form-control-sm">
 				<c:forEach var="row" items="${listconsult}">
-				<option value="${row.CONSULT_ID}">${row.PATI_NAME}:${row.CONSULT_DATE}</option>
+				<option value="${row.CONSULT_ID}">${row.PATI_NAME}<span>  :  </span>${row.CONSULT_DATE}</option>
 				</c:forEach>				
 			</select></td>
 			<td>
@@ -203,4 +203,34 @@ function fnSetConsultdefault(url, data){
 		$('.tab-pane').removeClass('active');
 		$('#tab08').addClass('active');
 	}
+	
+	function fn_UpdconsultP1(){
+		var consultData = {};
+		consultData.PATI_NAME = $("#patiName").val();
+		consultData.BFAMILY_NAME = $("#bfamilyName").val();
+		consultData.TEL_NO = $("#telNo").val();
+		consultData.HOSPITAL = $("#hospital").val();
+		consultData.RELIGION = $("#religion").val();
+		consultData.BURI_YN = $("#buriYn").val();
+		consultData.REMARK = $("#remark").val();
+		consultData.CONSULT_ID = $("#consultId").val(); 
+		console.log(consultData);
+		$.ajax({ url: "${path}/consult/updateConsult.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+					data: consultData , // HTTP 요청과 함께 서버로 보낼 데이터 
+					method: "POST", // HTTP 요청 메소드(GET, POST 등) 
+					dataType: "json" // 서버에서 보내줄 데이터의 타입 
+				}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
+				.done(function(data) {
+					if(data.code == 10001){
+						fnSetPage('${path}/consult/listview.do');
+					}else{
+						alert("저장 실패");
+					}
+				}) // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
+				.fail(function(xhr, status, errorThrown) { 
+					alert("통신 실패");
+				});
+		
+	}
+
 </script>

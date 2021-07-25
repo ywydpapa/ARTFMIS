@@ -53,6 +53,7 @@
 									</colgroup>
 									<thead>
 										<tr>
+											<th class="text-center">선택</th>
 											<th class="text-center">호실명</th>
 											<th class="text-center">사용유무</th>
 											<th class="text-center">일일사용료</th>
@@ -62,12 +63,12 @@
 											<th class="text-center">평수</th>
 											<th class="text-center">수용인원</th>
 											<th class="text-center">임시호실명</th>
-											<th class="text-center">선택</th>
 										</tr>
 									</thead>
 									<tbody>
 									<c:forEach var="row" items="${listFroom}">
 										<tr>
+											<td style="text-align: center;"><input type="checkbox" class="CHKroom form-control"  onclick="oneCheck(this);"/></td>
 											<td>${row.FROOM_TITLE}</td>
 											<td></td>
 											<td class = "RMday"style="text-align: right;"><fmt:formatNumber
@@ -78,8 +79,7 @@
 											<td style="text-align: right;">${row.FROOM_AREA_KOR}</td>
 											<td style="text-align: right;">${row.FROOM_MAX_PERS}</td>
 											<td style="text-align: center;">${row.FROOM_ALIS}</td>
-											<td style="text-align: center;"><input type="checkbox"
-												class="CHKroom form-control" /></td>
+											
 										</tr>
 									</c:forEach>
 									</tbody>
@@ -118,8 +118,8 @@
 													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td class = "sRMd" style="text-align: right;">사용일</td>
-											<td class = "sRMt" style="text-align: right;">사용시간</td>
+											<td class = "sRMd" style="text-align: right;">2</td>
+											<td class = "sRMt" style="text-align: right;">0</td>
 											<td class = "RMcharge" style="text-align: right;"><fmt:formatNumber
 													value="" pattern="#,###" /></td>
 											<td style="text-align: center; display:none"><input type="checkbox"
@@ -131,7 +131,7 @@
 						</div>
 					</div>
 					<div class="btn_wr text-right mt-3">
-						<button class="btn btn-md btn-primary" onClick="fn_contInsertP2()">등록</button>
+						<button class="btn btn-md btn-primary" onClick="fn_cstInsertP2()">등록</button>
 					</div>
 				</div>
 				<div class="tab-pane" id="tab03" role="tabpanel">
@@ -147,23 +147,25 @@
 									</tbody>
 								</table>
 								<div class="row">
-									<table class="table table-striped table-bordered nowrap"
+									<table class="table  table-bordered nowrap"
 										id="ftTable">
 										<thead>
 											<tr>
-												<th scope="col" width="30%" align="center">구분</th>
-												<th scope="col" width="25%" align="center">금액</th>
-												<th scope="col" width="25%" align="center">단위</th>
-												<th scope="col" width="9%" align="center">선택여부</th>
+												<th scope="col" width="10%" align="center">구분</th>
+												<th scope="col" width="10%" align="center">선택여부</th>
+												<th scope="col" width="20%" align="center">금액</th>
+												<th scope="col" width="10%" align="center">단위</th>
+												<th scope="col" width="30%" align="center">상품이미지</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach var="row" items="${listFtable}">
 												<tr>
-													<td class="first">${row.BCD_TITLE}</td>
+													<td class="second">${row.BCD_TITLE}</td>
+													<td><input type="checkbox" <c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if> name = "FT${row.FTABLE_CAT}" class="CHKft form-control" /></td>
 													<td style="text-align: right" class="TA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
 													<td style="text-align: right">${row.FTABLE_UNIT}</td>
-													<td><input type="checkbox" class="CHKft form-control" /></td>
+													<td class="imagebx"><div id="ftImage"></div></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -179,17 +181,15 @@
 										</tr>
 									</tbody>
 								</table>
-<br>
-<br>
 									<table class="table table-bordered nowrap"
 										id="sFtable">
 										<thead>
 											<tr>
-												<th scope="col" width="20%" align="center">구분</th>
-												<th scope="col" width="20%" align="center">금액</th>
-												<th scope="col" width="20%" align="center">단위</th>
-												<th scope="col" width="30%" align="center">금액</th>
-												<th style="display :none" scope="col" width="10%" align="center">선택</th>
+												<th scope="col" width="20%" style="text-align:center">구분</th>
+												<th scope="col" width="20%" style="text-align:center">금액</th>
+												<th scope="col" colspan="2" width="20%" style="text-align:center">단위</th>
+												<th scope="col" width="30%" style="text-align:center">금액</th>
+												<th style="display :none" scope="col" width="10%" style="text-align:center">선택</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -197,20 +197,19 @@
 												<tr>
 													<td>${row.BCD_TITLE}<input type="hidden" class = "sTid" value = "${row.FTABLE_ID}"/></td>
 													<td style="text-align: right" class="sTA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
-													<td style="text-align: right"><input style="text-align: right" type="number" class="sTB from-control" min="0" value = "1"> ${row.FTABLE_UNIT}</td>
+													<td style="text-align: right; border-right:none"><input style="text-align:right;border:0px" type="number" class="sTB from-control" min="0" value = "1"></td><td style = "border-left:none">${row.FTABLE_UNIT}</td>
 													<td style="text-align: right" class="sTC"><fmt:formatNumber value="" pattern="#,###" /></td>
 													<td style="display :none"><input type="checkbox" class="sCHKft form-control" /></td>
 												</tr>
 											</c:forEach>
-											<tr><td colspan="4" style="text-align: right;"><span>선택된 제물상 총액 :</span><input
-										type="text" id="P3total" style="text-align: right; border: none;" readonly></td></tr>
-											
 										</tbody>
 									</table>
 							</form>
+							<hr>
+							<div style="text-align:right"><span>선택된 제물상 총액 :</span><input type="text" id="P3total" style="text-align: right; border: none;" readonly>
+							</div>
 							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary"
-									onClick="fn_contInsertP3()">등록</button>
+								<button class="btn btn-md btn-primary" onClick="fn_cstInsertP3()">등록</button>
 							</div>
 						</div>
 					</div>
@@ -753,7 +752,7 @@
 							</form>
 							<div class="btn_wr text-right mt-3">
 								<button class="btn btn-md btn-primary"
-									onClick="fn_contInsertP4()">등록</button>
+									onClick="fn_cstInsertP4()">등록</button>
 							</div>
 						</div>
 					</div>
@@ -766,30 +765,31 @@
 									<tbody>
 										<tr>
 											<th scope="row">제단 선택</th>
-											<td style="text-align: right;"><span>선택된 장의용품 총액 :</span><input type="text" id="P5total" style="text-align: right; border: none;" readonly></td>
+											<td style="text-align: right;"></td>
 											
 										</tr>
 									</tbody>
 								</table>
-								<table class="table table-striped table-bordered nowrap"
+								<table class="table  table-bordered nowrap"
 									id="altarTable">
 									<thead>
 										<tr>
-											<th scope="col" width="30%" align="center">제단구분</th>
-											<th scope="col" width="25%" align="center">제단명</th>
-											<th scope="col" width="25%" align="center">금액</th>
-											<th scope="col" width="10%" align="center">선택여부</th>
+											<th scope="col" width="10%" style="text-align:center">제단구분</th>
+											<th scope="col" width="10%" style="text-align:center">선택여부</th>
+											<th scope="col" width="15%" style="text-align:center">제단명</th>
+											<th scope="col" width="10%" style="text-align:center">금액</th>
+											<th scope="col" width="40%" style="text-align:center">이미지</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="row" items="${listAltar}">
 											<tr>
-												<td class="first"><c:if
-														test="${row.ALTAR_CAT eq '102'}">제단</c:if>
+												<td class="second"><c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if>
 													<c:if test="${row.ALTAR_CAT eq '103'}">헌화</c:if></td>
+												<td><input type="checkbox" onclick ="<c:if test="${row.ALTAR_CAT eq '102'}">oneCheckalt2(this)</c:if><c:if test="${row.ALTAR_CAT eq '103'}">oneCheckalt3(this)</c:if>" class="CHKalt form-control" name="ALTAR${row.ALTAR_CAT}" /></td>
 												<td>${row.ALTAR_TITLE}<input type = "hidden" class = "Aid" value="${row.ALTAR_ID}"/></td>
 												<td style="text-align: right" class="AA"><fmt:formatNumber value="${row.ALTAR_AMOUNT}" pattern="#,###" /></td>
-												<td><input type="checkbox" class="CHKalt form-control" /></td>
+												<td class="imagebx"><div id="altarImage"></div></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -821,17 +821,21 @@
 												<td><c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if>
 													<c:if test="${row.ALTAR_CAT eq '103'}">헌화</c:if></td>
 												<td>${row.ALTAR_TITLE}<input type = "hidden" class = "sAid" value="${row.ALTAR_ID}"/><input type = "hidden" class = "sAct" value="${row.ALTAR_CAT}"/></td>
-												<td style="text-align: right" class="sAA"><fmt:formatNumber value="${row.ALTAR_AMOUNT}" pattern="#,###" /></td>
-												<td><input type="number" style="text-align: right" class="sAB" min="0" value="1" ></td>
+												<td style="text-align: right" class="sAA"><fmt:formatNumber value="${row.ALTAR_NET_PRICE}" pattern="#,###" /></td>
+												<td><input type="number" style="text-align:right;border:0px" class="sAB" min="0" value="${row.ALTAR_QTY}" ></td>
 												<td style="text-align: right" class="sAC"><fmt:formatNumber value="" pattern="#,###" /></td>
 												<td style="display :none" ><input type="checkbox" class="sCHKalt form-control" /></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
+								<hr>
+								<div style="text-align:right">
+								<span>선택된 제단용품 총액 :</span><input type="text" id="P5total" style="text-align: right; border: none;" readonly>
+								</div>
 							<div class="btn_wr text-right mt-3">
 								<button class="btn btn-md btn-primary"
-									onClick="fn_contInsertP5()">등록</button>
+									onClick="fn_cstInsertP5()">등록</button>
 							</div>
 						</div>
 					</div>
@@ -937,53 +941,7 @@
 								</table>
 							<div class="btn_wr text-right mt-3">
 								<button class="btn btn-md btn-primary"
-									onClick="fn_contInsertP8()">등록</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="tab-pane" id="tab09" role="tabpanel">
-					<div class="card-block table-border-style">
-						<div class="table-responsive">
-							<form name="form9" method="post" onsubmit="return false;">
-								<table class="table table-sm bst02">
-									<tbody>
-										<tr>
-											<th scope="row">안내문</th>
-										</tr>
-									</tbody>
-								</table>
-								<table class="table table-sm bst02" id="guide">
-									<colgroup>
-										<col width="20%" />
-										<col width="60%" />
-										<col width="20%" />
-									</colgroup>
-									<thead>
-										<tr>
-											<th class="text-center"></th>
-											<th class="text-center">안내문</th>
-											<th class="text-center"></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td></td>
-											<td><textarea class="form-control" rows="20"></textarea></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td>위생시트금액 : <input type="number"></td>
-											<td></td>
-										</tr>
-									</tbody>
-								</table>
-							</form>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary"
-									onClick="fn_contInsertP9()">최종 등록</button>
-								<button class="btn btn-md btn-inverse">취소</button>
+									onClick="fn_cstInsertP8()">등록</button>
 							</div>
 						</div>
 					</div>
@@ -999,69 +957,6 @@
 	$('#contType').val('${dto.contType}').prop("selected", true);
 	$('#contSource').val('${dto.contSource}').prop("selected", true);
 
-	function fn_contInsertP1() {
-		var contData = {};
-		var froomid = $('#frid').val();
-		var date = new Date();
-	    var year = date.getFullYear();
-	    var month = ("0" + (1 + date.getMonth())).slice(-2);
-	    var day = ("0" + date.getDate()).slice(-2);
-	    var insDATE = year + "-" + month + "-" + day;
-		contData.INS_DATE			= insDATE;
-		contData.START_DATE			= $('#contp1-02').val().replace("T", " ");
-		contData.END_DATE			= $('#contp1-03').val().replace("T", " ");
-		contData.SANGJO				= $('#contp1-04').val();
-		contData.DPERSON_NAME		= $('#contp1-07').val();
-		contData.DPERSON_MW			= $('#contp1-09').val();
-		contData.DPERSON_AGE		= $('#contp1-15').val();
-		contData.DPERSON_JMNO		= $('#contp1-08').val();
-		contData.DPERSON_ADDR1		= $('#contp1-10').val();
-		contData.DPERSON_ADDR2		= $('#contp1-12').val();
-		contData.DPERSON_ORI_NAME	= $('#contp1-11').val();
-		contData.REGION				= $('#contp1-13').val();
-		contData.DDATE				= $('#contp1-14').val();
-		contData.DTIME				= $('#contp1-14').val();
-		contData.DPLACE				= $('#contp1-17').val();
-		contData.DTYPE				= $('#contp1-16').val();
-		contData.CREMATION_YN		= $('#contp1-19').val();
-		contData.SANGJU_NAME		= $('#contp1-20').val();
-		contData.SANGJU_JMNO		= $('#contp1-21').val();
-		contData.SANGJU_POSTNO		= $('#contp1-01').val();
-		contData.SANGJU_ADDR1		= $('#contp1-23').val();
-		contData.SANGJU_ADDR2		= $('#contp1-25').val();
-		contData.RELATION			= $('#contp1-22').val();
-		contData.SANGJU_TEL			= $('#contp1-24').val();
-		contData.ANCHI_REALDATE		= $('#contp1-26').val();
-		contData.ANCHI_REALTIME		= $('#contp1-26').val();
-		contData.ANCHI_DATE			= $('#contp1-27').val();
-		contData.ANCHI_TIME			= $('#contp1-27').val();
-		contData.COFFIN_DATE		= $('#contp1-28').val();
-		contData.COFFIN_TIME		= $('#contp1-28').val();
-		contData.DEPART_DATE		= $('#contp1-29').val();
-		contData.DEPART_TIME		= $('#contp1-29').val();
-		contData.JANGJI				= $('#contp1-30').val();
-		contData.REMARK				= $('#contp1-37').val();
-		contData.FROOM_ID			= froomid;
-		console.dir(contData);
-		$.ajax({
-			url : "${path}/cont/insertP1.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
-			data : contData, // HTTP 요청과 함께 서버로 보낼 데이터 
-			method : "POST", // HTTP 요청 메소드(GET, POST 등) 
-			dataType : "json" // 서버에서 보내줄 데이터의 타입 
-		}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
-		.done(function(data) {
-			if (data.code == 10001) {
-				alert("저장 성공");
-				$("#contid").val(data.contid);
-			} else {
-				alert("저장 실패");
-			}
-		}) // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
-		.fail(function(xhr, status, errorThrown) {
-			alert("통신 실패");
-		});
-	}
-	
 	function fn_contInsertP3() {
 		var CONid = $("#contid").val();
 		if (CONid != ""){
@@ -1072,10 +967,10 @@
 		var $Carr =  $(".sTC");
 		var $Tidarr =  $(".sTid");
 		var contp3upd ={};
-		contp3upd.CONTRACT_ID = Number(CONid);
+		contp3upd.CONSULT_ID = Number(CONid);
 		console.log(contp3upd);
 		$.ajax({
-			url : "${path}/cont/updateP3.do",  
+			url : "${path}/consult/updateP3.do",  
 			data : contp3upd,  
 			method : "POST",  
 			dataType : "json"  
@@ -1594,6 +1489,11 @@
 		$(".t183").prop('selectedIndex',idxm18);
 	});
 
+	$(".Eday, .Etime").change(function() {
+		chkEtcchange();
+		calculateE();
+		chkcalE();
+	});
 
 	$(".MB, .MA").change(function() {
 		calculateM();
@@ -1606,8 +1506,6 @@
 	});
 	
 	$(".CHKroom, .sRMd , .sRMt").change(function() {
-		calculateR();
-		chkcalR();
 		chkRoomchange();
 	});
 	
@@ -1771,27 +1669,19 @@
 	}
 
 	function chkcalE() {
-		var $infoarr = $(".CHKe");
-		var $Aarr = $(".sEA");
-		var $Barr = $(".sEB");
-		var $Carr = $(".sEC");
-		var $Darr = $(".sED");
-		var $Earr = $(".sEE");
-		var $Farr = $(".sEF");
-		var $Garr = $(".sEG");
-		
-		for (var i = 0; i < $infoarr.length; i++) {
-			if($($infoarr[i]).is(":checked")==true){
+		var $Aarr = $(".EA");
+		var $Barr = $(".EB");
+		var $Carr = $(".Eday");
+		var $Darr = $(".Etime");
+		var $Earr = $(".Esum");
+		for (var i = 0; i < $Aarr.length; i++) {
 			var chksum = 0;	
 			var b1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 			var b2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-			var b3 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-			var c1 = Number($Darr[i].value.replace(/[\D\s\._\-]+/g, ""));
-			var c2 = Number($Earr[i].value.replace(/[\D\s\._\-]+/g, ""));
-			var c3 = Number($Farr[i].value.replace(/[\D\s\._\-]+/g, ""));
-			chksum = (b1*c1)+(b2*c2)+(b3*c3);
-			$Garr[i].innerText = numberWithCommas(chksum);
-		}
+			var c1 = Number($Carr[i].value);
+			var c2 = Number($Darr[i].value);
+			chksum = (b1*c1)+(b2*c2);
+			$Earr[i].innerText = numberWithCommas(chksum);
 		}
 	}
 	
@@ -1896,73 +1786,70 @@
 		}
 	}
 	
-	function chkEtcchange(){
-		var $infoarr = $(".CHKe");
-		var $sinfoarr = $(".sCHKe");
-		for (var i = 0; i < $infoarr.length; i++) {
-			if($($infoarr[i]).is(":checked")==true){
-			$($sinfoarr[i]).attr("checked",true);
-			$($sinfoarr[i]).parent().parent().show();
-			}
-			else{
-				$($sinfoarr[i]).attr("checked",false);
-				$($sinfoarr[i]).parent().parent().hide();
-			}
-		}
+	function oneCheck(chk){
+	    var obj = document.getElementsByClassName("CHKroom");
+	    for(var i=0; i<obj.length; i++){
+	        if(obj[i] != chk){
+	            obj[i].checked = false;
+	        }
+	    }
+	}
+
+	function oneCheckft(chk){
+	    var obj = document.getElementsByName("FT24");
+	    for(var i=0; i<obj.length; i++){
+	        if(obj[i] != chk){
+	            obj[i].checked = false;
+	        }
+	    }
+	}
+
+	function oneCheckalt2(chk){
+	    var obj = document.getElementsByName("ALTAR102");
+	    for(var i=0; i<obj.length; i++){
+	        if(obj[i] != chk){
+	            obj[i].checked = false;
+	        }
+	    }
+	}
+
+	function oneCheckalt3(chk){
+	    var obj = document.getElementsByName("ALTAR103");
+	    for(var i=0; i<obj.length; i++){
+	        if(obj[i] != chk){
+	            obj[i].checked = false;
+	        }
+	    }
 	}
 	
-	function setSelRoom(){
-		$("#contid").val("");
-		var idxroom = $("#FROOM_SEL option").index($("#FROOM_SEL option:selected"));
-		console.log(idxroom);
-		$("#contp1-01 > option:eq("+ idxroom +")").attr("selected",true);
-		
-	}
 	
-	function fn_checkFroom(){
-		var froomid = $('#contp1-01').val();
-		var sfroomid = $('#frid').val();
-		var startDate = $('#contp1-02').val().replace("T", " ");
-		var chkRdata = {};
-		chkRdata.FROOM_ID = froomid;
-		chkRdata.START_DATE = startDate;
-		console.log(chkRdata);
-		$.ajax({
-			url : "${path}/cont/checkFroom.do",  
-			data : chkRdata,  
-			method : "POST",  
-			dataType : "json"  
-		})
-		.done(function(data) {
-			if (data.code == 10001) {
-				alert("사용중 입니다.");
-			} else {
-				alert("사용가능 합니다.");
-				if (froomid != sfroomid)
-					{
-					var moveroom = confirm("해당 호실로 변경하시겠습니까?");
-					if (moveroom == true)
-						{
-						$("#contid").val("");
-						var idxroom = $("#contp1-01 option").index($("#contp1-01 option:selected"));
-						$("#FROOM_SEL > option:eq("+ idxroom +")").attr("selected",true).trigger('change');
-						}
-					}
-				else
-					{
-					var idxroom = $("#FROOM_SEL option").index($("#FROOM_SEL option:selected"));
-					var $Ckarr = $(".CHKroom");
-					$($Ckarr[idxroom]).attr("checked", true).trigger('change');
-					}
-			}	
-		});
+	var i = 1;
+	var str = undefined;
+	var element = $(".second");
+	var firstElement = undefined;
+	element.each(function() {
+		console.dir(i + $(this).text());
+		if (str == undefined && firstElement == undefined) {
+			str = $(".second")[0].innerText;
+			firstElement = $(".second")[0];
+			return;
 		}
+		if (str == $(this).text()) {
+			i++;
+			console.dir('--> ' + i + $(this).text());
+			$(this).remove();
+		} else {
+			$(firstElement).attr('rowspan', i);
+			i = 1;
+			str = $(this).text();
+			firstElement = $(this);
+		}
+	});
+	// 마지막꺼까지 반영
+	$(firstElement).attr('rowspan', i);
+
 
 	$(document).ready(function(){
-		calculateM();
-		chkcalM();
-		calculateS();
-		chkcalS();
 		calculateT();
 		chkcalT();
 		calculateR();
@@ -1970,14 +1857,13 @@
 		selectMT();
 		calculateG();
 		chkcalG();
-		Setdate();
-		SetDT();
+		calculateA();
+		chkcalA();
 		chkRoomchange();
 		chkFtablechange();
 		chkAltarchange();
-		chkEtcchange();
-		setSelRoom();
 	})
 
+	
 
 </script>

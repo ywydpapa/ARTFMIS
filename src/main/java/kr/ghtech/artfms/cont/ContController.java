@@ -136,9 +136,9 @@ public class ContController {
 		mav.addObject("listFgoodsM", contService.doslistFgoodsM());
 		mav.addObject("listFgoodsM13", contService.doslistFgoodsMn(13));
 		mav.addObject("listFgoodsM14", contService.doslistFgoodsMn(14));
-		mav.addObject("listFgoodsM15", contService.doslistFgoodsMn(14));
-		mav.addObject("listFgoodsM16", contService.doslistFgoodsMn(15));
-		mav.addObject("listFgoodsM17", contService.doslistFgoodsMn(16));
+		mav.addObject("listFgoodsM15", contService.doslistFgoodsMn(15));
+		mav.addObject("listFgoodsM16", contService.doslistFgoodsMn(16));
+		mav.addObject("listFgoodsM17", contService.doslistFgoodsMn(17));
 		mav.addObject("listFgoodsM18", contService.doslistFgoodsMn(18));
 		mav.addObject("listFgoodsT", contService.doslistFgoodsT());
 		mav.addObject("listFgoodsT13", contService.doslistFgoodsTn(13));
@@ -170,9 +170,9 @@ public class ContController {
 		mav.addObject("listFgoodsM", contService.doslistFgoodsM());
 		mav.addObject("listFgoodsM13", contService.doslistFgoodsMn(13));
 		mav.addObject("listFgoodsM14", contService.doslistFgoodsMn(14));
-		mav.addObject("listFgoodsM15", contService.doslistFgoodsMn(14));
-		mav.addObject("listFgoodsM16", contService.doslistFgoodsMn(15));
-		mav.addObject("listFgoodsM17", contService.doslistFgoodsMn(16));
+		mav.addObject("listFgoodsM15", contService.doslistFgoodsMn(15));
+		mav.addObject("listFgoodsM16", contService.doslistFgoodsMn(16));
+		mav.addObject("listFgoodsM17", contService.doslistFgoodsMn(17));
 		mav.addObject("listFgoodsM18", contService.doslistFgoodsMn(18));
 		mav.addObject("listFgoodsT", contService.doslistFgoodsT());
 		mav.addObject("listFgoodsT13", contService.doslistFgoodsTn(13));

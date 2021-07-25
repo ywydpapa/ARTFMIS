@@ -45,5 +45,6 @@ public class ConsultDTO {
 	private String RENT_DAYS;
 	private String RENT_HOURS;
 	private String RENT_AMOUNT;
+	private String attrib;
 }
 

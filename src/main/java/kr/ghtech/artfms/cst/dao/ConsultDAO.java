@@ -11,5 +11,7 @@ public interface ConsultDAO {
 	int updateConsult(ConsultDTO dto);
 	int insertConsult(ConsultDTO dto);
 	int deleteConsult(int CONSULT_ID);
+	int insertCstFtable(ConsultDTO dto);
+	int deleteCstFtable(ConsultDTO dto);
 
 }

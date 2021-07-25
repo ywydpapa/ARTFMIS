@@ -30,7 +30,7 @@ public class ConsultDAOImpl implements ConsultDAO {
 	@Override
 	public int updateConsult(ConsultDTO dto) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("consult.updateConsult", dto);
 	}
 
 	@Override
@@ -42,7 +42,19 @@ public class ConsultDAOImpl implements ConsultDAO {
 	@Override
 	public int deleteConsult(int CONSULT_ID) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.update("consult.deleteConsult", CONSULT_ID);
+	}
+
+	@Override
+	public int insertCstFtable(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("consult.insertCstFtable", dto);
+	}
+
+	@Override
+	public int deleteCstFtable(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("consult.deleteCstFtable", dto);
 	}
 	
 }

@@ -30,7 +30,7 @@ public class ConsultServiceImpl implements ConsultService {
 	@Override
 	public int updateConsult(ConsultDTO dto) {
 		// TODO Auto-generated method stub
-		return 0;
+		return consultDao.updateConsult(dto);
 	}
 
 	@Override
@@ -42,7 +42,19 @@ public class ConsultServiceImpl implements ConsultService {
 	@Override
 	public int deleteConsult(int CONSULT_ID) {
 		// TODO Auto-generated method stub
-		return 0;
+		return consultDao.deleteConsult(CONSULT_ID);
+	}
+
+	@Override
+	public int insertCstFtable(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return consultDao.insertCstFtable(dto);
+	}
+
+	@Override
+	public int deleteCstFtable(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return consultDao.deleteCstFtable(dto);
 	}
 
 }
