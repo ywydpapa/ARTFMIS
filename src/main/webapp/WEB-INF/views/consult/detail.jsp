@@ -21,7 +21,7 @@
 		<div class="table-responsive">
 				<table class="table table-bordered nowrap">
 				<tr>
-				<td><input id="frid" type="hidden" value = "${frid}"><input id="contid" type="hidden" value = ""><span>선택된 시설 (분향실) :  </span>${pagetitle}</td>
+				<td><input id="frid" type="hidden" value = "${frid}"><input id="contid" type="hidden" value = ""></td>
 				</tr>
 				</table>
 				</div>
@@ -142,8 +142,7 @@
 									<tbody>
 									<tr>
 									<td><span> 제물상 </span></td>
-									<td style="text-align: right;"><span>선택된 제물상 총액 :</span><input
-										type="text" id="P3total" style="text-align: right; border: none;" readonly></td>
+									<td style="text-align: right;"></td>
 									</tr>
 									</tbody>
 								</table>
@@ -203,6 +202,9 @@
 													<td style="display :none"><input type="checkbox" class="sCHKft form-control" /></td>
 												</tr>
 											</c:forEach>
+											<tr><td colspan="4" style="text-align: right;"><span>선택된 제물상 총액 :</span><input
+										type="text" id="P3total" style="text-align: right; border: none;" readonly></td></tr>
+											
 										</tbody>
 									</table>
 							</form>
@@ -227,8 +229,7 @@
 											</select> </td>
 											<td></td>
 											<td></td>
-											<td style="text-align: right;"><span>선택된 장의용품 총액 :</span><input
-										type="text" id="P4total" style="text-align: right; border: none;" readonly></td>
+											<td></td>
 										</tr>
 									</tbody>
 								</table>
@@ -288,8 +289,8 @@
 												<td style="text-align: right;"><input
 													class="from-control GA" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="0" required></td>
+													min="1" max="100"
+													value="1" required></td>
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -323,8 +324,8 @@
 												<td style="text-align: right;"><input
 													class="from-control GA" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="0" required></td>
+													min="1" max="100"
+													value="1" required></td>
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -358,8 +359,8 @@
 												<td style="text-align: right;"><input
 													class="from-control GA" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="0" required></td>
+													min="1" max="100"
+													value="1" required></td>
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -393,8 +394,8 @@
 												<td style="text-align: right;"><input
 													class="from-control GA" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="0" required></td>
+													min="1" max="100"
+													value="1" required></td>
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -428,8 +429,8 @@
 												<td style="text-align: right;"><input
 													class="from-control GA" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="0" required></td>
+													min="1" max="100"
+													value="1" required></td>
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -463,8 +464,8 @@
 												<td style="text-align: right;"><input
 													class="from-control GA" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="0" required></td>
+													min="1" max="100"
+													value="1" required></td>
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 										<c:forEach var="row" items="${listFgoodsM}">
@@ -545,8 +546,8 @@
 												<td style="text-align: right;"><input
 													class="from-control GE" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="0" required></td>
+													min="1" max="100"
+													value="1" required></td>
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -580,8 +581,8 @@
 												<td style="text-align: right;"><input
 													class="from-control GE" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="0" required></td>
+													min="1" max="100"
+													value="1" required></td>
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -615,8 +616,8 @@
 												<td style="text-align: right;"><input
 													class="from-control GE" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="0" required></td>
+													min="1" max="100"
+													value="1" required></td>
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -650,8 +651,8 @@
 												<td style="text-align: right;"><input
 													class="from-control GE" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="0" required></td>
+													min="1" max="100"
+													value="1" required></td>
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -685,8 +686,8 @@
 												<td style="text-align: right;"><input
 													class="from-control GE" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="0" required></td>
+													min="1" max="100"
+													value="1" required></td>
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -720,8 +721,8 @@
 												<td style="text-align: right;"><input
 													class="from-control GE" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="0" required></td>
+													min="1" max="100"
+													value="1" required></td>
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 										<c:forEach var="row" items="${listFgoodsT}">
@@ -738,15 +739,17 @@
 												<td style="text-align: right;"><input
 													class="from-control GG" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
+													min="1" max="100"
 													value="<c:if test="${row.FNRS_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.FNRS_GOODS_INIT_QTY ne null }">${row.FNRS_GOODS_INIT_QTY}</c:if>"
 													required></td>
 												<td class="GH from-control" style="text-align: right;"></td>
 											</tr>
 										</c:forEach>
-
 									</tbody>
 								</table>
+								<div>
+									<span>선택된 장의용품 총액 :</span><input	type="text" id="P4total" style="text-align: right; border: none;" readonly>								
+								</div>
 							</form>
 							<div class="btn_wr text-right mt-3">
 								<button class="btn btn-md btn-primary"

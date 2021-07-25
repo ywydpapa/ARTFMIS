@@ -18,6 +18,13 @@
 	background: white;
 }
 
+.defaultcont {
+	width: 100%;
+	height: 100%;
+	padding: 20px;
+	background: white;
+}
+
 .h-container:after {
 	clear: both;
 	display: block;
@@ -74,7 +81,7 @@
 <hr>
 	<div class="h-container">
 		<div class="item">
-		<table class="table table-bordered nowrap" id="listTable">
+		<table class="table table-bordered nowrap listcont" id="listTable">
 				<thead>
 					<tr>
 						<th scope="col" width="200" align="center"></th>
@@ -102,11 +109,11 @@
 				</tbody>
 			</table>		</div>
 		<div class="item dash">
-			<div id="defaultTable" class="defaultTable">
+			<div id="defaultTable" class="defaultcont">
 			</div>
 		</div>
 		<div class="item cont">
-			<div id="detailTable" class="detailTable"></div>
+			<div id="detailTable" class="detailcont"></div>
 		</div>
 	</div>
 </div>
@@ -114,7 +121,8 @@
 function fn_ReloadConsult(){
 	var num=$("#consult_list").val();
 	var url = "${path}/consult/detailConsult/"+num;
-	fnSetConsultdefault(url);
+	var url2 = "${path}/consult/defaultConsult/"+num;
+	fnSetConsultdefault(url2);
 	fnSetConsultdetail(url);
 }
 
