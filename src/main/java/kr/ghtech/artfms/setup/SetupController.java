@@ -36,6 +36,12 @@ public class SetupController {
 		return mav;
 	}
 	
+	@RequestMapping("detailnew.do")
+	public ModelAndView detailnew(ModelAndView mav) {
+		mav.setViewName("setup/detailsetup");
+		return mav;
+	}
+	
 	@RequestMapping("detail/{SETUP_ID}")
 	public ModelAndView detailSetup(@PathVariable("SETUP_ID") int SETUP_ID, ModelAndView mav) {
 		mav.addObject("list",setupService.detailSetup(SETUP_ID));
