@@ -334,7 +334,7 @@
 								</table>
 							</form>
 							<br> <br>
-							<table class="table  table-bordered nowrap"
+							<table class="table table-bordered nowrap"
 									id="SltdroomList">
 									<colgroup>
 										<col width="10%" />
@@ -383,6 +383,57 @@
 									
 									</tbody>
 								</table>
+								<div id="addFroom">
+								<table class="table table-bordered nowrap">
+								<tr>
+								<td>삭제</td>
+								<td>추가사용호실</td>
+								<td>사용일수</td>
+								<td>사용시간</td>
+								<td>환경부담금일수</td>
+								<td>냉장고사용</td>
+								<td>일회용품사용</td>
+								<td>마른안주사용</td>
+								<td>입실유무</td>
+								<td></td>
+								</tr>
+								<tr>
+								<td><input type="checkbox"></td>
+								<td>
+								<select>
+								<option value="호실선택"></option>
+								</select>
+								</td>
+								<td><input type="number"></td>
+								<td><input type="number"></td>
+								<td><input type="number"></td>
+								<td>
+								<select>
+								<option value="Y">예</option>
+								<option value="Y">아니오</option>
+								</select>
+								</td>
+								<td>
+								<select>
+								<option value="Y">예</option>
+								<option value="Y">아니오</option>
+								</select></td>
+								<td>
+								<select>
+								<option value="Y">예</option>
+								<option value="Y">아니오</option>
+								</select>
+								</td>
+								<td>
+								<select>
+								<option value="Y">예</option>
+								<option value="Y">아니오</option>
+								</select>
+								</td>
+								<td><button>추가</button></td>
+								</tr>
+								</table>
+								</div>
 						</div>
 					</div>
 					<div class="btn_wr text-right mt-3">
