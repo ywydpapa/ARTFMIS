@@ -27,6 +27,12 @@ select gc.CONTRACT_ID , gc.START_DATE, gc.END_DATE, gc.FROOM_ID, gf.FROOM_TITLE 
 	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' group by a.FROOM_ID 
  </select>
  
+ <select id="listFroomemp" resultType="contDto">
+ 	SELECT a.*, b.CONTRACT_ID from GHT_FROOM a 
+ 	left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.SETT_DATE is null
+	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' and b.CONTRACT_ID is null group by a.FROOM_ID 
+ </select>
+ 
   <select id="checkFroom" resultType="_integer">
  	SELECT COUNT(CONTRACT_ID) from GHT_CONT where END_DATE >= #{START_DATE} and FROOM_ID = #{FROOM_ID}   
  </select>
