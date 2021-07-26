@@ -400,39 +400,39 @@
 								<tr>
 								<td></td>
 								<td>
-								<select>
+								<select  class="form-control">
 								<c:forEach var="row" items="${listroomemp}">
 								<option value="${row.FROOM_ID}">${row.FROOM_TITLE}</option>
 								</c:forEach>
 								</select>
 								</td>
-								<td><input style="text-align: right" type="number" min="0" max="100" value="0"></td>
-								<td><input style="text-align: right" type="number" min="0" max="100" value="0"></td>
-								<td><input style="text-align: right" type="number" min="0" max="100" value="0"></td>
+								<td><input class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
+								<td><input class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
+								<td><input class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
 								<td>
-								<select>
+								<select  class="form-control">
 								<option value="Y">예</option>
 								<option value="Y">아니오</option>
 								</select>
 								</td>
 								<td>
-								<select>
+								<select class="form-control">
 								<option value="Y">예</option>
 								<option value="Y">아니오</option>
 								</select></td>
 								<td>
-								<select>
+								<select class="form-control">
 								<option value="Y">예</option>
 								<option value="Y">아니오</option>
 								</select>
 								</td>
 								<td>
-								<select>
+								<select class="form-control">
 								<option value="Y">예</option>
 								<option value="Y">아니오</option>
 								</select>
 								</td>
-								<td><button onclick="addNewRoom()">추가</button></td>
+								<td><button class="form-control" onclick="addNewRoom()">추가</button></td>
 								</tr>
 								</table>
 								</div>

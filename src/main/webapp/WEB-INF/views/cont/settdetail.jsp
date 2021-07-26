@@ -2615,7 +2615,7 @@
 		calculateA();
 		chkcalA();
 		SetDT();
-		chkRoomchange();
+		chkRoomchange(); 
 		chkFtablechange();
 		chkAltarchange();
 		chkEtcchange();
