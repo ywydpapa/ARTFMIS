@@ -398,15 +398,17 @@
 								<td></td>
 								</tr>
 								<tr>
-								<td><input type="checkbox"></td>
+								<td></td>
 								<td>
 								<select>
-								<option value="호실선택"></option>
+								<c:forEach var="row" items="${listroomemp}">
+								<option value="${row.FROOM_ID}">${row.FROOM_TITLE}</option>
+								</c:forEach>
 								</select>
 								</td>
-								<td><input type="number"></td>
-								<td><input type="number"></td>
-								<td><input type="number"></td>
+								<td><input style="text-align: right" type="number" min="0" max="100" value="0"></td>
+								<td><input style="text-align: right" type="number" min="0" max="100" value="0"></td>
+								<td><input style="text-align: right" type="number" min="0" max="100" value="0"></td>
 								<td>
 								<select>
 								<option value="Y">예</option>
@@ -430,7 +432,7 @@
 								<option value="Y">아니오</option>
 								</select>
 								</td>
-								<td><button>추가</button></td>
+								<td><button onclick="addNewRoom()">추가</button></td>
 								</tr>
 								</table>
 								</div>
@@ -439,20 +441,6 @@
 					<div class="btn_wr text-right mt-3">
 						<button class="btn btn-md btn-primary" onClick="fn_contUpdateP1()">저장</button>
 					</div>
-				</div>
-				<div class="tab-pane" id="tab03" role="tabpanel">
-				</div>
-				<div class="tab-pane" id="tab04" role="tabpanel">
-				</div>
-				<div class="tab-pane" id="tab05" role="tabpanel">
-				</div>
-				<div class="tab-pane" id="tab06" role="tabpanel">
-				</div>
-				<div class="tab-pane" id="tab07" role="tabpanel">
-				</div>
-				<div class="tab-pane" id="tab08" role="tabpanel">
-				</div>
-				<div class="tab-pane" id="tab09" role="tabpanel">
 				</div>
 			</div>
 			<!-- Row end -->
@@ -515,59 +503,9 @@
 			$("#contp1-07").focus();
 			return;
 		}
-		else if(contData.DPERSON_MW==""){
-			alert("고인의 성별을 선택해 주세요.");
-			$("#contp1-09").focus();
-			return;
-		}
-		else if(contData.DPERSON_AGE==""){
-			alert("고인의 연세를 입력해 주세요.");
-			$("#contp1-15").focus();
-			return;
-		}
-		else if(contData.DPERSON_JMNO==""){
-			alert("고인의 주민번호를 입력해 주세요.");
-			$("#contp1-08").focus();
-			return;
-		}
-		else if(contData.DPERSON_ADDR1==""){
-			alert("고인의 주소를 입력해 주세요.");
-			$("#contp1-10").focus();
-			return;
-		}
-		else if(contData.REGION==""){
-			alert("종교를 선택해 주세요.");
-			$("#contp1-13").focus();
-			return;
-		}
-		else if(contData.DDATE==""){
-			alert("사망일자를 입력해 주세요.");
-			$("#contp1-14").focus();
-			return;
-		}
-		else if(contData.DPLACE==""){
-			alert("사망장소를 입력해 주세요.");
-			$("#contp1-17").focus();
-			return;
-		}
-		else if(contData.DTYPE==""){
-			alert("사망구문을 선택해 주세요.");
-			$("#contp1-16").focus();
-			return;
-		}
 		else if(contData.SANGJU_NAME==""){
 			alert("상주 성함을 입력해 주세요.");
 			$("#contp1-20").focus();
-			return;
-		}
-		else if(contData.RELATION==""){
-			alert("고인과의 관계를 선택해 주세요.");
-			$("#contp1-22").focus();
-			return;
-		}
-		else if(contData.CREMATION_YN==""){
-			alert("화장/매장 선택해 주세요.");
-			$("#contp1-19").focus();
 			return;
 		}
 		console.dir(contData);

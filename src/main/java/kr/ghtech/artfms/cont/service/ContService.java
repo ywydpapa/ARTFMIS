@@ -43,6 +43,7 @@ public interface ContService {
 	List<ContDTO> doslistFgoodsMn(int CAT_02_ID);
 	List<ContDTO> doslistFgoodsTn(int CAT_02_ID);
 	List<ContDTO> doslistFroom();
+	List<ContDTO> doslistFroomemp();	
 	List<ContDTO> listContcombo();
 	List<ContDTO> doslistFtable();
 	List<ContDTO> doslistEtcroom();

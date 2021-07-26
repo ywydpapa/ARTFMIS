@@ -213,6 +213,7 @@ public class ContController {
 		mav.addObject("contpage2", contService.reloadP2(CONTRACT_ID));
 		mav.addObject("contpage3", contService.reloadP3(CONTRACT_ID));
 		mav.addObject("listYujok", contService.listYujok(CONTRACT_ID));
+		mav.addObject("listroomemp", contService.doslistFroomemp());
 		mav.setViewName("cont/detailcont");
 		return mav;
 	}

@@ -95,6 +95,12 @@ public class ContServiceImpl implements ContService {
 	}
 
 	@Override
+	public List<ContDTO> doslistFroomemp() {
+		// TODO Auto-generated method stub
+		return contDao.doslistFroomemp();
+	}
+	
+	@Override
 	public List<ContDTO> doslistFtable() {
 		// TODO Auto-generated method stub
 		return contDao.doslistFtable();

@@ -1281,32 +1281,6 @@
 	}
 
 	
-	var i = 1;
-	var str;
-	var element = $(".first");
-	var firstElement;
-	element.each(function() {
-		console.dir(i + $(this).text());
-		if (str == undefined && firstElement == undefined) {
-			str = $(".first")[0].innerText;
-			firstElement = $(".first")[0];
-			return;
-		}
-		if (str == $(this).text()) {
-			i++;
-			console.dir('--> ' + i + $(this).text());
-			$(this).remove();
-		} else {
-			$(firstElement).attr('rowspan', i);
-			i = 1;
-			str = $(this).text();
-			firstElement = $(this);
-		}
-	});
-	// 마지막꺼까지 반영
-	$(firstElement).attr('rowspan', i);
-
-
 	function calculateM() {
 		var $infoarr = $(".infoM");
 		var $Aarr = $(".MA");

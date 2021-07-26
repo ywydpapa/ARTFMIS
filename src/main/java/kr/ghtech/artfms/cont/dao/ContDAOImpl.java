@@ -92,6 +92,12 @@ public class ContDAOImpl implements ContDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("cont.listFroom");
 	}
+	
+	@Override
+	public List<ContDTO> doslistFroomemp() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("cont.listFroomemp");
+	}
 
 	@Override
 	public List<ContDTO> doslistFtable() {
