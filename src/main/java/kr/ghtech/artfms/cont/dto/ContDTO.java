@@ -214,4 +214,15 @@ public class ContDTO {
 	private String inRoom;
 	private String STDATE;
 	private String EDDATE;
+	private Integer RENT_ID;
+	private String RENT_TITLE;
+	private Integer RENT_TYPE;
+	private String RENT_NAME;
+	private Integer CHARGE_TYPE;
+	private Integer CHARGE_YN;
+	private Long CHARGE_PERDAY;
+	private Long CHARGE_PERHOUR;
+	private Integer RENT_DAYS;
+	private Integer RENT_HOURS;
+	private Long RENT_AMOUNT;
 }

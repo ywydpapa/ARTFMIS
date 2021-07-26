@@ -330,6 +330,11 @@ public class ContServiceImpl implements ContService {
 	}
 
 	@Override
+	public ContDTO selectOneCSWithCSId(Integer CONSULT_ID) {
+		return contDao.selectOneCSWithCSId(CONSULT_ID);
+	}
+
+	@Override
 	public List<ContDTO> listContcombo() {
 		// TODO Auto-generated method stub
 		return contDao.listContcombo();

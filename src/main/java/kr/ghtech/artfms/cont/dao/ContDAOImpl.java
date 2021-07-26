@@ -328,6 +328,11 @@ public class ContDAOImpl implements ContDAO {
 	}
 
 	@Override
+	public ContDTO selectOneCSWithCSId(Integer CONSULT_ID) {
+		return sqlSession.selectOne("cont.selectOneCSWithCSId", CONSULT_ID);
+	}
+
+	@Override
 	public List<ContDTO> listContcombo() {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("cont.listContcombo");

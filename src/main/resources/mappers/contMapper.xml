@@ -132,6 +132,10 @@ select b.CAT_TITLE, a.*, c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID
 	and GOODS_FROOM_ORDER = 'Y'
 	order by CAT_02_ID, GOODS_ORDER 
  </select>
+
+<select id="selectOneCSWithCSId" resultType="contDto">
+    select * from GHT_CONSULT_RENTFEE where CONSULT_ID = #{CONSULT_ID}
+</select>
   
  <update id="updateCont">
 update GHT_CONT set
@@ -557,6 +561,11 @@ CONTRACT_ID
  <insert id="contp9">
  
  </insert>
+
+<insert id="cntp10">
+    insert into GHT_CONSULT_RENTFEE (CONSULT_ID, RENT_TITLE, RENT_TYPE, RENT_NAME, CHARGE_TYPE, CHARGE_YN, CHARGE_PERDAY, CHARGE_PERHOUR, RENT_DAYS, RENT_HOURS, RENT_AMOUNT)
+    values (#{CONSULT_ID}, #{RENT_TITLE}, #{RENT_TYPE}, #{RENT_NAME}, #{CHARGE_TYPE}, #{CHARGE_YN}, #{CHARGE_PERDAY}, #{CHARGE_PERHOUR}, #{RENT_DAYS}, #{RENT_HOURS}, #{RENT_AMOUNT})
+</insert>
  
  <update id="updcontp2">
  update GHT_CONT_FROOM
@@ -598,6 +607,21 @@ where CONTRACT_ID = #{CONTRACT_ID} and ORD_TYPE = '1'
  <update id="updcontp9">
  
  </update>
+
+<update id="updcontp10">
+    update GHT_CONSULT_RENTFEE
+    set RENT_TITLE,
+        RENT_TYPE,
+        RENT_NAME,
+        CHARGE_TYPE,
+        CHARGE_YN,
+        CHARGE_PERDAY,
+        CHARGE_PERHOUR,
+        RENT_DAYS,
+        RENT_HOURS,
+        RENT_AMOUNT
+    where RENT_ID = #{RENT_ID} and CONSULT_ID = #{CONSULT_ID}
+</update>
  
  <insert id="insertYujok">
  insert into GHT_CONT_SANGJU
