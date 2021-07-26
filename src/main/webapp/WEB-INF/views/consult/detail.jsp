@@ -1377,13 +1377,13 @@
 		var $Darr = $(".sRMt");
 		var $Earr = $(".RMcharge");
 		var RMfee = 0;
-		for (var i = 0; i < $infoarr.length; i++) {
+		for (var i = 0; i < $Earr.length; i++) {
 			var t1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 			var t2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 			var t3 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 			var t4 = Number($Darr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 			RMfee = (t1*t3)+(t2*t4);
-		$Earr[i].innerText = numberWithCommas(RMfee);
+			$Earr[i].innerText = numberWithCommas(RMfee);
 		 }
 	}
 
