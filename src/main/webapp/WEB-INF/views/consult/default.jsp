@@ -88,14 +88,14 @@
 									<tbody>
 									<c:forEach var="row" items="${listFroom}">
 										<tr>
-											<td>분향실</td>
+											<td class="first">분향실</td>
 											<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
 											<td class = "RMday"style="text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td class = "sRMd" style="text-align: right;">사용일</td>
-											<td class = "sRMt" style="text-align: right;">사용시간</td>
+											<td class = "sRMd" style="text-align: right;">2</td>
+											<td class = "sRMt" style="text-align: right;">0</td>
 											<td class = "sRMcharge" style="text-align: right;"><fmt:formatNumber
 													value="" pattern="#,###" /></td>
 											<td style="text-align: center; display:none"><input type="checkbox"

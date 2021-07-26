@@ -79,6 +79,7 @@ public class ConsultController {
 	public ModelAndView defaultcon(@PathVariable("CONSULT_ID") int CONSULT_ID, ModelAndView mav) {
 		mav.addObject("cst", consultService.detailConsult(CONSULT_ID));
 		mav.addObject("listEtcroom", contService.doslistEtcroom());
+		mav.addObject("listFroom", contService.doslistFroom());
 		mav.addObject("regioncode", codeService.listconBcode("3"));
 		mav.addObject("setu", setupService.listSetup());
 		mav.setViewName("consult/default");
