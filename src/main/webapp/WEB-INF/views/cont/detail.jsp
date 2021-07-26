@@ -2630,8 +2630,8 @@
 			var chksum = 0;	
 			var b1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 			var b2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-			var c1 = Number($Carr[i].value);
-			var c2 = Number($Darr[i].value);
+			var c1 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var c2 = Number($Darr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 			chksum = (b1*c1)+(b2*c2);
 			$Earr[i].innerText = numberWithCommas(chksum);
 		}

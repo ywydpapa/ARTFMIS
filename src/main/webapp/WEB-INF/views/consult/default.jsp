@@ -87,19 +87,15 @@
 									</thead>
 									<tbody>
 									<c:forEach var="row" items="${listFroom}">
-										<tr>
+										<tr <c:if test="true">style="display: none"</c:if>>
 											<td>분향실</td>
 											<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
-											<td class = "RMday"style="text-align: right;"><fmt:formatNumber
-													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
-													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+											<td class = "RMday"style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
+											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
 											<td class = "sRMd" style="text-align: right;">사용일</td>
 											<td class = "sRMt" style="text-align: right;">사용시간</td>
-											<td class = "sRMcharge" style="text-align: right;"><fmt:formatNumber
-													value="" pattern="#,###" /></td>
-											<td style="text-align: center; display:none"><input type="checkbox"
-												class="CHKsrm form-control" /></td>
+											<td class = "sRMcharge" style="text-align: right;"><fmt:formatNumber value="" pattern="#,###" /></td>
+											<td style="text-align: center; display:none"><input type="checkbox"	class="CHKsrm form-control" /></td>
 										</tr>
 									</c:forEach>
 									<c:forEach var="row" items="${listEtcroom}">
@@ -159,8 +155,8 @@ function chkcalE() {
 		var chksum = 0;	
 		var b1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 		var b2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-		var c1 = Number($Carr[i].value);
-		var c2 = Number($Darr[i].value);
+		var c1 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+		var c2 = Number($Darr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 		chksum = (b1*c1)+(b2*c2);
 		$Earr[i].innerText = numberWithCommas(chksum);
 	}
