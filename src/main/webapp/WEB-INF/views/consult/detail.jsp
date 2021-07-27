@@ -20,11 +20,14 @@
 		<div class="col-lg-12 col-xl-12">
 		<div class="table-responsive">
 				<table class="table table-bordered nowrap">
-				<tr>
-				<td><input id="frid" type="hidden" value = "${frid}"><input id="contid" type="hidden" value = ""></td>
-				</tr>
+					<tr>
+						<td>
+							<input id="frid" type="hidden" value = "${frid}">
+							<input id="contid" type="hidden" value = "${CONSULT_ID}">
+						</td>
+					</tr>
 				</table>
-				</div>
+			</div>
 			<div class="tab-content tabs m-t-20">
 				<div class="tab-pane" id="tab02" role="tabpanel">
 					<div class="card-block table-border-style">
@@ -951,27 +954,63 @@
 	$('#contType').val('${dto.contType}').prop("selected", true);
 	$('#contSource').val('${dto.contSource}').prop("selected", true);
 
-	function fn_cstInsertP2(){
-		alert("미구현"); return false;
+	function fn_const_oldDeleteP2(){
+		var data = {}
+		data.RENT_ID = '${selectoneFroom.RENT_ID}';
+		if(data.RENT_ID === ''){
+			alert('기존 삭제할 데이터가 존재하지 않습니다. 새로고침을 하시거나 관리자(개발자)를 부르십시오');
+		} else {
+			$.ajax({
+				url : "${path}/consult/deleteCSTRentfee.do",
+				data : data,
+				method : "POST",
+				dataType : "json"
+			})
+			.done(function(data) {
+			});
+		}
+	}
 
+	function fn_cstInsertP2(){
+		if('${selectoneFroom.RENT_ID}' !== ''){
+			// 기존 데이터 삭제 먼저 진행
+			fn_const_oldDeleteP2();
+		}
+		var data ={};
 		var CONid = $("#contid").val();
 		var roomCheck = $("#roomList .CHKroom:checked");
-		if (CONid != "" && roomId.length === 1){
-			var contp3upd ={};
-			contp3upd.CONSULT_ID = Number(roomCheck.parents('tr').attr('id'));
-			console.log(contp3upd);
+		if (CONid != "" && roomCheck.length === 1){
+			data.CONSULT_ID = Number(roomCheck.parents('tr').attr('id'));
+			var roomNameOgn = roomCheck.parent().next()[0].innerText
+			var roomNameTr =  $('#SltdroomList > tbody > tr:not([style*="display: none"])');
+			if(roomNameOgn === roomNameTr.find('td:eq(1)')[0].innerText){
+				data.RENT_TITLE =  roomNameTr.find('td:eq(1)')[0].innerText;
+				// data.RENT_TYPE = null;
+				data.RENT_NAME =  roomNameTr.find('td:eq(1)')[0].innerText;
+				// data.CHARGE_TYPE = null;
+				// data.CHARGE_YN = null;
+				data.CHARGE_PERDAY = Number(roomNameTr.find('td:eq(2)')[0].innerText.replace(/[\D\s\._\-]+/g, ""));
+				data.CHARGE_PERHOUR = Number(roomNameTr.find('td:eq(3)')[0].innerText.replace(/[\D\s\._\-]+/g, ""));
+				data.RENT_DAYS = Number(roomNameTr.find('td:eq(4)')[0].children[0].value.replace(/[\D\s\._\-]+/g, ""));
+				data.RENT_HOURS = Number(roomNameTr.find('td:eq(5)')[0].children[0].value.replace(/[\D\s\._\-]+/g, ""));
+				data.RENT_AMOUNT = Number(roomNameTr.find('td:eq(6)')[0].innerText.replace(/[\D\s\._\-]+/g, ""));
+				console.log(data);
+			} else {
+				alert('상담호실 > 분향실이 선택되지 않았습니다.'); return  false;
+			}
+
 			$.ajax({
-				url : "${path}/consult/",
-				data : contp3upd,
+				url : "${path}/consult/insertCSTRentfee.do",
+				data : data,
 				method : "POST",
 				dataType : "json"
 			})
 			.done(function(data) {
 				alert("저장성공");
 			});
-		}
-		else
-		{
+		} else if(roomCheck.length > 1){
+			alert("분향실은 1개만 선택할수 있습니다.")
+		} else {
 			alert("계약기본사항을 먼저 저장해 주세요!!");
 		}
 	}

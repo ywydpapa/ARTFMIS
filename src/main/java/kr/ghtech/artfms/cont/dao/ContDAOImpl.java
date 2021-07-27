@@ -1,13 +1,11 @@
 package kr.ghtech.artfms.cont.dao;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
+import kr.ghtech.artfms.cont.dto.ContDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import kr.ghtech.artfms.cont.dto.ContDTO;
+import javax.inject.Inject;
+import java.util.List;
 
 @Repository
 public class ContDAOImpl implements ContDAO {
@@ -325,11 +323,6 @@ public class ContDAOImpl implements ContDAO {
 	public List<ContDTO> listYujok(Integer CONTRACT_ID) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("cont.listYujok", CONTRACT_ID);
-	}
-
-	@Override
-	public ContDTO selectOneCSWithCSId(Integer CONSULT_ID) {
-		return sqlSession.selectOne("cont.selectOneCSWithCSId", CONSULT_ID);
 	}
 
 	@Override

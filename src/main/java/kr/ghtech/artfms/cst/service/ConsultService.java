@@ -2,6 +2,7 @@ package kr.ghtech.artfms.cst.service;
 
 import java.util.List;
 
+import kr.ghtech.artfms.cont.dto.ContDTO;
 import org.springframework.stereotype.Service;
 
 import kr.ghtech.artfms.cst.dto.ConsultDTO;
@@ -17,4 +18,8 @@ public interface ConsultService {
 	int insertCstFtable(ConsultDTO dto);
 	int deleteCstFtable(ConsultDTO dto);
 
+	ConsultDTO detailCstRentfee(Integer CONSULT_ID);
+	int insertCSTRentfee(ConsultDTO dto);
+	int updateCSTRentfee(ConsultDTO dto);
+	int deleteCSTRentfee(ConsultDTO dto);
 }

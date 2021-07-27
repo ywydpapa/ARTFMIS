@@ -7,7 +7,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <select id="detailConsult"
  		resultType="consultDto">
  		SELECT * from GHT_CONSULT where CONSULT_ID=#{CONSULT_ID}
- </select>
+</select>
+
+<select id="detailCstRentfee" resultType="consultDto">
+	select * from GHT_CONSULT_RENTFEE where CONSULT_ID = #{CONSULT_ID} and ATTRIB not LIKE 'XXX%'
+</select>
  
  <select id="listConsult"
  		resultType="consultDto">
@@ -59,6 +63,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		'10000'
 	) 
  </insert>
+
+<insert id="insertCstRentfee">
+	INSERT INTO GHT_CONSULT_RENTFEE
+	    (
+	     CONSULT_ID,
+	     RENT_TITLE,
+	     RENT_TYPE,
+	     RENT_NAME,
+	     CHARGE_TYPE,
+	     CHARGE_YN,
+	     CHARGE_PERDAY,
+	     CHARGE_PERHOUR,
+	     RENT_DAYS,
+	     RENT_HOURS,
+	     RENT_AMOUNT,
+	     attrib
+	     )
+	values
+	       (
+	        #{CONSULT_ID},
+	        #{RENT_TITLE},
+	        #{RENT_TYPE},
+	        #{RENT_NAME},
+	        #{CHARGE_TYPE},
+	        #{CHARGE_YN},
+	        #{CHARGE_PERDAY},
+	        #{CHARGE_PERHOUR},
+	        #{RENT_DAYS},
+	        #{RENT_HOURS},
+	        #{RENT_AMOUNT},
+	        '10000'
+	        )
+</insert>
  
  <update id="updateCstFtable">
  	UPDATE GHT_CONSULT_FTAB
@@ -66,11 +103,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	attrib = 'XXXXX'
  	where CONSULT_ID = #{CONSULT_ID} 
  </update>
+
+<update id="updateCstRentfee">
+	update GHT_CONSULT_RENTFEE
+	set RENT_TITLE,
+		RENT_TYPE,
+		RENT_NAME,
+		CHARGE_TYPE,
+		CHARGE_YN,
+		CHARGE_PERDAY,
+		CHARGE_PERHOUR,
+		RENT_DAYS,
+		RENT_HOURS,
+		RENT_AMOUNT
+	where RENT_ID = #{RENT_ID}
+</update>
  
- 
- <update id="deleteConsult">
+<update id="deleteConsult">
  update GHT_CONSULT set
   ATTRIB='XXXXX'
   where CONSULT_ID=#{CONSULT_ID}
- </update>
+</update>
+
+<update id="deleteCstRentfee">
+	update GHT_CONSULT_RENTFEE
+	set ATTRIB='XXXXX'
+	where RENT_ID = #{RENT_ID}
+</update>
+
 </mapper>

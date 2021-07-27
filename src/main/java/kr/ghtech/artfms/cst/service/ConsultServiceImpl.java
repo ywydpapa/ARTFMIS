@@ -1,13 +1,11 @@
 package kr.ghtech.artfms.cst.service;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
-import org.springframework.stereotype.Service;
-
 import kr.ghtech.artfms.cst.dao.ConsultDAO;
 import kr.ghtech.artfms.cst.dto.ConsultDTO;
+import org.springframework.stereotype.Service;
+
+import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class ConsultServiceImpl implements ConsultService {
@@ -55,6 +53,26 @@ public class ConsultServiceImpl implements ConsultService {
 	public int deleteCstFtable(ConsultDTO dto) {
 		// TODO Auto-generated method stub
 		return consultDao.deleteCstFtable(dto);
+	}
+
+	@Override
+	public ConsultDTO detailCstRentfee(Integer CONSULT_ID) {
+		return consultDao.detailCstRentfee(CONSULT_ID);
+	}
+
+	@Override
+	public int insertCSTRentfee(ConsultDTO dto) {
+		return consultDao.insertCSTRentfee(dto);
+	}
+
+	@Override
+	public int updateCSTRentfee(ConsultDTO dto) {
+		return consultDao.updateCSTRentfee(dto);
+	}
+
+	@Override
+	public int deleteCSTRentfee(ConsultDTO dto) {
+		return consultDao.deleteCSTRentfee(dto);
 	}
 
 }

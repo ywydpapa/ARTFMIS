@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -71,7 +72,8 @@ public class ConsultController {
 		mav.addObject("listFgoodsT18", contService.doslistFgoodsTn(18));
 		mav.addObject("code0201", codeService.listCode0201());
 		mav.addObject("regioncode", codeService.listconBcode("3"));
-		mav.addObject("selectoneFroom", contService.selectOneCSWithCSId(CONSULT_ID));
+		mav.addObject("selectoneFroom", consultService.detailCstRentfee(CONSULT_ID));
+		mav.addObject("CONSULT_ID",CONSULT_ID);
 		mav.setViewName("consult/detail");
 		return mav;
 	}
@@ -83,7 +85,7 @@ public class ConsultController {
 		mav.addObject("listFroom", contService.doslistFroom());
 		mav.addObject("regioncode", codeService.listconBcode("3"));
 		mav.addObject("setu", setupService.listSetup());
-		mav.addObject("selectoneFroom", contService.selectOneCSWithCSId(CONSULT_ID));
+		mav.addObject("selectoneFroom", consultService.detailCstRentfee(CONSULT_ID));
 		mav.setViewName("consult/default");
 		return mav;
 	}
@@ -138,5 +140,40 @@ public class ConsultController {
 		return ResponseEntity.ok(param);
 	}
 
+	@RequestMapping("insertCSTRentfee.do")
+	public ResponseEntity<?> insertCSTRentfee(HttpSession session, @ModelAttribute ConsultDTO dto){
+		Map<String, Object> param = new HashMap<String, Object>();
+		int consultInsert = consultService.insertCSTRentfee(dto);
+		if (consultInsert > 0) {
+			param.put("code","10001");
+		} else {
+			param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
+	@RequestMapping("updateCSTRentfee.do")
+	public ResponseEntity<?> updateCSTRentfee(HttpSession session, @ModelAttribute ConsultDTO dto){
+		Map<String, Object> param = new HashMap<String, Object>();
+		int consultUpdate = consultService.updateCSTRentfee(dto);
+		if (consultUpdate > 0) {
+			param.put("code","10001");
+		} else {
+			param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
+	@RequestMapping("deleteCSTRentfee.do")
+	public ResponseEntity<?> deleteCSTRentfee(HttpSession session, @ModelAttribute ConsultDTO dto){
+		Map<String, Object> param = new HashMap<String, Object>();
+		int consultDelete = consultService.deleteCSTRentfee(dto);
+		if (consultDelete > 0) {
+			param.put("code","10001");
+		} else {
+			param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
 
 }

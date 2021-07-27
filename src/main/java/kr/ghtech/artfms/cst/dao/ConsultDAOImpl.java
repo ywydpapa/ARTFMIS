@@ -1,13 +1,11 @@
 package kr.ghtech.artfms.cst.dao;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
+import kr.ghtech.artfms.cst.dto.ConsultDTO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import kr.ghtech.artfms.cst.dto.ConsultDTO;
+import javax.inject.Inject;
+import java.util.List;
 
 @Repository
 public class ConsultDAOImpl implements ConsultDAO {
@@ -56,5 +54,25 @@ public class ConsultDAOImpl implements ConsultDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.update("consult.deleteCstFtable", dto);
 	}
-	
+
+	@Override
+	public ConsultDTO detailCstRentfee(Integer CONSULT_ID) {
+		return sqlSession.selectOne("consult.detailCstRentfee", CONSULT_ID);
+	}
+
+	@Override
+	public int insertCSTRentfee(ConsultDTO dto) {
+		return sqlSession.insert("consult.insertCstRentfee", dto);
+	}
+
+	@Override
+	public int updateCSTRentfee(ConsultDTO dto) {
+		return sqlSession.update("consult.updateCstRentfee", dto);
+	}
+
+	@Override
+	public int deleteCSTRentfee(ConsultDTO dto) {
+		return sqlSession.update("consult.deleteCstRentfee", dto);
+	}
+
 }
