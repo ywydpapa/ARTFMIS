@@ -23,7 +23,7 @@
 					<tr>
 						<td>
 							<input id="frid" type="hidden" value = "${frid}">
-							<input id="contid" type="hidden" value = "${CONSULT_ID}">
+							<input id="contid" type="hidden" value = "">
 						</td>
 					</tr>
 				</table>
@@ -977,10 +977,10 @@
 			fn_const_oldDeleteP2();
 		}
 		var data ={};
-		var CONid = $("#contid").val();
+		var CONid = '${CONSULT_ID}';
 		var roomCheck = $("#roomList .CHKroom:checked");
 		if (CONid != "" && roomCheck.length === 1){
-			data.CONSULT_ID = Number(roomCheck.parents('tr').attr('id'));
+			data.CONSULT_ID = '${CONSULT_ID}';
 			var roomNameOgn = roomCheck.parent().next()[0].innerText
 			var roomNameTr =  $('#SltdroomList > tbody > tr:not([style*="display: none"])');
 			if(roomNameOgn === roomNameTr.find('td:eq(1)')[0].innerText){
