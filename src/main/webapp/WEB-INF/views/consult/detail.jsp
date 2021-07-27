@@ -37,8 +37,7 @@
 										</tr>
 									</tbody>
 								</table>
-								<table class="table table-striped table-bordered nowrap"
-									id="roomList">
+								<table class="table table-striped table-bordered nowrap" id="roomList">
 									<colgroup>
 										<col width="10%" />
 										<col width="10%" />
@@ -67,67 +66,63 @@
 									</thead>
 									<tbody>
 									<c:forEach var="row" items="${listFroom}">
-										<tr>
-											<td style="text-align: center;"><input type="checkbox" class="CHKroom form-control"  onclick="oneCheck(this);"/></td>
+										<tr id="${row.FROOM_ID}">
+											<td style="text-align: center;"><input type="checkbox" class="CHKroom form-control"  onclick="oneCheck(this);" <c:if test="${row.FROOM_TITLE eq selectoneFroom.RENT_NAME}">checked</c:if>/></td>
 											<td>${row.FROOM_TITLE}</td>
 											<td></td>
-											<td class = "RMday"style="text-align: right;"><fmt:formatNumber
-													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
-													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+											<td class = "RMday"style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
+											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
 											<td style="text-align: right;">${row.FROOM_AREA}</td>
 											<td style="text-align: right;">${row.FROOM_AREA_KOR}</td>
 											<td style="text-align: right;">${row.FROOM_MAX_PERS}</td>
 											<td style="text-align: center;">${row.FROOM_ALIS}</td>
-											
 										</tr>
 									</c:forEach>
 									</tbody>
 								</table>
 							</form>
-							<br> <br>
-							<table class="table table-striped table-bordered nowrap"
-									id="SltdroomList">
-									<colgroup>
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-									</colgroup>
-									<thead>
-										<tr>
-											<th class="text-center">호실명</th>
-											<th class="text-center">일일사용료</th>
-											<th class="text-center">시간당사용료</th>
-											<th class="text-center">사용일</th>
-											<th class="text-center">사용시간</th>
-											<th class="text-center">사용요금</th>
-											<th style="display:none" class="text-center">선택</th>
-										</tr>
-									</thead>
-									<tbody>
-									<c:forEach var="row" items="${listFroom}">
-										<tr>
-											<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
-											<td class = "RMday"style="text-align: right;"><fmt:formatNumber
-													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
-													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td class = "sRMd" style="text-align: right;">2</td>
-											<td class = "sRMt" style="text-align: right;">0</td>
-											<td class = "RMcharge" style="text-align: right;"><fmt:formatNumber
-													value="" pattern="#,###" /></td>
-											<td style="text-align: center; display:none"><input type="checkbox"
-												class="CHKsrm form-control" /></td>
-										</tr>
-									</c:forEach>
-									</tbody>
-								</table>
+<%--							<br> <br>--%>
+<%--							<table class="table table-striped table-bordered nowrap" id="SltdroomList">--%>
+<%--									<colgroup>--%>
+<%--										<col width="10%" />--%>
+<%--										<col width="10%" />--%>
+<%--										<col width="10%" />--%>
+<%--										<col width="10%" />--%>
+<%--										<col width="10%" />--%>
+<%--										<col width="10%" />--%>
+<%--										<col width="10%" />--%>
+<%--										<col width="10%" />--%>
+<%--										<col width="10%" />--%>
+<%--									</colgroup>--%>
+<%--									<thead>--%>
+<%--										<tr>--%>
+<%--											<th class="text-center">호실명</th>--%>
+<%--											<th class="text-center">일일사용료</th>--%>
+<%--											<th class="text-center">시간당사용료</th>--%>
+<%--											<th class="text-center">사용일</th>--%>
+<%--											<th class="text-center">사용시간</th>--%>
+<%--											<th class="text-center">사용요금</th>--%>
+<%--											<th style="display:none" class="text-center">선택</th>--%>
+<%--										</tr>--%>
+<%--									</thead>--%>
+<%--									<tbody>--%>
+<%--									<c:forEach var="row" items="${listFroom}">--%>
+<%--										<tr>--%>
+<%--											<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>--%>
+<%--											<td class = "RMday"style="text-align: right;"><fmt:formatNumber--%>
+<%--													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>--%>
+<%--											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber--%>
+<%--													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>--%>
+<%--											<td class = "sRMd" style="text-align: right;">2</td>--%>
+<%--											<td class = "sRMt" style="text-align: right;">0</td>--%>
+<%--											<td class = "RMcharge" style="text-align: right;"><fmt:formatNumber--%>
+<%--													value="" pattern="#,###" /></td>--%>
+<%--											<td style="text-align: center; display:none"><input type="checkbox"--%>
+<%--												class="CHKsrm form-control" /></td>--%>
+<%--										</tr>--%>
+<%--									</c:forEach>--%>
+<%--									</tbody>--%>
+<%--								</table>--%>
 						</div>
 					</div>
 					<div class="btn_wr text-right mt-3">
@@ -851,8 +846,7 @@
 										</tr>
 									</tbody>
 								</table>
-								<table class="table table-striped table-bordered nowrap"
-									id="roomList">
+								<table class="table table-striped table-bordered nowrap" id="roomList">
 									<colgroup>
 										<col width="10%" />
 										<col width="10%" />
@@ -956,6 +950,31 @@
 	$('#contStatus').val('${dto.contStatus}').prop("selected", true);
 	$('#contType').val('${dto.contType}').prop("selected", true);
 	$('#contSource').val('${dto.contSource}').prop("selected", true);
+
+	function fn_cstInsertP2(){
+		alert("미구현"); return false;
+
+		var CONid = $("#contid").val();
+		var roomCheck = $("#roomList .CHKroom:checked");
+		if (CONid != "" && roomId.length === 1){
+			var contp3upd ={};
+			contp3upd.CONSULT_ID = Number(roomCheck.parents('tr').attr('id'));
+			console.log(contp3upd);
+			$.ajax({
+				url : "${path}/consult/",
+				data : contp3upd,
+				method : "POST",
+				dataType : "json"
+			})
+			.done(function(data) {
+				alert("저장성공");
+			});
+		}
+		else
+		{
+			alert("계약기본사항을 먼저 저장해 주세요!!");
+		}
+	}
 
 	function fn_contInsertP3() {
 		var CONid = $("#contid").val();
@@ -1648,12 +1667,12 @@
 		var $Carr = $(".Eday");
 		var $Darr = $(".Etime");
 		var $Earr = $(".Esum");
-		for (var i = 0; i < $Aarr.length; i++) {
+		for (var i = 0; i < $Earr.length; i++) {
 			var chksum = 0;	
 			var b1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 			var b2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-			var c1 = Number($Carr[i].value);
-			var c2 = Number($Darr[i].value);
+			var c1 = Number($Carr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			var c2 = Number($Darr[i].value.replace(/[\D\s\._\-]+/g, ""));
 			chksum = (b1*c1)+(b2*c2);
 			$Earr[i].innerText = numberWithCommas(chksum);
 		}
@@ -1727,7 +1746,6 @@
 				$($sinfoarr[i]).parent().parent().hide();
 			}
 		}
-		
 	}
 
 	function chkFtablechange(){

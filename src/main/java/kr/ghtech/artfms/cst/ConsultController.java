@@ -71,6 +71,7 @@ public class ConsultController {
 		mav.addObject("listFgoodsT18", contService.doslistFgoodsTn(18));
 		mav.addObject("code0201", codeService.listCode0201());
 		mav.addObject("regioncode", codeService.listconBcode("3"));
+		mav.addObject("selectoneFroom", contService.selectOneCSWithCSId(CONSULT_ID));
 		mav.setViewName("consult/detail");
 		return mav;
 	}
@@ -82,6 +83,7 @@ public class ConsultController {
 		mav.addObject("listFroom", contService.doslistFroom());
 		mav.addObject("regioncode", codeService.listconBcode("3"));
 		mav.addObject("setu", setupService.listSetup());
+		mav.addObject("selectoneFroom", contService.selectOneCSWithCSId(CONSULT_ID));
 		mav.setViewName("consult/default");
 		return mav;
 	}
