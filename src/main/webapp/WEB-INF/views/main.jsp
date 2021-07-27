@@ -61,7 +61,7 @@ function fnSetPage(url, data){
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/contlist.do')">계약 목록 *</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/listview.do')">계약 등록*</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/room/addorderlistall.do')">호실주문 목록</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/settlist.do')">정산 관리</a>
+              <a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/settlistview.do')">정산 관리</a>
             </div>
           </li>
           <li class="nav-item dropdown">
