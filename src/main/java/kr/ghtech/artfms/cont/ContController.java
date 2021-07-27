@@ -68,10 +68,10 @@ public class ContController {
 		return mav;
 	}
 	
-	@RequestMapping("settlist.do")
+	@RequestMapping("settlistview.do")
 	public ModelAndView settlist(ModelAndView mav) {
 		mav.addObject("listcont", contService.listCont());
-		mav.setViewName("cont/settlist");
+		mav.setViewName("cont/settlistview");
 		return mav;
 	}
 
@@ -225,36 +225,17 @@ public class ContController {
 		Integer CONT_FROOM_ID = Integer.valueOf(dto.getCONT_FROOM_ID());
 		mav.addObject("frid", CONT_FROOM_ID);
 		mav.addObject("CONTid", CONTRACT_ID);
-		mav.addObject("listroom", goodsService.listRoom(1));
-		mav.addObject("listEtcroom", contService.doslistEtcroom());
-		mav.addObject("listFgoodsM", contService.doslistFgoodsM());
-		mav.addObject("listFgoodsM13", contService.doslistFgoodsMn(13));
-		mav.addObject("listFgoodsM14", contService.doslistFgoodsMn(14));
-		mav.addObject("listFgoodsM15", contService.doslistFgoodsMn(14));
-		mav.addObject("listFgoodsM16", contService.doslistFgoodsMn(15));
-		mav.addObject("listFgoodsM17", contService.doslistFgoodsMn(16));
-		mav.addObject("listFgoodsM18", contService.doslistFgoodsMn(18));
-		mav.addObject("listFgoodsT", contService.doslistFgoodsT());
-		mav.addObject("listFgoodsT13", contService.doslistFgoodsTn(13));
-		mav.addObject("listFgoodsT14", contService.doslistFgoodsTn(14));
-		mav.addObject("listFgoodsT15", contService.doslistFgoodsTn(15));
-		mav.addObject("listFgoodsT16", contService.doslistFgoodsTn(16));
-		mav.addObject("listFgoodsT17", contService.doslistFgoodsTn(17));
-		mav.addObject("listFgoodsT18", contService.doslistFgoodsTn(18));
-		mav.addObject("code0201", codeService.listCode0201());
-		mav.addObject("regioncode", codeService.listconBcode("3"));
-		mav.addObject("frelation", codeService.listconBcode("5"));
 		mav.addObject("detailCont", contService.detailCont(CONTRACT_ID));
-		mav.addObject("contpage2", contService.reloadP2(CONTRACT_ID));
-		mav.addObject("contpage3", contService.reloadP3(CONTRACT_ID));
-		mav.addObject("contpage4m", contService.reloadP4m(CONTRACT_ID));
-		mav.addObject("contpage4t", contService.reloadP4t(CONTRACT_ID));
-		mav.addObject("contpage5", contService.reloadP5(CONTRACT_ID));
-		mav.addObject("contpage6", contService.reloadP6(dto));
-		mav.addObject("contpage7", contService.reloadP7(dto));
-		mav.addObject("contpage8", contService.reloadP8(CONTRACT_ID));
-		mav.addObject("contpage9", contService.reloadP9(CONTRACT_ID));
-		mav.addObject("listYujok", contService.listYujok(CONTRACT_ID));
+		mav.addObject("cpage3", contService.reloadP3(CONTRACT_ID));
+		mav.addObject("cpage4m", contService.reloadP4m(CONTRACT_ID));
+		mav.addObject("cpage4t", contService.reloadP4t(CONTRACT_ID));
+		mav.addObject("cpage5", contService.reloadP5(CONTRACT_ID));
+		mav.addObject("cpage6", contService.reloadP6(dto));
+		mav.addObject("cpage7", contService.reloadP7(dto));
+		mav.addObject("rtnpage7", contService.returnP7(dto));
+		mav.addObject("spage6", contService.settleP6(dto));
+		mav.addObject("spage7", contService.settleP7(dto));
+		mav.addObject("cpage8", contService.reloadP8(CONTRACT_ID));
 		mav.setViewName("cont/settdetail");
 		return mav;
 	}

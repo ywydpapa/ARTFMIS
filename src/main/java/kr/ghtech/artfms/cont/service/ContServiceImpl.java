@@ -346,5 +346,23 @@ public class ContServiceImpl implements ContService {
 		return contDao.doslistEtcroom2();
 	}
 
+	@Override
+	public List<ContDTO> returnP7(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.returnP7(dto);
+	}
+
+	@Override
+	public List<ContDTO> settleP6(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.settleP6(dto);
+	}
+
+	@Override
+	public List<ContDTO> settleP7(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.settleP7(dto);
+	}
+
 
 }

@@ -57,6 +57,9 @@ public interface ContService {
 	List<ContDTO> reloadP5(Integer CONTRACT_ID);
 	List<ContDTO> reloadP6(ContDTO dto);
 	List<ContDTO> reloadP7(ContDTO dto);
+	List<ContDTO> returnP7(ContDTO dto);
+	List<ContDTO> settleP6(ContDTO dto);
+	List<ContDTO> settleP7(ContDTO dto);
 	List<ContDTO> reloadP8(Integer CONTRACT_ID);
 	List<ContDTO> reloadP9(Integer CONTRACT_ID);
 	List<ContDTO> listYujok(Integer CONTRACT_ID);

@@ -344,5 +344,23 @@ public class ContDAOImpl implements ContDAO {
 		return sqlSession.selectList("cont.listEtcroom2");
 	}
 
+	@Override
+	public List<ContDTO> returnP7(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("cont.setrtnContp7", dto);
+	}
+
+	@Override
+	public List<ContDTO> settleP6(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("cont.settleContp6", dto);
+	}
+
+	@Override
+	public List<ContDTO> settleP7(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("cont.settleContp7", dto);
+	}
+
 	
 }

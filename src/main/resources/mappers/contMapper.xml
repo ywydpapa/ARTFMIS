@@ -721,4 +721,41 @@ where a.FROOM_TYP = 1 and a.FROOM_USE_YN = 'Y'
 <select id="listYujok" resultType="contDto">
 	SELECT * FROM GHT_CONT_SANGJU where CONTRACT_ID = #{CONTRACT_ID} and MOD_DATE IS NULL
 </select>
+
+<select id="setrtnContp7" resultType="contDto">
+	select e.ORD_QUTY, e.ORD_AMOUNT, b.CAT_TITLE , a.* ,c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_STORE_ORD c on a.GOODS_ID = c.STORE_GOODS_ID and c.STORE_ORD_FROOM_ID = #{CONT_FROOM_ID}
+	left join GHT_BASE_CODE d on c.STORE_ORD_FROOM_ID = d.BCD_ID
+	left join GHT_STORE_ORDSHEET e on e.GOODS_CODE = a.GOODS_ID and e.MOD_DATE IS NULL and e.CONTRACT_ID = #{CONTRACT_ID} 
+	where a.CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='3') 
+	and a.GOODS_USE_YN = 'Y'
+	and a.GOODS_RETURN_YN = 'Y'
+	and e.ORD_QUTY > 0
+	order by a.CAT_02_ID, a.GOODS_ORDER 
+</select>
+
+<select id="settleContp6" resultType="contDto">
+	select e.ORD_QUTY , e.ORD_AMOUNT ,e.ORD_TYPE,e.ORD_DATE,e.CONF_DATE, b.CAT_TITLE, a.*, c.MESSR_GOODS_INIT_QTY, c.MESSR_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_MESSR_ORD c on a.GOODS_ID = c.MESSR_GOODS_ID and c.MESSR_ORD_FROOM_ID = #{CONT_FROOM_ID}
+	left join GHT_BASE_CODE d on c.MESSR_ORD_FROOM_ID = d.BCD_ID
+	left join GHT_REST_ORDERSHEET e on e.GOODS_CODE = a.GOODS_ID and e.CONTRACT_ID = #{CONTRACT_ID} and e.MOD_DATE IS NULL
+	where a.CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='2')
+	and a.GOODS_USE_YN = 'Y' 
+	and e.ORD_QUTY > 0 
+	order by a.CAT_02_ID, a.GOODS_ORDER 
+</select>
+
+<select id="settleContp7" resultType="contDto">
+	select e.ORD_QUTY, e.ORD_AMOUNT, e.ORD_TYPE,e.ORD_DATE,e.CONF_DATE, b.CAT_TITLE , a.* ,c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_STORE_ORD c on a.GOODS_ID = c.STORE_GOODS_ID and c.STORE_ORD_FROOM_ID = #{CONT_FROOM_ID}
+	left join GHT_BASE_CODE d on c.STORE_ORD_FROOM_ID = d.BCD_ID
+	left join GHT_STORE_ORDSHEET e on e.GOODS_CODE = a.GOODS_ID and e.MOD_DATE IS NULL and e.CONTRACT_ID = #{CONTRACT_ID} 
+	where a.CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='3') 
+	and a.GOODS_USE_YN = 'Y'
+	and e.ORD_QUTY > 0 
+	order by a.CAT_02_ID, a.GOODS_ORDER 
+</select>
 </mapper>

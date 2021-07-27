@@ -3,15 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>	
 <c:set var="path" value ="${pageContext.request.contextPath}"/>
-<style>
-  .swcCard {
-        width: 100%;
-        height: 100%;
-        padding : 20px;
-        background: white;
-      }
-}
-</style>
 <div class="cnt_wr swcCard">
 	<!-- Row start -->
 	<div class="row">
