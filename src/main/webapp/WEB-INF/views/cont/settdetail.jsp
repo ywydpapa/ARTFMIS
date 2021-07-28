@@ -258,102 +258,204 @@
 										
 						</div>
 					</div>
-					<div class="btn_wr text-right mt-3">
-						<button class="btn btn-md btn-primary" onClick="fn_contInsertP2()">등록</button>
-					</div>
 				</div>
 				<div class="tab-pane" id="tab03" role="tabpanel">
 					<div class="card-block table-border-style">
 						<div class="table-responsive">
-							<form name="form3" method="post" onsubmit="return false;">
-								<table class="table table-sm bst02">
-									<tbody>
-									<tr>
-									<td><span> 제물상 </span></td>
-									<td style="text-align: right;"></td>
-									</tr>
-									</tbody>
-								</table>
-								<div class="row">
-									<table class="table  table-bordered nowrap"
-										id="ftTable">
-										<thead>
-											<tr>
-												<th scope="col" width="10%" align="center">구분</th>
-												<th scope="col" width="10%" align="center">선택여부</th>
-												<th scope="col" width="20%" align="center">금액</th>
-												<th scope="col" width="10%" align="center">단위</th>
-												<th scope="col" width="30%" align="center">상품이미지</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="row" items="${contpage3}">
-												<tr>
-													<td class="second">${row.BCD_TITLE}</td>
-													<td><input type="checkbox" <c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if> name = "FT${row.FTABLE_CAT}" class="CHKft form-control" <c:if test="${row.CHKED eq 'Y'}">checked</c:if> /></td>
-													<td style="text-align: right" class="TA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
-													<td style="text-align: right">${row.FTABLE_UNIT}</td>
-													<td class="imagebx"><div id="ftImage"></div></td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</form>
-							<br> <br>
 							<form name="form3-1" method="post" onsubmit="return false;">
 								<table class="table table-sm bst02">
 									<tbody>
 										<tr>
-											<th scope="row">선택 목록(제물상)</th>
+											<th scope="row">주문 소계</th>
 										</tr>
 									</tbody>
 								</table>
-									<table class="table table-bordered nowrap"
-										id="sFtable">
-										<thead>
+								<table class="table table-bordered nowrap" id="sFtable">
+									<thead>
 											<tr>
-												<th scope="col" width="20%" style="text-align:center">구분</th>
-												<th scope="col" width="20%" style="text-align:center">금액</th>
-												<th scope="col" colspan="2" width="20%" style="text-align:center">단위</th>
-												<th scope="col" width="30%" style="text-align:center">금액</th>
-												<th style="display :none" scope="col" width="10%" style="text-align:center">선택</th>
+												<th scope="col" width="40%" style="text-align:center"><a href="javascript:dtlshow();">구</a><a href="javascript:dtlhide();">분</a></th>
+												<th scope="col" width="15%" style="text-align:center">사용금액</th>
+												<th scope="col" width="15%" style="text-align:center">추가금액</th>
+												<th scope="col" width="15%" style="text-align:center">할인금액</th>
+												<th scope="col" width="15%" style="text-align:center">외부정산금액</th>																								
 											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="row" items="${contpage3}">
-												<tr>
-													<td>${row.BCD_TITLE}<input type="hidden" class = "sTid" value = "${row.FTABLE_ID}"/></td>
-													<td style="text-align: right" class="sTA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
-													<td style="text-align: right; border-right:none"><input style="text-align:right;border:0px" type="number" class="sTB from-control" min="0" value = "1"></td><td style = "border-left:none">${row.FTABLE_UNIT}</td>
-													<td style="text-align: right" class="sTC"><fmt:formatNumber value="${row.ORD_AMOUNT}" pattern="#,###" /></td>
-													<td style="display :none"><input type="checkbox" class="sCHKft form-control" <c:if test="${row.CHKED eq 'Y'}">checked</c:if> /></td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
+									</thead>
+									<tbody>
+										<c:forEach var="row" items="${spage2}">
+											<tr class="hidedetail">
+												<td>${row.FROOM_TITLE}<input type="hidden" class = "s2Tid" value = "${row.FROOM_ID}"/></td>
+												<td style="text-align: right" class="price2"><fmt:formatNumber value="${row.RCHARGE}" pattern="#,###" /></td>
+												<td style="text-align: right" class="addprice2"><fmt:formatNumber value="0" pattern="#,###" /></td>
+												<td style="text-align: right; border-right:none"><input style="text-align:right;border:0px" type="text" class="discount2 from-control" value="0"></td>
+												<td style="text-align: right" class="extprice2"><fmt:formatNumber value="0" pattern="#,###" /></td>
+											</tr>
+										</c:forEach>
+											<tr><td style="background-color:lightgray; text-align:center">시설사용료</td>
+											<td><input type="text" style="text-align:right;border:none" id="sum12" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum22" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum32"></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum42" disabled></td></tr>
+										<c:forEach var="row" items="${spage4}">
+											<tr class="hidedetail">
+												<td>${row.GOODS_TITLE}<input type="hidden" class = "s4Tid" value = "${row.GOODS_ID}"/></td>
+												<td style="text-align: right" class="price4"><fmt:formatNumber value="${row.ORD_AMOUNT}" pattern="#,###" /></td>
+												<td style="text-align: right" class="addprice4"><fmt:formatNumber value="0" pattern="#,###" /></td>
+												<td style="text-align: right; border-right:none"><input style="text-align:right;border:0px" type="text" class="discount4 from-control" value="0"></td>
+												<td style="text-align: right" class="extprice4"><fmt:formatNumber value="0" pattern="#,###" /></td>
+											</tr>
+										</c:forEach>
+											<tr><td style="background-color:lightgray; text-align:center">장의용품비</td>
+											<td><input type="text" style="text-align:right;border:none" id="sum14" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum24" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum34"></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum44" disabled></td></tr>
+										<c:forEach var="row" items="${spage3}">
+											<tr class="hidedetail">
+												<td>${row.BCD_TITLE}<input type="hidden" class = "s3Tid" value = "${row.FTABLE_ID}"/></td>
+												<td style="text-align: right" class="price3"><fmt:formatNumber value="${row.ORD_AMOUNT}" pattern="#,###" /></td>
+												<td style="text-align: right" class="addprice3"><fmt:formatNumber value="0" pattern="#,###" /></td>
+												<td style="text-align: right; border-right:none"><input style="text-align:right;border:0px" type="text" class="discount3 from-control" value="0"></td>
+												<td style="text-align: right" class="extprice3"><fmt:formatNumber value="0" pattern="#,###" /></td>
+											</tr>
+										</c:forEach>
+											<tr><td style="background-color:lightgray; text-align:center">제물상비용</td>
+											<td><input type="text" style="text-align:right;border:none" id="sum13" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum23" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum33"></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum43" disabled></td></tr>
+										<c:forEach var="row" items="${spage5}">
+											<tr class="hidedetail">
+												<td>${row.ALTAR_TITLE}<input type="hidden" class = "s5Tid" value = "${row.ALTAR_ID}"/></td>
+												<td style="text-align: right" class="price5"><fmt:formatNumber value="${row.ORD_PRICE}" pattern="#,###" /></td>
+												<td style="text-align: right" class="addprice5"><fmt:formatNumber value="0" pattern="#,###" /></td>
+												<td style="text-align: right; border-right:none"><input style="text-align:right;border:0px" type="text" class="discount5 from-control" value="0"></td>
+												<td style="text-align: right" class="extprice5"><fmt:formatNumber value="0" pattern="#,###" /></td>
+											</tr>
+										</c:forEach>
+											<tr><td style="background-color:lightgray; text-align:center">제단비용</td>
+											<td><input type="text" style="text-align:right;border:none" id="sum15" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum25" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum35"></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum45" disabled></td></tr>
+										<c:forEach var="row" items="${spage6}">
+											<tr class="hidedetail">
+												<td>${row.GOODS_TITLE}<input type="hidden" class = "s6Tid" value = "${row.GOODS_ID}"/></td>
+												<td style="text-align: right" class="price6"><c:if test="${row.ORD_TYPE eq 1}"><fmt:formatNumber value="${row.ORD_AMOUNT}" pattern="#,###" /></c:if><c:if test="${row.ORD_TYPE eq 2}"><fmt:formatNumber value="0" pattern="#,###" /></c:if></td>
+												<td style="text-align: right" class="addprice6"><c:if test="${row.ORD_TYPE eq 2}"><fmt:formatNumber value="${row.ORD_AMOUNT}" pattern="#,###" /></c:if><c:if test="${row.ORD_TYPE eq 1}"><fmt:formatNumber value="0" pattern="#,###" /></c:if></td>
+												<td style="text-align: right; border-right:none"><input style="text-align:right;border:0px" type="text" class="discount6 from-control" value="0"></td>
+												<td style="text-align: right" class="extprice6"><fmt:formatNumber value="0" pattern="#,###" /></td>
+											</tr>
+										</c:forEach>
+											<tr><td style="background-color:lightgray; text-align:center">식사비용</td>
+											<td><input type="text" style="text-align:right;border:none" id="sum16" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum26" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum36"></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum46" disabled></td></tr>
+										<c:forEach var="row" items="${spage7}">
+											<tr class="hidedetail">
+												<td>${row.GOODS_TITLE}<input type="hidden" class = "s7Tid" value = "${row.GOODS_ID}"/></td>
+												<td style="text-align: right" class="price7"><c:if test="${row.ORD_TYPE eq 1}"><fmt:formatNumber value="${row.ORD_AMOUNT}" pattern="#,###" /></c:if><c:if test="${row.ORD_TYPE eq 2}"><fmt:formatNumber value="0" pattern="#,###" /></c:if></td>
+												<td style="text-align: right" class="addprice7"><c:if test="${row.ORD_TYPE eq 2}"><fmt:formatNumber value="${row.ORD_AMOUNT}" pattern="#,###" /></c:if><c:if test="${row.ORD_TYPE eq 1}"><fmt:formatNumber value="0" pattern="#,###" /></c:if></td>
+												<td style="text-align: right; border-right:none"><input style="text-align:right;border:0px" type="text" class="discount7 from-control" value="0"></td>
+												<td style="text-align: right" class="extprice7"><fmt:formatNumber value="0" pattern="#,###" /></td>
+											</tr>
+										</c:forEach>
+											<tr><td style="background-color:lightgray; text-align:center">매점 비용</td>
+											<td><input type="text" style="text-align:right;border:none" id="sum17" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum27" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum37"></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum47" disabled></td></tr>
+										<c:forEach var="row" items="${spage8}">
+											<tr class="hidedetail">
+												<td>${row.GOODS_TITLE}<input type="hidden" class = "s8Tid" value = "${row.GOODS_ID}"/></td>
+												<td style="text-align: right" class="price8"><c:if test="${row.ORD_TYPE eq 1}"><fmt:formatNumber value="${row.ORD_AMOUNT}" pattern="#,###" /></c:if><c:if test="${row.ORD_TYPE eq 2}"><fmt:formatNumber value="0" pattern="#,###" /></c:if></td>
+												<td style="text-align: right" class="addprice8"><c:if test="${row.ORD_TYPE eq 2}"><fmt:formatNumber value="${row.ORD_AMOUNT}" pattern="#,###" /></c:if><c:if test="${row.ORD_TYPE eq 1}"><fmt:formatNumber value="0" pattern="#,###" /></c:if></td>
+												<td style="text-align: right; border-right:none"><input style="text-align:right;border:0px" type="text" class="discount8 from-control" value="0"></td>
+												<td style="text-align: right" class="extprice8"><fmt:formatNumber value="0" pattern="#,###" /></td>
+											</tr>
+										</c:forEach>
+											<tr><td style="background-color:lightgray; text-align:center">기타 비용</td>
+											<td><input type="text" style="text-align:right;border:none" id="sum18" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum28" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum38"></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum48" disabled></td></tr>
+											<tr><td style="background-color:lightgray; text-align:center">기타 할인</td>
+											<td colspan="2"><input type="text" style="text-align:center;border:none" value="할인명" disabled><input type="text" style="text-align:right;border:none" id="extdiscount" value=""></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum39"></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum49" disabled></td></tr>
+											<tr><td style="background-color:lightgray; text-align:center">도우미 비용</td>
+											<td colspan="3" style="text-align:center"><input type="number" style="text-align:center;border:none" id="sum1A" value="">명</td>
+											<td><input type="text" style="text-align:right;border:none" id="sum4A" disabled></td></tr>											
+											<tr><td style="background-color:lightgray; text-align:center">장의차 비용</td>
+											<td colspan="3" style="text-align:center"><input type="text" style="text-align:center;border:none" id="sum1B" value="버스기사님께 직접 지불" disabled></td>
+											<td><input type="text" style="text-align:right;border:none" id="sum4B"></td></tr>											
+									</tbody>
+								</table>
 							</form>
 							<hr>
-							<div style="text-align:right"><span>선택된 제물상 총액 :</span><input type="text" id="P3total" style="text-align: right; border: none;" readonly>
-							</div>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary" onClick="fn_contInsertP3()">등록</button>
+							<div style="text-align:right"><span>총액 :</span><input type="text" id="sumPage3total" style="text-align: right; border: none;" readonly>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="tab-pane" id="tab04" role="tabpanel">
-					<div class="card-block table-border-style">
-						<div class="table-responsive">
-							<div style="text-align:right"><span>선택된 장의용품 총액 :</span><input type="text" id="P4total" style="text-align: right; border: none;" readonly></div>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary"
-									onClick="fn_contInsertP4()">등록</button>
+						<div class="tab-pane" id="tab04" role="tabpanel">
+							<div class="card-block table-border-style">
+								<div class="table-responsive">
+									<table class="table table-sm bst02">
+										<tbody>
+											<tr>
+												<th scope="row">장례 비용 총계</th>
+											</tr>
+										</tbody>
+									</table>
+									<table class="table table-sm bst02">
+										<tbody>
+											<tr>
+												<td class="form-control">총 장례 비용 합계</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4grdsum" value=""></td>
+											</tr>
+											<tr>
+												<td class="form-control">반품 금액 합계</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4rtn" value=""></td>
+											</tr>
+											<tr>
+												<td class="form-control">할인 금액 합계</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4disc" value=""></td>
+											</tr>
+											<tr>
+												<td class="form-control">직접 지불하실 비용 합계</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4ext" value=""></td>
+											</tr>
+											<tr>
+												<td class="form-control"><input type="checkbox" id="cashbillchk"><span> </span> 현금영수증 발행 (발행용 전화번호 입력)</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="tel" id="page4cashbill" value=""></td>
+											</tr>
+											<tr>
+												<td class="form-control">현금 수납 금액</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4cash" value="0"></td>
+											</tr>
+											<tr>
+												<td class="form-control">카드 수납 금액</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4card" value="0"></td>
+											</tr>
+											<tr>
+												<td class="form-control">추가 기재 사항</td>
+												<td><textarea style="border:none" class="form-control" id="page4rmk"></textarea></td>
+											</tr>
+										</tbody>
+									</table>
+									<div style="text-align: right">
+										<span>수납 대상 총액 :</span><input type="text" id="Conttotal"
+											style="text-align: right; border: none;" readonly>
+									</div>
+									<div class="btn_wr text-right mt-3">
+										<button class="btn btn-md btn-primary"
+											onClick="fn_contFinish()">수납/퇴실처리 완료</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
 			<!-- Row end -->
 		</div>
 	</div>
@@ -412,6 +514,15 @@
 		calsum6();
 		calsum7();
 		sumsmall();
+		sumCont2();
+		sumCont3();
+		sumCont4();
+		sumCont5();
+		sumCont6();
+		sumCont7();
+		sumCont8();
+		totalsum();
+		$(".hidedetail").hide();
 	})
 
 	function calReturn() {
@@ -438,6 +549,10 @@
 		$('#rtnquty').val(numberWithCommas(retTotal));
 		$('#sumrtn').val(numberWithCommas(retTotal*(-1)));
 		$('#tamount').val(numberWithCommas(sumTotal));
+		$('#page4rtn').val(numberWithCommas(retTotal*(-1)));
+		$("#page4card").val("0");
+		$("#page4cash").val("0");
+		page4Reload();
 	}
 	
 	
@@ -480,5 +595,259 @@
 		calReturn();
 		sumsmall();
 	});
+	
+	function dtlhide(){
+		$(".hidedetail").hide();
+	}
+	
+	function dtlshow(){
+		$(".hidedetail").show();
+	}
+	
+	function fn_contFinish(){
+		if(confirm("퇴실 처리 하시겠습니까?")){}
+	}
+	
+	function sumCont2(){
+		var $Aarr = $(".price2");
+		var $Barr = $(".addprice2");
+		var $Carr = $(".discount2");
+		var $Darr = $(".extprice2");
+			var Total12 = 0;
+			var Total22 = 0;
+			var Total32 = 0;
+			var Total42 = 0;
+		for (var i = 0; i < $Aarr.length; i++) {
+			var t1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t3 = Number($Carr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			var t4 = Number($Darr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			Total12 = Total12 + t1;
+			Total22 = Total22 + t2;
+			Total32 = Total32 + t3;
+			Total42 = Total42 + t4;
+		}
+		$('#sum12').val(numberWithCommas(Total12));
+		$('#sum22').val(numberWithCommas(Total22));
+		$('#sum32').val(numberWithCommas(Total32));
+		$('#sum42').val(numberWithCommas(Total42));
+	}
+
+	function sumCont3(){
+		var $Aarr = $(".price3");
+		var $Barr = $(".addprice3");
+		var $Carr = $(".discount3");
+		var $Darr = $(".extprice3");
+			var Total13 = 0;
+			var Total23 = 0;
+			var Total33 = 0;
+			var Total43 = 0;
+		for (var i = 0; i < $Aarr.length; i++) {
+			var t1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t3 = Number($Carr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			var t4 = Number($Darr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			Total13 = Total13 + t1;
+			Total23 = Total23 + t2;
+			Total33 = Total33 + t3;
+			Total43 = Total43 + t4;
+		}
+		$('#sum13').val(numberWithCommas(Total13));
+		$('#sum23').val(numberWithCommas(Total23));
+		$('#sum33').val(numberWithCommas(Total33));
+		$('#sum43').val(numberWithCommas(Total43));
+	}
+	
+	function sumCont4(){
+		var $Aarr = $(".price4");
+		var $Barr = $(".addprice4");
+		var $Carr = $(".discount4");
+		var $Darr = $(".extprice4");
+			var Total14 = 0;
+			var Total24 = 0;
+			var Total34 = 0;
+			var Total44 = 0;
+		for (var i = 0; i < $Aarr.length; i++) {
+			var t1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t3 = Number($Carr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			var t4 = Number($Darr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			Total14 = Total14 + t1;
+			Total24 = Total24 + t2;
+			Total34 = Total34 + t3;
+			Total44 = Total44 + t4;
+		}
+		$('#sum14').val(numberWithCommas(Total14));
+		$('#sum24').val(numberWithCommas(Total24));
+		$('#sum34').val(numberWithCommas(Total34));
+		$('#sum44').val(numberWithCommas(Total44));
+	}
+	
+	function sumCont5(){
+		var $Aarr = $(".price5");
+		var $Barr = $(".addprice5");
+		var $Carr = $(".discount5");
+		var $Darr = $(".extprice5");
+			var Total15 = 0;
+			var Total25 = 0;
+			var Total35 = 0;
+			var Total45 = 0;
+		for (var i = 0; i < $Aarr.length; i++) {
+			var t1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t3 = Number($Carr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			var t4 = Number($Darr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			Total15 = Total15 + t1;
+			Total25 = Total25 + t2;
+			Total35 = Total35 + t3;
+			Total45 = Total45 + t4;
+		}
+		$('#sum15').val(numberWithCommas(Total15));
+		$('#sum25').val(numberWithCommas(Total25));
+		$('#sum35').val(numberWithCommas(Total35));
+		$('#sum45').val(numberWithCommas(Total45));
+	}
+	
+	function sumCont6(){
+		var $Aarr = $(".price6");
+		var $Barr = $(".addprice6");
+		var $Carr = $(".discount6");
+		var $Darr = $(".extprice6");
+			var Total16 = 0;
+			var Total26 = 0;
+			var Total36 = 0;
+			var Total46 = 0;
+		for (var i = 0; i < $Aarr.length; i++) {
+			var t1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t3 = Number($Carr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			var t4 = Number($Darr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			Total16 = Total16 + t1;
+			Total26 = Total26 + t2;
+			Total36 = Total36 + t3;
+			Total46 = Total46 + t4;
+		}
+		$('#sum16').val(numberWithCommas(Total16));
+		$('#sum26').val(numberWithCommas(Total26));
+		$('#sum36').val(numberWithCommas(Total36));
+		$('#sum46').val(numberWithCommas(Total46));
+	}
+	
+	function sumCont7(){
+		var $Aarr = $(".price7");
+		var $Barr = $(".addprice7");
+		var $Carr = $(".discount7");
+		var $Darr = $(".extprice7");
+			var Total17 = 0;
+			var Total27 = 0;
+			var Total37 = 0;
+			var Total47 = 0;
+		for (var i = 0; i < $Aarr.length; i++) {
+			var t1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t3 = Number($Carr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			var t4 = Number($Darr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			Total17 = Total17 + t1;
+			Total27 = Total27 + t2;
+			Total37 = Total37 + t3;
+			Total47 = Total47 + t4;
+		}
+		$('#sum17').val(numberWithCommas(Total17));
+		$('#sum27').val(numberWithCommas(Total27));
+		$('#sum37').val(numberWithCommas(Total37));
+		$('#sum47').val(numberWithCommas(Total47));
+	}
+
+	function sumCont8(){
+		var $Aarr = $(".price8");
+		var $Barr = $(".addprice8");
+		var $Carr = $(".discount8");
+		var $Darr = $(".extprice8");
+			var Total18 = 0;
+			var Total28 = 0;
+			var Total38 = 0;
+			var Total48 = 0;
+		for (var i = 0; i < $Aarr.length; i++) {
+			var t1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t3 = Number($Carr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			var t4 = Number($Darr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			Total18 = Total18 + t1;
+			Total28 = Total28 + t2;
+			Total38 = Total38 + t3;
+			Total48 = Total48 + t4;
+		}
+		$('#sum18').val(numberWithCommas(Total18));
+		$('#sum28').val(numberWithCommas(Total28));
+		$('#sum38').val(numberWithCommas(Total38));
+		$('#sum48').val(numberWithCommas(Total48));
+	}
+
+	
+	function fn_calPage3(){
+		sumCont2();
+		sumCont3();
+		sumCont4();
+		sumCont5();
+		sumCont6();
+		sumCont7();
+		sumCont8();
+		totalsum();
+		page4Reload();
+	}
+	
+	function totalsum(){
+		var totsum1 = Number($('#sum12').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum13').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum14').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum15').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum16').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum17').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum18').val().replace(/[\D\s\._\-]+/g, ""));
+		var totsum2 = Number($('#sum22').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum23').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum24').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum25').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum26').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum27').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum28').val().replace(/[\D\s\._\-]+/g, ""));
+		var totsum3 = Number($('#sum32').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum33').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum34').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum35').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum36').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum37').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum38').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum39').val().replace(/[\D\s\._\-]+/g, ""));
+		var totsum4 = Number($('#sum42').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum43').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum44').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum45').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum46').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum47').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum48').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum4A').val().replace(/[\D\s\._\-]+/g, ""))+Number($('#sum4B').val().replace(/[\D\s\._\-]+/g, ""));
+		$("#sumPage3total").val(numberWithCommas(totsum1+totsum2-totsum3));
+		$("#Conttotal").val(numberWithCommas(totsum1+totsum2-totsum3));
+		$("#page4disc").val(numberWithCommas(totsum3*(-1)));
+		$("#page4ext").val(numberWithCommas(totsum4));
+		$("#page4grdsum").val(numberWithCommas(totsum1+totsum2+totsum4));
+	}
+	
+	$("#sum32,#sum33,#sum34,#sum35,#sum36,#sum37,#sum38,#sum39").change(function(){
+		totalsum();
+		$("#sum32").val(numberWithCommas($("#sum32").val()));
+		$("#sum33").val(numberWithCommas($("#sum33").val()));
+		$("#sum34").val(numberWithCommas($("#sum34").val()));
+		$("#sum35").val(numberWithCommas($("#sum35").val()));
+		$("#sum36").val(numberWithCommas($("#sum36").val()));
+		$("#sum37").val(numberWithCommas($("#sum37").val()));
+		$("#sum38").val(numberWithCommas($("#sum38").val()));
+		$("#sum39").val(numberWithCommas($("#sum39").val()));
+		$("#page4card").val("0");
+		$("#page4cash").val("0");
+		page4Reload();
+	});
+	
+	$("#sum4B").change(function(){
+		totalsum();
+		$("#sum4B").val(numberWithCommas($("#sum4B").val()));
+	});
+	
+	$("#page4cash").change(function(){
+		var t1 = Number($("#Conttotal").val().replace(/[\D\s\._\-]+/g, ""));
+		var t2 = Number($("#page4cash").val().replace(/[\D\s\._\-]+/g, ""));
+		$("#page4card").val(numberWithCommas(t1-t2));
+		$("#page4cash").val(numberWithCommas($("#page4cash").val()));
+	});
+	
+	$("#page4card").change(function(){
+		var t1 = Number($("#Conttotal").val().replace(/[\D\s\._\-]+/g, ""));
+		var t2 = Number($("#page4card").val().replace(/[\D\s\._\-]+/g, ""));
+		$("#page4cash").val(numberWithCommas(t1-t2));
+		$("#page4card").val(numberWithCommas($("#page4card").val()));
+	});
+	
+	function page4Reload(){
+		var t1 = Number($("#page4grdsum").val().replace(/[\D\s\._\-]+/g, ""));
+		var t2 = Number($("#page4rtn").val().replace(/[\D\s\._\-]+/g, ""));
+		var t3 = Number($("#page4disc").val().replace(/[\D\s\._\-]+/g, ""));
+		var t4 = Number($("#page4ext").val().replace(/[\D\s\._\-]+/g, ""));
+		$("#Conttotal").val(numberWithCommas(t1-t2-t3-t4));
+	}
 
 </script>
