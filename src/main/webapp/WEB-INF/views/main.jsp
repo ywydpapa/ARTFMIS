@@ -21,7 +21,7 @@
 
   <!-- Custom styles for this template -->
   <link href="${path}/css/modern-business.css" rel="stylesheet">
-  <link href="${path}/css/artfms.css" rel="stylesheet">
+  <link href="${path}/css/artfms.css?=ver1" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.css"/>
   <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
   
@@ -111,21 +111,21 @@ function fnSetPage(url, data){
       </ol>
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="height: 80%; background-image: url('${path}/resources/image/flower4.jpg')">
+        <div class="carousel-item active" style="height: 80%; background-image: url('${path}/resources/image/main_back_1.jpg')">
           <div class="carousel-caption d-none d-md-block">
             <h3></h3>
             <p>고인의 명복을 빕니다.</p>
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="height: 80%; background-image: url('${path}/resources/image/flower2.jpg')">
+        <div class="carousel-item" style="height: 80%; background-image: url('${path}/resources/image/main_back_2.jpg')">
           <div class="carousel-caption d-none d-md-block">
             <h3>GHTECH ARTFMS</h3>
             <p>클라우드기반 장례식장 관리 프로그램</p>
           </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="height: 80%; background-image: url('${path}/resources/image/flower3.jpg')">
+        <div class="carousel-item" style="height: 80%; background-image: url('${path}/resources/image/main_back_3.jpg')">
           <div class="carousel-caption d-none d-md-block">
             <h3></h3>
             <p></p>
@@ -146,47 +146,30 @@ function fnSetPage(url, data){
   <!-- Page Content -->
   <div class="main_container" id="main_container">
 
-<h1 class="my-4"><span>           </span> GHTECH 장례식장 관리</h1>
+	<div id="" class="main_box">
 
-    <!-- Marketing Icons Section -->
-    <div class="row justify-content-md-center">
-      <div class="col col-lg-2">
-        <div class="card h-100">
-          <h4 class="card-header">추가 주문 현황</h4>
-          <div class="card-body">
-            <p class="card-text">기본 주문 물품 이외 추가로 호실에서 주문한 내역을 확인 하는 곳입니다. </p>
-          </div>
-          <div class="card-footer">
-            <a href="javascript:fnSetPage('${path}/room/addorderlistall.do')" class="btn btn-primary">상세 정보</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-auto">
-        <div class="card h-100">
-          <h4 class="card-header">계약 현황</h4>
-          <div class="card-body">
-            <p class="card-text">일자별 호실별 계약 내역을 확인하는 곳입니다.</p>
-          </div>
-          <div class="card-footer">
-            <a href="javascript:fnSetPage('${path}/cont/contlist.do')" class="btn btn-primary">상세 정보</a>
-          </div>
-        </div>
-      </div>
-      <div class="col col-lg-2">
-        <div class="card h-100">
-          <h4 class="card-header">상담 현황</h4>
-          <div class="card-body">
-            <p class="card-text">상담 내역 및 계약 예상 내역을 일자별로 확인 관리하는 곳입니다</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">상세 정보</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.row -->
+		<h1 class="my-5 main_h1"><span></span> GHTECH 장례식장 관리</h1>
 
-      <hr>
+			<!-- Marketing Icons Section -->
+			<div class="row justify-content-md-center">
+
+			  <div class="col col-lg-2">
+					<a href="javascript:fnSetPage('${path}/room/addorderlistall.do')"><img src="${path}/resources/image/main_button_1.png" alt="추가주문현황" class="m_i"></a>
+			  </div>
+			  <div class="col col-lg-2">
+					<a href="javascript:fnSetPage('${path}/cont/contlist.do')"><img src="${path}/resources/image/main_button_2.png" alt="계약현황"  class="m_i"></a>
+			  </div>
+			  <div class="col col-lg-2">
+					<a href="javascript:fnSetPage('${path}/consult/listview.do')"><img src="${path}/resources/image/main_button_3.png" alt="상담현황"  class="m_i"></a>
+			  </div>
+
+			</div>
+			<!-- /.row -->
+			<br><br>
+			<hr>
+
+
+      </div>
 
   </div>
   <!-- /.container -->
