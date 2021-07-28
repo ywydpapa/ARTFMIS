@@ -34,17 +34,17 @@ public class ConsultDTO {
 	private String PARTNER_YN;
 	private String FTABLE_ORD_ID;
 	private String FTABLE_CODE; 
-	private String RENT_ID;
+	private Integer RENT_ID;
 	private String RENT_TITLE;
-	private String RENT_TYPE;
+	private Integer RENT_TYPE;
 	private String RENT_NAME;
-	private String CHARGE_TYPE;
-	private String CHARGE_YN;
-	private String CHARGE_PERDAY;
-	private String CHARGE_PERHOUR;
-	private String RENT_DAYS;
-	private String RENT_HOURS;
-	private String RENT_AMOUNT;
+	private Integer CHARGE_TYPE;
+	private Integer CHARGE_YN;
+	private Long CHARGE_PERDAY;
+	private Long CHARGE_PERHOUR;
+	private Integer RENT_DAYS;
+	private Integer RENT_HOURS;
+	private Long RENT_AMOUNT;
 	private String attrib;
 }
 

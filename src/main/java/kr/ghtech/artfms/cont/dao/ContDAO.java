@@ -68,5 +68,4 @@ public interface ContDAO {
 	List<ContDTO> reloadP8(Integer CONTRACT_ID);
 	List<ContDTO> reloadP9(Integer CONTRACT_ID);
 	List<ContDTO> listYujok(Integer CONTRACT_ID);
-	ContDTO selectOneCSWithCSId(Integer CONSULT_ID);
 	}
