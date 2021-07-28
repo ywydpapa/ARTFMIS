@@ -362,5 +362,35 @@ public class ContDAOImpl implements ContDAO {
 		return sqlSession.selectList("cont.settleContp7", dto);
 	}
 
+	@Override
+	public List<ContDTO> settleP2(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("cont.settleContp2", dto);
+	}
+
+	@Override
+	public List<ContDTO> settleP3(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("cont.settleContp3", dto);
+	}
+
+	@Override
+	public List<ContDTO> settleP4(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("cont.settleContp4", dto);
+	}
+
+	@Override
+	public List<ContDTO> settleP5(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("cont.settleContp5", dto);
+	}
+
+	@Override
+	public List<ContDTO> settleP8(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("cont.settleContp8", dto);
+	}
+
 	
 }

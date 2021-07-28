@@ -226,16 +226,14 @@ public class ContController {
 		mav.addObject("frid", CONT_FROOM_ID);
 		mav.addObject("CONTid", CONTRACT_ID);
 		mav.addObject("detailCont", contService.detailCont(CONTRACT_ID));
-		mav.addObject("cpage3", contService.reloadP3(CONTRACT_ID));
-		mav.addObject("cpage4m", contService.reloadP4m(CONTRACT_ID));
-		mav.addObject("cpage4t", contService.reloadP4t(CONTRACT_ID));
-		mav.addObject("cpage5", contService.reloadP5(CONTRACT_ID));
-		mav.addObject("cpage6", contService.reloadP6(dto));
-		mav.addObject("cpage7", contService.reloadP7(dto));
 		mav.addObject("rtnpage7", contService.returnP7(dto));
+		mav.addObject("spage2", contService.settleP2(dto));
+		mav.addObject("spage3", contService.settleP3(dto));
+		mav.addObject("spage4", contService.settleP4(dto));
+		mav.addObject("spage5", contService.settleP5(dto));
 		mav.addObject("spage6", contService.settleP6(dto));
 		mav.addObject("spage7", contService.settleP7(dto));
-		mav.addObject("cpage8", contService.reloadP8(CONTRACT_ID));
+		mav.addObject("spage8", contService.settleP8(dto));
 		mav.setViewName("cont/settdetail");
 		return mav;
 	}

@@ -364,5 +364,35 @@ public class ContServiceImpl implements ContService {
 		return contDao.settleP7(dto);
 	}
 
+	@Override
+	public List<ContDTO> settleP2(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.settleP2(dto);
+	}
+
+	@Override
+	public List<ContDTO> settleP3(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.settleP3(dto);
+	}
+
+	@Override
+	public List<ContDTO> settleP4(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.settleP4(dto);
+	}
+
+	@Override
+	public List<ContDTO> settleP5(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.settleP5(dto);
+	}
+
+	@Override
+	public List<ContDTO> settleP8(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.settleP8(dto);
+	}
+
 
 }

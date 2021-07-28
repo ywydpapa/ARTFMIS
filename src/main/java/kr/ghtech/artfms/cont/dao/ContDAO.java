@@ -60,6 +60,11 @@ public interface ContDAO {
 	List<ContDTO> returnP7(ContDTO dto);
 	List<ContDTO> settleP6(ContDTO dto);
 	List<ContDTO> settleP7(ContDTO dto);
+	List<ContDTO> settleP2(ContDTO dto);
+	List<ContDTO> settleP3(ContDTO dto);
+	List<ContDTO> settleP4(ContDTO dto);
+	List<ContDTO> settleP5(ContDTO dto);
+	List<ContDTO> settleP8(ContDTO dto);
 	List<ContDTO> reloadP8(Integer CONTRACT_ID);
 	List<ContDTO> reloadP9(Integer CONTRACT_ID);
 	List<ContDTO> listYujok(Integer CONTRACT_ID);
