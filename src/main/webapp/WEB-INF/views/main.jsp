@@ -111,21 +111,21 @@ function fnSetPage(url, data){
       </ol>
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="height: 80%; background-image: url('${path}/resources/image/main_back_1.jpg')">
+        <div class="carousel-item active" style="height: 60%; background-image: url('${path}/resources/image/main_back_1.jpg')">
           <div class="carousel-caption d-none d-md-block">
             <h3></h3>
             <p>고인의 명복을 빕니다.</p>
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="height: 80%; background-image: url('${path}/resources/image/main_back_2.jpg')">
+        <div class="carousel-item" style="height: 60%; background-image: url('${path}/resources/image/main_back_2.jpg')">
           <div class="carousel-caption d-none d-md-block">
             <h3>GHTECH ARTFMS</h3>
             <p>클라우드기반 장례식장 관리 프로그램</p>
           </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="height: 80%; background-image: url('${path}/resources/image/main_back_3.jpg')">
+        <div class="carousel-item" style="height: 60%; background-image: url('${path}/resources/image/main_back_3.jpg')">
           <div class="carousel-caption d-none d-md-block">
             <h3></h3>
             <p></p>
@@ -148,7 +148,7 @@ function fnSetPage(url, data){
 
 	<div id="" class="main_box">
 
-		<h1 class="my-5 main_h1"><span></span> GHTECH 장례식장 관리</h1>
+		<h1 class="my-5 main_h1" style="text-align:center"><span></span> GHTECH 장례식장 관리</h1>
 
 			<!-- Marketing Icons Section -->
 			<div class="row justify-content-md-center">
