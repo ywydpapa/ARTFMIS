@@ -9,14 +9,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SELECT USER_NAMK from GHT_USER_MST where USER_LOGINID=#{USER_LOGINID} and (USER_PASSWD=PASSWORD(#{USER_PASSWD}) or USER_PASSWD=#{USER_PASSWD}) 
  </select>
 
-<select id="viewUser"
+<select id="detailUser"
  		resultType="userDto">
  		SELECT * from GHT_USER_MST where USER_LOGINID=#{USER_LOGINID}
  </select>
+
+<select id="detail" resultType="userDto">
+ 		SELECT * from GHT_USER_MST where USER_ID=#{USER_ID}
+ </select> 
  
  <select id="userList"
  		resultType="userDto">
- 		select * from GHT_USER_MST where USER_LOGINID=#{USER_LOGINID}
+ 		select * from GHT_USER_MST where attrib NOT like 'XXX%'
  </select>
  
  <update id="updateUser">
