@@ -53,19 +53,6 @@ public class UserController {
 		return mav;
 	}
 	
-	@RequestMapping("view.do")
-	public ModelAndView userView(@ModelAttribute UserDTO dto) {
-		
-		ModelAndView mav = new ModelAndView();
-		
-		UserDTO userInfo = userService.detailUser(dto);
-		
-		mav.addObject("userInfo", userInfo);
-		mav.setViewName("user/view");
-		
-		return mav;
-	}
-	
 	@RequestMapping("listview.do")
 	public ModelAndView listview(ModelAndView mav) {
 		mav.addObject("list",userService.userList());
@@ -73,13 +60,24 @@ public class UserController {
 		return mav;
 	}
 	
+	@RequestMapping("listuser.do")
+	public ModelAndView listuser(ModelAndView mav) {
+		mav.addObject("list",userService.userList());
+		mav.setViewName("user/listuser");
+		return mav;
+	}
+	
+	@RequestMapping("listrole.do")
+	public ModelAndView listrole(ModelAndView mav) {
+		mav.addObject("list",userService.userList());
+		mav.setViewName("user/listrole");
+		return mav;
+	}
+	
 	@RequestMapping("update.do")
 	public ResponseEntity<?> userUpdate(@ModelAttribute UserDTO dto) {
-		
 		Map<String, Object> param = new HashMap<String, Object>();
-		
 		int userUpdate =userService.updateUser(dto);
-		
 		if(userUpdate > 0) {
        	param.put("code","10001");
       }
@@ -88,6 +86,19 @@ public class UserController {
         }
         return ResponseEntity.ok(param);
 	} 
+	
+	@RequestMapping("insert.do")
+	public ResponseEntity<?> userInsert(@ModelAttribute UserDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int userInsert =userService.insertUser(dto);
+		if(userInsert > 0) {
+       	param.put("code","10001");
+      }
+       else {
+        	param.put("code","20001");
+        }
+        return ResponseEntity.ok(param);
+	}
 	
 	@RequestMapping(value="/login_check.do")
 	public ModelAndView loginCheck(@ModelAttribute UserDTO dto, HttpSession session) {
@@ -164,4 +175,10 @@ public class UserController {
 		return mav;
 	}
 
+	@RequestMapping("detailRole/{USER_ID}")
+	public ModelAndView detailRole(@PathVariable("USER_ID") int USER_ID, ModelAndView mav) {
+		mav.addObject("list",userService.detail(USER_ID));
+		mav.setViewName("user/detailRole");
+		return mav;
+	}
 }

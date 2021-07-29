@@ -20,6 +20,8 @@ public interface UserService {
 	
 	public int updateUser(UserDTO dto);
 	
+	public int insertUser(UserDTO dto);
+	
 	public int updPasswd(UserDTO dto);
 
 }

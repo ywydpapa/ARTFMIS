@@ -13,6 +13,7 @@ public interface UserDAO {
 	public UserDTO detailUser(UserDTO dto);
 	public UserDTO detail(int USER_ID);
 	public void logout(HttpSession session);
+	public int insertUser(UserDTO dto);	
 	public int updateUser(UserDTO dto);
 	public int updPasswd(UserDTO dto);
 

@@ -65,4 +65,10 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return userDao.detail(USER_ID);
 	}
+
+	@Override
+	public int insertUser(UserDTO dto) {
+		// TODO Auto-generated method stub
+		return userDao.insertUser(dto);
+	}
 }
