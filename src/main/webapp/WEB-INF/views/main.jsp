@@ -28,12 +28,72 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
   
 <script>
+function customAutoRolad(url){
+    let urlArr = url.split("/");
+    if(urlArr[2] === "consult"){
+        if(urlArr[3] === "listview.do"){
+            var element = $("#consult_list");
+            if(element.length){
+                var option = element.find("option:selected");
+                if(option.length > 0){
+                    var index = option[0].value;
+                    var a = "${path}/consult/detailConsult/"+index;
+                    fnSetConsultdetail(a);
+                    var b = "${path}/consult/defaultConsult/"+index;
+                    fnSetConsultdefault(b);
+                }
+            }
+        }
+    } else if(urlArr[2] === "cont"){
+        if(urlArr[3] === "contlist.do"){
+            var element = $("#consult_contract_list_table");
+            if(element.length){
+                var a = element.find("tbody tr:eq(0) > td:eq(1) > a");
+                if(a.length){
+                  a[0].click();
+                }
+            }
+        } else if(urlArr[3] === "listview.do'"){
+            var element = $("#roomTable");
+            if(element.length){
+                var a = element.find("tbody tr:eq(0) > td:eq(0) > a")
+                if(a.length){
+                    a[0].click();
+                }
+            }
+        } else if(urlArr[3] === "settlistview.do"){
+            var element = $("#consult_sett_list_table");
+            if(element.length){
+                var a = element.find("tbody tr:eq(0) > td:eq(1) > a");
+                if(a.length){
+                   a[0].click();
+                }
+            }
+        }
+    } else if(urlArr[2] === "room"){
+
+    } else if(urlArr[2] === "goods"){
+        if(urlArr[3] === "listgoods.do"){
+
+        } else if(urlArr[3] === "listroomview.do"){
+
+        } else if(urlArr[3] === "altarListview.do"){
+
+        } else if(urlArr[3] === "ftableListview.do"){
+
+        } else if(urlArr[3] === "dosListview.do"){
+
+        }
+    }
+}
+
 function fnSetPage(url, data){
 	<!-- $.LoadingOverlay("show", true); -->
 	    $("#main_container").empty();
 	    $("#carouselExampleIndicators").remove();
 		$("#main_container").load(url, data, function(){
 			setTimeout(function(){
+                customAutoRolad(url);
 			}, 500);
 	});
 }

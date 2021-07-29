@@ -44,7 +44,7 @@
 						</table>
 						<div class="h-container">
 						<div class="item">
-						<table class="table table-bordered nowrap">
+						<table id="consult_contract_list_table" class="table table-bordered nowrap">
 							<colgroup>
 								<col width="10%" />
 								<col width="20%" />
@@ -62,19 +62,17 @@
 							</tr>
 							</thead>
 							<tbody>
-								<tr>
 								<c:forEach var="row" items="${listcont}">
-										<tr>
-											<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
-											<td class = "CONTPERIOD"style="text-align: center;">
-											<a href="<c:if test="${row.CONTRACT_ID eq 0 }">#</c:if><c:if test="${row.CONTRACT_ID ne 0 }">javascript:fnSetContdetail('${path}/cont/detailcont/${row.CONTRACT_ID}?CONT_FROOM_ID=${row.FROOM_ID}')</c:if>">${row.STDATE}<span> ~ </span>
-											${row.EDDATE}</a></td>
-											<td class = "INOUT" style="text-align: center;">${row.inRoom}</td>
-											<td class = "DPNAME" style="text-align: center;">${row.DPERSON_NAME}</td>
-											<td class = "SJNAME" style="text-align: center;">${row.SANGJU_NAME}</td>
-										</tr>
-									</c:forEach>
-								</tr>
+									<tr>
+										<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
+										<td class = "CONTPERIOD"style="text-align: center;">
+										<a href="<c:if test="${row.CONTRACT_ID eq 0 }">#</c:if><c:if test="${row.CONTRACT_ID ne 0 }">javascript:fnSetContdetail('${path}/cont/detailcont/${row.CONTRACT_ID}?CONT_FROOM_ID=${row.FROOM_ID}')</c:if>">${row.STDATE}<span> ~ </span>
+										${row.EDDATE}</a></td>
+										<td class = "INOUT" style="text-align: center;">${row.inRoom}</td>
+										<td class = "DPNAME" style="text-align: center;">${row.DPERSON_NAME}</td>
+										<td class = "SJNAME" style="text-align: center;">${row.SANGJU_NAME}</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 						</div>

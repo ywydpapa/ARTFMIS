@@ -58,7 +58,7 @@
 					<div class="h-container">
 						<div class="item">
 							<div class="table-responsive">
-								<table class="table table-bordered nowrap">
+								<table id="consult_sett_list_table" class="table table-bordered nowrap">
 									<colgroup>
 										<col width="25%" />
 										<col width="50%" />
