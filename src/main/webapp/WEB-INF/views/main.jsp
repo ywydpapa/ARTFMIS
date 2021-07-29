@@ -18,12 +18,14 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link href=”${path}/css/bootstrap.vertical-tabs.min.css” rel=”stylesheet”>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 
   <!-- Custom styles for this template -->
   <link href="${path}/css/modern-business.css" rel="stylesheet">
   <link href="${path}/css/artfms.css?=ver1" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.css"/>
   <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
   
 <script>
 function fnSetPage(url, data){
@@ -84,8 +86,11 @@ function fnSetPage(url, data){
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/code/write.do')">코드설정</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/code/listview.do')">코드리스트뷰</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/code/bcodelistview.do')">베이스코드리스트뷰</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/listview.do')">문구설정</a>
+              <a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/listview.do')">상담문구설정</a>
+              <a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/timelistview.do')">운영시간안내설정</a>
+              <a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/infolistview.do')">안내문설정</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/settleRule.do')">정산규칙설정</a>
+              <a class="dropdown-item" href="javascript:fnSetPage('${path}/user/listview.do')">사용자 관련설정</a>
 			</div>
           </li>
            <li class="nav-item dropdown">
