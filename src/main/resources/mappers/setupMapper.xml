@@ -6,19 +6,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <select id="detailSetup"
  		resultType="setupDto">
- 		SELECT * from GHT_SETUP where SETUP_ID=#{SETUP_ID}
+ 		SELECT * from GHT_SETUP where SETUP_ID=#{SETUP_ID} 
  </select>
  
  <select id="listSetup"
  		resultType="setupDto">
- 		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%'
+ 		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%' and SETUP_TYPE='CONS'
+ </select>
+ 
+ <select id="timelistSetup"
+ 		resultType="setupDto">
+ 		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%' and SETUP_TYPE='TIME'
+ </select>
+ 
+ <select id="infolistSetup"
+ 		resultType="setupDto">
+ 		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%' and SETUP_TYPE='INFO'
  </select>
   
 <insert id="insert">
   insert into GHT_SETUP 
-  (SETUP_TITLE,SETUP_CONTENTS,SETUP_KEY,SETUP_DESC,REG_DATE,ATTRIB,USE_YN)
+  (SETUP_TITLE,SETUP_CONTENTS,SETUP_KEY,SETUP_DESC,REG_DATE,ATTRIB,USE_YN,START_TIME, END_TIME, SETUP_TYPE)
   values
-  (#{SETUP_TITLE},#{SETUP_CONTENTS},#{SETUP_KEY},#{SETUP_DESC},now(),'10000',#{USE_YN})
+  (#{SETUP_TITLE},#{SETUP_CONTENTS},#{SETUP_KEY},#{SETUP_DESC},now(),'10000',#{USE_YN},#{START_TIME},#{END_TIME},#{SETUP_TYPE})
 </insert>
 
 <update id="update">
@@ -29,7 +39,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SETUP_KEY = #{SETUP_KEY},
 	SETUP_DESC = #{SETUP_DESC},
 	MOD_DATE = now(),
-	USE_YN = #{USE_YN}
+	USE_YN = #{USE_YN},
+	START_TIME = #{START_TIME},
+	END_TIME = #{END_TIME}
+	where SETUP_ID = #{SETUP_ID}
+</update>
+
+<update id="updatedefault">
+	update GHT_SETUP
+	set
+	SETUP_KEY = #{SETUP_KEY},
+	MOD_DATE = now()
 	where SETUP_ID = #{SETUP_ID}
 </update>
 
