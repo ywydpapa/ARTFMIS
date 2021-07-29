@@ -31,7 +31,7 @@
 										</tr>
 									</tbody>
 								</table>
-								<table class="table table-sm bst02">
+								<table id="consult_contract_list_table" class="table table-sm bst02">
 									<colgroup>
 										<col width="40%" />
 										<col width="30%" />
