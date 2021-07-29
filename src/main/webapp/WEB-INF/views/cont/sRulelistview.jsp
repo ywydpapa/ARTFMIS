@@ -41,10 +41,7 @@
 		</colgroup>
 		<tr>
 			<td>정산규칙설정</td>
-			<td><select name="DOS_TYP" id="DOS_TYP"
-				class="form-control form-control-sm">
-					<option value="2">시설물 정산규칙 설정</option>
-			</select></td>
+			<td>시설물/외부업체/기타 사항 정산규칙 설정</td>
 		</tr>
 </table>
 <hr>
@@ -58,13 +55,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistroom/1')">분향실</a></td></tr>
-					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistroom/2')">안치실</a></td></tr>
-					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistroom/3')">입관실</a></td></tr>
-					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistroom/4')">발인실</a></td></tr>
-					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistroom/5')">게스트룸</a></td></tr>
-					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistroom/6')">종교시설</a></td></tr>
-					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistroom/7')">기타</a></td></tr>
+					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistRule/1')">시설물</a></td></tr>
+					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistRule/2')">외부업체</a></td></tr>
+					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistRule/3')">도우미비용</a></td></tr>
+					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistRule/4')">주차비</a></td></tr>
+					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistRule/5')">기타</a></td></tr>
 				</tbody>
 			</table>
 		</div>
@@ -121,7 +116,7 @@ function tableDetailLoad(){
 		var tempArr = $("#roomTable > tbody > tr > td > a").eq(0).attr('href').split('/');
 		var num = tempArr[tempArr.length - 1].replace(')','').replace('"','').replace('\'','');
 		console.log(num);
-		var url ="${path}/goods/setlistroom/"+num;	
+		var url ="${path}/goods/setlistRule/"+num;	
 		$.ajax({
 			type: "GET",
 			url : url,
@@ -140,8 +135,6 @@ function tableDetailLoad(){
 }
 
 $(document).ready(function(){
-	var url ="${path}/goods/setlistRoom/1";
-	tableListLoad(url);
 	tableDetailLoad();
 });
 
