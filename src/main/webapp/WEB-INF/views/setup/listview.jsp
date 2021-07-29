@@ -143,7 +143,7 @@ function fnSetupdetail(url, data){
 function fn_setNew(){
 
 	url="${path}/setup/detailnew.do";
-	fnSetSetupdetail(url);
+	fnSetupdetail(url);
 		$("#SETUP_ID").val("");
 		$("#setupTitle").val("");
 		$("#setupContents").val("");
