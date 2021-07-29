@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SELECT USER_NAMK from GHT_USER_MST where USER_LOGINID=#{USER_LOGINID} and (USER_PASSWD=PASSWORD(#{USER_PASSWD}) or USER_PASSWD=#{USER_PASSWD}) 
  </select>
 
-<select id="viewUser"
+<select id="detailUser"
  		resultType="userDto">
  		SELECT * from GHT_USER_MST where USER_LOGINID=#{USER_LOGINID}
  </select>
