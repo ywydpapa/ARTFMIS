@@ -151,6 +151,7 @@ function fnSetPage(url, data){
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/infolistview.do')">안내문설정</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/settleRule.do')">정산규칙설정</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/user/listview.do')">사용자 관련설정</a>
+              <a class="dropdown-item" href="javascript:fnSetPage('${path}/fnr/listview.do')">장례식장 관련설정</a>
 			</div>
           </li>
            <li class="nav-item dropdown">

@@ -18,10 +18,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SELECT * from GHT_USER_MST where USER_ID=#{USER_ID}
  </select> 
  
- <select id="userList"
- 		resultType="userDto">
- 		select * from GHT_USER_MST where attrib NOT like 'XXX%'
- </select>
+ <select id="userList" resultType="userDto">
+ 		select b.BCD_TITLE, a.* from GHT_USER_MST a 
+		left join GHT_BASE_CODE b on a.USER_DEPT = b.BCD_ID 
+		where attrib NOT like 'XXX%'
+</select>
+ <insert id="insertUser">
+ 	insert into GHT_USER_MST
+     (USER_NAMK,USER_RANK,USER_DEPT,USER_TELNO,USER_MOBNO,USER_EMAIL,USER_ADDR1,USER_ADDR2,FNR_ID
+		,USER_INDAT,USER_JOB_STAT,USER_OUTDAT,USER_REST_FRDAT,USER_REST_TODAT,USER_ROLE1,USER_LOGINID
+		,USER_ROLE_GRP,USER_REMARK,attrib,USER_PASSWD) values 
+		(#{USER_NAMK},#{USER_RANK},#{USER_DEPT},#{USER_TELNO},USER_MOBNO,#{USER_EMAIL},#{USER_ADDR1},#{USER_ADDR2},#{FNR_ID}
+		,#{USER_INDAT},#{USER_JOB_STAT},#{USER_OUTDAT},#{USER_REST_FRDAT},#{USER_REST_TODAT},#{USER_ROLE1},#{USER_LOGINID}
+		,#{USER_ROLE_GRP},#{USER_REMARK},'10000',PASSWORD("1234"))
+ </insert>
  
  <update id="updateUser">
  		update GHT_USER_MST set 
@@ -40,7 +50,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,USER_OUTDAT = #{USER_OUTDAT}
 		,USER_REST_FRDAT = #{USER_REST_FRDAT}
 		,USER_REST_TODAT = #{USER_REST_TODAT}
-		,USER_PASSWD = PASSWORD(#{USER_PASSWD})
 		,USER_ROLE1 = #{USER_ROLE1}
 		,USER_ROLE_GRP = #{USER_ROLE_GRP}
 		,USER_REMARK = #{USER_REMARK}
