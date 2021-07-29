@@ -2,7 +2,6 @@
 package kr.ghtech.artfms.user;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -10,11 +9,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kr.ghtech.artfms.code.service.CodeService;
+import kr.ghtech.artfms.goods.service.GoodsService;
 import kr.ghtech.artfms.user.dto.UserDTO;
 import kr.ghtech.artfms.user.service.UserService;
 
@@ -24,6 +25,12 @@ public class UserController {
 	
 	@Inject
 	UserService userService;
+	
+	@Inject
+	CodeService codeService;
+	
+	@Inject 
+	GoodsService goodsService;
 	
 	@RequestMapping("login.do")
 	public String login() {
@@ -40,12 +47,18 @@ public class UserController {
 		return "user/passwdChg";
 	}
 	
+	@RequestMapping("detailnew.do")
+	public ModelAndView detailnew(ModelAndView mav) {
+		mav.setViewName("user/detailuser");
+		return mav;
+	}
+	
 	@RequestMapping("view.do")
 	public ModelAndView userView(@ModelAttribute UserDTO dto) {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		UserDTO userInfo = userService.viewUser(dto);
+		UserDTO userInfo = userService.detailUser(dto);
 		
 		mav.addObject("userInfo", userInfo);
 		mav.setViewName("user/view");
@@ -53,11 +66,11 @@ public class UserController {
 		return mav;
 	}
 	
-	@RequestMapping("list.do")
-	public String userList(Model model) {
-		List<UserDTO> list=userService.userList();
-		model.addAttribute("list",list);
-		return "user/list";
+	@RequestMapping("listview.do")
+	public ModelAndView listview(ModelAndView mav) {
+		mav.addObject("list",userService.userList());
+		mav.setViewName("user/listview");
+		return mav;
 	}
 	
 	@RequestMapping("update.do")
@@ -81,7 +94,7 @@ public class UserController {
 		boolean result = userService.loginCheck(dto, session);
 		ModelAndView mav = new ModelAndView();
 		if (result == true) {
-			UserDTO userInfo = userService.viewUser(dto);
+			UserDTO userInfo = userService.detailUser(dto);
 			String typ = userInfo.getUSER_RANK();
 			if(typ == null)
 			{
@@ -142,5 +155,13 @@ public class UserController {
         return ResponseEntity.ok(param);
 	}
 
+	@RequestMapping("detail/{USER_ID}")
+	public ModelAndView detail(@PathVariable("USER_ID") int USER_ID, ModelAndView mav) {
+		mav.addObject("list",userService.detail(USER_ID));
+		mav.addObject("dept",codeService.listconBcode("8"));
+		mav.addObject("froom",goodsService.listRoom(1));
+		mav.setViewName("user/detailuser");
+		return mav;
+	}
 
 }

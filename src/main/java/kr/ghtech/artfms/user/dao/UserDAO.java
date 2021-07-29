@@ -10,7 +10,8 @@ public interface UserDAO {
 	
 	List<UserDTO> userList();
 	public boolean loginCheck(UserDTO dto);
-	public UserDTO viewUser(UserDTO dto);
+	public UserDTO detailUser(UserDTO dto);
+	public UserDTO detail(int USER_ID);
 	public void logout(HttpSession session);
 	public int updateUser(UserDTO dto);
 	public int updPasswd(UserDTO dto);

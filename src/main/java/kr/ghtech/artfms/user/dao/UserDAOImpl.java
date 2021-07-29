@@ -24,9 +24,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public UserDTO viewUser(UserDTO dto) {
+	public UserDTO detailUser(UserDTO dto) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("user.viewUser", dto);
+		return sqlSession.selectOne("user.detailUser", dto);
 	}
 
 	@Override
@@ -51,6 +51,12 @@ public class UserDAOImpl implements UserDAO {
 	public int updPasswd(UserDTO dto) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("user.updPasswd", dto);
+	}
+
+	@Override
+	public UserDTO detail(int USER_ID) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("user.detail", USER_ID);
 	}
 	
 }

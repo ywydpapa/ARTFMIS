@@ -21,18 +21,19 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		boolean result = userDao.loginCheck(dto);
 		if (result) {
-			UserDTO dto2 = viewUser(dto);
+			UserDTO dto2 = detailUser(dto);
 			session.setAttribute("USER_LOGINID",dto2.getUSER_LOGINID());
 			session.setAttribute("USER_NAMK", dto2.getUSER_NAMK());
 			session.setAttribute("USER_RANK", dto2.getUSER_RANK());
+			session.setAttribute("USER_ROLE", dto2.getUSER_ROLE1());
 		}
 		return result;
 	}
 
 	@Override
-	public UserDTO viewUser(UserDTO dto) {
+	public UserDTO detailUser(UserDTO dto) {
 		// TODO Auto-generated method stub
-		return userDao.viewUser(dto);
+		return userDao.detailUser(dto);
 	}
 
 	@Override
@@ -57,5 +58,11 @@ public class UserServiceImpl implements UserService {
 	public int updPasswd(UserDTO dto) {
 		// TODO Auto-generated method stub
 		return userDao.updPasswd(dto);
+	}
+
+	@Override
+	public UserDTO detail(int USER_ID) {
+		// TODO Auto-generated method stub
+		return userDao.detail(USER_ID);
 	}
 }

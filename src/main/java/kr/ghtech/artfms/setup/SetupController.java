@@ -28,6 +28,20 @@ public class SetupController {
 		mav.setViewName("setup/listview");
 		return mav;
 	}
+	
+	@RequestMapping("timelistview.do")
+	public ModelAndView tlistview(ModelAndView mav) {
+		mav.addObject("list",setupService.timelistSetup());
+		mav.setViewName("setup/timelistview");
+		return mav;
+	}
+	
+	@RequestMapping("infolistview.do")
+	public ModelAndView ilistview(ModelAndView mav) {
+		mav.addObject("list",setupService.infolistSetup());
+		mav.setViewName("setup/infolistview");
+		return mav;
+	}
 
 	@RequestMapping("listsetup.do")
 	public ModelAndView listsetup(ModelAndView mav) {
@@ -36,11 +50,38 @@ public class SetupController {
 		return mav;
 	}
 	
+	@RequestMapping("timelistsetup.do")
+	public ModelAndView tlistsetup(ModelAndView mav) {
+		mav.addObject("list",setupService.timelistSetup());
+		mav.setViewName("setup/timelistsetup");
+		return mav;
+	}
+
+	@RequestMapping("infolistsetup.do")
+	public ModelAndView ilistsetup(ModelAndView mav) {
+		mav.addObject("list",setupService.infolistSetup());
+		mav.setViewName("setup/infolistsetup");
+		return mav;
+	}
+
 	@RequestMapping("detailnew.do")
 	public ModelAndView detailnew(ModelAndView mav) {
 		mav.setViewName("setup/detailsetup");
 		return mav;
 	}
+	
+	@RequestMapping("timedetailnew.do")
+	public ModelAndView tdetailnew(ModelAndView mav) {
+		mav.setViewName("setup/timedetailsetup");
+		return mav;
+	}
+	
+	@RequestMapping("infodetailnew.do")
+	public ModelAndView idetailnew(ModelAndView mav) {
+		mav.setViewName("setup/infodetailsetup");
+		return mav;
+	}
+
 	
 	@RequestMapping("detail/{SETUP_ID}")
 	public ModelAndView detailSetup(@PathVariable("SETUP_ID") int SETUP_ID, ModelAndView mav) {
@@ -48,6 +89,21 @@ public class SetupController {
 		mav.setViewName("setup/detailsetup");
 		return mav;
 	}
+	
+	@RequestMapping("timedetail/{SETUP_ID}")
+	public ModelAndView tdetailSetup(@PathVariable("SETUP_ID") int SETUP_ID, ModelAndView mav) {
+		mav.addObject("list",setupService.detailSetup(SETUP_ID));
+		mav.setViewName("setup/timedetailsetup");
+		return mav;
+	}
+
+	@RequestMapping("infodetail/{SETUP_ID}")
+	public ModelAndView idetailSetup(@PathVariable("SETUP_ID") int SETUP_ID, ModelAndView mav) {
+		mav.addObject("list",setupService.detailSetup(SETUP_ID));
+		mav.setViewName("setup/infodetailsetup");
+		return mav;
+	}
+
 	
 	@RequestMapping("insert.do")
 	public ResponseEntity<?> insert(@ModelAttribute SetupDTO dto){
@@ -66,6 +122,19 @@ public class SetupController {
 	public ResponseEntity<?> update(@ModelAttribute SetupDTO dto){
 		Map<String, Object> param = new HashMap<String, Object>();
 		int setupupdate = setupService.updateSetup(dto);
+		if (setupupdate > 0) {
+			param.put("code", "10001");
+		}
+		else {
+			param.put("code", "20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+	
+	@RequestMapping("updatedefault.do")
+	public ResponseEntity<?> updatedef(@ModelAttribute SetupDTO dto){
+		Map<String, Object> param = new HashMap<String, Object>();
+		int setupupdate = setupService.updateDefault(dto);
 		if (setupupdate > 0) {
 			param.put("code", "10001");
 		}

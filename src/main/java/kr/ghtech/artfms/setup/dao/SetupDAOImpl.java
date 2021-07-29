@@ -45,4 +45,22 @@ public class SetupDAOImpl implements SetupDAO {
 		return sqlSession.update("setup.delete", dto);
 	}
 
+	@Override
+	public List<SetupDTO> timelistSetup() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("setup.timelistSetup");
+	}
+
+	@Override
+	public List<SetupDTO> infolistSetup() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("setup.infolistSetup");
+	}
+
+	@Override
+	public int updateDefault(SetupDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("setup.updatedefault", dto);
+	}
+
 }

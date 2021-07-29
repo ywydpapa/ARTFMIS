@@ -142,10 +142,24 @@ public class GoodsController {
 		return mav;
 	}
 	
-	@RequestMapping("setlistroom/{FROOM_TYP}")
+	@RequestMapping("setlistRule/{FROOM_TYP}")
 	public ModelAndView setroomlist(@PathVariable("FROOM_TYP") int FROOM_TYP,ModelAndView mav) {
-		mav.addObject("setlistroom", goodsService.setlistRoom(FROOM_TYP));
-		mav.setViewName("cont/settleRule");
+		int typ = FROOM_TYP;
+		if (typ == 1) {
+			mav.setViewName("cont/settleRuleroom");	
+		}
+		if (typ == 2) {
+			mav.setViewName("cont/settleRuleext");	
+		}
+		if (typ == 3) {
+			mav.setViewName("cont/settleRulehelp");	
+		}
+		if (typ == 4) {
+			mav.setViewName("cont/settleRulepark");	
+		}
+		if (typ == 5) {
+			mav.setViewName("cont/settleRuleetc");	
+		}
 		return mav;
 	}
 	

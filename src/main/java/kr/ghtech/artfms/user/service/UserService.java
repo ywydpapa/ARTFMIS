@@ -10,7 +10,9 @@ public interface UserService {
 	
 	public boolean loginCheck(UserDTO dto, HttpSession session);
 
-    public UserDTO viewUser(UserDTO dto);
+    public UserDTO detailUser(UserDTO dto);
+    
+    public UserDTO detail(int USER_ID);
 
 	public void logout(HttpSession session);
 
