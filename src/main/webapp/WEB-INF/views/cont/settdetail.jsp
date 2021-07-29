@@ -423,7 +423,7 @@
 												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4disc" value=""></td>
 											</tr>
 											<tr>
-												<td class="form-control">직접 지불하실 비용 합계</td>
+												<td class="form-control">업체에 직접 지불하실 비용 합계</td>
 												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4ext" value=""></td>
 											</tr>
 											<tr>
