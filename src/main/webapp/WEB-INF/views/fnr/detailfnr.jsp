@@ -22,12 +22,7 @@
 								<th style="text-align: center" scope="row">장례식장명</th>
 								<td><input type="text" class="form-control"
 									id="fnamek" value="${list.FNR_NAMEK}" placeholder=""></td>
-								<th style="text-align: center" scope="row">고유번호</th>
-								<td><input class="form-control" type="text" id="fid" value="${list.FNR_ID}"></td>
-								<td>
-									<button style="text-align: right;" class="btn btn-md btn-success" value="추가"
-										onClick="fn_setNewFnr()">장례식장 추가</button>
-								</td>
+								<td><input class="form-control" type="hidden" id="fid" value="${list.FNR_ID}"></td>
 							</tr>
 							<tr>
 								<th style="text-align: center" scope="row">대표번호</th>

@@ -85,7 +85,7 @@
 			    defaultTime: '09',
 			    startTime: '10:00',
 			    dynamic: false,
-			    dropdown: true,
+			    dropdown: false,
 			    scrollbar: true
 			});
 		});

@@ -125,7 +125,7 @@
 												<tr align="center">
 													<td>사망일시</td>
 													<td><input style="width:70%;float:left" type="date" class="form-control form-control-sm" id="contp1-14" name="contp1-14" value="" tabindex="2">
-													<input style="width:30%;float:right" type="time" pattern="^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$" required class="form-control form-control-sm inputs time" id="contp1-14-1" name="contp1-14-1" value="" tabindex="3">
+													<input style="width:30%;float:right" type="text" required class="form-control form-control-sm timepicker" id="contp1-14-1" name="contp1-14-1" value="" tabindex="3">
 													</td>
 													<td>나이</td>
 													<td><input type="number" style="text-align:right"
@@ -201,22 +201,22 @@
 												<tr align="center">
 													<th rowspan="2">일정</th>
 													<td>입실일시*</td>
-													<td><input type="date" style="width:60%;float:left" class="form-control form-control-sm" id="contp1-26" name="contp1-26" value="" tabindex="9">
-													<input type="time" style="width:40%;float:right" class="form-control form-control-sm" id="contp1-26-1" name="contp1-26-1" value="" tabindex="10" >
+													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-26" name="contp1-26" value="" tabindex="9">
+													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-26-1" name="contp1-26-1" value="" tabindex="10" >
 													</td>
 													<td>안치일시</td>
-													<td colspan="2"><input type="date" style="width:60%;float:left" class="form-control form-control-sm" id="contp1-27" name="contp1-27" value="" tabindex="11">
-													<input type="time" style="width:40%;float:right" class="form-control form-control-sm" id="contp1-27-1" name="contp1-27-1" value="" tabindex="12">
+													<td colspan="2"><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-27" name="contp1-27" value="" tabindex="11">
+													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-27-1" name="contp1-27-1" value="" tabindex="12">
 													</td>
 												</tr>
 												<tr align="center">
 													<td>입관일시</td>
-													<td><input type="date" style="width:60%;float:left" class="form-control" id="contp1-28" name="contp1-28" value="" tabindex="13" >
-													<input type="time" style="width:40%;float:right" class="form-control" id="contp1-28-1" name="contp1-28-1" value="" tabindex="14" >
+													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-28" name="contp1-28" value="" tabindex="13" >
+													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-28-1 " name="contp1-28-1" value="" tabindex="14" >
 													</td>
 													<td>발인일시*</td>
-													<td colspan="2"><input type="date" style="width:60%;float:left" class="form-control form-control-sm" id="contp1-29" name="contp1-29" value="" tabindex="15">
-													<input type="time" style="width:40%;float:right" class="form-control form-control-sm" id="contp1-29-1" name="contp1-29-1" value="" tabindex="16">
+													<td colspan="2"><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-29" name="contp1-29" value="" tabindex="15">
+													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-29-1" name="contp1-29-1" value="" tabindex="16">
 													</td>
 												</tr>
 												<tr align="center">
@@ -1393,46 +1393,7 @@
 										<tr>
 											<td></td>
 											<td><textarea class="form-control" rows="20">
-											1. 저희 장례식장에서는 외부음식 반입시 식중독 및 기타 불미한 사고가 발생될 수 
-   있으므로 음식물 반입으로 인한 사고발생시 당 장례식장에서는 책임을 지지 
-   않으며,모든 상차림(성복/발인제 등) 음식은 챙겨가지 않을 시 
-   폐기처분하겠습니다. 그에 대한 책임은 해당 상가에 있습니다.
-
-   ※ 시민장례식장은 식품안전 전문가와 정기적으로 위생을 진단관리하는 
-      푸드 세이프티 존입니다.
-
-2. 분향소 내에서는 화기 사용이 금지되어 있습니다(휴대용 가스버너 등)
-   화기반입 적발시 해당화기는 사무실에 보관하도록 하며,
-   퇴실(출상)시 찾아가실 수 있습니다.
-
-3. MOU(업무협약)를 포함한 모든 할인은(기초수급자,국가유공자 등) 장례기간동안 
-   관련증빙서류를 제출해주셔야 적용 가능하며,장례기간 이후에는 적용되지
-   않습니다.(중복할인 불가)
-
-4. 상가에 진열된 근조화환은 퇴실시 타 상가 입실준비 등에 불편함이 발생하므로
-   장례식장에서 즉시 처리하도록 하겠습니다.
-
-5. 위 사항을 위반시 장례식장에서는 서비스를 함에 있어 거부의사를 표현할 수 
-   있으며,그에 따른 각종 협약 및 구두계약 상에 명시되어진(할인, 객실 등등) 
-   모든 혜택들을 적용 받을 수 없습니다.
-
-※ 거리두기 준수
-1. 발열, 호흡기 증상(기침, 인후통 등)이 있거나 최근 14일 이내 해외여행을 
-   한 경우 직접 조문 자제
-2. 출입 시 증상 여부(발열, 호흡기 증상 등) 확인 및 명부작성 등 방역에 
-   협조하며, 흐르는 물과 비누로 30초 이상 손을 씻거나 손 손독제로 손 소독하기
-3. 다른 사람과 2m(최소1m)이상 거리를 두고, 침방울이 튀는 행위나 신체접촉 
-   자제하기
-4. 빈소에서 식사하는 경우 서로 마주보지 않고 한 방향을 보거나 지그재그로 
-   식사하기
-5. 반드시 마스크를 착용하고, 기침이나 재채기를 할 때는 휴지, 옷소매로 입과 
-   코 가리기
-※ 조문 예절 준수
-1. 유족은 조문객을 맞이할 때 마스크를 착용하고, 악수보다는 목례로 인사하기
-2. 조문객도 악수보다는 고개 숙여 위로의 마음을 표하기
-3. 조문과 위로는 가급적 간략하게 하고, 30분 이상 머물지 않도록 권장하기
-4. 가족 중심의 간소한 장례를 치르고, 입관 및 발인식 등 장례절차 진행시 최소 
-   인원이 참여하며, 참여자간 1m 거리의 간격 유지하기
+											${info.SETUP_CONTENTS}
 											</textarea></td>
 											<td></td>
 										</tr>
@@ -2977,7 +2938,20 @@ function execDaumPostcode2() {
 	});
 }
 
+
 	$(document).ready(function(){
+		
+		$('.timepicker').timepicker({
+		    timeFormat: 'HH:mm',
+		    interval: 10,
+		    minTime: '10',
+		    maxTime: '23:59',
+		    defaultTime: '09',
+		    startTime: '10:00',
+		    dynamic: false,
+		    dropdown: false,
+		    scrollbar: false
+		});
 		calculateM();
 		chkcalM();
 		calculateS();
@@ -2997,6 +2971,7 @@ function execDaumPostcode2() {
 		chkAltarchange();
 		chkEtcchange();
 		SetDT();
+
 	})
 
 </script>
