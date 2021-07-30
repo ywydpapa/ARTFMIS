@@ -35,7 +35,12 @@ public class FnrController {
 		mav.setViewName("fnr/listfnr");
 		return mav;
 	}
-
+	
+	@RequestMapping("detailnew.do")
+	public ModelAndView newfnr(ModelAndView mav) {
+		mav.setViewName("fnr/detailfnr");
+		return mav;
+	}
 	
 	@RequestMapping("detail/{FNR_ID}")
 	public ModelAndView detail(@PathVariable("FNR_ID") int FNR_ID, ModelAndView mav) {

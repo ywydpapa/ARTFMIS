@@ -74,12 +74,12 @@
 			</div>
 			<c:if test="${not empty list.FNR_ID}">
 				<div id="udtbtn">
-					<button class="btn btn-md btn-primary " onClick="fn_Updateuser()">저장</button>
+					<button class="btn btn-md btn-primary " onClick="fn_Updatefnr()">저장</button>
 				</div>
 			</c:if>
 			<c:if test="${empty list.FNR_ID}">
 				<div id="istbtn">
-					<button class="btn btn-md btn-primary " onClick="fn_Insertuser()">새로
+					<button class="btn btn-md btn-primary " onClick="fn_Insertfnr()">새로
 						저장</button>
 				</div>
 			</c:if>

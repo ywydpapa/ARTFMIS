@@ -141,38 +141,25 @@ function fnSetupdetail(url, data){
 	});
 }
 
-function fn_setNewuser(){
-
-	url="${path}/user/detailnew.do";
+function fn_setNewFnr(){
+	url="${path}/fnr/detailnew.do";
 	fnSetupdetail(url);
-
 }
 
 function fn_Insertfnr() {
-	var userData = {};
-	userData.USER_LOGINID = $("#uId").val();
-	userData.USER_NAMK = $("#unamk").val();
-	userData.USER_RANK = $("#urank").val();
-	userData.USER_DEPT = $("#udept").val();
-	userData.USER_TELNO = $("#utel").val();
-	userData.USER_MOBNO = $("#umob").val();
-	userData.USER_ADDR1 = $("#uadd1").val();
-	userData.USER_ADDR2 = $("#uadd2").val();
-	userData.USER_INDAT = $("#uindate").val();
-	userData.USER_EMAIL = $("#uemail").val();
-	userData.FROOM_ID = $("#ufroom").val();
-	userData.FNR_ID = "10000";
-	console.log(userData);
+	var fnrData = {};
+	console.log(fnrData);
+	alert("현재는 추가할 수 없습니다.");
 	$.ajax({
-		url : "${path}/user/insert.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
-		data : userData, // HTTP 요청과 함께 서버로 보낼 데이터 
+		url : "${path}/fnr/insert.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+		data : fnrData, // HTTP 요청과 함께 서버로 보낼 데이터 
 		method : "POST", // HTTP 요청 메소드(GET, POST 등) 
 		dataType : "json" // 서버에서 보내줄 데이터의 타입 
 	}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
 	.done(function(data) {
 		if (data.code == 10001) {
 			alert("저장 성공");
-			var url ="${path}/user/listuser.do";
+			var url ="${path}/fnr/listfnr.do";
 			tableListLoad(url);
 		} else {
 			alert("저장 실패");
@@ -184,28 +171,30 @@ function fn_Insertfnr() {
 }
 
 function fn_Updatefnr() {
-	var userData = {};
-	userData.USER_LOGINID = $("#uId").val();
-	userData.USER_NAMK = $("#unamk").val();
-	userData.USER_RANK = $("#urank").val();
-	userData.USER_DEPT = $("#udept").val();
-	userData.USER_TELNO = $("#utel").val();
-	userData.USER_MOBNO = $("#umob").val();
-	userData.USER_ADDR1 = $("#uadd1").val();
-	userData.USER_ADDR2 = $("#uadd2").val();
-	userData.USER_INDAT = $("#uindate").val();
-	userData.USER_EMAIL = $("#uemail").val();
-	userData.FROOM_ID = $("#ufroom").val();
+	var fnrData = {};
+	fnrData.FNR_ID = $("#fid").val();
+	fnrData.FNR_NAMEK = $("#fnamek").val();
+	fnrData.FNR_VATNO = $("#fvatno").val();
+	fnrData.FNR_ADDR1 = $("#fadd1").val();
+	fnrData.FNR_ADDR2 = $("#fadd2").val();
+	fnrData.FNR_TELNO1 = $("#ftel1").val();
+	fnrData.FNR_TELNO2 = $("#ftel2").val();
+	fnrData.FNR_FAXNO = $("#ffax").val();
+	fnrData.FNR_EMAIL = $("#femail").val();
+	fnrData.FNR_URL = $("#fwww").val();
+	fnrData.FNR_LOGO = $("#flogo").val();
+	fnrData.FNR_STAMP = $("#fstamp").val();
+	console.log(fnrData);
 	$.ajax({
-		url : "${path}/user/update.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
-		data : userData, // HTTP 요청과 함께 서버로 보낼 데이터 
+		url : "${path}/fnr/update.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+		data : fnrData, // HTTP 요청과 함께 서버로 보낼 데이터 
 		method : "POST", // HTTP 요청 메소드(GET, POST 등) 
 		dataType : "json" // 서버에서 보내줄 데이터의 타입 
 	}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
 	.done(function(data) {
 		if (data.code == 10001) {
 			alert("저장 성공");
-			var url ="${path}/fnr/listuser.do";
+			var url ="${path}/fnr/listfnr.do";
 			tableListLoad(url);
 		} else {
 			alert("저장 실패");
