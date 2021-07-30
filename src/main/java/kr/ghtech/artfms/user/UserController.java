@@ -178,6 +178,7 @@ public class UserController {
 	@RequestMapping("detailRole/{USER_ID}")
 	public ModelAndView detailRole(@PathVariable("USER_ID") int USER_ID, ModelAndView mav) {
 		mav.addObject("list",userService.detail(USER_ID));
+		mav.addObject("dept",codeService.listconBcode("8"));
 		mav.setViewName("user/detailRole");
 		return mav;
 	}
