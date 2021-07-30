@@ -50,11 +50,9 @@
 		</colgroup>
 		<tr>
 			<td>사용자 관리</td>
-			<td><select id="user_jon"
-				class="form-control form-control-sm">
+			<td><select id="user_jon" class="form-control form-control-sm">
 				<option value="1">생성</option>				
 				<option value="2">권한관리</option>
-				<option value="3">조직관리</option>
 			</select></td>
 		</tr>
 </table>
@@ -118,6 +116,37 @@ function tableDetailLoad(){
 		fn_setNew();
 	}
 }
+
+function tableDetailLoad2(){
+	console.log( $("#listTable > tbody > tr > td > a").length );
+	var $target;
+	var num1 = $("#listTable > tbody > tr > td > a").length;
+	if (num1 > 0){
+			$target = $("#listTable > tbody > tr > td > a");
+	}
+	if (num1 > 0){
+		var tempArr = $target.eq(0).attr('href').split('/');
+		var num = tempArr[tempArr.length - 1].replace(')','').replace('"','').replace('\'','');
+		var url ="${path}/user/detailRole/"+num;
+		$.ajax({
+			type: "GET",
+			url : url,
+			dataType : "html",
+			success : function(html){
+				$("#detailTable").empty();
+				$("#detailTable").append(html);
+				$("#insbtn").hide();
+				$("#udtbtn").show();
+			},
+			error : function(xhr){
+				console.log(xhr);
+			}
+		});
+	} else {
+		fn_setNew();
+	}
+}
+
 
 function tableListLoad(url){
 	$.ajax({
@@ -221,7 +250,19 @@ function fn_Updateuser() {
 
 
 $(document).ready(function() {
-	tableDetailLoad();	
+	var sele = $("#user_jon").val();
+	if (sele == 1){
+		setsheet1();
+		tableDetailLoad();
+	} 
+	else if (sele == 2){
+		setsheet2();
+		tableDetailLoad2();
+	}
+	else{
+		setsheet1();
+		tableDetailLoad();
+	}	
 });
 
 function setsheet1(){
@@ -243,12 +284,15 @@ $("#user_jon").change(function(){
 	var sele = $("#user_jon").val();
 	if (sele == 1){
 		setsheet1();
+		tableDetailLoad();
 	} 
 	else if (sele == 2){
 		setsheet2();
+		tableDetailLoad2();
 	}
 	else{
 		setsheet3();
+		tableDetailLoad();
 	}
 });
 	
