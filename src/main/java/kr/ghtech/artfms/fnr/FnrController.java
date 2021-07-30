@@ -29,6 +29,14 @@ public class FnrController {
 		return mav;
 	}
 	
+	@RequestMapping("listfnr.do")
+	public ModelAndView listfnr(ModelAndView mav) {
+		mav.addObject("list",fnrService.fnrList());
+		mav.setViewName("fnr/listfnr");
+		return mav;
+	}
+
+	
 	@RequestMapping("detail/{FNR_ID}")
 	public ModelAndView detail(@PathVariable("FNR_ID") int FNR_ID, ModelAndView mav) {
 		mav.addObject("list",fnrService.detailFnr(FNR_ID));
