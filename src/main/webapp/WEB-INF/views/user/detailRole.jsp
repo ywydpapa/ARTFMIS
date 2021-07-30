@@ -57,6 +57,38 @@
 										</c:forEach>
 								</select></td>
 							</tr>
+							<tr>
+							<th style="text-align: center" scope="row">상담 관련 권한</th>
+							<td><select id="Arole" class="form-control">
+							<option value="A1111">읽기/쓰기</option>
+							<option value="A0011">읽기전용</option>
+							<option value="A0000">접근불가</option>
+							</select></td>
+							</tr>
+							<tr>
+							<th style="text-align: center" scope="row">계약 관련 권한</th>
+							<td><select id="Brole" class="form-control">
+							<option value="B1111">읽기/쓰기</option>
+							<option value="B0011">읽기전용</option>
+							<option value="B0000">접근불가</option>
+							</select></td>
+							</tr>
+							<tr>
+							<th style="text-align: center" scope="row">설정 관련 권한</th>
+							<td><select id="Crole" class="form-control">
+							<option value="C1111">읽기/쓰기</option>
+							<option value="C0011">읽기전용</option>
+							<option value="C0000">접근불가</option>
+							</select></td>
+							</tr>
+							<tr>
+							<th style="text-align: center" scope="row">주문/확인 권한</th>
+							<td><select id="Drole" class="form-control">
+							<option value="D1111">읽기/쓰기</option>
+							<option value="D0011">읽기전용</option>
+							<option value="D0000">접근불가</option>
+							</select></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
