@@ -19,13 +19,11 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th style="text-align: center" scope="row">장례식장명<input
-									type="hidden" id="userId" value="${list.FNR_ID}">
-									</th>
+								<th style="text-align: center" scope="row">장례식장명</th>
 								<td><input type="text" class="form-control"
-									id="unamk" value="${list.FNR_NAMEK}" placeholder=""></td>
+									id="fnamek" value="${list.FNR_NAMEK}" placeholder=""></td>
 								<th style="text-align: center" scope="row">고유번호</th>
-								<td><input class="form-control" type="text" id="uId" value="${list.FNR_ID}"></td>
+								<td><input class="form-control" type="text" id="fid" value="${list.FNR_ID}"></td>
 								<td>
 									<button style="text-align: right;" class="btn btn-md btn-success" value="추가"
 										onClick="fn_setNewFnr()">장례식장 추가</button>
@@ -34,33 +32,42 @@
 							<tr>
 								<th style="text-align: center" scope="row">대표번호</th>
 								<td><input type="tel" class="form-control"
-									value="${list.FNR_TELNO1}" id="utel"></td>
+									value="${list.FNR_TELNO1}" id="ftel1"></td>
 								<th style="text-align: center" scope="row">대표휴대폰번호</th>
 								<td colspan="2"><input type="tel" class="form-control"
-									value="${list.FNR_TELNO2}" id="umob"></td>
+									value="${list.FNR_TELNO2}" id="ftel2"></td>
 							</tr>
 							<tr>
 								<th style="text-align: center" scope="row">팩스번호</th>
 								<td><input type="tel" class="form-control"
-									value="${list.FNR_FAXNO}" id="utel"></td>
+									value="${list.FNR_FAXNO}" id="ffax"></td>
 								<th style="text-align: center" scope="row">홈페이지</th>
 								<td colspan="2"><input type="url" class="form-control"
-									value="${list.FNR_URL}" id="umob"></td>
+									value="${list.FNR_URL}" id="fwww"></td>
 							</tr>
 							<tr>
 								<th style="text-align: center" scope="row">주소</th>
-								<td><input type="text" id="uadd1" class="form-control" value="${list.FNR_ADDR1}"></td>
+								<td><input type="text" id="fadd1" class="form-control" value="${list.FNR_ADDR1}"></td>
 								<th style="text-align: center" scope="row" >상세주소</th>
-								<td colspan="2"><input type="text" id="uadd2" class="form-control" value="${list.FNR_ADDR2}"></td>
+								<td colspan="2"><input type="text" id="fadd2" class="form-control" value="${list.FNR_ADDR2}"></td>
 							</tr>
 							<tr>
 								<th style="text-align: center" scope="row">이메일</th>
 								<td><input type="email" class="form-control"
-									value="${list.FNR_EMAIL}" id="uemail"></td>
+									value="${list.FNR_EMAIL}" id="femail"></td>
 								<th style="text-align: center" scope="row">사업자 번호</th>
-								<td colspan="2"><input type="date" class="form-control"
-									value="${list.FNR_VATNO}" id="uindate"></td>
+								<td colspan="2"><input type="text" class="form-control"
+									value="${list.FNR_VATNO}" id="fvatno"></td>
 							</tr>
+							<tr>
+								<th style="text-align: center" scope="row">로고</th>
+								<td><input type="file" class="form-control"
+									value="${list.FNR_EMAIL}" id="flogo"></td>
+								<th style="text-align: center" scope="row">도장파일</th>
+								<td colspan="2"><input type="file" class="form-control"
+									value="${list.FNR_VATNO}" id="fstamp"></td>
+							</tr>
+							
 						</tbody>
 					</table>
 				</div>

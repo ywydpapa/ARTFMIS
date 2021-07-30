@@ -8,8 +8,8 @@
 					<tr>
 						<th scope="col" width="25%" style="text-align:center">고유번호</th>
 						<th scope="col" width="25%" style="text-align:center">장례식장명</th>
-						<th scope="col" width="25%" style="text-align:center">권한</th>
-						<th scope="col" width="25%" style="text-align:center">사용여부</th>
+						<th scope="col" width="25%" style="text-align:center">라이센스</th>
+						<th scope="col" width="25%" style="text-align:center">사용자수</th>
 					</tr>
 				</thead>
 				<tbody>

@@ -61,8 +61,8 @@
 					<tr>
 						<th scope="col" width="25%" style="text-align:center">고유번호</th>
 						<th scope="col" width="25%" style="text-align:center">장례식장명</th>
-						<th scope="col" width="25%" style="text-align:center">권한</th>
-						<th scope="col" width="25%" style="text-align:center">사용여부</th>
+						<th scope="col" width="25%" style="text-align:center">라이센스</th>
+						<th scope="col" width="25%" style="text-align:center">사용자수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -96,7 +96,7 @@ function tableDetailLoad(){
 	if (num1 > 0){
 		var tempArr = $target.eq(0).attr('href').split('/');
 		var num = tempArr[tempArr.length - 1].replace(')','').replace('"','').replace('\'','');
-		var url ="${path}/user/detail/"+num;
+		var url ="${path}/fnr/detail/"+num;
 		$.ajax({
 			type: "GET",
 			url : url,
