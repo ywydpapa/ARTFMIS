@@ -59,8 +59,8 @@
 											</colgroup>
 											<tbody>
 												<tr align="center">
-													<th rowspan="2">계약조회</th>
-													<td>조회호실</td>
+													<th rowspan="2">계약기간</th>
+													<td>계약호실</td>
 													<td><select class="form-control" id="contp1-01" disabled>
 															<c:forEach var="listroom" items="${listroom}">
 																<option value="${listroom.FROOM_ID}">${listroom.FROOM_TITLE}</option>
@@ -372,7 +372,7 @@
 									</c:forEach>
 										<c:forEach var="row" items="${listEtcroom}">
 										<tr>
-											<td>${row.FROOM_TITLE}</td>
+											<td><input type="hidden" class="Erid" value="${row.FROOM_ID}">${row.FROOM_TITLE}</td>
 											<td class = "EA" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 											<td class = "EB" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
 											<td style="text-align: right;"><input style="text-align: right"class="form-control Eday" type="number" min="0" max="30" value="0"/></td>
@@ -439,7 +439,7 @@
 						</div>
 					</div>
 					<div class="btn_wr text-right mt-3">
-						<button class="btn btn-md btn-primary" onClick="fn_contUpdateP1()">저장</button>
+						<button class="btn btn-md btn-primary" onClick="fn_contUpdate()">저장</button>
 					</div>
 				</div>
 			</div>
@@ -452,6 +452,11 @@
 	</div>
 <!--계약기본등록-->
 <script>
+
+	function fn_contUpdate(){
+		fn_contUpdateP1();
+		fn_contInsertP2();
+	}
 
 	function fn_contUpdateP1() {
 		var contData = {};
@@ -517,7 +522,6 @@
 		}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
 		.done(function(data) {
 			if (data.code == 10001) {
-				alert("저장 성공");
 				$("#contid").val(data.contid);
 			} else {
 				alert("저장 실패");
@@ -563,14 +567,50 @@
 		});
 		}
 		}
-		alert("저장성공");
 		});
 		}
 		else
 		{
-			alert("계약기본사항을 먼저 저장해 주세요!!");	
 		}
-		
+			var CONid = $("#contid").val();
+			if (CONid != ""){
+			var $Aarr =  $(".EA");
+			var $Barr =  $(".EB");
+			var $Carr =  $(".Eday");
+			var $Darr =  $(".Etime");
+			var $Earr =  $(".Esum");
+			var $Harr =  $(".Erid");
+			var contp8upd ={};
+			contp8upd.CONTRACT_ID = Number(CONid);
+			console.log(contp8upd);
+			$.ajax({
+				url : "${path}/cont/updateP8.do",  
+				data : contp8upd,  
+				method : "POST",  
+				dataType : "json"  
+			})
+			.done(function(data) {
+			for (var i=0; i<$Aarr.length; i++){
+			var contp8data = {};
+			contp8data.CONTRACT_ID = CONid;
+			contp8data.FROOM_ID = $Harr[i].value;
+			contp8data.DAYS = $Carr[i].value;
+			contp8data.TIMES = $Darr[i].value;
+			contp8data.RCHARGE = Number($Earr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
+			console.log(contp8data);
+			$.ajax({
+				url : "${path}/cont/insertP8.do",  
+				data : contp8data,  
+				method : "POST",  
+				dataType : "json"  
+			});
+			}
+			});
+			}
+			else
+			{
+
+			}
 	}
 	
 	function chkRoomchange(){

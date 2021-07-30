@@ -64,5 +64,11 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("user.insertUser", dto);
 	}
+
+	@Override
+	public int updRole(UserDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("user.updRole", dto);
+	}
 	
 }

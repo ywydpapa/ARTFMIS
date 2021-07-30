@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <div class="cnt_wr">
 	<div class="row">
 		<div class="col-sm-12">
@@ -60,50 +60,43 @@
 							<tr>
 							<th style="text-align: center" scope="row">상담 관련 권한</th>
 							<td><select id="Arole" class="form-control">
-							<option value="A1111">읽기/쓰기</option>
-							<option value="A0011">읽기전용</option>
-							<option value="A0000">접근불가</option>
+							<c:set var = "role1" value = "${list.USER_ROLE1}" />
+							<option value="A1111" <c:if test = "${fn : contains(role1, 'A1111')}">selected</c:if> >읽기/쓰기</option>
+							<option value="A0011" <c:if test = "${fn : contains(role1, 'A0011')}">selected</c:if> >읽기전용</option>
+							<option value="A0000"<c:if test = "${fn : contains(role1, 'A0000')}">selected</c:if> >접근불가</option>
 							</select></td>
 							</tr>
 							<tr>
 							<th style="text-align: center" scope="row">계약 관련 권한</th>
 							<td><select id="Brole" class="form-control">
-							<option value="B1111">읽기/쓰기</option>
-							<option value="B0011">읽기전용</option>
-							<option value="B0000">접근불가</option>
+							<option value="B1111" <c:if test = "${fn : contains(role1, 'B1111')}">selected</c:if>>읽기/쓰기</option>
+							<option value="B0011" <c:if test = "${fn : contains(role1, 'B0011')}">selected</c:if>>읽기전용</option>
+							<option value="B0000" <c:if test = "${fn : contains(role1, 'B0000')}">selected</c:if>>접근불가</option>
 							</select></td>
 							</tr>
 							<tr>
 							<th style="text-align: center" scope="row">설정 관련 권한</th>
 							<td><select id="Crole" class="form-control">
-							<option value="C1111">읽기/쓰기</option>
-							<option value="C0011">읽기전용</option>
-							<option value="C0000">접근불가</option>
+							<option value="C1111" <c:if test = "${fn : contains(role1, 'C1111')}">selected</c:if>>읽기/쓰기</option>
+							<option value="C0011" <c:if test = "${fn : contains(role1, 'C0011')}">selected</c:if>>읽기전용</option>
+							<option value="C0000" <c:if test = "${fn : contains(role1, 'C0000')}">selected</c:if>>접근불가</option>
 							</select></td>
 							</tr>
 							<tr>
 							<th style="text-align: center" scope="row">주문/확인 권한</th>
 							<td><select id="Drole" class="form-control">
-							<option value="D1111">읽기/쓰기</option>
-							<option value="D0011">읽기전용</option>
-							<option value="D0000">접근불가</option>
+							<option value="D1111" <c:if test = "${fn : contains(role1, 'D1111')}">selected</c:if>>읽기/쓰기</option>
+							<option value="D0011" <c:if test = "${fn : contains(role1, 'D0011')}">selected</c:if>>읽기전용</option>
+							<option value="D0000" <c:if test = "${fn : contains(role1, 'D0000')}">selected</c:if>>접근불가</option>
 							</select></td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
-			<c:if test="${not empty list.USER_ID}">
 				<div id="udtbtn">
-					<button class="btn btn-md btn-primary " onClick="fn_Updateuser()">저장</button>
+					<button class="btn btn-md btn-primary " onClick="fn_UpdateRole()">저장</button>
 				</div>
-			</c:if>
-			<c:if test="${empty list.USER_ID}">
-				<div id="istbtn">
-					<button class="btn btn-md btn-primary " onClick="fn_Insertuser()">새로
-						저장</button>
-				</div>
-			</c:if>
 			<br>
 		</div>
 	</div>

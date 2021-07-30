@@ -165,6 +165,19 @@ public class UserController {
         }
         return ResponseEntity.ok(param);
 	}
+	
+	@RequestMapping("updRole.do")
+	public ResponseEntity<?> userRoleUpdate(@ModelAttribute UserDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int userUpdate =userService.updRole(dto);
+		if(userUpdate > 0) {
+       	param.put("code","10001");
+      }
+       else {
+        	param.put("code","20001");
+        }
+        return ResponseEntity.ok(param);
+	}
 
 	@RequestMapping("detail/{USER_ID}")
 	public ModelAndView detail(@PathVariable("USER_ID") int USER_ID, ModelAndView mav) {

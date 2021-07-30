@@ -34,21 +34,21 @@
 						<tbody>	
 							<tr style="text-align:center;">
 								<td>도우미 비용<input type="hidden" class="FID" value="1"/></td>
-								<td><input type="text" class="VName form-control" value=""/></td>
+								<td><input style="text-align:right" min="0" type="number" class="form-control" id="helpPrice"value="${row.SETL_PRICE}"/></td>
 								<td>
-								<select class="form-control form-control-sm STYP">
+								<select class="form-control form-control-sm STYP" id="helptype">
 										<option value="TIME" <c:if test ="${row.SETL_TITLE eq 'TIME'}">selected</c:if> >시간당사용료부과</option>
-										<option value="COUNT" <c:if test ="${row.SETL_TITLE eq 'COUNT'}">selected</c:if> >회당부과</option>
+										<option value="COUNT" <c:if test ="${row.SETL_TITLE eq 'COUNT'}">selected</c:if> >일당부과</option>
 								</select>
 								</td>
 								<td>
-								<select class="form-control form-control-sm UYN">
+								<select class="form-control form-control-sm UYN"  id="helpuse">
 										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >부과</option>
 										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미부과</option>
 								</select>
 								</td>
 								<td>
-								<select class="form-control form-control-sm UYN">
+								<select class="form-control form-control-sm INCYN"  id="helpincyn">
 										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >포함</option>
 										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미포함</option>
 								</select>

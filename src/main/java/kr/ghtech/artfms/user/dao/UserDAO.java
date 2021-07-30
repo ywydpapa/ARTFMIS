@@ -16,5 +16,6 @@ public interface UserDAO {
 	public int insertUser(UserDTO dto);	
 	public int updateUser(UserDTO dto);
 	public int updPasswd(UserDTO dto);
+	public int updRole(UserDTO dto);
 
 }

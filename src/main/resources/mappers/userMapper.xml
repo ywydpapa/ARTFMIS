@@ -60,5 +60,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	update GHT_USER_MST set USER_PASSWD = PASSWORD(#{Npasswd}) where USER_LOGINID=#{USER_LOGINID} and (USER_PASSWD = PASSWORD(#{Ppasswd}) or USER_PASSWD = #{Ppasswd})
 </update>
 
+<update id = "updRole">
+	update GHT_USER_MST set USER_ROLE1 = #{USER_ROLE1} where USER_LOGINID=#{USER_LOGINID}
+</update>
+
   
 </mapper>
