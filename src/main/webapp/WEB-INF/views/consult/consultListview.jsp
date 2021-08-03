@@ -103,6 +103,8 @@
 						<tr>
 							<td><a href="javascript:tab05active()">[5] 제단</a></td>
 						</tr>
+						<tr hidden></tr>
+						<tr hidden></tr>
 						<tr>
 							<td><a href="javascript:tab08active()">[6] 기타시설</a></td>
 						</tr>
@@ -126,6 +128,15 @@ function fn_ReloadConsult(){
 	fnSetConsultdetail(url);
 }
 function fnSetConsultdetail(url, data){
+
+	let listTable01 = $('#listTable');
+	if(listTable01.length){
+		let trAll = listTable01.find('tbody tr');
+		trAll.removeClass('active');
+		let tr = listTable01.find('tbody tr:eq(0)');
+		tr.addClass('active');
+	}
+
 	<!-- $.LoadingOverlay("show", true); -->
 	    $("#detailTable").empty();
 		$("#detailTable").load(url, data, function(){
@@ -178,30 +189,7 @@ function fnSetConsultdefault(url, data){
 	    }
 	    return zero + n;
 	}
-	function tab01active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab01').addClass('active');
-	}
-	function tab02active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab02').addClass('active');
-	}
-	function tab03active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab03').addClass('active');
-	}
-	function tab04active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab04').addClass('active');
-	}
-	function tab05active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab05').addClass('active');
-	}
-	function tab08active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab08').addClass('active');
-	}
+
 	function fn_UpdconsultP1(){
 		var consultData = {};
 		consultData.PATI_NAME = $("#patiName").val();

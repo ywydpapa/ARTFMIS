@@ -77,7 +77,7 @@
 					</tr>
 				</thead>
 				<tbody>
-						<tr>
+						<tr class="active">
 							<td><a href="javascript:tab01active()">계약기본</a></td>
 						</tr>
 						<tr>

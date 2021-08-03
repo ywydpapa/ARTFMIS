@@ -31,7 +31,7 @@
 					</tr>
 				</thead>
 				<tbody>
-						<tr>
+						<tr class="active">
 							<td><a href="javascript:tab01active()">반품</a></td>
 						</tr>
 						<tr>
@@ -490,24 +490,6 @@
 	});
 	// 마지막꺼까지 반영
 	$(firstElement).attr('rowspan', i);
-	
-	
-	function tab01active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab01').addClass('active');
-	}
-	function tab02active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab02').addClass('active');
-	}
-	function tab03active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab03').addClass('active');
-	}
-	function tab04active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab04').addClass('active');
-	}
 
 	$(document).ready(function(){
 		calReturn();

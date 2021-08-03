@@ -241,8 +241,31 @@ function fnSetPage(url, data){
   <!-- /.container -->
   <!-- Bootstrap core JavaScript -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js" integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J" crossorigin="anonymous"></script>
- <script type="text/javascript">
- </script> 
+  <style>
+      #listTable > tbody > tr.active{
+         background-color: #9fcdff;
+      }
+
+      #consult_contract_list_table > tbody > tr.active {
+         background-color: #9fcdff;
+      }
+
+      #roomTable > tbody > tr.active{
+         background-color: #9fcdff;
+      }
+
+      #consult_sett_list_table > tbody > tr.active {
+         background-color: #9fcdff;
+      }
+
+      #goodslist > tbody > tr > td.active {
+         background-color: #9fcdff;
+      }
+
+  </style>
+  <script src="${path}/js/customTabJs.js"></script>
+  <script src="${path}/js/customTableClickJs.js"></script>
+  <script type="text/javascript"></script>
 </body>
 
 </html>
