@@ -42,14 +42,14 @@
 
 .h-container .item.dash {
 	float: left;
-	width: 40%;
+	width: 50%;
 	border-right: none;
 	text-align: center;
 } 
 
 .h-container .item.cont {
 	float: left;
-	width: 48%;
+	width: 38%;
 	border-right: none;
 	text-align: center;
 }
@@ -63,14 +63,14 @@
 			<col width="20%" />
 		</colgroup>
 		<tr>
-			<td>조회가능한 상담목록</td>
-			<td><select id="consult_list" class="form-control form-control-sm">
+			<td style="text-align:center;vertical-align:middle">조회가능한 상담목록</td>
+			<td><select id="consult_list" class="form-control">
 				<c:forEach var="row" items="${listconsult}">
 				<option value="${row.CONSULT_ID}">${row.PATI_NAME}<span>  :  </span>${row.CONSULT_DATE}</option>
 				</c:forEach>				
 			</select></td>
 			<td>
-			<div class="btn_wr text-right mt-3">
+			<div class="text-right">
 			<button class="btn btn-md btn-success" value="불러오기" onClick="fn_ReloadConsult()">불러오기</button>
 			<button class="btn btn-md btn-success" value="추가" onClick="fn_newConsult()">추가</button>
 			</div>
@@ -125,10 +125,6 @@ function fn_ReloadConsult(){
 	fnSetConsultdefault(url2);
 	fnSetConsultdetail(url);
 }
-
-
-
-
 function fnSetConsultdetail(url, data){
 	<!-- $.LoadingOverlay("show", true); -->
 	    $("#detailTable").empty();
@@ -206,7 +202,6 @@ function fnSetConsultdefault(url, data){
 		$('.tab-pane').removeClass('active');
 		$('#tab08').addClass('active');
 	}
-	
 	function fn_UpdconsultP1(){
 		var consultData = {};
 		consultData.PATI_NAME = $("#patiName").val();
@@ -235,5 +230,4 @@ function fnSetConsultdefault(url, data){
 				});
 		
 	}
-
 </script>
