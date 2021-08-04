@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <div class="page-header2">
@@ -277,8 +278,7 @@
 										</tr>
 									</tbody>
 								</table>
-								<table class="table  table-bordered nowrap"
-									id="roomList">
+								<table class="table  table-bordered nowrap" id="roomList">
 									<colgroup>
 										<col width="5%" />
 										<col width="5%" />
@@ -304,8 +304,8 @@
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach var="row" items="${listFroom}">
-										<tr>
+									<c:forEach var="row" items="${listFroom}" varStatus="status">
+										<tr id="contWrite_Room_${row.FROOM_ID}">
 											<td style="text-align: center;"><input type="checkbox" <c:if test="${not empty row.CONTRACT_ID}">disabled</c:if>
 												class="CHKroom form-control" onclick="oneCheck(this);"/></td>
 											<td>${row.FROOM_TITLE}</td>
@@ -317,16 +317,21 @@
 											<td style="text-align: right;">${row.FROOM_AREA}</td>
 											<td style="text-align: right;">${row.FROOM_AREA_KOR}</td>
 											<td style="text-align: right;">${row.FROOM_MAX_PERS}</td>
-											<td class="imagebx"><div id="froomImage">
-											</div></td>
+											<c:if test="${status.first}">
+												<td class="imagebx" rowspan="${fn:length(listFroom)}">
+													<c:forEach var="t" items="${listFroom}">
+														<img id="imageHidden_t01_${t.FROOM_ID}" style="display: none; width: 100%;" <c:if test="${not empty t.FROOM_IMAGE}">src="${path}/image/${t.FROOM_IMAGE}"</c:if>
+															 <c:if test="${empty t.FROOM_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
+													</c:forEach>
+												</td>
+											</c:if>
 										</tr>
 									</c:forEach>
 									</tbody>
 								</table>
 							</form>
 							<br> <br>
-							<table class="table  table-bordered nowrap"
-									id="SltdroomList">
+							<table class="table  table-bordered nowrap" id="SltdroomList">
 									<colgroup>
 										<col width="10%" />
 										<col width="10%" />
@@ -349,20 +354,16 @@
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach var="row" items="${listFroom}">
+									<c:forEach var="row" items="${listFroom}" varStatus="status">
 										<tr>
 											<td>분향실</td>
 											<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
-											<td class = "RMday"style="text-align: right;"><fmt:formatNumber
-													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
-													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+											<td class = "RMday"style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
+											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
 											<td class = "sRMd" style="text-align: right;">사용일</td>
 											<td class = "sRMt" style="text-align: right;">사용시간</td>
-											<td class = "sRMcharge" style="text-align: right;"><fmt:formatNumber
-													value="" pattern="#,###" /></td>
-											<td style="text-align: center; display:none"><input type="checkbox"
-												class="CHKsrm form-control" /></td>
+											<td class = "sRMcharge" style="text-align: right;"><fmt:formatNumber value="" pattern="#,###" /></td>
+											<td style="text-align: center; display:none"><input type="checkbox" class="CHKsrm form-control" /></td>
 										</tr>
 									</c:forEach>
 									<c:forEach var="row" items="${listEtcroom}">
@@ -397,8 +398,7 @@
 									</tbody>
 								</table>
 								<div class="row">
-									<table class="table  table-bordered nowrap"
-										id="ftTable">
+									<table class="table  table-bordered nowrap" id="ftTable">
 										<thead>
 											<tr>
 												<th scope="col" width="10%" align="center">구분</th>
@@ -409,13 +409,20 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="row" items="${listFtable}">
-												<tr>
+											<c:forEach var="row" items="${listFtable}" varStatus="status">
+												<tr id="contWrite_Prey_${row.FTABLE_ID}">
 													<td class="second">${row.BCD_TITLE}</td>
-													<td><input type="checkbox" <c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if> name = "FT${row.FTABLE_CAT}" class="CHKft form-control" /></td>
+													<td style="text-align: center;"><input type="checkbox" <c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if> name = "FT${row.FTABLE_CAT}" class="CHKft form-control" /></td>
 													<td style="text-align: right" class="TA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
 													<td style="text-align: right">${row.FTABLE_UNIT}</td>
-													<td class="imagebx"><div id="ftImage"></div></td>
+													<c:if test="${status.first}">
+														<td class="imagebx" rowspan="${fn:length(listFtable)}">
+															<c:forEach var="t" items="${listFtable}">
+																<img id="imageHidden_t02_${t.FTABLE_ID}" style="display: none; width: 100%;" <c:if test="${not empty t.FTABLE_IMAGE}">src="${path}/image/${t.FTABLE_IMAGE}"</c:if>
+																	 <c:if test="${empty t.FTABLE_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
+															</c:forEach>
+														</td>
+													</c:if>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -1174,8 +1181,9 @@
 						<table class="table  table-bordered nowrap" style="border:0px">
 								<tr>
 									<td style="border-right:none"></td>
-									<td style="text-align: right;border-left:none"><span>선택된 주문 총액 :</span><input type="text" id="messgrandtotal"
-										style="text-align: right; border: none;" readonly></td>
+									<td style="text-align: right;border-left:none"><span>선택된 주문 총액 :</span>
+										<input type="text" id="messgrandtotal" style="text-align: right; border: none;" readonly>
+									</td>
 								</tr>
 							</table>
 						
@@ -1270,8 +1278,7 @@
 										</tr>
 									</tbody>
 								</table>
-								<table class="table  table-bordered nowrap"
-									id="roomList">
+								<table class="table  table-bordered nowrap" id="roomList">
 									<colgroup>
 										<col width="10%" />
 										<col width="10%" />
@@ -1293,7 +1300,6 @@
 											</th>
 											<th class="text-center">평수</th>
 											<th class="text-center">수용인원</th>
-											
 										</tr>
 									</thead>
 									<c:forEach var="row" items="${listEtcroom2}">
@@ -1983,7 +1989,7 @@
 	$(firstElement).attr('rowspan', i);
 	
 	
-	var k = 1;
+	/*var k = 1;
 	var str = undefined;
 	var element = $(".imagebx");
 	var firstElement = undefined;
@@ -2006,7 +2012,7 @@
 		}
 	});
 	// 마지막꺼까지 반영
-	$(firstElement).attr('rowspan', k);
+	$(firstElement).attr('rowspan', k);*/
 
 	
 	function calculateM() {
@@ -2676,6 +2682,16 @@ function oneCheck(chk){
             obj[i].checked = false;
         }
     }
+
+    if(chk.checked){
+		let tr = $(chk).closest('tr');
+		let trId = tr.attr('id').split("_")[2];
+
+		$("img[id^='imageHidden_t01_']").hide();
+		$("img[id^='imageHidden_t01_"+trId+"']").show();
+	} else {
+		$("img[id^='imageHidden_t01_']").hide();
+	}
 }
 
 function oneCheckft(chk){
@@ -2685,6 +2701,16 @@ function oneCheckft(chk){
             obj[i].checked = false;
         }
     }
+
+	if(chk.checked){
+		let tr = $(chk).closest('tr');
+		let trId = tr.attr('id').split("_")[2];
+
+		$("img[id^='imageHidden_t02_']").hide();
+		$("img[id^='imageHidden_t02_"+trId+"']").show();
+	} else {
+		$("img[id^='imageHidden_t02_']").hide();
+	}
 }
 
 function oneCheckalt2(chk){
