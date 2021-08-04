@@ -265,7 +265,7 @@ function fn_Updateuser() {
 function fn_UpdateRole() {
 	var userData = {};
 	userData.USER_LOGINID = $("#uId").val();
-	userData.USER_ROLE1 = $("#Arole").val()+$("#Brole").val()+$("#Crole").val()+$("#Drole").val();
+	userData.USER_ROLE1 = $("#Arole").val()+$("#Brole").val()+$("#Crole").val()+$("#Drole").val()+$("#Erole").val()+$("#Frole").val()+$("#Grole").val()+$("#Hrole").val()+$("#Irole").val()+$("#Jrole").val()+$("#Krole").val()+$("#Lrole").val()+$("#Mrole").val();
 	$.ajax({
 		url : "${path}/user/updRole.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
 		data : userData, // HTTP 요청과 함께 서버로 보낼 데이터 

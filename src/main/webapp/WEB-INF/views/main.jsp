@@ -3,6 +3,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <c:set var="path" value ="${pageContext.request.contextPath}"/>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>    
 <meta http-equiv="Content-Type" content="text/html charset=UTF-8">
 <!DOCTYPE html>
 <html style="overflow-x: hidden;" lang="ko">
@@ -135,17 +136,18 @@ function fnSetPage(url, data){
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="${path}/">홈</a>
+            <c:set var = "role1" value = "${USER_ROLE1}" />
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               상담/계약관리
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/consult/listview.do')">상담 목록</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/contlist.do')">계약 목록 *</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/listview.do')">계약 등록*</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/room/addorderlistall.do')">호실주문 목록</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/settlistview.do')">정산 관리</a>
+              <c:if test = "${not fn:contains(role1, 'A0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/consult/listview.do')">상담 목록</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'B0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/contlist.do')">계약 목록 *</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'C0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/listview.do')">계약 등록*</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'D0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/room/addorderlistall.do')">호실주문 목록</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'E0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/settlistview.do')">정산 관리</a></c:if>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -168,9 +170,9 @@ function fnSetPage(url, data){
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/code/write.do')">코드설정</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/code/listview.do')">코드리스트뷰</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/code/bcodelistview.do')">베이스코드리스트뷰</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/listview.do')">상담문구설정</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/timelistview.do')">운영시간안내설정</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/infolistview.do')">안내문설정</a>
+              <c:if test = "${not fn:contains(role1, 'K0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/listview.do')">상담문구설정</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'K0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/timelistview.do')">운영시간안내설정</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'K0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/infolistview.do')">안내문설정</a></c:if>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/settleRule.do')">정산규칙설정</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/user/listview.do')">사용자 관련설정</a>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/fnr/listview.do')">장례식장 관련설정</a>
