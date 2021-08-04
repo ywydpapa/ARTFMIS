@@ -277,8 +277,7 @@
 										</tr>
 									</tbody>
 								</table>
-								<table class="table  table-bordered nowrap"
-									id="roomList">
+								<table class="table table-bordered table-hover" id="roomList">
 									<colgroup>
 										<col width="5%" />
 										<col width="5%" />
@@ -291,32 +290,32 @@
 										<col width="20%" />
 									</colgroup>
 									<thead>
-										<tr>
-											<th class="text-center">선택</th>
-											<th class="text-center">호실명</th>
-											<th class="text-center">사용유무</th>
-											<th class="text-center">일일사용료</th>
-											<th class="text-center">시간당사용료</th>
-											<th class="text-center">면적(m<sup>2</sup>)</th>
-											<th class="text-center">평수</th>
-											<th class="text-center">수용인원</th>
-											<th class="text-center">이미지</th>
+										<tr style="background-color:#E0E6F8">
+											<th style="vertical-align:middle;text-align:center">선택</th>
+											<th style="vertical-align:middle;text-align:center">호실명</th>
+											<th style="vertical-align:middle;text-align:center">사용유무</th>
+											<th style="vertical-align:middle;text-align:center">일일사용료</th>
+											<th style="vertical-align:middle;text-align:center">시간당사용료</th>
+											<th style="vertical-align:middle;text-align:center">면적(m<sup>2</sup>)</th>
+											<th style="vertical-align:middle;text-align:center">평수</th>
+											<th style="vertical-align:middle;text-align:center">수용인원</th>
+											<th style="vertical-align:middle;text-align:center">이미지</th>
 										</tr>
 									</thead>
 									<tbody>
 									<c:forEach var="row" items="${listFroom}">
-										<tr>
-											<td style="text-align: center;"><input type="checkbox" <c:if test="${not empty row.CONTRACT_ID}">disabled</c:if>
+										<tr style="vertical-align:middle;text-align:center">
+											<td style="vertical-align:middle;text-align: center;"><input type="checkbox" <c:if test="${not empty row.CONTRACT_ID}">disabled</c:if>
 												class="CHKroom form-control" onclick="oneCheck(this);"/></td>
-											<td>${row.FROOM_TITLE}</td>
-											<td style="text-align: center;"><c:if test="${not empty row.CONTRACT_ID}">사용중</c:if></td>
-											<td class = "RMday"style="text-align: right;"><fmt:formatNumber
+											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}</td>
+											<td style="vertical-align:middle;text-align: center;"><c:if test="${not empty row.CONTRACT_ID}">사용중</c:if></td>
+											<td class = "RMday"style="vertical-align:middle;text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
+											<td class = "RMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;">${row.FROOM_AREA}</td>
-											<td style="text-align: right;">${row.FROOM_AREA_KOR}</td>
-											<td style="text-align: right;">${row.FROOM_MAX_PERS}</td>
+											<td style="vertical-align:middle;text-align: right;">${row.FROOM_AREA}</td>
+											<td style="vertical-align:middle;text-align: right;">${row.FROOM_AREA_KOR}</td>
+											<td style="vertical-align:middle;text-align: right;">${row.FROOM_MAX_PERS}</td>
 											<td class="imagebx"><div id="froomImage">
 											</div></td>
 										</tr>
@@ -325,8 +324,7 @@
 								</table>
 							</form>
 							<br> <br>
-							<table class="table  table-bordered nowrap"
-									id="SltdroomList">
+							<table class="table table-bordered table-hover" id="SltdroomList">
 									<colgroup>
 										<col width="10%" />
 										<col width="10%" />
@@ -337,29 +335,29 @@
 										<col width="10%" />
 									</colgroup>
 									<thead>
-										<tr>
-											<th class="text-center">호실종류</th>
-											<th class="text-center">호실명</th>
-											<th class="text-center">일일사용료</th>
-											<th class="text-center">시간당사용료</th>
-											<th class="text-center">사용일</th>
-											<th class="text-center">사용시간</th>
-											<th class="text-center">사용요금</th>
+										<tr style="background-color:#E0E6F8">
+											<th style="vertical-align:middle;text-align:center">호실종류</th>
+											<th style="vertical-align:middle;text-align:center">호실명</th>
+											<th style="vertical-align:middle;text-align:center">일일사용료</th>
+											<th style="vertical-align:middle;text-align:center">시간당사용료</th>
+											<th style="vertical-align:middle;text-align:center">사용일</th>
+											<th style="vertical-align:middle;text-align:center">사용시간</th>
+											<th style="vertical-align:middle;text-align:center">사용요금</th>
 											<th style="display:none" class="text-center">선택</th>
 										</tr>
 									</thead>
 									<tbody>
 									<c:forEach var="row" items="${listFroom}">
 										<tr>
-											<td>분향실</td>
-											<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
-											<td class = "RMday"style="text-align: right;"><fmt:formatNumber
+											<td style="vertical-align:middle;text-align:center">분향실</td>
+											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
+											<td class = "RMday"style="vertical-align:middle;text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
+											<td class = "RMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td class = "sRMd" style="text-align: right;">사용일</td>
-											<td class = "sRMt" style="text-align: right;">사용시간</td>
-											<td class = "sRMcharge" style="text-align: right;"><fmt:formatNumber
+											<td class = "sRMd" style="vertical-align:middle;text-align: right;">사용일</td>
+											<td class = "sRMt" style="vertical-align:middle;text-align: right;">사용시간</td>
+											<td class = "sRMcharge" style="vertical-align:middle;text-align: right;"><fmt:formatNumber
 													value="" pattern="#,###" /></td>
 											<td style="text-align: center; display:none"><input type="checkbox"
 												class="CHKsrm form-control" /></td>
@@ -367,13 +365,13 @@
 									</c:forEach>
 									<c:forEach var="row" items="${listEtcroom}">
 										<tr>
-											<td class="second">부대시설</td>
-											<td>${row.FROOM_TITLE}<input type="hidden" class="etcrid"value="${row.FROOM_ID}"></td>
-											<td class = "EA" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "EB" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;"><input style="text-align: right"class="form-control Eday" type="number" min="0" max="30" value="0"/></td>
-											<td style="text-align: right;"><input style="text-align: right"class="form-control Etime" type="number" min="0" max="30" value="0"/></td>
-											<td class = "Esum" style="text-align: right;"><fmt:formatNumber value="0" pattern="#,###" /></td>
+											<td style="vertical-align:middle;text-align:center" class="second">부대시설</td>
+											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}<input type="hidden" class="etcrid"value="${row.FROOM_ID}"></td>
+											<td class = "EA" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
+											<td class = "EB" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+											<td style="vertical-align:middle;text-align: right;"><input style="text-align: right"class="form-control Eday" type="number" min="0" max="30" value="0"/></td>
+											<td style="vertical-align:middle;text-align: right;"><input style="text-align: right"class="form-control Etime" type="number" min="0" max="30" value="0"/></td>
+											<td class = "Esum" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="0" pattern="#,###" /></td>
 										</tr>
 									</c:forEach>
 									</tbody>
