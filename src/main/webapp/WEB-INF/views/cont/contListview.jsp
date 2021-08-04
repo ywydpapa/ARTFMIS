@@ -25,7 +25,7 @@
 
 .h-container .item {
 	float: left;
-	width: 15%;
+	width: 10%;
 	height: 100%;
 	padding: 15px;
 	text-align: center;
@@ -35,7 +35,7 @@
 
 .h-container .item.cont {
 	float: left;
-	width: 78%;
+	width: 90%;
 	padding: 15px;
 	border-right: none;
 	text-align: center;
@@ -70,7 +70,7 @@
 </table>
 	<div class="h-container">
 		<div class="item">
-	<table class="table table-bordered nowrap" id="roomTable">
+	<table class="table table-bordered table-hover" id="roomTable">
 				<thead>
 					<tr>
 						<th scope="col" width="200" align="center">계약 단계</th>

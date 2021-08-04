@@ -49,7 +49,6 @@
 												<col width="12%" />
 												<col width="12%" />
 												<col width="12%" />
-												<col width="12%" />
 											</colgroup>
 											<tbody>
 												<tr align="center">
@@ -64,6 +63,7 @@
 													<td>기간</td>
 													<td><input type="date" class="form-control" id="contp1-02" name="contp1-02" value="" disabled></td>
 													<td><input type="date" class="form-control"	id="contp1-03" name="contp1-03" value="" disabled></td>
+													<td></td>
 												</tr>
 												<tr align="center">
 													<td>상담/계약 조회</td>
@@ -73,7 +73,6 @@
 													<td></td>
 													<td>행사업체</td>
 													<td><input type="text" class="form-control" id="contp1-04"></td>
-													<td></td>													
 												</tr>
 												<tr align="center">
 													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6;border:1px solid:black;" rowspan="5">고인</th>
@@ -97,9 +96,9 @@
 												</tr>
 												<tr align="center">
 													<td>주소</td>
-													<td colspan="2"><input type="text" style="width:80%;float:left"
+													<td colspan="2"><input type="text" style="width:70%;float:left"
 														class="form-control form-control-sm" id="contp1-10"
-														name="contp1-10" value="" tabindex="7"><button onClick="execDaumPostcode();" style="width:20%;float:right">검색</button>
+														name="contp1-10" value="" tabindex="7"><button class="form-control" onClick="execDaumPostcode();" style="width:25%;float:right">검색</button>
 													</td>
 													<td></td>
 													<td>본관</td>
@@ -179,9 +178,9 @@
 												</tr>
 												<tr align="center">
 													<td>주소</td>
-													<td colspan="2"><input type="text" style="width:80%;float:left"
+													<td colspan="2"><input type="text" style="width:70%;float:left"
 														class="form-control form-control-sm" id="contp1-23"
-														name="contp1-23" value="" tabindex="7"><button onClick="execDaumPostcode2();" style="width:20%;float:right">검색</button>
+														name="contp1-23" value="" tabindex="7"><button class="form-control" onClick="execDaumPostcode2();" style="width:25%;float:right">검색</button>
 													</td>
 													<td></td>
 													<td>연락처</td>
@@ -242,7 +241,7 @@
 														class="form-control form-control-sm" id="contp1-32"
 														name="contp1-31" value="">
 													</td>
-													<td><button onclick="fn_addyujok()">추가</button></td>
+													<td><button class="form-control" onclick="fn_addyujok()">추가</button></td>
 													<td></td>
 													<td></td>
 													<td></td>
@@ -2505,7 +2504,7 @@
 		let minutes = today.getMinutes();  // 분
 		let seconds = today.getSeconds();  // 초
 		var from = year+'-'+month+'-'+date;
-		var frtm = hours+':00:00';
+		var frtm = hours+':00';
 		let today2 = new Date();
 		today2.setDate(today2.getDate() + 2);
 		let year2 = today2.getFullYear(); // 년도
@@ -2518,7 +2517,7 @@
 		let minutes2 = today2.getMinutes();  // 분
 		let seconds2 = today2.getSeconds();  // 초
 		var to = year2+'-'+month2+'-'+date2
-		var totm = hours2+':00:00';
+		var totm = hours2+':00';
 		$('#contp1-26').val(from);
 		$('#contp1-26-1').val(frtm);
 		$('#contp1-29').val(to);				
@@ -2598,7 +2597,6 @@
 
 	function fn_addyujok(){
 		var CONid = $("#contid").val();
-		if (CONid != ""){
 		var froomid = $('#frid').val();
 		var contp1addyujok ={};
 		contp1addyujok.CONTRACT_ID = Number(CONid);
@@ -2617,6 +2615,7 @@
 			return;
 		}
 		console.log(contp1addyujok);
+		if (CONid != ""){
 		$.ajax({
 			url : "${path}/cont/insertYujok.do",  
 			data : contp1addyujok,  
@@ -2626,29 +2625,59 @@
 		.done(function(data) {
 		alert("저장성공");
 		var innerHtml = "";
-		innerHtml += '<tr> <td></td>';
-		innerHtml += '<td>'+$("#contp1-31 option:checked").text()+' </td>';
+		innerHtml += '<tr> <th style="background-color:#E0F8E6"></th>';
+		innerHtml += '<td style="vertical-align:middle;text-align:center">'+$("#contp1-31 option:checked").text()+' </td>';
 		innerHtml += '<td>'+$("#contp1-32").val()+'</td>';
 		innerHtml += '<td><button onclick="fn_delyujok('+data.yjid+')">삭제</button></td>';
 		innerHtml += "</tr>";
 		$("#basicTable > tbody > tr[class=yujoklist]:last").after(innerHtml);
+		var sitem = $("#contp1-31").val();
+		$("#contp1-31").find("option[value*='" + sitem + "']").hide();
 		$("#contp1-31").val("");
 		$("#contp1-32").val("");
 		});
 		}
 		else
 			{
-			alert("계약기본사항을 먼저 저장해 주세요!!");
+			if(contp1addyujok.RELATION_CODE == ""){
+				alert("유족 관계를 선택해 주세요.");
+				$("#contp1-31").focus();
+				return;
+			}
+			else if(contp1addyujok.SANGJU_NAMEs == ""){
+				alert("유족 성명을 입력해 주세요.");
+				$("#contp1-32").focus();
+				return;
+			}
+			var innerHtml = "";
+			innerHtml += '<tr> <th style="background-color:#E0F8E6"></th>';
+			innerHtml += '<td style="vertical-align:middle;text-align:center">'+$("#contp1-31 option:checked").text()+' </td>';
+			innerHtml += '<td class="yujokname">'+$("#contp1-32").val()+'</td>';
+			innerHtml += '<td><button onclick="fn_delyujoklist(this,'+$("#contp1-31").val()+')">삭제</button><input type="hidden" class = "yujoklist" value="'+$("#contp1-31").val()+'"></td>';
+			innerHtml += "</tr>";
+			$("#basicTable > tbody > tr[class=yujoklist]:last").after(innerHtml);
+			var sitem = $("#contp1-31").val();
+			$("#contp1-31").find("option[value*='" + sitem + "']").hide();
+			$("#contp1-31").val("");
+			$("#contp1-32").val("");
+
 			}
 	}	
 
+function fn_delyujoklist(obj,relcode){
+	console.log(relcode);
+	$("#contp1-31").find("option[value*='" + relcode + "']").show();
+	var str = $(obj).parent().parent();
+	str.remove();
+}
+	
+	
 function fn_delyujok(sangjuid){
 	var CONid = $("#contid").val();
 	if (CONid != ""){
 	var froomid = $('#frid').val();
 	var contp1addyujok ={};
 	contp1addyujok.CONT_SANGJU_ID = sangjuid; 
-	console.log(contp1addyujok);
 	$.ajax({
 		url : "${path}/cont/updateYujok.do",  
 		data : contp1addyujok,  
@@ -2656,14 +2685,13 @@ function fn_delyujok(sangjuid){
 		dataType : "json"  
 	})
 	.done(function(data) {
-	alert("저장성공");
 	var trHtml = $(this).parent().parent();
 	trHtml.remove();
 	});
 	}
 	else
 		{
-		alert("계약기본사항을 먼저 저장해 주세요!!");
+
 		}
 }
 
