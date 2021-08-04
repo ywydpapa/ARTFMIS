@@ -178,7 +178,7 @@ function fnSetConsultdefault(url, data){
 	    }
 	    return zero + n;
 	}
-	function tab01active(){
+/* 	function tab01active(){
 		$('.tab-pane').removeClass('active');
 		$('#tab01').addClass('active');
 	}
@@ -201,7 +201,7 @@ function fnSetConsultdefault(url, data){
 	function tab08active(){
 		$('.tab-pane').removeClass('active');
 		$('#tab08').addClass('active');
-	}
+	} */
 	function fn_UpdconsultP1(){
 		var consultData = {};
 		consultData.PATI_NAME = $("#patiName").val();

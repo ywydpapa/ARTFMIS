@@ -40,7 +40,7 @@
 												</tr>
 											</tbody>
 										</table>
-										<table class="table table-sm bst02" id="basicTable">
+										<table class="table table-sm bst02" style="border-collapse: collapse"id="basicTable">
 											<colgroup>
 												<col width="12%" />
 												<col width="10%" />
@@ -53,8 +53,8 @@
 											</colgroup>
 											<tbody>
 												<tr align="center">
-													<th rowspan="2">계약조회</th>
-													<td>조회호실</td>
+													<td style="vertical-align: middle; text-align:center;background-color:#E0F8E6;border:1px solid:black;" rowspan="2">계약조회</td>
+													<td >조회호실</td>
 													<td><select class="form-control" id="contp1-01">
 															<option value="">선택</option>
 															<c:forEach var="contcombo" items="${contCombo}">
@@ -76,7 +76,7 @@
 													<td></td>													
 												</tr>
 												<tr align="center">
-													<th rowspan="5">고인</th>
+													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6;border:1px solid:black;" rowspan="5">고인</th>
 													<td>성명</td>
 													<td><input type="text" 
 														class="form-control form-control-sm" id="contp1-07" tabindex="0"
@@ -159,7 +159,7 @@
 													</td>
 												</tr>
 												<tr align="center">
-													<th rowspan="3">유족</th>
+													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6" rowspan="3">유족</th>
 													<td>상주성명</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-20"
@@ -199,7 +199,7 @@
 													<td></td>
 												</tr>
 												<tr align="center">
-													<th rowspan="2">일정</th>
+													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6" rowspan="2">일정</th>
 													<td>입실일시*</td>
 													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-26" name="contp1-26" value="" tabindex="9">
 													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-26-1" name="contp1-26-1" value="" tabindex="10" >
@@ -220,7 +220,7 @@
 													</td>
 												</tr>
 												<tr align="center">
-													<td>장지</td>
+													<td style="vertical-align: middle; text-align:center;background-color:#E0F8E6" >장지</td>
 													<td colspan="3"><input type="text"
 														class="form-control form-control-sm" id="contp1-30"
 														name="contp1-30" value="" tabindex="17">
@@ -229,7 +229,7 @@
 													<td></td>
 												</tr>
 												<tr class="yujoklist" align="center">
-													<th>유족정보</th>
+													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6">유족정보</th>
 													<td>
 														<select class="form-control" id="contp1-31">
 															<option value="">선택</option>
@@ -248,7 +248,7 @@
 													<td></td>
 												</tr>
 												<tr align="center">
-													<td>비고</td>
+													<td style="vertical-align: middle; text-align:center;background-color:#E0F8E6">비고</td>
 													<td colspan="6"><input type="text"
 														class="form-control form-control-sm" id="contp1-37"
 														name="contp1-37" value=""></td>
@@ -2289,42 +2289,6 @@
 		}
 	}
 	
-	function tab01active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab01').addClass('active');
-	}
-	function tab02active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab02').addClass('active');
-	}
-	function tab03active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab03').addClass('active');
-	}
-	function tab04active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab04').addClass('active');
-	}
-	function tab05active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab05').addClass('active');
-	}
-	function tab06active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab06').addClass('active');
-	}
-	function tab07active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab07').addClass('active');
-	}
-	function tab08active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab08').addClass('active');
-	}
-	function tab09active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab09').addClass('active');
-	}
 	function numberWithCommas(x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
