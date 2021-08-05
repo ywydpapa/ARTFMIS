@@ -401,5 +401,11 @@ public class ContServiceImpl implements ContService {
 		return contDao.deleteAddroom(dto);
 	}
 
+	@Override
+	public List<ContDTO> listAddroom(int CONTRACT_ID) {
+		// TODO Auto-generated method stub
+		return contDao.listAddroom(CONTRACT_ID);
+	}
+
 
 }

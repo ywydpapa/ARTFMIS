@@ -214,6 +214,7 @@ public class ContController {
 		mav.addObject("contpage3", contService.reloadP3(CONTRACT_ID));
 		mav.addObject("listYujok", contService.listYujok(CONTRACT_ID));
 		mav.addObject("listroomemp", contService.doslistFroomemp());
+		mav.addObject("addlist",contService.listAddroom(CONTRACT_ID));
 		mav.setViewName("cont/detailcont");
 		return mav;
 	}
@@ -509,6 +510,32 @@ public class ContController {
 		}
 		return ResponseEntity.ok(param);
 	}
+	
+	@RequestMapping("addRoom.do")
+	public ResponseEntity<?> addRoom(@ModelAttribute ContDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int insRM = contService.insertAddroom(dto);
+		if (insRM >0) {
+			param.put("code","10001"); 
+			param.put("froomid", dto.getCONT_FROOM_ID());
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+	
+	@RequestMapping("delRoom.do")
+	public ResponseEntity<?> delroom(@ModelAttribute ContDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int updYJ = contService.deleteAddroom(dto);
+		if (updYJ >0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
 	
 	@RequestMapping("updateYujok.do")
 	public ResponseEntity<?> updYJ(@ModelAttribute ContDTO dto) {

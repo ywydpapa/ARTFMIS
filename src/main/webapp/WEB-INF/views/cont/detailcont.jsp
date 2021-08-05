@@ -358,8 +358,8 @@
 													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td style="background-color:#F5F6CE"><input type="number" class = "sRMd form-control" style="text-align: right; border:none;background-color:#F5F6CE" value="${row.DAYS}"></td>
-											<td style="background-color:#F5F6CE"><input type="number"  class = "sRMt form-control" style="text-align: right;border:none;background-color:#F5F6CE" value="${row.TIMES}"></td>
+											<td style="background-color:#F5F6CE"><input type="number" class = "sRMd form-control" style="text-align: right; border:none;background-color:#F5F6CE" min="0" value="${row.DAYS}"></td>
+											<td style="background-color:#F5F6CE"><input type="number"  class = "sRMt form-control" style="text-align: right;border:none;background-color:#F5F6CE" min="0" value="${row.TIMES}"></td>
 											<td class = "sRMcharge" style="text-align: right;"><fmt:formatNumber
 													value="${row.RCHARGE}" pattern="#,###" /></td>
 											<td style="text-align: center; display:none"><input type="checkbox" class="CHKsrm form-control" <c:if test="${row.CHKED eq 'Y'}">checked</c:if>></td>										</tr>
@@ -427,8 +427,21 @@
 								<option value="N">아니오</option>
 								</select>
 								</td>
-								<td><button class="btn btn-primary" onclick="addNewRoom()">추가</button></td>
+								<td style="text-align:center"><button class="btn btn-primary" onclick="addNewRoom()">추가</button></td>
 								</tr>
+								<c:forEach var="addlist" items="${addlist}">
+								<tr name="addroomlist"> 
+									<td style="text-align:center"><input type="checkbox" class="chkAddroom form-control"></td>
+									<td style="text-align:center">${addlist.FROOM_TITLE}</td>
+									<td style="text-align:right">${addlist.DAYS}</td>
+									<td style="text-align:right">${addlist.TIMES}</td>
+									<td style="text-align:right">${addlist.CLEAN_CHARGE_DAYS}</td>
+									<td style="text-align:center"><c:if test="${addlist.STORE_REFG_YN eq 'Y'}">예</c:if><c:if test="${addlist.STORE_REFG_YN eq 'N'}">아니오</c:if></td>
+									<td style="text-align:center"><c:if test="${addlist.STORE_ITEM_YN eq 'Y'}">예</c:if><c:if test="${addlist.STORE_ITEM_YN eq 'N'}">아니오</c:if></td>
+									<td style="text-align:center"><c:if test="${addlist.STORE_SNACK_YN eq 'Y'}">예</c:if><c:if test="${addlist.STORE_SNACK_YN eq 'N'}">아니오</c:if></td>
+									<td style="text-align:center"><c:if test="${addlist.CHKED eq 'Y'}">예</c:if><c:if test="${addlist.CHKED eq 'N'}">아니오</c:if></td>
+									<td style="text-align:center"><button class="btn btn-secondary" onclick="delRoom(this,${addlist.CONT_FROOM_ID},${addlist.FROOM_ID} )">삭제</button></td>
+								</c:forEach>
 								</table>
 								</div>
 						</div>
@@ -447,7 +460,46 @@
 	</div>
 <!--계약기본등록-->
 <script>
-
+	function delRoom(obj,roomid,drid){
+		var addrData = {};
+		addrData.CONT_FROOM_ID = roomid;
+		$.ajax({
+			url : "${path}/cont/delRoom.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+			data : addrData, // HTTP 요청과 함께 서버로 보낼 데이터 
+			method : "POST", // HTTP 요청 메소드(GET, POST 등) 
+			dataType : "json" // 서버에서 보내줄 데이터의 타입 
+		}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
+		.done(function(data) {
+			if (data.code == 10001) {
+				var str = $(obj).parent().parent();
+				str.remove();
+				var srm = drid;
+				var $Aarr = $(".FRMID");
+				var $Barr = $(".CHKroom");
+				for (var i = 0; i < $Aarr.length; i++) {
+					if ($Aarr[i].value == srm){
+						$($Barr[i]).attr("checked",false);
+						$($Barr[i]).parent().parent().hide();	
+					}
+				}
+				var $Carr = $(".sFRMID");
+				var $Darr = $(".CHKsrm");
+				for (var i = 0; i < $Carr.length; i++) {
+					if ($Carr[i].value == srm){
+						$($Darr[i]).attr("checked",false);
+						$($Darr[i]).parent().parent().hide();	
+					}
+				}
+				}else {
+				alert("저장 실패");
+				}
+		})
+		 // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
+		.fail(function(xhr, status, errorThrown) {
+			alert("통신 실패");
+		});
+	}
+	
 	function addNewRoom(){
 		var addrData = {};
 		var CONid = $("#contid").val();
@@ -469,16 +521,16 @@
 		.done(function(data) {
 			if (data.code == 10001) {
 				var innerHtml = "";
-				innerHtml += '<tr name="addroomlist"> <td><input type="checkbox" class="chkAddroom form-control"></td>';
-				innerHtml += '<td  style="text-align:center">'+$("#add1 option:checked").text()+' </td>';
+				innerHtml += '<tr style="text-align:center" name="addroomlist"> <td><input type="checkbox" class="chkAddroom form-control"></td>';
+				innerHtml += '<td style="text-align:center">'+$("#add1 option:checked").text()+' </td>';
 				innerHtml += '<td style="text-align:right">'+$("#add2").val()+'</td>';
 				innerHtml += '<td style="text-align:right">'+$("#add3").val()+'</td>';
 				innerHtml += '<td style="text-align:right">'+$("#add4").val()+'</td>';
-				innerHtml += '<td>'+$("#add5 option:checked").text()+'</td>';
-				innerHtml += '<td>'+$("#add6 option:checked").text()+'</td>';
-				innerHtml += '<td>'+$("#add7 option:checked").text()+'</td>';
-				innerHtml += '<td>'+$("#add8 option:checked").text()+'</td>';
-				innerHtml += '<td><button onclick="fn_delRoom('+data.froomid+')">삭제</button></td>';
+				innerHtml += '<td style="text-align:center">'+$("#add5 option:checked").text()+'</td>';
+				innerHtml += '<td style="text-align:center">'+$("#add6 option:checked").text()+'</td>';
+				innerHtml += '<td style="text-align:center">'+$("#add7 option:checked").text()+'</td>';
+				innerHtml += '<td style="text-align:center">'+$("#add8 option:checked").text()+'</td>';
+				innerHtml += '<td style="text-align:center"><button class="btn btn-secondary" onclick="delRoom(this,'+data.froomid+','+ $('#add1').val() +')">삭제</button></td>';
 				innerHtml += "</tr>";
 				$("#addroomTable > tbody > tr[name=addroomlist]:last").after(innerHtml);
 				$("#add2").val("0");
@@ -493,6 +545,14 @@
 					if ($Aarr[i].value == srm){
 						$($Barr[i]).attr("checked",true);
 						$($Barr[i]).parent().parent().show();	
+					}
+				}
+				var $Carr = $(".sFRMID");
+				var $Darr = $(".CHKsrm");
+				for (var i = 0; i < $Carr.length; i++) {
+					if ($Carr[i].value == srm){
+						$($Darr[i]).attr("checked",true);
+						$($Darr[i]).parent().parent().show();	
 					}
 				}
 				}else {
