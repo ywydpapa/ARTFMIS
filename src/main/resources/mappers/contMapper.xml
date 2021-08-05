@@ -27,6 +27,12 @@ select gc.CONTRACT_ID , gc.START_DATE, gc.END_DATE, gc.FROOM_ID, gf.FROOM_TITLE 
 	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' group by a.FROOM_ID 
  </select>
  
+ <select id="listaddRoom" resultType="contDto">
+select b.CONT_FROOM_ID ,b.DAYS, b.TIMEs,b.CLEAN_CHARGE_DAYS,(b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, b.STORE_SNACK_YN, b.STORE_REFG_YN , b.STORE_ITEM_YN , a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
+left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL
+where a.FROOM_TYP IN (1) and a.FROOM_USE_YN = 'Y' and b.ADD_YN = 'Y' 
+ </select>
+ 
  <select id="listFroomemp" resultType="contDto">
  	SELECT a.*, b.CONTRACT_ID from GHT_FROOM a 
  	left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.SETT_DATE is null
@@ -612,7 +618,8 @@ values (#{CONTRACT_ID},#{FROOM_ID},#{DAYS},#{TIMES},now(),#{RCHARGE},#{STORE_SNA
 
 <update id="delRoom">
 update GHT_CONT_FROOM set
-attrib ='XXXXX'
+attrib ='XXXXX',
+MOD_DATE = now()
 where CONT_FROOM_ID = ${CONT_FROOM_ID}
 </update>
 
