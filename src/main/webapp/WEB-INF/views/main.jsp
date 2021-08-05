@@ -121,6 +121,12 @@ function fnSetPage(url, data){
       }
 
   </style>
+  <style>
+    /* font-size:0을 사용하여 img_area영역 안에 여백을 없앤다. */
+    .imagebx{height:300px; font-size:0;}
+    .imagebx:after{display:inline-block; height:100%; content:""; vertical-align:middle;}
+    .imagebx img{vertical-align:middle;}
+  </style>
 
 </head>
 
