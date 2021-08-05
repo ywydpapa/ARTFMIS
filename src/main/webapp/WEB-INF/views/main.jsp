@@ -14,7 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="djkim">
-  <title>ARTFMS</title>
+  <title>ARTFMIS</title>
   <!-- Bootstrap core CSS -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <link href=”${path}/css/bootstrap.vertical-tabs.min.css” rel=”stylesheet”>
@@ -134,7 +134,7 @@ function fnSetPage(url, data){
 
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="${path}/">ARTFMS</a>
+      <a class="navbar-brand" href="${path}/">ARTFMIS</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
