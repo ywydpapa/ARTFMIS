@@ -10,6 +10,7 @@ public interface SetupDAO {
 	List<SetupDTO> timelistSetup();
 	List<SetupDTO> infolistSetup();
 	SetupDTO detailSetup(int SETUP_ID);
+	SetupDTO infoCont();
 	int updateSetup(SetupDTO dto);
 	int updateDefault(SetupDTO dto);
 	int insertSetup(SetupDTO dto);

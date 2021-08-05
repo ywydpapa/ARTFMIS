@@ -63,4 +63,10 @@ public class SetupServiceImpl implements SetupService {
 		return setupDao.updateDefault(dto);
 	}
 
+	@Override
+	public SetupDTO infoCont() {
+		// TODO Auto-generated method stub
+		return setupDao.infoCont();
+	}
+
 }
