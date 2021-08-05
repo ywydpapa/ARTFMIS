@@ -63,4 +63,10 @@ public class SetupDAOImpl implements SetupDAO {
 		return sqlSession.update("setup.updatedefault", dto);
 	}
 
+	@Override
+	public SetupDTO infoCont() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("setup.infoCont");
+	}
+
 }
