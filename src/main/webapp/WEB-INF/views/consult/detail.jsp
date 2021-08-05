@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 <div class="page-header2">
@@ -51,7 +52,6 @@
 										<col width="10%" />
 										<col width="10%" />
 										<col width="10%" />
-										<col width="10%" />
 									</colgroup>
 									<thead>
 										<tr>
@@ -60,8 +60,7 @@
 											<th class="text-center">사용유무</th>
 											<th class="text-center">일일사용료</th>
 											<th class="text-center">시간당사용료</th>
-											<th class="text-center">면적(m<sup>2</sup>)
-											</th>
+											<th class="text-center">면적(m<sup>2</sup>)</th>
 											<th class="text-center">평수</th>
 											<th class="text-center">수용인원</th>
 											<th class="text-center">임시호실명</th>
@@ -145,8 +144,7 @@
 									</tbody>
 								</table>
 								<div class="row">
-									<table class="table  table-bordered nowrap"
-										id="ftTable">
+									<table class="table  table-bordered nowrap" id="ftTable">
 										<thead>
 											<tr>
 												<th scope="col" width="10%" align="center">구분</th>
@@ -157,13 +155,24 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="row" items="${listFtable}">
-												<tr>
+											<c:forEach var="row" items="${listFtable}" varStatus="status">
+												<tr id="contWrite_Prey_${row.FTABLE_ID}">
 													<td class="second">${row.BCD_TITLE}</td>
-													<td><input type="checkbox" <c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if> name = "FT${row.FTABLE_CAT}" class="CHKft form-control" /></td>
+													<td style="text-align: center">
+														<input type="checkbox" <c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if>
+															   				   <c:if test="${row.FTABLE_CAT ne '24'}">onclick="oneCheckftNot(this);"</c:if>
+															   name = "FT${row.FTABLE_CAT}" class="CHKft form-control" />
+													</td>
 													<td style="text-align: right" class="TA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
 													<td style="text-align: right">${row.FTABLE_UNIT}</td>
-													<td class="imagebx"><div id="ftImage"></div></td>
+													<c:if test="${status.first}">
+														<td class="imagebx" rowspan="${fn:length(listFtable)}">
+															<c:forEach var="t" items="${listFtable}">
+																<img id="imageHidden_t02_${t.FTABLE_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.FTABLE_IMAGE}">src="${path}/image/${t.FTABLE_IMAGE}"</c:if>
+																	 <c:if test="${empty t.FTABLE_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
+															</c:forEach>
+														</td>
+													</c:if>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -780,14 +789,28 @@
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="row" items="${listAltar}">
-											<tr>
-												<td class="second"><c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if>
-													<c:if test="${row.ALTAR_CAT eq '103'}">헌화</c:if></td>
-												<td><input type="checkbox" onclick ="<c:if test="${row.ALTAR_CAT eq '102'}">oneCheckalt2(this)</c:if><c:if test="${row.ALTAR_CAT eq '103'}">oneCheckalt3(this)</c:if>" class="CHKalt form-control" name="ALTAR${row.ALTAR_CAT}" /></td>
+										<c:forEach var="row" items="${listAltar}" varStatus="status">
+											<tr id="contWrite_Altar_${row.ALTAR_ID}">
+												<td class="second">
+													<c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if>
+													<c:if test="${row.ALTAR_CAT eq '103'}">헌화</c:if>
+												</td>
+												<td style="text-align: center">
+													<input type="checkbox" onclick ="<c:if test="${row.ALTAR_CAT eq '102'}">oneCheckalt2(this)</c:if>
+																					<c:if test="${row.ALTAR_CAT eq '103'}">oneCheckalt3(this)</c:if>
+																					<c:if test="${row.ALTAR_CAT ne '102' and row.ALTAR_CAT ne '103'}">oneCheckalt2and3Not(this)</c:if>"
+														   class="CHKalt form-control" name="ALTAR${row.ALTAR_CAT}" />
+												</td>
 												<td>${row.ALTAR_TITLE}<input type = "hidden" class = "Aid" value="${row.ALTAR_ID}"/></td>
 												<td style="text-align: right" class="AA"><fmt:formatNumber value="${row.ALTAR_AMOUNT}" pattern="#,###" /></td>
-												<td class="imagebx"><div id="altarImage"></div></td>
+												<c:if test="${status.first}">
+													<td class="imagebx" rowspan="${fn:length(listAltar)}">
+														<c:forEach var="t" items="${listAltar}">
+															<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.ALTAR_IMAGE}">src="${path}/image/${t.ALTAR_IMAGE}"</c:if>
+																 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
+														</c:forEach>
+													</td>
+												</c:if>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -859,7 +882,6 @@
 										<col width="10%" />
 										<col width="10%" />
 										<col width="10%" />
-										<col width="10%" />
 									</colgroup>
 									<thead>
 										<tr>
@@ -907,7 +929,6 @@
 										<col width="5%" />
 										<col width="5%" />
 										<col width="20%" />
-										<col width="10%" />
 									</colgroup>
 									<thead>
 										<tr>
@@ -1833,6 +1854,28 @@
 	            obj[i].checked = false;
 	        }
 	    }
+
+		if(chk.checked){
+			let tr = $(chk).closest('tr');
+			let trId = tr.attr('id').split("_")[2];
+
+			$("img[id^='imageHidden_t02_']").hide();
+			$("img[id^='imageHidden_t02_"+trId+"']").show();
+		} else {
+			$("img[id^='imageHidden_t02_']").hide();
+		}
+	}
+
+	function oneCheckftNot(chk){
+		if(chk.checked){
+			let tr = $(chk).closest('tr');
+			let trId = tr.attr('id').split("_")[2];
+
+			$("img[id^='imageHidden_t02_']").hide();
+			$("img[id^='imageHidden_t02_"+trId+"']").show();
+		} else {
+			$("img[id^='imageHidden_t02_']").hide();
+		}
 	}
 
 	function oneCheckalt2(chk){
@@ -1842,6 +1885,16 @@
 	            obj[i].checked = false;
 	        }
 	    }
+
+		if(chk.checked){
+			let tr = $(chk).closest('tr');
+			let trId = tr.attr('id').split("_")[2];
+
+			$("img[id^='imageHidden_t03_']").hide();
+			$("img[id^='imageHidden_t03_"+trId+"']").show();
+		} else {
+			$("img[id^='imageHidden_t03_']").hide();
+		}
 	}
 
 	function oneCheckalt3(chk){
@@ -1851,6 +1904,28 @@
 	            obj[i].checked = false;
 	        }
 	    }
+
+		if(chk.checked){
+			let tr = $(chk).closest('tr');
+			let trId = tr.attr('id').split("_")[2];
+
+			$("img[id^='imageHidden_t03_']").hide();
+			$("img[id^='imageHidden_t03_"+trId+"']").show();
+		} else {
+			$("img[id^='imageHidden_t03_']").hide();
+		}
+	}
+
+	function oneCheckalt2and3Not(chk){
+		if(chk.checked){
+			let tr = $(chk).closest('tr');
+			let trId = tr.attr('id').split("_")[2];
+
+			$("img[id^='imageHidden_t03_']").hide();
+			$("img[id^='imageHidden_t03_"+trId+"']").show();
+		} else {
+			$("img[id^='imageHidden_t03_']").hide();
+		}
 	}
 	
 	
