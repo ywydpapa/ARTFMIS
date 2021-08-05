@@ -11,7 +11,7 @@
 			<div class="col-lg-12">
 				<div class="page-header-title">
 					<div class="d-inline">
-						<h5>계약내용 관리</h5>
+						<h5>계약내용</h5>
 					</div>
 				</div>
 			</div>
@@ -28,8 +28,8 @@
 				<table class="table  table-bordered nowrap">
 				<tr>
 				<td><input id="frid" type="hidden" value = "${frid}"><input id="contid" type="hidden" value = "${CONTid}">
-				<input id="rmchk" type="hidden" value = "OK"></td>
-				<td><span>선택된 계약번호 :  </span>${CONTid}</td>
+				<input id="rmchk" type="hidden" value = "OK"><span>계약번호 :  </span>${CONTid}</td>
+				<td></td>
 				</tr>
 				</table>
 				</div>
@@ -49,17 +49,17 @@
 										</table>
 										<table class="table table-sm bst02" id="basicTable">
 											<colgroup>
-												<col width="12%" />
-												<col width="12%" />
-												<col width="12%" />
-												<col width="12%" />
-												<col width="12%" />
-												<col width="12%" />
-												<col width="12%" />
+												<col width="10%" />
+												<col width="10%" />
+												<col width="10%" />
+												<col width="10%" />
+												<col width="10%" />
+												<col width="10%" />
+												<col width="10%" />
 											</colgroup>
 											<tbody>
-												<tr align="center">
-													<th rowspan="2">계약기간</th>
+												<tr >
+													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3" rowspan="2">계약기간</th>
 													<td>계약호실</td>
 													<td><select class="form-control" id="contp1-01" disabled>
 															<c:forEach var="listroom" items="${listroom}">
@@ -71,17 +71,16 @@
 													<td><input type="date" class="form-control" id="contp1-03" name="contp1-03" value="${ENDate}" disabled></td>
 													<td></td>
 												</tr>
-												<tr align="center">
+												<tr >
 													<td>행사업체</td>
 													<td><input type="text" class="form-control" id="contp1-04"></td>
 													<td></td>													
 													<td></td>
 													<td></td>
 													<td></td>
-													<td></td>
 												</tr>
-												<tr align="center">
-													<th rowspan="5">고인</th>
+												<tr >
+													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3" rowspan="5">고인</th>
 													<td>성명</td>
 													<td><input type="text" 
 														class="form-control form-control-sm" id="contp1-07"
@@ -93,31 +92,32 @@
 														name="contp1-08" value="${detailCont.DPERSON_JMNO}"></td>
 													<td>성별</td>
 													<td>
-														<select class="form-control form-control-sm" id="contp1-09">
+														<select class="form-control" id="contp1-09">
 														<option value = "">선택</option>
 														<option value = "1">남</option>
 														<option value = "2">여</option>
 														</select>
 														</td>
 												</tr>
-												<tr align="center">
+												<tr >
 													<td>주소</td>
 													<td colspan="2"><input type="text"
 														class="form-control form-control-sm" id="contp1-10"
 														name="contp1-10" value="${detailCont.DPERSON_ADDR1}" >
 													</td>
+													<td></td>
 													<td>본관</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-11"
 														name="contp1-11" value=""></td>
-														<td></td>
 												</tr>
-												<tr align="center">
+												<tr >
 													<td>상세주소</td>
 													<td colspan="2"><input type="text"
 														class="form-control form-control-sm" id="contp1-12"
 														name="contp1-12" value="${detailCont.DPERSON_ADDR2}" >
 													</td>
+													<td></td>
 													<td>종교</td>
 													<td><select class="form-control" id="contp1-13">
 															<option value="">선택</option>
@@ -126,7 +126,7 @@
 															</c:forEach>
 															</select></td>
 												</tr>
-												<tr align="center">
+												<tr >
 													<td>사망일시</td>
 													<td><input type="date" class="form-control form-control-sm" id="contp1-14"
 														name="contp1-14" value=""><input type="time" class="form-control form-control-sm" id="contp1-14-1"
@@ -142,7 +142,7 @@
 															<option value="2">병사</option>
 													</select></td>
 												</tr>
-												<tr align="center">
+												<tr >
 													<td>사망장소</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-17"
@@ -162,8 +162,8 @@
 													</select>
 													</td>
 												</tr>
-												<tr align="center">
-													<th rowspan="3">유족</th>
+												<tr >
+													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3" rowspan="3">유족</th>
 													<td>상주성명</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-20"
@@ -181,18 +181,19 @@
 															</c:forEach>
 													     </select></td>
 												</tr>
-												<tr align="center">
+												<tr >
 													<td>주소</td>
 													<td colspan="2"><input type="text"
 														class="form-control form-control-sm" id="contp1-23"
 														name="contp1-23" value="${detailCont.SANGJU_ADDR1}">
 													</td>
+													<td></td>
 													<td>연락처</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-24"
 														name="contp1-24" value="${detailCont.SANGJU_TEL}"></td>
 												</tr>
-												<tr align="center">
+												<tr >
 													<td>상세주소</td>
 													<td colspan="2"><input type="text"
 														class="form-control form-control-sm" id="contp1-25"
@@ -201,8 +202,8 @@
 													<td></td>
 													<td></td>
 												</tr>
-												<tr align="center">
-													<th rowspan="2">일정</th>
+												<tr >
+													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3" rowspan="2">일정</th>
 													<td>입실일시*</td>
 													<td><input type="date" class="form-control form-control-sm" id="contp1-26" name="contp1-26" value="" >
 													<input type="time" class="form-control form-control-sm" id="contp1-26-1" name="contp1-26-1" value="" >
@@ -214,7 +215,7 @@
 													<td></td>
 													<td></td>
 												</tr>
-												<tr align="center">
+												<tr >
 													<td>입관일시</td>
 													<td><input type="date" class="form-control" id="contp1-28" name="contp1-28" value="" >
 													<input type="time" class="form-control" id="contp1-28-1" name="contp1-28-1" value="" >
@@ -227,7 +228,7 @@
 													<td></td>
 												</tr>
 												<tr align="center">
-													<td>장지</td>
+													<td style ="vertical-align:center;text-align:center;background-color:#CEF6E3">장지</td>
 													<td colspan="3"><input type="text"
 														class="form-control form-control-sm" id="contp1-30"
 														name="contp1-30" value="${detailCont.JANGJI}" >
@@ -237,7 +238,7 @@
 													<td></td>
 												</tr>
 												<tr name="yujoklist" align="center">
-													<th>유족정보</th>
+													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3">유족정보</th>
 													<td>
 														<select class="form-control" id="contp1-31">
 															<option value="">선택</option>
@@ -246,8 +247,7 @@
 															</c:forEach>
 													     </select>
 													</td>
-													<td><input type="text"
-														class="form-control form-control-sm" id="contp1-32"
+													<td><input type="text" class="form-control form-control-sm" id="contp1-32"
 														name="contp1-31" value="" >
 													</td>
 													<td><button onclick="fn_addyujok()">추가</button></td>
@@ -257,14 +257,14 @@
 												</tr>
 													<c:forEach var="yujok" items="${listYujok}">
 													<tr id="sj${yujok.CONT_SANGJU_ID}">
-													<td></td>
+													<td style ="vertical-align:center;text-align:center;background-color:#CEF6E3"></td>
 													<td>${yujok.RELATION_TITLE}</td>
 													<td>${yujok.SANGJU_NAMEs}</td>
 													<td><button onclick="fn_delyujok('${yujok.CONT_SANGJU_ID}')">삭제</button></td>
 													</tr>	
 													</c:forEach>
 												<tr align="center">
-													<td>비고</td>
+													<td style ="vertical-align:center;text-align:center;background-color:#CEF6E3">비고</td>
 													<td colspan="6"><input type="text"
 														class="form-control form-control-sm" id="contp1-37"
 														name="contp1-37" value="${detailCont.REMARK}"></td>
@@ -299,12 +299,10 @@
 										<col width="10%" />
 										<col width="10%" />
 										<col width="10%" />
-										<col width="10%" />
 									</colgroup>
 									<thead>
 										<tr>
 											<th class="text-center">호실명</th>
-											<th class="text-center">사용유무</th>
 											<th class="text-center">일일사용료</th>
 											<th class="text-center">시간당사용료</th>
 											<th class="text-center">면적(m<sup>2</sup>)											</th>
@@ -317,7 +315,6 @@
 									<c:forEach var="row" items="${contpage2}">
 										<tr <c:if test="${row.CHKED eq 'N'}">style="display:none"</c:if>>
 											<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
-											<td></td>
 											<td class = "RMday"style="text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
@@ -346,7 +343,7 @@
 									</colgroup>
 									<thead>
 										<tr>
-											<th class="text-center">호실명</th>
+											<th class="text-center">계약호실명</th>
 											<th class="text-center">일일사용료</th>
 											<th class="text-center">시간당사용료</th>
 											<th class="text-center">사용일</th>
@@ -375,8 +372,8 @@
 											<td><input type="hidden" class="Erid" value="${row.FROOM_ID}">${row.FROOM_TITLE}</td>
 											<td class = "EA" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 											<td class = "EB" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;"><input style="text-align: right"class="form-control Eday" type="number" min="0" max="30" value="0"/></td>
-											<td style="text-align: right;"><input style="text-align: right"class="form-control Etime" type="number" min="0" max="30" value="0"/></td>
+											<td style="text-align: right;"><input style="text-align: right;border:none" class="form-control Eday" type="number" min="0" max="30" value="0"/></td>
+											<td style="text-align: right;"><input style="text-align: right;border:none" class="form-control Etime" type="number" min="0" max="30" value="0"/></td>
 											<td class = "Esum" style="text-align: right;"><fmt:formatNumber value="0" pattern="#,###" /></td>
 										</tr>
 									</c:forEach>
@@ -385,51 +382,63 @@
 								</table>
 								<div id="addFroom">
 								<table class="table table-bordered nowrap">
+								<colgroup>
+										<col width="10%" />
+										<col width="10%" />
+										<col width="10%" />
+										<col width="8%" />
+										<col width="12%" />
+										<col width="10%" />
+										<col width="10%" />
+										<col width="10%" />
+										<col width="10%" />
+										<col width="10%" />
+								</colgroup>
 								<tr>
-								<td>삭제</td>
-								<td>추가사용호실</td>
-								<td>사용일수</td>
-								<td>사용시간</td>
-								<td>환경부담금일수</td>
-								<td>냉장고사용</td>
-								<td>일회용품사용</td>
-								<td>마른안주사용</td>
-								<td>입실유무</td>
-								<td></td>
+								<td class="text-center">삭제</td>
+								<td class="text-center">추가사용호실</td>
+								<td class="text-center">사용일수</td>
+								<td class="text-center">사용시간</td>
+								<td class="text-center">환경부담금일수</td>
+								<td class="text-center">냉장고사용</td>
+								<td class="text-center">일회용품사용</td>
+								<td class="text-center">마른안주사용</td>
+								<td class="text-center">입실유무</td>
+								<td class="text-center"></td>
 								</tr>
 								<tr>
 								<td></td>
 								<td>
-								<select  class="form-control">
+								<select  class="form-control" id="add1">
 								<c:forEach var="row" items="${listroomemp}">
 								<option value="${row.FROOM_ID}">${row.FROOM_TITLE}</option>
 								</c:forEach>
 								</select>
 								</td>
-								<td><input class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
-								<td><input class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
-								<td><input class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
+								<td><input id="add2" class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
+								<td><input id="add3"class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
+								<td><input id="add4"class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
 								<td>
-								<select  class="form-control">
+								<select id="add5" class="form-control">
 								<option value="Y">예</option>
-								<option value="Y">아니오</option>
+								<option value="N">아니오</option>
 								</select>
 								</td>
 								<td>
-								<select class="form-control">
+								<select id="add6" class="form-control">
 								<option value="Y">예</option>
-								<option value="Y">아니오</option>
+								<option value="N">아니오</option>
 								</select></td>
 								<td>
-								<select class="form-control">
+								<select id="add7" class="form-control">
 								<option value="Y">예</option>
-								<option value="Y">아니오</option>
+								<option value="N">아니오</option>
 								</select>
 								</td>
 								<td>
-								<select class="form-control">
+								<select id="add8" class="form-control">
 								<option value="Y">예</option>
-								<option value="Y">아니오</option>
+								<option value="N">아니오</option>
 								</select>
 								</td>
 								<td><button class="form-control" onclick="addNewRoom()">추가</button></td>
@@ -452,6 +461,10 @@
 	</div>
 <!--계약기본등록-->
 <script>
+
+	function addNewRoom(){
+		
+	}
 
 	function fn_contUpdate(){
 		fn_contUpdateP1();
@@ -705,7 +718,7 @@
 		if(hours < 10) hours = '0'+hours;
 		let minutes = today.getMinutes();  // 분
 		let seconds = today.getSeconds();  // 초
-		var from = year+'-'+month+'-'+date+'T'+hours+':00:00';
+		var from = year+'-'+month+'-'+date+'T'+hours+':00';
 		let today2 = new Date();
 		today2.setDate(today2.getDate() + 3);
 		let year2 = today2.getFullYear(); // 년도
@@ -717,58 +730,10 @@
 		if(hours2 < 10) hours2 = '0'+hours2;
 		let minutes2 = today2.getMinutes();  // 분
 		let seconds2 = today2.getSeconds();  // 초
-		var to = year2+'-'+month2+'-'+date2+'T'+hours2+':00:00';
+		var to = year2+'-'+month2+'-'+date2+'T'+hours2+':00';
 		$('#contp1-02').val(from);
 		$('#contp1-03').val(to);				
 	}
-	
-	function fn_checkFroom(){
-		var froomid = $('#contp1-01').val();
-		var sfroomid = $('#frid').val();
-		var startDate = $('#contp1-02').val().replace("T", " ");
-		var chkRdata = {};
-		chkRdata.FROOM_ID = froomid;
-		chkRdata.START_DATE = startDate;
-		console.log(chkRdata);
-		$.ajax({
-			url : "${path}/cont/checkFroom.do",  
-			data : chkRdata,  
-			method : "POST",  
-			dataType : "json"  
-		})
-		.done(function(data) {
-			if (data.code == 10001) {
-				alert("사용중 입니다.");
-			} else {
-				alert("사용가능 합니다.");
-				if (froomid != sfroomid)
-					{
-					if (confirm("해당 호실로 변경하시겠습니까?"))
-						{
-						$("#contid").val("");
-						var idxroom = $("#contp1-01 option").index($("#contp1-01 option:selected"));
-						$("#FROOM_SEL > option:eq("+ idxroom +")").attr("selected",true).trigger('change');
-						}
-					else
-						{
-						var idxroom2 = $("#FROOM_SEL option").index($("#FROOM_SEL option:selected"));
-						var contp01_option = $("#contp1-01 > option");
-						for(var i=0; i<contp01_option.length; i++){
-							$(contp01_option[i]).prop("selected", false);
-						}
-						$(contp01_option[idxroom2]).prop("selected", true);
-						}
-					}
-				else
-					{
-					var idxroom = $("#FROOM_SEL option").index($("#FROOM_SEL option:selected"));
-					var $Ckarr = $(".CHKroom");
-					$($Ckarr[idxroom]).attr("checked", true).trigger('change');
-					}
-				$("#rmchk").val("OK");
-			}	
-		});
-		}
 	
 	function setComboP1(){
 		var p109val = ${detailCont.DPERSON_MW};
