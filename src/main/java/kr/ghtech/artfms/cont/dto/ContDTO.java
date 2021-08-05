@@ -24,6 +24,7 @@ public class ContDTO {
 	private String DDATE;
 	private String DTIME;
 	private String DPLACE;
+	
 	private String DTYPE;
 	private String CREMATION_YN;
 	private String SANGJU_NAME;

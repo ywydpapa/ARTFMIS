@@ -43,6 +43,7 @@ public class ContController {
 		return mav;
 	}
 	
+	
 	@RequestMapping("contdetail/{CONT_FROOM_ID}")
 	public ModelAndView write(@PathVariable("CONT_FROOM_ID") int CONT_FROOM_ID,ModelAndView mav) {
 		mav.addObject("listroom", goodsService.listRoom(1));

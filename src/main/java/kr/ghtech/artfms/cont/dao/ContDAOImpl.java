@@ -31,6 +31,7 @@ public class ContDAOImpl implements ContDAO {
 		return sqlSession.update("cont.updateCont",dto);
 	}
 
+	
 	@Override
 	public int deleteCont(Integer CONTRACT_ID) {
 		// TODO Auto-generated method stub

@@ -39,6 +39,7 @@ public class ContServiceImpl implements ContService {
 		return contDao.deleteCont(CONTRACT_ID);
 	}
 
+	
 	@Override
 	public int insertCont(ContDTO dto) {
 		// TODO Auto-generated method stub
