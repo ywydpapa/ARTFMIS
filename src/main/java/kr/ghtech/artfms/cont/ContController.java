@@ -17,6 +17,7 @@ import kr.ghtech.artfms.code.service.CodeService;
 import kr.ghtech.artfms.cont.dto.ContDTO;
 import kr.ghtech.artfms.cont.service.ContService;
 import kr.ghtech.artfms.goods.service.GoodsService;
+import kr.ghtech.artfms.setup.service.SetupService;
 
 @Controller
 @RequestMapping("/cont/*")
@@ -30,6 +31,9 @@ public class ContController {
 	
 	@Inject
 	CodeService codeService;
+	
+	@Inject
+	SetupService setupService;
 	
 	@RequestMapping("list.do")
 	public ModelAndView list(ModelAndView mav) {
@@ -154,6 +158,7 @@ public class ContController {
 		mav.addObject("frelation", codeService.listconBcode("5"));
 		mav.addObject("doslist2", contService.doscontlist2(CONT_FROOM_ID));
 		mav.addObject("doslist3", contService.doscontlist3(CONT_FROOM_ID));
+		mav.addObject("infocont", setupService.infoCont());
 		mav.addObject("pagetitle", FROOM_TITLE);
 		mav.addObject("frid", CONT_FROOM_ID);
 		mav.setViewName("cont/write");
@@ -196,6 +201,7 @@ public class ContController {
 		mav.addObject("contpage8", contService.reloadP8(CONTRACT_ID));
 		mav.addObject("contpage9", contService.reloadP9(CONTRACT_ID));
 		mav.addObject("listYujok", contService.listYujok(CONTRACT_ID));
+		mav.addObject("infocont", setupService.infoCont());
 		mav.setViewName("cont/detail");
 		return mav;
 	}

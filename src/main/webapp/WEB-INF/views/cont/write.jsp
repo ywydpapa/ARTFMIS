@@ -1419,7 +1419,7 @@
 										<tr>
 											<td></td>
 											<td><textarea class="form-control" rows="20">
-											${info.SETUP_CONTENTS}
+											${infocont.SETUP_CONTENTS}
 											</textarea></td>
 											<td></td>
 										</tr>
