@@ -490,9 +490,9 @@
 						$($Darr[i]).parent().parent().hide();	
 					}
 				}
-				}else {
+			} else {
 				alert("저장 실패");
-				}
+			}
 		})
 		 // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
 		.fail(function(xhr, status, errorThrown) {
@@ -523,9 +523,9 @@
 				var innerHtml = "";
 				innerHtml += '<tr style="text-align:center" name="addroomlist"> <td><input type="checkbox" class="chkAddroom form-control"></td>';
 				innerHtml += '<td style="text-align:center">'+$("#add1 option:checked").text()+' </td>';
-				innerHtml += '<td style="text-align:right">'+$("#add2").val()+'</td>';
-				innerHtml += '<td style="text-align:right">'+$("#add3").val()+'</td>';
-				innerHtml += '<td style="text-align:right">'+$("#add4").val()+'</td>';
+				innerHtml += '<td style="text-align:right">'+$("#add2").text()+'</td>';
+				innerHtml += '<td style="text-align:right">'+$("#add3").text()+'</td>';
+				innerHtml += '<td style="text-align:right">'+$("#add4").text()+'</td>';
 				innerHtml += '<td style="text-align:center">'+$("#add5 option:checked").text()+'</td>';
 				innerHtml += '<td style="text-align:center">'+$("#add6 option:checked").text()+'</td>';
 				innerHtml += '<td style="text-align:center">'+$("#add7 option:checked").text()+'</td>';
@@ -536,23 +536,24 @@
 				$("#add2").val("0");
 				$("#add3").val("0");
 				$("#add4").val("0");
-				var srm = $("#add1").val();
+				var srm = $('#add1 option:selected').text();
 				$("#add1 option:checked").hide();
 				$("#add1").val("");
-				var $Aarr = $(".FRMID");
-				var $Barr = $(".CHKroom");
-				for (var i = 0; i < $Aarr.length; i++) {
-					if ($Aarr[i].value == srm){
-						$($Barr[i]).attr("checked",true);
-						$($Barr[i]).parent().parent().show();	
+				var $Aarr = $(".CHKroom");
+				var $Barr = $(".CHKroom").closest('tr').find('td:first');
+				for (var i = 0; i < $Barr.length; i++) {
+					if ($Barr[i].innerText == srm){
+						$Aarr[i].checked = true;
+						$($Barr[i]).parent().show();
 					}
 				}
-				var $Carr = $(".sFRMID");
-				var $Darr = $(".CHKsrm");
-				for (var i = 0; i < $Carr.length; i++) {
-					if ($Carr[i].value == srm){
-						$($Darr[i]).attr("checked",true);
-						$($Darr[i]).parent().parent().show();	
+
+				var $Carr = $(".CHKsrm");
+				var $Darr = $(".CHKsrm").closest('tr').find('td:first');
+				for (var i = 0; i < $Darr.length; i++) {
+					if ($Darr[i].innerText == srm){
+						$Carr[i].checked = true;
+						$($Darr[i]).parent().show();
 					}
 				}
 				}else {
@@ -790,7 +791,7 @@
 		calculateR();
 		chkcalR();
 	});
-	
+
 	function numberWithCommas(x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
