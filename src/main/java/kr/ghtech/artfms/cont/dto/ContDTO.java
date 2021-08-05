@@ -163,7 +163,7 @@ public class ContDTO {
 	private String STORE_GOODS_NET_PRICE;
 	private String STORE_GOODS_INIT_QTY;
 	private String STORE_GOODS_ADD_QTY;
-	private String CONT_FROOM_ID;
+	private int CONT_FROOM_ID;
 	private String GOODS_ID;
 	private int SETL_ID;
 	private String SETL_FROOM_ID;
