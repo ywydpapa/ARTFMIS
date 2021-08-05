@@ -129,7 +129,7 @@
 												<tr >
 													<td>사망일시</td>
 													<td><input type="date" class="form-control form-control-sm" id="contp1-14"
-														name="contp1-14" value=""><input type="time" class="form-control form-control-sm" id="contp1-14-1"
+														name="contp1-14" value=""><input type="text" class="form-control form-control-sm timepicker" id="contp1-14-1"
 														name="contp1-14-1" value=""></td>
 													<td>나이</td>
 													<td><input type="number" style="text-align:right;"
@@ -206,11 +206,11 @@
 													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3" rowspan="2">일정</th>
 													<td>입실일시*</td>
 													<td><input type="date" class="form-control form-control-sm" id="contp1-26" name="contp1-26" value="" >
-													<input type="time" class="form-control form-control-sm" id="contp1-26-1" name="contp1-26-1" value="" >
+													<input type="text" class="form-control form-control-sm timepicker" id="contp1-26-1" name="contp1-26-1" value="" >
 													</td>
 													<td>안치일시</td>
 													<td><input type="date" class="form-control form-control-sm" id="contp1-27" name="contp1-27" value="">
-													<input type="time" class="form-control form-control-sm" id="contp1-27-1" name="contp1-27-1" value="">
+													<input type="text" class="form-control form-control-sm timepicker" id="contp1-27-1" name="contp1-27-1" value="">
 													</td>
 													<td></td>
 													<td></td>
@@ -218,11 +218,11 @@
 												<tr >
 													<td>입관일시</td>
 													<td><input type="date" class="form-control" id="contp1-28" name="contp1-28" value="" >
-													<input type="time" class="form-control" id="contp1-28-1" name="contp1-28-1" value="" >
+													<input type="text" class="form-control timepicker" id="contp1-28-1" name="contp1-28-1" value="" >
 													</td>
 													<td>발인일시*</td>
 													<td><input type="date" class="form-control form-control-sm" id="contp1-29" name="contp1-29" value="">
-													<input type="time" class="form-control form-control-sm" id="contp1-29-1" name="contp1-29-1" value="">
+													<input type="text" class="form-control form-control-sm timepicker" id="contp1-29-1" name="contp1-29-1" value="">
 													</td>
 													<td></td>
 													<td></td>
@@ -237,7 +237,7 @@
 													<td></td>
 													<td></td>
 												</tr>
-												<tr name="yujoklist" align="center">
+												<tr name="yujoklist" class="text-center">
 													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3">유족정보</th>
 													<td>
 														<select class="form-control" id="contp1-31">
@@ -250,7 +250,7 @@
 													<td><input type="text" class="form-control form-control-sm" id="contp1-32"
 														name="contp1-31" value="" >
 													</td>
-													<td><button onclick="fn_addyujok()">추가</button></td>
+													<td><button class="btn btn-primary"onclick="fn_addyujok()">추가</button></td>
 													<td></td>
 													<td></td>
 													<td></td>
@@ -280,7 +280,7 @@
 				</div>
 				<div class="tab-pane active" id="tab02" role="tabpanel">
 					<div class="card-block table-border-style">
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<form name="room2" method="post" onsubmit="return false;">
 								<table class="table table-sm bst02">
 									<tbody>
@@ -331,8 +331,7 @@
 								</table>
 							</form>
 							<br> <br>
-							<table class="table table-bordered nowrap"
-									id="SltdroomList">
+							<table class="table table-bordered nowrap" id="SltdroomList">
 									<colgroup>
 										<col width="10%" />
 										<col width="10%" />
@@ -355,33 +354,21 @@
 									<tbody>
 									<c:forEach var="row" items="${contpage2}">
 										<tr>
-											<td>${row.FROOM_TITLE}(계약호실)<input type="hidden" class = "sFRMID" value = "${row.FROOM_ID}"></td>
+											<td>${row.FROOM_TITLE}<c:if test="${row.ADD_YN eq 'Y'}">(추가호실)</c:if><c:if test="${not row.ADD_YN eq 'Y'}">(계약호실)</c:if><input type="hidden" class = "sFRMID" value = "${row.FROOM_ID}"></td>
 											<td class = "RMday"style="text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td class = "sRMd" style="text-align: right;">${row.DAYS}</td>
-											<td class = "sRMt" style="text-align: right;">${row.TIMES}</td>
+											<td style="background-color:#F5F6CE"><input type="number" class = "sRMd form-control" style="text-align: right; border:none;background-color:#F5F6CE" value="${row.DAYS}"></td>
+											<td style="background-color:#F5F6CE"><input type="number"  class = "sRMt form-control" style="text-align: right;border:none;background-color:#F5F6CE" value="${row.TIMES}"></td>
 											<td class = "sRMcharge" style="text-align: right;"><fmt:formatNumber
 													value="${row.RCHARGE}" pattern="#,###" /></td>
-											<td style="text-align: center; display:none"><input type="checkbox" onclick="doOpenCheck(this);"
-												class="CHKsrm form-control" <c:if test="${row.CHKED eq 'Y'}">checked</c:if>></td>										</tr>
+											<td style="text-align: center; display:none"><input type="checkbox" class="CHKsrm form-control" <c:if test="${row.CHKED eq 'Y'}">checked</c:if>></td>										</tr>
 									</c:forEach>
-										<c:forEach var="row" items="${listEtcroom}">
-										<tr>
-											<td><input type="hidden" class="Erid" value="${row.FROOM_ID}">${row.FROOM_TITLE}</td>
-											<td class = "EA" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "EB" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;"><input style="text-align: right;border:none" class="form-control Eday" type="number" min="0" max="30" value="0"/></td>
-											<td style="text-align: right;"><input style="text-align: right;border:none" class="form-control Etime" type="number" min="0" max="30" value="0"/></td>
-											<td class = "Esum" style="text-align: right;"><fmt:formatNumber value="0" pattern="#,###" /></td>
-										</tr>
-									</c:forEach>
-									
 									</tbody>
 								</table>
 								<div id="addFroom">
-								<table class="table table-bordered nowrap">
+								<table class="table table-bordered nowrap" name="addroomTable" id="addroomTable">
 								<colgroup>
 										<col width="10%" />
 										<col width="10%" />
@@ -403,10 +390,10 @@
 								<td class="text-center">냉장고사용</td>
 								<td class="text-center">일회용품사용</td>
 								<td class="text-center">마른안주사용</td>
-								<td class="text-center">입실유무</td>
+								<td class="text-center">입실여부</td>
 								<td class="text-center"></td>
 								</tr>
-								<tr>
+								<tr name="addroomlist">
 								<td></td>
 								<td>
 								<select  class="form-control" id="add1">
@@ -441,7 +428,7 @@
 								<option value="N">아니오</option>
 								</select>
 								</td>
-								<td><button class="form-control" onclick="addNewRoom()">추가</button></td>
+								<td><button class="btn btn-primary" onclick="addNewRoom()">추가</button></td>
 								</tr>
 								</table>
 								</div>
@@ -463,7 +450,60 @@
 <script>
 
 	function addNewRoom(){
-		
+		var addrData = {};
+		var CONid = $("#contid").val();
+		addrData.CONTRACT_ID = CONid;
+		addrData.FROOM_ID = $('#add1').val();
+		addrData.DAYS = $('#add2').val();
+		addrData.TIMES = $('#add3').val();
+		addrData.CLEAN_CHARGE_DAYS = $('#add4').val();
+		addrData.STORE_REFG_YN = $('#add5').val();
+		addrData.STORE_ITEM_YN = $('#add6').val();
+		addrData.STORE_SNACK_YN = $('#add7').val();
+		console.log(addrData);
+		$.ajax({
+			url : "${path}/cont/addRoom.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+			data : addrData, // HTTP 요청과 함께 서버로 보낼 데이터 
+			method : "POST", // HTTP 요청 메소드(GET, POST 등) 
+			dataType : "json" // 서버에서 보내줄 데이터의 타입 
+		}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
+		.done(function(data) {
+			if (data.code == 10001) {
+				var innerHtml = "";
+				innerHtml += '<tr name="addroomlist"> <td><input type="checkbox" class="chkAddroom form-control"></td>';
+				innerHtml += '<td  style="text-align:center">'+$("#add1 option:checked").text()+' </td>';
+				innerHtml += '<td style="text-align:right">'+$("#add2").val()+'</td>';
+				innerHtml += '<td style="text-align:right">'+$("#add3").val()+'</td>';
+				innerHtml += '<td style="text-align:right">'+$("#add4").val()+'</td>';
+				innerHtml += '<td>'+$("#add5 option:checked").text()+'</td>';
+				innerHtml += '<td>'+$("#add6 option:checked").text()+'</td>';
+				innerHtml += '<td>'+$("#add7 option:checked").text()+'</td>';
+				innerHtml += '<td>'+$("#add8 option:checked").text()+'</td>';
+				innerHtml += '<td><button onclick="fn_delRoom('+data.froomid+')">삭제</button></td>';
+				innerHtml += "</tr>";
+				$("#addroomTable > tbody > tr[name=addroomlist]:last").after(innerHtml);
+				$("#add2").val("0");
+				$("#add3").val("0");
+				$("#add4").val("0");
+				var srm = $("#add1").val();
+				$("#add1 option:checked").hide();
+				$("#add1").val("");
+				var $Aarr = $(".FRMID");
+				var $Barr = $(".CHKroom");
+				for (var i = 0; i < $Aarr.length; i++) {
+					if ($Aarr[i].value == srm){
+						$($Barr[i]).attr("checked",true);
+						$($Barr[i]).parent().parent().show();	
+					}
+				}
+				}else {
+				alert("저장 실패");
+				}
+		})
+		 // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
+		.fail(function(xhr, status, errorThrown) {
+			alert("통신 실패");
+		});
 	}
 
 	function fn_contUpdate(){
@@ -568,8 +608,8 @@
 		var contp2data = {};
 		contp2data.CONTRACT_ID = CONid;
 		contp2data.FROOM_ID = froomid;
-		contp2data.DAYS = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
-		contp2data.TIMES = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
+		contp2data.DAYS = Number($Aarr[i].value.replace(/[\D\s\._\-]+/g, ""))
+		contp2data.TIMES = Number($Barr[i].value.replace(/[\D\s\._\-]+/g, ""))
 		contp2data.RCHARGE = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
 		console.log(contp2data);
 		$.ajax({
@@ -678,8 +718,8 @@
 		for (var i = 0; i < $infoarr.length; i++) {
 			var t1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 			var t2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-			var t3 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-			var t4 = Number($Darr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var t3 = Number($Carr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			var t4 = Number($Darr[i].value.replace(/[\D\s\._\-]+/g, ""));
 			RMfee = (t1*t3)+(t2*t4);
 		$Earr[i].innerText = numberWithCommas(RMfee);
 		 }
@@ -753,6 +793,7 @@
 		var p1281val = "${detailCont.COFFIN_DATE}";
 		var p129val = "${detailCont.DEPART_DATE}";
 		var p1291val = "${detailCont.DEPART_DATE}";
+		var p101val =  "${detailCont.FROOM_ID}";
 		p102val = p102val.substr(0,10);
 		p103val = p103val.substr(0,10);
 		p114val = p114val.substr(0,10);
@@ -765,6 +806,7 @@
 		p1281val = p1281val.substr(11,17);
 		p129val = p129val.substr(0,10);
 		p1291val = p1291val.substr(11,17);
+		$("#contp1-01").val(p101val).prop("selected",true);
 		$("#contp1-09").val(p109val).prop("selected",true);
 		$("#contp1-13").val(p113val).prop("selected",true);
 		$("#contp1-16").val(p116val).prop("selected",true);
@@ -785,7 +827,6 @@
 	}
 	
 	$("#contp1-26, #contp1-29").change(function(){
-		alert("변경");
 		$("#contp1-02").val($("#contp1-26").val());
 		$("#contp1-03").val($("#contp1-29").val());
 	})
@@ -859,6 +900,17 @@
 	}	
 
 	$(document).ready(function(){
+		$('.timepicker').timepicker({
+		    timeFormat: 'HH:mm',
+		    interval: 10,
+		    minTime: '10',
+		    maxTime: '23:59',
+		    defaultTime: '09',
+		    startTime: '10:00',
+		    dynamic: false,
+		    dropdown: false,
+		    scrollbar: false
+		});
 		setComboP1();
 		chkRoomchange();
 	});

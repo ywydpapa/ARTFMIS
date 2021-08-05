@@ -225,4 +225,10 @@ public class ContDTO {
 	private Integer RENT_DAYS;
 	private Integer RENT_HOURS;
 	private Long RENT_AMOUNT;
+	private String STORE_SNACK_YN;
+	private String STORE_REFG_YN;
+	private String STORE_ITEM_YN;
+	private String CLEAN_CHARGE_DAYS;
+	private String ADD_YN;
+	private String attrib;
 }

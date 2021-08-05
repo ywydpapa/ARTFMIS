@@ -385,5 +385,17 @@ public class ContDAOImpl implements ContDAO {
 		return sqlSession.selectList("cont.settleContp8", dto);
 	}
 
+	@Override
+	public int insertAddroom(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("cont.addRoom", dto);
+	}
+
+	@Override
+	public int deleteAddroom(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("cont.delRoom", dto);
+	}
+
 	
 }

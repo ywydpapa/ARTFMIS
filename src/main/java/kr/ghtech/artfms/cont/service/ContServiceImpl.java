@@ -389,5 +389,17 @@ public class ContServiceImpl implements ContService {
 		return contDao.settleP8(dto);
 	}
 
+	@Override
+	public int insertAddroom(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.insertAddroom(dto);
+	}
+
+	@Override
+	public int deleteAddroom(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.deleteAddroom(dto);
+	}
+
 
 }

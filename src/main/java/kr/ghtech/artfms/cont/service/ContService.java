@@ -29,6 +29,8 @@ public interface ContService {
 	int insertCont9(ContDTO dto);
 	int insertYujok(ContDTO dto);
 	int updateYujok(ContDTO dto);
+	int insertAddroom(ContDTO dto);
+	int deleteAddroom(ContDTO dto);
 	int chkRoom(ContDTO dto);
 	Integer contCheck(ContDTO dto);
 	List<ContDTO> doscontlist121();
