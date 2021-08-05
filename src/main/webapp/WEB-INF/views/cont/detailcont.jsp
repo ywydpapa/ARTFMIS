@@ -935,6 +935,7 @@
 				}
 		}	
 
+	
 	function fn_delyujok(sangjuid){
 		var CONid = $("#contid").val();
 		if (CONid != ""){
