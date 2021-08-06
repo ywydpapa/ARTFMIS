@@ -1,6 +1,7 @@
 package kr.ghtech.artfms.cont;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -115,17 +116,17 @@ public class ContController {
 		return mav;
 	}
 	
-	@RequestMapping("reload6page.do")
+		@RequestMapping("reload6page.do")
 	public ModelAndView reload6p(@RequestParam("CONT_FROOM_ID") Integer CONT_FROOM_ID,ModelAndView mav) {
 		mav.addObject("doslist2", contService.doscontlist2(CONT_FROOM_ID));
-		mav.setViewName("cont/page6");
+		mav.setViewName("cont/callRestlist");
 		return mav;
 	}
 	
 	@RequestMapping("reload7page.do")
 	public ModelAndView reload7p(@RequestParam("CONT_FROOM_ID") Integer CONT_FROOM_ID,ModelAndView mav) {
 		mav.addObject("doslist3", contService.doscontlist3(CONT_FROOM_ID));
-		mav.setViewName("cont/page7");
+		mav.setViewName("cont/callStorelist");
 		return mav;
 	}
 	
@@ -172,6 +173,7 @@ public class ContController {
 		mav.addObject("CONTid", CONTRACT_ID);
 		mav.addObject("listroom", goodsService.listRoom(1));
 		mav.addObject("contCombo", contService.listContcombo());
+		mav.addObject("listFroom", contService.doslistFroom());
 		mav.addObject("listEtcroom", contService.doslistEtcroom());
 		mav.addObject("listFgoodsM", contService.doslistFgoodsM());
 		mav.addObject("listFgoodsM13", contService.doslistFgoodsMn(13));
@@ -191,7 +193,7 @@ public class ContController {
 		mav.addObject("regioncode", codeService.listconBcode("3"));
 		mav.addObject("frelation", codeService.listconBcode("5"));
 		mav.addObject("detailCont", contService.detailCont(CONTRACT_ID));
-		mav.addObject("contpage2", contService.reloadP2(CONTRACT_ID));
+		mav.addObject("contpage2fr", contService.reloadP2froom(CONTRACT_ID));
 		mav.addObject("contpage3", contService.reloadP3(CONTRACT_ID));
 		mav.addObject("contpage4m", contService.reloadP4m(CONTRACT_ID));
 		mav.addObject("contpage4t", contService.reloadP4t(CONTRACT_ID));

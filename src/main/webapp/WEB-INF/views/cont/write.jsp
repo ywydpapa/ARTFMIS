@@ -54,104 +54,100 @@
 											<tbody>
 												<tr align="center">
 													<td style="vertical-align: middle; text-align:center;background-color:#E0F8E6;border:1px solid:black;" rowspan="2">계약조회</td>
-													<td >조회호실</td>
+													<td class="cont-title" style="vertical-align: middle;">조회호실</td>
 													<td><select class="form-control" id="contp1-01">
-															<option value="">선택</option>
+															<option value="">새계약 작성</option>
 															<c:forEach var="contcombo" items="${contCombo}">
 																<option value="${contcombo.CONTRACT_ID}?CONT_FROOM_ID=${contcombo.FROOM_ID}">${contcombo.FROOM_TITLE}</option>
 															</c:forEach>
 													</select></td>
-													<td>기간</td>
+													<td class="cont-title" style="vertical-align: middle;">기간</td>
 													<td><input type="date" class="form-control" id="contp1-02" name="contp1-02" value="" disabled></td>
 													<td><input type="date" class="form-control"	id="contp1-03" name="contp1-03" value="" disabled></td>
 													<td></td>
 												</tr>
 												<tr align="center">
-													<td>상담/계약 조회</td>
+													<td class="cont-title" style="vertical-align: middle;">상담/계약 조회</td>
 													<td><input type="text" class="form-control"
 														id="contp1-05" name="contp1-05" value=""></td>
 													<td><button class="form-control" id="contp1-06">상담조회</button></td>
 													<td></td>
-													<td>행사업체</td>
+													<td class="cont-title" style="vertical-align: middle;">행사업체</td>
 													<td><input type="text" class="form-control" id="contp1-04"></td>
 												</tr>
 												<tr align="center">
 													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6;border:1px solid:black;" rowspan="5">고인</th>
-													<td>성명</td>
+													<td class="cont-title" style="vertical-align: middle;">성명</td>
 													<td><input type="text" 
 														class="form-control form-control-sm" id="contp1-07" tabindex="0"
 														name="contp1-07" value="" >
 													</td>
-													<td>주민등록번호</td>
+													<td class="cont-title" style="vertical-align: middle;">주민등록번호</td>
 													<td><input type="text" size="13" maxlength="14"
 														class="form-control form-control-sm jumin" id="contp1-08" tabindex="1"
 														name="contp1-08" value=""></td>
-													<td>성별</td>
+													<td class="cont-title" style="vertical-align: middle;">성별</td>
 													<td>
 														<select class="form-control form-control-sm" id="contp1-09">
-														<option value = "">선택</option>
 														<option value = "1">남</option>
 														<option value = "2">여</option>
 														</select>
 														</td>
 												</tr>
 												<tr align="center">
-													<td>주소</td>
+													<td class="cont-title" style="vertical-align: middle;">주소</td>
 													<td colspan="2"><input type="text" style="width:70%;float:left"
 														class="form-control form-control-sm" id="contp1-10"
 														name="contp1-10" value="" tabindex="7"><button class="form-control" onClick="execDaumPostcode();" style="width:25%;float:right">검색</button>
 													</td>
 													<td></td>
-													<td>본관</td>
+													<td class="cont-title" style="vertical-align: middle;">본관</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-11"
 														name="contp1-11" value=""></td>
 												</tr>
 												<tr align="center">
-													<td>상세주소</td>
+													<td class="cont-title" style="vertical-align: middle;">상세주소</td>
 													<td colspan="2"><input type="text"
 														class="form-control form-control-sm" id="contp1-12"
 														name="contp1-12" value="" >
 													</td>
 													<td></td>
-													<td>종교</td>
+													<td class="cont-title" style="vertical-align: middle;">종교</td>
 													<td><select class="form-control" id="contp1-13">
-															<option value="">선택</option>
 															<c:forEach var="regc" items="${regioncode}">
 																<option value="${regc.BCD_ID}">${regc.BCD_TITLE}</option>
 															</c:forEach>
 															</select></td>
 												</tr>
 												<tr align="center">
-													<td>사망일시</td>
+													<td class="cont-title" style="vertical-align: middle;">사망일시</td>
 													<td><input style="width:70%;float:left" type="date" class="form-control form-control-sm" id="contp1-14" name="contp1-14" value="" tabindex="2">
 													<input style="width:30%;float:right" type="text" required class="form-control form-control-sm timepicker" id="contp1-14-1" name="contp1-14-1" value="" tabindex="3">
 													</td>
-													<td>나이</td>
+													<td class="cont-title" style="vertical-align: middle;">나이</td>
 													<td><input type="number" style="text-align:right"
 														class="form-control form-control-sm" id="contp1-15" min="0" max="150"
 														name="contp1-15" value=""></td>
-													<td>사망종류</td>
+													<td class="cont-title" style="vertical-align: middle;">사망종류</td>
 													<td><select class="form-control" id="contp1-16">
-															<option value="">선택</option>
 															<option value="1">노환</option>
 															<option value="2">병사</option>
 													</select></td>
 												</tr>
 												<tr align="center">
-													<td>사망장소</td>
+													<td class="cont-title" style="vertical-align: middle;">사망장소</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-17"
 														name="contp1-17" value="" tabindex="4" >
 													</td>
-													<td>지역</td>
+													<td class="cont-title" style="vertical-align: middle;">지역</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-18"
 														name="contp1-18" value=""></td>
-													<td>화장/매장</td>
+													<td class="cont-title" style="vertical-align: middle;">화장/매장</td>
 													<td>
 													<select class="form-control" id="contp1-19">
-															<option value="">선택</option>
 															<option value="1">화장</option>
 															<option value="2">매장</option>
 															<option value="9">기타</option>
@@ -160,37 +156,36 @@
 												</tr>
 												<tr align="center">
 													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6" rowspan="3">유족</th>
-													<td>상주성명</td>
+													<td class="cont-title" style="vertical-align: middle;">상주성명</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-20"
 														name="contp1-20" value="" tabindex="5">
 													</td>
-													<td>주민등록번호</td>
+													<td class="cont-title" style="vertical-align: middle;">주민등록번호</td>
 													<td><input type="text" size="13" maxlength="14"
 														class="form-control form-control-sm jumin" id="contp1-21" 
 														name="contp1-21" value="" tabindex="6"></td>
-													<td>관계</td>
+													<td class="cont-title" style="vertical-align: middle;">관계</td>
 													<td><select class="form-control" id="contp1-22">
-															<option value="">선택</option>
 															<c:forEach var="regc" items="${frelation}">
 																<option value="${regc.BCD_ID}">${regc.BCD_TITLE}</option>
 															</c:forEach>
 													     </select></td>
 												</tr>
 												<tr align="center">
-													<td>주소</td>
+													<td class="cont-title" style="vertical-align: middle;">주소</td>
 													<td colspan="2"><input type="text" style="width:70%;float:left"
 														class="form-control form-control-sm" id="contp1-23"
 														name="contp1-23" value="" tabindex="7"><button class="form-control" onClick="execDaumPostcode2();" style="width:25%;float:right">검색</button>
 													</td>
 													<td></td>
-													<td>연락처</td>
+													<td class="cont-title" style="vertical-align: middle;">연락처</td>
 													<td><input type="text"
 														class="form-control form-control-sm phone" id="contp1-24" maxlength="13"
 														name="contp1-24" value="" tabindex="8"></td>
 												</tr>
 												<tr align="center">
-													<td>상세주소</td>
+													<td class="cont-title" style="vertical-align: middle;">상세주소</td>
 													<td colspan="2"><input type="text"
 														class="form-control form-control-sm" id="contp1-25"
 														name="contp1-25" value="" >
@@ -200,21 +195,21 @@
 												</tr>
 												<tr align="center">
 													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6" rowspan="2">일정</th>
-													<td>입실일시*</td>
+													<td class="cont-title" style="vertical-align: middle;">입실일시*</td>
 													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-26" name="contp1-26" value="" tabindex="9">
 													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-26-1" name="contp1-26-1" value="" tabindex="10" >
 													</td>
-													<td>안치일시</td>
+													<td class="cont-title" style="vertical-align: middle;">안치일시</td>
 													<td colspan="2"><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-27" name="contp1-27" value="" tabindex="11">
 													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-27-1" name="contp1-27-1" value="" tabindex="12">
 													</td>
 												</tr>
 												<tr align="center">
-													<td>입관일시</td>
+													<td class="cont-title" style="vertical-align: middle;">입관일시</td>
 													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-28" name="contp1-28" value="" tabindex="13" >
 													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-28-1 " name="contp1-28-1" value="" tabindex="14" >
 													</td>
-													<td>발인일시*</td>
+													<td class="cont-title" style="vertical-align: middle;">발인일시*</td>
 													<td colspan="2"><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-29" name="contp1-29" value="" tabindex="15">
 													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-29-1" name="contp1-29-1" value="" tabindex="16">
 													</td>
@@ -232,7 +227,6 @@
 													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6">유족정보</th>
 													<td>
 														<select class="form-control" id="contp1-31">
-															<option value="">선택</option>
 															<c:forEach var="regc" items="${frelation}">
 																<option value="${regc.BCD_ID}">${regc.BCD_TITLE}</option>
 															</c:forEach>
@@ -400,8 +394,8 @@
 									</tbody>
 								</table>
 								<div class="row">
-									<table class="table  table-bordered nowrap" id="ftTable">
-										<thead>
+									<table class="table table-bordered table-hover" id="ftTable">
+										<thead  style="background-color:#E0E6F8">
 											<tr>
 												<th scope="col" width="10%" align="center">구분</th>
 												<th scope="col" width="10%" align="center">선택여부</th>
@@ -444,9 +438,9 @@
 										</tr>
 									</tbody>
 								</table>
-									<table class="table table-bordered nowrap"
+									<table class="table table-bordered table-hover"
 										id="sFtable">
-										<thead>
+										<thead  style="background-color:#E0E6F8">
 											<tr>
 												<th scope="col" width="20%" style="text-align:center">구분</th>
 												<th scope="col" width="20%" style="text-align:center">금액</th>
@@ -495,7 +489,7 @@
 										</tr>
 									</tbody>
 								</table>
-								<table class="table  table-bordered nowrap MOD">
+								<table class="table  table-bordered table-hover MOD">
 									<colgroup>
 										<col width="10%" />
 										<col width="5%" />
@@ -511,8 +505,9 @@
 										<th colspan="3" style="text-align: center;">분류(현대식)</th>
 										<th colspan="5" style="text-align: center;">상세정보</th>
 									</tr>
-									<tr style="text-align: center;">
-										<th>종류</th>
+									<thead  style="text-align:center;background-color:#E0E6F8">
+									<tr  style="background-color:#E0E6F8; text-align: center;">
+										<th >종류</th>
 										<th><a onclick="chkallmod();">선</a><a onclick="chkunmod();">택</a></th>
 										<th>제품명</th>
 										<th>단위</th>
@@ -521,10 +516,11 @@
 										<th>주문수량</th>
 										<th>주문금액</th>
 									</tr>
+									</thead>
 									<tbody>
 											<tr>
-												<td>관</td>
-												<td><input type="checkbox" class="CHKmod form-control"/></td>
+												<td style="vertical-align:middle;text-align:center">관</td>
+												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control"/></td>
 												<td><select class="form-control m131 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM13}">
@@ -558,8 +554,8 @@
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td>도복,원삼</td>
-												<td><input type="checkbox" class="CHKmod form-control"/></td>
+												<td style="vertical-align:middle;text-align:center">도복,원삼</td>
+												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control"/></td>
 												<td><select class="form-control m141 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM14}">
@@ -594,8 +590,8 @@
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td>영정</td>
-												<td><input type="checkbox" class="CHKmod form-control"/></td>
+												<td style="vertical-align:middle;text-align:center">영정</td>
+												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control"/></td>
 												<td><select class="form-control m151 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM15}">
@@ -630,8 +626,8 @@
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td>수의</td>
-												<td><input type="checkbox" class="CHKmod form-control"/></td>
+												<td style="vertical-align:middle;text-align:center">수의</td>
+												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control"/></td>
 												<td><select class="form-control m161 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM16}">
@@ -666,8 +662,8 @@
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td>염베</td>
-												<td><input type="checkbox" class="CHKmod form-control"/></td>
+												<td style="vertical-align:middle;text-align:center">염베</td>
+												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control"/></td>
 												<td><select class="form-control m171 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM17}">
@@ -702,8 +698,8 @@
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td>천금지금</td>
-												<td><input type="checkbox" class="CHKmod form-control"/></td>
+												<td style="vertical-align:middle;text-align:center">천금지금</td>
+												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control"/></td>
 												<td><select class="form-control m181 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM18}">
@@ -739,8 +735,8 @@
 											</tr>
 										<c:forEach var="row" items="${listFgoodsM}">
 											<tr>
-												<td class="second">${row.CAT_TITLE}</td>
-												<td><input type="checkbox" class="CHKmod form-control"/></td>
+												<td  style="vertical-align:middle;text-align:center" class="second">${row.CAT_TITLE}</td>
+												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control"/></td>
 												<td>${row.GOODS_TITLE}</td>
 												<td>${row.GOODS_UNIT}<input type="hidden" class="FRID"
 													value="${frid}"><input type="hidden" class="GIDm"
@@ -760,7 +756,7 @@
 										</c:forEach>
 									</tbody>
 								</table>
-									<table class="table  table-bordered nowrap TRD">
+									<table class="table table-bordered table-hover TRD">
  									<colgroup>
 										<col width="10%" />
 										<col width="5%" />
@@ -776,20 +772,22 @@
 										<th colspan="3" style="text-align: center;">분류(전통식)</th>
 										<th colspan="5" style="text-align: center;">상세정보</th>
 									</tr>
+									<thead style="text-align:center;background-color:#E0E6F8">
 									<tr style="text-align: center;">
-										<th>종류</th>
-										<th><a onclick="chkalltrd();">선</a><a onclick="chkuntrd();">택</a></th>
-										<th>제품명</th>
-										<th>단위</th>
-										<th>개당단가</th>
-										<th>기본금액</th>
-										<th>주문수량</th>
-										<th>주문금액</th>
+										<th style="text-align: center;">종류</th>
+										<th style="text-align: center;"><a onclick="chkalltrd();">선</a><a onclick="chkuntrd();">택</a></th>
+										<th style="text-align: center;">제품명</th>
+										<th style="text-align: center;">단위</th>
+										<th style="text-align: center;">개당단가</th>
+										<th style="text-align: center;">기본금액</th>
+										<th style="text-align: center;">주문수량</th>
+										<th style="text-align: center;">주문금액</th>
 									</tr>
+									</thead>
 									<tbody>
 									<tr>
-												<td>관</td>
-												<td><input type="checkbox" class="CHKtrd form-control"/></td>
+												<td style="vertical-align:middle;text-align:center">관</td>
+												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t131 tgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT13}">
@@ -824,8 +822,8 @@
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td>도복,원삼</td>
-												<td><input type="checkbox" class="CHKtrd form-control"/></td>
+												<td style="vertical-align:middle;text-align:center">도복,원삼</td>
+												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t141 tgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT14}">
@@ -860,8 +858,8 @@
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td>영정</td>
-												<td><input type="checkbox" class="CHKtrd form-control"/></td>
+												<td style="vertical-align:middle;text-align:center">영정</td>
+												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t151 tgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT15}">
@@ -896,8 +894,8 @@
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td>수의</td>
-												<td><input type="checkbox" class="CHKtrd form-control"/></td>
+												<td style="vertical-align:middle;text-align:center">수의</td>
+												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t161 tgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT16}">
@@ -932,8 +930,8 @@
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td>염베</td>
-												<td><input type="checkbox" class="CHKtrd form-control"/></td>
+												<td style="vertical-align:middle;text-align:center">염베</td>
+												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t171 tgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT17}">
@@ -968,8 +966,8 @@
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td>천금지금</td>
-												<td><input type="checkbox" class="CHKtrd form-control"/></td>
+												<td style="vertical-align:middle;text-align:center">천금지금</td>
+												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t181 tgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT18}">
@@ -1005,23 +1003,23 @@
 											</tr>
 										<c:forEach var="row" items="${listFgoodsT}">
 											<tr>
-												<td class="second">${row.CAT_TITLE}</td>
-												<td><input type="checkbox" class="CHKtrd form-control"/></td>
-												<td>${row.GOODS_TITLE}</td>
-												<td>${row.GOODS_UNIT}<input type="hidden" class="FRID"
+												<td  style="vertical-align:middle;text-align:center" class="second">${row.CAT_TITLE}</td>
+												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
+												<td style="vertical-align:middle">${row.GOODS_TITLE}</td>
+												<td style="vertical-align:middle">${row.GOODS_UNIT}<input type="hidden" class="FRID"
 													value="${frid}"><input type="hidden" class="GIDt"
 													value="${row.GOODS_ID}"></td>
-												<td style="text-align: right;"><fmt:formatNumber
+												<td style="text-align: right;vertical-align:middle"><fmt:formatNumber
 														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td>
-												<td style="text-align: right;" class="infoG4"><fmt:formatNumber
+												<td style="text-align: right;vertical-align:middle" class="infoG4"><fmt:formatNumber
 														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></td>
-												<td style="text-align: right;"><input
+												<td style="text-align: right;vertical-align:middle"><input
 													class="from-control GG" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="<c:if test="${row.FNRS_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.FNRS_GOODS_INIT_QTY ne null }">${row.FNRS_GOODS_INIT_QTY}</c:if>"
 													required></td>
-												<td class="GH from-control" style="text-align: right;"></td>
+												<td class="GH from-control" style="text-align: right;vertical-align:middle"></td>
 											</tr>
 										</c:forEach>
 
@@ -1052,7 +1050,7 @@
 								</table>
 								<table class="table  table-bordered nowrap"
 									id="altarTable">
-									<thead>
+									<thead  style="text-align:center;background-color:#E0E6F8">
 										<tr>
 											<th scope="col" width="10%" style="text-align:center">제단구분</th>
 											<th scope="col" width="10%" style="text-align:center">선택여부</th>
@@ -1064,7 +1062,7 @@
 									<tbody>
 										<c:forEach var="row" items="${listAltar}" varStatus="status">
 											<tr id="contWrite_Altar_${row.ALTAR_ID}">
-												<td class="second">
+												<td style="vertical-align:middle" class="second">
 													<c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if>
 													<c:if test="${row.ALTAR_CAT eq '103'}">헌화</c:if>
 												</td>
@@ -1098,7 +1096,7 @@
 							</table>
 								<table class="table table-bordered nowrap"
 									id="sAltarTable">
-									<thead>
+									<thead style="text-align:center;background-color:#E0E6F8">
 										<tr>
 											<th scope="col" width="20%" align="center">제단구분</th>
 											<th scope="col" width="20%" align="center">제단명</th>
@@ -1140,14 +1138,13 @@
 								<tbody>
 									<tr>
 										<th scope="row">식당품목 선택</th>
-										<td align="right"></td>
+										<td align="right"><button class="btn btn-primary" onclick="callRestlist()" >호실별 식당품목 블러오기</button></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
-						<div class="table-responsive">
-							<table id="MESS01"
-								class="table  table-bordered nowrap">
+						<div class="table-responsive" id="calledRest">
+							<table id="MESS01" class="table table-bordered table-hover">
 								<colgroup>
 									<col width="10%"/>
 									<col width="5%" />
@@ -1158,11 +1155,11 @@
 									<col width="10%"/>
 									<col width="20%"/>
 								</colgroup>
-
 								<tr>
 									<th colspan="2" style="text-align: center;">분류(<a href="javascript:void(0);" onclick="chkallM();">V</a>/<a href="javascript:void(0);" onclick="chkunM();">X</a>)</th>
 									<th colspan="8" style="text-align: center;">상세정보</th>
 								</tr>
+								<thead style="text-align:center;background-color:#E0E6F8">
 								<tr style="text-align: center;">
 									<th>종류</th>
 									<th>선택</th>
@@ -1173,27 +1170,28 @@
 									<th>주문수량</th>
 									<th>주문금액</th>
 								</tr>
+								</thead>
 								<tbody>
-									<c:forEach var="row" items="${doslist2}">
+									<%-- <c:forEach var="row" items="${doslist2}">
 										<tr>
-											<td class="second">${row.CAT_TITLE}</td>
-											<td><input type="checkbox" class="CHKrest form-control" /></td>
-											<td><input type="hidden" class="FRID" value="${frid}"><input
+											<td style="vertical-align:middle;text-align:center" class="second">${row.CAT_TITLE}</td>
+											<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKrest form-control" /></td>
+											<td style="vertical-align:middle"><input type="hidden" class="FRID" value="${frid}"><input
 												type="hidden" class="RGID" value="${row.GOODS_ID}">${row.GOODS_TITLE}</td>
-											<td>${row.GOODS_UNIT}</td>
-											<td style="text-align: right;"><fmt:formatNumber
+											<td style="vertical-align:middle">${row.GOODS_UNIT}</td>
+											<td style="text-align: right;vertical-align:middle"><fmt:formatNumber
 													value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;" class="infoM"><fmt:formatNumber
+											<td style="text-align: right;vertical-align:middle" class="infoM"><fmt:formatNumber
 													value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;"><input
+											<td style="text-align: right;vertical-align:middle"><input
 												class="from-control MA" oninput="calculateM()"
 												style="border: none; text-align: right;" type="number"
 												min="0" max="100"
 												value="<c:if test="${row.MESSR_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.MESSR_GOODS_INIT_QTY ne null }">${row.MESSR_GOODS_INIT_QTY}</c:if>"
 												required></td>
-											<td class="MB" style="text-align: right;"></td>
+											<td class="MB" style="text-align: right;vertical-align:middle"></td>
 										</tr>
-									</c:forEach>
+									</c:forEach> --%>
 								</tbody>
 							</table>
 						</div>
@@ -1218,13 +1216,13 @@
 								<tbody>
 									<tr>
 										<th scope="row">매점품목 선택</th>
-										<td align="right"></td>
+										<td align="right"><button class="btn btn-primary" onclick="callStorelist()" >호실별 매점품목 블러오기</button></td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
-						<div class="table-responsive">
-							<table class="table  table-bordered nowrap">
+						<div class="table-responsive" id="calledStore">
+							<table class="table table-bordered table-hover">
 								<colgroup>
 									<col width="10%" />
 									<col width="5%" />
@@ -1239,36 +1237,38 @@
 									<th colspan="2" style="text-align: center;">분류(<a href="javascript:void(0);" onclick="chkallS();">V</a>/<a href="javascript:void(0);" onclick="chkunS();">X</a>)</th>
 									<th colspan="8" style="text-align: center;">상세정보</th>
 								</tr>
+								<thead style="text-align:center;background-color:#E0E6F8">
 								<tr style="text-align: center;">
-									<th>종류</th>
-									<th>선택</th>
-									<th>제품명</th>
-									<th>단위</th>
-									<th>개당단가</th>
-									<th>기본금액</th>
-									<th>초도주문수량</th>
-									<th>초도주문금액</th>
+									<th style="text-align: center;">종류</th>
+									<th style="text-align: center;">선택</th>
+									<th style="text-align: center;">제품명</th>
+									<th style="text-align: center;">단위</th>
+									<th style="text-align: center;">개당단가</th>
+									<th style="text-align: center;">기본금액</th>
+									<th style="text-align: center;">초도주문수량</th>
+									<th style="text-align: center;">초도주문금액</th>
 								</tr>
+								</thead>
 								<tbody>
-									<c:forEach var="row" items="${doslist3}">
+<%-- 									<c:forEach var="row" items="${doslist3}">
 										<tr>
-											<td class="second">${row.CAT_TITLE}</td>
-											<td><input type="checkbox" class="CHKstore form-control" /></td>
-											<td><input type="hidden" class="FRID" value="${frid}"><input
+											<td style="vertical-align:middle;text-align:center" class="second">${row.CAT_TITLE}</td>
+											<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKstore form-control" /></td>
+											<td style="vertical-align:middle"><input type="hidden" class="FRID" value="${frid}"><input
 												type="hidden" class="SGID" value="${row.GOODS_ID}">${row.GOODS_TITLE}</td>
 											<td>${row.GOODS_UNIT}</td>
-											<td style="text-align: right;"><fmt:formatNumber
+											<td style="text-align: right;vertical-align:middle"><fmt:formatNumber
 													value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;" class="infoS"><fmt:formatNumber
+											<td style="text-align: right;vertical-align:middle" class="infoS"><fmt:formatNumber
 													value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;"><input class="from-control SA" oninput="calculateS()"
+											<td style="text-align: right;vertical-align:middle"><input class="from-control SA" oninput="calculateS()"
 												style="border: none; text-align: right;" type="number"
 												min="0" max="100" value="<c:if test="${row.STORE_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.STORE_GOODS_INIT_QTY ne null }">${row.STORE_GOODS_INIT_QTY}</c:if>"
 												required></td>
-											<td class="SB" style="text-align: right;"></td>
+											<td class="SB" style="text-align: right;vertical-align:middle"></td>
 										</tr>
 									</c:forEach>
-								</tbody>
+ --%>								</tbody>
 							</table>
 							<table class="table  table-bordered nowrap">
 								<tr>
@@ -1296,7 +1296,7 @@
 										</tr>
 									</tbody>
 								</table>
-								<table class="table  table-bordered nowrap"
+								<table class="table table-bordered table-hover"
 									id="roomList">
 									<colgroup>
 										<col width="10%" />
@@ -1308,9 +1308,9 @@
 										<col width="10%" />
 										<col width="10%" />
 									</colgroup>
-									<thead>
+									<thead style="text-align:center;background-color:#E0E6F8">
 										<tr>
-											<th class=0"text-center">선택</th>
+											<th class="text-center">선택</th>
 											<th class="text-center">호실명</th>
 											<th class="text-center">사용유무</th>
 											<th class="text-center">일일사용료</th>
@@ -1345,7 +1345,7 @@
 										</tr>
 									</tbody>
 								</table>
-							<table class="table  table-bordered nowrap" id="sEtcroom">
+							<table class="table  table-bordered table-hover" id="sEtcroom">
 									<colgroup>
 										<col width="15%" />
 										<col width="15%" />
@@ -1357,7 +1357,7 @@
 										<col width="20%" />
 										<col width="10%" />
 									</colgroup>
-									<thead>
+									<thead style="text-align:center;background-color:#E0E6F8">
 										<tr>
 											<th class="text-center">호실명</th>
 											<th class="text-center">일일사용료</th>
@@ -1411,14 +1411,14 @@
 									<thead>
 										<tr>
 											<th class="text-center"></th>
-											<th class="text-center">안내문</th>
+											<th class="text-center"></th>
 											<th class="text-center"></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
 											<td></td>
-											<td><textarea class="form-control" rows="20">
+											<td><textarea class="form-control" rows="30">
 											${infocont.SETUP_CONTENTS}
 											</textarea></td>
 											<td></td>
@@ -2007,6 +2007,34 @@
 	});
 	// 마지막꺼까지 반영
 	$(firstElement).attr('rowspan', i);
+	
+	
+	function setSecond(){
+		var i = 1;
+		var str = undefined;
+		var element = $(".second");
+		var firstElement = undefined;
+		element.each(function() {
+			console.dir(i + $(this).text());
+			if (str == undefined && firstElement == undefined) {
+				str = $(".second")[0].innerText;
+				firstElement = $(".second")[0];
+				return;
+			}
+			if (str == $(this).text()) {
+				i++;
+				console.dir('--> ' + i + $(this).text());
+				$(this).remove();
+			} else {
+				$(firstElement).attr('rowspan', i);
+				i = 1;
+				str = $(this).text();
+				firstElement = $(this);
+			}
+		});
+		// 마지막꺼까지 반영
+		$(firstElement).attr('rowspan', i);
+}
 	
 	function calculateM() {
 		var $infoarr = $(".infoM");
@@ -2630,7 +2658,7 @@
 		innerHtml += '<tr> <th style="background-color:#E0F8E6"></th>';
 		innerHtml += '<td style="vertical-align:middle;text-align:center">'+$("#contp1-31 option:checked").text()+' </td>';
 		innerHtml += '<td>'+$("#contp1-32").val()+'</td>';
-		innerHtml += '<td><button onclick="fn_delyujok('+data.yjid+')">삭제</button></td>';
+		innerHtml += '<td><button class="btn btn-secondary" onclick="fn_delyujok('+data.yjid+')">삭제</button></td>';
 		innerHtml += "</tr>";
 		$("#basicTable > tbody > tr[class=yujoklist]:last").after(innerHtml);
 		var sitem = $("#contp1-31").val();
@@ -2655,7 +2683,7 @@
 			innerHtml += '<tr> <th style="background-color:#E0F8E6"></th>';
 			innerHtml += '<td style="vertical-align:middle;text-align:center">'+$("#contp1-31 option:checked").text()+' </td>';
 			innerHtml += '<td class="yujokname">'+$("#contp1-32").val()+'</td>';
-			innerHtml += '<td><button onclick="fn_delyujoklist(this,'+$("#contp1-31").val()+')">삭제</button><input type="hidden" class = "yujoklist" value="'+$("#contp1-31").val()+'"></td>';
+			innerHtml += '<td><button class="btn btn-secondary"onclick="fn_delyujoklist(this,'+$("#contp1-31").val()+')">삭제</button><input type="hidden" class = "yujoklist" value="'+$("#contp1-31").val()+'"></td>';
 			innerHtml += "</tr>";
 			$("#basicTable > tbody > tr[class=yujoklist]:last").after(innerHtml);
 			var sitem = $("#contp1-31").val();
@@ -2801,7 +2829,7 @@ function oneCheckalt2and3Not(chk){
 $("#contp1-01").change(function(){
 	var contno = $("#contp1-01").val();
 	var url = "${path}/cont/detail/"+contno;
-	fnSetPage(url);
+	fnSetcontdetail(url);
 })
 
 $('.phone').keydown(function(event) {
@@ -2832,6 +2860,10 @@ $('.jumin').keydown(function(event) {
 
 function jumin_check(){
 	var juminNo = $("#contp1-08").val();
+	if (juminNo == '')
+		{
+		return;
+		}
     var yy     = juminNo.substr(0,2);
     var mm     = juminNo.substr(2,2);
     var dd     = juminNo.substr(4,2);
@@ -2994,6 +3026,49 @@ function execDaumPostcode2() {
 	});
 }
 
+function callRestlist(){
+	var froomid = $("#frid").val();
+	if (froomid == null){
+		alert("선택된 호실이 없습니다.");
+		return;
+	}
+	var froomid = $('#frid').val();
+	var url ="${path}/cont/reload6page.do?CONT_FROOM_ID="+froomid;
+	console.log(url);
+	fnSetcont6page(url,froomid);
+}
+
+function callStorelist(){
+	var froomid = $("#frid").val();
+	if (froomid == null){
+		alert("선택된 호실이 없습니다.");
+		return;
+	}
+	var froomid = $('#frid').val();
+	var url ="${path}/cont/reload7page.do?CONT_FROOM_ID="+froomid;
+	console.log(url);
+	fnSetcont7page(url,froomid);
+}
+
+function fnSetcont6page(url, data){
+	    $("#calledRest").empty();
+		$("#calledRest").load(url, data, function(){
+			setTimeout(function(){
+			}, 500);
+		calculateM();
+		setSecond();
+	});
+}
+
+function fnSetcont7page(url, data){
+    $("#calledStore").empty();
+	$("#calledStore").load(url, data, function(){
+		setTimeout(function(){
+		}, 500);
+		calculateS();
+		setSecond();
+});
+}
 
 	$(document).ready(function(){
 		

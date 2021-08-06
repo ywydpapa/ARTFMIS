@@ -152,8 +152,8 @@ function fnSetPage(url, data){
               <c:if test = "${not fn:contains(role1, 'A0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/consult/listview.do')">상담 목록</a></c:if>
               <c:if test = "${not fn:contains(role1, 'B0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/contlist.do')">계약 목록 *</a></c:if>
               <c:if test = "${not fn:contains(role1, 'C0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/listview.do')">계약 등록*</a></c:if>
-              <c:if test = "${not fn:contains(role1, 'D0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/room/addorderlistall.do')">호실주문 목록</a></c:if>
-              <c:if test = "${not fn:contains(role1, 'E0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/settlistview.do')">정산 관리</a></c:if>
+              <a class="dropdown-item" href="javascript:fnSetPage('${path}/room/addorderlistall.do')">호실주문 목록</a>
+              <c:if test = "${not fn:contains(role1, 'D0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/settlistview.do')">정산 관리</a></c:if>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -161,11 +161,11 @@ function fnSetPage(url, data){
               물품등록/관리
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/goods/listgoods.do')">물품목록</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/goods/listroomview.do')">호실등록</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/goods/altarListview.do')">제단등록</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/goods/ftableListview.do')">제물상등록</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/goods/dosListview.do')">표준주문서등록</a>
+              <c:if test = "${not fn:contains(role1, 'E0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/goods/listgoods.do')">물품목록</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'F0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/goods/listroomview.do')">호실등록</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'G0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/goods/altarListview.do')">제단등록</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'H0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/goods/ftableListview.do')">제물상등록</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'I0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/goods/dosListview.do')">표준주문서등록</a></c:if>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -173,15 +173,15 @@ function fnSetPage(url, data){
               기타설정 관리
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/code/write.do')">코드설정</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/code/listview.do')">코드리스트뷰</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/code/bcodelistview.do')">베이스코드리스트뷰</a>
+              <c:if test = "${not fn:contains(role1, 'J0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/code/write.do')">코드설정</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'J0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/code/listview.do')">코드리스트뷰</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'J0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/code/bcodelistview.do')">베이스코드리스트뷰</a></c:if>
               <c:if test = "${not fn:contains(role1, 'K0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/listview.do')">상담문구설정</a></c:if>
               <c:if test = "${not fn:contains(role1, 'K0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/timelistview.do')">운영시간안내설정</a></c:if>
               <c:if test = "${not fn:contains(role1, 'K0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/setup/infolistview.do')">안내문설정</a></c:if>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/settleRule.do')">정산규칙설정</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/user/listview.do')">사용자 관련설정</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/fnr/listview.do')">장례식장 관련설정</a>
+              <c:if test = "${not fn:contains(role1, 'L0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/settleRule.do')">정산규칙설정</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'M0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/user/listview.do')">사용자 관련설정</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'M0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/fnr/listview.do')">장례식장 관련설정</a></c:if>
 			</div>
           </li>
            <li class="nav-item dropdown">

@@ -64,6 +64,9 @@ table#list01table th {text-align:center;}
 .main_box {width:100%; max-width:1200px; margin:0 auto; padding:15px;  text-align:center;}
 .m_i {width:90%; max-width:160px;}
 
+/* 계약작성 양식 */
+.cont-title {vertical-align: middle; text-align: center; background-color: #FBF8EF }
+
 
 
 

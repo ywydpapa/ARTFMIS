@@ -55,6 +55,7 @@ public interface ContService {
 	int updateSrule(ContDTO dto);
 	int insertSrule(ContDTO dto);
 	List<ContDTO> reloadP2(Integer CONTRACT_ID);
+	List<ContDTO> reloadP2froom(Integer CONTRACT_ID);
 	List<ContDTO> reloadP3(Integer CONTRACT_ID);
 	List<ContDTO> reloadP4m(Integer CONTRACT_ID);
 	List<ContDTO> reloadP4t(Integer CONTRACT_ID);

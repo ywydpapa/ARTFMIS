@@ -408,5 +408,11 @@ public class ContServiceImpl implements ContService {
 		return contDao.listAddroom(CONTRACT_ID);
 	}
 
+	@Override
+	public List<ContDTO> reloadP2froom(Integer CONTRACT_ID) {
+		// TODO Auto-generated method stub
+		return contDao.reloadP2froom(CONTRACT_ID);
+	}
+
 
 }
