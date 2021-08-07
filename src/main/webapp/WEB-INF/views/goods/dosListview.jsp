@@ -1,25 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="path" value ="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <style>
+.listrooms {
+	width: 100%;
+	height: 100%;
+	padding: 20px;
+	background: white;
+}
 
-  .listrooms {
-        width: 100%;
-        height: 100%;
-        padding : 20px;
-        background: white;
-      }
-        .detailroom {
-        width: 100%;
-        height: 100%;
-        padding : 20px;
-        background: white;
-      }
-      
+.detailroom {
+	width: 100%;
+	height: 100%;
+	padding: 20px;
+	background: white;
+}
 
-.h-container:after{ clear: both; display: block; content: '' }
+.h-container:after {
+	clear: both;
+	display: block;
+	content: ''
+}
+
 .h-container .item {
 	float: left;
 	width: 15%;
@@ -27,18 +31,17 @@
 	text-align: center;
 	border-right: 1px solid #ddd;
 }
+
 .h-container .item.cont {
 	float: left;
-	width: 78%;
+	width: 85%;
 	border-right: none;
 	text-align: center;
 }
 </style>
 <div class="listrooms">
-<div class="page-header2">
-</div>
-	<table class="table  table-bordered nowrap"
-		style="width: 50%;">
+	<div class="page-header2"></div>
+	<table class="table table-bordered nowrap" style="width: 50%;">
 		<colgroup>
 			<col width="10%" />
 			<col width="20%" />
@@ -52,12 +55,11 @@
 					<option value="3">매점</option>
 			</select></td>
 		</tr>
-</table>
-<hr>
+	</table>
+	<hr>
 	<div class="h-container">
-					<div class="item">
-			<table class="table  table-bordered nowrap"
-							id="roomTable">
+		<div class="item">
+			<table class="table table-bordered table-hover" id="roomTable">
 				<thead>
 					<tr>
 						<th scope="col" width="200" align="center">구분</th>
@@ -66,22 +68,20 @@
 				<tbody>
 					<c:forEach var="row" items="${list}">
 						<tr>
-							<td><a href="javascript:fnSetRoomdetail('${path}/goods/doslist${row.FROOM_ID}')">${row.FROOM_TITLE}</a></td>
+							<td><a
+								href="javascript:fnSetRoomdetail('${path}/goods/doslist${row.FROOM_ID}')">${row.FROOM_TITLE}</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 		<div class="item cont">
-		<div id="detailroom" class="detailroom">
-		
-		</div>
+			<div id="detailroom" class="detailroom"></div>
 		</div>
 	</div>
 
-			</div>
+</div>
 <script>
-
 
 $("#DOS_TYP").change(function(){
 	var a = $("#DOS_TYP option:selected").val();
@@ -108,8 +108,6 @@ function fnSetRoomlist(url, data){
 			}, 500);
 	});
 }
-
-
 
 function fnSetRoomdetail(url, data){
 	<!-- $.LoadingOverlay("show", true); -->
@@ -267,10 +265,25 @@ function tableDetailLoad(){
 	}
 }
 
+function chkun() {
+	var $Sarr = $(".CHK");
+	for (var i = 0; i < $Sarr.length; i++) {
+		$($Sarr[i]).prop("checked",false);
+	chkcal();
+	}
+}
+
+function chkall() {
+	var $Marr = $(".CHK");
+	for (var i = 0; i < $Marr.length; i++) {
+		$($Marr[i]).prop("checked",true);			
+	}
+	chkcal();
+}
+
 $(document).ready(function(){
 	tableDetailLoad();
 	var url ="${path}/code/listconBcodedos1";
 	tableListLoad(url);
 });
-
 </script>
