@@ -70,3 +70,34 @@
 <div class="btn_wr text-right mt-3">
 	<button class="btn btn-md btn-primary" onClick="fn_contInsertP7()">등록</button>
 </div>
+<script>
+$(document).ready(function(){
+	setSecond2();
+});
+
+var k = 1;
+var str2 = undefined;
+var element2 = $(".second2");
+var firstElement2 = undefined;
+element2.each(function() {
+	console.dir(i + $(this).text());
+	if (str2 == undefined && firstElement2 == undefined) {
+		str2 = $(".second2")[0].innerText;
+		firstElement2 = $(".second2")[0];
+		return;
+	}
+	if (str2 == $(this).text()) {
+		k++;
+		console.dir('--> ' + k + $(this).text());
+		$(this).remove();
+	} else {
+		$(firstElement2).attr('rowspan', k);
+		k = 1;
+		str2 = $(this).text();
+		firstElement2 = $(this);
+	}
+});
+// 마지막꺼까지 반영
+$(firstElement2).attr('rowspan', k);
+
+</script>
