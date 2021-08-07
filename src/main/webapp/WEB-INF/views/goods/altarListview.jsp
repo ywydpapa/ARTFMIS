@@ -40,16 +40,14 @@
 }
 </style>
 <div class="listrooms">
-		<table class="table table-bordered nowrap"
-		style="width: 50%;">
+		<table class="table table-bordered nowrap" style="width: 50%;">
 		<colgroup>
 			<col width="10%" />
 			<col width="20%" />
 		</colgroup>
 		<tr>
-			<td>제단구분</td>
-			<td><select name="ALTAR_TYP" id="ALTAR_TYP"
-				class="form-control form-control-sm">
+			<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">제단구분</td>
+			<td style="vertical-align:middle;text-align:center"><select name="ALTAR_TYP" id="ALTAR_TYP" class="form-control form-control-sm">
 				<c:forEach var ="row" items="${clist}">
 				<option value="${row.BCD_ID}">${row.BCD_TITLE}</option>				
 				</c:forEach>
@@ -59,23 +57,23 @@
 <hr>
 	<div class="h-container">
 		<div class="item">
-			<table class="table table-striped table-bordered nowrap"
+			<table class="table table-bordered table-hover"
 				id="roomTable">
 				<thead>
 					<tr>
-						<th scope="col" width="100" align="center">제단구분</th>
-						<th scope="col" width="200" align="center">제단명</th>
-						<th scope="col" width="100" align="center">금액</th>
-						<th scope="col" width="100" align="center">사용여부</th>
+						<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">제단구분</th>
+						<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">제단명</th>
+						<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">금액</th>
+						<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">사용여부</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="row" items="${list}">
 						<tr>
-							<td class="first"><c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if><c:if test="${row.ALTAR_CAT eq '103'}">헌화</c:if> </td>
-							<td><a href="javascript:fnSetAltardetail('${path}/goods/detailAltar/${row.ALTAR_ID}')">${row.ALTAR_TITLE}</a></td>
-							<td style="text-align: right"><fmt:formatNumber value="${row.ALTAR_AMOUNT}" pattern="#,###" /></td>
-							<td><c:if test="${row.ALTAR_USE_YN eq 'Y'}">사용</c:if><c:if test="${row.ALTAR_USE_YN eq 'N'}">미사용</c:if></td>
+							<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0" class="first"><c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if><c:if test="${row.ALTAR_CAT eq '103'}">헌화</c:if> </td>
+							<td style="vertical-align:middle;text-align:center"><a href="javascript:fnSetAltardetail('${path}/goods/detailAltar/${row.ALTAR_ID}')">${row.ALTAR_TITLE}</a></td>
+							<td style="vertical-align:middle;text-align:right"><fmt:formatNumber value="${row.ALTAR_AMOUNT}" pattern="#,###" /></td>
+							<td style="vertical-align:middle;text-align:center"><c:if test="${row.ALTAR_USE_YN eq 'Y'}">사용</c:if><c:if test="${row.ALTAR_USE_YN eq 'N'}">미사용</c:if></td>
 						</tr>
 					</c:forEach>
 				</tbody>

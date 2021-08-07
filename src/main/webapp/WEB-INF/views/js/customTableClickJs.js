@@ -38,3 +38,18 @@ $(document).on('click','#goodslist > tbody > tr > td:not(.first):nth-child(odd)'
     let link = href.substring(linkFirst+2, linkLast-1);
     fn_Reload04(link);
 });
+
+$(document).on('click','#roomTable > tbody > tr > td:not(.first):nth-child(odd)',function () {
+    let td0 = $(this);
+    let td1 = $(this).next();
+    let tbody = td0.closest('tbody');
+    tbody.find('td').removeClass('active');
+    td0.addClass('active');
+    td1.addClass('active');
+
+    let href = td0.find('a').attr('href');
+    let linkFirst = href.indexOf('(');
+    let linkLast = href.indexOf(')');
+    let link = href.substring(linkFirst+2, linkLast-1);
+    fnSetRoomdetail(link);
+});

@@ -26,92 +26,90 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<td scope="col" width="200"><input type="hidden"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0"><input type="hidden"
 									id="GOODS_ID" name="GOODS_ID" value="${dto.GOODS_ID}" />품목 구분</td>
-								<td scope="col" width="200"><input class="form-control"
+								<td style="vertical-align:middle" colspan="2"><input class="form-control"
 									type="text" value="" id="GOODS_01TEXT" readonly></td>
-								<td scope="col" width="200"><input type="text"
+								<td style="vertical-align:middle" colspan="2"><input type="text"
 									class="form-control" value="" id="GOODS_02TEXT" readonly>
 								</td>
-								<td scope="col" width="200">
+								<td style="vertical-align:middle;text-align:center">
 									<button class="btn btn-md btn-success" value="추가"
 										onClick="fn_setinsertmode()">새항목 추가</button>
 								</td>
-								<td></td>
-								<td></td>
 							</tr>
 							<tr>
-								<td>품명</td>
-								<td colspan="5"><input type="text" class="form-control"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">품명</td>
+								<td style="vertical-align:middle" colspan="5"><input type="text" class="form-control"
 									required name="GOODS_TITLE" id="GOODS_TITLE"
 									value="${dto.GOODS_TITLE}" /></td>
 							</tr>
 							<tr>
-								<td>규격</td>
-								<td colspan="5"><input type="text" class="form-control"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">규격</td>
+								<td style="vertical-align:middle" colspan="5"><input type="text" class="form-control"
 									required name="GOODS_SPEC" id="GOODS_SPEC"
 									value="${dto.GOODS_SPEC}" /></td>
 							</tr>
 							<tr>
-								<td>단위당수량</td>
-								<td><input type="number" class="form-control CHK"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">단위당수량</td>
+								<td style="vertical-align:middle"><input type="number" class="form-control CHKcal"
 									style="text-align: right;" required name="GOODS_SALE_UNIT"
 									id="GOODS_SALE_UNIT" value="${dto.GOODS_SALE_UNIT}" /></td>
-								<td>단위수량단위</td>
-								<td><input type="text" class="form-control" required
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">단위수량단위</td>
+								<td style="vertical-align:middle"><input type="text" class="form-control" required
 									name="GOODS_UNIT_QTY" id="GOODS_UNIT_QTY"
 									value="${dto.GOODS_UNIT_QTY}" /></td>
-								<td>개당가격</td>
-								<td><input type="text" class="form-control CHK"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">개당가격</td>
+								<td style="vertical-align:middle"><input type="text" class="form-control CHKcal"
 									style="text-align: right;" required name="GOODS_NET_PRICE"
 									id="GOODS_NET_PRICE" value="<fmt:formatNumber value="${dto.GOODS_NET_PRICE}" pattern="#,###"/>" /></td>
 							</tr>
 							<tr>
-								<td>판매단위</td>
-								<td><input type="text" class="form-control" required
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">판매단위</td>
+								<td style="vertical-align:middle"><input type="text" class="form-control" required
 									name="GOODS_UNIT" id="GOODS_UNIT" value="${dto.GOODS_UNIT}" /></td>
-								<td>판매금액</td>
-								<td colspan="3"><input type="text" class="form-control"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">판매금액</td>
+								<td style="vertical-align:middle" colspan="3"><input type="text" class="form-control"
 									style="text-align: right;" required name="GOODS_SALE_PRICE"
 									id="GOODS_SALE_PRICE" value="<fmt:formatNumber value="${dto.GOODS_SALE_PRICE}" pattern="#,###"/>" readonly /></td>
 							</tr>
 							<tr>
-								<td>전통/현대식</td>
-								<td><select class="form-control form-control-sm"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">전통/현대식</td>
+								<td style="vertical-align:middle"><select class="form-control form-control-sm"
 									id="MODERN_YN" name="MODERN_YN">
 										<option value="121">현대식</option>
 										<option value="122">전통식</option>
 										<option value="123">전통/현대 공용</option>
 								</select></td>
-								<td>보유부서</td>
-								<td><select class="form-control form-control-sm"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">보유부서</td>
+								<td style="vertical-align:middle"><select class="form-control form-control-sm"
 									id="REG_DEPT" name="REG_DEPT">
 										<c:forEach var="listdept" items="${listdept}">
 											<option value="${listdept.BCD_ID}">${listdept.BCD_TITLE}</option>
 										</c:forEach>
 								</select></td>
-								<td>반품유무</td>
-								<td><select class="form-control form-control-sm"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">반품유무</td>
+								<td style="vertical-align:middle"><select class="form-control form-control-sm"
 									id="GOODS_RETURN_YN" name="GOODS_RETURN_YN">
 										<option value="Y">반품가능</option>
 										<option value="N">반품불가</option>
 								</select></td>
 							</tr>
 							<tr>
-								<td>초도주문 여부</td>
-								<td><select class="form-control form-control-sm"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">초도주문 여부</td>
+								<td style="vertical-align:middle"><select class="form-control form-control-sm"
 									id="INIT_GOODS_YN" name="INIT_GOODS_YN">
 										<option value="Y">예</option>
 										<option value="N">아니오</option>
 								</select></td>
-								<td>초도주문 자동선택</td>
-								<td><select class="form-control form-control-sm"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">초도주문 자동선택</td>
+								<td style="vertical-align:middle"><select class="form-control form-control-sm"
 									id="AUTO_INIT_ORD_YN" name="AUTO_INIT_ORD_YN">
 										<option value="Y">예</option>
 										<option value="N">아니오</option>
 								</select></td>
-								<td>추가주문가능 여부</td>
-								<td><select class="form-control form-control-sm"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">추가주문가능 여부</td>
+								<td style="vertical-align:middle"><select class="form-control form-control-sm"
 									id="ADD_ORD_YN" name="ADD_ORD_YN">
 										<option value="Y">예</option>
 										<option value="N">아니오</option>
@@ -119,40 +117,40 @@
 
 							</tr>
 							<tr>
-								<td>판매방식</td>
-								<td><select class="form-control form-control-sm"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">판매방식</td>
+								<td style="vertical-align:middle"><select class="form-control form-control-sm"
 									id="ORD_TYPE" name="ORD_TYPE">
 										<option value="OR1">판매</option>
 										<option value="OR2">임대</option>
 								</select></td>
-								<td>외부업체 유무</td>
-								<td><select class="form-control form-control-sm"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">외부업체 유무</td>
+								<td style="vertical-align:middle"><select class="form-control form-control-sm"
 									id="GOODS_3RDPTY_YN" name="GOODS_3RDPTY_YN">
 										<option value="Y">내부</option>
 										<option value="N">외부</option>
 								</select></td>
-								<td>주문프로그램표시 여부</td>
-								<td><select class="form-control form-control-sm"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">주문프로그램표시</td>
+								<td style="vertical-align:middle"><select class="form-control form-control-sm"
 									id="ORD_PROG_YN" name="ORD_PROG_YN">
 										<option value="Y">예</option>
 										<option value="N">아니오</option>
 								</select></td>
 							</tr>
 							<tr>
-								<td>정렬순서</td>
-								<td><input type="number" class="form-control"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">정렬순서</td>
+								<td style="vertical-align:middle"><input type="number" class="form-control"
 									style="text-align: right;" step="1" min = "0" onchange="this.value = Math.floor(Math.max(this.value,0))" name="GOODS_ORDER" id="GOODS_ORDER"
 									value="${dto.GOODS_ORDER}" /></td>
-								<td>사용유무</td>
-								<td><select class="form-control form-control-sm"
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">사용유무</td>
+								<td style="vertical-align:middle"><select class="form-control form-control-sm"
 									id="USE_YN" name="USE_YN" required>
 										<option value="Y">사용</option>
 										<option value="N">미사용</option>
 								</select></td>
 							</tr>
 							<tr>
-								<td>상품설명</td>
-								<td colspan="5"><textarea id="GOODS_REMARK" required
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">상품설명</td>
+								<td style="vertical-align:middle" colspan="5"><textarea id="GOODS_REMARK" required
 										name="GOODS_REMARK" rows="4" class="form-control">${dto.GOODS_REMARK}</textarea></td>
 							</tr>
 						</tbody>
@@ -317,7 +315,7 @@ function numberWitioutCommas(x) {
 			$("#GOODS_NET_PRICE").val(numberWithCommas(sum1));
 	  }
 	  
-	  $(".CHK").change(function(){
+	  $(".CHKcal").change(function(){
 			recal();  
 	  });
 	
