@@ -20,25 +20,25 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th style="text-align:center" scope="row">구분명<input type="hidden" id="setupId" value="${list.SETUP_ID}"></th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">구분명<input type="hidden" id="setupId" value="${list.SETUP_ID}"></th>
 								<td colspan="3"><input type="text" class="form-control" id="setupTitle" value="${list.SETUP_TITLE}" placeholder=""></td>
 									<td>
 									<button style="text-align:right;" class="btn btn-md btn-success" value="추가" onClick="fn_setNewTime()">새항목 추가</button>
 									</td>
 							</tr>
 							<tr>
-							<th style="text-align:center" scope="row">운영시작시간</th>
+							<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">운영시작시간</th>
 							<td colspan="1"><input type="text" class="timepicker form-control" value="${list.START_TIME}" id="stime"></td>
-							<th style="text-align:center" scope="row">운영종료시간</th>
+							<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">운영종료시간</th>
 							<td colspan="2"><input type="text" class="timepicker form-control" value="${list.END_TIME}" id="etime"></td>
 							</tr>
 							<tr>
-								<th style="text-align:center" scope="row">문구설명</th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">문구설명</th>
 								<td colspan="4"><textarea id="setupDesc"
 										rows="8" class="form-control">${list.SETUP_DESC}</textarea></td>
 							</tr>
 							<tr>
-								<th style="text-align:center" scope="row">사용여부</th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">사용여부</th>
 								<td><select name="useYn" id="useYn"
 									class="form-control form-control-sm">
 										<option value="Y" <c:if test="${list.USE_YN eq 'Y'}">selected</c:if>>사용</option>
