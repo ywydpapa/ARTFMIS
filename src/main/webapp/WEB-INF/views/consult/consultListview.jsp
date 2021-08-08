@@ -14,21 +14,15 @@
 .detailcont {
 	width: 100%;
 	height: 100%;
-	padding: 20px;
+	padding: 10px;
 	background: white;
 }
 
 .defaultcont {
 	width: 100%;
 	height: 100%;
-	padding: 20px;
+	padding: 10px;
 	background: white;
-}
-
-.h-container:after {
-	clear: both;
-	display: block;
-	content: ''
 }
 
 .h-container .item {
@@ -49,7 +43,7 @@
 
 .h-container .item.cont {
 	float: left;
-	width: 38%;
+	width: 40%;
 	border-right: none;
 	text-align: center;
 }
@@ -81,7 +75,7 @@
 <hr>
 	<div class="h-container">
 		<div class="item">
-		<table class="table table-bordered nowrap listcont" id="listTable">
+		<table class="table table-bordered table-hover" id="consultlistTable">
 				<thead>
 					<tr>
 						<th scope="col" width="200" align="center"></th>
@@ -89,22 +83,22 @@
 				</thead>
 				<tbody>
 						<tr>
-							<td><a href="javascript:tab01active()">[1] 상담기본</a></td>
+							<td><a href="javascript:tab01Cactive()">[1] 상담기본</a></td>
 						</tr>
 						<tr>
-							<td><a href="javascript:tab02active()">[2] 분향실</a></td>
+							<td><a href="javascript:tab02Cactive()">[2] 분향실</a></td>
 						</tr>
 						<tr>
-							<td><a href="javascript:tab03active()">[3] 제물상</a></td>
+							<td><a href="javascript:tab03Cactive()">[3] 제물상</a></td>
 						</tr>
 						<tr>
-							<td><a href="javascript:tab04active()">[4] 장의용품</a></td>
+							<td><a href="javascript:tab04Cactive()">[4] 장의용품</a></td>
 						</tr>
 						<tr>
-							<td><a href="javascript:tab05active()">[5] 제단</a></td>
+							<td><a href="javascript:tab05Cactive()">[5] 제단</a></td>
 						</tr>
 						<tr>
-							<td><a href="javascript:tab08active()">[6] 기타시설</a></td>
+							<td><a href="javascript:tab08Cactive()">[6] 기타시설</a></td>
 						</tr>
 				</tbody>
 			</table>		</div>
@@ -125,6 +119,7 @@ function fn_ReloadConsult(){
 	fnSetConsultdefault(url2);
 	fnSetConsultdetail(url);
 }
+
 function fnSetConsultdetail(url, data){
 	<!-- $.LoadingOverlay("show", true); -->
 	    $("#detailTable").empty();
@@ -178,30 +173,37 @@ function fnSetConsultdefault(url, data){
 	    }
 	    return zero + n;
 	}
-/* 	function tab01active(){
+	
+ 	function tab01Cactive(){
 		$('.tab-pane').removeClass('active');
 		$('#tab01').addClass('active');
 	}
-	function tab02active(){
+ 	
+	function tab02Cactive(){
 		$('.tab-pane').removeClass('active');
 		$('#tab02').addClass('active');
 	}
-	function tab03active(){
+	
+	function tab03Cactive(){
 		$('.tab-pane').removeClass('active');
 		$('#tab03').addClass('active');
 	}
-	function tab04active(){
+	
+	function tab04Cactive(){
 		$('.tab-pane').removeClass('active');
 		$('#tab04').addClass('active');
 	}
-	function tab05active(){
+	
+	function tab05Cactive(){
 		$('.tab-pane').removeClass('active');
 		$('#tab05').addClass('active');
 	}
-	function tab08active(){
+	
+	function tab08Cactive(){
 		$('.tab-pane').removeClass('active');
 		$('#tab08').addClass('active');
-	} */
+	}
+	
 	function fn_UpdconsultP1(){
 		var consultData = {};
 		consultData.PATI_NAME = $("#patiName").val();
@@ -230,4 +232,5 @@ function fnSetConsultdefault(url, data){
 				});
 		
 	}
+	
 </script>

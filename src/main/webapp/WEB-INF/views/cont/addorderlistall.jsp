@@ -12,17 +12,17 @@
 }
 </style>
 <div class="card-block table-border-style swcCard">
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<table class="table table-bordered nowrap">
 								<tr>
-									<th scope="row">식당품목 주문현황</th>
-									<td style="text-align: right;"><span>주문 총액 :</span><input
+									<th style="text-align: left; background-color:#EFFBF8"scope="row">식당품목 주문현황</th>
+									<td style="text-align: right; background-color:#EFFBF8"><span>주문 총액 :</span><input
 										type="text" id="messgrandtotal"
-										style="text-align: right; border: none;" readonly></td>
+										style="text-align: right; border: none; background-color:#EFFBF8" readonly></td>
 								</tr>
 							</table>
 						</div>
-						<div class="table-responsive">
+						<div class="table-responsive"style="overflow-x:hidden">
 							<table id="MESS01"
 								class="table table-bordered nowrap">
 								<colgroup>
@@ -41,19 +41,19 @@
 									<th colspan="8" style="text-align: center;">상세정보</th>
 								</tr>
 								<tr style="text-align: center;">
-									<th>종류</th>
-									<th>제품명</th>
-									<th>주문호실</th>
-									<th>단가</th>
-									<th>주문수량</th>
-									<th>주문금액</th>
-									<th>주문일자</th>
-									<th>수령일자</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">종류</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">제품명</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문호실</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">단가</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문수량</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문금액</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문일자</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">수령일자</th>
 								</tr>
 								<tbody>
 									<c:forEach var="row" items="${restordall}">
 										<tr>
-											<td class="first">${row.CAT_TITLE}</td>
+											<td style="vertical-align:middle; text-align: center; background-color:#EFFBF8"  class="first">${row.CAT_TITLE}</td>
 											<td><input type="hidden" class="GID" value="${row.REST_ORD_ID}"/>${row.GOODS_TITLE}</td>
 											<td>${row.FROOM_TITLE}</td>
 											<td style="text-align: right;" class="infoM"><fmt:formatNumber
@@ -75,7 +75,7 @@
 						<div class="btn_wr text-right mt-3">
 						</div>
 <br>
-						<div class="table-responsive">
+						<div class="table-responsive"style="overflow-x:hidden">
 							<table class="table table-bordered nowrap">
 								<tr>
 									<th scope="row">매점품목 주문현황</th>
@@ -85,7 +85,7 @@
 								</tr>
 							</table>
 						</div>
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<table id="MESS01"
 								class="table table-bordered nowrap">
 								<colgroup>
@@ -104,19 +104,19 @@
 									<th colspan="8" style="text-align: center;">상세정보</th>
 								</tr>
 								<tr style="text-align: center;">
-									<th>종류</th>
-									<th>제품명</th>
-									<th>주문호실</th>
-									<th>단가</th>
-									<th>주문수량</th>
-									<th>주문금액</th>
-									<th>주문일자</th>
-									<th>수령일자</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">종류</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">제품명</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문호실</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">단가</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문수량</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문금액</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문일자</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">수령일자</th>
 								</tr>
 								<tbody>
 									<c:forEach var="row" items="${storeordall}">
 										<tr>
-											<td class="first">${row.CAT_TITLE}</td>
+											<td style="vertical-align:middle; text-align: center; background-color:#EFFBF8"  class="first">${row.CAT_TITLE}</td>
 											<td><input type="hidden" class="GID" value="${row.STORE_ORD_ID}"/>${row.GOODS_TITLE}</td>
 											<td>${row.FROOM_TITLE}</td>
 											<td style="text-align: right;" class="infoS"><fmt:formatNumber

@@ -62,3 +62,11 @@ $(document).on('click','#listTable > tbody > tr',function () {
     let link = href.substring(linkFirst+2, linkLast-1);
     fnSetupdetail(link);
 });
+
+$(document).on('click','#consultlistTable > tbody > tr',function () {
+    let tbody = $(this).parent();
+    tbody.find('tr').removeClass('active');
+    $(this).addClass('active');
+
+});
+

@@ -1355,7 +1355,6 @@
 										<col width="5%" />
 										<col width="5%" />
 										<col width="20%" />
-										<col width="10%" />
 									</colgroup>
 									<thead style="text-align:center;background-color:#E0E6F8">
 										<tr>

@@ -27,9 +27,8 @@
 		<div class="table-responsive">
 				<table class="table  table-bordered nowrap">
 				<tr>
-				<td><input id="frid" type="hidden" value = "${frid}"><input id="contid" type="hidden" value = "${CONTid}">
+				<td style="background-color:#ECE0F8"><input id="frid" type="hidden" value = "${frid}"><input id="contid" type="hidden" value = "${CONTid}">
 				<input id="rmchk" type="hidden" value = "OK"><span>계약번호 :  </span>${CONTid}</td>
-				<td></td>
 				</tr>
 				</table>
 				</div>
@@ -59,20 +58,20 @@
 											</colgroup>
 											<tbody>
 												<tr >
-													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3" rowspan="2">계약기간</th>
-													<td class="text-center">계약호실</td>
+													<th style ="vertical-align:middle;text-align:center;background-color:#CEF6E3" rowspan="2">계약기간</th>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">계약호실</td>
 													<td><select class="form-control" id="contp1-01" disabled>
 															<c:forEach var="listroom" items="${listroom}">
 																<option value="${listroom.FROOM_ID}">${listroom.FROOM_TITLE}</option>
 															</c:forEach>
 													</select></td>
-													<td class="text-center">기간</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">기간</td>
 													<td><input type="date" class="form-control" id="contp1-02" name="contp1-02" value="${STDate}" disabled></td>
 													<td><input type="date" class="form-control" id="contp1-03" name="contp1-03" value="${ENDate}" disabled></td>
 													<td></td>
 												</tr>
 												<tr >
-													<td class="text-center">행사업체</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">행사업체</td>
 													<td><input type="text" class="form-control" id="contp1-04"></td>
 													<td></td>													
 													<td></td>
@@ -81,78 +80,75 @@
 												</tr>
 												<tr >
 													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3" rowspan="5">고인</th>
-													<td class="text-center">성명</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">성명</td>
 													<td><input type="text" 
 														class="form-control form-control-sm" id="contp1-07"
 														name="contp1-07" value="${detailCont.DPERSON_NAME}" >
 													</td>
-													<td class="text-center">주민등록번호</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">주민등록번호</td>
 													<td><input type="text" size="13" maxlength="15"
 														class="form-control form-control-sm jumin" id="contp1-08"
 														name="contp1-08" value="${detailCont.DPERSON_JMNO}"></td>
-													<td class="text-center">성별</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">성별</td>
 													<td>
 														<select class="form-control" id="contp1-09">
-														<option value = "">선택</option>
 														<option value = "1">남</option>
 														<option value = "2">여</option>
 														</select>
 														</td>
 												</tr>
 												<tr >
-													<td class="text-center">주소</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">주소</td>
 													<td colspan="2"><input type="text"
 														class="form-control form-control-sm" id="contp1-10"
 														name="contp1-10" value="${detailCont.DPERSON_ADDR1}" >
 													</td>
 													<td></td>
-													<td class="text-center">본관</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">본관</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-11"
 														name="contp1-11" value=""></td>
 												</tr>
 												<tr >
-													<td class="text-center">상세주소</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">상세주소</td>
 													<td colspan="2"><input type="text"
 														class="form-control form-control-sm" id="contp1-12"
 														name="contp1-12" value="${detailCont.DPERSON_ADDR2}" >
 													</td>
 													<td></td>
-													<td class="text-center">종교</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">종교</td>
 													<td><select class="form-control" id="contp1-13">
-															<option value="">선택</option>
 															<c:forEach var="regc" items="${regioncode}">
 																<option value="${regc.BCD_ID}">${regc.BCD_TITLE}</option>
 															</c:forEach>
 															</select></td>
 												</tr>
 												<tr >
-													<td class="text-center">사망일시</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">사망일시</td>
 													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-14"
 														name="contp1-14" value=""><input type="text" class="form-control form-control-sm timepicker"  style="width:25%;float:right" id="contp1-14-1"
 														name="contp1-14-1" value=""></td>
-													<td class="text-center">나이</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">나이</td>
 													<td><input type="number" style="text-align:right;"
 														class="form-control form-control-sm" id="contp1-15" min="0" max="150"
 														name="contp1-15" value="${detailCont.DPERSON_AGE}"></td>
-													<td class="text-center">사망종류</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">사망종류</td>
 													<td><select class="form-control" id="contp1-16">
-															<option value="">선택</option>
 															<option value="1">노환</option>
 															<option value="2">병사</option>
 													</select></td>
 												</tr>
 												<tr >
-													<td class="text-center">사망장소</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">사망장소</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-17"
 														name="contp1-17" value="${detailCont.DPLACE}" >
 													</td>
-													<td class="text-center">지역</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">지역</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-18"
 														name="contp1-18" value=""></td>
-													<td class="text-center">화장/매장</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">화장/매장</td>
 													<td>
 													<select class="form-control" id="contp1-19">
 															<option value="1">화장</option>
@@ -163,16 +159,16 @@
 												</tr>
 												<tr >
 													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3" rowspan="3">유족</th>
-													<td class="text-center">상주성명</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">상주성명</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-20"
 														name="contp1-20" value="${detailCont.SANGJU_NAME}" >
 													</td>
-													<td class="text-center">주민등록번호</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">주민등록번호</td>
 													<td><input type="text" size="13" maxlength="15"
 														class="form-control form-control-sm jumin" id="contp1-21" 
 														name="contp1-21" value="${detailCont.SANGJU_JMNO}"></td>
-													<td class="text-center">관계</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">관계</td>
 													<td><select class="form-control" id="contp1-22">
 															<option value="">선택</option>
 															<c:forEach var="regc" items="${frelation}">
@@ -181,19 +177,19 @@
 													     </select></td>
 												</tr>
 												<tr >
-													<td class="text-center">주소</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">주소</td>
 													<td colspan="2"><input type="text"
 														class="form-control form-control-sm" id="contp1-23"
 														name="contp1-23" value="${detailCont.SANGJU_ADDR1}">
 													</td>
 													<td></td>
-													<td class="text-center">연락처</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">연락처</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-24"
 														name="contp1-24" value="${detailCont.SANGJU_TEL}"></td>
 												</tr>
 												<tr >
-													<td class="text-center">상세주소</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">상세주소</td>
 													<td colspan="2"><input type="text"
 														class="form-control form-control-sm" id="contp1-25"
 														name="contp1-25" value="${detailCont.SANGJU_ADDR2}">
@@ -203,11 +199,11 @@
 												</tr>
 												<tr >
 													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3" rowspan="2">일정</th>
-													<td class="text-center">입실일시*</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">입실일시*</td>
 													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-26" name="contp1-26" value="" >
 													<input type="text" style="width:25%;float:right" class="form-control form-control-sm timepicker" id="contp1-26-1" name="contp1-26-1" value="" >
 													</td>
-													<td class="text-center">안치일시</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">안치일시</td>
 													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-27" name="contp1-27" value="">
 													<input type="text" style="width:25%;float:right"class="form-control form-control-sm timepicker" id="contp1-27-1" name="contp1-27-1" value="">
 													</td>
@@ -215,11 +211,11 @@
 													<td></td>
 												</tr>
 												<tr >
-													<td class="text-center">입관일시</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">입관일시</td>
 													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-28" name="contp1-28" value="" >
 													<input type="text" style="width:25%;float:right"class="form-control form-control-sm timepicker" id="contp1-28-1" name="contp1-28-1" value="" >
 													</td>
-													<td class="text-center">발인일시*</td>
+													<td style ="vertical-align:middle;text-align:center;background-color:#E0F8F1" class="text-center">발인일시*</td>
 													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-29" name="contp1-29" value="">
 													<input type="text" style="width:25%;float:right"class="form-control form-control-sm timepicker" id="contp1-29-1" name="contp1-29-1" value="">
 													</td>
@@ -301,13 +297,13 @@
 									</colgroup>
 									<thead>
 										<tr>
-											<th class="text-center">호실명</th>
-											<th class="text-center">일일사용료</th>
-											<th class="text-center">시간당사용료</th>
-											<th class="text-center">면적(m<sup>2</sup>)											</th>
-											<th class="text-center">평수</th>
-											<th class="text-center">수용인원</th>
-											<th class="text-center">임시호실명</th>
+											<th style="background-color:#ECE0F8" class="text-center">호실명</th>
+											<th style="background-color:#ECE0F8" class="text-center">일일사용료</th>
+											<th style="background-color:#ECE0F8" class="text-center">시간당사용료</th>
+											<th style="background-color:#ECE0F8" class="text-center">면적(m<sup>2</sup>)											</th>
+											<th style="background-color:#ECE0F8" class="text-center">평수</th>
+											<th style="background-color:#ECE0F8" class="text-center">수용인원</th>
+											<th style="background-color:#ECE0F8" class="text-center">임시호실명</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -341,12 +337,12 @@
 									</colgroup>
 									<thead>
 										<tr>
-											<th class="text-center">계약호실명</th>
-											<th class="text-center">일일사용료</th>
-											<th class="text-center">시간당사용료</th>
-											<th class="text-center">사용일</th>
-											<th class="text-center">사용시간</th>
-											<th class="text-center">사용요금</th>
+											<th style="background-color:#ECE0F8" class="text-center">계약호실명</th>
+											<th style="background-color:#ECE0F8" class="text-center">일일사용료</th>
+											<th style="background-color:#ECE0F8" class="text-center">시간당사용료</th>
+											<th style="background-color:#ECE0F8" class="text-center">사용일</th>
+											<th style="background-color:#ECE0F8" class="text-center">사용시간</th>
+											<th style="background-color:#ECE0F8" class="text-center">사용요금</th>
 											<th style="display:none" class="text-center">선택</th>
 										</tr>
 									</thead>
@@ -381,16 +377,16 @@
 										<col width="10%" />
 								</colgroup>
 								<tr>
-								<td class="text-center">삭제</td>
-								<td class="text-center">추가사용호실</td>
-								<td class="text-center">사용일수</td>
-								<td class="text-center">사용시간</td>
-								<td class="text-center">환경부담금일수</td>
-								<td class="text-center">냉장고사용</td>
-								<td class="text-center">일회용품사용</td>
-								<td class="text-center">마른안주사용</td>
-								<td class="text-center">입실여부</td>
-								<td class="text-center"></td>
+								<td style="background-color:#ECE0F8" class="text-center">삭제</td>
+								<td style="background-color:#ECE0F8" class="text-center">추가사용호실</td>
+								<td style="background-color:#ECE0F8" class="text-center">사용일수</td>
+								<td style="background-color:#ECE0F8" class="text-center">사용시간</td>
+								<td style="background-color:#ECE0F8" class="text-center">환경부담금일수</td>
+								<td style="background-color:#ECE0F8" class="text-center">냉장고사용</td>
+								<td style="background-color:#ECE0F8" class="text-center">일회용품사용</td>
+								<td style="background-color:#ECE0F8" class="text-center">마른안주사용</td>
+								<td style="background-color:#ECE0F8" class="text-center">입실여부</td>
+								<td style="background-color:#ECE0F8" class="text-center"></td>
 								</tr>
 								<tr name="addroomlist">
 								<td></td>

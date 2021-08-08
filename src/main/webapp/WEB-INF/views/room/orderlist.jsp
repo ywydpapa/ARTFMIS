@@ -41,14 +41,14 @@
 									<th colspan="8" style="text-align: center;">상세정보</th>
 								</tr>
 								<tr style="text-align: center;">
-									<th>종류</th>
-									<th>제품명</th>
-									<th>단위</th>
-									<th>단가</th>
-									<th>주문수량</th>
-									<th>주문금액</th>
-									<th>주문일자</th>
-									<th>수령일자</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">종류</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">제품명</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">단위</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">단가</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문수량</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문금액</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문일자</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">수령일자</th>
 								</tr>
 								<tbody>
 									<c:forEach var="row" items="${restord}">
@@ -104,14 +104,14 @@
 									<th colspan="8" style="text-align: center;">상세정보</th>
 								</tr>
 								<tr style="text-align: center;">
-									<th>종류</th>
-									<th>제품명</th>
-									<th>단위</th>
-									<th>단가</th>
-									<th>주문수량</th>
-									<th>주문금액</th>
-									<th>주문일자</th>
-									<th>수령일자</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">종류</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">제품명</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">단위</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">단가</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문수량</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문금액</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문일자</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">수령일자</th>
 								</tr>
 								<tbody>
 									<c:forEach var="row" items="${storeord}">

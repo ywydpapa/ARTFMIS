@@ -23,10 +23,9 @@
 							</table>
 							<table class="table  table-bordered nowrap">
 								<tr>
-									<td></td>
-									<td style="text-align: right;"><span>선택된 주문 총액 :</span><input
+									<td style="text-align: right;background-color:#EFFBF8"><span>선택된 주문 총액 :</span><input
 										type="text" id="storegrandtotal"
-										style="text-align: right; border: none;" readonly></td>
+										style="text-align: right; border: none;background-color:#EFFBF8" readonly></td>
 								</tr>
 							</table>
 						</div>
@@ -46,18 +45,18 @@
 									<th colspan="8" style="text-align: center;">상세정보</th>
 								</tr>
 								<tr style="text-align: center;">
-									<th>종류</th>
-									<th>제품명</th>
-									<th>단위</th>
-									<th>개당단가</th>
-									<th>기본금액</th>
-									<th>주문수량</th>
-									<th>주문금액</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">종류</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">제품명</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">단위</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">개당단가</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">기본금액</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문수량</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문금액</th>
 								</tr>
 								<tbody>
 									<c:forEach var="row" items="${doslist3}">
 										<tr>
-											<td class="first">${row.CAT_TITLE}</td>
+											<td style="vertical-align:middle; text-align: center; background-color:#EFFBF8" class="first">${row.CAT_TITLE}</td>
 											<td><input type="hidden" class="FRID" value="${frid}"><input
 												type="hidden" class="GID" value="${row.GOODS_ID}">${row.GOODS_TITLE}</td>
 											<td>${row.GOODS_UNIT}</td>

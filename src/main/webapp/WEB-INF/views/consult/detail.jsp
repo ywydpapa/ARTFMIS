@@ -15,17 +15,17 @@
 	</div>
 </div>
 <!--Page-header end 페이지 타이틀 -->
-	<div class="cnt_wr">
+<div class="cnt_wr">
 	<!-- Row start -->
 	<div class="row">
 		<div class="col-lg-12 col-xl-12">
-		<div class="table-responsive">
+			<div class="table-responsive">
 				<table class="table table-bordered nowrap">
 					<tr>
-						<td>
-							<input id="frid" type="hidden" value = "${frid}">
-							<input id="contid" type="hidden" value = "">
-						</td>
+						<th scope="row">상담 내역 <input id="frid" type="hidden"
+							value="${frid}"> <input id="contid" type="hidden"
+							value="">
+						</th>
 					</tr>
 				</table>
 			</div>
@@ -41,9 +41,8 @@
 										</tr>
 									</tbody>
 								</table>
-								<table class="table table-striped table-bordered nowrap" id="roomList">
+								<table class="table table-bordered table-hover" id="roomList">
 									<colgroup>
-										<col width="10%" />
 										<col width="10%" />
 										<col width="10%" />
 										<col width="10%" />
@@ -54,77 +53,38 @@
 										<col width="10%" />
 									</colgroup>
 									<thead>
-										<tr>
-											<th class="text-center">선택</th>
-											<th class="text-center">호실명</th>
-											<th class="text-center">사용유무</th>
-											<th class="text-center">일일사용료</th>
-											<th class="text-center">시간당사용료</th>
-											<th class="text-center">면적(m<sup>2</sup>)</th>
-											<th class="text-center">평수</th>
-											<th class="text-center">수용인원</th>
-											<th class="text-center">임시호실명</th>
+										<tr style="vertical-align: middle; background-color: #E0E0F8">
+											<th style="vertical-align: middle" class="text-center">선택</th>
+											<th style="vertical-align: middle" class="text-center">호실명</th>
+											<th style="vertical-align: middle" class="text-center">일일사용료</th>
+											<th style="vertical-align: middle" class="text-center">시간당사용료</th>
+											<th style="vertical-align: middle" class="text-center">면적(m<sup>2</sup>)
+											</th>
+											<th style="vertical-align: middle" class="text-center">평수</th>
+											<th style="vertical-align: middle" class="text-center">수용인원</th>
+											<th style="vertical-align: middle" class="text-center">임시호실명</th>
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach var="row" items="${listFroom}">
-										<tr id="${row.FROOM_ID}">
-											<td style="text-align: center;"><input type="checkbox" class="CHKroom form-control"  onclick="oneCheck(this);" <c:if test="${row.FROOM_TITLE eq selectoneFroom.RENT_NAME}">checked</c:if>/></td>
-											<td>${row.FROOM_TITLE}</td>
-											<td></td>
-											<td class = "RMday"style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;">${row.FROOM_AREA}</td>
-											<td style="text-align: right;">${row.FROOM_AREA_KOR}</td>
-											<td style="text-align: right;">${row.FROOM_MAX_PERS}</td>
-											<td style="text-align: center;">${row.FROOM_ALIS}</td>
-										</tr>
-									</c:forEach>
+										<c:forEach var="row" items="${listFroom}">
+											<tr id="${row.FROOM_ID}">
+												<td style="text-align: center;"><input type="checkbox"
+													class="CHKroom form-control" onclick="oneCheck(this);"
+													<c:if test="${row.FROOM_TITLE eq selectoneFroom.RENT_NAME}">checked</c:if> /></td>
+												<td>${row.FROOM_TITLE}</td>
+												<td class="RMday" style="text-align: right;"><fmt:formatNumber
+														value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
+												<td class="RMtime" style="text-align: right;"><fmt:formatNumber
+														value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+												<td style="text-align: right;">${row.FROOM_AREA}</td>
+												<td style="text-align: right;">${row.FROOM_AREA_KOR}</td>
+												<td style="text-align: right;">${row.FROOM_MAX_PERS}</td>
+												<td style="text-align: center;">${row.FROOM_ALIS}</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</form>
-<%--							<br> <br>--%>
-<%--							<table class="table table-striped table-bordered nowrap" id="SltdroomList">--%>
-<%--									<colgroup>--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--									</colgroup>--%>
-<%--									<thead>--%>
-<%--										<tr>--%>
-<%--											<th class="text-center">호실명</th>--%>
-<%--											<th class="text-center">일일사용료</th>--%>
-<%--											<th class="text-center">시간당사용료</th>--%>
-<%--											<th class="text-center">사용일</th>--%>
-<%--											<th class="text-center">사용시간</th>--%>
-<%--											<th class="text-center">사용요금</th>--%>
-<%--											<th style="display:none" class="text-center">선택</th>--%>
-<%--										</tr>--%>
-<%--									</thead>--%>
-<%--									<tbody>--%>
-<%--									<c:forEach var="row" items="${listFroom}">--%>
-<%--										<tr>--%>
-<%--											<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>--%>
-<%--											<td class = "RMday"style="text-align: right;"><fmt:formatNumber--%>
-<%--													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>--%>
-<%--											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber--%>
-<%--													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>--%>
-<%--											<td class = "sRMd" style="text-align: right;">2</td>--%>
-<%--											<td class = "sRMt" style="text-align: right;">0</td>--%>
-<%--											<td class = "RMcharge" style="text-align: right;"><fmt:formatNumber--%>
-<%--													value="" pattern="#,###" /></td>--%>
-<%--											<td style="text-align: center; display:none"><input type="checkbox"--%>
-<%--												class="CHKsrm form-control" /></td>--%>
-<%--										</tr>--%>
-<%--									</c:forEach>--%>
-<%--									</tbody>--%>
-<%--								</table>--%>
 						</div>
 					</div>
 					<div class="btn_wr text-right mt-3">
@@ -137,39 +97,41 @@
 							<form name="form3" method="post" onsubmit="return false;">
 								<table class="table table-sm bst02">
 									<tbody>
-									<tr>
-									<td><span> 제물상 </span></td>
-									<td style="text-align: right;"></td>
-									</tr>
+										<tr>
+											<th scope="row">제물상 선택</th>
+										</tr>
 									</tbody>
 								</table>
 								<div class="row">
-									<table class="table  table-bordered nowrap" id="ftTable">
+									<table class="table table-bordered nowrap" id="ftTable">
 										<thead>
-											<tr>
-												<th scope="col" width="10%" align="center">구분</th>
-												<th scope="col" width="10%" align="center">선택여부</th>
-												<th scope="col" width="20%" align="center">금액</th>
-												<th scope="col" width="10%" align="center">단위</th>
-												<th scope="col" width="30%" align="center">상품이미지</th>
+											<tr style="vertical-align: middle; background-color: #E0E0F8">
+												<th>구분</th>
+												<th>선택여부</th>
+												<th>금액</th>
+												<th>단위</th>
+												<th>상품이미지</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach var="row" items="${listFtable}" varStatus="status">
 												<tr id="contWrite_Prey_${row.FTABLE_ID}">
 													<td class="second">${row.BCD_TITLE}</td>
-													<td style="text-align: center">
-														<input type="checkbox" <c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if>
-															   				   <c:if test="${row.FTABLE_CAT ne '24'}">onclick="oneCheckftNot(this);"</c:if>
-															   name = "FT${row.FTABLE_CAT}" class="CHKft form-control" />
+													<td style="text-align: center"><input type="checkbox"
+														<c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if>
+														<c:if test="${row.FTABLE_CAT ne '24'}">onclick="oneCheckftNot(this);"</c:if>
+														name="FT${row.FTABLE_CAT}" class="CHKft form-control" />
 													</td>
-													<td style="text-align: right" class="TA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
+													<td style="text-align: right" class="TA"><fmt:formatNumber
+															value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
 													<td style="text-align: right">${row.FTABLE_UNIT}</td>
 													<c:if test="${status.first}">
 														<td class="imagebx" rowspan="${fn:length(listFtable)}">
 															<c:forEach var="t" items="${listFtable}">
-																<img id="imageHidden_t02_${t.FTABLE_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.FTABLE_IMAGE}">src="${path}/image/${t.FTABLE_IMAGE}"</c:if>
-																	 <c:if test="${empty t.FTABLE_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
+																<img id="imageHidden_t02_${t.FTABLE_ID}"
+																	style="display: none; width: 100%; height: 500px;"
+																	<c:if test="${not empty t.FTABLE_IMAGE}">src="${path}/image/${t.FTABLE_IMAGE}"</c:if>
+																	<c:if test="${empty t.FTABLE_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if> />
 															</c:forEach>
 														</td>
 													</c:if>
@@ -188,35 +150,46 @@
 										</tr>
 									</tbody>
 								</table>
-									<table class="table table-bordered nowrap"
-										id="sFtable">
-										<thead>
+								<table class="table table-bordered nowrap" id="sFtable">
+									<thead>
+										<tr style="vertical-align: middle; background-color: #E0E0F8">
+											<th scope="col" width="20%" style="text-align: center">구분</th>
+											<th scope="col" width="20%" style="text-align: center">금액</th>
+											<th scope="col" colspan="2" width="20%"
+												style="text-align: center">단위</th>
+											<th scope="col" width="30%" style="text-align: center">금액</th>
+											<th style="display: none" scope="col" width="10%"
+												style="text-align:center">선택</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="row" items="${listFtable}">
 											<tr>
-												<th scope="col" width="20%" style="text-align:center">구분</th>
-												<th scope="col" width="20%" style="text-align:center">금액</th>
-												<th scope="col" colspan="2" width="20%" style="text-align:center">단위</th>
-												<th scope="col" width="30%" style="text-align:center">금액</th>
-												<th style="display :none" scope="col" width="10%" style="text-align:center">선택</th>
+												<td>${row.BCD_TITLE}<input type="hidden" class="sTid"
+													value="${row.FTABLE_ID}" /></td>
+												<td style="text-align: right" class="sTA"><fmt:formatNumber
+														value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
+												<td style="text-align: right; border-right: none"><input
+													style="text-align: right; border: 0px" type="number"
+													class="sTB from-control" min="0" value="1"></td>
+												<td style="border-left: none">${row.FTABLE_UNIT}</td>
+												<td style="text-align: right" class="sTC"><fmt:formatNumber
+														value="" pattern="#,###" /></td>
+												<td style="display: none"><input type="checkbox"
+													class="sCHKft form-control" /></td>
 											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="row" items="${listFtable}">
-												<tr>
-													<td>${row.BCD_TITLE}<input type="hidden" class = "sTid" value = "${row.FTABLE_ID}"/></td>
-													<td style="text-align: right" class="sTA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
-													<td style="text-align: right; border-right:none"><input style="text-align:right;border:0px" type="number" class="sTB from-control" min="0" value = "1"></td><td style = "border-left:none">${row.FTABLE_UNIT}</td>
-													<td style="text-align: right" class="sTC"><fmt:formatNumber value="" pattern="#,###" /></td>
-													<td style="display :none"><input type="checkbox" class="sCHKft form-control" /></td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
+										</c:forEach>
+									</tbody>
+								</table>
 							</form>
 							<hr>
-							<div style="text-align:right"><span>선택된 제물상 총액 :</span><input type="text" id="P3total" style="text-align: right; border: none;" readonly>
+							<div style="text-align: right">
+								<span>선택된 제물상 총액 :</span><input type="text" id="P3total"
+									style="text-align: right; border: none;" readonly>
 							</div>
 							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary" onClick="fn_cstInsertP3()">등록</button>
+								<button class="btn btn-md btn-primary"
+									onClick="fn_cstInsertP3()">등록</button>
 							</div>
 						</div>
 					</div>
@@ -227,19 +200,18 @@
 							<form name="form4" method="post" onsubmit="return false;">
 								<table class="table table-sm bst02">
 									<tbody>
-										<tr>
-											<th scope="row">장의용품 선택</th>
-											<td><select class="form-control" id="selMTR">
-											<option value="M" selected>현대식</option>
-											<option value="T">전통식</option>
-											</select> </td>
-											<td></td>
+										<tr style="vertical-align: middle; background-color: #E0E0F8">
+											<th style="vertical-align: middle" scope="row">장의용품 선택</th>
+											<td colspan="2"><select class="form-control" id="selMTR">
+													<option value="M" selected>현대식</option>
+													<option value="T">전통식</option>
+											</select></td>
 											<td></td>
 											<td></td>
 										</tr>
 									</tbody>
 								</table>
-								<table class="table table-striped table-bordered nowrap MOD">
+								<table class="table table-bordered table-hover MOD">
 									<colgroup>
 										<col width="15%" />
 										<col width="25%" />
@@ -249,231 +221,210 @@
 										<col width="10%" />
 										<col width="15%" />
 									</colgroup>
-
-									<tr>
-										<th colspan="2" style="text-align: center;">분류(현대식)</th>
-										<th colspan="8" style="text-align: center;">상세정보</th>
-									</tr>
-									<tr style="text-align: center;">
-										<th>종류</th>
-										<th>제품명</th>
-										<th>단위</th>
-										<th>개당단가</th>
-										<th>기본금액</th>
-										<th>주문수량</th>
-										<th>주문금액</th>
-									</tr>
+									<thead>
+										<tr>
+											<th colspan="2"
+												style="text-align: center;vertical-align: middle;background-color: #E0E0F8">분류(현대식)</th>
+											<th colspan="8"
+												style="text-align: center;vertical-align: middle;background-color: #E0E0F8">상세정보</th>
+										</tr>
+										<tr>
+											<th style="text-align: center; vertical-align: middle;background-color: #E0E0F8">종류</th>
+											<th style="text-align: center; vertical-align: middle;background-color: #E0E0F8">제품명</th>
+											<th style="text-align: center; vertical-align: middle;background-color: #E0E0F8">단위</th>
+											<th style="text-align: center; vertical-align: middle;background-color: #E0E0F8">개당단가</th>
+											<th style="text-align: center; vertical-align: middle;background-color: #E0E0F8">기본금액</th>
+											<th style="text-align: center; vertical-align: middle;background-color: #E0E0F8">주문수량</th>
+											<th style="text-align: center; vertical-align: middle;background-color: #E0E0F8">주문금액</th>
+										</tr>
+									</thead>
 									<tbody>
-											<tr>
-												<td>관</td>
-												<td><select class="form-control m131 mgid">
+										<tr>
+											<td>관</td>
+											<td><select class="form-control m131 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM13}">
-													<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
+														<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
 													</c:forEach>
-													</select>		
-												</td>
-												<td>EA</td>
-												<td style="text-align: right;">
-												<select class="form-control m132">
+											</select></td>
+											<td>EA</td>
+											<td style="text-align: right;"><select
+												class="form-control m132">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM13}">
-													<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control m133 infoG1">
+											</select></td>
+											<td style="text-align: right;"><select
+												class="form-control m133 infoG1">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM13}">
-													<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="1" max="100"
-													value="1" required></td>
-												<td class="GB from-control" style="text-align: right;"></td>
-											</tr>
-											<tr>
-												<td>도복,원삼</td>
-												<td><select class="form-control m141 mgid">
+											</select></td>
+											<td style="text-align: right;"><input
+												class="from-control GA" oninput="calculateG()"
+												style="border: none; text-align: right;" type="number"
+												min="1" max="100" value="1" required></td>
+											<td class="GB from-control" style="text-align: right;"></td>
+										</tr>
+										<tr>
+											<td>도복,원삼</td>
+											<td><select class="form-control m141 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM14}">
-													<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
+														<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
 													</c:forEach>
-													</select>		
-												</td>
-												<td>EA</td>
-												<td style="text-align: right;">
-												<select class="form-control m142">
+											</select></td>
+											<td>EA</td>
+											<td style="text-align: right;"><select
+												class="form-control m142">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM14}">
-													<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control m143 infoG1">
+											</select></td>
+											<td style="text-align: right;"><select
+												class="form-control m143 infoG1">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM14}">
-													<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="1" max="100"
-													value="1" required></td>
-												<td class="GB from-control" style="text-align: right;"></td>
-											</tr>
-											<tr>
-												<td>영정</td>
-												<td><select class="form-control m151 mgid">
+											</select></td>
+											<td style="text-align: right;"><input
+												class="from-control GA" oninput="calculateG()"
+												style="border: none; text-align: right;" type="number"
+												min="1" max="100" value="1" required></td>
+											<td class="GB from-control" style="text-align: right;"></td>
+										</tr>
+										<tr>
+											<td>영정</td>
+											<td><select class="form-control m151 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM15}">
-													<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
+														<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
 													</c:forEach>
-													</select>		
-												</td>
-												<td>EA</td>
-												<td style="text-align: right;">
-												<select class="form-control m152">
+											</select></td>
+											<td>EA</td>
+											<td style="text-align: right;"><select
+												class="form-control m152">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM15}">
-													<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control m153 infoG1">
+											</select></td>
+											<td style="text-align: right;"><select
+												class="form-control m153 infoG1">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM15}">
-													<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="1" max="100"
-													value="1" required></td>
-												<td class="GB from-control" style="text-align: right;"></td>
-											</tr>
-											<tr>
-												<td>수의</td>
-												<td><select class="form-control m161 mgid">
+											</select></td>
+											<td style="text-align: right;"><input
+												class="from-control GA" oninput="calculateG()"
+												style="border: none; text-align: right;" type="number"
+												min="1" max="100" value="1" required></td>
+											<td class="GB from-control" style="text-align: right;"></td>
+										</tr>
+										<tr>
+											<td>수의</td>
+											<td><select class="form-control m161 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM16}">
-													<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
+														<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
 													</c:forEach>
-													</select>		
-												</td>
-												<td>EA</td>
-												<td style="text-align: right;">
-												<select class="form-control m162">
+											</select></td>
+											<td>EA</td>
+											<td style="text-align: right;"><select
+												class="form-control m162">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM16}">
-													<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control m163 infoG1">
+											</select></td>
+											<td style="text-align: right;"><select
+												class="form-control m163 infoG1">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM16}">
-													<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="1" max="100"
-													value="1" required></td>
-												<td class="GB from-control" style="text-align: right;"></td>
-											</tr>
-											<tr>
-												<td>염베</td>
-												<td><select class="form-control m171 mgid">
+											</select></td>
+											<td style="text-align: right;"><input
+												class="from-control GA" oninput="calculateG()"
+												style="border: none; text-align: right;" type="number"
+												min="1" max="100" value="1" required></td>
+											<td class="GB from-control" style="text-align: right;"></td>
+										</tr>
+										<tr>
+											<td>염베</td>
+											<td><select class="form-control m171 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM17}">
-													<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
+														<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
 													</c:forEach>
-													</select>		
-												</td>
-												<td>EA</td>
-												<td style="text-align: right;">
-												<select class="form-control m172">
+											</select></td>
+											<td>EA</td>
+											<td style="text-align: right;"><select
+												class="form-control m172">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM17}">
-													<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control m173 infoG1">
+											</select></td>
+											<td style="text-align: right;"><select
+												class="form-control m173 infoG1">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM17}">
-													<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="1" max="100"
-													value="1" required></td>
-												<td class="GB from-control" style="text-align: right;"></td>
-											</tr>
-											<tr>
-												<td>천금지금</td>
-												<td><select class="form-control m181 mgid">
+											</select></td>
+											<td style="text-align: right;"><input
+												class="from-control GA" oninput="calculateG()"
+												style="border: none; text-align: right;" type="number"
+												min="1" max="100" value="1" required></td>
+											<td class="GB from-control" style="text-align: right;"></td>
+										</tr>
+										<tr>
+											<td>천금지금</td>
+											<td><select class="form-control m181 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM18}">
-													<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
+														<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
 													</c:forEach>
-													</select>		
-												</td>
-												<td>EA</td>
-												<td style="text-align: right;">
-												<select class="form-control m182">
+											</select></td>
+											<td>EA</td>
+											<td style="text-align: right;"><select
+												class="form-control m182">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM18}">
-													<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control m183 infoG1">
+											</select></td>
+											<td style="text-align: right;"><select
+												class="form-control m183 infoG1">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsM18}">
-													<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="1" max="100"
-													value="1" required></td>
-												<td class="GB from-control" style="text-align: right;"></td>
-											</tr>
+											</select></td>
+											<td style="text-align: right;"><input
+												class="from-control GA" oninput="calculateG()"
+												style="border: none; text-align: right;" type="number"
+												min="1" max="100" value="1" required></td>
+											<td class="GB from-control" style="text-align: right;"></td>
+										</tr>
 										<c:forEach var="row" items="${listFgoodsM}">
 											<tr>
 												<td class="first">${row.CAT_TITLE}</td>
@@ -496,8 +447,8 @@
 										</c:forEach>
 									</tbody>
 								</table>
-									<table class="table table-striped table-bordered nowrap TRD">
- 									<colgroup>
+								<table class="table table-striped table-bordered nowrap TRD">
+									<colgroup>
 										<col width="15%" />
 										<col width="25%" />
 										<col width="10%" />
@@ -521,216 +472,192 @@
 										<th>주문금액</th>
 									</tr>
 									<tbody>
-									<tr>
-												<td>관</td>
-												<td><select class="form-control t131 tgid">
+										<tr>
+											<td>관</td>
+											<td><select class="form-control t131 tgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT13}">
-													<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
+														<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
 													</c:forEach>
-													</select>		
-												</td>
-												<td>EA</td>
-												<td style="text-align: right;">
-												<select class="form-control t132">
+											</select></td>
+											<td>EA</td>
+											<td style="text-align: right;"><select
+												class="form-control t132">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT13}">
-													<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control t133 infoG3">
+											</select></td>
+											<td style="text-align: right;"><select
+												class="form-control t133 infoG3">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT13}">
-													<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;"><input
-													class="from-control GE" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="1" max="100"
-													value="1" required></td>
-												<td class="GF from-control" style="text-align: right;"></td>
-											</tr>
-											<tr>
-												<td>도복,원삼</td>
-												<td><select class="form-control t141 tgid">
+											</select></td>
+											<td style="text-align: right;"><input
+												class="from-control GE" oninput="calculateG()"
+												style="border: none; text-align: right;" type="number"
+												min="1" max="100" value="1" required></td>
+											<td class="GF from-control" style="text-align: right;"></td>
+										</tr>
+										<tr>
+											<td>도복,원삼</td>
+											<td><select class="form-control t141 tgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT14}">
-													<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
+														<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
 													</c:forEach>
-													</select>		
-												</td>
-												<td>EA</td>
-												<td style="text-align: right;">
-												<select class="form-control t142">
+											</select></td>
+											<td>EA</td>
+											<td style="text-align: right;"><select
+												class="form-control t142">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT14}">
-													<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control t143 infoG3">
+											</select></td>
+											<td style="text-align: right;"><select
+												class="form-control t143 infoG3">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT14}">
-													<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;"><input
-													class="from-control GE" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="1" max="100"
-													value="1" required></td>
-												<td class="GF from-control" style="text-align: right;"></td>
-											</tr>
-											<tr>
-												<td>영정</td>
-												<td><select class="form-control t151 tgid">
+											</select></td>
+											<td style="text-align: right;"><input
+												class="from-control GE" oninput="calculateG()"
+												style="border: none; text-align: right;" type="number"
+												min="1" max="100" value="1" required></td>
+											<td class="GF from-control" style="text-align: right;"></td>
+										</tr>
+										<tr>
+											<td>영정</td>
+											<td><select class="form-control t151 tgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT15}">
-													<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
+														<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
 													</c:forEach>
-													</select>		
-												</td>
-												<td>EA</td>
-												<td style="text-align: right;">
-												<select class="form-control t152">
+											</select></td>
+											<td>EA</td>
+											<td style="text-align: right;"><select
+												class="form-control t152">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT15}">
-													<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control t153 infoG3">
+											</select></td>
+											<td style="text-align: right;"><select
+												class="form-control t153 infoG3">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT15}">
-													<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;"><input
-													class="from-control GE" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="1" max="100"
-													value="1" required></td>
-												<td class="GF from-control" style="text-align: right;"></td>
-											</tr>
-											<tr>
-												<td>수의</td>
-												<td><select class="form-control t161 tgid">
+											</select></td>
+											<td style="text-align: right;"><input
+												class="from-control GE" oninput="calculateG()"
+												style="border: none; text-align: right;" type="number"
+												min="1" max="100" value="1" required></td>
+											<td class="GF from-control" style="text-align: right;"></td>
+										</tr>
+										<tr>
+											<td>수의</td>
+											<td><select class="form-control t161 tgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT16}">
-													<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
+														<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
 													</c:forEach>
-													</select>		
-												</td>
-												<td>EA</td>
-												<td style="text-align: right;">
-												<select class="form-control t162">
+											</select></td>
+											<td>EA</td>
+											<td style="text-align: right;"><select
+												class="form-control t162">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT16}">
-													<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control t163 infoG3">
+											</select></td>
+											<td style="text-align: right;"><select
+												class="form-control t163 infoG3">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT16}">
-													<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;"><input
-													class="from-control GE" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="1" max="100"
-													value="1" required></td>
-												<td class="GF from-control" style="text-align: right;"></td>
-											</tr>
-											<tr>
-												<td>염베</td>
-												<td><select class="form-control t171 tgid">
+											</select></td>
+											<td style="text-align: right;"><input
+												class="from-control GE" oninput="calculateG()"
+												style="border: none; text-align: right;" type="number"
+												min="1" max="100" value="1" required></td>
+											<td class="GF from-control" style="text-align: right;"></td>
+										</tr>
+										<tr>
+											<td>염베</td>
+											<td><select class="form-control t171 tgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT17}">
-													<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
+														<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
 													</c:forEach>
-													</select>		
-												</td>
-												<td>EA</td>
-												<td style="text-align: right;">
-												<select class="form-control t172">
+											</select></td>
+											<td>EA</td>
+											<td style="text-align: right;"><select
+												class="form-control t172">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT17}">
-													<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control t173 infoG3">
+											</select></td>
+											<td style="text-align: right;"><select
+												class="form-control t173 infoG3">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT17}">
-													<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;"><input
-													class="from-control GE" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="1" max="100"
-													value="1" required></td>
-												<td class="GF from-control" style="text-align: right;"></td>
-											</tr>
-											<tr>
-												<td>천금지금</td>
-												<td><select class="form-control t181 tgid">
+											</select></td>
+											<td style="text-align: right;"><input
+												class="from-control GE" oninput="calculateG()"
+												style="border: none; text-align: right;" type="number"
+												min="1" max="100" value="1" required></td>
+											<td class="GF from-control" style="text-align: right;"></td>
+										</tr>
+										<tr>
+											<td>천금지금</td>
+											<td><select class="form-control t181 tgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT18}">
-													<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
+														<option value="${row.GOODS_ID}">${row.GOODS_TITLE}</option>
 													</c:forEach>
-													</select>		
-												</td>
-												<td>EA</td>
-												<td style="text-align: right;">
-												<select class="form-control t182">
+											</select></td>
+											<td>EA</td>
+											<td style="text-align: right;"><select
+												class="form-control t182">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT18}">
-													<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_NET_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control t183 infoG3">
+											</select></td>
+											<td style="text-align: right;"><select
+												class="form-control t183 infoG3">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${listFgoodsT18}">
-													<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
-														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
+														<option value="${row.GOODS_SALE_PRICE}"><fmt:formatNumber
+																value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option>
 													</c:forEach>
-													</select>
-												</td>
-												<td style="text-align: right;"><input
-													class="from-control GE" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="1" max="100"
-													value="1" required></td>
-												<td class="GF from-control" style="text-align: right;"></td>
-											</tr>
+											</select></td>
+											<td style="text-align: right;"><input
+												class="from-control GE" oninput="calculateG()"
+												style="border: none; text-align: right;" type="number"
+												min="1" max="100" value="1" required></td>
+											<td class="GF from-control" style="text-align: right;"></td>
+										</tr>
 										<c:forEach var="row" items="${listFgoodsT}">
 											<tr>
 												<td class="first">${row.CAT_TITLE}</td>
@@ -753,8 +680,9 @@
 										</c:forEach>
 									</tbody>
 								</table>
-								<div>
-									<span>선택된 장의용품 총액 :</span><input	type="text" id="P4total" style="text-align: right; border: none;" readonly>								
+								<div style="background-color: #E0E0F8">
+									<span>선택된 장의용품 총액 :</span><input type="text" id="P4total"
+										style="text-align: right; border: none;background-color: #E0E0F8;float:right" readonly>
 								</div>
 							</form>
 							<div class="btn_wr text-right mt-3">
@@ -769,45 +697,44 @@
 						<div class="table-responsive">
 							<form name="form5" method="post" onsubmit="return false;">
 								<table class="table table-sm bst02">
-									<tbody>
+	  								<tbody>
 										<tr>
 											<th scope="row">제단 선택</th>
-											<td style="text-align: right;"></td>
-											
 										</tr>
 									</tbody>
 								</table>
-								<table class="table  table-bordered nowrap"
-									id="altarTable">
+								<table class="table table-bordered" id="altarTable">
 									<thead>
 										<tr>
-											<th scope="col" width="10%" style="text-align:center">제단구분</th>
-											<th scope="col" width="10%" style="text-align:center">선택여부</th>
-											<th scope="col" width="15%" style="text-align:center">제단명</th>
-											<th scope="col" width="10%" style="text-align:center">금액</th>
-											<th scope="col" width="40%" style="text-align:center">이미지</th>
+											<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">제단구분</th>
+											<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">선택여부</th>
+											<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">제단명</th>
+											<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">금액</th>
+											<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">이미지</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="row" items="${listAltar}" varStatus="status">
 											<tr id="contWrite_Altar_${row.ALTAR_ID}">
-												<td class="second">
-													<c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if>
-													<c:if test="${row.ALTAR_CAT eq '103'}">헌화</c:if>
-												</td>
-												<td style="text-align: center">
-													<input type="checkbox" onclick ="<c:if test="${row.ALTAR_CAT eq '102'}">oneCheckalt2(this)</c:if>
+												<td class="second"><c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if> <c:if
+														test="${row.ALTAR_CAT eq '103'}">헌화</c:if></td>
+												<td style="text-align: center"><input type="checkbox"
+													onclick="<c:if test="${row.ALTAR_CAT eq '102'}">oneCheckalt2(this)</c:if>
 																					<c:if test="${row.ALTAR_CAT eq '103'}">oneCheckalt3(this)</c:if>
 																					<c:if test="${row.ALTAR_CAT ne '102' and row.ALTAR_CAT ne '103'}">oneCheckalt2and3Not(this)</c:if>"
-														   class="CHKalt form-control" name="ALTAR${row.ALTAR_CAT}" />
+													class="CHKalt form-control" name="ALTAR${row.ALTAR_CAT}" />
 												</td>
-												<td>${row.ALTAR_TITLE}<input type = "hidden" class = "Aid" value="${row.ALTAR_ID}"/></td>
-												<td style="text-align: right" class="AA"><fmt:formatNumber value="${row.ALTAR_AMOUNT}" pattern="#,###" /></td>
+												<td>${row.ALTAR_TITLE}<input type="hidden" class="Aid"
+													value="${row.ALTAR_ID}" /></td>
+												<td style="text-align: right" class="AA"><fmt:formatNumber
+														value="${row.ALTAR_AMOUNT}" pattern="#,###" /></td>
 												<c:if test="${status.first}">
 													<td class="imagebx" rowspan="${fn:length(listAltar)}">
 														<c:forEach var="t" items="${listAltar}">
-															<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.ALTAR_IMAGE}">src="${path}/image/${t.ALTAR_IMAGE}"</c:if>
-																 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
+															<img id="imageHidden_t03_${t.ALTAR_ID}"
+																style="display: none; width: 100%; height: 500px;"
+																<c:if test="${not empty t.ALTAR_IMAGE}">src="${path}/image/${t.ALTAR_IMAGE}"</c:if>
+																<c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if> />
 														</c:forEach>
 													</td>
 												</c:if>
@@ -824,36 +751,43 @@
 									</tr>
 								</tbody>
 							</table>
-								<table class="table table-bordered nowrap"
-									id="sAltarTable">
-									<thead>
+							<table class="table table-bordered " id="sAltarTable">
+								<thead>
+									<tr>
+										<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">제단구분</th>
+										<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">선택여부</th>
+										<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">제단명</th>
+										<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">금액</th>
+										<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">이미지</th>
+										<th style="display: none" >선택여부</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="row" items="${listAltar}">
 										<tr>
-											<th scope="col" width="20%" align="center">제단구분</th>
-											<th scope="col" width="20%" align="center">제단명</th>
-											<th scope="col" width="20%" align="center">단가</th>
-											<th scope="col" width="10%" align="center">수량</th>
-											<th scope="col" width="20%" align="center">금액</th>
-											<th style="display :none" scope="col" width="10%" align="center">선택여부</th>
+											<td><c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if> <c:if
+													test="${row.ALTAR_CAT eq '103'}">헌화</c:if></td>
+											<td>${row.ALTAR_TITLE}<input type="hidden" class="sAid"
+												value="${row.ALTAR_ID}" /><input type="hidden" class="sAct"
+												value="${row.ALTAR_CAT}" /></td>
+											<td style="text-align: right" class="sAA"><fmt:formatNumber
+													value="${row.ALTAR_NET_PRICE}" pattern="#,###" /></td>
+											<td><input type="number"
+												style="text-align: right; border: 0px" class="sAB" min="0"
+												value="${row.ALTAR_QTY}"></td>
+											<td style="text-align: right" class="sAC"><fmt:formatNumber
+													value="" pattern="#,###" /></td>
+											<td style="display: none"><input type="checkbox"
+												class="sCHKalt form-control" /></td>
 										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="row" items="${listAltar}">
-											<tr>
-												<td><c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if>
-													<c:if test="${row.ALTAR_CAT eq '103'}">헌화</c:if></td>
-												<td>${row.ALTAR_TITLE}<input type = "hidden" class = "sAid" value="${row.ALTAR_ID}"/><input type = "hidden" class = "sAct" value="${row.ALTAR_CAT}"/></td>
-												<td style="text-align: right" class="sAA"><fmt:formatNumber value="${row.ALTAR_NET_PRICE}" pattern="#,###" /></td>
-												<td><input type="number" style="text-align:right;border:0px" class="sAB" min="0" value="${row.ALTAR_QTY}" ></td>
-												<td style="text-align: right" class="sAC"><fmt:formatNumber value="" pattern="#,###" /></td>
-												<td style="display :none" ><input type="checkbox" class="sCHKalt form-control" /></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-								<hr>
-								<div style="text-align:right">
-								<span>선택된 제단용품 총액 :</span><input type="text" id="P5total" style="text-align: right; border: none;" readonly>
-								</div>
+									</c:forEach>
+								</tbody>
+							</table>
+							<hr>
+							<div style="text-align: right">
+								<span>선택된 제단용품 총액 :</span><input type="text" id="P5total"
+									style="text-align: right; border: none;" readonly>
+							</div>
 							<div class="btn_wr text-right mt-3">
 								<button class="btn btn-md btn-primary"
 									onClick="fn_cstInsertP5()">등록</button>
@@ -872,7 +806,8 @@
 										</tr>
 									</tbody>
 								</table>
-								<table class="table table-striped table-bordered nowrap" id="roomList">
+								<table class="table table-bordered table-hover"
+									id="roomList">
 									<colgroup>
 										<col width="10%" />
 										<col width="10%" />
@@ -885,78 +820,89 @@
 									</colgroup>
 									<thead>
 										<tr>
-											<th class="text-center">호실명</th>
-											<th class="text-center">사용유무</th>
-											<th class="text-center">일일사용료</th>
-											<th class="text-center">시간당사용료</th>
-											<th class="text-center">면적(m<sup>2</sup>)
+											<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">호실명</th>
+											<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">사용유무</th>
+											<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">일일사용료</th>
+											<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">시간당사용료</th>
+											<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">면적(m<sup>2</sup>)
 											</th>
-											<th class="text-center">평수</th>
-											<th class="text-center">수용인원</th>
-											<th class="text-center">선택</th>
+											<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">평수</th>
+											<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">수용인원</th>
+											<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">선택</th>
 										</tr>
 									</thead>
 									<c:forEach var="row" items="${listEtcroom}">
 										<tr>
 											<td>${row.FROOM_TITLE}</td>
 											<td></td>
-											<td class = "EA" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "EB" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+											<td class="EA" style="text-align: right;"><fmt:formatNumber
+													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
+											<td class="EB" style="text-align: right;"><fmt:formatNumber
+													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
 											<td style="text-align: right;">${row.FROOM_AREA}</td>
 											<td style="text-align: right;">${row.FROOM_AREA_KOR}</td>
 											<td style="text-align: right;">${row.FROOM_MAX_PERS}</td>
-											<td style="text-align: center;"><input type="checkbox" class="CHKe form-control" /></td>
+											<td style="text-align: center;"><input type="checkbox"
+												class="CHKe form-control" /></td>
 										</tr>
 									</c:forEach>
 								</table>
 							</form>
-							<br>
-							<br>
-								<table class="table table-sm bst02">
-									<tbody>
-										<tr>
-											<th scope="row">선택된 기타시설</th>
-										</tr>
-									</tbody>
-								</table>
-							<table class="table table-striped table-bordered nowrap" id="sEtcroom">
-									<colgroup>
-										<col width="15%" />
-										<col width="15%" />
-										<col width="15%" />
-										<col width="15%" />
-										<col width="5%" />
-										<col width="5%" />
-										<col width="5%" />
-										<col width="20%" />
-									</colgroup>
-									<thead>
-										<tr>
-											<th class="text-center">호실명</th>
-											<th class="text-center">일일사용료</th>
-											<th class="text-center">시간당사용료</th>
-											<th class="text-center">회당사용료</th>
-											<th class="text-center">사용일</th>
-											<th class="text-center">사용시간</th>
-											<th class="text-center">사용횟수</th>
-											<th class="text-center">금액</th>
-											<th style="display:none" class="text-center">선택</th>
-										</tr>
-									</thead>
-									<c:forEach var="row" items="${listEtcroom}">
-										<tr>
-											<td>${row.FROOM_TITLE}</td>
-											<td class = "sEA" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "sEB" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td class = "sEC" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td><input style="text-align: right;" class = "sED" type="number" min="0" value = "0"></td>
-											<td><input style="text-align: right;" class = "sEE" type="number" min="0" value = "0"></td>
-											<td><input style="text-align: right;" class = "sEF" type="number" min="0" value = "0"></td>
-											<td class = "sEG" style="text-align: right;"><fmt:formatNumber value="" pattern="#,###" /></td>
-											<td style="text-align:center; display:none"><input type="checkbox" class="sCHKe form-control" /></td>
-										</tr>
-									</c:forEach>
-								</table>
+							<br> <br>
+							<table class="table table-sm bst02">
+								<tbody>
+									<tr>
+										<th scope="row">선택된 기타시설</th>
+									</tr>
+								</tbody>
+							</table>
+							<table class="table table-bordered"
+								id="sEtcroom">
+								<colgroup>
+									<col width="15%" />
+									<col width="15%" />
+									<col width="15%" />
+									<col width="15%" />
+									<col width="5%" />
+									<col width="5%" />
+									<col width="5%" />
+									<col width="20%" />
+								</colgroup>
+								<thead>
+									<tr>
+										<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">호실명</th>
+										<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">일일사용료</th>
+										<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">시간당사용료</th>
+										<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">회당사용료</th>
+										<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">사용일</th>
+										<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">사용시간</th>
+										<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">사용횟수</th>
+										<th style="text-align: center;vertical-align:middle; background-color:#E0E0F8">금액</th>
+										<th style="display: none" class="text-center">선택</th>
+									</tr>
+								</thead>
+								<c:forEach var="row" items="${listEtcroom}">
+									<tr>
+										<td>${row.FROOM_TITLE}</td>
+										<td class="sEA" style="text-align: right;"><fmt:formatNumber
+												value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
+										<td class="sEB" style="text-align: right;"><fmt:formatNumber
+												value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+										<td class="sEC" style="text-align: right;"><fmt:formatNumber
+												value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+										<td><input style="text-align: right;" class="sED"
+											type="number" min="0" value="0"></td>
+										<td><input style="text-align: right;" class="sEE"
+											type="number" min="0" value="0"></td>
+										<td><input style="text-align: right;" class="sEF"
+											type="number" min="0" value="0"></td>
+										<td class="sEG" style="text-align: right;"><fmt:formatNumber
+												value="" pattern="#,###" /></td>
+										<td style="text-align: center; display: none"><input
+											type="checkbox" class="sCHKe form-control" /></td>
+									</tr>
+								</c:forEach>
+							</table>
 							<div class="btn_wr text-right mt-3">
 								<button class="btn btn-md btn-primary"
 									onClick="fn_cstInsertP8()">등록</button>
@@ -1547,6 +1493,31 @@
 		calculateE();
 		chkcalE();
 	});
+	
+	function chkcalE() {
+		var $infoarr = $(".sCHKe");
+		var $Aarr = $(".sEA");
+		var $Barr = $(".sEB");
+		var $Carr = $(".sEC");
+		var $Darr = $(".sED");
+		var $Earr = $(".sEE");
+		var $Farr = $(".sEF");
+		var $Garr = $(".sEG");
+		for (var i = 0; i < $infoarr.length; i++) {
+			if($($infoarr[i]).is(":checked")==true){
+			var chksum = 0;	
+			var b1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var b2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var b3 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var c1 = Number($Darr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			var c2 = Number($Earr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			var c3 = Number($Farr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			chksum = (b1*c1)+(b2*c2)+(b3*c3);
+			$Garr[i].innerText = numberWithCommas(chksum);
+			console.log(chksum);
+		}
+		}
+	}
 
 	$(".MB, .MA").change(function() {
 		calculateM();
@@ -1618,42 +1589,6 @@
 		}
 	}
 	
-	function tab01active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab01').addClass('active');
-	}
-	function tab02active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab02').addClass('active');
-	}
-	function tab03active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab03').addClass('active');
-	}
-	function tab04active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab04').addClass('active');
-	}
-	function tab05active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab05').addClass('active');
-	}
-	function tab06active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab06').addClass('active');
-	}
-	function tab07active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab07').addClass('active');
-	}
-	function tab08active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab08').addClass('active');
-	}
-	function tab09active(){
-		$('.tab-pane').removeClass('active');
-		$('#tab09').addClass('active');
-	}
 	function numberWithCommas(x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
@@ -1698,6 +1633,21 @@
 				chksum = chksum + g1;
 			}
 			$('#P4total').val(numberWithCommas(chksum));
+		}
+	}
+	
+	function chkEtcchange(){
+		var $infoarr = $(".CHKe");
+		var $sinfoarr = $(".sCHKe");
+		for (var i = 0; i < $infoarr.length; i++) {
+			if($($infoarr[i]).is(":checked")==true){
+			$($sinfoarr[i]).attr("checked",true);
+			$($sinfoarr[i]).parent().parent().show();
+			}
+			else{
+				$($sinfoarr[i]).attr("checked",false);
+				$($sinfoarr[i]).parent().parent().hide();
+			}
 		}
 	}
 	

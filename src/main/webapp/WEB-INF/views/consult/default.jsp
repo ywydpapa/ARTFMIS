@@ -24,25 +24,25 @@
 						</colgroup>
 							<tbody>
 								<tr>
-									<td style="vertical-align:middle;text-align:center">상담일자</td>
+									<td style="vertical-align:middle;text-align:center;background-color:#E0F8F1">상담일자</td>
 									<td style="text-align:center">${cst.CONSULT_DATE}<input type="hidden" value="${cst.CONSULT_ID}" id="consultId"/></td>
 									<td></td>
 									<td></td>
 								</tr>
 								<tr>
-									<td style="vertical-align:middle;text-align:center">환자성명</td>
+									<td style="vertical-align:middle;text-align:center;background-color:#E0F8F1">환자성명</td>
 									<td style="text-align:center"><input type="text" class="form-control" id="patiName" value="${cst.PATI_NAME}"></td>
-									<td style="vertical-align:middle;text-align:center">병원</td>
+									<td style="vertical-align:middle;text-align:center;background-color:#E0F8F1">병원</td>
 									<td style="text-align:center"><input type="text" class="form-control" id="hospital" value="${cst.HOSPITAL}"></td>
 								</tr>
 								<tr>
-									<td style="vertical-align:middle;text-align:center">보호자성명</td>
+									<td style="vertical-align:middle;text-align:center;background-color:#E0F8F1">보호자성명</td>
 									<td style="text-align:center"><input type="text" class="form-control" id="bfamilyName" value="${cst.BFAMILY_NAME}"></td>
-									<td style="vertical-align:middle;text-align:center">연락처</td>
+									<td style="vertical-align:middle;text-align:center;background-color:#E0F8F1">연락처</td>
 									<td style="text-align:center"><input type="text" class="form-control phone" id="telNo" value="${cst.TEL_NO}" maxlength="13"></td>
 								</tr>
 								<tr>
-									<td style="vertical-align:middle;text-align:center">종교</td>
+									<td style="vertical-align:middle;text-align:center;background-color:#E0F8F1">종교</td>
 									<td style="text-align:center">
 										<select class="form-control" id="religion">
 											<c:forEach var="regc" items="${regioncode}">
@@ -50,7 +50,7 @@
 											</c:forEach>
 										</select>
 									</td>
-									<td style="vertical-align:middle;text-align:center">화장/매장 구분</td>
+									<td style="vertical-align:middle;text-align:center;background-color:#E0F8F1">화장/매장 구분</td>
 									<td>
 										<select class="form-control" id="buriYn">
 											<option value="1" <c:if test="${cst.BURI_YN eq '1'}">selected</c:if>>화장</option>
@@ -60,13 +60,13 @@
 									</td>
 								</tr>
 								<tr>
-									<td style="vertical-align:middle;text-align:center">메모</td>
+									<td style="vertical-align:middle;text-align:center;background-color:#E0F8F1">메모</td>
 									<td colspan="3">
 										<textarea id="remark" rows="4" class="form-control">${cst.REMARK}</textarea>
 									</td>
 								</tr>
 								<tr>
-									<td style="vertical-align:middle;text-align:center">상담호실</td>
+									<td style="vertical-align:middle;text-align:center;background-color:#E0F8F1">상담호실</td>
 									<td colspan="3">
 										<table class="table  table-bordered nowrap" id="SltdroomList">
 											<colgroup>
@@ -135,8 +135,8 @@
 								</tr>
 								<c:forEach var="row" items="${setu}">
 								<tr>
-									<td style="vertical-align:middle;text-align:center"><button class="btn btn-secondary">${row.SETUP_TITLE}</button></td>
-									<td colspan="3"><textarea rows="2" style="border: none"class="form-control">${row.SETUP_CONTENTS}</textarea></td>
+									<td style="vertical-align:middle;text-align:center;background-color:#E0F8F1"><button class="btn btn-info">${row.SETUP_TITLE}</button></td>
+									<td colspan="3"><textarea rows="3" style="border: none"class="form-control">${row.SETUP_CONTENTS}</textarea></td>
 								</tr>
 								</c:forEach>
 							</tbody>

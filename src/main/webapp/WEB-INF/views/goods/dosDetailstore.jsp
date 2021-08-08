@@ -12,8 +12,8 @@
 				<div class="table-responsive">
 				<table class="table  table-bordered nowrap">
 				<tr>
-				<td><span>선택된 항목 : </span>${pagetitle}</td>
-				<td style="text-align:right;"><span>선택된 초도주문 총액 :</span><input type="text" id="subtotal" style="text-align:right; border:none;" readonly></td>
+				<td style="text-align:right;background-color:#E6F8E0"><span>선택된 항목 : </span>${pagetitle}</td>
+				<td style="text-align:right;background-color:#E6F8E0"><span>선택된 초도주문 총액 :</span><input type="text" id="subtotal" style="text-align:right; border:none;background-color:#E6F8E0" readonly></td>
 				</tr>
 				</table>
 				</div>
@@ -33,10 +33,10 @@
 						</colgroup>				
 							<thead>
 							<tr>
-								<th colspan ="2" style="text-align:center;background-color:#E6F8E0;border:2px">분류</th>
-								<th colspan ="8" style="text-align:center;background-color:#E6F8E0;border:2px">상세정보</th>
+								<th colspan ="2" style="text-align:center;border:2px">분류</th>
+								<th colspan ="8" style="text-align:center;border:2px">상세정보</th>
 							</tr>
-							<tr style="text-align:center;background-color:#E6F8E0">
+							<tr style="text-align:center;background-color:#CED8F6">
 								<th style="text-align:center;">종류</th>
 								<th style="text-align:center;">제품명</th>
 								<th style="text-align:center;">단위</th>
