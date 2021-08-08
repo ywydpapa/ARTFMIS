@@ -9,7 +9,7 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>구분</th>
+					<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">구분</th>
 				</tr>
 				</thead>
 				<tbody>

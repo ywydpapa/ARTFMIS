@@ -35,11 +35,11 @@
 							</colgroup>							
 							<thead>
 								<tr>
-									<th><input class="border-checkbox" type="checkbox" id="checkbox0"></th>
-									<th>코드번호</th>
-									<th>Lv2 코드명</th>
-									<th>Lv2 코드설명</th>
-									<th>사용여부</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6"><input class="border-checkbox" type="checkbox" id="checkbox0"></th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">코드번호</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">Lv2 코드명</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">Lv2 코드설명</th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">사용여부</th>
 									</tr>
 							</thead>
 							<tbody>

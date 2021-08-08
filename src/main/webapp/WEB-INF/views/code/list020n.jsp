@@ -13,11 +13,11 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>분류명</th>
-					<th>설명</th>
-					<th>정렬순서</th>
-					<th>상세품목개별선택여부</th>
-					<th>사용여부</th>
+					<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">분류명</th>
+					<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">설명</th>
+					<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">정렬순서</th>
+					<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">상세품목개별선택여부</th>
+					<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">사용여부</th>
 				</tr>
 				</thead>
 				<tbody>

@@ -11,10 +11,10 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>코드명</th>
-					<th>비고사항</th>
-					<th>정렬순서</th>
-					<th>사용여부</th>
+					<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">코드명</th>
+					<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">비고사항</th>
+					<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">정렬순서</th>
+					<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">사용여부</th>
 				</tr>
 				</thead>
 				<tbody>
