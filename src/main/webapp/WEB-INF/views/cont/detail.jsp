@@ -358,9 +358,9 @@
 										<tr>
 											<td style="vertical-align:middle;text-align:center" class="first">분향실</td>
 											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
-											<td class = "RMday"style="vertical-align:middle;text-align: right;"><fmt:formatNumber
+											<td class = "sRMday"style="vertical-align:middle;text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "RMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber
+											<td class = "sRMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
 											<td class = "sRMd" style="vertical-align:middle;text-align: right;">사용일</td>
 											<td class = "sRMt" style="vertical-align:middle;text-align: right;">사용시간</td>
@@ -2136,8 +2136,8 @@
 	
 	function calculateR() {
 		var $infoarr = $(".CHKsrm");
-		var $Aarr = $(".RMday");
-		var $Barr = $(".RMtime");
+		var $Aarr = $(".sRMday");
+		var $Barr = $(".sRMtime");
 		var $Carr = $(".sRMd");
 		var $Darr = $(".sRMt");
 		var $Earr = $(".sRMcharge");

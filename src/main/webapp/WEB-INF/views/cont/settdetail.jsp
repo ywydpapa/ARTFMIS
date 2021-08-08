@@ -24,24 +24,24 @@
 </style>
 	<div class="settle">
 		<div class="item">
-		<table class="table table-bordered nowrap" id="roomTable">
+		<table class="table table-bordered table-hover" id="roomTable">
 				<thead>
 					<tr>
-						<th scope="col" width="200" align="center">정산처리</th>
+						<th style="vertical-align:middle;text-align: center;background-color:#FBEFF2">정산처리</th>
 					</tr>
 				</thead>
 				<tbody>
 						<tr>
-							<td><a href="javascript:tab01active()">반품</a></td>
+							<td style="vertical-align:middle;text-align: center;"><a href="javascript:tab01active()">반품</a></td>
 						</tr>
 						<tr>
-							<td><a href="javascript:tab02active()">조회</a></td>
+							<td style="vertical-align:middle;text-align: center;"><a href="javascript:tab02active()">조회</a></td>
 						</tr>
 						<tr>
-							<td><a href="javascript:tab03active()">정산</a></td>
+							<td style="vertical-align:middle;text-align: center;"><a href="javascript:tab03active()">정산</a></td>
 						</tr>
 						<tr>
-							<td><a href="javascript:tab04active()">퇴실</a></td>
+							<td style="vertical-align:middle;text-align: center;"><a href="javascript:tab04active()">퇴실</a></td>
 						</tr>
 				</tbody>
 			</table>
@@ -64,7 +64,7 @@
 		<div class="table-responsive">
 				<table class="table table-bordered nowrap">
 				<tr>
-				<td><input id="frid" type="hidden" value = "${frid}"><input id="contid" type="hidden" value = "${CONTid}">
+				<td style="vertical-align:middle;text-align: left;background-color:#FBEFF2"><input id="frid" type="hidden" value = "${frid}"><input id="contid" type="hidden" value = "${CONTid}">
 				<input id="rmchk" type="hidden" value = "OK"><span>선택된 계약번호 : </span>${CONTid}</td>
 				</tr>
 				</table>
@@ -87,7 +87,7 @@
 											<colgroup>
 											</colgroup>
 											<thead>
-											<tr>
+											<tr style="vertical-align:middle;text-align: center;background-color:#FBEFF2">
 											<th class="text-center">구분</th>
 											<th class="text-center">단위</th>
 											<th class="text-center">품명</th>
@@ -103,7 +103,7 @@
 											<tbody>
 											<c:forEach var="row" items="${rtnpage7}">
 											<tr>
-											<td class="second" style="text-align: center;">${row.CAT_TITLE}</td>
+											<td class="second" style="text-align: center;background-color:#E0F8E6;vertical-align:middle">${row.CAT_TITLE}</td>
 											<td style="text-align: center;">${row.GOODS_UNIT}</td>
 											<td style="text-align: center;">${row.GOODS_TITLE}</td>
 											<td style="text-align: center;">${row.GOODS_SALE_UNIT}</td>
@@ -147,7 +147,7 @@
 											<colgroup>
 											</colgroup>
 											<thead>
-											<tr>
+											<tr style="vertical-align:middle;text-align: center;background-color:#FBEFF2">
 											<th class="text-center">주문일시</th>
 											<th class="text-center">상품구분</th>
 											<th class="text-center">단위</th>
@@ -164,7 +164,7 @@
 											<c:forEach var="row" items="${spage6}">
 											<tr>
 											<td style="text-align: center;">${row.ORD_DATE}</td>
-											<td class="second" style="text-align: center;">${row.CAT_TITLE}</td>
+											<td class="second" style="text-align: center;vertical-align:middle">${row.CAT_TITLE}</td>
 											<td style="text-align: center;">${row.GOODS_UNIT}</td>
 											<td style="text-align: center;">${row.GOODS_TITLE}</td>
 											<td style="text-align: center;">${row.GOODS_SALE_UNIT}</td>
@@ -193,7 +193,7 @@
 											<colgroup>
 											</colgroup>
 											<thead>
-											<tr>
+											<tr style="vertical-align:middle;text-align: center;background-color:#FBEFF2">
 											<th class="text-center">주문일시</th>
 											<th class="text-center">상품구분</th>
 											<th class="text-center">단위</th>
@@ -210,7 +210,7 @@
 											<c:forEach var="row" items="${spage7}">
 											<tr>
 											<td style="text-align: center;">${row.ORD_DATE}</td>
-											<td class="second" style="text-align: center;">${row.CAT_TITLE}</td>
+											<td class="second" style="text-align: center;vertical-align:middle">${row.CAT_TITLE}</td>
 											<td style="text-align: center;">${row.GOODS_UNIT}</td>
 											<td style="text-align: center;">${row.GOODS_TITLE}</td>
 											<td style="text-align: center;">${row.GOODS_SALE_UNIT}</td>
@@ -228,30 +228,22 @@
 											</tbody>
 										</table>
 										<table class="table table-sm bst02" id="rtn">
+										<colgroup>
+											<col width="85%" />
+											<col width="15%" />
+										</colgroup>
 											<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td style="text-align: center;">반품 합계</td>
-											<td></td>
-											<td></td>
+											<td style="text-align: center;" colspan="9">반품 합계</td>
 											<td style="text-align: right;"><div><input style="text-align:right; border:none" type="text" id="sumrtn" value=""></div></td>
 											</tr>
 										</table>
 										<table class="table table-sm bst02" id="tot">
+										<colgroup>
+											<col width="85%" />
+											<col width="15%" />
+										</colgroup>
 											<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td style="text-align: center;">식당/매점 정산 합계</td>
-											<td></td>
-											<td></td>
+											<td style="text-align: center;" colspan="9">식당/매점 정산 합계</td>
 											<td style="text-align: right;"><div><input style="text-align:right; border:none" type="text" id="summs" value=""></div></td>
 											</tr>
 										</table>
@@ -273,11 +265,11 @@
 								<table class="table table-bordered nowrap" id="sFtable">
 									<thead>
 											<tr>
-												<th scope="col" width="40%" style="text-align:center"><a href="javascript:dtlshow();">구</a><a href="javascript:dtlhide();">분</a></th>
-												<th scope="col" width="15%" style="text-align:center">사용금액</th>
-												<th scope="col" width="15%" style="text-align:center">추가금액</th>
-												<th scope="col" width="15%" style="text-align:center">할인금액</th>
-												<th scope="col" width="15%" style="text-align:center">외부정산금액</th>																								
+												<th style="vertical-align:middle;text-align: center;background-color:#FBEFF2"><a href="javascript:dtlshow();">구</a><a href="javascript:dtlhide();">분</a></th>
+												<th style="vertical-align:middle;text-align: center;background-color:#FBEFF2">사용금액</th>
+												<th style="vertical-align:middle;text-align: center;background-color:#FBEFF2">추가금액</th>
+												<th style="vertical-align:middle;text-align: center;background-color:#FBEFF2">할인금액</th>
+												<th style="vertical-align:middle;text-align: center;background-color:#FBEFF2">외부정산금액</th>																								
 											</tr>
 									</thead>
 									<tbody>
@@ -290,11 +282,11 @@
 												<td style="text-align: right" class="extprice2"><fmt:formatNumber value="0" pattern="#,###" /></td>
 											</tr>
 										</c:forEach>
-											<tr><td style="background-color:lightgray; text-align:center">시설사용료</td>
-											<td><input type="text" style="text-align:right;border:none" id="sum12" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum22" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum32"></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum42" disabled></td></tr>
+											<tr><td style="background-color:#E0F8E6; text-align:center">시설사용료</td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum12" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum22" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum32"></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum42" disabled></td></tr>
 										<c:forEach var="row" items="${spage4}">
 											<tr class="hidedetail">
 												<td>${row.GOODS_TITLE}<input type="hidden" class = "s4Tid" value = "${row.GOODS_ID}"/></td>
@@ -304,11 +296,11 @@
 												<td style="text-align: right" class="extprice4"><fmt:formatNumber value="0" pattern="#,###" /></td>
 											</tr>
 										</c:forEach>
-											<tr><td style="background-color:lightgray; text-align:center">장의용품비</td>
-											<td><input type="text" style="text-align:right;border:none" id="sum14" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum24" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum34"></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum44" disabled></td></tr>
+											<tr><td style="background-color:#E0F8E6; text-align:center">장의용품비</td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum14" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum24" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum34"></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum44" disabled></td></tr>
 										<c:forEach var="row" items="${spage3}">
 											<tr class="hidedetail">
 												<td>${row.BCD_TITLE}<input type="hidden" class = "s3Tid" value = "${row.FTABLE_ID}"/></td>
@@ -318,11 +310,11 @@
 												<td style="text-align: right" class="extprice3"><fmt:formatNumber value="0" pattern="#,###" /></td>
 											</tr>
 										</c:forEach>
-											<tr><td style="background-color:lightgray; text-align:center">제물상비용</td>
-											<td><input type="text" style="text-align:right;border:none" id="sum13" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum23" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum33"></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum43" disabled></td></tr>
+											<tr><td style="background-color:#E0F8E6; text-align:center">제물상비용</td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum13" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum23" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum33"></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum43" disabled></td></tr>
 										<c:forEach var="row" items="${spage5}">
 											<tr class="hidedetail">
 												<td>${row.ALTAR_TITLE}<input type="hidden" class = "s5Tid" value = "${row.ALTAR_ID}"/></td>
@@ -332,11 +324,11 @@
 												<td style="text-align: right" class="extprice5"><fmt:formatNumber value="0" pattern="#,###" /></td>
 											</tr>
 										</c:forEach>
-											<tr><td style="background-color:lightgray; text-align:center">제단비용</td>
-											<td><input type="text" style="text-align:right;border:none" id="sum15" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum25" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum35"></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum45" disabled></td></tr>
+											<tr><td style="background-color:#E0F8E6; text-align:center">제단비용</td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum15" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum25" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum35"></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum45" disabled></td></tr>
 										<c:forEach var="row" items="${spage6}">
 											<tr class="hidedetail">
 												<td>${row.GOODS_TITLE}<input type="hidden" class = "s6Tid" value = "${row.GOODS_ID}"/></td>
@@ -346,11 +338,11 @@
 												<td style="text-align: right" class="extprice6"><fmt:formatNumber value="0" pattern="#,###" /></td>
 											</tr>
 										</c:forEach>
-											<tr><td style="background-color:lightgray; text-align:center">식사비용</td>
-											<td><input type="text" style="text-align:right;border:none" id="sum16" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum26" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum36"></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum46" disabled></td></tr>
+											<tr><td style="background-color:#E0F8E6; text-align:center">식사비용</td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum16" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum26" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum36"></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum46" disabled></td></tr>
 										<c:forEach var="row" items="${spage7}">
 											<tr class="hidedetail">
 												<td>${row.GOODS_TITLE}<input type="hidden" class = "s7Tid" value = "${row.GOODS_ID}"/></td>
@@ -360,11 +352,11 @@
 												<td style="text-align: right" class="extprice7"><fmt:formatNumber value="0" pattern="#,###" /></td>
 											</tr>
 										</c:forEach>
-											<tr><td style="background-color:lightgray; text-align:center">매점 비용</td>
-											<td><input type="text" style="text-align:right;border:none" id="sum17" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum27" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum37"></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum47" disabled></td></tr>
+											<tr><td style="background-color:#E0F8E6; text-align:center">매점 비용</td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum17" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum27" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum37"></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum47" disabled></td></tr>
 										<c:forEach var="row" items="${spage8}">
 											<tr class="hidedetail">
 												<td>${row.GOODS_TITLE}<input type="hidden" class = "s8Tid" value = "${row.GOODS_ID}"/></td>
@@ -374,23 +366,67 @@
 												<td style="text-align: right" class="extprice8"><fmt:formatNumber value="0" pattern="#,###" /></td>
 											</tr>
 										</c:forEach>
-											<tr><td style="background-color:lightgray; text-align:center">기타 비용</td>
-											<td><input type="text" style="text-align:right;border:none" id="sum18" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum28" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum38"></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum48" disabled></td></tr>
-											<tr><td style="background-color:lightgray; text-align:center">기타 할인</td>
-											<td colspan="2"><input type="text" style="text-align:center;border:none" value="할인명" disabled><input type="text" style="text-align:right;border:none" id="extdiscount" value=""></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum39"></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum49" disabled></td></tr>
-											<tr><td style="background-color:lightgray; text-align:center">도우미 비용</td>
-											<td colspan="3" style="text-align:center"><input type="number" style="text-align:center;border:none" id="sum1A" value="">명</td>
-											<td><input type="text" style="text-align:right;border:none" id="sum4A" disabled></td></tr>											
-											<tr><td style="background-color:lightgray; text-align:center">장의차 비용</td>
-											<td colspan="3" style="text-align:center"><input type="text" style="text-align:center;border:none" id="sum1B" value="버스기사님께 직접 지불" disabled></td>
-											<td><input type="text" style="text-align:right;border:none" id="sum4B"></td></tr>											
+											<tr><td style="background-color:#E0F8E6; text-align:center">기타 비용</td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum18" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum28" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum38"></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum48" disabled></td></tr>
+											<tr><td style="background-color:#E0F8E6; text-align:center">기타 할인</td>
+											<td style="text-align:right;" colspan="2"><input type="text" style="text-align:center;border:none" value="할인명" disabled><input type="text" style="text-align:right;border:none" id="extdiscount" value=""></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum39"></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum49" disabled></td></tr>
+											<tr><td style="background-color:#E0F8E6; text-align:center">도우미 비용</td>
+											<td style="text-align:right;" colspan="3"><input type="number" style="text-align:center;border:none" id="sum1A" value="">명</td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum4A" disabled></td></tr>											
+											<tr><td style="background-color:#E0F8E6; text-align:center">장의차 비용</td>
+											<td style="text-align:right;" colspan="3"><input type="text" style="text-align:center;border:none" id="sum1B" value="버스기사님께 직접 지불" disabled></td>
+											<td style="text-align:right;"><input type="text" style="text-align:right;border:none" id="sum4B"></td></tr>											
 									</tbody>
 								</table>
+								<hr>
+								<table class="table table-sm bst02">
+										<tbody>
+											<tr>
+												<th scope="row">장례 비용 총계</th>
+											</tr>
+										</tbody>
+									</table>
+									<table class="table table-sm bst02">
+										<tbody>
+											<tr>
+												<td style="vertical-align:middle;text-align: center;background-color:#FBEFF2" class="form-control">총 장례 비용 합계</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4grdsum" value=""></td>
+											</tr>
+											<tr>
+												<td style="vertical-align:middle;text-align: center;background-color:#FBEFF2" class="form-control">반품 금액 합계</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4rtn" value=""></td>
+											</tr>
+											<tr>
+												<td style="vertical-align:middle;text-align: center;background-color:#FBEFF2" class="form-control">할인 금액 합계</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4disc" value=""></td>
+											</tr>
+											<tr>
+												<td style="vertical-align:middle;text-align: center;background-color:#FBEFF2" class="form-control">업체에 직접 지불하실 비용 합계</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4ext" value=""></td>
+											</tr>
+											<tr>
+												<td style="vertical-align:middle;text-align: center;background-color:#FBEFF2" class="form-control"><input type="checkbox" id="cashbillchk"><span> </span> 현금영수증 발행 (발행용 전화번호 입력)</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="tel" id="page4cashbill" value=""></td>
+											</tr>
+											<tr>
+												<td style="vertical-align:middle;text-align: center;background-color:#FBEFF2" class="form-control">현금 수납 금액</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4cash" value="0"></td>
+											</tr>
+											<tr>
+												<td style="vertical-align:middle;text-align: center;background-color:#FBEFF2" class="form-control">카드 수납 금액</td>
+												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4card" value="0"></td>
+											</tr>
+											<tr>
+												<td style="vertical-align:middle;text-align: center;background-color:#FBEFF2" class="form-control">추가 기재 사항</td>
+												<td><textarea style="border:none" class="form-control" id="page4rmk"></textarea></td>
+											</tr>
+										</tbody>
+									</table>
 							</form>
 							<hr>
 							<div style="text-align:right"><span>총액 :</span><input type="text" id="sumPage3total" style="text-align: right; border: none;" readonly>
@@ -401,49 +437,7 @@
 						<div class="tab-pane" id="tab04" role="tabpanel">
 							<div class="card-block table-border-style">
 								<div class="table-responsive">
-									<table class="table table-sm bst02">
-										<tbody>
-											<tr>
-												<th scope="row">장례 비용 총계</th>
-											</tr>
-										</tbody>
-									</table>
-									<table class="table table-sm bst02">
-										<tbody>
-											<tr>
-												<td class="form-control">총 장례 비용 합계</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4grdsum" value=""></td>
-											</tr>
-											<tr>
-												<td class="form-control">반품 금액 합계</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4rtn" value=""></td>
-											</tr>
-											<tr>
-												<td class="form-control">할인 금액 합계</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4disc" value=""></td>
-											</tr>
-											<tr>
-												<td class="form-control">업체에 직접 지불하실 비용 합계</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4ext" value=""></td>
-											</tr>
-											<tr>
-												<td class="form-control"><input type="checkbox" id="cashbillchk"><span> </span> 현금영수증 발행 (발행용 전화번호 입력)</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="tel" id="page4cashbill" value=""></td>
-											</tr>
-											<tr>
-												<td class="form-control">현금 수납 금액</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4cash" value="0"></td>
-											</tr>
-											<tr>
-												<td class="form-control">카드 수납 금액</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4card" value="0"></td>
-											</tr>
-											<tr>
-												<td class="form-control">추가 기재 사항</td>
-												<td><textarea style="border:none" class="form-control" id="page4rmk"></textarea></td>
-											</tr>
-										</tbody>
-									</table>
+									
 									<div style="text-align: right">
 										<span>수납 대상 총액 :</span><input type="text" id="Conttotal"
 											style="text-align: right; border: none;" readonly>

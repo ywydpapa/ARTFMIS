@@ -57,7 +57,7 @@
 					</table>
 					<div class="h-container">
 						<div class="item">
-							<div class="table-responsive">
+							<div class="table-responsive" style="overview-x:hidden">
 								<table id="consult_sett_list_table" class="table table-bordered nowrap">
 									<colgroup>
 										<col width="25%" />
@@ -66,22 +66,22 @@
 									</colgroup>
 									<thead>
 										<tr style="text-align: center;">
-											<th>분향실</th>
-											<th>계약일자</th>
-											<th>고인성명</th>
+											<th style="vertical-align:middle;text-align: center;background-color:#FBEFF2">분향실</th>
+											<th style="vertical-align:middle;text-align: center;background-color:#FBEFF2">계약일자</th>
+											<th style="vertical-align:middle;text-align: center;background-color:#FBEFF2">고인명</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="row" items="${listcont}">
 											<tr>
-												<td>${row.FROOM_TITLE}<input type="hidden"
+												<td style="vertical-align:middle;text-align: center">${row.FROOM_TITLE}<input type="hidden"
 													class="FRMID" value="${row.FROOM_ID}"></td>
-												<td class="CONTPERIOD" style="text-align: center;"><a
+												<td class="CONTPERIOD" style="text-align: center;vertical-align:middle"><a
 													href="<c:if test="${row.CONTRACT_ID eq 0 }">#</c:if><c:if test="${row.CONTRACT_ID ne 0 }">javascript:fnSetcontdetail('${path}/cont/settdetail/${row.CONTRACT_ID}?CONT_FROOM_ID=${row.FROOM_ID}')</c:if>">${row.STDATE}<span>
 															<br>~
 													</span> ${row.EDDATE}
 												</a></td>
-												<td class="DPNAME" style="text-align: center;">${row.DPERSON_NAME}</td>
+												<td class="DPNAME" style="text-align: center;vertical-align:middle">${row.DPERSON_NAME}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

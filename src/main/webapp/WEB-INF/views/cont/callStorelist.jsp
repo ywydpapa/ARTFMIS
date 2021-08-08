@@ -36,7 +36,7 @@
 	<tbody>
 		<c:forEach var="row" items="${doslist3}">
 			<tr>
-				<td style="vertical-align: middle; text-align: center"
+				<td style="vertical-align: middle; text-align: center;background-color:#E0F8E6;"
 					class="second2">${row.CAT_TITLE}</td>
 				<td style="vertical-align: middle; text-align: center"><input
 					type="checkbox" class="CHKstore form-control" /></td>

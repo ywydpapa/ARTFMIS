@@ -225,14 +225,14 @@
 												</tr>
 												<tr class="yujoklist" align="center">
 													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6">유족정보</th>
-													<td>
+													<td style="vertical-align: middle;">
 														<select class="form-control" id="contp1-31">
 															<c:forEach var="regc" items="${frelation}">
 																<option value="${regc.BCD_ID}">${regc.BCD_TITLE}</option>
 															</c:forEach>
 													     </select>
 													</td>
-													<td><input type="text"
+													<td style="vertical-align: middle;"><input type="text"
 														class="form-control form-control-sm" id="contp1-32"
 														name="contp1-31" value="">
 													</td>
@@ -1541,6 +1541,7 @@
 			});
 			}
 		fn_contInsertP2();
+		SaveYujok();
 	}
 	
 	function fn_contInsertP2() {
@@ -2656,8 +2657,8 @@
 		var innerHtml = "";
 		innerHtml += '<tr> <th style="background-color:#E0F8E6"></th>';
 		innerHtml += '<td style="vertical-align:middle;text-align:center">'+$("#contp1-31 option:checked").text()+' </td>';
-		innerHtml += '<td>'+$("#contp1-32").val()+'</td>';
-		innerHtml += '<td><button class="btn btn-secondary" onclick="fn_delyujok('+data.yjid+')">삭제</button></td>';
+		innerHtml += '<td style="vertical-align:middle;">'+$("#contp1-32").val()+'</td>';
+		innerHtml += '<td style="vertical-align:middle;text-align:center"><button class="btn btn-secondary" onclick="fn_delyujok('+data.yjid+')">삭제</button></td>';
 		innerHtml += "</tr>";
 		$("#basicTable > tbody > tr[class=yujoklist]:last").after(innerHtml);
 		var sitem = $("#contp1-31").val();
@@ -2679,10 +2680,10 @@
 				return;
 			}
 			var innerHtml = "";
-			innerHtml += '<tr> <th style="background-color:#E0F8E6"></th>';
-			innerHtml += '<td style="vertical-align:middle;text-align:center">'+$("#contp1-31 option:checked").text()+' </td>';
-			innerHtml += '<td class="yujokname">'+$("#contp1-32").val()+'</td>';
-			innerHtml += '<td><button class="btn btn-secondary"onclick="fn_delyujoklist(this,'+$("#contp1-31").val()+')">삭제</button><input type="hidden" class = "yujoklist" value="'+$("#contp1-31").val()+'"></td>';
+			innerHtml += '<tr><th style="background-color:#E0F8E6"><input type="hidden" class = "Tempyujok1" value="'+$("#contp1-31").val()+'"></th>';
+			innerHtml += '<td style="vertical-align:middle;text-align:center" class = "Tempyujok2">'+$("#contp1-31 option:checked").text()+' </td>';
+			innerHtml += '<td style="vertical-align:middle" class="yujokname" class = "Tempyujok3">'+$("#contp1-32").val()+'</td>';
+			innerHtml += '<td style="vertical-align:middle;text-align:center"><button class="btn btn-secondary"onclick="fn_delyujoklist(this,'+$("#contp1-31").val()+')">삭제</button><input type="hidden" class = "yujoklist" value="'+$("#contp1-31").val()+'"></td>';
 			innerHtml += "</tr>";
 			$("#basicTable > tbody > tr[class=yujoklist]:last").after(innerHtml);
 			var sitem = $("#contp1-31").val();
@@ -2692,6 +2693,28 @@
 
 			}
 	}	
+	
+	function SaveYujok(){
+		var $Aarr = $(".TempYujok1");
+		var $Barr = $(".TempYujok2");
+		var $Carr = $(".TempYujok3");
+		for (var i = 0; i < $Aarr.length; i++) {
+		var datatemp = {};
+		datatemp.CONTRACT_ID = $("#contid").val();
+		datatemp.FROOM_ID = $('#frid').val();
+		datatemp.RELATION_CODE = $Aarr[i].value;
+		datatemp.RELATION_TITLE = $Barr[i].innerText;
+		datatemp.SANGJU_NAMEs = $Carr[i].innerText;
+		$.ajax({
+			url : "${path}/cont/insertYujok.do",  
+			data : contp1addyujok,  
+			method : "POST",  
+			dataType : "json"  
+		})
+		.done(function(data) {
+		});
+	}
+	}
 
 function fn_delyujoklist(obj,relcode){
 	console.log(relcode);
