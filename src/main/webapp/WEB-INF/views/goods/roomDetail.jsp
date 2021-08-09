@@ -96,14 +96,19 @@
 			<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">이미지등록</th>
 			<td>
 				<form id="uploadForm" enctype="multipart/form-data" method="post">
-					<input type="hidden" id="uploadServerImageName"
-						value="${dtoRoom.FROOM_IMAGE}"> <input type="file"
-						style="text-align: right;" class="form-control form-control-sm"
-						name="altarImage" id="altarImage">
+					<input type="hidden" id="uploadServerImageName" value="${dtoRoom.FROOM_IMAGE}"><input type="file"
+						style="text-align: right;" class="form-control"	name="altarImage" id="altarImage">
 				</form>
 			</td>
-			<th></th>
-			<td></td>
+			<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0"></th>
+			<td colspan="2"></td>
+		</tr>
+		<tr>
+		<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0"></th>
+		<td></td>
+		<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0"></th>
+		<td></td>
+		<td></td>
 		</tr>
 		<tr>
 			<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">내용</th>

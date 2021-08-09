@@ -13,18 +13,10 @@
 </style>
 <div class="card-block table-border-style swcCard">
 						<div class="table-responsive" style="overflow-x:hidden">
-							<table class="table table-sm bst02">
-								<tbody>
-									<tr>
-										<th scope="row">매점품목 추가주문</th>
-									</tr>
-								</tbody>
-							</table>
 							<table class="table  table-bordered nowrap">
-								<tr>
-									<td style="text-align: right;background-color:#EFFBF8"><span>선택된 주문 총액 :</span><input
-										type="text" id="storegrandtotal"
-										style="text-align: right; border: none;background-color:#EFFBF8" readonly></td>
+								<tr style="vertical-align:middle; text-align: left;background-color:#EFFBF8">
+									<th style="vertical-align:middle;">매점품목 추가주문</th>
+									<th style="float:right"><button class="btn btn-md btn-primary" onClick="fn_addStore()">추가주문</button></th>
 								</tr>
 							</table>
 						</div>
@@ -71,10 +63,6 @@
 									</c:forEach>
 								</tbody>
 							</table>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary"
-									onClick="fn_addStore()">주문</button>
-							</div>
 						</div>
 					</div>
 <script>					
@@ -167,8 +155,6 @@
 			}
 			}
 			alert("저장성공");
-			var urll ="${path}/room/orderlist/"+CONid; 
-			fnSetPage(urll);
 			}
 			else
 				{

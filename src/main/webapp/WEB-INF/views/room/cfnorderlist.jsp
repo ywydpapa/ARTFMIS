@@ -15,10 +15,11 @@
 						<div class="table-responsive">
 							<table class="table  table-bordered nowrap">
 								<tr>
-									<th scope="row">식당품목 주문현황</th>
-									<td style="text-align: right;"><span>주문 총액 :</span><input
-										type="text" id="messgrandtotal"
-										style="text-align: right; border: none;" readonly></td>
+									<th>식당품목 주문현황</th>
+									<th style="text-align: right;">
+									<button class="btn btn-primary" onclick="chkallR()">식당품목 전체선택</button>
+									<button class="btn btn-primary" onclick="chkunR()">식당품목 전체선택해제</button>
+									<button class="btn btn-primary" onclick="cfncheckupdR()">식당품목 수령확인</button></th>
 								</tr>
 							</table>
 						</div>
@@ -33,9 +34,8 @@
 									<col width="10%" />
 									<col width="15%" />
 									<col width="12%" />
+									<col width="10%" />
 									<col width="8%" />
-									<col width="5%" />
-									<col width="5%" />
 								</colgroup>
 
 								<tr>
@@ -52,7 +52,6 @@
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문일자</th>
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">구분</th>
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6"><a href="javascript:void(0);" onclick="chkallR();">V</a>/<a href="javascript:void(0);" onclick="chkunR();">X</a></th>
-									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">수령확인</th>
 								</tr>
 								<tbody>
 									<c:forEach var="row" items="${restord}">
@@ -72,7 +71,6 @@
 											<td style="text-align:right;vertical-align:middle;">${row.REG_DATE} </td>
 											<td style="vertical-align:middle;text-align:center"><c:if test="${row.ORD_TYPE eq 1}">초도주문</c:if><c:if test="${row.ORD_TYPE eq 2}">*추가주문*</c:if></td>
 											<td style="text-align:center;vertical-align:middle;"><input type="checkbox" class="form-control CHKcfnR"><input class="ordRid" type="hidden" value="${row.REST_ORD_ID}"></td>
-											<td style="text-align:center;vertical-align:middle;"><button class="btn btn-info" onclick="cfncheckupdR(${row.REST_ORD_ID})">확인</button></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -85,9 +83,10 @@
 							<table class="table  table-bordered nowrap">
 								<tr>
 									<th scope="row">매점품목 주문현황</th>
-									<td style="text-align: right;"><span>주문 총액 :</span><input
-										type="text" id="storegrandtotal"
-										style="text-align: right; border: none;" readonly></td>
+									<th style="text-align: right;">
+									<button class="btn btn-primary" onclick="chkallS()">매점품목 전체선택</button>
+									<button class="btn btn-primary" onclick="chkunS()">매점품목 전체선택해제</button>
+									<button class="btn btn-primary" onclick="cfncheckupdS()">매점품목 수령확인</button></th>
 								</tr>
 							</table>
 						</div>
@@ -102,9 +101,8 @@
 									<col width="10%" />
 									<col width="15%" />
 									<col width="12%" />
+									<col width="10%" />
 									<col width="8%" />
-									<col width="5%" />
-									<col width="5%" />
 								</colgroup>
 								<tr>
 									<th colspan="2" style="text-align: center;">분류</th>
@@ -120,7 +118,6 @@
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문일자</th>
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">구분</th>
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6"><a href="javascript:void(0);" onclick="chkallS();">V</a>/<a href="javascript:void(0);" onclick="chkunS();">X</a></th>
-									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">수령확인</th>
 
 								</tr>
 								<tbody>
@@ -141,7 +138,6 @@
 											<td style="text-align:right;vertical-align:middle;">${row.REG_DATE} </td>
 											<td style="vertical-align:middle;text-align:center;"><c:if test="${row.ORD_TYPE eq 1}">초도주문</c:if><c:if test="${row.ORD_TYPE eq 2}">*추가주문*</c:if></td>
 											<td style="text-align:center;vertical-align:middle;"><input type="checkbox" class="form-control CHKcfnS"><input class="ordSid" type="hidden" value="${row.STORE_ORD_ID}"></td>
-											<td style="text-align:center;vertical-align:middle;"><button class="btn btn-info" onclick="cfncheckupdS(${row.STORE_ORD_ID})">확인</button></td>
 										</tr>
 									</c:forEach>
 								</tbody>
