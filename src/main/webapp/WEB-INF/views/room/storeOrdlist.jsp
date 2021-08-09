@@ -12,12 +12,11 @@
 }
 </style>
 <div class="card-block table-border-style swcCard">
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<table class="table table-sm bst02">
 								<tbody>
 									<tr>
 										<th scope="row">매점품목 추가주문</th>
-										<td align="right"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -29,7 +28,7 @@
 								</tr>
 							</table>
 						</div>
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<table class="table  table-bordered nowrap">
 								<colgroup>
 									<col width="10%" />

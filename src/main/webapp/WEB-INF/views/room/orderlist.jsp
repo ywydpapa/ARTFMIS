@@ -12,7 +12,7 @@
 }
 </style>
 <div class="card-block table-border-style swcCard">
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<table class="table  table-bordered nowrap">
 								<tr>
 									<th scope="row">식당품목 주문현황</th>
@@ -22,7 +22,7 @@
 								</tr>
 							</table>
 						</div>
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<table id="MESS01"
 								class="table  table-bordered nowrap">
 								<colgroup>
@@ -35,7 +35,6 @@
 									<col width="15%" />
 									<col width="15%" />
 								</colgroup>
-
 								<tr>
 									<th colspan="2" style="text-align: center;">분류</th>
 									<th colspan="8" style="text-align: center;">상세정보</th>
@@ -53,20 +52,20 @@
 								<tbody>
 									<c:forEach var="row" items="${restord}">
 										<tr>
-											<td class="first">${row.CAT_TITLE}</td>
-											<td><input type="hidden" class="GID" value="${row.REST_ORD_ID}"/>${row.GOODS_TITLE}</td>
-											<td>${row.GOODS_UNIT}</td>
-											<td style="text-align: right;" class="infoM"><fmt:formatNumber
+											<td style="vertical-align:middle; text-align: center;" class="first">${row.CAT_TITLE}</td>
+											<td style="vertical-align:middle;"><input type="hidden" class="GID" value="${row.REST_ORD_ID}"/>${row.GOODS_TITLE}</td>
+											<td style="vertical-align:middle;">${row.GOODS_UNIT}</td>
+											<td style="text-align: right;vertical-align:middle;" class="infoM"><fmt:formatNumber
 													value="${row.NET_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;"><input
+											<td style="text-align: right;vertical-align:middle;"><input
 												class="from-control MA" oninput="calculateM()"
 												style="border: none; text-align: right;" type="number"
 												min="0" max="100"
 												value="${row.ORD_QUTY}" required readonly></td>
-											<td class="MB" style="text-align: right;"><fmt:formatNumber
+											<td class="MB" style="text-align: right;vertical-align:middle;"><fmt:formatNumber
 													value="${row.ORD_AMOUNT}" pattern="#,###" /></td>
-											<td style="text-align:right;">${row.REG_DATE} </td>
-											<td style="text-align:right;">${row.CONF_DATE} </td>
+											<td style="text-align:right;vertical-align:middle;">${row.REG_DATE} </td>
+											<td style="text-align:right;vertical-align:middle;">${row.CONF_DATE} </td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -75,7 +74,7 @@
 						<div class="btn_wr text-right mt-3">
 						</div>
 <br>
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<table class="table  table-bordered nowrap">
 								<tr>
 									<th scope="row">매점품목 주문현황</th>
@@ -85,9 +84,9 @@
 								</tr>
 							</table>
 						</div>
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<table id="MESS01"
-								class="table  table-bordered nowrap">
+								class="table table-bordered nowrap">
 								<colgroup>
 									<col width="10%" />
 									<col width="15%" />
@@ -116,9 +115,9 @@
 								<tbody>
 									<c:forEach var="row" items="${storeord}">
 										<tr>
-											<td class="first">${row.CAT_TITLE}</td>
-											<td><input type="hidden" class="GID" value="${row.STORE_ORD_ID}"/>${row.GOODS_TITLE}</td>
-											<td>${row.GOODS_UNIT}</td>
+											<td style="vertical-align:middle; text-align: center;" class="first">${row.CAT_TITLE}</td>
+											<td style="vertical-align:middle;"><input type="hidden" class="GID" value="${row.STORE_ORD_ID}"/>${row.GOODS_TITLE}</td>
+											<td style="vertical-align:middle;">${row.GOODS_UNIT}</td>
 											<td style="text-align: right;" class="infoS"><fmt:formatNumber
 													value="${row.NET_PRICE}" pattern="#,###" /></td>
 											<td style="text-align: right;"><input

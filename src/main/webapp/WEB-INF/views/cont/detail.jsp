@@ -1364,7 +1364,6 @@
 										<col width="5%" />
 										<col width="5%" />
 										<col width="20%" />
-										<col width="10%" />
 									</colgroup>
 									<thead style="text-align:center;background-color:#E0E6F8">
 										<tr>
@@ -2141,15 +2140,22 @@
 		var $Carr = $(".sRMd");
 		var $Darr = $(".sRMt");
 		var $Earr = $(".sRMcharge");
-		var RMfee = 0;
 		for (var i = 0; i < $infoarr.length; i++) {
+			if($($infoarr[i]).is(":checked")==true){
+			var RMfee = 0;
 			var t1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 			var t2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 			var t3 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 			var t4 = Number($Darr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 			RMfee = (t1*t3)+(t2*t4);
 		$Earr[i].innerText = numberWithCommas(RMfee);
+		console.log($Aarr[i].innerText);
+		console.log(t2);
+		console.log(t3);
+		console.log(t4);
+		console.log(RMfee);
 		 }
+		}
 	}
 
 	function calculateE() {
@@ -3200,7 +3206,6 @@ function setSecond(){
 		chkcalS();
 		calculateT();
 		chkcalT();
-		calculateR();
 		chkcalR();
 		selectMT();
 		calculateG();
@@ -3214,6 +3219,7 @@ function setSecond(){
 		chkEtcchange();
 		SetDT();
 		setComboP1();
+		calculateR();		
 	})
 
 </script>

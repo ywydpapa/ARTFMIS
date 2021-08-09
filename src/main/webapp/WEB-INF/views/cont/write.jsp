@@ -78,13 +78,12 @@
 												<tr align="center">
 													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6;border:1px solid:black;" rowspan="5">고인</th>
 													<td class="cont-title" style="vertical-align: middle;">성명</td>
-													<td><input type="text" 
-														class="form-control form-control-sm" id="contp1-07" tabindex="0"
+													<td><input type="text" class="form-control form-control-sm" id="contp1-07" tabindex="1"
 														name="contp1-07" value="" >
 													</td>
 													<td class="cont-title" style="vertical-align: middle;">주민등록번호</td>
 													<td><input type="text" size="13" maxlength="14"
-														class="form-control form-control-sm jumin" id="contp1-08" tabindex="1"
+														class="form-control form-control-sm jumin" id="contp1-08" tabindex="2"
 														name="contp1-08" value=""></td>
 													<td class="cont-title" style="vertical-align: middle;">성별</td>
 													<td>
@@ -98,7 +97,7 @@
 													<td class="cont-title" style="vertical-align: middle;">주소</td>
 													<td colspan="2"><input type="text" style="width:70%;float:left"
 														class="form-control form-control-sm" id="contp1-10"
-														name="contp1-10" value="" tabindex="7"><button class="form-control" onClick="execDaumPostcode();" style="width:25%;float:right">검색</button>
+														name="contp1-10" value="" tabindex="3"><button class="form-control" onClick="execDaumPostcode();" style="width:25%;float:right">검색</button>
 													</td>
 													<td></td>
 													<td class="cont-title" style="vertical-align: middle;">본관</td>
@@ -122,8 +121,8 @@
 												</tr>
 												<tr align="center">
 													<td class="cont-title" style="vertical-align: middle;">사망일시</td>
-													<td><input style="width:70%;float:left" type="date" class="form-control form-control-sm" id="contp1-14" name="contp1-14" value="" tabindex="2">
-													<input style="width:30%;float:right" type="text" required class="form-control form-control-sm timepicker" id="contp1-14-1" name="contp1-14-1" value="" tabindex="3">
+													<td><input style="width:70%;float:left" type="date" class="form-control form-control-sm" id="contp1-14" name="contp1-14" value="" tabindex="4">
+													<input style="width:30%;float:right" type="text" required class="form-control form-control-sm timepicker" id="contp1-14-1" name="contp1-14-1" value="" tabindex="5">
 													</td>
 													<td class="cont-title" style="vertical-align: middle;">나이</td>
 													<td><input type="number" style="text-align:right"
@@ -139,7 +138,7 @@
 													<td class="cont-title" style="vertical-align: middle;">사망장소</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-17"
-														name="contp1-17" value="" tabindex="4" >
+														name="contp1-17" value="" tabindex="6" >
 													</td>
 													<td class="cont-title" style="vertical-align: middle;">지역</td>
 													<td><input type="text"
@@ -159,12 +158,12 @@
 													<td class="cont-title" style="vertical-align: middle;">상주성명</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-20"
-														name="contp1-20" value="" tabindex="5">
+														name="contp1-20" value="" tabindex="7">
 													</td>
 													<td class="cont-title" style="vertical-align: middle;">주민등록번호</td>
 													<td><input type="text" size="13" maxlength="14"
 														class="form-control form-control-sm jumin" id="contp1-21" 
-														name="contp1-21" value="" tabindex="6"></td>
+														name="contp1-21" value="" tabindex="8"></td>
 													<td class="cont-title" style="vertical-align: middle;">관계</td>
 													<td><select class="form-control" id="contp1-22">
 															<c:forEach var="regc" items="${frelation}">
@@ -176,13 +175,13 @@
 													<td class="cont-title" style="vertical-align: middle;">주소</td>
 													<td colspan="2"><input type="text" style="width:70%;float:left"
 														class="form-control form-control-sm" id="contp1-23"
-														name="contp1-23" value="" tabindex="7"><button class="form-control" onClick="execDaumPostcode2();" style="width:25%;float:right">검색</button>
+														name="contp1-23" value="" tabindex="9"><button class="form-control" onClick="execDaumPostcode2();" style="width:25%;float:right">검색</button>
 													</td>
 													<td></td>
 													<td class="cont-title" style="vertical-align: middle;">연락처</td>
 													<td><input type="text"
 														class="form-control form-control-sm phone" id="contp1-24" maxlength="13"
-														name="contp1-24" value="" tabindex="8"></td>
+														name="contp1-24" value="" tabindex="10"></td>
 												</tr>
 												<tr align="center">
 													<td class="cont-title" style="vertical-align: middle;">상세주소</td>
@@ -196,29 +195,29 @@
 												<tr align="center">
 													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6" rowspan="2">일정</th>
 													<td class="cont-title" style="vertical-align: middle;">입실일시*</td>
-													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-26" name="contp1-26" value="" tabindex="9">
-													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-26-1" name="contp1-26-1" value="" tabindex="10" >
+													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-26" name="contp1-26" value="" tabindex="11">
+													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-26-1" name="contp1-26-1" value="" tabindex="12" >
 													</td>
 													<td class="cont-title" style="vertical-align: middle;">안치일시</td>
-													<td colspan="2"><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-27" name="contp1-27" value="" tabindex="11">
-													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-27-1" name="contp1-27-1" value="" tabindex="12">
+													<td colspan="2"><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-27" name="contp1-27" value="" tabindex="13">
+													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-27-1" name="contp1-27-1" value="" tabindex="14">
 													</td>
 												</tr>
 												<tr align="center">
 													<td class="cont-title" style="vertical-align: middle;">입관일시</td>
-													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-28" name="contp1-28" value="" tabindex="13" >
-													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-28-1 " name="contp1-28-1" value="" tabindex="14" >
+													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-28" name="contp1-28" value="" tabindex="15" >
+													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-28-1 " name="contp1-28-1" value="" tabindex="16" >
 													</td>
 													<td class="cont-title" style="vertical-align: middle;">발인일시*</td>
-													<td colspan="2"><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-29" name="contp1-29" value="" tabindex="15">
-													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-29-1" name="contp1-29-1" value="" tabindex="16">
+													<td colspan="2"><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-29" name="contp1-29" value="" tabindex="17">
+													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-29-1" name="contp1-29-1" value="" tabindex="18">
 													</td>
 												</tr>
 												<tr align="center">
 													<td style="vertical-align: middle; text-align:center;background-color:#E0F8E6" >장지</td>
 													<td colspan="3"><input type="text"
 														class="form-control form-control-sm" id="contp1-30"
-														name="contp1-30" value="" tabindex="17">
+														name="contp1-30" value="" tabindex="19">
 													</td>
 													<td></td>
 													<td></td>
@@ -3091,6 +3090,24 @@ function fnSetcont7page(url, data){
 		setSecond();
 });
 }
+
+
+$('input').on("keypress", function(e) {
+    /* ENTER PRESSED*/
+    if (e.keyCode == 13) {
+        /* FOCUS ELEMENT */
+        var inputs = $(this).parents("table").eq(0).find(":input");
+        var idx = inputs.index(this);
+
+        if (idx == inputs.length - 1) {
+            inputs[0].select()
+        } else {
+            inputs[idx + 1].focus(); //  handles submit buttons
+            inputs[idx + 1].select();
+        }
+        return false;
+    }
+});
 
 	$(document).ready(function(){
 		

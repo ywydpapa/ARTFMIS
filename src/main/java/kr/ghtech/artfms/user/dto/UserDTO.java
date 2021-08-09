@@ -31,4 +31,5 @@ public class UserDTO {
 	private String Npasswd;
 	private String Ppasswd;
 	private String BCD_TITLE;
+	private String ORD_PASSWD;
 }
