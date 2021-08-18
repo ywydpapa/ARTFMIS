@@ -5,20 +5,22 @@
 <c:set var="path" value ="${pageContext.request.contextPath}"/>
 
 <div>
-  <table class="table  table-bordered nowrap " id="goodslist">
-  <tbody>
-    <tr>
-      <th scope="col" width="100" align="center">대분류명</th>
-      <th scope="col" width="150" align="center">중분류명</th>
-      <th scope="col" width="350" align="center">품명</th>
-      <th scope="col" width="100" align="center">사용여부</th>
+  <table class="table table-bordered nowrap " id="goodslist">
+   <thead>
+    <tr style="vertical-align:middle;text-align:center;background-color:#E6F8E0 ">
+      <th style="vertical-align:middle;text-align:center">대분류</th>
+      <th style="vertical-align:middle;text-align:center">중분류</th>
+      <th style="vertical-align:middle;text-align:center">품명</th>
+      <th style="vertical-align:middle;text-align:center">사용여부</th>
     </tr>
+    </thead>
+    <tbody>
     <c:forEach var="row" items="${listgoods01}">
     <tr>
-      <td class="first">장의용품</td>
-      <td class="first">${row.CAT_02_TITLE}</td>
-      <td><a href="javascript:fn_Reload04('${path}/goods/detail01/${row.GOODS_ID}')">${row.GOODS_TITLE}</a></td>
-      <td><c:if test="${row.GOODS_USE_YN eq 'Y'}">사용</c:if><c:if test="${row.GOODS_USE_YN eq 'N'}">미사용</c:if></td>
+      <td style="vertical-align:middle;text-align:center" class="first">장의용품</td>
+      <td style="vertical-align:middle;text-align:center "class="first">${row.CAT_02_TITLE}</td>
+      <td style="vertical-align:middle"><a href="javascript:fn_Reload04('${path}/goods/detail01/${row.GOODS_ID}')">${row.GOODS_TITLE}</a></td>
+      <td style="vertical-align:middle;text-align:center"><c:if test="${row.GOODS_USE_YN eq 'Y'}">사용</c:if><c:if test="${row.GOODS_USE_YN eq 'N'}">미사용</c:if></td>
     </tr>
     </c:forEach>
      </tbody>

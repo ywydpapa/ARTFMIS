@@ -20,53 +20,49 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th>구분</th>
-								<td><input class = "from-control" id="typename" value="" readonly></td>
-								<th scope="row">제단명<input type="hidden" id="altarID" value="${dto.ALTAR_ID}"></th>
-								<td ><input type="text"
-									class="form-control"
-									id="altarTitle" name="altarTitle" value="${dto.ALTAR_TITLE}" placeholder="">
-									</td>
-									<td>
-									<button style="text-align:right;" class="btn btn-md btn-success" value="추가" onClick="fn_setinsert()">새항목 추가</button>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">구분</th>
+								<td><input class="form-control" id="typename" value="" readonly></td>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">제단명<input type="hidden" id="altarID" value="${dto.ALTAR_ID}"></th>
+								<td ><input type="text" class="form-control" id="altarTitle" name="altarTitle" value="${dto.ALTAR_TITLE}" placeholder=""></td>
+									<td style="text-align:center;">
+									<button style="text-align:center;" class="btn btn-md btn-success" value="추가" onClick="fn_setinsert()">새항목 추가</button>
 									</td>
 							</tr>
 							<tr >
-								<th scope="row">단가</th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">단가</th>
 								<td><input type="text" style="text-align: right;"
-									class="form-control num_only num_comma num_sum CHK" id="priceNet"
+									class="form-control num_only num_comma num_sum CHKcal" id="priceNet"
 									name="priceNet" value="<fmt:formatNumber value="${dto.ALTAR_NET_PRICE}" pattern="#,###"/>" placeholder="">
 								</td>
-								<th scope="row">기본수량</th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">기본수량</th>
 								<td colspan="2"><input type="text" style="text-align: right;"
-									class="form-control num_only num_comma num_sum CHK" id="intQty"
+									class="form-control num_only num_comma num_sum CHKcal" id="intQty"
 									name="intQty" value="${dto.ALTAR_QTY}" placeholder="">
 								</td>
 							</tr>
 							
 							<tr >
-								<th scope="row">판매금액</th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">판매금액</th>
 								<td colspan="4"><input type="text"
-									class="form-control text-right font-weight-bold num_only num_comma num_sum CHK" readonly
+									class="form-control text-right font-weight-bold num_only num_comma num_sum CHKcal" readonly
 									id="priceSale" name="priceSale" value="<fmt:formatNumber value="${dto.ALTAR_AMOUNT}" pattern="#,###"/>" placeholder="">
 							</tr>
 							<tr>
-								<th scope="row">설명</th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">설명</th>
 								<td colspan="4"><textarea name="altarRemark" id="altarRemark"
 										rows="8" class="form-control">${dto.ALTAR_REMARK}</textarea></td>
 							</tr>
 							<tr>
-								<th scope="row">사용여부</th>
-								<td><select name="useYn" id="useYn"
-									class="form-control form-control-sm">
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">사용여부</th>
+								<td><select name="useYn" id="useYn" class="form-control">
 										<option value="Y">사용</option>
 										<option value="N">미사용</option>
 								</select></td>
-									<th scope="row">이미지등록</th>
-									<td>
+									<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">이미지등록</th>
+									<td colspan="2">
 										<form id="uploadForm" enctype="multipart/form-data" method="post">
 											<input type="hidden" id="uploadServerImageName" value="${dto.ALTAR_IMAGE}">
-											<input type="file" style="text-align: right;" class="form-control form-control-sm" name="altarImage" id="altarImage">
+											<input type="file" style="text-align: right;" class="form-control" name="altarImage" id="altarImage">
 										</form>
 									</td>
 							</tr>
@@ -135,7 +131,7 @@
 				$("#priceNet").val(numberWithCommas(sum1));
 		}
 		  
-	    $(".CHK").change(function(){
+	    $(".CHKcal").change(function(){
 			recal();  
 	    });
 

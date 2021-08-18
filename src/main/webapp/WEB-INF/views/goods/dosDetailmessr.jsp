@@ -12,13 +12,13 @@
 				<div class="table-responsive">
 				<table class="table  table-bordered nowrap">
 				<tr>
-				<td><span>선택된 항목 : </span>${pagetitle}</td>
-				<td style="text-align:right;"><span>선택된 초도주문 총액 :</span><input type="text" id="subtotal" style="text-align:right; border:none;" readonly></td>
+				<td style="text-align:right;background-color:#E6F8E0"><span>선택된 항목 : </span>${pagetitle}</td>
+				<td style="text-align:right;background-color:#E6F8E0"><span>선택된 초도주문 총액 :</span><input type="text" id="subtotal" style="text-align:right; border:none;background-color:#E6F8E0" readonly></td>
 				</tr>
 				</table>
 				</div>
 				<div class="table-responsive">
-					<table id = "DOS01" class="table  table-bordered nowrap">
+					<table id = "DOS01" class="table table-bordered table-hover">
 						<colgroup>
 							<col width="5%"/>
 							<col width="15%"/>
@@ -31,38 +31,39 @@
 							<col width="10%"/>
 							<col width="15%"/>
 						</colgroup>				
-						
+							<thead>
 							<tr>
-								<th colspan ="2" style="text-align:center;">분류</th>
-								<th colspan ="8" style="text-align:center;">상세정보</th>
+								<th colspan ="2" style="text-align:center;border:2px">분류</th>
+								<th colspan ="8" style="text-align:center;border:2px">상세정보</th>
 							</tr>
-							<tr style="text-align:center;">
-								<th>종류</th>
-								<th>제품명</th>
-								<th>단위</th>
-								<th>개당단가</th>
-								<th>기본금액</th>
-								<th>초도주문수량</th>
-								<th>초도주문금액</th>
-								<th>추가주문수량</th>
-								<th>추가주문금액</th>
-								<th>표준주문서등록여부</th>
+							<tr style="text-align:center;background-color:#CED8F6">
+								<th style="text-align:center;">종류</th>
+								<th style="text-align:center;">제품명</th>
+								<th style="text-align:center;">단위</th>
+								<th style="text-align:center;">개당단가</th>
+								<th style="text-align:center;">기본금액</th>
+								<th style="text-align:center;">초도주문수량</th>
+								<th style="text-align:center;">초도주문금액</th>
+								<th style="text-align:center;">추가주문수량</th>
+								<th style="text-align:center;">추가주문금액</th>
+								<th style="text-align:center;">표준주문서등록여부(<a href="javascript:void(0);" onclick="chkall();">V</a>/<a href="javascript:void(0);" onclick="chkun();">X</a>)</th>
 							</tr>
+							</thead>
 						<tbody>	
 							<c:forEach var="row" items="${list}">
 							<tr>
-								<td class="first">${row.CAT_TITLE}</td>
-								<td><input type="hidden" class="FRID" value="${frid}"><input type="hidden" class = "GID" value="${row.GOODS_ID}">${row.GOODS_TITLE}</td>
-								<td>${row.GOODS_UNIT}</td>
-								<td style="text-align:right;"><fmt:formatNumber value="${row.GOODS_NET_PRICE}" pattern="#,###"/></td>
-								<td style="text-align:right;" class="info"><fmt:formatNumber value="${row.GOODS_SALE_PRICE}" pattern="#,###"/></td>
-								<td style = "text-align:right;" ><input class="from-control A" oninput="calculate()" style="border:none; text-align:right;" 
+								<td class="first" style="vertical-align:middle;text-align:center;background-color:#E6F8E0">${row.CAT_TITLE}</td>
+								<td style="vertical-align:middle" ><input type="hidden" class="FRID" value="${frid}"><input type="hidden" class = "GID" value="${row.GOODS_ID}">${row.GOODS_TITLE}</td>
+								<td style="vertical-align:middle" >${row.GOODS_UNIT}</td>
+								<td style="text-align:right;vertical-align:middle"><fmt:formatNumber value="${row.GOODS_NET_PRICE}" pattern="#,###"/></td>
+								<td style="text-align:right;vertical-align:middle" class="info"><fmt:formatNumber value="${row.GOODS_SALE_PRICE}" pattern="#,###"/></td>
+								<td style = "text-align:right;vertical-align:middle" ><input class="from-control A" oninput="calculate()" style="border:none; text-align:right;" 
 								type="number" min="0" max="100" value="<c:if test="${row.MESSR_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.MESSR_GOODS_INIT_QTY ne null }">${row.MESSR_GOODS_INIT_QTY}</c:if>" required></td>
-								<td class="B" style = "text-align:right;"></td>
-								<td style = "text-align:right;"><input class="from-control C" oninput="calculate()" style="border:none; text-align:right;" 
+								<td class="B" style = "text-align:right;vertical-align:middle"></td>
+								<td style = "text-align:right;vertical-align:middle"><input class="from-control C" oninput="calculate()" style="border:none; text-align:right;" 
 								type="number" value ="<c:if test="${row.MESSR_GOODS_ADD_QTY eq null }">0</c:if><c:if test="${row.MESSR_GOODS_ADD_QTY ne null }">${row.MESSR_GOODS_ADD_QTY}</c:if>" min="0" max="100" required></td>
-								<td class="D" style = "text-align:right;"></td>
-								<th style="text-align:center;" scope="row"><input class="form-control CHK" type="checkbox" id="checkbox0" <c:if test="${row.MESSR_GOODS_INIT_QTY ne null }">checked</c:if>></th>
+								<td class="D" style = "text-align:right;vertical-align:middle"></td>
+								<th style="text-align:center;vertical-align:middle" scope="row"><input class="form-control CHK" type="checkbox" id="checkbox0" <c:if test="${row.MESSR_GOODS_INIT_QTY ne null }">checked</c:if>></th>
 							</tr>
 							</c:forEach>
 															

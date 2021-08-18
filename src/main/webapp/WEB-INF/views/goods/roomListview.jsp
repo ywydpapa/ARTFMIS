@@ -53,8 +53,8 @@
 			<col width="20%" />
 		</colgroup>
 		<tr>
-			<td>시설구분</td>
-			<td><select name="FROOM_TYP" id="FROOM_TYP"
+			<td style="vertical-align:middle;background-color:#E6F8E0">시설구분</td>
+			<td style="vertical-align:middle"><select name="FROOM_TYP" id="FROOM_TYP"
 				class="form-control form-control-sm">
 					<option value="1">분향실</option>
 					<option value="2">안치실</option>
@@ -69,23 +69,23 @@
 <hr>
 	<div class="h-container">
 					<div class="item">
-			<table class="table  table-bordered nowrap"
+			<table class="table table-bordered table-hover"
 							id="roomTable">
 				<thead>
-					<tr>
-						<th scope="col" width="200" align="center">호실명</th>
-						<th scope="col" width="100" align="center">수용인원</th>
-						<th scope="col" width="100" align="center">임시호실명</th>
-						<th scope="col" width="100" align="center">사용여부</th>
+					<tr style="vertical-align:middle;text-align:center;background-color:#E6F8E0">
+						<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">호실명</th>
+						<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">수용인원</th>
+						<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">임시호실명</th>
+						<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">사용여부</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="row" items="${list}">
 						<tr>
-							<td><a href="javascript:fnSetRoomdetail('${path}/goods/detailRoom/${row.FROOM_ID}')">${row.FROOM_TITLE}</a></td>
-							<td>${row.FROOM_MAX_PERS}</td>
-							<td>${row.FROOM_ALIS}</td>
-							<td><c:if test="${row.FROOM_USE_YN eq 'Y'}">사용</c:if><c:if test="${row.FROOM_USE_YN eq 'N'}">미사용</c:if></td>
+							<td style="vertical-align:middle;text-align:center;"><a href="javascript:fnSetRoomdetail('${path}/goods/detailRoom/${row.FROOM_ID}')">${row.FROOM_TITLE}</a></td>
+							<td style="vertical-align:middle;text-align:right;">${row.FROOM_MAX_PERS}</td>
+							<td style="vertical-align:middle;text-align:center;">${row.FROOM_ALIS}</td>
+							<td style="vertical-align:middle;text-align:center;"><c:if test="${row.FROOM_USE_YN eq 'Y'}">사용</c:if><c:if test="${row.FROOM_USE_YN eq 'N'}">미사용</c:if></td>
 						</tr>
 					</c:forEach>
 				</tbody>

@@ -41,7 +41,7 @@
 </style>
 <div class="listrooms">
 
-	<table class="table  table-bordered nowrap"
+	<table class="table table-bordered "
 		style="width: 50%;">
 		<colgroup>
 			<col width="10%" />
@@ -49,7 +49,7 @@
 		</colgroup>
 		<tr>
 			<td>제물상 구분</td>
-			<td><select name="FTABLE_CAT" id="FTABLE_CAT" class="form-control form-control-sm">
+			<td><select name="FTABLE_CAT" id="FTABLE_CAT" class="form-control">
 			<c:forEach var="row" items="${listftab}">
 			<option value="${row.BCD_ID}">${row.BCD_TITLE}</option>
 			</c:forEach>
