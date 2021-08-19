@@ -106,7 +106,7 @@
 
 	<script>
 		$(document).ready(function() {
-			$('#USE_YN').val('${dto.ALTAR_USE_YN}').prop("selected",true);
+			$('#useYn').val('${dto.ALTAR_USE_YN}').prop("selected",true);
 			$('#altarTypeb').val('${dto.ALTAR_CAT}').prop("selected",true);
 			$('#istbtn').hide();
 			var name = $('#ALTAR_TYP option:selected').text();

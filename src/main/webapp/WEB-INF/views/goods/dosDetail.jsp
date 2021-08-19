@@ -11,8 +11,9 @@
 				<div class="table-responsive">
 				<table class="table  table-bordered nowrap">
 				<tr>
-				<td style="text-align:right;background-color:#E6F8E0"><span>선택된 항목 : </span>${pagetitle}</td>
-				<td style="text-align:right;background-color:#E6F8E0"><span>선택된 초도주문 총액 :</span><input type="text" id="subtotal" style="text-align:right; border:none;background-color:#E6F8E0" readonly></td>
+				<td class="align-middle" style="text-align:center;background-color:#E6F8E0"><span>선택된 항목 : </span>${pagetitle}</td>
+				<td class="align-middle" style="text-align:right;background-color:#E6F8E0"><span>선택된 초도주문 총액 :</span><input type="text" id="subtotal" style="text-align:right; border:none;background-color:#E6F8E0" readonly></td>
+				<td class="align-middle" style="text-align:right;background-color:#E6F8E0"><button class="btn btn-primary form-control" onClick="fn_Dos1insert()">저장</button></td>
 				</tr>
 				</table>
 				</div>
@@ -35,17 +36,17 @@
 								<th colspan ="2" style="text-align:center;border:2px">분류</th>
 								<th colspan ="8" style="text-align:center;border:2px">상세정보</th>
 							</tr>
-							<tr style="text-align:center;background-color:#CED8F6">
-								<th style="text-align:center;">종류</th>
-								<th style="text-align:center;">제품명</th>
-								<th style="text-align:center;">단위</th>
-								<th style="text-align:center;">개당단가</th>
-								<th style="text-align:center;">기본금액</th>
-								<th style="text-align:center;">초도주문수량</th>
-								<th style="text-align:center;">초도주문금액</th>
-								<th style="text-align:center;">추가주문수량</th>
-								<th style="text-align:center;">추가주문금액</th>
-								<th style="text-align:center;">표준주문서등록여부(<a href="javascript:void(0);" onclick="chkall();">V</a>/<a href="javascript:void(0);" onclick="chkun();">X</a>)</th>
+							<tr class="align-middle" style="text-align:center;background-color:#CED8F6">
+								<th class="align-middle" style="text-align:center;">종류</th>
+								<th class="align-middle" style="text-align:center;">제품명</th>
+								<th class="align-middle" style="text-align:center;">단위</th>
+								<th class="align-middle" style="text-align:center;">개당단가</th>
+								<th class="align-middle" style="text-align:center;">기본금액</th>
+								<th class="align-middle" style="text-align:center;">초도주문수량</th>
+								<th class="align-middle" style="text-align:center;">초도주문금액</th>
+								<th class="align-middle" style="text-align:center;">추가주문수량</th>
+								<th class="align-middle" style="text-align:center;">추가주문금액</th>
+								<th class="align-middle" style="text-align:center;">표준주문서등록여부(<a href="javascript:void(0);" onclick="chkall();">V</a>/<a href="javascript:void(0);" onclick="chkun();">X</a>)</th>
 							</tr>
 							</thead>
 						<tbody>	
@@ -56,11 +57,13 @@
 								<td style="vertical-align:middle;text-align:center">${row.GOODS_UNIT}<input type="hidden" class="FRID" value="${frid}"><input type="hidden" class = "GID" value="${row.GOODS_ID}"></td>
 								<td style="text-align:right;vertical-align:middle"><fmt:formatNumber value="${row.GOODS_NET_PRICE}" pattern="#,###"/></td>
 								<td style="text-align:right;vertical-align:middle" class="info"><fmt:formatNumber value="${row.GOODS_SALE_PRICE}" pattern="#,###"/></td>
-								<td style = "text-align:right;vertical-align:middle" ><input class="from-control A" oninput="calculate()" style="border:none; text-align:right;" 
-								type="number" min="0" max="100" value="<c:if test="${row.FNRS_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.FNRS_GOODS_INIT_QTY ne null }">${row.FNRS_GOODS_INIT_QTY}</c:if>" required></td>
+								<td <c:if test="${row.GOODS_INIT_BASIC eq 'N'}">class="table-light"</c:if><c:if test="${row.GOODS_INIT_BASIC eq 'Y'}">class="table-warning"</c:if> style = "text-align:right;vertical-align:middle" ><input class="from-control A <c:if test="${row.GOODS_INIT_BASIC eq 'N'}">table-light</c:if><c:if test="${row.GOODS_INIT_BASIC eq 'Y'}">table-warning</c:if> " oninput="calculate()" style="border:none; text-align:right;" 
+								type="text" min="0" max="100" value="<c:if test="${row.GOODS_INIT_BASIC eq 'N'}">0</c:if><c:if test="${row.GOODS_INIT_BASIC eq 'Y'}"><c:if test="${row.FNRS_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.FNRS_GOODS_INIT_QTY ne null }">${row.FNRS_GOODS_INIT_QTY}</c:if></c:if>" 
+								<c:if test="${row.GOODS_INIT_BASIC eq 'N'}">disabled</c:if> required></td>
 								<td class="B" style = "text-align:right;vertical-align:middle"></td>
-								<td style = "text-align:right;"><input class="from-control C" oninput="calculate()" style="border:none; text-align:right;" 
-								type="number" value ="<c:if test="${row.FNRS_GOODS_ADD_QTY eq null }">0</c:if><c:if test="${row.FNRS_GOODS_ADD_QTY ne null }">${row.FNRS_GOODS_ADD_QTY}</c:if>" min="0" max="100" required></td>
+								<td <c:if test="${row.GOODS_ADD_SALE eq 'N'}">class="table-light"</c:if><c:if test="${row.GOODS_ADD_SALE eq 'Y'}">class="table-warning"</c:if> style = "text-align:right;"><input class="from-control C <c:if test="${row.GOODS_ADD_SALE eq 'N'}">table-light</c:if><c:if test="${row.GOODS_ADD_SALE eq 'Y'}">table-warning</c:if>" oninput="calculate()" style="border:none; text-align:right;" 
+								type="text" value ="<c:if test="${row.GOODS_ADD_SALE eq 'N'}">0</c:if><c:if test="${row.GOODS_ADD_SALE eq 'Y'}"><c:if test="${row.FNRS_GOODS_ADD_QTY eq null }">1</c:if><c:if test="${row.FNRS_GOODS_ADD_QTY ne null }">${row.FNRS_GOODS_ADD_QTY}</c:if></c:if>" min="0" max="100" 
+								<c:if test="${row.GOODS_ADD_SALE eq 'N'}">disabled</c:if> required></td>
 								<td class="D" style = "text-align:right;vertical-align:middle"></td>
 								<th style="text-align:center;vertical-align:middle" scope="row"><input class="form-control CHK" type="checkbox" id="checkbox0" <c:if test="${row.FNRS_GOODS_INIT_QTY ne null }">checked</c:if>></th>
 							</tr>
@@ -69,9 +72,6 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
-			<div class="btn_wr text-right mt-3">
-				<button class="btn btn-md btn-primary" onClick="fn_Dos1insert()">저장</button>
 			</div>
 		</div>
 	</div>
@@ -235,7 +235,4 @@
 	calculate();
 	});
 
-	
-
-	
 	</script>

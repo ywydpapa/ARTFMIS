@@ -237,7 +237,7 @@
 		})
 		
 		$(document).ready(function() {
-			$('#USE_YN').val('${dto.FTABLE_USE_YN}').prop("selected",true);
+			$('#useYn').val('${dto.FTABLE_USE_YN}').prop("selected",true);
 			$('#altarTypea').val('${dto.FTABLE_CAT}').prop("selected",true);
 			$('#istbtn').hide();
 			var name = $('#FTABLE_CAT option:selected').text();

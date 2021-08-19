@@ -91,7 +91,7 @@
 
 $('#FTABLE_CAT').change(function(){
 	var url ="${path}/goods/ftablelist/"+$("#FTABLE_CAT").val();
-//	fnSetTablelist(url);
+	fnSetTablelist(url);
 	setclear();
 	tableListLoad(url);
 	
@@ -109,8 +109,8 @@ function fnSetftabledetail(url, data){
 
 function fnSetTablelist(url, data){
 	<!-- $.LoadingOverlay("show", true); -->
-	    $("#roomTable").empty();
-		$("#roomTable").load(url, data, function(){
+	    $("#ftablelist").empty();
+		$("#ftablelist").load(url, data, function(){
 			setTimeout(function(){
 			}, 500);
 	});
@@ -146,8 +146,8 @@ function tableListLoad(url){
 		url : url,
 		dataType : "html",
 		success : function(html){
-			$("#roomTable").empty();
-			$("#roomTable").append(html);		
+			$("#ftablelist").empty();
+			$("#ftablelist").append(html);		
 			tableDetailLoad();
 		},
 		error : function(xhr){

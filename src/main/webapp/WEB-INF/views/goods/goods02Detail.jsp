@@ -330,7 +330,7 @@ function numberWitioutCommas(x) {
 						true);
 				$('#INIT_GOODS_YN').val('${dto.GOODS_INIT_BASIC}').prop("selected",
 						true);
-				$('#AUTO_INIT_ORDER_YN').val('${dto.GOODS_INIT_ORDER}').prop("selected",
+				$('#AUTO_INIT_ORD_YN').val('${dto.GOODS_INIT_ORDER}').prop("selected",
 						true);
 				$('#ADD_ORD_YN').val('${dto.GOODS_ADD_SALE}').prop("selected",
 						true);
