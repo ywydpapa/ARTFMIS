@@ -551,7 +551,7 @@
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="1" required></td>
-												<td class="GB from-control" style="text-align: right;"></td>
+												<td class="GB GM from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
 												<td style="vertical-align:middle;text-align:center">도복,원삼</td>
@@ -587,7 +587,7 @@
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="1" required></td>
-												<td class="GB from-control" style="text-align: right;"></td>
+												<td class="GB GM from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
 												<td style="vertical-align:middle;text-align:center">영정</td>
@@ -623,7 +623,7 @@
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="1" required></td>
-												<td class="GB from-control" style="text-align: right;"></td>
+												<td class="GB GM from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
 												<td style="vertical-align:middle;text-align:center">수의</td>
@@ -659,7 +659,7 @@
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="1" required></td>
-												<td class="GB from-control" style="text-align: right;"></td>
+												<td class="GB GM from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
 												<td style="vertical-align:middle;text-align:center">염베</td>
@@ -695,7 +695,7 @@
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="1" required></td>
-												<td class="GB from-control" style="text-align: right;"></td>
+												<td class="GB GM from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
 												<td style="vertical-align:middle;text-align:center">천금지금</td>
@@ -731,12 +731,13 @@
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="1" required></td>
-												<td class="GB from-control" style="text-align: right;"></td>
+												<td class="GB GM from-control" style="text-align: right;"></td>
 											</tr>
 										<c:forEach var="row" items="${listFgoodsM}">
 											<tr>
 												<td  style="vertical-align:middle;text-align:center" class="second">${row.CAT_TITLE}</td>
-												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control"/></td>
+												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control"
+												<c:if test="${row.GOODS_INIT_ORDER eq 'Y'}">checked</c:if> /></td>
 												<td>${row.GOODS_TITLE}</td>
 												<td>${row.GOODS_UNIT}<input type="hidden" class="FRID"
 													value="${frid}"><input type="hidden" class="GIDm"
@@ -751,7 +752,7 @@
 													min="0" max="100"
 													value="<c:if test="${row.FNRS_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.FNRS_GOODS_INIT_QTY ne null }">${row.FNRS_GOODS_INIT_QTY}</c:if>"
 													required></td>
-												<td class="GD from-control" style="text-align: right;"></td>
+												<td class="GD GM from-control" style="text-align: right;"></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -819,7 +820,7 @@
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="1" required></td>
-												<td class="GF from-control" style="text-align: right;"></td>
+												<td class="GF GT from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
 												<td style="vertical-align:middle;text-align:center">도복,원삼</td>
@@ -855,7 +856,7 @@
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="1" required></td>
-												<td class="GF from-control" style="text-align: right;"></td>
+												<td class="GF GT from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
 												<td style="vertical-align:middle;text-align:center">영정</td>
@@ -891,7 +892,7 @@
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="1" required></td>
-												<td class="GF from-control" style="text-align: right;"></td>
+												<td class="GF GT from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
 												<td style="vertical-align:middle;text-align:center">수의</td>
@@ -927,7 +928,7 @@
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="1" required></td>
-												<td class="GF from-control" style="text-align: right;"></td>
+												<td class="GF GT from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
 												<td style="vertical-align:middle;text-align:center">염베</td>
@@ -963,7 +964,7 @@
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="1" required></td>
-												<td class="GF from-control" style="text-align: right;"></td>
+												<td class="GF GT from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
 												<td style="vertical-align:middle;text-align:center">천금지금</td>
@@ -999,12 +1000,13 @@
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="1" required></td>
-												<td class="GF from-control" style="text-align: right;"></td>
+												<td class="GF GT from-control" style="text-align: right;"></td>
 											</tr>
 										<c:forEach var="row" items="${listFgoodsT}">
 											<tr>
 												<td  style="vertical-align:middle;text-align:center" class="second">${row.CAT_TITLE}</td>
-												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
+												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"
+												<c:if test="${row.GOODS_INIT_ORDER eq 'Y'}">checked</c:if> /></td>
 												<td style="vertical-align:middle">${row.GOODS_TITLE}</td>
 												<td style="vertical-align:middle">${row.GOODS_UNIT}<input type="hidden" class="FRID"
 													value="${frid}"><input type="hidden" class="GIDt"
@@ -1019,7 +1021,7 @@
 													min="0" max="100"
 													value="<c:if test="${row.FNRS_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.FNRS_GOODS_INIT_QTY ne null }">${row.FNRS_GOODS_INIT_QTY}</c:if>"
 													required></td>
-												<td class="GH from-control" style="text-align: right;vertical-align:middle"></td>
+												<td class="GH GT from-control" style="text-align: right;vertical-align:middle"></td>
 											</tr>
 										</c:forEach>
 
@@ -1069,7 +1071,7 @@
 												<td style="text-align: center"><input type="checkbox" onclick ="<c:if test="${row.ALTAR_CAT eq '102'}">oneCheckalt2(this)</c:if>
 																					<c:if test="${row.ALTAR_CAT eq '103'}">oneCheckalt3(this)</c:if>
 																					<c:if test="${row.ALTAR_CAT ne '102' and row.ALTAR_CAT ne '103'}">oneCheckalt2and3Not(this)</c:if>"
-														   class="CHKalt form-control" name="ALTAR${row.ALTAR_CAT}" />
+														   class="CHKalt form-control" name="ALTAR${row.ALTAR_CAT}"  />
 												</td>
 												<td>${row.ALTAR_TITLE}<input type = "hidden" class = "Aid" value="${row.ALTAR_ID}"/></td>
 												<td style="text-align: right" class="AA"><fmt:formatNumber value="${row.ALTAR_AMOUNT}" pattern="#,###" /></td>
@@ -1355,7 +1357,6 @@
 										<col width="5%" />
 										<col width="5%" />
 										<col width="20%" />
-										<col width="10%" />
 									</colgroup>
 									<thead style="text-align:center;background-color:#E0E6F8">
 										<tr>
@@ -2332,35 +2333,35 @@
 		}
 		$('#messgrandtotal').val(numberWithCommas(chksum));
 	}
+	
+	$(".CHKmod , .CHKtrd").change(function(){
+		chkcalG();
+	});
 
 	function chkcalG() {
 		var sel = $("#selMTR").val();
 		if (sel == "M"){
-			var $Barr = $(".GB");
-			var $Darr = $(".GD");
+			var $Aarr = $(".GM");
+			var $CMarr = $(".CHKmod");
 			var chksum = 0;
-			for (var i = 0; i < $Barr.length; i++) {
-				var b1 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			for (var i = 0; i < $Aarr.length; i++) {
+				var b1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+				if($($CMarr[i]).is(":checked")==true){
 				chksum = chksum + b1;
-			}
-			for (var i = 0; i < $Darr.length; i++) {
-				var d1 = Number($Darr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-				chksum = chksum + d1;
+				}
 			}
 			$('#P4total').val(numberWithCommas(chksum));
 		}
 		else
 		{
-			var $Farr = $(".GF");
-			var $Harr = $(".GH");
+			var $Barr = $(".GT");
+			var $CTarr = $(".CHKtrd");
 			var chksum = 0;
-			for (var i = 0; i < $Farr.length; i++) {
-				var f1 = Number($Farr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-				chksum = chksum + f1;
-			}
-			for (var i = 0; i < $Harr.length; i++) {
-				var g1 = Number($Harr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-				chksum = chksum + g1;
+			for (var i = 0; i < $Barr.length; i++) {
+				var b1 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+				if($($CTarr[i]).is(":checked")==true){
+				chksum = chksum + b1;
+				}
 			}
 			$('#P4total').val(numberWithCommas(chksum));
 		}

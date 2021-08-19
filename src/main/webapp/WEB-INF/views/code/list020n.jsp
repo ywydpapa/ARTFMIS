@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>	
 <c:set var="path" value ="${pageContext.request.contextPath}"/>
-
 <colgroup>
 				<col width="20%" />
 				<col width="20%" />
@@ -13,11 +12,11 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>분류명</th>
-					<th>설명</th>
-					<th>정렬순서</th>
-					<th>상세품목개별선택여부</th>
-					<th>사용여부</th>
+					<th class="table-secondary">분류명</th>
+					<th class="table-secondary">설명</th>
+					<th class="table-secondary">정렬순서</th>
+					<th class="table-secondary">상세품목개별선택여부</th>
+					<th class="table-secondary">사용여부</th>
 				</tr>
 				</thead>
 				<tbody>

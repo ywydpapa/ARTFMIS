@@ -103,7 +103,11 @@ function fnSetPage(url, data){
       #listTable > tbody > tr.active{
          background-color: #9fcdff;
       }
-
+      
+       #ftablelist > tbody > tr > td.active{
+         background-color: #9fcdff;
+      }
+      
       #consult_contract_list_table > tbody > tr.active {
          background-color: #9fcdff;
       }

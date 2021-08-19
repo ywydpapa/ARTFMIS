@@ -48,7 +48,7 @@
 			<col width="20%" />
 		</colgroup>
 		<tr>
-			<td>제물상 구분</td>
+			<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">제물상 구분</td>
 			<td><select name="FTABLE_CAT" id="FTABLE_CAT" class="form-control">
 			<c:forEach var="row" items="${listftab}">
 			<option value="${row.BCD_ID}">${row.BCD_TITLE}</option>
@@ -59,25 +59,23 @@
 <hr>
 	<div class="h-container">
 		<div class="item">
-			<table class="table  table-bordered nowrap"
-				id="roomTable">
+			<table class="table table-bordered table-hover"
+				id="ftablelist">
 				<thead>
 					<tr>
-      <th scope="col" width="150" align="center">구분</th>
-<!--       <th scope="col" width="150" align="center">상품명</th> -->
-      <th scope="col" width="100" align="center">금액</th>
-      <th scope="col" width="100" align="center">단위</th>
-      <th scope="col" width="100" align="center">사용여부</th>
+      <th class="table-secondary text-center">구분</th>
+      <th class="table-secondary text-center">금액</th>
+      <th class="table-secondary text-center">단위</th>
+      <th class="table-secondary text-center">사용여부</th>
 					</tr>
 				</thead>
 				<tbody>
     <c:forEach var="row" items="${list}">
     <tr>
-      <td class="first">${row.BCD_TITLE}</td>
-      <%-- <td><a href="javascript:fnSetftabledetail('${path}/goods/detailFtable/${row.FTABLE_ID}')">${row.FTABLE_TITLE}</a></td> --%>
+      <td class="first align-middle text-center">${row.BCD_TITLE}</td>
       <td style="text-align : right"><a href="javascript:fnSetftabledetail('${path}/goods/detailFtable/${row.FTABLE_ID}')"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></a></td>
       <td style="text-align : right">${row.FTABLE_UNIT}</td>
-      <td><c:if test="${row.FTABLE_USE_YN eq 'Y'}">사용</c:if><c:if test="${row.FTABLE_USE_YN eq 'N'}">미사용</c:if></td>
+      <td class="text-center"><c:if test="${row.FTABLE_USE_YN eq 'Y'}">사용</c:if><c:if test="${row.FTABLE_USE_YN eq 'N'}">미사용</c:if></td>
     </tr>
     </c:forEach>
 				</tbody>
@@ -159,15 +157,13 @@ function tableListLoad(url){
 }
 
 function tableDetailLoad(){
-	console.log( $("#roomTable > tbody > tr > td > a").length );
-	console.log( $("#goodsTable > tbody > tr > td > a").length );
-	
+
 	var $target;
-	var num1 = $("#roomTable > tbody > tr > td > a").length;
+	var num1 = $("#ftablelist > tbody > tr > td > a").length;
 	var num2 = $("#goodsTable > tbody > tr > td > a").length;
 	if (num1 > 0 || num2 > 0){
 		if (num1 > 0){
-			$target = $("#roomTable > tbody > tr > td > a");
+			$target = $("#ftablelist > tbody > tr > td > a");
 		} else {
 			$target = $("#goodsTable > tbody > tr > td > a");
 		}

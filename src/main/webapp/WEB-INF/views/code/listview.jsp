@@ -9,12 +9,13 @@
 	float: left;
 	width: 30%;
 	height: 100%;
+	padding:10px;
 	text-align: center;
 	border-right: 1px solid #ddd;
 }
 .h-container .item.cont {
 	float: left;
-	width: 65%;
+	width: 70%;
 	border-right: none;
 	text-align: center;
 }
@@ -25,7 +26,7 @@
 		<div class="col-lg-12">
 			<div class="page-header-title">
 				<div class="d-inline">
-					<h3>기초코드 목록</h3>
+					<h4>기초코드 목록</h4>
 				</div>
 			</div>
 		</div>
@@ -43,8 +44,8 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>분류명</th>
-					<th>설명</th>
+					<th class="table-secondary">분류명</th>
+					<th class="table-secondary">설명</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -59,7 +60,7 @@
 
 	</div>
 	<div class="item cont">
-		<table id="listtable" class="table table-bordered nowrap ">
+		<table id="listtable" class="table table-bordered">
 			<colgroup>
 				<col width="20%" />
 				<col width="20%" />
@@ -69,11 +70,11 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>분류명</th>
-					<th>설명</th>
-					<th>정렬순서</th>
-					<th>상세품목개별선택여부</th>
-					<th>사용여부</th>
+					<th class="table-secondary">분류명</th>
+					<th class="table-secondary">설명</th>
+					<th class="table-secondary">정렬순서</th>
+					<th class="table-secondary">상세품목개별선택여부</th>
+					<th class="table-secondary">사용여부</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -220,12 +221,12 @@ function fn_newLine(){
 
   
 $(document).ready(function() {
-    $('#listtable').DataTable(
+/*     $('#listtable').DataTable(
     		{
     			"paging":false,
     			"info":false,
     			"lengthChange":false
     		}
-    );
+    ); */
 } );
 </script>

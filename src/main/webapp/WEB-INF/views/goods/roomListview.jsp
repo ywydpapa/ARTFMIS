@@ -184,6 +184,7 @@ function fn_Updateroom() {
 	roomData.FROOM_USE_YN	= $("#useYn").val();
 	roomData.FROOM_ORDNO	= $("#orderNo").val();
 	roomData.FROOM_REMARK	= $("#roomDesc").val();
+	roomData.INC_YN	= $("#incYn").val();
 	roomData.FROOM_IMAGE = $("#uploadServerImageName").val();
 	console.log(roomData);
 	$.ajax({ url: "${path}/goods/updateRoom.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
@@ -225,6 +226,7 @@ function fn_Insertroom() {
 	roomData.FROOM_USE_YN	= $("#useYn").val();
 	roomData.FROOM_ORDNO	= $("#orderNo").val();
 	roomData.FROOM_REMARK	= $("#roomDesc").val();
+	roomData.INC_YN	= $("#incYn").val();
 	roomData.FROOM_IMAGE = $("#uploadServerImageName").val();
 	console.log(roomData);
 	$.ajax({ url: "${path}/goods/roominsert.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 

@@ -65,6 +65,7 @@ public class GoodsDTO {
 	private String CLEAN_CHARGE;
 	private String GOODS_NET_PRICE;
 	private String GOODS_INT_QTY;
+	private String GOODS_RMCHG_YN;
 	private String ALTAR_ID;
 	private String ALTAR_TITLE;
 	private String ALTAR_CAT;
@@ -119,5 +120,6 @@ public class GoodsDTO {
 	private String STORE_GOODS_ADD_QTY;
 	private String SETL_TITLE;
 	private String SETL_USE_YN;
+	private String INC_YN;
 	
 }

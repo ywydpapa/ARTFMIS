@@ -19,7 +19,7 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th scope="row">제물상구분</th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">제물상구분</th>
 								<td><input type="text"
 									class="form-control"
 									id="typename" name="typename" value="" readonly placeholder=""></td>
@@ -27,30 +27,30 @@
 								<td style="text-align:right;"><button class="btn btn-md btn-success" onClick="fn_setinsert()">새항목 추가</button></td>
 								</tr>
 								<tr class="alt_B">
-								<th scope="row">금액</th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">금액</th>
 								<td><input type="text" style="text-align: right;"
-									class="form-control num_only num_comma num_sum CHK" id="priceSale"
+									class="form-control num_only num_comma num_sum CHKcal" id="priceSale"
 									name="priceSale" value="<fmt:formatNumber value="${dto.FTABLE_AMOUNT}" pattern="#,###"/>" placeholder="">
 									<input type="hidden" id="ftableID" value="${dto.FTABLE_ID}">
 								</td>
-								<th scope="row">단위</th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">단위</th>
 								<td><input type="text" style="text-align: right;"
-									class="form-control num_only num_comma num_sum CHK" id="intUnit"
+									class="form-control num_only num_comma num_sum CHKcal" id="intUnit"
 									name="intUnit" value="${dto.FTABLE_UNIT}" placeholder="">
 								</td>
 							</tr>
 							<tr>
-								<th scope="row">설명</th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">설명</th>
 								<td colspan="3"><textarea name="altarRemark" id="altarRemark"
 										rows="8" class="form-control">${dto.FTABLE_REMARK}</textarea></td>
 							</tr>
 							<tr>
-								<th scope="row">정렬순서</th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">정렬순서</th>
 								<td><input type="number" style="text-align: right;"
-									class="form-control num_only num_comma num_sum CHK" id="sortNo"
+									class="form-control num_only num_comma num_sum CHKcal" id="sortNo"
 									name="sortNo" value="${dto.FTABLE_ORDER}"  min="0" max="1000" placeholder="">
 								</td>
-								<th scope="row">사용여부</th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">사용여부</th>
 								<td><select name="useYn" id="useYn"
 									class="form-control form-control-sm">
 										<option value="Y">사용</option>
@@ -58,7 +58,7 @@
 								</select></td>
 							</tr>
 							<tr>
-								<th scope="row">이미지등록</th>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">이미지등록</th>
 								<td>
 									<form id="uploadForm" enctype="multipart/form-data" method="post">
 										<input type="hidden" id="uploadServerImageName" value="${dto.FTABLE_IMAGE}">
@@ -185,7 +185,7 @@
 				$("#priceSale").val(numberWithCommas(sum1));
 		  }
 
-		  $(".CHK").change(function(){
+		  $(".CHKcal").change(function(){
 				recal();
 		  });
 		

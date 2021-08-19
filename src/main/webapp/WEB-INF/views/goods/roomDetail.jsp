@@ -50,7 +50,7 @@
 		<tr class="Bset">
 			<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">면적(m<sup>2</sup>)
 			</th>
-			<td><input type="number"
+			<td><input type="number" style="text-align:right" 
 				class="Bset form-control form-control-sm" id="roomSize"
 				name="roomSize" value="${dtoRoom.FROOM_AREA}"></td>
 			<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">평수</th>
@@ -102,8 +102,12 @@
 						name="altarImage" id="altarImage">
 				</form>
 			</td>
-			<th></th>
-			<td></td>
+			<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">시설사용료 기타품목 포함여부</th>
+			<td colspan="2"><select name="incYn" id="incYn"
+				class="form-control form-control-sm">
+					<option value="Y">포함</option>
+					<option value="N">미포함</option>
+			</select></td>
 		</tr>
 		<tr>
 			<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">내용</th>
@@ -149,6 +153,7 @@
 			$('#useYn').val('${dtoRoom.FROOM_USE_YN}').prop("selected",true);
 			$('#roomType').val('${dtoRoom.FROOM_TYP}').prop("selected",true);
 			$('#imsiYn').val('${dtoRoom.IMSI_YN}').prop("selected",true);
+			$('#incYn').val('${dtoRoom.INC_YN}').prop("selected",true);
 			$('#roomType2').val('${dtoRoom.FROOM_CAT}').prop("selected",true);
 			var typname = $('#FROOM_TYP option:selected').text();
 			$('#typename').val(typname);

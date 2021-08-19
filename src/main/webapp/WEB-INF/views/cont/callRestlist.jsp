@@ -39,7 +39,9 @@
 				<td style="vertical-align: middle; text-align: center"
 					class="second">${row.CAT_TITLE}</td>
 				<td style="vertical-align: middle; text-align: center"><input
-					type="checkbox" class="CHKrest form-control" /></td>
+					type="checkbox" class="CHKrest form-control"
+					<c:if test="${row.GOODS_INIT_ORDER eq 'Y'}">checked</c:if>
+					 /></td>
 				<td style="vertical-align: middle"><input type="hidden"
 					class="FRID" value="${frid}"><input type="hidden"
 					class="RGID" value="${row.GOODS_ID}">${row.GOODS_TITLE}</td>

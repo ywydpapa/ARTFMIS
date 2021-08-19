@@ -98,7 +98,5 @@ update GHT_FNRSUPP_ORDERSHEET set CONF_DATE = now() where FNRSUPP_ORD_ID = #{FNR
  <select id="storeOrdlistRM" resultType="roomDto">
  SELECT b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, a.* from GHT_STORE_ORDSHEET a left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID where a.CONTRACT_ID=#{CONTRACT_ID} and a.MOD_DATE is NULL and a.CONF_DATE is NULL
  </select>
-
-
   
 </mapper>

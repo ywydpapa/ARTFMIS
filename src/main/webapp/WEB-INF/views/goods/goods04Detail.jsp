@@ -147,6 +147,12 @@
 										<option value="Y">사용</option>
 										<option value="N">미사용</option>
 								</select></td>
+								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">시설사용료 적용</td>
+								<td style="vertical-align:middle"><select class="form-control form-control-sm"
+									id="ROOMCHG_YN" name="ROOMCHG_YN" required>
+										<option value="Y">적용</option>
+										<option value="N">미적용</option>
+								</select></td>
 							</tr>
 							<tr>
 								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">상품설명</td>
@@ -203,6 +209,7 @@ function numberWitioutCommas(x) {
 		goodsData.GOODS_REG_DEPT = $("#REG_DEPT").val();
 		goodsData.GOODS_MODERN = $("#MODERN_YN").val();
 		goodsData.GOODS_FROOM_ORDER = $("#ORD_PROG_YN").val();
+		goodsData.GOODS_RMCHG_YN = $("#ROOMCHG_YN").val();
 		console.log(goodsData);
 		$.ajax({
 			url : "${path}/goods/update.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
@@ -248,6 +255,7 @@ function numberWitioutCommas(x) {
 		goodsData.GOODS_REG_DEPT = $("#REG_DEPT").val();
 		goodsData.GOODS_MODERN = $("#MODERN_YN").val();
 		goodsData.GOODS_FROOM_ORDER = $("#ORD_PROG_YN").val();
+		goodsData.GOODS_RMCHG_YN = $("#ROOMCHG_YN").val();
 		console.log(goodsData);
 		$.ajax({
 			url : "${path}/goods/insert.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
@@ -295,6 +303,7 @@ function numberWitioutCommas(x) {
 		$("#GOODS_SALE_TYP").val("");
 		$("#GOODS_REMARK").val("");
 		$("#GOODS_ORDER").val("10");
+		$("#ROOMCHG_YN").val("");
 		$("#USE_YN").val("");
 	};
 	
@@ -348,6 +357,9 @@ function numberWitioutCommas(x) {
 				$("#istbtn").hide();
 				$('#MODERN_YN').val('${dto.GOODS_MODERN}').prop(
 						"selected", true);
+				$('#ROOMCHG_YN').val('${dto.GOODS_RMCHG_YN}').prop(
+						"selected", true);
+				
 			});
 </script>
 
