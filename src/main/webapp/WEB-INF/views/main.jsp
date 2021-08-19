@@ -104,7 +104,7 @@ function fnSetPage(url, data){
          background-color: #9fcdff;
       }
       
-       #ftablelist > tbody > tr > td.active{
+       #ftablelist > tbody > tr.active{
          background-color: #9fcdff;
       }
       
