@@ -16,9 +16,9 @@ public class RoomServiceImpl implements RoomService {
 	RoomDAO RoomDao;
 
 	@Override
-	public List<RoomDTO> listOrder(RoomDTO dto) {
+	public List<RoomDTO> listOrder(int CONTRACT_ID) {
 		// TODO Auto-generated method stub
-		return null;
+		return RoomDao.listOrder(CONTRACT_ID);
 	}
 
 	@Override
@@ -128,5 +128,11 @@ public class RoomServiceImpl implements RoomService {
 	public List<RoomDTO> listaddSTOREOrder(int CONTRACT_ID) {
 		// TODO Auto-generated method stub
 		return RoomDao.listaddSTOREOrder(CONTRACT_ID);
+	}
+
+	@Override
+	public List<RoomDTO> ordDetail(RoomDTO dto) {
+		// TODO Auto-generated method stub
+		return RoomDao.ordDetail(dto);
 	}
 }

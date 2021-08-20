@@ -67,6 +67,9 @@
 					<tr align="center">
 						<td><a style="text-decoration:none" href="javascript:fn_Reload02('${path}/code/listconBcode/8')">사내부서코드</a></td>
 					</tr>
+					<tr align="center">
+						<td><a style="text-decoration:none" href="javascript:fn_Reload02('${path}/code/listconBcode/9')">부가사용료</a></td>
+					</tr>
 					
 			</tbody>
 		</table>
@@ -74,7 +77,7 @@
 	</div>
 	<div class="item cont">
 		<input type = "hidden" id="conType" value = "1">
-		<table id="listtable" class="table table-bordered nowrap ">
+		<table id="listtable" class="table table-bordered">
 			<colgroup>
 				<col width="25%" />
 				<col width="25%" />

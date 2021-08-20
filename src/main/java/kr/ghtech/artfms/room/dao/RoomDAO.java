@@ -6,7 +6,8 @@ import kr.ghtech.artfms.room.dto.RoomDTO;
 
 public interface RoomDAO {
 	
-	List<RoomDTO> listOrder(RoomDTO dto);
+	List<RoomDTO> listOrder(int CONTRACT_ID);
+	List<RoomDTO> ordDetail(RoomDTO dto);
 	List<RoomDTO> listRESTOrder(int CONTRACT_ID);
 	List<RoomDTO> listSTOREOrder(int CONTRACT_ID);
 	List<RoomDTO> listaddRESTOrder(int CONTRACT_ID);

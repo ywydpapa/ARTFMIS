@@ -51,3 +51,16 @@ $(document).on('click','#ftablelist > tbody > tr',function () {
     fnSetftabledetail(link);
 });
 
+$(document).on('click','#ordlistTable > table > tbody > tr',function () {
+    alert("click");
+	let tbody = $(this).parent();
+    tbody.find('tr').removeClass('active');
+    $(this).addClass('active');
+
+    let href = $(this).find('a').attr('href');
+    let linkFirst = href.indexOf('(');
+    let linkLast = href.indexOf(')');
+    let link = href.substring(linkFirst+2, linkLast-1);
+    fnSetupdetail(link);
+});
+

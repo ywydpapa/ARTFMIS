@@ -16,9 +16,9 @@ public class RoomDAOImpl implements RoomDAO {
 	SqlSession sqlSession;
 	
 	@Override
-	public List<RoomDTO> listOrder(RoomDTO dto) {
+	public List<RoomDTO> listOrder(int CONTRACT_ID) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectList("room.ordlist", CONTRACT_ID);
 	}
 
 	@Override
@@ -127,6 +127,12 @@ public class RoomDAOImpl implements RoomDAO {
 	public List<RoomDTO> listaddSTOREOrder(int CONTRACT_ID) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("room.storeaddOrdlist", CONTRACT_ID);
+	}
+
+	@Override
+	public List<RoomDTO> ordDetail(RoomDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("room.orddetail", dto);
 	}
 
 	

@@ -55,8 +55,8 @@
 													value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td>
 											<td style="text-align: right;" class="infoS"><fmt:formatNumber
 													value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;"><input class="from-control SA" oninput="calculateS()"
-												style="border: none; text-align: right;" type="number" min="0" max="100" value="<c:if test="${row.STORE_GOODS_ADD_QTY eq null }">0</c:if><c:if test="${row.STORE_GOODS_ADD_QTY ne null }">${row.STORE_GOODS_ADD_QTY}</c:if>"
+											<td class="table-warning" style="text-align: right;"><input class="from-control SA table-warning" oninput="calculateS()"
+												style="border: none; text-align: right;" type="text" min="0" max="100" value="<c:if test="${row.STORE_GOODS_ADD_QTY eq null }">0</c:if><c:if test="${row.STORE_GOODS_ADD_QTY ne null }">${row.STORE_GOODS_ADD_QTY}</c:if>"
 												required></td>
 											<td class="SB" style="text-align: right;"></td>
 										</tr>

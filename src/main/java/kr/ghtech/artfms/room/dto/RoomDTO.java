@@ -51,5 +51,10 @@ public class RoomDTO {
 	private String QUTY;
 	private String FTABLE_NET_PRICE;
 	private String ORD_PRICE;
+	private String CORDDATE;
+	private String CCONFDATE;
+	private String CCANCDATE;
+	private String ORDP;
+	private String ORDDATE2;
 
 }

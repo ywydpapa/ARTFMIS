@@ -57,9 +57,9 @@
 													value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td>
 											<td style="text-align: right;" class="infoM"><fmt:formatNumber
 													value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;"><input
-												class="from-control MA" oninput="calculateM()"
-												style="border: none; text-align: right;" type="number"
+											<td class="table-warning" style="text-align: right;"><input
+												class="from-control MA table-warning" oninput="calculateM()"
+												style="border: none; text-align: right;" type="text"
 												min="0" max="100"
 												value="<c:if test="${row.MESSR_GOODS_ADD_QTY eq null }">0</c:if><c:if test="${row.MESSR_GOODS_ADD_QTY ne null }">${row.MESSR_GOODS_ADD_QTY}</c:if>"
 												required></td>

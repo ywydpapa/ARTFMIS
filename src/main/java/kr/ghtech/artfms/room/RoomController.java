@@ -17,6 +17,7 @@ import kr.ghtech.artfms.cont.service.ContService;
 import kr.ghtech.artfms.goods.service.GoodsService;
 import kr.ghtech.artfms.room.dto.RoomDTO;
 import kr.ghtech.artfms.room.service.RoomService;
+import kr.ghtech.artfms.setup.service.SetupService;
 
 @Controller
 @RequestMapping("/room/*")
@@ -34,11 +35,28 @@ public class RoomController {
 	@Inject
 	CodeService codeService;
 	
+	@Inject
+	SetupService setupService;
+	
 	@RequestMapping("orderlist/{CONTRACT_ID}")
 	public ModelAndView write2(@PathVariable("CONTRACT_ID") int CONTRACT_ID,ModelAndView mav) {
 		mav.addObject("restord", roomService.listRESTOrder(CONTRACT_ID));
 		mav.addObject("storeord", roomService.listSTOREOrder(CONTRACT_ID));
 		mav.setViewName("room/orderlist");
+		return mav;
+	}
+	
+	@RequestMapping("ordlist/{CONTRACT_ID}")
+	public ModelAndView ordlist(@PathVariable("CONTRACT_ID") int CONTRACT_ID,ModelAndView mav) {
+		mav.addObject("ord", roomService.listOrder(CONTRACT_ID));
+		mav.setViewName("room/ordlist");
+		return mav;
+	}
+	
+	@RequestMapping("orddetail/{ORD_DATE}")
+	public ModelAndView orddetail(@PathVariable("ORD_DATE") String ORD_DATE,RoomDTO dto,ModelAndView mav) {
+		mav.addObject("orddtl", roomService.ordDetail(dto));
+		mav.setViewName("room/cfnorderlist");
 		return mav;
 	}
 	
@@ -61,9 +79,10 @@ public class RoomController {
 	
 	@RequestMapping("confirmord/{CONTRACT_ID}")
 	public ModelAndView cfnwrite2(@PathVariable("CONTRACT_ID") int CONTRACT_ID,ModelAndView mav) {
-		mav.addObject("restord", roomService.listRESTOrderRM(CONTRACT_ID));
-		mav.addObject("storeord", roomService.listSTOREOrderRM(CONTRACT_ID));
-		mav.setViewName("room/cfnorderlist");
+		mav.addObject("cont",contService.detailCont(CONTRACT_ID));
+		mav.addObject("ord", roomService.listOrder(CONTRACT_ID));
+		mav.addObject("time",setupService.timelistSetup());
+		mav.setViewName("room/ordlistview");
 		return mav;
 	}
 	
