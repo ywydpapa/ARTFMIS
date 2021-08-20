@@ -40,8 +40,8 @@
 						<h5 class="card-header"> 분향실 : ${USER_NAMK}</h5>
 						<div class="card-body">
 							<div style="float:left">
-							<p class="card-text">고인명 : ${cont.DPERSON_NAME} </p>
-							<p class="card-text">상주 : ${cont.SANGJU_NAME}</p>
+							<p class="card-text"><h5>고인명 : ${cont.DPERSON_NAME}</h5></p>
+							<p class="card-text"><h5>상주 : ${cont.SANGJU_NAME}</h5></p>
 							</div>
 							<div style="float:right">
 							<canvas id="canvas" width="100" height="100" style="background-color:white"></canvas>

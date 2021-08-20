@@ -142,8 +142,6 @@
 			$($Sarr[i]).prop("checked",false);
 			calculateM();
 			chkcalM();
-			calculateS();
-			chkcalS();
 		}
 	}
 
