@@ -58,7 +58,7 @@
 										<tr>
 											<td style="vertical-align:middle; text-align: center; background-color:#EFFBF8" class="first">${row.CAT_TITLE}</td>
 											<td style="vertical-align:middle;"><input type="hidden" class="GID" value="${row.REST_ORD_ID}"/>${row.GOODS_TITLE}</td>
-											<td style="vertical-align:middle;">${row.GOODS_UNIT}</td>
+											<td style="vertical-align:middle;"><input type="hidden" class="ORDP" value="${row.ORDP}"/>${row.GOODS_UNIT}</td>
 											<td style="text-align: right;vertical-align:middle;" class="infoM"><fmt:formatNumber
 													value="${row.NET_PRICE}" pattern="#,###" /></td>
 											<td style="text-align: right;vertical-align:middle;"><input
@@ -85,7 +85,7 @@
 	var element = $(".first");
 	var firstElement = undefined;
 	element.each(function() {
-		console.dir(i + $(this).text());
+		/* console.dir(i + $(this).text()); */
 		if (str == undefined && firstElement == undefined) {
 			str = $(".first")[0].innerText;
 			firstElement = $(".first")[0];
@@ -93,7 +93,7 @@
 		}
 		if (str == $(this).text()) {
 			i++;
-			console.dir('--> ' + i + $(this).text());
+			/* console.dir('--> ' + i + $(this).text()); */
 			$(this).remove();
 		} else {
 			$(firstElement).attr('rowspan', i);
@@ -159,23 +159,45 @@
 			if(ques == opt){
 			var $Aarr = $(".CHKcfnR");
 			var $Barr = $(".ordRid");
+			var $Carr = $(".ORDP");
 			for (var i = 0; i < $Aarr.length; i++) {
+				
+				if($($Aarr[i]).is(":disabled")==false){
 				if($($Aarr[i]).is(":checked")==true){
-				var rData = {};
-				rData.REST_ORD_ID = $Barr[i].value;	
-				$.ajax({
-					url : "${path}/room/updRord.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
-					data : rData, // HTTP 요청과 함께 서버로 보낼 데이터 
-					method : "POST", // HTTP 요청 메소드(GET, POST 등) 
-					dataType : "json" // 서버에서 보내줄 데이터의 타입 
-				}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
-				.done(function(data) {
-					
-				})
-				.fail(function(xhr, status, errorThrown) {
-					alert("통신 실패");
-				});
+					if ($Carr[i].value == 'M'){
+						var rData = {};
+						rData.REST_ORD_ID = $Barr[i].value;	
+						$.ajax({
+							url : "${path}/room/updRord.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+							data : rData, // HTTP 요청과 함께 서버로 보낼 데이터 
+							method : "POST", // HTTP 요청 메소드(GET, POST 등) 
+							dataType : "json" // 서버에서 보내줄 데이터의 타입 
+						}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
+						.done(function(data) {
+							
+						})
+						.fail(function(xhr, status, errorThrown) {
+							alert("통신 실패");
+						});
+					}
+					else if ($Carr[i].value == 'S'){
+						var rData = {};
+						rData.STORE_ORD_ID = $Barr[i].value;	
+						$.ajax({
+							url : "${path}/room/updSord.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+							data : rData, // HTTP 요청과 함께 서버로 보낼 데이터 
+							method : "POST", // HTTP 요청 메소드(GET, POST 등) 
+							dataType : "json" // 서버에서 보내줄 데이터의 타입 
+						}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
+						.done(function(data) {
+						})
+						.fail(function(xhr, status, errorThrown) {
+							alert("통신 실패");
+						});
+					}
 			}
+				}
+				else{}
 			}
 				var cid = $("#contid").val();
 				var recal = "${path}/room/confirmord/"+ cid;
