@@ -15,6 +15,8 @@
     <typeAlias alias="codeDto" type="kr.ghtech.artfms.code.dto.CodeDTO"/>
     <typeAlias alias="consultDto" type="kr.ghtech.artfms.cst.dto.ConsultDTO"/>
     <typeAlias alias="roomDto" type="kr.ghtech.artfms.room.dto.RoomDTO"/>
+    <typeAlias alias="setupDto" type="kr.ghtech.artfms.setup.dto.SetupDTO"/>
+    <typeAlias alias="fnrDto" type="kr.ghtech.artfms.fnr.dto.FnrDTO"/>
     </typeAliases>
  
 </configuration>

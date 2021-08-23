@@ -312,6 +312,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SELECT * from GHT_FROOM where FROOM_TYP=#{roomType} order by FROOM_ORDNO
 </select>
 
+<select id="doslistRoom" resultType="goodsDto">
+ 		SELECT * from GHT_FROOM where FROOM_TYP=#{roomType} and FROOM_CAT not in (70,71) order by FROOM_ORDNO
+</select>
+
 <select id="setlistRoom" resultType="goodsDto">
 select b.SETL_TITLE, b.SETL_REMARK , b.SETL_USE_YN, a.* from GHT_FROOM a
 left join GHT_SETL_RULE b on a.FROOM_ID = b.SETL_FROOM_ID and b.MOD_DATE is null

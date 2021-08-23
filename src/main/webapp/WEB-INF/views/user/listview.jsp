@@ -59,13 +59,13 @@
 <hr>
 	<div class="h-container">
 		<div class="item">
-			<table class="table table-striped table-bordered nowrap" id="listTable">
+			<table class="table table-striped table-bordered" id="listTable">
 				<thead>
 					<tr>
-						<th scope="col" width="25%" style="text-align:center">로그인아이디</th>
-						<th scope="col" width="25%" style="text-align:center">이름</th>
-						<th scope="col" width="25%" style="text-align:center">권한</th>
-						<th scope="col" width="25%" style="text-align:center">부서</th>
+						<th class="table-info" style="text-align:center">로그인아이디</th>
+						<th class="table-info" style="text-align:center">이름</th>
+						<th class="table-info" style="text-align:center">권한</th>
+						<th class="table-info" style="text-align:center">부서</th>
 					</tr>
 				</thead>
 				<tbody>

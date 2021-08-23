@@ -29,6 +29,7 @@ public interface GoodsService {
 	int insertGoods(GoodsDTO dto);
 	int insertRoom(GoodsDTO dto);
 	List<GoodsDTO> listRoom(int FROOM_TYP);
+	List<GoodsDTO> doslistRoom(int FROOM_TYP);
 	List<GoodsDTO> setlistRoom(int FROOM_TYP);
 	GoodsDTO detailRoom(int FROOM_ID);
 	int insertAltar(GoodsDTO dto);

@@ -15,10 +15,10 @@
 						<div class="table-responsive">
 							<table class="table  table-bordered nowrap">
 								<tr>
-									<th>주문현황</th>
+									<th class="align-middle text-center table-info">주문현황</th>
 									<th style="text-align: right;">
-									<button class="btn btn-primary" onclick="chkallR()">전체선택</button>
-									<button class="btn btn-primary" onclick="chkunR()">전체선택해제</button>
+									<button class="btn btn-primary" onclick="chkall()">전체선택</button>
+									<button class="btn btn-primary" onclick="chkun()">전체선택해제</button>
 									<button class="btn btn-primary" onclick="cfncheckupdR()">수령확인</button></th>
 								</tr>
 							</table>
@@ -49,7 +49,7 @@
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">단가</th>
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문수량</th>
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">주문금액</th>
-									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6"><a href="javascript:void(0);" onclick="chkallR();">V</a>/<a href="javascript:void(0);" onclick="chkunR();">X</a></th>
+									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6"><a href="javascript:void(0);" onclick="chkall();">V</a>/<a href="javascript:void(0);" onclick="chkun();">X</a></th>
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">확인일자</th>
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">취소일자</th>
 								</tr>
@@ -68,7 +68,7 @@
 												value="${row.ORD_QUTY}" required readonly></td>
 											<td class="MB" style="text-align: right;vertical-align:middle;"><fmt:formatNumber
 													value="${row.ORD_AMOUNT}" pattern="#,###" /></td>
-											<td style="text-align:center;vertical-align:middle;"><input type="checkbox" <c:if test="${not empty row.CONF_DATE}">disabled</c:if> class="form-control CHKcfnR"><input class="ordRid" type="hidden" value="${row.REST_ORD_ID}"></td>													
+											<td style="text-align:center;vertical-align:middle;"><input type="checkbox" <c:if test="${not empty row.CONF_DATE}">checked disabled</c:if> class="form-control CHKcfnR"><input class="ordRid" type="hidden" value="${row.REST_ORD_ID}"></td>													
 											<td <c:if test="${empty row.CONF_DATE}">class="table-warning"</c:if> style="text-align:right;vertical-align:middle;">${row.CONF_DATE}</td>
 											<td style="vertical-align:middle;text-align:center">${row.CANC_DATE}</td>
 										</tr>
@@ -136,16 +136,16 @@
 	}
 	
 	
-	function chkunR() {
+	function chkun() {
 		var $Sarr = $(".CHKcfnR");
 		for (var i = 0; i < $Sarr.length; i++) {
+			if($($Sarr[i]).is(":disabled")==false){
 			$($Sarr[i]).prop("checked",false);
-			calculateM();
-			chkcalM();
+			}
 		}
 	}
 
-	function chkallR() {
+	function chkall() {
 		var $Marr = $(".CHKcfnR");
 		for (var i = 0; i < $Marr.length; i++) {
 			$($Marr[i]).prop("checked",true);			

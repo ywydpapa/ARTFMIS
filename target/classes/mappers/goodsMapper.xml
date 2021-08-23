@@ -166,7 +166,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			GOODS_USE_YN=#{GOODS_USE_YN},
 			GOODS_REG_DEPT=#{GOODS_REG_DEPT},
 			GOODS_MOD_USER=#{GOODS_MOD_USER},
-			GOODS_MOD_DATETIME=now()
+			GOODS_MOD_DATETIME=now(),
+			GOODS_RMCHG_YN = #{GOODS_RMCHG_YN}
  		where GOODS_ID=#{GOODS_ID}
  </update>
   
@@ -196,6 +197,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				,GOODS_USE_YN
 				,GOODS_REG_DEPT
 				,GOODS_NET_PRICE
+				,GOODS_RMCHG_YN
   			) VALUES
   			(
 				#{CAT_01_ID}
@@ -221,6 +223,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				,#{GOODS_USE_YN}
 				,#{GOODS_REG_DEPT}
 				,#{GOODS_NET_PRICE}
+				,#{GOODS_RMCHG_YN}
   			)
   </insert>
   <insert id="insertRoom">
@@ -245,6 +248,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				FROOM_REG_DATETIME,
 				CLEAN_CHARGE,
 				IMSI_YN,
+				INC_YN,
 				FROOM_PC,
 				FROOM_ORDNO,
   			 	FROOM_IMAGE
@@ -269,6 +273,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				now(),
 				#{CLEAN_CHARGE},
 				#{IMSI_YN},
+				#{INC_YN},
 				#{FROOM_PC},
 				#{FROOM_ORDNO},
   			 	#{FROOM_IMAGE}
@@ -292,6 +297,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				FROOM_MOD_DATETIME = NOW(),
 				CLEAN_CHARGE = #{CLEAN_CHARGE},
 				IMSI_YN =#{IMSI_YN},
+				INC_YN =#{INC_YN},
 				FROOM_PC=#{FROOM_PC},
 				FROOM_ORDNO=#{FROOM_ORDNO},
 				FROOM_MOD_DATETIME = now(),
@@ -303,13 +309,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 <select id="listRoom" resultType="goodsDto">
- 		SELECT * from GHT_FROOM where FROOM_TYP=#{roomType}
+ 		SELECT * from GHT_FROOM where FROOM_TYP=#{roomType} order by FROOM_ORDNO
+</select>
+
+<select id="doslistRoom" resultType="goodsDto">
+ 		SELECT * from GHT_FROOM where FROOM_TYP=#{roomType} and FROOM_CAT not in (70,71) order by FROOM_ORDNO
 </select>
 
 <select id="setlistRoom" resultType="goodsDto">
 select b.SETL_TITLE, b.SETL_REMARK , b.SETL_USE_YN, a.* from GHT_FROOM a
 left join GHT_SETL_RULE b on a.FROOM_ID = b.SETL_FROOM_ID and b.MOD_DATE is null
-where FROOM_TYP = #{FROOM_TYP}
+where FROOM_TYP = #{FROOM_TYP} order by FROOM_ORDNO
 </select> 
  
  <select id="listAltar" resultType="goodsDto">

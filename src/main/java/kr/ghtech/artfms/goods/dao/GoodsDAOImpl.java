@@ -207,5 +207,10 @@ public class GoodsDAOImpl implements GoodsDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("goods.setlistRoom", FROOM_TYP);
 	}
+	@Override
+	public List<GoodsDTO> doslistRoom(int FROOM_TYP) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("goods.doslistRoom",FROOM_TYP);
+	}
 
 }

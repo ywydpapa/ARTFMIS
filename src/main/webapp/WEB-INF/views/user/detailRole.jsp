@@ -19,17 +19,17 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th style="text-align: center" scope="row">사용자 이름<input
+								<th class="table-success" style="text-align: center" scope="row">사용자 이름<input
 									type="hidden" id="userId" value="${list.USER_ID}">
 									</th>
 								<td><input type="text" class="form-control"
-									id="unamk" value="${list.USER_NAMK}" placeholder=""></td>
-								<th style="text-align: center" scope="row">로그인아이디</th>
-								<td colspan="2"><input class="form-control" type="text" id="uId" value="${list.USER_LOGINID}"></td>
+									id="unamk" value="${list.USER_NAMK}" readonly></td>
+								<th class="table-success" style="text-align: center" scope="row">로그인아이디</th>
+								<td colspan="2"><input class="form-control" type="text" id="uId" value="${list.USER_LOGINID}" readonly></td>
 							</tr>
 							<tr>
-								<th style="text-align: center" scope="row">권한</th>
-								<td><select class="urole form-control" id="urank">
+								<th class="table-success" style="text-align: center" scope="row">권한</th>
+								<td><select class="urole form-control" id="urank" disabled>
 										<option value="CUSER"
 											<c:if test="${list.USER_RANK eq 'CUSER'}">selected</c:if>>일반
 											사용자</option>
@@ -48,9 +48,9 @@
 											<c:if test="${list.USER_RANK eq 'SUPP'}">selected</c:if>>외부업체
 											사용자</option>
 								</select></td>
-								<th style="text-align: center" scope="row">부서</th>
+								<th class="table-success" style="text-align: center" scope="row">부서</th>
 								<td colspan="2"><select class="uDept form-control"
-									id="udept">
+									id="udept" disabled>
 										<c:forEach var="row" items="${dept}">
 											<option value="${row.BCD_ID}"
 												<c:if test="${list.USER_DEPT eq row.BCD_ID}">selected</c:if>>${row.BCD_TITLE}</option>
@@ -58,7 +58,7 @@
 								</select></td>
 							</tr>
 							<tr>
-							<th style="text-align: center" scope="row">상담 관리(A)</th>
+							<th class="table-success" style="text-align: center" scope="row">상담 관리(A)</th>
 							<c:set var = "role1" value = "${list.USER_ROLE1}" />
 							<td><select id="Arole" class="form-control">
 							<option value="A2" <c:if test = "${fn : contains(role1, 'A2')}">selected</c:if> >읽기/쓰기</option>
@@ -67,7 +67,7 @@
 							</select></td>
 							</tr>
 							<tr>
-							<th style="text-align: center" scope="row">계약 목록(B)</th>
+							<th class="table-success" style="text-align: center" scope="row">계약 목록(B)</th>
 							<td><select id="Brole" class="form-control">
 							<option value="B2" <c:if test = "${fn : contains(role1, 'B2')}">selected</c:if>>읽기/쓰기</option>
 							<option value="B1" <c:if test = "${fn : contains(role1, 'B1')}">selected</c:if>>읽기전용</option>
@@ -75,7 +75,7 @@
 							</select></td>
 							</tr>
 							<tr>
-							<th style="text-align: center" scope="row">계약 등록(C)</th>
+							<th class="table-success" style="text-align: center" scope="row">계약 등록(C)</th>
 							<td><select id="Crole" class="form-control">
 							<option value="C2" <c:if test = "${fn : contains(role1, 'C2')}">selected</c:if>>읽기/쓰기</option>
 							<option value="C1" <c:if test = "${fn : contains(role1, 'C1')}">selected</c:if>>읽기전용</option>
@@ -83,7 +83,7 @@
 							</select></td>
 							</tr>
 							<tr>
-							<th style="text-align: center" scope="row">정산 관리(D)</th>
+							<th class="table-success" style="text-align: center" scope="row">정산 관리(D)</th>
 							<td><select id="Drole" class="form-control">
 							<option value="D2" <c:if test = "${fn : contains(role1, 'D2')}">selected</c:if>>읽기/쓰기</option>
 							<option value="D1" <c:if test = "${fn : contains(role1, 'D1')}">selected</c:if>>읽기전용</option>
@@ -91,7 +91,7 @@
 							</select></td>
 							</tr>
 							<tr>
-							<th style="text-align: center" scope="row">물품 등록(E)</th>
+							<th class="table-success" style="text-align: center" scope="row">물품 등록(E)</th>
 							<td><select id="Erole" class="form-control">
 							<option value="E2" <c:if test = "${fn : contains(role1, 'E2')}">selected</c:if>>읽기/쓰기</option>
 							<option value="E1" <c:if test = "${fn : contains(role1, 'E1')}">selected</c:if>>읽기전용</option>
@@ -99,7 +99,7 @@
 							</select></td>
 							</tr>
 							<tr>
-							<th style="text-align: center" scope="row">호실 등록(F)</th>
+							<th class="table-success" style="text-align: center" scope="row">호실 등록(F)</th>
 							<td><select id="Frole" class="form-control">
 							<option value="F2" <c:if test = "${fn : contains(role1, 'F2')}">selected</c:if>>읽기/쓰기</option>
 							<option value="F1" <c:if test = "${fn : contains(role1, 'F1')}">selected</c:if>>읽기전용</option>
@@ -107,7 +107,7 @@
 							</select></td>
 							</tr>
 							<tr>
-							<th style="text-align: center" scope="row">제단 등록(G)</th>
+							<th class="table-success" style="text-align: center" scope="row">제단 등록(G)</th>
 							<td><select id="Grole" class="form-control">
 							<option value="G2" <c:if test = "${fn : contains(role1, 'G2')}">selected</c:if>>읽기/쓰기</option>
 							<option value="G1" <c:if test = "${fn : contains(role1, 'G1')}">selected</c:if>>읽기전용</option>
@@ -115,7 +115,7 @@
 							</select></td>
 							</tr>
 							<tr>
-							<th style="text-align: center" scope="row">제물상 등록(H)</th>
+							<th class="table-success" style="text-align: center" scope="row">제물상 등록(H)</th>
 							<td><select id="Hrole" class="form-control">
 							<option value="H2" <c:if test = "${fn : contains(role1, 'H2')}">selected</c:if>>읽기/쓰기</option>
 							<option value="H1" <c:if test = "${fn : contains(role1, 'H1')}">selected</c:if>>읽기전용</option>
@@ -123,7 +123,7 @@
 							</select></td>
 							</tr>
 							<tr>
-							<th style="text-align: center" scope="row">표준 주문서 등록(I)</th>
+							<th class="table-success" style="text-align: center" scope="row">표준 주문서 등록(I)</th>
 							<td><select id="Irole" class="form-control">
 							<option value="I2" <c:if test = "${fn : contains(role1, 'I2')}">selected</c:if>>읽기/쓰기</option>
 							<option value="I1" <c:if test = "${fn : contains(role1, 'I1')}">selected</c:if>>읽기전용</option>
@@ -131,7 +131,7 @@
 							</select></td>
 							</tr>
 							<tr>
-							<th style="text-align: center" scope="row">코드 등록(J)</th>
+							<th class="table-success" style="text-align: center" scope="row">코드 등록(J)</th>
 							<td><select id="Jrole" class="form-control">
 							<option value="J2" <c:if test = "${fn : contains(role1, 'J2')}">selected</c:if>>읽기/쓰기</option>
 							<option value="J1" <c:if test = "${fn : contains(role1, 'J1')}">selected</c:if>>읽기전용</option>
@@ -139,7 +139,7 @@
 							</select></td>
 							</tr>
 							<tr>
-							<th style="text-align: center" scope="row">문구 등록(K)</th>
+							<th class="table-success" style="text-align: center" scope="row">문구 등록(K)</th>
 							<td><select id="Krole" class="form-control">
 							<option value="K2" <c:if test = "${fn : contains(role1, 'K2')}">selected</c:if>>읽기/쓰기</option>
 							<option value="K1" <c:if test = "${fn : contains(role1, 'K1')}">selected</c:if>>읽기전용</option>
@@ -147,7 +147,7 @@
 							</select></td>
 							</tr>
 							<tr>
-							<th style="text-align: center" scope="row">정산규칙 등록(L)</th>
+							<th class="table-success" style="text-align: center" scope="row">정산규칙 등록(L)</th>
 							<td><select id="Lrole" class="form-control">
 							<option value="L2" <c:if test = "${fn : contains(role1, 'L2')}">selected</c:if>>읽기/쓰기</option>
 							<option value="L1" <c:if test = "${fn : contains(role1, 'L1')}">selected</c:if>>읽기전용</option>
@@ -155,7 +155,7 @@
 							</select></td>
 							</tr>
 							<tr>
-							<th style="text-align: center" scope="row">설정 등록(M)</th>
+							<th class="table-success" style="text-align: center" scope="row">설정 등록(M)</th>
 							<td><select id="Mrole" class="form-control">
 							<option value="M2" <c:if test = "${fn : contains(role1, 'M2')}">selected</c:if>>읽기/쓰기</option>
 							<option value="M1" <c:if test = "${fn : contains(role1, 'M1')}">selected</c:if>>읽기전용</option>

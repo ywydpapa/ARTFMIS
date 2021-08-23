@@ -165,14 +165,14 @@ public class GoodsController {
 	
 	@RequestMapping("listfroom/{FROOM_TYP}")
 	public ModelAndView froomlist(@PathVariable("FROOM_TYP") int FROOM_TYP,ModelAndView mav) {
-		mav.addObject("list", goodsService.listRoom(FROOM_TYP));
+		mav.addObject("list", goodsService.doslistRoom(FROOM_TYP));
 		mav.setViewName("goods/froomList");
 		return mav;
 	}
 	
 	@RequestMapping("listfroom3/{FROOM_TYP}")
 	public ModelAndView froomlist3(@PathVariable("FROOM_TYP") int FROOM_TYP,ModelAndView mav) {
-		mav.addObject("list", goodsService.listRoom(FROOM_TYP));
+		mav.addObject("list", goodsService.doslistRoom(FROOM_TYP));
 		mav.setViewName("goods/froomList3");
 		return mav;
 	}

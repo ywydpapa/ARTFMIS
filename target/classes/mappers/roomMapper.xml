@@ -8,6 +8,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		resultType="String">
  		SELECT FROOM_ID from GHT_USER_MST where USER_LOGINID=#{USER_LOGINID} 
  </select>
+ 
+ <select id="ordlist" resultType="roomDto">
+ select Z.* from (
+ SELECT '식당' ORDP, a.ORD_DATE, count(a.ORD_DATE)-count(a.CONF_DATE) CORDDATE, count(a.CONF_DATE) CCONFDATE, count(a.CANC_DATE) CCANCDATE, a.CONTRACT_ID, REGEXP_REPLACE(a.ORD_DATE, '[^[:alnum:]]+', '') ORDDATE2 from GHT_REST_ORDERSHEET a 
+ left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
+ where a.CONTRACT_ID= #{CONTRACT_ID} and a.MOD_DATE is NULL group by a.ORD_DATE 
+ UNION ALL 
+SELECT '매점' ORDP, a.ORD_DATE, count(a.ORD_DATE)-count(a.CONF_DATE) CORDDATE, count(a.CONF_DATE) CCONFDATE, count(a.CANC_DATE) CCANCDATE, a.CONTRACT_ID , REGEXP_REPLACE(a.ORD_DATE, '[^[:alnum:]]+', '') ORDDATE2 from GHT_STORE_ORDSHEET a 
+ left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
+ where a.CONTRACT_ID= #{CONTRACT_ID} and a.MOD_DATE is NULL group by a.ORD_DATE ) Z order by ORD_DATE DESC
+ 
+ </select>
+ 
+ <select id="orddetail" resultType="roomDto">
+ SELECT b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, a.* from GHT_REST_ORDERSHEET a 
+ left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
+ where a.CONTRACT_ID= #{CONTRACT_ID} and a.MOD_DATE is NULL and DATE_FORMAT(ORD_DATE,'%Y%m%d%H%i%s') = #{ORD_DATE}
+ UNION ALL 
+SELECT b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, a.* from GHT_STORE_ORDSHEET a 
+ left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
+ where a.CONTRACT_ID= #{CONTRACT_ID} and a.MOD_DATE is NULL and DATE_FORMAT(ORD_DATE,'%Y%m%d%H%i%s') = #{ORD_DATE} 
+ </select>
 
 <select id="restOrdlist" resultType="roomDto">
  SELECT b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, a.* from GHT_REST_ORDERSHEET a 
@@ -98,7 +120,5 @@ update GHT_FNRSUPP_ORDERSHEET set CONF_DATE = now() where FNRSUPP_ORD_ID = #{FNR
  <select id="storeOrdlistRM" resultType="roomDto">
  SELECT b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, a.* from GHT_STORE_ORDSHEET a left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID where a.CONTRACT_ID=#{CONTRACT_ID} and a.MOD_DATE is NULL and a.CONF_DATE is NULL
  </select>
-
-
   
 </mapper>

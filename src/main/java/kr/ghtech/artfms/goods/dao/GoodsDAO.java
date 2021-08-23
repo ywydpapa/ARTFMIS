@@ -29,6 +29,7 @@ public interface GoodsDAO {
 	int insertAltar(GoodsDTO dto);
 	int insertFtable(GoodsDTO dto);
 	List<GoodsDTO> listRoom(int FROOM_TYP);
+	List<GoodsDTO> doslistRoom(int FROOM_TYP);
 	List<GoodsDTO> setlistRoom(int FROOM_TYP);
 	List<GoodsDTO> listAltar(int ALTAR_CAT);
 	List<GoodsDTO> listFtable(int FTABLE_CAT);

@@ -206,5 +206,10 @@ public class GoodsServiceImpl implements GoodsService {
 		// TODO Auto-generated method stub
 		return goodsDao.setlistRoom(FROOM_TYP);
 	}
+	@Override
+	public List<GoodsDTO> doslistRoom(int FROOM_TYP) {
+		// TODO Auto-generated method stub
+		return goodsDao.doslistRoom(FROOM_TYP);
+	}
 
 }

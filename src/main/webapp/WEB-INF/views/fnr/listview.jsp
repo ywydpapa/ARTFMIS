@@ -6,14 +6,12 @@
 <style>
 .listrooms {
 	width: 100%;
-	height: 100%;
 	padding: 20px;
 	background: white;
 }
 
 .detailaltar {
 	width: 100%;
-	height: 100%;
 	padding: 20px;
 	background: white;
 }
@@ -27,7 +25,6 @@
 .h-container .item {
 	float: left;
 	width: 40%;
-	height: 100%;
 	padding: 20px;
 	text-align: center;
 	border-right: 1px solid #ddd;
@@ -42,7 +39,7 @@
 }
 </style>
 <div class="listcategory">
-		<table class="table table-bordered nowrap"
+		<table class="table"
 		style="width: 50%;">
 		<colgroup>
 			<col width="10%" />
@@ -56,12 +53,12 @@
 <hr>
 	<div class="h-container">
 		<div class="item">
-			<table class="table table-striped table-bordered nowrap" id="listTable">
+			<table class="table" id="listTable">
 				<thead>
 					<tr>
-						<th scope="col" width="25%" style="text-align:center">장례식장명</th>
-						<th scope="col" width="25%" style="text-align:center">라이센스</th>
-						<th scope="col" width="25%" style="text-align:center">사용자수</th>
+						<th class="table-info" style="text-align:center">장례식장명</th>
+						<th class="table-info" style="text-align:center">라이센스</th>
+						<th class="table-info" style="text-align:center">사용자수</th>
 					</tr>
 				</thead>
 				<tbody>

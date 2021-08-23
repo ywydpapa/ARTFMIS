@@ -19,12 +19,12 @@
 						</colgroup>
 						<tbody>
 							<tr>
-								<th style="text-align: center" scope="row">사용자 이름<input
+								<th class="table-success" style="text-align: center" scope="row">사용자 이름<input
 									type="hidden" id="userId" value="${list.USER_ID}">
 									</th>
 								<td><input type="text" class="form-control"
 									id="unamk" value="${list.USER_NAMK}" placeholder=""></td>
-								<th style="text-align: center" scope="row">로그인아이디</th>
+								<th class="table-success" style="text-align: center" scope="row">로그인아이디</th>
 								<td><input class="form-control" type="text" id="uId" value="${list.USER_LOGINID}"></td>
 								<td>
 									<button style="text-align: right;" class="btn btn-md btn-success" value="추가"
@@ -32,7 +32,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th style="text-align: center" scope="row">권한</th>
+								<th class="table-success" style="text-align: center" scope="row">권한</th>
 								<td><select class="urole form-control" id="urank">
 										<option value="CUSER"
 											<c:if test="${list.USER_RANK eq 'CUSER'}">selected</c:if>>일반
@@ -52,7 +52,7 @@
 											<c:if test="${list.USER_RANK eq 'SUPP'}">selected</c:if>>외부업체
 											사용자</option>
 								</select></td>
-								<th style="text-align: center" scope="row">부서</th>
+								<th class="table-success" style="text-align: center" scope="row">부서</th>
 								<td colspan="2"><select class="uDept form-control"
 									id="udept">
 										<c:forEach var="row" items="${dept}">
@@ -62,29 +62,29 @@
 								</select></td>
 							</tr>
 							<tr>
-								<th style="text-align: center" scope="row">전화번호</th>
+								<th class="table-success" style="text-align: center" scope="row">전화번호</th>
 								<td><input type="tel" class="form-control"
 									value="${list.USER_TELNO}" id="utel"></td>
-								<th style="text-align: center" scope="row">휴대폰 번호</th>
+								<th class="table-success" style="text-align: center" scope="row">휴대폰 번호</th>
 								<td colspan="2"><input type="tel" class="form-control"
 									value="${list.USER_MOBNO}" id="umob"></td>
 							</tr>
 							<tr>
-								<th style="text-align: center" scope="row">주소</th>
+								<th class="table-success" style="text-align: center" scope="row">주소</th>
 								<td><input type="text" id="uadd1" class="form-control" value="${list.USER_ADDR1}"></td>
-								<th style="text-align: center" scope="row" >상세주소</th>
+								<th class="table-success" style="text-align: center" scope="row" >상세주소</th>
 								<td colspan="2"><input type="text" id="uadd2" class="form-control" value="${list.USER_ADDR2}"></td>
 							</tr>
 							<tr>
-								<th style="text-align: center" scope="row">이메일</th>
+								<th class="table-success" style="text-align: center" scope="row">이메일</th>
 								<td><input type="email" class="form-control"
 									value="${list.USER_EMAIL}" id="uemail"></td>
-								<th style="text-align: center" scope="row">입사일</th>
+								<th class="table-success" style="text-align: center" scope="row">입사일</th>
 								<td colspan="2"><input type="date" class="form-control"
 									value="${list.USER_INDAT}" id="uindate"></td>
 							</tr>
 							<tr>
-								<th style="text-align: center" scope="row">관리호실</th>
+								<th class="table-success" style="text-align: center" scope="row">관리호실</th>
 								<td><select class="uFroom form-control" id="ufroom">
 										<option value="">관리호실 없음</option>
 										<c:forEach var="row" items="${froom}">
@@ -92,7 +92,7 @@
 												<c:if test="${list.FROOM_ID eq row.FROOM_ID}">selected</c:if>>${row.FROOM_TITLE}</option>
 										</c:forEach>
 								</select></td>
-								<th style="text-align: center" scope="row">로그인허용</th>
+								<th class="table-success" style="text-align: center" scope="row">로그인허용</th>
 								<td colspan="2"><select class="form-control" id="ulogin">
 										<option value="Y">예</option>
 										<option value="N">아니오</option>

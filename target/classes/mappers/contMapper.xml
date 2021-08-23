@@ -27,6 +27,18 @@ select gc.CONTRACT_ID , gc.START_DATE, gc.END_DATE, gc.FROOM_ID, gf.FROOM_TITLE 
 	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' group by a.FROOM_ID 
  </select>
  
+ <select id="listaddRoom" resultType="contDto">
+select b.CONT_FROOM_ID ,b.DAYS, b.TIMEs,b.CLEAN_CHARGE_DAYS,(b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, b.STORE_SNACK_YN, b.STORE_REFG_YN , b.STORE_ITEM_YN , a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
+left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL
+where a.FROOM_TYP IN (1) and a.FROOM_USE_YN = 'Y' and b.ADD_YN = 'Y' 
+ </select>
+ 
+ <select id="listFroomemp" resultType="contDto">
+ 	SELECT a.*, b.CONTRACT_ID from GHT_FROOM a 
+ 	left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.SETT_DATE is null
+	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' and b.CONTRACT_ID is null group by a.FROOM_ID 
+ </select>
+ 
   <select id="checkFroom" resultType="_integer">
  	SELECT COUNT(CONTRACT_ID) from GHT_CONT where END_DATE >= #{START_DATE} and FROOM_ID = #{FROOM_ID}   
  </select>
@@ -291,6 +303,7 @@ now()
 ,RCHARGE
 ,REMARK
 ,REG_DATE
+,attrib
  ) values (
  #{CONTRACT_ID}
 ,#{FROOM_ID}
@@ -299,6 +312,7 @@ now()
 ,#{RCHARGE} 
 ,#{REMARK}
 ,now()
+,'10000'
  )
  </insert>
  
@@ -551,10 +565,10 @@ CONTRACT_ID
  <insert id="contp9">
  
  </insert>
- 
+
  <update id="updcontp2">
  update GHT_CONT_FROOM
- set MOD_DATE = now() where CONTRACT_ID = #{CONTRACT_ID} and FROOM_ID not in (select froom_id from GHT_FROOM where FROOM_TYP = '5')
+ set MOD_DATE = now(), attrib = 'XXXXX' where CONTRACT_ID = #{CONTRACT_ID} and FROOM_ID not in (select froom_id from GHT_FROOM where FROOM_TYP = '5')
  </update>
  
  <update id="updcontp3">
@@ -592,7 +606,23 @@ where CONTRACT_ID = #{CONTRACT_ID} and ORD_TYPE = '1'
  <update id="updcontp9">
  
  </update>
- 
+
+<insert id="addRoom">
+insert into GHT_CONT_FROOM
+(CONTRACT_ID,FROOM_ID,DAYS,TIMES,REG_DATE,RCHARGE,STORE_SNACK_YN,STORE_REFG_YN,STORE_ITEM_YN,CLEAN_CHARGE_DAYS,ADD_YN,attrib)
+values (#{CONTRACT_ID},#{FROOM_ID},#{DAYS},#{TIMES},now(),#{RCHARGE},#{STORE_SNACK_YN},#{STORE_REFG_YN},#{STORE_ITEM_YN},#{CLEAN_CHARGE_DAYS},'Y','10000')
+<selectKey keyProperty="CONT_FROOM_ID" resultType="integer"  order="AFTER">
+		 SELECT LAST_INSERT_ID()
+	 </selectKey>
+</insert>
+
+<update id="delRoom">
+update GHT_CONT_FROOM set
+attrib ='XXXXX',
+MOD_DATE = now()
+where CONT_FROOM_ID = ${CONT_FROOM_ID}
+</update>
+
  <insert id="insertYujok">
  insert into GHT_CONT_SANGJU
  (
@@ -625,10 +655,17 @@ CONTRACT_ID
  </select>
 
 <select id="reloadContp2" resultType="contDto">
-select b.DAYS, b.TIMEs, b.RCHARGE, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' else 'N' end CHKED from GHT_FROOM a
-left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL
-where a.FROOM_TYP = 1 and a.FROOM_USE_YN = 'Y'
+select b.DAYS, b.TIMEs, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
+left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL 
+where a.FROOM_TYP IN (1,2,3,4,6,7) and b.DAYS is not null and a.FROOM_USE_YN = 'Y' 
 </select> 
+
+<select id="reloadContp2froom" resultType="contDto">
+select b.DAYS, b.TIMEs, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
+left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL 
+where a.FROOM_TYP IN (1) and a.FROOM_USE_YN = 'Y' 
+</select>
+
 <select id="reloadContp3" resultType="contDto">
 	select gfo.QUTY,gfo.ORD_AMOUNT, gbc.BCD_TITLE, gf.*, CASE WHEN IFNULL(gfo.ORD_AMOUNT,0)>0 then 'Y' else 'N' end CHKED from GHT_FTABLE gf 
  left join GHT_BASE_CODE gbc on gbc.BCD_ID = gf.FTABLE_CAT 
@@ -691,4 +728,76 @@ where a.FROOM_TYP = 1 and a.FROOM_USE_YN = 'Y'
 <select id="listYujok" resultType="contDto">
 	SELECT * FROM GHT_CONT_SANGJU where CONTRACT_ID = #{CONTRACT_ID} and MOD_DATE IS NULL
 </select>
+
+<select id="setrtnContp7" resultType="contDto">
+	select e.ORD_QUTY, e.ORD_AMOUNT, b.CAT_TITLE , a.* ,c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_STORE_ORD c on a.GOODS_ID = c.STORE_GOODS_ID and c.STORE_ORD_FROOM_ID = #{CONT_FROOM_ID}
+	left join GHT_BASE_CODE d on c.STORE_ORD_FROOM_ID = d.BCD_ID
+	left join GHT_STORE_ORDSHEET e on e.GOODS_CODE = a.GOODS_ID and e.MOD_DATE IS NULL and e.CONTRACT_ID = #{CONTRACT_ID} 
+	where a.CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='3') 
+	and a.GOODS_USE_YN = 'Y'
+	and a.GOODS_RETURN_YN = 'Y'
+	and e.ORD_QUTY > 0
+	order by a.CAT_02_ID, a.GOODS_ORDER 
+</select>
+
+<select id="settleContp6" resultType="contDto">
+	select e.ORD_QUTY , e.ORD_AMOUNT ,e.ORD_TYPE,e.ORD_DATE,e.CONF_DATE, b.CAT_TITLE, a.*, c.MESSR_GOODS_INIT_QTY, c.MESSR_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_MESSR_ORD c on a.GOODS_ID = c.MESSR_GOODS_ID and c.MESSR_ORD_FROOM_ID = #{CONT_FROOM_ID}
+	left join GHT_BASE_CODE d on c.MESSR_ORD_FROOM_ID = d.BCD_ID
+	left join GHT_REST_ORDERSHEET e on e.GOODS_CODE = a.GOODS_ID and e.CONTRACT_ID = #{CONTRACT_ID} and e.MOD_DATE IS NULL
+	where a.CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='2')
+	and a.GOODS_USE_YN = 'Y' 
+	and e.ORD_QUTY > 0 
+	order by a.CAT_02_ID, a.GOODS_ORDER 
+</select>
+
+<select id="settleContp7" resultType="contDto">
+	select e.ORD_QUTY, e.ORD_AMOUNT, e.ORD_TYPE,e.ORD_DATE,e.CONF_DATE, b.CAT_TITLE , a.* ,c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_STORE_ORD c on a.GOODS_ID = c.STORE_GOODS_ID and c.STORE_ORD_FROOM_ID = #{CONT_FROOM_ID}
+	left join GHT_BASE_CODE d on c.STORE_ORD_FROOM_ID = d.BCD_ID
+	left join GHT_STORE_ORDSHEET e on e.GOODS_CODE = a.GOODS_ID and e.MOD_DATE IS NULL and e.CONTRACT_ID = #{CONTRACT_ID} 
+	where a.CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='3') 
+	and a.GOODS_USE_YN = 'Y'
+	and e.ORD_QUTY > 0 
+	order by a.CAT_02_ID, a.GOODS_ORDER 
+</select>
+
+<select id="settleContp2" resultType="contDto">
+select b.DAYS, b.TIMEs, b.RCHARGE, b.SETT_DATE, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' else 'N' end CHKED from GHT_FROOM a
+left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL
+where a.FROOM_USE_YN = 'Y' and b.RCHARGE is not null and b.SETT_DATE is null 
+</select>
+
+<select id="settleContp3" resultType="contDto">
+	select gfo.QUTY,gfo.ORD_AMOUNT, gbc.BCD_TITLE, gf.*, CASE WHEN IFNULL(gfo.ORD_AMOUNT,0)>0 then 'Y' else 'N' end CHKED from GHT_FTABLE gf 
+ left join GHT_BASE_CODE gbc on gbc.BCD_ID = gf.FTABLE_CAT 
+ left join GHT_FTAB_ORDERSHEET gfo on gfo.FTABLE_CODE = gf.FTABLE_ID and CONTRACT_ID = #{CONTRACT_ID} and gfo.MOD_DATE is NULL
+ where FTABLE_CAT IN (24,31,32,34,35,36,72,73,74,75,77,76) and gfo.ORD_AMOUNT is not null order by FTABLE_CAT
+</select>
+
+<select id="settleContp4" resultType="contDto">
+	select e.ORD_QUTY , e.ORD_AMOUNT , b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID 
+	left join GHT_FNRSUPP_ORD c on a.GOODS_ID = c.FNRS_GOODS_ID and c.FNRS_ORD_FROOM_ID = 121 
+	left join GHT_BASE_CODE d on c.FNRS_ORD_FROOM_ID = d.BCD_ID 
+	left join GHT_FNRSUPP_ORDERSHEET e on a.GOODS_ID = e.GOODS_CODE and e.CONTRACT_ID = #{CONTRACT_ID} and e.MOD_DATE IS NULL
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='1') and GOODS_USE_YN = 'Y' and e.ORD_AMOUNT is not null order by CAT_02_ID, GOODS_ORDER    
+</select>
+
+<select id="settleContp5" resultType="contDto">
+ SELECT b.QUTY ,b.ORD_PRICE ,a.*, CASE WHEN IFNULL(b.ORD_PRICE,0)>0 then 'Y' else 'N' end CHKED from GHT_ALTAR a 
+ left join GHT_ALTAR_ORDERSHEET b on a.ALTAR_ID = b.ALTAR_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL
+ where a.ALTAR_CAT IN (102,103) and a.ALTAR_USE_YN = 'Y' and b.ORD_PRICE is not null order by a.ALTAR_CAT
+</select>
+
+<select id="settleContp8" resultType="contDto">
+select b.COUNTD ,b.COUNTT , b.ETC_CHARGE ,a.* from GHT_FROOM a 
+left join GHT_ETC_ORDERSHEET b on a.FROOM_ID = b.GOODS_CODE and b.CONTRACT_ID = #{CONTRACT_ID} 
+where a.FROOM_TYP = 5 and b.ETC_CHARGE is not null
+</select>
+
 </mapper>
