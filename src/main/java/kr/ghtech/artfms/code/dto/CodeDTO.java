@@ -29,4 +29,5 @@ public class CodeDTO {
 	private String BCD_REG_USER;
 	private String BCD_MOD_USER;
 	private String BCD_CAT_TYPE;
+	private String CAT_02_ID;
 }

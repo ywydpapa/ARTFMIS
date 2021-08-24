@@ -46,8 +46,8 @@
               물품 추가 주문
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/room/restord.do')">식당물품 추가주문</a>
-              <a class="dropdown-item" href="javascript:fnSetPage('${path}/room/storeord.do')">매점물품 추가주문</a>
+              <a class="dropdown-item" href="javascript:fnSetPage('${path}/room/restord/${USER_FROOM_ID}')">식당물품 추가주문</a>
+              <a class="dropdown-item" href="javascript:fnSetPage('${path}/room/storeord/${USER_FROOM_ID}')">매점물품 추가주문</a>
             </div>
           </li>
           <li style="display: none" class="nav-item dropdown">
@@ -89,7 +89,7 @@
             <p class="card-text">분향실에서 필요한 물품을 주문하는 곳입니다. </p>
           </div>
           <div class="card-footer">
-            <a href="javascript:fnSetPage('${path}/room/restord.do')" class="btn btn-primary">주문</a>
+            <a href="javascript:fnSetPage('${path}/room/restord/${USER_FROOM_ID}')" class="btn btn-primary">주문</a>
           </div>
         </div>
       </div>
@@ -100,7 +100,7 @@
             <p class="card-text">분향실에서 필요한 물품을 주문하는 곳입니다. </p>
           </div>
           <div class="card-footer">
-            <a href="javascript:fnSetPage('${path}/room/storeord.do')" class="btn btn-primary">주문</a>
+            <a href="javascript:fnSetPage('${path}/room/storeord/${USER_FROOM_ID}')" class="btn btn-primary">주문</a>
           </div>
         </div>
       </div>

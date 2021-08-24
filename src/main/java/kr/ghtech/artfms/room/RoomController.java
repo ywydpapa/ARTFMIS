@@ -95,16 +95,18 @@ public class RoomController {
 		return mav;
 	}
 	
-	@RequestMapping("restord.do")
-	public ModelAndView restordlist(ModelAndView mav) {
-		mav.addObject("doslist2", contService.doscontlist2f(1));
+	@RequestMapping("restord/{FROOM_ID}")
+	public ModelAndView restordlist(@PathVariable("FROOM_ID") int FROOM_ID, ModelAndView mav) {
+		mav.addObject("list2n", codeService.listCode020n(2));
+		mav.addObject("doslist2", contService.doscontlist2f(FROOM_ID));
 		mav.setViewName("room/restOrdlist");
 		return mav;
 	}
 
-	@RequestMapping("storeord.do")
-	public ModelAndView storeordlist(ModelAndView mav) {
-		mav.addObject("doslist3", contService.doscontlist3f(1));
+	@RequestMapping("storeord/{FROOM_ID}")
+	public ModelAndView storeordlist(@PathVariable("FROOM_ID") int FROOM_ID,ModelAndView mav) {
+		mav.addObject("list2n", codeService.listCode020n(3));
+		mav.addObject("doslist3", contService.doscontlist3f(FROOM_ID));
 		mav.setViewName("room/storeOrdlist");
 		return mav;
 	}
