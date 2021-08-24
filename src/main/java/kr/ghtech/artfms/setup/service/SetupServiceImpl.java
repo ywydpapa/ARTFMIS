@@ -69,4 +69,16 @@ public class SetupServiceImpl implements SetupService {
 		return setupDao.infoCont();
 	}
 
+	@Override
+	public List<SetupDTO> timelist() {
+		// TODO Auto-generated method stub
+		return setupDao.timelist();
+	}
+
+	@Override
+	public List<SetupDTO> infolist() {
+		// TODO Auto-generated method stub
+		return setupDao.infolist();
+	}
+
 }

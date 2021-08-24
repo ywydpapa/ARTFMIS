@@ -102,12 +102,64 @@
 						name="altarImage" id="altarImage">
 				</form>
 			</td>
-			<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">시설사용료 기타품목 포함여부</th>
-			<td colspan="2"><select name="incYn" id="incYn"
-				class="form-control form-control-sm">
-					<option value="Y">포함</option>
-					<option value="N">미포함</option>
-			</select></td>
+			<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">시설사용료 설정</th>
+			<td colspan="2">
+			<button class="btn btn-primary form-control" data-toggle="modal" data-target=".bd-example-modal-lg">상세설정</button>
+			<div class="modal fade bd-example-modal-lg" tabindex="-1"
+					role="dialog" aria-labelledby="myLargeModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog modal-lg" style="padding:10px">
+						<div class="modal-content">
+						<table class="table table-bordered">
+						<colgroup>
+						<col width="">
+						<col width="">
+						<col width="">
+						<col width="">
+						<col width="">
+						</colgroup>
+						<thead>
+						<tr><th class="text-center table-info" colspan="5">기타품목 시설 사용료 설정</th></tr>
+						<tr>
+						<th class="text-center">품목</th>
+						<th class="text-center">부과방법</th>
+						<th class="text-center">부과금액</th>
+						<th class="text-center">부가사용료 등록여부</th>
+						<th class="text-center">시설사용료 포함여부</th>
+						</tr>
+						</thead>
+						<tbody>
+						<c:forEach var="row" items="${etcfee}">
+						<tr>
+						<td class="align-middle"><input type="hidden" value="${row.BCD_ID}">${row.BCD_TITLE}</td>
+						<td>
+						<select class="form-control">
+						<option value="T">시간당</option>
+						<option value="E">회당</option>
+						</select>
+						</td>
+						<td class="align-middle table-warning"><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" class="form-control text-right table-warning" style="border:none" value=""></td>
+						<td>
+						<select style="text-align:right" class="form-control">
+						<option value="Y">등록</option>
+						<option value="N">미등록</option>
+						</select>
+						</td>
+						<td>
+						<select style="text-align:right" class="form-control">
+						<option value="Y">포함</option>
+						<option value="N">불포함</option>
+						</select>
+						</td>
+						</tr>
+						</c:forEach>
+						</tbody>
+						</table>
+						<div class="btn_wr text-right mt-6"><button class="btn btn-success" data-dismiss="modal">적용/닫기</button></div>
+						</div>
+					</div>
+				</div>
+			</td>
 		</tr>
 		<tr>
 			<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">내용</th>
@@ -116,10 +168,10 @@
 		</tr>
 	</tbody>
 </table>
-<div class="btn_wr text-right mt-3" id="udtbtn">
+<div class="btn_wr text-right mt-6" id="udtbtn">
 	<button class="btn btn-md btn-primary" onClick="fn_Updateroom()">저장</button>
 </div>
-<div class="btn_wr text-right mt-3" id="insbtn">
+<div class="btn_wr text-right mt-6" id="insbtn">
 	<button class="btn btn-md btn-primary" onClick="fn_Insertroom()">새로저장</button>
 </div>
 <br>

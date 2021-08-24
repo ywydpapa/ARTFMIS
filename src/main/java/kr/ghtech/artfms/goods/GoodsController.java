@@ -251,6 +251,7 @@ public class GoodsController {
 	@RequestMapping("/detailRoom/{FROOM_ID}")
 	public ModelAndView detailroom(@PathVariable("FROOM_ID") int FROOM_ID, ModelAndView mav) {
 		mav.addObject("listroom", codeService.listconBcode("2"));
+		mav.addObject("etcfee", codeService.listconBcode("9"));
 		mav.addObject("menu006",goodsService.menu006());
 		mav.addObject("dtoRoom", goodsService.detailRoom(FROOM_ID));
 		mav.setViewName("goods/roomDetail");

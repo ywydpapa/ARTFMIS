@@ -81,7 +81,7 @@ public class RoomController {
 	public ModelAndView cfnwrite2(@PathVariable("CONTRACT_ID") int CONTRACT_ID,ModelAndView mav) {
 		mav.addObject("cont",contService.detailCont(CONTRACT_ID));
 		mav.addObject("ord", roomService.listOrder(CONTRACT_ID));
-		mav.addObject("time",setupService.timelistSetup());
+		mav.addObject("time",setupService.timelist());
 		mav.setViewName("room/ordlistview");
 		return mav;
 	}

@@ -19,8 +19,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%' and SETUP_TYPE='TIME'
  </select>
  
+  <select id="timelist"
+ 		resultType="setupDto">
+ 		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%' and SETUP_TYPE='TIME' and USE_YN='Y'
+ </select>
+ 
  <select id="infolistSetup" resultType="setupDto">
  		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%' and SETUP_TYPE='INFO'
+ </select>
+ 
+ <select id="infolist" resultType="setupDto">
+ 		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%' and SETUP_TYPE='INFO' and USE_YN='Y'
  </select>
  
  <select id="infoCont" resultType="setupDto">

@@ -8,7 +8,9 @@ public interface SetupService {
 	
 	List<SetupDTO> listSetup();
 	List<SetupDTO> timelistSetup();
+	List<SetupDTO> timelist();
 	List<SetupDTO> infolistSetup();
+	List<SetupDTO> infolist();
 	SetupDTO detailSetup(int SETUP_ID);
 	SetupDTO infoCont();
 	int updateSetup(SetupDTO dto);
