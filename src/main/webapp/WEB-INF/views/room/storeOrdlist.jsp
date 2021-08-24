@@ -25,23 +25,22 @@
 	</div>
 	<div>
 		<div style="float: left; width: 20%; padding: 10px">
-			<table id="MESST" class="table table-bordered">
-				<colgroup>
-					<col width="10%" />
-					<col width="90%" />
+			<table id="MESST" class="table table-bordered table-hover">
+					<colgroup>
+				<col width="100%" />
 				</colgroup>
 				<tr>
-					<td class="align-middle"><input type="radio" class="selRad"
-						name="cat02" value="999" checked></td>
-					<td class="align-middle">전체</td>
+					<td class="align-middle">
+						<label><input type="radio" class="selRad" name="cat02" value="999" checked> 전체 항목</label>
+					</td>
 				</tr>
-				<c:forEach var="row" items="${list2n}">
-					<tr>
-						<td class="align-middle"><input type="radio" name="cat02"
-							class="selRad" value="${row.CAT_ID}"></td>
-						<td class="align-middle">${row.CAT_TITLE}</td>
-					</tr>
-				</c:forEach>
+			<c:forEach var="row" items="${list2n}">
+				<tr>
+					<td class="align-middle">
+						<label><input type="radio" name="cat02" class="selRad" value="${row.CAT_ID}"> ${row.CAT_TITLE}</label>
+					</td>
+				</tr>
+			</c:forEach>
 			</table>
 		</div>
 		<div class="table-responsive"

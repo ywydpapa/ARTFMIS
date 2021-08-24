@@ -24,23 +24,19 @@
 	</div>
 	<div>
 		<div style="float:left;width:20%;padding:10px">
-			<table id="MESST" class="table table-bordered">
+			<table id="MESST" class="table table-bordered table-hover">
 				<colgroup>
-				<col width="10%" />
-				<col width="90%" />
+				<col width="100%" />
 				</colgroup>
 				<tr>
 					<td class="align-middle">
-						<input type="radio" class="selRad" name="cat02" value="999" checked>
+						<label><input type="radio" class="selRad" name="cat02" value="999" checked> 전체 항목</label>
 					</td>
-					<td class="align-middle">전체</td>
 				</tr>
 			<c:forEach var="row" items="${list2n}">
 				<tr>
 					<td class="align-middle">
-						<input type="radio" name="cat02" class="selRad" value="${row.CAT_ID}">
-					</td>
-					<td class="align-middle">${row.CAT_TITLE}
+						<label><input type="radio" name="cat02" class="selRad" value="${row.CAT_ID}"> ${row.CAT_TITLE}</label>
 					</td>
 				</tr>
 			</c:forEach>
