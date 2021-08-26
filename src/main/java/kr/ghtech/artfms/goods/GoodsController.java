@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.ghtech.artfms.code.service.CodeService;
 import kr.ghtech.artfms.goods.dto.GoodsDTO;
 import kr.ghtech.artfms.goods.service.GoodsService;
+import kr.ghtech.artfms.setup.service.SetupService;
 
 @Controller
 
@@ -27,6 +28,9 @@ public class GoodsController {
 	
 	@Inject
 	CodeService codeService;
+	
+	@Inject
+	SetupService setupService;
 	
 	@RequestMapping("listgoods.do")
 	public ModelAndView listgoods(ModelAndView mav) {
@@ -251,7 +255,7 @@ public class GoodsController {
 	@RequestMapping("/detailRoom/{FROOM_ID}")
 	public ModelAndView detailroom(@PathVariable("FROOM_ID") int FROOM_ID, ModelAndView mav) {
 		mav.addObject("listroom", codeService.listconBcode("2"));
-		mav.addObject("etcfee", codeService.listconBcode("9"));
+		mav.addObject("etcsetl", setupService.listFroomSetl(FROOM_ID));
 		mav.addObject("menu006",goodsService.menu006());
 		mav.addObject("dtoRoom", goodsService.detailRoom(FROOM_ID));
 		mav.setViewName("goods/roomDetail");

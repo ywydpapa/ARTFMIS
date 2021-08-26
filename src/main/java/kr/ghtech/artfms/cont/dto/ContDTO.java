@@ -232,4 +232,6 @@ public class ContDTO {
 	private String CLEAN_CHARGE_DAYS;
 	private String ADD_YN;
 	private String attrib;
+	
+	
 }

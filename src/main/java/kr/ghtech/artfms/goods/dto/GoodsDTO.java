@@ -121,5 +121,6 @@ public class GoodsDTO {
 	private String SETL_TITLE;
 	private String SETL_USE_YN;
 	private String INC_YN;
+	private String attrib;
 	
 }

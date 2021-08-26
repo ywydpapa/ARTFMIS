@@ -81,4 +81,22 @@ public class SetupDAOImpl implements SetupDAO {
 		return sqlSession.selectList("setup.infolist");
 	}
 
+	@Override
+	public List<SetupDTO> listFroomSetl(int SETL_FROOM_ID) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("setup.listfroomAddsetl", SETL_FROOM_ID);
+	}
+
+	@Override
+	public int insFroomSetl(SetupDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("setup.insfroomAddsetl", dto);
+	}
+
+	@Override
+	public int updFroomSetl(SetupDTO dto) {
+		// TODO Auto-generated method stub
+		return  sqlSession.update("setup.updfroomAddsetl", dto);
+	}
+
 }

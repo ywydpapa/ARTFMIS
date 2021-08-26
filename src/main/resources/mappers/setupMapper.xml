@@ -72,6 +72,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	ATTRIB = 'XXXXX'
 	where SETUP_ID = #{SETUP_ID}
 </update>
+
+<insert id="insfroomAddsetl">
+insert into GHT_FROOM_SETL
+ (SETL_FROOM_ID,SETL_TITLE,SETL_REMARK,SETL_USE_YN,REG_DATE,SETL_PRICE,SETL_TYPE,PAY_YN,INCADD_YN,attrib)
+ values
+ (#{SETL_FROOM_ID},#{SETL_TITLE},#{SETL_REMARK},#{SETL_USE_YN},now(),#{SETL_PRICE},#{SETL_TYPE},#{PAY_YN},#{INCADD_YN},'10000')
+</insert>
+
+<update id="updfroomAddsetl">
+update GHT_FROOM_SETL
+set
+	SETL_FROOM_ID = #{SETL_FROOM_ID}
+	,SETL_TITLE = #{SETL_TITLE}
+	,SETL_REMARK = #{SETL_REMARK}
+	,SETL_USE_YN = #{SETL_USE_YN}
+	,MOD_DATE = NOW()
+	,SETL_PRICE = #{SETL_PRICE}
+	,SETL_TYPE = #{SETL_TYPE}
+	,PAY_YN = #{PAY_YN}
+	,INCADD_YN = #{INCADD_YN}
+where SETL_ID=#{SETL_ID}
+</update>
+
+<select id="listfroomAddsetl" resultType="setupDto">
+select a.BCD_ID, a.BCD_TITLE , g.* from GHT_BASE_CODE a 
+left join GHT_FROOM_SETL g on a.BCD_ID = g.SETL_REMARK and g.SETL_FROOM_ID = #{SETL_FROOM_ID}
+where a.BCD_CAT_TYPE='9' order by BCD_ORDER  
+</select>
   
   
 </mapper>

@@ -13,7 +13,7 @@
 	<div class="row" align="center">
 		<div class="col-lg-12">
 			<div class="card_box sch_it">
-						<div class="btn_wr text-right mt-3">
+			<div class="btn_wr text-right mt-3">
 				<div id = "updbtn">
 				<button class="btn btn-md btn-primary"  onClick="fn_goodsUpdate01()">저장</button>
 				</div>

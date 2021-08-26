@@ -4,6 +4,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <style>
+.txt_line {
+  overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+    line-height: 1.2em;
+    height: 3.6em; 
+  }
+
 .listrooms {
 	width: 100%;
 	height: 100%;
@@ -71,7 +82,7 @@
 					<c:forEach var="row" items="${list}">
 						<tr>
 							<td><input type="hidden" class="defid" value="${row.SETUP_ID}"><a href="javascript:fnSetupdetail('${path}/setup/infodetail/${row.SETUP_ID}')">${row.SETUP_TITLE}</a></td>
-							<td>${row.SETUP_CONTENTS}</td>
+							<td class="text_line">${row.SETUP_CONTENTS}</td>
 							<td>${row.SETUP_DESC}</td>
 							<td><c:if test="${row.USE_YN eq 'Y'}">사용</c:if><c:if test="${row.USE_YN eq 'N'}">미사용</c:if></td>
 							<td><input type="checkbox" class="def form-control" onclick="oneCheck(this)"<c:if test="${row.SETUP_KEY eq 'Y'}">checked</c:if> ></td>

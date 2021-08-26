@@ -8,70 +8,7 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card-block table-border-style">
-				<div class="table-responsive">
-					<table class="table table-sm bst02">
-						<colgroup>
-							<col width="15%" />
-							<col width="35%" />
-							<col width="15%" />
-							<col width="20%" />
-							<col width="15%" />
-						</colgroup>
-						<tbody>
-							<tr>
-								<th style="text-align: center" scope="row">장례식장명</th>
-								<td><input type="text" class="form-control"
-									id="fnamek" value="${list.FNR_NAMEK}" placeholder=""></td>
-								<td><input class="form-control" type="hidden" id="fid" value="${list.FNR_ID}"></td>
-							</tr>
-							<tr>
-								<th style="text-align: center" scope="row">대표번호</th>
-								<td><input type="tel" class="form-control"
-									value="${list.FNR_TELNO1}" id="ftel1"></td>
-								<th style="text-align: center" scope="row">대표휴대폰번호</th>
-								<td colspan="2"><input type="tel" class="form-control"
-									value="${list.FNR_TELNO2}" id="ftel2"></td>
-							</tr>
-							<tr>
-								<th style="text-align: center" scope="row">팩스번호</th>
-								<td><input type="tel" class="form-control"
-									value="${list.FNR_FAXNO}" id="ffax"></td>
-								<th style="text-align: center" scope="row">홈페이지</th>
-								<td colspan="2"><input type="url" class="form-control"
-									value="${list.FNR_URL}" id="fwww"></td>
-							</tr>
-							<tr>
-								<th style="text-align: center" scope="row">주소</th>
-								<td><input type="text" id="fadd1" class="form-control" value="${list.FNR_ADDR1}"></td>
-								<th style="text-align: center" scope="row" >상세주소</th>
-								<td colspan="2"><input type="text" id="fadd2" class="form-control" value="${list.FNR_ADDR2}"></td>
-							</tr>
-							<tr>
-								<th style="text-align: center" scope="row">이메일</th>
-								<td><input type="email" class="form-control" value="${list.FNR_EMAIL}" id="femail"></td>
-								<th style="text-align: center" scope="row">사업자 번호</th>
-								<td colspan="2"><input type="text" class="form-control" value="${list.FNR_VATNO}" id="fvatno"></td>
-							</tr>
-							<tr>
-								<th style="text-align: center" scope="row">로고</th>
-								<td>
-									<form id="uploadForm1" enctype="multipart/form-data" method="post">
-										<input type="hidden" id="flogo" value="${list.FNR_LOGO}">
-										<input type="file" style="text-align: right;" class="form-control form-control-sm" name="FNR_LOGO" id="flogo_upload" value="">
-									</form>
-								</td>
-								<th style="text-align: center" scope="row">도장파일</th>
-								<td colspan="2">
-									<form id="uploadForm2" enctype="multipart/form-data" method="post">
-										<input type="hidden" id="fstamp" value="${list.FNR_STAMP}">
-										<input type="file" style="text-align: right;" class="form-control form-control-sm" name="FNR_STAMP" id="fstamp_upload" value="">
-									</form>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
+			<div class="btn_wr text-right mt-3">
 			<c:if test="${not empty list.FNR_ID}">
 				<div id="udtbtn">
 					<button class="btn btn-md btn-primary " onClick="fn_Updatefnr()">저장</button>
@@ -83,6 +20,72 @@
 						저장</button>
 				</div>
 			</c:if>
+			</div>
+			<hr>
+				<div class="table-responsive">
+					<table class="table table-sm bst02">
+						<colgroup>
+							<col width="15%" />
+							<col width="35%" />
+							<col width="15%" />
+							<col width="20%" />
+							<col width="15%" />
+						</colgroup>
+						<tbody>
+							<tr>
+								<th class="align-middle table-info" style="text-align: center" scope="row">장례식장명</th>
+								<td><input type="text" class="form-control"
+									id="fnamek" value="${list.FNR_NAMEK}" placeholder=""></td>
+								<td style="border:none"><input class="form-control" type="hidden" id="fid" value="${list.FNR_ID}"></td>
+							</tr>
+							<tr>
+								<th class="align-middle table-info" style="text-align: center" scope="row">대표번호</th>
+								<td><input type="tel" class="form-control"
+									value="${list.FNR_TELNO1}" id="ftel1"></td>
+								<th class="align-middle table-info" style="text-align: center" scope="row">대표휴대폰번호</th>
+								<td colspan="2"><input type="tel" class="form-control"
+									value="${list.FNR_TELNO2}" id="ftel2"></td>
+							</tr>
+							<tr>
+								<th class="align-middle table-info" style="text-align: center" scope="row">팩스번호</th>
+								<td><input type="tel" class="form-control"
+									value="${list.FNR_FAXNO}" id="ffax"></td>
+								<th class="align-middle table-info" style="text-align: center" scope="row">홈페이지</th>
+								<td colspan="2"><input type="url" class="form-control"
+									value="${list.FNR_URL}" id="fwww"></td>
+							</tr>
+							<tr>
+								<th class="align-middle table-info" style="text-align: center" scope="row">주소</th>
+								<td><input type="text" id="fadd1" class="form-control" value="${list.FNR_ADDR1}"></td>
+								<th class="align-middle table-info" style="text-align: center" scope="row" >상세주소</th>
+								<td colspan="2"><input type="text" id="fadd2" class="form-control" value="${list.FNR_ADDR2}"></td>
+							</tr>
+							<tr>
+								<th class="align-middle table-info" style="text-align: center" scope="row">이메일</th>
+								<td><input type="email" class="form-control" value="${list.FNR_EMAIL}" id="femail"></td>
+								<th class="align-middle table-info" style="text-align: center" scope="row">사업자 번호</th>
+								<td colspan="2"><input type="text" class="form-control" value="${list.FNR_VATNO}" id="fvatno"></td>
+							</tr>
+							<tr>
+								<th class="align-middle table-info" style="text-align: center" scope="row">로고</th>
+								<td>
+									<form id="uploadForm1" enctype="multipart/form-data" method="post">
+										<input type="hidden" id="flogo" value="${list.FNR_LOGO}">
+										<input type="file" style="text-align: right;" class="form-control form-control-sm" name="FNR_LOGO" id="flogo_upload" value="">
+									</form>
+								</td>
+								<th class="align-middle table-info" style="text-align: center" scope="row">도장파일</th>
+								<td colspan="2">
+									<form id="uploadForm2" enctype="multipart/form-data" method="post">
+										<input type="hidden" id="fstamp" value="${list.FNR_STAMP}">
+										<input type="file" style="text-align: right;" class="form-control form-control-sm" name="FNR_STAMP" id="fstamp_upload" value="">
+									</form>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 			<br>
 			<div class="col-md-auto">
 				<table class="table table-bordered nowrap">

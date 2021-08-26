@@ -8,6 +8,20 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card-block table-border-style">
+			<div class="btn_wr text-right mt-3">
+			<c:if test="${not empty list.USER_ID}">
+				<div id="udtbtn">
+					<button class="btn btn-md btn-primary " onClick="fn_Updateuser()">저장</button>
+				</div>
+			</c:if>
+			<c:if test="${empty list.USER_ID}">
+				<div id="istbtn">
+					<button class="btn btn-md btn-primary " onClick="fn_Insertuser()">새로
+						저장</button>
+				</div>
+			</c:if>
+			</div>
+			<hr>
 				<div class="table-responsive">
 					<table class="table table-sm bst02">
 						<colgroup>
@@ -102,17 +116,6 @@
 					</table>
 				</div>
 			</div>
-			<c:if test="${not empty list.USER_ID}">
-				<div id="udtbtn">
-					<button class="btn btn-md btn-primary " onClick="fn_Updateuser()">저장</button>
-				</div>
-			</c:if>
-			<c:if test="${empty list.USER_ID}">
-				<div id="istbtn">
-					<button class="btn btn-md btn-primary " onClick="fn_Insertuser()">새로
-						저장</button>
-				</div>
-			</c:if>
 			<br>
 		</div>
 	</div>

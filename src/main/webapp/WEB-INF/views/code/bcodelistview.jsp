@@ -39,7 +39,7 @@
 		<table id="list01table" class="table table-bordered">
 			<thead>
 				<tr align="center">
-					<th>구분명</th>
+					<th class="table-info">구분명</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -76,6 +76,10 @@
 
 	</div>
 	<div class="item cont">
+			<div class="btn_wr text-right mt-3">
+				<button class="btn btn-md btn-success" value="추가" id="btn-add-row">새라인 추가</button><input id="BTYPE" type="hidden" value="1">
+			</div>
+			<hr>
 		<input type = "hidden" id="conType" value = "1">
 		<table id="listtable" class="table table-bordered">
 			<colgroup>
@@ -86,10 +90,10 @@
 			</colgroup>
 			<thead>
 				<tr>
-					<th>코드명</th>
-					<th>비고사항</th>
-					<th>정렬순서</th>
-					<th>사용여부</th>
+					<th class="table-info">코드명</th>
+					<th class="table-info">비고사항</th>
+					<th class="table-info">정렬순서</th>
+					<th class="table-info">사용여부</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -110,9 +114,6 @@
 				</c:forEach>
 			</tbody>
 		</table>
-			<div class="btn_wr text-right mt-3">
-				<button class="btn btn-md btn-success" value="추가" id="btn-add-row">새라인 추가</button><input id="BTYPE" type="hidden" value="1">
-			</div>
 	</div>
 </div> 
 <script>
@@ -235,12 +236,12 @@ $('#btn-add-row').click(function() {
 });
   
 $(document).ready(function() {
-    $('#listtable').DataTable(
+/*     $('#listtable').DataTable(
     		{
     			"paging":false,
     			"info":false,
     			"lengthChange":false
     		}
-    );
+ 		); */    
 } );
 </script>

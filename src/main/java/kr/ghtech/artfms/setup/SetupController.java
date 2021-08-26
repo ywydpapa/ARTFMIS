@@ -118,10 +118,37 @@ public class SetupController {
 		return ResponseEntity.ok(param);
 	}
 	
+	@RequestMapping("insfroomsetl.do")
+	public ResponseEntity<?> insfrstl(@ModelAttribute SetupDTO dto){
+		Map<String, Object> param = new HashMap<String, Object>();
+		int setupinsert = setupService.insFroomSetl(dto);
+		if (setupinsert > 0) {
+			param.put("code", "10001");
+		}
+		else {
+			param.put("code", "20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
+	
 	@RequestMapping("update.do")
 	public ResponseEntity<?> update(@ModelAttribute SetupDTO dto){
 		Map<String, Object> param = new HashMap<String, Object>();
 		int setupupdate = setupService.updateSetup(dto);
+		if (setupupdate > 0) {
+			param.put("code", "10001");
+		}
+		else {
+			param.put("code", "20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+	
+	@RequestMapping("updfroomsetl.do")
+	public ResponseEntity<?> updfrsetl(@ModelAttribute SetupDTO dto){
+		Map<String, Object> param = new HashMap<String, Object>();
+		int setupupdate = setupService.updFroomSetl(dto);
 		if (setupupdate > 0) {
 			param.put("code", "10001");
 		}

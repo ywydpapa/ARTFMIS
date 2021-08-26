@@ -81,4 +81,22 @@ public class SetupServiceImpl implements SetupService {
 		return setupDao.infolist();
 	}
 
+	@Override
+	public List<SetupDTO> listFroomSetl(int SETL_FROOM_ID) {
+		// TODO Auto-generated method stub
+		return setupDao.listFroomSetl(SETL_FROOM_ID);
+	}
+
+	@Override
+	public int insFroomSetl(SetupDTO dto) {
+		// TODO Auto-generated method stub
+		return setupDao.insFroomSetl(dto);
+	}
+
+	@Override
+	public int updFroomSetl(SetupDTO dto) {
+		// TODO Auto-generated method stub
+		return setupDao.updFroomSetl(dto);
+	}
+
 }

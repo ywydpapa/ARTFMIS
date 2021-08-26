@@ -9,6 +9,15 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card-block table-border-style">
+			<div class="btn_wr text-right mt-3">
+			<div id="udtbtn">
+				<button class="btn btn-md btn-primary " onClick="fn_Updatealtar()">저장</button>
+			</div>
+			<div id="istbtn">
+				<button class="btn btn-md btn-primary " onClick="fn_Insertaltar()">새로 저장</button>
+			</div>
+			</div>
+			<hr>
 				<div class="table-responsive">
 					<table class="table table-sm bst02">
 						<colgroup>
@@ -69,12 +78,6 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
-			<div id="udtbtn">
-				<button class="btn btn-md btn-primary " onClick="fn_Updatealtar()">저장</button>
-			</div>
-			<div id="istbtn">
-				<button class="btn btn-md btn-primary " onClick="fn_Insertaltar()">새로 저장</button>
 			</div>
 			<br>
 			<div class="col-md-auto">

@@ -26,7 +26,7 @@
 		<div class="col-lg-12">
 			<div class="page-header-title">
 				<div class="d-inline">
-					<h4>기초코드 목록</h4>
+					<h5>기초코드 목록</h5>
 				</div>
 			</div>
 		</div>
@@ -35,8 +35,6 @@
 
 <div class="h-container">
 	<div class="item">
-	<br>
-	<br>
 		<table id="list01table" class="table table-bordered">
 			<colgroup>
 				<col width="15%" />
@@ -57,9 +55,12 @@
 				</c:forEach>
 			</tbody>
 		</table>
-
 	</div>
 	<div class="item cont">
+		<div class="btn_wr text-right mt-3">
+			<button class="btn btn-md btn-success" value="추가" id="btn-add-row">새라인 추가</button>
+		</div>
+	<hr>
 		<table id="listtable" class="table table-bordered">
 			<colgroup>
 				<col width="20%" />
@@ -101,9 +102,6 @@
 				</c:forEach>
 			</tbody>
 		</table>
-			<div class="btn_wr text-right mt-3">
-				<button class="btn btn-md btn-success" value="추가" id="btn-add-row">새라인 추가</button>
-			</div>
 	</div>
 </div> 
 <script>

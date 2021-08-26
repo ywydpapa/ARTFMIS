@@ -16,4 +16,15 @@ public class SetupDTO {
 	private String USE_YN;
 	private String START_TIME;
 	private String END_TIME;
+	private Integer SETL_ID;
+	private Integer SETL_FROOM_ID;
+	private String SETL_TITLE;
+	private String SETL_REMARK;
+	private String SETL_USE_YN;
+	private String SETL_PRICE;
+	private String SETL_TYPE;
+	private String PAY_YN;
+	private String INCADD_YN;
+	private Integer BCD_ID;
+	private String BCD_TITLE;
 }
