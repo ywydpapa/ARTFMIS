@@ -317,5 +317,6 @@ $(".CHK").change(function(){
 $(document).ready(function(){
 	tableDetailLoad();
 });
+
 	
 </script>
