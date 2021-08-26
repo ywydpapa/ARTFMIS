@@ -13,6 +13,15 @@
 	<div class="row" align="center">
 		<div class="col-lg-12">
 			<div class="card_box sch_it">
+						<div class="btn_wr text-right mt-3">
+				<div id = "updbtn">
+				<button class="btn btn-md btn-primary"  onClick="fn_goodsUpdate01()">저장</button>
+				</div>
+				<div id = "istbtn"> 
+				<button class="btn btn-md btn-primary"  onClick="fn_goodsInsert01()">새항목 저장</button>
+				</div>
+			</div>
+			<hr>
 				<form name="form1" id="form1" onSubmit="return false;">
 					<table class="table table-bordered nowrap">
 						<colgroup>
@@ -162,14 +171,6 @@
 						</tbody>
 					</table>
 				</form>
-			</div>
-			<div class="btn_wr text-right mt-3">
-				<div id = "updbtn">
-				<button class="btn btn-md btn-primary"  onClick="fn_goodsUpdate01()">저장</button>
-				</div>
-				<div id = "istbtn"> 
-				<button class="btn btn-md btn-primary"  onClick="fn_goodsInsert01()">새항목 저장</button>
-				</div>
 			</div>
 		</div>
 	</div>
