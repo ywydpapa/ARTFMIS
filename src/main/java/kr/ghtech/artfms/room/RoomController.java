@@ -60,6 +60,14 @@ public class RoomController {
 		return mav;
 	}
 	
+	@RequestMapping("orddetail2/{ORD_DATE}")
+	public ModelAndView orddetail2(@PathVariable("ORD_DATE") String ORD_DATE,RoomDTO dto,ModelAndView mav) {
+		mav.addObject("orddtl", roomService.ordDetail(dto));
+		mav.setViewName("cont/cfnorderdetail");
+		return mav;
+	}
+
+	
 	@RequestMapping("addorderlist/{CONTRACT_ID}")
 	public ModelAndView addwrite2(@PathVariable("CONTRACT_ID") int CONTRACT_ID,ModelAndView mav) {
 		mav.addObject("restord", roomService.listaddRESTOrder(CONTRACT_ID));
@@ -70,9 +78,16 @@ public class RoomController {
 
 	@RequestMapping("addorderlistall.do")
 	public ModelAndView listall(ModelAndView mav) {
-		mav.addObject("restordall", roomService.listRESTOrderall());
-		mav.addObject("storeordall", roomService.listSTOREOrderall());
-		mav.setViewName("cont/addorderlistall");
+		mav.addObject("ordlist", roomService.listOrderall());
+		mav.setViewName("cont/ordlistview");
+		return mav;
+	}
+	
+	
+	@RequestMapping("orderlistall.do")
+	public ModelAndView olistall(ModelAndView mav) {
+		mav.addObject("ordlist", roomService.listOrderall());
+		mav.setViewName("cont/ordlist");
 		return mav;
 	}
 	
@@ -134,6 +149,31 @@ public class RoomController {
 		}
 		return ResponseEntity.ok(param);
 	}
+	
+	@RequestMapping("cancRord.do")
+	public ResponseEntity<?> cancRord(@ModelAttribute RoomDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int RordUpdate = roomService.cancRorder(dto);
+		if (RordUpdate >0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
+	@RequestMapping("cancSord.do")
+	public ResponseEntity<?> cancSord(@ModelAttribute RoomDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int SordUpdate = roomService.cancSorder(dto);
+		if (SordUpdate >0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
 
 	@RequestMapping("updFtord.do")
 	public ResponseEntity<?> updateFtord(@ModelAttribute RoomDTO dto) {

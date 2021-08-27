@@ -92,7 +92,7 @@
 							<td class="align-middle text-center">${row.ORD_DATE}</td>
 							<td class="align-middle text-center">${row.CCONFDATE}</td>
 							<td class="align-middle text-center <c:if test="${row.CORDDATE ne '0'}">table-danger</c:if>"><c:if test="${row.CORDDATE eq '0'}"></c:if><c:if test="${row.CORDDATE ne '0'}">${row.CORDDATE}</c:if></td>
-							<td class="align-middle text-center"><c:if test="${row.CCANCDATE eq '0'}"></c:if><c:if test="${row.CCANCDATE ne '0'}">${row.CCANCDATE}</c:if></td>
+							<td class="align-middle text-center" <c:if test="${row.CCANCDATE eq '0'}"></c:if><c:if test="${row.CCANCDATE ne '0'}"> style="background-color :#F7FE2E;color:#FF0000"</c:if>><c:if test="${row.CCANCDATE ne '0'}">${row.CCANCDATE}</c:if></td>
 						</tr>
 					</c:forEach>
 				</tbody>

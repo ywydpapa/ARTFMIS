@@ -7,6 +7,7 @@ import kr.ghtech.artfms.room.dto.RoomDTO;
 public interface RoomService {
 
 	List<RoomDTO> listOrder(int CONTRACT_ID);
+	List<RoomDTO> listOrderall();
 	List<RoomDTO> ordDetail(RoomDTO dto);
 	List<RoomDTO> listRESTOrder(int CONTRACT_ID);
 	List<RoomDTO> listSTOREOrder(int CONTRACT_ID);
@@ -16,6 +17,8 @@ public interface RoomService {
 	int insertSorder(RoomDTO dto);
 	int updateRorder(RoomDTO dto);
 	int updateSorder(RoomDTO dto);
+	int cancRorder(RoomDTO dto);
+	int cancSorder(RoomDTO dto);
 	int updateForder(RoomDTO dto);
 	int updateAorder(RoomDTO dto);
 	int updateGorder(RoomDTO dto);

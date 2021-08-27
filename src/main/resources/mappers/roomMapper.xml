@@ -9,6 +9,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		SELECT FROOM_ID from GHT_USER_MST where USER_LOGINID=#{USER_LOGINID} 
  </select>
  
+ <select id="ordlistall" resultType="roomDto">
+select Z.* from (
+ SELECT c.FROOM_TITLE,'식당' ORDP, a.ORD_DATE, count(a.ORD_DATE)-count(a.CONF_DATE) CORDDATE, count(a.CONF_DATE) CCONFDATE, count(a.CANC_DATE) CCANCDATE, a.CONTRACT_ID, REGEXP_REPLACE(a.ORD_DATE, '[^[:alnum:]]+', '') ORDDATE2 from GHT_REST_ORDERSHEET a 
+ left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
+ left join ghtech.GHT_FROOM c on c.FROOM_ID = a.ROOM_TITLE
+ where a.CONTRACT_ID in (select CONTRACT_ID from GHT_CONT where SETT_DATE is NULL)  and a.MOD_DATE is NULL group by a.ORD_DATE 
+ UNION ALL 
+SELECT c.FROOM_TITLE,'매점' ORDP, a.ORD_DATE, count(a.ORD_DATE)-count(a.CONF_DATE) CORDDATE, count(a.CONF_DATE) CCONFDATE, count(a.CANC_DATE) CCANCDATE, a.CONTRACT_ID , REGEXP_REPLACE(a.ORD_DATE, '[^[:alnum:]]+', '') ORDDATE2 from GHT_STORE_ORDSHEET a 
+ left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
+ left join ghtech.GHT_FROOM c on c.FROOM_ID = a.ROOM_TITLE
+ where a.CONTRACT_ID in (select CONTRACT_ID from GHT_CONT where SETT_DATE is NULL) and a.MOD_DATE is NULL group by a.ORD_DATE ) Z order by ORD_DATE DESC 
+ </select>
+ 
  <select id="ordlist" resultType="roomDto">
  select Z.* from (
  SELECT '식당' ORDP, a.ORD_DATE, count(a.ORD_DATE)-count(a.CONF_DATE) CORDDATE, count(a.CONF_DATE) CCONFDATE, count(a.CANC_DATE) CCANCDATE, a.CONTRACT_ID, REGEXP_REPLACE(a.ORD_DATE, '[^[:alnum:]]+', '') ORDDATE2 from GHT_REST_ORDERSHEET a 
@@ -18,7 +31,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 SELECT '매점' ORDP, a.ORD_DATE, count(a.ORD_DATE)-count(a.CONF_DATE) CORDDATE, count(a.CONF_DATE) CCONFDATE, count(a.CANC_DATE) CCANCDATE, a.CONTRACT_ID , REGEXP_REPLACE(a.ORD_DATE, '[^[:alnum:]]+', '') ORDDATE2 from GHT_STORE_ORDSHEET a 
  left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
  where a.CONTRACT_ID= #{CONTRACT_ID} and a.MOD_DATE is NULL group by a.ORD_DATE ) Z order by ORD_DATE DESC
- 
  </select>
  
  <select id="orddetail" resultType="roomDto">
@@ -99,6 +111,14 @@ update GHT_REST_ORDERSHEET set CONF_DATE = now() where REST_ORD_ID = #{REST_ORD_
 
 <update id="cfnstoreord">
 update GHT_STORE_ORDSHEET set CONF_DATE = now() where STORE_ORD_ID = #{STORE_ORD_ID}
+</update>
+
+<update id="cancrestord">
+update GHT_REST_ORDERSHEET set CONF_DATE = now(),CANC_DATE = now() where REST_ORD_ID = #{REST_ORD_ID}
+</update>
+
+<update id="cancstoreord">
+update GHT_STORE_ORDSHEET set CONF_DATE = now(),CANC_DATE = now() where STORE_ORD_ID = #{STORE_ORD_ID}
 </update>
 
 <update id="cfnftord">

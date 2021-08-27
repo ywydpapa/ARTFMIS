@@ -135,4 +135,22 @@ public class RoomServiceImpl implements RoomService {
 		// TODO Auto-generated method stub
 		return RoomDao.ordDetail(dto);
 	}
+
+	@Override
+	public List<RoomDTO> listOrderall() {
+		// TODO Auto-generated method stub
+		return RoomDao.listOrderall();
+	}
+
+	@Override
+	public int cancRorder(RoomDTO dto) {
+		// TODO Auto-generated method stub
+		return RoomDao.cancRorder(dto);
+	}
+
+	@Override
+	public int cancSorder(RoomDTO dto) {
+		// TODO Auto-generated method stub
+		return RoomDao.cancSorder(dto);
+	}
 }

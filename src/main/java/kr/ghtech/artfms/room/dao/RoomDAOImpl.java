@@ -135,5 +135,23 @@ public class RoomDAOImpl implements RoomDAO {
 		return sqlSession.selectList("room.orddetail", dto);
 	}
 
+	@Override
+	public List<RoomDTO> listOrderall() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("room.ordlistall");
+	}
+
+	@Override
+	public int cancRorder(RoomDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("room.cancrestord", dto);
+	}
+
+	@Override
+	public int cancSorder(RoomDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("room.cancstoreord", dto);
+	}
+
 	
 }
