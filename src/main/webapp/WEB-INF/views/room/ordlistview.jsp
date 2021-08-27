@@ -90,9 +90,9 @@
 						<tr>
 							<td class="align-middle text-center"><a href="javascript:fnSetupdetail('${path}/room/orddetail/${row.ORDDATE2}?CONTRACT_ID=${row.CONTRACT_ID}')">${row.ORDP}</a></td>
 							<td class="align-middle text-center">${row.ORD_DATE}</td>
-							<td class="align-middle text-right">${row.CCONFDATE}</td>
-							<td class="align-middle text-right <c:if test="${row.CORDDATE ne '0'}">table-warning</c:if>"><c:if test="${row.CORDDATE eq '0'}"></c:if><c:if test="${row.CORDDATE ne '0'}">${row.CORDDATE}</c:if></td>
-							<td class="align-middle text-right"><c:if test="${row.CCANCDATE eq '0'}"></c:if><c:if test="${row.CCANCDATE ne '0'}">${row.CCANCDATE}</c:if></td>
+							<td class="align-middle text-center">${row.CCONFDATE}</td>
+							<td class="align-middle text-center <c:if test="${row.CORDDATE ne '0'}">table-danger</c:if>"><c:if test="${row.CORDDATE eq '0'}"></c:if><c:if test="${row.CORDDATE ne '0'}">${row.CORDDATE}</c:if></td>
+							<td class="align-middle text-center"><c:if test="${row.CCANCDATE eq '0'}"></c:if><c:if test="${row.CCANCDATE ne '0'}">${row.CCANCDATE}</c:if></td>
 						</tr>
 					</c:forEach>
 				</tbody>

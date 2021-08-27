@@ -17,11 +17,19 @@
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <link href=”${path}/css/bootstrap.vertical-tabs.min.css” rel=”stylesheet”>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
-
+  <script src="${path}/js/customTableClickJs.js"></script>
   <!-- Custom styles for this template -->
   <link href="${path}/css/modern-business.css" rel="stylesheet">
   <link href="${path}/css/artfms.css" rel="stylesheet">
 
+  <style>
+
+      #ordlistTable > table > tbody > tr.active{
+         background-color: #9fcdff;
+      }
+  
+  </style>
+  
 </head>
 
 <body>

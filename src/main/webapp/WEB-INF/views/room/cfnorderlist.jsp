@@ -69,7 +69,7 @@
 											<td class="MB" style="text-align: right;vertical-align:middle;"><fmt:formatNumber
 													value="${row.ORD_AMOUNT}" pattern="#,###" /></td>
 											<td style="text-align:center;vertical-align:middle;"><input type="checkbox" <c:if test="${not empty row.CONF_DATE}">checked disabled</c:if> class="form-control CHKcfnR"><input class="ordRid" type="hidden" value="${row.REST_ORD_ID}"></td>													
-											<td <c:if test="${empty row.CONF_DATE}">class="table-warning"</c:if> style="text-align:right;vertical-align:middle;">${row.CONF_DATE}</td>
+											<td <c:if test="${empty row.CONF_DATE}">class="table-danger"</c:if> style="text-align:right;vertical-align:middle;">${row.CONF_DATE}</td>
 											<td style="vertical-align:middle;text-align:center">${row.CANC_DATE}</td>
 										</tr>
 									</c:forEach>

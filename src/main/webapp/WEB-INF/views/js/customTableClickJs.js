@@ -52,7 +52,7 @@ $(document).on('click','#ftablelist > tbody > tr',function () {
 });
 
 $(document).on('click','#ordlistTable > table > tbody > tr',function () {
-    alert("click");
+	
 	let tbody = $(this).parent();
     tbody.find('tr').removeClass('active');
     $(this).addClass('active');

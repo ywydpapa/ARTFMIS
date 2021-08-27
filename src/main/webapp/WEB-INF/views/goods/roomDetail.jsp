@@ -139,7 +139,7 @@
 				</form>
 			</td>
 			<th
-				style="vertical-align: middle; text-align: center; background-color: #E6F8E0">시설사용료
+				style="vertical-align: middle; text-align: center; background-color: #E6F8E0">부가사용료
 				설정</th>
 			<td colspan="2">
 				<button class="btn btn-primary form-control" data-toggle="modal"
@@ -149,7 +149,7 @@
 					aria-hidden="true">
 					<div class="modal-dialog modal-lg" style="padding: 10px">
 						<div class="modal-content" style="padding: 15px">
-							<table class="table table-bordered" >
+							<table class="table table-bordered">
 								<colgroup>
 									<col width="30%">
 									<col width="15%">
@@ -159,48 +159,58 @@
 								</colgroup>
 								<thead>
 									<tr>
-										<th class="text-center table-info" colspan="5">기타품목 시설
-											사용료 설정</th>
+										<th class="text-center table-info" colspan="5">기타품목 부가사용료 설정</th>
 									</tr>
 									<tr>
 										<th class="text-center">품목</th>
 										<th class="text-center">부과방법</th>
 										<th class="text-center">부과금액</th>
-										<th class="text-center">부가사용료 등록</th>
+										<th class="text-center">비용부과여부</th>
 										<th class="text-center">시설사용료 포함</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach var="row" items="${etcsetl}">
 										<tr>
-											<td class="align-middle setltitl"><input type="hidden" class="modalid"
-												value="${row.BCD_ID}"><input type="hidden" class="setlid"
-												value="${row.SETL_ID}">
+											<td class="align-middle setltitl"><input type="hidden"
+												class="modalid" value="${row.BCD_ID}"><input
+												type="hidden" class="setlid" value="${row.SETL_ID}">
 												${row.BCD_TITLE}</td>
 											<td><select class="form-control modal1type">
-													<option value="T" <c:if test="${row.SETL_TYPE eq 'T'}">selected</c:if>>시간당</option>
-													<option value="E" <c:if test="${row.SETL_TYPE eq 'E'}">selected</c:if>>회당</option>
+													<option value="T"
+														<c:if test="${row.SETL_TYPE eq 'T'}">selected</c:if>>시간당</option>
+													<option value="E"
+														<c:if test="${row.SETL_TYPE eq 'E'}">selected</c:if>>회당</option>
 											</select></td>
-											<td class="align-middle table-warning"><input type="text"
+											<td class="align-middle table-warning"><input
+												type="text"
 												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-												class="form-control text-right table-warning modalprice" onchange="this.value = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');"
-												style="border: none" value="<c:if test="${empty row.SETL_PRICE}">0</c:if><c:if test="${not empty row.SETL_PRICE}"><fmt:formatNumber value="${row.SETL_PRICE}" pattern="#,###"/></c:if>"></td>
+												class="form-control text-right table-warning modalprice"
+												onchange="this.value = this.value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');"
+												style="border: none"
+												value="<c:if test="${empty row.SETL_PRICE}">0</c:if><c:if test="${not empty row.SETL_PRICE}"><fmt:formatNumber value="${row.SETL_PRICE}" pattern="#,###"/></c:if>"></td>
 											<td><select style="text-align: right"
 												class="form-control modal1yn">
-													<option value="Y" <c:if test="${row.PAY_YN eq 'Y'}">selected</c:if> >등록</option>
-													<option value="N" <c:if test="${row.PAY_YN eq 'N'}">selected</c:if>>미등록</option>
+													<option value="Y"
+														<c:if test="${row.PAY_YN eq 'Y'}">selected</c:if>>부과</option>
+													<option value="N"
+														<c:if test="${row.PAY_YN eq 'N'}">selected</c:if>>미부과</option>
 											</select></td>
 											<td><select style="text-align: right"
 												class="form-control modal2yn">
-													<option value="Y" <c:if test="${row.INCADD_YN eq 'Y'}">selected</c:if>>포함</option>
-													<option value="N" <c:if test="${row.INCADD_YN eq 'N'}">selected</c:if>>불포함</option>
+													<option value="Y"
+														<c:if test="${row.INCADD_YN eq 'Y'}">selected</c:if>>포함</option>
+													<option value="N"
+														<c:if test="${row.INCADD_YN eq 'N'}">selected</c:if>>미포함</option>
 											</select></td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 							<div class="btn_wr text-right mt-6">
-								<button class="btn btn-primary" onclick="saveEtc();">저장</button><span> </span><button class="btn btn-success" data-dismiss="modal">닫기</button>
+								<button class="btn btn-primary" onclick="saveEtc();">저장</button>
+								<span> </span>
+								<button class="btn btn-success" data-dismiss="modal">닫기</button>
 							</div>
 						</div>
 					</div>
@@ -305,61 +315,59 @@
 			}
 		})
 	})
-	
-function saveEtc(){
-	$Aarr = $(".modalid");
-	$Barr = $(".modal1type");
-	$Carr = $(".modalprice");
-	$Darr = $(".modal1yn");
-	$Earr = $(".modal2yn");
-	$Farr = $(".setlid");
-	$Garr = $(".setltitl");
-	for (var i=0; i<$Aarr.length; i++){
-		setlData={};
-		setlData.SETL_FROOM_ID = $("#FROOM_ID").val();
-		setlData.SETL_TITLE = $Garr[i].innerText;
-		setlData.SETL_TYPE = $Barr[i].value;
-		setlData.SETL_PRICE =$Carr[i].value.replace(/[\D\s\._\-]+/g, "");
-		setlData.PAY_YN = $Darr[i].value;
-		setlData.INCADD_YN = $Darr[i].value;
-		setlData.SETL_ID = $Farr[i].value;
-		setlData.SETL_REMARK = $Aarr[i].value;
-		console.log(setlData);
-		if ($Farr[i].value == ""){
-			//insert
-			$.ajax({
-				url : "${path}/setup/insfroomsetl.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
-				data : setlData, // HTTP 요청과 함께 서버로 보낼 데이터 
-				method : "POST", // HTTP 요청 메소드(GET, POST 등) 
-				dataType : "json" // 서버에서 보내줄 데이터의 타입 
-			}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
-			.done(function(data) {
-				if (data.code == 10001) {
-				} else {
-				}
-			}) // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
-			.fail(function(xhr, status, errorThrown) {
-				alert("입력값을 확인해 주십시오!!(insert)");
-			});
-		}
-		else {
-			$.ajax({
-				url : "${path}/setup/updfroomsetl.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
-				data : setlData, // HTTP 요청과 함께 서버로 보낼 데이터 
-				method : "POST", // HTTP 요청 메소드(GET, POST 등) 
-				dataType : "json" // 서버에서 보내줄 데이터의 타입 
-			}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
-			.done(function(data) {
-				if (data.code == 10001) {
-				} else {
-				}
-			}) // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
-			.fail(function(xhr, status, errorThrown) {
-				alert("입력값을 확인해 주십시오!!(update)");
-			});
-		}
-	}
-	alert("저장 완료");
-}
 
+	function saveEtc() {
+		$Aarr = $(".modalid");
+		$Barr = $(".modal1type");
+		$Carr = $(".modalprice");
+		$Darr = $(".modal1yn");
+		$Earr = $(".modal2yn");
+		$Farr = $(".setlid");
+		$Garr = $(".setltitl");
+		for (var i = 0; i < $Aarr.length; i++) {
+			setlData = {};
+			setlData.SETL_FROOM_ID = $("#FROOM_ID").val();
+			setlData.SETL_TITLE = $Garr[i].innerText;
+			setlData.SETL_TYPE = $Barr[i].value;
+			setlData.SETL_PRICE = $Carr[i].value.replace(/[\D\s\._\-]+/g, "");
+			setlData.PAY_YN = $Darr[i].value;
+			setlData.INCADD_YN = $Darr[i].value;
+			setlData.SETL_ID = $Farr[i].value;
+			setlData.SETL_REMARK = $Aarr[i].value;
+			console.log(setlData);
+			if ($Farr[i].value == "") {
+				//insert
+				$.ajax({
+					url : "${path}/setup/insfroomsetl.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+					data : setlData, // HTTP 요청과 함께 서버로 보낼 데이터 
+					method : "POST", // HTTP 요청 메소드(GET, POST 등) 
+					dataType : "json" // 서버에서 보내줄 데이터의 타입 
+				}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
+				.done(function(data) {
+					if (data.code == 10001) {
+					} else {
+					}
+				}) // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
+				.fail(function(xhr, status, errorThrown) {
+					alert("입력값을 확인해 주십시오!!(insert)");
+				});
+			} else {
+				$.ajax({
+					url : "${path}/setup/updfroomsetl.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+					data : setlData, // HTTP 요청과 함께 서버로 보낼 데이터 
+					method : "POST", // HTTP 요청 메소드(GET, POST 등) 
+					dataType : "json" // 서버에서 보내줄 데이터의 타입 
+				}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
+				.done(function(data) {
+					if (data.code == 10001) {
+					} else {
+					}
+				}) // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
+				.fail(function(xhr, status, errorThrown) {
+					alert("입력값을 확인해 주십시오!!(update)");
+				});
+			}
+		}
+		alert("저장 완료");
+	}
 </script>
