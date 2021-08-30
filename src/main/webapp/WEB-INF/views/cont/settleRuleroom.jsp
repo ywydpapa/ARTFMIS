@@ -31,161 +31,38 @@
 								<th class="align-middle text-center table-info">부과방법</th>
 								<th class="align-middle text-center table-info">부과여부</th>
 								<th class="align-middle text-center table-info">시설사용료포함여부</th>							</tr>
-						<tbody>	
+						<tbody>
+							<c:forEach var="row" items="${rowT}">
 							<tr style="text-align:center;">
-								<td>분향실<input type="hidden" class="FID" value="1"/></td>
-								<td><input type="text" class="VName form-control" value=""/></td>
+								<td class="align-middle"><c:if test="${row.SETL_FROOM_ID eq 1}">분향실</c:if>
+								<c:if test="${row.SETL_FROOM_ID eq 2}">안치실</c:if>
+								<c:if test="${row.SETL_FROOM_ID eq 3}">입관실</c:if>
+								<c:if test="${row.SETL_FROOM_ID eq 4}">발인실</c:if>
+								<c:if test="${row.SETL_FROOM_ID eq 5}">게스트룸</c:if>
+								<c:if test="${row.SETL_FROOM_ID eq 6}">종교시설</c:if>
+								<c:if test="${row.SETL_FROOM_ID eq 7}">기타시설</c:if>
+								<input type="hidden" class="FID" value="${row.SETL_FROOM_ID}"/></td>
+								<td><input type="text" class="VName form-control" value="${row.SETL_REMARK}"/></td>
 								<td>
 								<select class="form-control form-control-sm STYP">
-										<option value="TIME" <c:if test ="${row.SETL_TITLE eq 'TIME'}">selected</c:if> >시간당사용료부과</option>
-										<option value="COUNT" <c:if test ="${row.SETL_TITLE eq 'COUNT'}">selected</c:if> >회당부과</option>
+										<option value="TIME" <c:if test ="${row.SETL_TYPE eq 'TIME'}">selected</c:if> >시간당사용료부과</option>
+										<option value="COUNT" <c:if test ="${row.SETL_TYPE eq 'COUNT'}">selected</c:if> >회당부과</option>
 								</select>
 								</td>
 								<td>
 								<select class="form-control form-control-sm UYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >부과</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미부과</option>
+										<option value="Y" <c:if test ="${row.PAY_YN eq 'Y'}">selected</c:if> >부과</option>
+										<option value="N" <c:if test ="${row.PAY_YN eq 'N'}">selected</c:if> >미부과</option>
 								</select>
 								</td>
 								<td>
 								<select class="form-control form-control-sm INCYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >포함</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미포함</option>
+										<option value="Y" <c:if test ="${row.INCADD_YN eq 'Y'}">selected</c:if> >포함</option>
+										<option value="N" <c:if test ="${row.INCADD_YN eq 'N'}">selected</c:if> >미포함</option>
 								</select>
 								</td>
 							</tr>
-							<tr style="text-align:center;">
-								<td>안치실<input type="hidden" class="FID" value="2"/></td>
-								<td><input type="text" class="VName form-control" value=""/></td>
-								<td>
-								<select class="form-control form-control-sm STYP">
-										<option value="TIME" <c:if test ="${row.SETL_TITLE eq 'TIME'}">selected</c:if> >시간당사용료부과</option>
-										<option value="COUNT" <c:if test ="${row.SETL_TITLE eq 'COUNT'}">selected</c:if> >회당부과</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm UYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >부과</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미부과</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm INCYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >포함</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미포함</option>
-								</select>
-								</td>
-							</tr>
-							<tr style="text-align:center;">
-								<td>입관실<input type="hidden" class="FID" value="3"/></td>
-								<td><input type="text" class="VName form-control" value=""/></td>
-								<td>
-								<select class="form-control form-control-sm STYP">
-										<option value="TIME" <c:if test ="${row.SETL_TITLE eq 'TIME'}">selected</c:if> >시간당사용료부과</option>
-										<option value="COUNT" <c:if test ="${row.SETL_TITLE eq 'COUNT'}">selected</c:if> >회당부과</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm UYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >부과</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미부과</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm INCYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >포함</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미포함</option>
-								</select>
-								</td>
-							</tr>
-							<tr style="text-align:center;">
-								<td>발인실<input type="hidden" class="FID" value="4"/></td>
-								<td><input type="text" class="VName form-control" value=""/></td>
-								<td>
-								<select class="form-control form-control-sm STYP">
-										<option value="TIME" <c:if test ="${row.SETL_TITLE eq 'TIME'}">selected</c:if> >시간당사용료부과</option>
-										<option value="COUNT" <c:if test ="${row.SETL_TITLE eq 'COUNT'}">selected</c:if> >회당부과</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm UYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >부과</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미부과</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm INCYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >포함</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미포함</option>
-								</select>
-								</td>
-							</tr>
-							<tr style="text-align:center;">
-								<td>게스트룸<input type="hidden" class="FID" value="5"/></td>
-								<td><input type="text" class="VName form-control" value=""/></td>
-								<td>
-								<select class="form-control form-control-sm STYP">
-										<option value="TIME" <c:if test ="${row.SETL_TITLE eq 'TIME'}">selected</c:if> >시간당사용료부과</option>
-										<option value="COUNT" <c:if test ="${row.SETL_TITLE eq 'COUNT'}">selected</c:if> >회당부과</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm UYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >부과</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미부과</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm INCYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >포함</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미포함</option>
-								</select>
-								</td>
-							</tr>
-							<tr style="text-align:center;">
-								<td>종교시설<input type="hidden" class="FID" value="6"/></td>
-								<td><input type="text" class="VName form-control" value=""/></td>
-								<td>
-								<select class="form-control form-control-sm STYP">
-										<option value="TIME" <c:if test ="${row.SETL_TITLE eq 'TIME'}">selected</c:if> >시간당사용료부과</option>
-										<option value="COUNT" <c:if test ="${row.SETL_TITLE eq 'COUNT'}">selected</c:if> >회당부과</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm UYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >부과</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미부과</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm INCYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >포함</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미포함</option>
-								</select>
-								</td>
-							</tr>
-							<tr style="text-align:center;">
-								<td>기타<input type="hidden" class="FID" value="7"/></td>
-								<td><input type="text" class="VName form-control" value=""/></td>
-								<td>
-								<select class="form-control form-control-sm STYP">
-										<option value="TIME" <c:if test ="${row.SETL_TITLE eq 'TIME'}">selected</c:if> >시간당사용료부과</option>
-										<option value="COUNT" <c:if test ="${row.SETL_TITLE eq 'COUNT'}">selected</c:if> >회당부과</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm UYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >부과</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미부과</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm INCYN">
-										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >포함</option>
-										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미포함</option>
-								</select>
-								</td>
-							</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -195,10 +72,6 @@
 </div>
 
 	<script>
-	
-	$(".STYP, .UYN").change(function() {
-		fn_Srulesett();
-	});
 	
 	function fn_Srulesett(){
 		var $Aarr =  $(".FID");
@@ -241,6 +114,7 @@
 		sruledata.PAY_YN = $Carr[i].value;
 		sruledata.INCADD_YN = $Darr[i].value;
 		console.log(sruledata);
+		if (sruledata.SETL_FROOM_ID !=""){
 		$.ajax({
 			url : "${path}/cont/updateSrule.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
 			data : sruledata, // HTTP 요청과 함께 서버로 보낼 데이터 
@@ -249,7 +123,20 @@
 		})
 		.done(function(data) {
 		});
+		}
+		else
+			{
+			$.ajax({
+				url : "${path}/cont/insertSrule.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+				data : sruledata, // HTTP 요청과 함께 서버로 보낼 데이터 
+				method : "POST", // HTTP 요청 메소드(GET, POST 등) 
+				dataType : "json" // 서버에서 보내줄 데이터의 타입 
+			})
+			.done(function(data) {
+			});
+			}
   	}
+		alert("저장성공");
 	}
 	
 	$(".first").each(function() {
