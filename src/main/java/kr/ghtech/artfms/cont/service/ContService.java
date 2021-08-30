@@ -52,6 +52,7 @@ public interface ContService {
 	List<ContDTO> doslistFtable();
 	List<ContDTO> doslistEtcroom();
 	List<ContDTO> doslistEtcroom2();
+	List<ContDTO> listSrule(String SETL_TITLE);
 	int updateSrule(ContDTO dto);
 	int insertSrule(ContDTO dto);
 	List<ContDTO> reloadP2(Integer CONTRACT_ID);

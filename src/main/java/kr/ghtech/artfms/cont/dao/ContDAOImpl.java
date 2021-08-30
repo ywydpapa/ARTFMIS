@@ -410,5 +410,11 @@ public class ContDAOImpl implements ContDAO {
 		return sqlSession.selectList("cont.reloadContp2froom", CONTRACT_ID);
 	}
 
+	@Override
+	public List<ContDTO> listSrule(String SETL_TITLE) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("cont.listSrule", SETL_TITLE);
+	}
+
 	
 }

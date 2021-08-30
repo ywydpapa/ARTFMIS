@@ -264,6 +264,10 @@ INSERT INTO GHT_CONT (
 		 SELECT LAST_INSERT_ID()
 	 </selectKey>
 </insert>
+
+<select id="listSrule" resultType="contDto">
+	select * from GHT_SETL_RULE where SETL_TITLE = #{SETL_TITLE} and attrib not like 'XXX%' order by SETL_FROOM_ID
+</select>
  
 <insert id="sruleins">
  update GHT_SETL_RULE

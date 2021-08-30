@@ -414,5 +414,11 @@ public class ContServiceImpl implements ContService {
 		return contDao.reloadP2froom(CONTRACT_ID);
 	}
 
+	@Override
+	public List<ContDTO> listSrule(String SETL_TITLE) {
+		// TODO Auto-generated method stub
+		return contDao.listSrule(SETL_TITLE);
+	}
+
 
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ghtech.artfms.code.service.CodeService;
+import kr.ghtech.artfms.cont.service.ContService;
 import kr.ghtech.artfms.goods.dto.GoodsDTO;
 import kr.ghtech.artfms.goods.service.GoodsService;
 import kr.ghtech.artfms.setup.service.SetupService;
@@ -31,6 +32,9 @@ public class GoodsController {
 	
 	@Inject
 	SetupService setupService;
+	
+	@Inject
+	ContService contService;
 	
 	@RequestMapping("listgoods.do")
 	public ModelAndView listgoods(ModelAndView mav) {
@@ -150,12 +154,15 @@ public class GoodsController {
 	public ModelAndView setroomlist(@PathVariable("FROOM_TYP") int FROOM_TYP,ModelAndView mav) {
 		int typ = FROOM_TYP;
 		if (typ == 1) {
+			mav.addObject("rowT", contService.listSrule("ROOM"));
 			mav.setViewName("cont/settleRuleroom");	
 		}
 		if (typ == 2) {
+			mav.addObject("rowT", contService.listSrule("FTABLE"));
 			mav.setViewName("cont/settleFtable");	
 		}
 		if (typ == 3) {
+			mav.addObject("rowT", contService.listSrule("ALTAR"));
 			mav.setViewName("cont/settleAltar");	
 		}
 		return mav;
