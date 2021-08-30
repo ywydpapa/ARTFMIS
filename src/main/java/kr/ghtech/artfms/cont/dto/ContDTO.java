@@ -232,6 +232,11 @@ public class ContDTO {
 	private String CLEAN_CHARGE_DAYS;
 	private String ADD_YN;
 	private String attrib;
+	private String SETL_PRICE;
+	private String SETL_TYPE;
+	private String PAY_YN;
+	private String INCADD_YN;
+	
 	
 	
 }

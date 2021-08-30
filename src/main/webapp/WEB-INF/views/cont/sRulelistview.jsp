@@ -41,7 +41,7 @@
 		</colgroup>
 		<tr>
 			<td>정산규칙설정</td>
-			<td>시설물/외부업체/기타 사항 정산규칙 설정</td>
+			<td>시설물/제물상/제단 정산규칙 설정</td>
 		</tr>
 </table>
 <hr>
@@ -56,10 +56,8 @@
 				</thead>
 				<tbody>
 					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistRule/1')">시설물</a></td></tr>
-					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistRule/2')">외부업체</a></td></tr>
-					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistRule/3')">도우미비용</a></td></tr>
-					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistRule/4')">주차비</a></td></tr>
-					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistRule/5')">기타</a></td></tr>
+					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistRule/2')">제물상</a></td></tr>
+					<tr><td><a href="javascript:fnSetRoomdetail('${path}/goods/setlistRule/3')">제단</a></td></tr>
 				</tbody>
 			</table>
 		</div>

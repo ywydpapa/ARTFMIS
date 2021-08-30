@@ -11,7 +11,8 @@
 				<div class="table-responsive">
 				<table class="table  table-bordered nowrap">
 				<tr>
-				<td><input id="frid" type="hidden" value = "${frid}"><span>도우미 비용 정산설정</span></td>
+				<td><input id="frid" type="hidden" value = "${frid}"><span>제단 비용 정산설정</span></td>
+				<td class="align-middle"><div class="btn_wr text-right mt-3"><button class="btn btn-md btn-primary " onClick="fn_Sruleupd()">저장</button></div></td>
 				</tr>
 				</table>
 				</div>
@@ -22,33 +23,30 @@
 							<col width="20%"/>
 							<col width="20%"/>
 							<col width="20%"/>
-							<col width="20%"/>
 						</colgroup>				
 							<tr style="text-align:center;">
-								<th>항목명</th>
-								<th>일당</th>
-								<th>부과방법</th>
-								<th>부과여부</th>
-								<th>시설사용료포함여부</th>
+								<th class="align-middle text-center table-info">항목명</th>
+								<th class="align-middle text-center table-info">부과방법</th>
+								<th class="align-middle text-center table-info">부과여부</th>
+								<th class="align-middle text-center table-info">시설사용료 포함여부</th>
 							</tr>
 						<tbody>	
 							<tr style="text-align:center;">
-								<td>도우미 비용<input type="hidden" class="FID" value="1"/></td>
-								<td><input style="text-align:right" min="0" type="number" class="form-control" id="helpPrice"value="${row.SETL_PRICE}"/></td>
+								<td>제단비용<input type="hidden" class="FID" value="223"/></td>
 								<td>
-								<select class="form-control form-control-sm STYP" id="helptype">
+								<select class="form-control form-control-sm STYP">
 										<option value="TIME" <c:if test ="${row.SETL_TITLE eq 'TIME'}">selected</c:if> >시간당사용료부과</option>
-										<option value="COUNT" <c:if test ="${row.SETL_TITLE eq 'COUNT'}">selected</c:if> >일당부과</option>
+										<option value="COUNT" <c:if test ="${row.SETL_TITLE eq 'COUNT'}">selected</c:if> >회당부과</option>
 								</select>
 								</td>
 								<td>
-								<select class="form-control form-control-sm UYN"  id="helpuse">
+								<select class="form-control form-control-sm UYN">
 										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >부과</option>
 										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미부과</option>
 								</select>
 								</td>
 								<td>
-								<select class="form-control form-control-sm INCYN"  id="helpincyn">
+								<select class="form-control form-control-sm INCYN"->
 										<option value="Y" <c:if test ="${row.SETL_USE_YN eq 'Y'}">selected</c:if> >포함</option>
 										<option value="N" <c:if test ="${row.SETL_USE_YN eq 'N'}">selected</c:if> >미포함</option>
 								</select>
@@ -72,11 +70,14 @@
 		var $Aarr =  $(".FID");
 		var $Barr =  $(".STYP");
 		var $Carr =  $(".UYN");
+		var $Darr =  $(".INCYN");
 		for (var i=0; i<$Aarr.length; i++){
 		var sruledata = {};
 		sruledata.SETL_FROOM_ID = $Aarr[i].value;
-		sruledata.SETL_TITLE = $Barr[i].value;
-		sruledata.SETL_USE_YN = $Carr[i].value;
+		sruledata.SETL_TITLE = "ALTAR";
+		sruledata.SETL_TYPE = $Barr[i].value;
+		sruledata.PAY_YN = $Carr[i].value;
+		sruledata.INCADD_YN = $Darr[i].value;
 		console.log(sruledata);
 		$.ajax({
 			url : "${path}/cont/insertSrule.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
@@ -89,6 +90,29 @@
   	}
 	}
 	
+	function fn_Sruleupd(){
+		var $Aarr =  $(".FID");
+		var $Barr =  $(".STYP");
+		var $Carr =  $(".UYN");
+		var $Darr =  $(".INCYN");
+		for (var i=0; i<$Aarr.length; i++){
+		var sruledata = {};
+		sruledata.SETL_FROOM_ID = $Aarr[i].value;
+		sruledata.SETL_TITLE = "ALTAR";
+		sruledata.SETL_TYPE = $Barr[i].value;
+		sruledata.PAY_YN = $Carr[i].value;
+		sruledata.INCADD_YN = $Darr[i].value;
+		console.log(sruledata);
+		$.ajax({
+			url : "${path}/cont/updateSrule.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+			data : sruledata, // HTTP 요청과 함께 서버로 보낼 데이터 
+			method : "POST", // HTTP 요청 메소드(GET, POST 등) 
+			dataType : "json" // 서버에서 보내줄 데이터의 타입 
+		})
+		.done(function(data) {
+		});
+  	}
+	}	
 	$(".first").each(function() {
 		  var rows = $(".first:contains('" + $(this).text() + "')");
 		  if (rows.length > 1) {

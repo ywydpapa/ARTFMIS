@@ -263,33 +263,44 @@ INSERT INTO GHT_CONT (
 <selectKey keyProperty="CONTRACT_ID" resultType="integer"  order="AFTER">
 		 SELECT LAST_INSERT_ID()
 	 </selectKey>
- </insert>
+</insert>
  
- <insert id="sruleins">
+<insert id="sruleins">
  update GHT_SETL_RULE
  SET
  MOD_DATE = now()
  where SETL_FROOM_ID = #{SETL_FROOM_ID};
  
  insert into GHT_SETL_RULE (
- SETL_FROOM_ID,
-SETL_TITLE,
-SETL_REMARK,
-SETL_USE_YN, 
-REG_DATE
- ) values (
- #{SETL_FROOM_ID},
-#{SETL_TITLE},
-#{SETL_REMARK},
-#{SETL_USE_YN},
-now()
+	SETL_FROOM_ID,
+	SETL_TITLE,
+	SETL_TYPE,
+	SETL_REMARK,
+	PAY_YN,
+	INCADD_YN, 
+	REG_DATE,
+	attrib
+ 	) values (
+ 	#{SETL_FROOM_ID},
+ 	#{SETL_TITLE},
+	#{SETL_TYPE},
+	#{SETL_REMARK},
+	#{PAY_YN},
+	#{INCADD_YN},
+	now(),
+	'10000'
  ); 
- </insert>
+</insert>
  
  <update id = "sruleuppd">
  update GHT_SETL_RULE
  SET
- MOD_DATE = now()
+ 	SETL_TITLE = #{SETL_TITLE},
+	SETL_TYPE = #{SETL_TYPE},
+	SETL_REMARK = #{SETL_REMARK},
+	PAY_YN = #{PAY_YN},
+	INCADD_YN = #{INCADD_YN}, 
+ 	MOD_DATE = now()
  where SETL_FROOM_ID = #{SETL_FROOM_ID}
  </update>
  

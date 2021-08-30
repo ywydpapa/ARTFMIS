@@ -153,16 +153,10 @@ public class GoodsController {
 			mav.setViewName("cont/settleRuleroom");	
 		}
 		if (typ == 2) {
-			mav.setViewName("cont/settleRuleext");	
+			mav.setViewName("cont/settleFtable");	
 		}
 		if (typ == 3) {
-			mav.setViewName("cont/settleRulehelp");	
-		}
-		if (typ == 4) {
-			mav.setViewName("cont/settleRulepark");	
-		}
-		if (typ == 5) {
-			mav.setViewName("cont/settleRuleetc");	
+			mav.setViewName("cont/settleAltar");	
 		}
 		return mav;
 	}
