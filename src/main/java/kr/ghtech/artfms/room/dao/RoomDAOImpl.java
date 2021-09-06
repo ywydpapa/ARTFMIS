@@ -153,5 +153,11 @@ public class RoomDAOImpl implements RoomDAO {
 		return sqlSession.update("room.cancstoreord", dto);
 	}
 
+	@Override
+	public List<RoomDTO> listorderroom() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("room.ordroomlist");
+	}
+
 	
 }

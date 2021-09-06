@@ -8,6 +8,7 @@ public interface RoomService {
 
 	List<RoomDTO> listOrder(int CONTRACT_ID);
 	List<RoomDTO> listOrderall();
+	List<RoomDTO> listorderroom();
 	List<RoomDTO> ordDetail(RoomDTO dto);
 	List<RoomDTO> listRESTOrder(int CONTRACT_ID);
 	List<RoomDTO> listSTOREOrder(int CONTRACT_ID);

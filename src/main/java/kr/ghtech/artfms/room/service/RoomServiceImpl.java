@@ -153,4 +153,10 @@ public class RoomServiceImpl implements RoomService {
 		// TODO Auto-generated method stub
 		return RoomDao.cancSorder(dto);
 	}
+
+	@Override
+	public List<RoomDTO> listorderroom() {
+		// TODO Auto-generated method stub
+		return RoomDao.listorderroom();
+	}
 }

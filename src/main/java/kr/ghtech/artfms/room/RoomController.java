@@ -78,6 +78,7 @@ public class RoomController {
 
 	@RequestMapping("addorderlistall.do")
 	public ModelAndView listall(ModelAndView mav) {
+		mav.addObject("ordroom",roomService.listorderroom());
 		mav.addObject("ordlist", roomService.listOrderall());
 		mav.setViewName("cont/ordlistview");
 		return mav;

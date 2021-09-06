@@ -22,9 +22,14 @@ select gc.CONTRACT_ID , gc.START_DATE, gc.END_DATE, gc.FROOM_ID, gf.FROOM_TITLE 
  </select>
  
  <select id="listFroom" resultType="contDto">
- 	SELECT a.*, b.CONTRACT_ID from GHT_FROOM a 
+ 	SELECT a.FROOM_ID roomID,a.*, b.CONTRACT_ID from GHT_FROOM a 
  	left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.SETT_DATE is null
-	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' group by a.FROOM_ID 
+	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' group by a.FROOM_ID
+	union all
+	SELECT a.FROOM_ID+1000 roomID, a.FROOM_ID ,a.FROOM_ALIS FROOM_TITLE ,a.FROOM_CAT ,a.FROOM_TYP ,a.FROOM_DAY_PRICE ,a.FROOM_TIME_PRICE ,a.FROOM_MAX_PERS ,a.FROOM_AREA ,a.FROOM_AREA_KOR ,a.FROOM_REMARK ,a.CONT_ID ,a.FROOM_RENT_FR ,a.FROOM_RENT_TO ,
+	a.FROOM_CHK_INOUT ,a.FROOM_PASSWD ,a.FROOM_TML_CODE ,a.FROOM_ALIS ,a.FROOM_USE_YN ,a.FROOM_REG_USER ,a.FROOM_REG_DATETIME ,a.FROOM_MOD_USER ,a.FROOM_MOD_DATETIME ,a.FROOM_PC ,a.FROOM_ORDNO ,a.IMSI_YN 
+	,a.CLEAN_CHARGE ,a.FROOM_IMAGE ,a.INC_YN , null CONTRACT_ID from GHT_FROOM a left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID 
+	and b.SETT_DATE is null where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' and length(a.FROOM_ALIS) > 0 and IMSI_YN = 'Y' group by a.FROOM_ID 
  </select>
  
  <select id="listaddRoom" resultType="contDto">
@@ -49,7 +54,8 @@ gf.FTABLE_CAT where FTABLE_CAT IN (24,31,32,34,35,36,72,73,74,75,77,76)
  </select>
  
  <select id="listEtcroom" resultType="contDto">
- select * from GHT_FROOM where FROOM_TYP != 1 and FROOM_USE_YN = 'Y' and FROOM_TYP != 5 
+ select a.*,g.SETL_REMARK, g.SETL_TYPE, g.PAY_YN , g.INCADD_YN from GHT_FROOM a left join GHT_SETL_RULE g on a.FROOM_TYP = g.SETL_FROOM_ID 
+ where a.FROOM_TYP != 1 and a.FROOM_USE_YN = 'Y' and a.FROOM_TYP != 5  
  </select>
 
  <select id="listEtcroom2" resultType="contDto">

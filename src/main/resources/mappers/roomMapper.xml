@@ -22,6 +22,19 @@ SELECT c.FROOM_TITLE,'매점' ORDP, a.ORD_DATE, count(a.ORD_DATE)-count(a.CONF_D
  where a.CONTRACT_ID in (select CONTRACT_ID from GHT_CONT where SETT_DATE is NULL) and a.MOD_DATE is NULL group by a.ORD_DATE ) Z order by ORD_DATE DESC 
  </select>
  
+  <select id="ordroomlist" resultType="roomDto">
+select Z.* from (
+ SELECT c.FROOM_TITLE,'식당' ORDP, a.ORD_DATE, count(a.ORD_DATE)-count(a.CONF_DATE) CORDDATE, count(a.CONF_DATE) CCONFDATE, count(a.CANC_DATE) CCANCDATE, a.CONTRACT_ID, REGEXP_REPLACE(a.ORD_DATE, '[^[:alnum:]]+', '') ORDDATE2 from GHT_REST_ORDERSHEET a 
+ left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
+ left join ghtech.GHT_FROOM c on c.FROOM_ID = a.ROOM_TITLE
+ where a.CONTRACT_ID in (select CONTRACT_ID from GHT_CONT where SETT_DATE is NULL)  and a.MOD_DATE is NULL group by a.ORD_DATE 
+ UNION ALL 
+SELECT c.FROOM_TITLE,'매점' ORDP, a.ORD_DATE, count(a.ORD_DATE)-count(a.CONF_DATE) CORDDATE, count(a.CONF_DATE) CCONFDATE, count(a.CANC_DATE) CCANCDATE, a.CONTRACT_ID , REGEXP_REPLACE(a.ORD_DATE, '[^[:alnum:]]+', '') ORDDATE2 from GHT_STORE_ORDSHEET a 
+ left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
+ left join ghtech.GHT_FROOM c on c.FROOM_ID = a.ROOM_TITLE
+ where a.CONTRACT_ID in (select CONTRACT_ID from GHT_CONT where SETT_DATE is NULL) and a.MOD_DATE is NULL group by a.ORD_DATE ) Z group by FROOM_TITLE order by ORD_DATE DESC 
+ </select>
+ 
  <select id="ordlist" resultType="roomDto">
  select Z.* from (
  SELECT '식당' ORDP, a.ORD_DATE, count(a.ORD_DATE)-count(a.CONF_DATE) CORDDATE, count(a.CONF_DATE) CCONFDATE, count(a.CANC_DATE) CCANCDATE, a.CONTRACT_ID, REGEXP_REPLACE(a.ORD_DATE, '[^[:alnum:]]+', '') ORDDATE2 from GHT_REST_ORDERSHEET a 

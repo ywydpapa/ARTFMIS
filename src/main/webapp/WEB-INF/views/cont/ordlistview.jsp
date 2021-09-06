@@ -46,9 +46,23 @@
 			</td>
 		</tr>
 	</table>
-	<hr>
 	<div class="h-container">
 		<div class="item">
+		<div>
+		<table class="table"> 
+		<tr>
+		<td style="width:30%" class="text-center align-middle">주문 호실</td>
+		<td style="width:70%" class="text-center align-middle">
+		<select class="form-control" id="froomselect">
+		<option value="ALL">전체</option>
+		<c:forEach var= "rlist" items="${ordroom}">
+		<option value="${rlist.FROOM_TITLE}">${rlist.FROOM_TITLE}</option>
+		</c:forEach>
+		</select>
+		</td>
+		</tr>
+		</table>
+		</div>
 		<div id="ordlistTable">
 			<table class="table table-hover table-bordered">
 				<thead>
@@ -63,8 +77,8 @@
 				</thead>
 				<tbody>
 					<c:forEach var="row" items="${ordlist}">
-						<tr>
-							<td class="align-middle text-center">${row.FROOM_TITLE}</td>
+						<tr class="rmlist">
+							<td class="align-middle text-center rmtitle">${row.FROOM_TITLE}</td>
 							<td class="align-middle text-center"><a href="javascript:fnSetupdetail('${path}/room/orddetail2/${row.ORDDATE2}?CONTRACT_ID=${row.CONTRACT_ID}')">${row.ORDP}</a></td>
 							<td class="align-middle text-center">${row.ORD_DATE}</td>
 							<td class="align-middle text-center">${row.CCONFDATE}</td>
@@ -109,6 +123,33 @@ function tableDetailLoad(){
 	}
 }
 
+function tableDetailLoad1(){
+	console.log( $("#ordlistTable > table > tbody > tr:visible").length );
+	var $target;
+	var num1 = $("#ordlistTable > table > tbody > tr:visible").length;
+	if (num1 > 0){
+			$target = $("#ordlistTable > table > tbody > tr:visible > td > a");
+	}
+	if (num1 > 0){
+		var tempArr = $target.eq(0).attr('href').split('/');
+		var num = tempArr[tempArr.length - 1].replace(')','').replace('"','').replace('\'','');
+		var url ="${path}/room/orddetail2/"+num;
+		$.ajax({
+			type: "GET",
+			url : url,
+			dataType : "html",
+			success : function(html){
+				$("#detailTable").empty();
+				$("#detailTable").append(html);
+			},
+			error : function(xhr){
+				console.log(xhr);
+			}
+		});
+	} else {
+	}
+}
+
 function tableListLoad(url){
 	$.ajax({
 		type: "GET",
@@ -132,6 +173,34 @@ function fnSetupdetail(url, data){
 			setTimeout(function(){
 			}, 500);
 	});
+}
+
+$("#froomselect").change(function(){
+	selectedroom();
+	tableDetailLoad1();
+});
+
+function selectedroom(){
+	$Aarr = $(".rmlist");
+	$Barr = $(".rmtitle");
+	var selrm = $("#froomselect").val();
+	for (var i = 0; i < $Aarr.length; i++) {
+		if (selrm == "ALL")
+			{
+			$Aarr[i].style.display='';
+			}
+		else
+			{
+			if (selrm == $Barr[i].innerText)
+				{
+				$Aarr[i].style.display='';
+				}
+			else
+				{
+				$Aarr[i].style.display='none';
+				}
+			}
+	}
 }
 
 $(document).ready(function() {

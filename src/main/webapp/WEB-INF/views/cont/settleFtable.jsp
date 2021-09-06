@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card-block table-border-style">
-				<div class="table-responsive">
+				<div class="table-responsive" style="overflow-x:hidden">
 				<table class="table  table-bordered nowrap">
 				<tr>
 				<td class="align-middle"><input id="frid" type="hidden" value = "${frid}"><span>제물상 비용 정산설정</span></td>
@@ -16,7 +16,7 @@
 				</tr>
 				</table>
 				</div>
-				<div class="table-responsive">
+				<div class="table-responsive" style="overflow-x:hidden">
 					<table id = "DOS01" class="table  table-bordered nowrap">
 						<colgroup>
 							<col width="20%"/>
@@ -26,9 +26,9 @@
 						</colgroup>				
 							<tr style="text-align:center;">
 								<th class="align-middle text-center table-info">항목명</th>
-								<th class="align-middle text-center table-info">부과방법</th>
+								<th class="align-middle text-center table-info">정산방법</th>
 								<th class="align-middle text-center table-info">부과여부</th>
-								<th class="align-middle text-center table-info">시설사용료포함여부</th>
+								<th class="align-middle text-center table-info">정산서 포함여부</th>
 							</tr>
 						<tbody>
 <c:forEach var="row" items="${rowT}">	
@@ -36,8 +36,8 @@
 								<td>제물상<input type="hidden" class="FID" value="123"/></td>
 								<td>
 								<select class="form-control form-control-sm STYP">
-										<option value="TIME" <c:if test ="${row.SETL_TYPE eq 'TIME'}">selected</c:if> >시간당사용료부과</option>
-										<option value="COUNT" <c:if test ="${row.SETL_TYPE eq 'COUNT'}">selected</c:if> >회당부과</option>
+										<option value="TIME" <c:if test ="${row.SETL_TYPE eq 'FNR'}">selected</c:if> >장례식장 결재</option>
+										<option value="COUNT" <c:if test ="${row.SETL_TYPE eq 'EXT'}">selected</c:if> >외부업체 결제</option>
 								</select>
 								</td>
 								<td>

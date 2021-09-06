@@ -299,7 +299,7 @@
 									</thead>
 									<tbody>
 									<c:forEach var="row" items="${listFroom}" varStatus="status">
-										<tr style="vertical-align:middle;text-align:center" id="contWrite_Room_${row.FROOM_ID}">
+										<tr style="vertical-align:middle;text-align:center" id="contWrite_Room_${row.roomID}">
 											<td style="vertical-align:middle;text-align: center;">
 												<input type="checkbox" <c:if test="${not empty row.CONTRACT_ID}">disabled</c:if> class="CHKroom form-control" onclick="oneCheck(this);"/>
 											</td>
@@ -313,7 +313,7 @@
 											<c:if test="${status.first}">
 												<td class="imagebx" rowspan="${fn:length(listFroom)}">
 													<c:forEach var="t" items="${listFroom}">
-														<img id="imageHidden_t01_${t.FROOM_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.FROOM_IMAGE}">src="${path}/image/${t.FROOM_IMAGE}"</c:if>
+														<img id="imageHidden_t01_${t.roomID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.FROOM_IMAGE}">src="${path}/image/${t.FROOM_IMAGE}"</c:if>
 															 <c:if test="${empty t.FROOM_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
 													</c:forEach>
 												</td>
@@ -338,9 +338,9 @@
 										<tr style="background-color:#E0E6F8">
 											<th style="vertical-align:middle;text-align:center">호실종류</th>
 											<th style="vertical-align:middle;text-align:center">호실명</th>
-											<th style="vertical-align:middle;text-align:center">일일사용료</th>
+											<th style="vertical-align:middle;text-align:center">일일사용료(회)</th>
 											<th style="vertical-align:middle;text-align:center">시간당사용료</th>
-											<th style="vertical-align:middle;text-align:center">사용일</th>
+											<th style="vertical-align:middle;text-align:center">사용일(회)</th>
 											<th style="vertical-align:middle;text-align:center">사용시간</th>
 											<th style="vertical-align:middle;text-align:center">사용요금</th>
 											<th style="display:none" class="text-center">선택</th>
@@ -349,8 +349,11 @@
 									<tbody>
 									<c:forEach var="row" items="${listFroom}">
 										<tr>
-											<td style="vertical-align:middle;text-align:center">분향실</td>
-											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
+											<td style="vertical-align:middle;text-align:center">
+											<c:if test="${row.roomID < 1000}">분향실</c:if>
+											<c:if test="${row.roomID > 1000}">임시분향실</c:if>
+											</td>
+											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.roomID}"></td>
 											<td class = "RMday"style="vertical-align:middle;text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 											<td class = "RMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber
@@ -366,11 +369,19 @@
 									<c:forEach var="row" items="${listEtcroom}">
 										<tr>
 											<td style="vertical-align:middle;text-align:center" class="second">부대시설</td>
-											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}<input type="hidden" class="etcrid"value="${row.FROOM_ID}"></td>
+											<td style="vertical-align:middle;text-align:center">
+											<c:if test="${empty row.SETL_REMARK}">${row.FROOM_TITLE}</c:if>
+											<c:if test="${not empty row.SETL_REMARK}">${row.SETL_REMARK}</c:if>
+											<input type="hidden" class="etcrid"value="${row.FROOM_ID}"></td>
 											<td class = "EA" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "EB" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+											<td class = "EB" style="vertical-align:middle;text-align: right;">
+											<c:if test="${row.SETL_TYPE eq 'TIME'}"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></c:if>
+											<c:if test="${row.SETL_TYPE eq 'COUNT'}"></c:if>
+											</td>
 											<td style="vertical-align:middle;text-align: right;"><input style="text-align: right"class="form-control Eday" type="number" min="0" max="30" value="0"/></td>
-											<td style="vertical-align:middle;text-align: right;"><input style="text-align: right"class="form-control Etime" type="number" min="0" max="30" value="0"/></td>
+											<td style="vertical-align:middle;text-align: right;"><input style="text-align: right"class="form-control Etime" type="number" min="0" max="30" value="0"
+											<c:if test="${row.SETL_TYPE eq 'COUNT'}">readonly</c:if>
+											/></td>
 											<td class = "Esum" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="0" pattern="#,###" /></td>
 										</tr>
 									</c:forEach>

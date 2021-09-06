@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card-block table-border-style">
-				<div class="table-responsive">
+				<div class="table-responsive" style="overflow-x:hidden">
 				<table class="table  table-bordered nowrap">
 				<tr>
 				<td class="align-middle"><input id="frid" type="hidden" value = "${frid}">시설물 정산설정</td>
@@ -16,7 +16,7 @@
 				</tr>
 				</table>
 				</div>
-				<div class="table-responsive">
+				<div class="table-responsive" style="overflow-x:hidden">
 					<table id = "DOS01" class="table  table-bordered nowrap">
 						<colgroup>
 							<col width="20%"/>
