@@ -104,11 +104,14 @@
 			<th
 				style="vertical-align: middle; text-align: center; background-color: #E6F8E0"
 				scope="row">임시호실사용여부</th>
-			<td colspan="2"><select name="imsiYn" id="imsiYn"
+			<td colspan="1"><select name="imsiYn" id="imsiYn"
 				class="Bset form-control form-control-sm">
 					<option value="Y">사용</option>
 					<option value="N">미사용</option>
 			</select></td>
+			<td>
+			<button id="imsiBtn" class="btn btn-md btn-success form-control-sm" <c:if test="${dtoRoom.IMSI_YN eq 'N'}">disabled</c:if>>임시호실 생성</button>
+			</td>
 		</tr>
 		<tr>
 			<th
@@ -370,4 +373,15 @@
 		}
 		alert("저장 완료");
 	}
+	
+	$("#imsiYn").change(function(){
+		var imsival = $("#imsiYn").val();
+		const target = document.getElementById('imsiBtn');
+		if (imsival == "Y"){
+			target.disabled = false;
+		}else{
+			target.disabled = true;	
+		}
+		
+	});
 </script>

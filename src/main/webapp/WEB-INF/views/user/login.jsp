@@ -57,7 +57,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header">ARTFMS 로그인</div>
+                    <div class="card-header">ARTFMIS 로그인</div>
                     <div class="card-body">
                         <form id="form1" name="form1" method="post">
                             <div class="form-group row">
