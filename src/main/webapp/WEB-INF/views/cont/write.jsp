@@ -19,7 +19,7 @@
 	<!-- Row start -->
 	<div class="row">
 		<div class="col-lg-12 col-xl-12">
-		<div class="table-responsive">
+		<div class="table-responsive" style="overflow-x:hidden">
 				<table class="table  table-bordered nowrap" style="display:none">
 				<tr>
 				<td style="display:none"><input id="frid" type="hidden" value = "${frid}"><input id="temproomYn" type="hidden" value = "${tmprYn}"><input id="contid" type="hidden" value = "">
@@ -33,11 +33,14 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="card-block table-border-style">
-									<div class="table-responsive">
+									<div class="table-responsive" style="overflow-x:hidden">
 										<table class="table table-sm bst02">
 											<tbody>
 												<tr>
-													<th scope="row">계약기본사항</th>
+													<td>계약기본사항</td>
+													<td align="right">
+														<button class="btn btn-md btn-primary" onClick="fn_contInsertP1()">등록</button>
+													</td>
 												</tr>
 											</tbody>
 										</table>
@@ -252,10 +255,6 @@
 										</table>
 									</div>
 								</div>
-								<div class="btn_wr text-right mt-3">
-									<button class="btn btn-md btn-primary"
-										onClick="fn_contInsertP1()">등록</button>
-								</div>
 							</div>
 						</div>
 					</div>
@@ -263,12 +262,13 @@
 				</div>
 				<div class="tab-pane" id="tab02" role="tabpanel">
 					<div class="card-block table-border-style">
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<form name="room2" method="post" onsubmit="return false;">
 								<table class="table table-sm bst02">
 									<tbody>
 										<tr>
-											<th scope="row">분향실 선택</th>
+											<td>분향실 선택</td>
+											<td align="right"><button class="btn btn-md btn-primary" onClick="fn_contInsertP2()">등록</button></td>
 										</tr>
 									</tbody>
 								</table>
@@ -352,8 +352,8 @@
 									<c:forEach var="row" items="${listFroom}">
 										<tr>
 											<td style="vertical-align:middle;text-align:center">
-											<c:if test="${row.roomID < 1000}">분향실</c:if>
-											<c:if test="${row.roomID > 1000}">임시분향실</c:if>
+											<c:if test="${row.TEMP_ROOM eq 'N'}">분향실</c:if>
+											<c:if test="${row.TEMP_ROOM eq 'Y'}">임시분향실</c:if>
 											</td>
 											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.roomID}"></td>
 											<td class = "RMday"style="vertical-align:middle;text-align: right;"><fmt:formatNumber
@@ -391,9 +391,6 @@
 								</table>
 						</div>
 					</div>
-					<div class="btn_wr text-right mt-3">
-						<button class="btn btn-md btn-primary" onClick="fn_contInsertP2()">등록</button>
-					</div>
 				</div>
 				<div class="tab-pane" id="tab03" role="tabpanel">
 					<div class="card-block table-border-style">
@@ -403,7 +400,7 @@
 									<tbody>
 									<tr>
 									<td><span> 제물상 </span></td>
-									<td style="text-align: right;"></td>
+									<td align="right"><button class="btn btn-md btn-primary" onClick="fn_contInsertP3()">등록</button></td>
 									</tr>
 									</tbody>
 								</table>
@@ -479,27 +476,24 @@
 							<hr>
 							<div style="text-align:right"><span>선택된 제물상 총액 :</span><input type="text" id="P3total" style="text-align: right; border: none;" readonly>
 							</div>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary" onClick="fn_contInsertP3()">등록</button>
-							</div>
 						</div>
 					</div>
 				</div>
 				<div class="tab-pane" id="tab04" role="tabpanel">
 					<div class="card-block table-border-style">
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<form name="form4" method="post" onsubmit="return false;">
 								<table class="table table-sm bst02">
 									<tbody>
 										<tr>
-											<th scope="row">장의용품 선택</th>
+											<td>장의용품 선택</td>
 											<td><select class="form-control" id="selMTR">
 											<option value="M" selected>현대식</option>
 											<option value="T">전통식</option>
 											</select> </td>
 											<td></td>
 											<td></td>
-											<td style="text-align: right;"></td>
+											<td align="right"><button class="btn btn-md btn-primary" onClick="fn_contInsertP4()">등록</button></td>
 										</tr>
 									</tbody>
 								</table>
@@ -1044,23 +1038,18 @@
 							</form>
 							<hr>
 							<div style="text-align:right"><span>선택된 장의용품 총액 :</span><input type="text" id="P4total" style="text-align: right; border: none;" readonly></div>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary"
-									onClick="fn_contInsertP4()">등록</button>
-							</div>
 						</div>
 					</div>
 				</div>
 				<div class="tab-pane" id="tab05" role="tabpanel">
 					<div class="card-block table-border-style">
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<form name="form5" method="post" onsubmit="return false;">
 								<table class="table table-sm bst02">
 									<tbody>
 										<tr>
-											<th scope="row">제단 선택</th>
-											<td style="text-align: right;"></td>
-											
+											<td>제단 선택</td>
+											<td align="right"><button class="btn btn-md btn-primary" onClick="fn_contInsertP5()">등록</button></td>
 										</tr>
 									</tbody>
 								</table>
@@ -1140,26 +1129,24 @@
 								<div style="text-align:right">
 								<span>선택된 제단용품 총액 :</span><input type="text" id="P5total" style="text-align: right; border: none;" readonly>
 								</div>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary"
-									onClick="fn_contInsertP5()">등록</button>
-							</div>
 						</div>
 					</div>
 				</div>
 				<div class="tab-pane" id="tab06" role="tabpanel">
 					<div class="card-block table-border-style">
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<table class="table table-sm bst02">
 								<tbody>
 									<tr>
 										<th scope="row">식당품목 선택</th>
-										<td align="right"><button class="btn btn-primary" onclick="callRestlist()" >호실별 식당품목 블러오기</button></td>
+										<td align="right"><button class="btn btn-primary" onclick="callRestlist()" >호실별 식당품목 블러오기</button>
+										<button class="btn btn-md btn-primary" onClick="fn_contInsertP6()">등록</button>
+										</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
-						<div class="table-responsive" id="calledRest">
+						<div class="table-responsive" style="overflow-x:hidden" id="calledRest">
 							<table id="MESS01" class="table table-bordered table-hover">
 								<colgroup>
 									<col width="10%"/>
@@ -1218,26 +1205,23 @@
 										style="text-align: right; border: none;" readonly></td>
 								</tr>
 							</table>
-						
-						<div class="btn_wr text-right mt-3">
-							<button class="btn btn-md btn-primary"
-								onClick="fn_contInsertP6()">등록</button>
-						</div>
 					</div>
 				</div>
 				<div class="tab-pane" id="tab07" role="tabpanel">
 					<div class="card-block table-border-style">
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<table class="table table-sm bst02">
 								<tbody>
 									<tr>
 										<th scope="row">매점품목 선택</th>
-										<td align="right"><button class="btn btn-primary" onclick="callStorelist()" >호실별 매점품목 블러오기</button></td>
+										<td align="right"><button class="btn btn-primary" onclick="callStorelist()" >호실별 매점품목 블러오기</button>
+										<button class="btn btn-md btn-primary" onClick="fn_contInsertP7()">등록</button>
+										</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
-						<div class="table-responsive" id="calledStore">
+						<div class="table-responsive" style="overflow-x:hidden" id="calledStore">
 							<table class="table table-bordered table-hover">
 								<colgroup>
 									<col width="10%" />
@@ -1294,21 +1278,20 @@
 										style="text-align: right; border: none;" readonly></td>
 								</tr>
 							</table>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary"
-									onClick="fn_contInsertP7()">등록</button>
-							</div>
 						</div>
 					</div>
 				</div>
 				<div class="tab-pane" id="tab08" role="tabpanel">
 					<div class="card-block table-border-style">
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<form name="form8" method="post" onsubmit="return false;">
 								<table class="table table-sm bst02">
 									<tbody>
 										<tr>
-											<th scope="row">기타시설</th>
+											<td>기타시설</td>
+											<td align="right">
+												<button class="btn btn-md btn-primary" onClick="fn_contInsertP8()">등록</button>
+											</td>
 										</tr>
 									</tbody>
 								</table>
@@ -1399,21 +1382,21 @@
 										</tr>
 									</c:forEach>
 								</table>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary"
-									onClick="fn_contInsertP8()">등록</button>
-							</div>
 						</div>
 					</div>
 				</div>
 				<div class="tab-pane" id="tab09" role="tabpanel">
 					<div class="card-block table-border-style">
-						<div class="table-responsive">
+						<div class="table-responsive" style="overflow-x:hidden">
 							<form name="form9" method="post" onsubmit="return false;">
 								<table class="table table-sm bst02">
 									<tbody>
 										<tr>
-											<th scope="row">안내문</th>
+											<td>안내문</td>
+											<td align="right">
+												<button class="btn btn-md btn-primary" onClick="fn_contInsertP9()">최종 등록</button>
+												<button class="btn btn-md btn-inverse">취소</button>
+											</td>
 										</tr>
 									</tbody>
 								</table>
@@ -1446,11 +1429,6 @@
 									</tbody>
 								</table>
 							</form>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary"
-									onClick="fn_contInsertP9()">최종 등록</button>
-								<button class="btn btn-md btn-inverse">취소</button>
-							</div>
 						</div>
 					</div>
 				</div>
