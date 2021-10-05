@@ -58,7 +58,7 @@
 													<td><select class="form-control" id="contp1-01">
 															<option value="">새계약 작성</option>
 															<c:forEach var="contcombo" items="${contCombo}">
-																<option value="${contcombo.CONTRACT_ID}?CONT_FROOM_ID=${contcombo.FROOM_ID}"<c:if test="${contcombo.FROOM_ID eq frid}">selected</c:if> >${contcombo.FROOM_TITLE}</option>
+																<option value="${contcombo.CONTRACT_ID}?CONT_FROOM_ID=${contcombo.FROOM_ID}"><c:if test="${contcombo.TEMP_ROOM eq 'N'}">${contcombo.FROOM_TITLE}</c:if><c:if test="${contcombo.TEMP_ROOM eq 'Y'}">(임시호실) : ${contcombo.FROOM_ALIS}</c:if></option>
 															</c:forEach>
 													</select></td>
 													<td class="cont-title" style="vertical-align: middle;">기간</td>
@@ -3035,6 +3035,8 @@ function execDaumPostcode2() {
 }
 
 function setComboP1(){
+	var p101val = ${detailCont.CONTRACT_ID}+"?CONT_FROOM_ID="+${detailCont.FROOM_ID};
+	console.log(p101val);
 	var p109val = ${detailCont.DPERSON_MW};
 	var p113val = ${detailCont.REGION};
 	var p116val = ${detailCont.DTYPE};
@@ -3064,6 +3066,7 @@ function setComboP1(){
 	p1281val = p1281val.substr(11,17);
 	p129val = p129val.substr(0,10);
 	p1291val = p1291val.substr(11,17);
+	$("#contp1-01").val(p101val).prop("selected",true);
 	$("#contp1-09").val(p109val).prop("selected",true);
 	$("#contp1-13").val(p113val).prop("selected",true);
 	$("#contp1-16").val(p116val).prop("selected",true);

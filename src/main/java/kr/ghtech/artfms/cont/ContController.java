@@ -168,8 +168,10 @@ public class ContController {
 	@RequestMapping("detail/{CONTRACT_ID}")
 	public ModelAndView detail2(@PathVariable("CONTRACT_ID") Integer CONTRACT_ID, @ModelAttribute ContDTO dto, ModelAndView mav) {
 		Integer CONT_FROOM_ID = Integer.valueOf(dto.getCONT_FROOM_ID());
+		String TEMP_ROOM = String.valueOf(dto.getTEMP_ROOM());
 		mav.addObject("frid", CONT_FROOM_ID);
 		mav.addObject("CONTid", CONTRACT_ID);
+		mav.addObject("tmprYn",TEMP_ROOM);
 		mav.addObject("listroom", goodsService.listRoom(1));
 		mav.addObject("contCombo", contService.listContcombo());
 		mav.addObject("listFroom", contService.doslistFroom());

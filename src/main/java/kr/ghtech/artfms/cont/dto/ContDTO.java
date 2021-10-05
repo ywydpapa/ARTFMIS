@@ -236,7 +236,7 @@ public class ContDTO {
 	private String SETL_TYPE;
 	private String PAY_YN;
 	private String INCADD_YN;
-	
+	private String TEMP_ROOM;
 	
 	
 }

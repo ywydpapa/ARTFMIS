@@ -22,7 +22,7 @@
 		<div class="table-responsive">
 				<table class="table  table-bordered nowrap" style="display:none">
 				<tr>
-				<td style="display:none"><input id="frid" type="hidden" value = "${frid}"><input id="contid" type="hidden" value = "">
+				<td style="display:none"><input id="frid" type="hidden" value = "${frid}"><input id="temproomYn" type="hidden" value = "${tmprYn}"><input id="contid" type="hidden" value = "">
 				<input id="rmchk" type="hidden" value = ""><span>선택된 시설 (분향실) :  </span>${pagetitle}</td>
 				</tr>
 				</table>
@@ -59,7 +59,7 @@
 													<td><select class="form-control" id="contp1-01">
 															<option value="">새계약 작성</option>
 															<c:forEach var="contcombo" items="${contCombo}">
-																<option value="${contcombo.CONTRACT_ID}?CONT_FROOM_ID=${contcombo.FROOM_ID}">${contcombo.FROOM_TITLE}</option>
+																<option value="${contcombo.CONTRACT_ID}?CONT_FROOM_ID=${contcombo.FROOM_ID}"><c:if test="${contcombo.TEMP_ROOM eq 'N'}">${contcombo.FROOM_TITLE}</c:if><c:if test="${contcombo.TEMP_ROOM eq 'Y'}">(임시호실) : ${contcombo.FROOM_ALIS}</c:if></option>
 															</c:forEach>
 													</select></td>
 													<td class="cont-title" style="vertical-align: middle;">기간</td>
@@ -294,6 +294,7 @@
 											<th style="vertical-align:middle;text-align:center">면적(m<sup>2</sup>)</th>
 											<th style="vertical-align:middle;text-align:center">평수</th>
 											<th style="vertical-align:middle;text-align:center">수용인원</th>
+											<th style="display:none">임시호실</th>
 											<th style="vertical-align:middle;text-align:center">이미지</th>
 										</tr>
 									</thead>
@@ -310,6 +311,7 @@
 											<td style="vertical-align:middle;text-align: right;">${row.FROOM_AREA}</td>
 											<td style="vertical-align:middle;text-align: right;">${row.FROOM_AREA_KOR}</td>
 											<td style="vertical-align:middle;text-align: right;">${row.FROOM_MAX_PERS}</td>
+											<td class="Tmproom"  style="display:none">${row.TEMP_ROOM}</td>
 											<c:if test="${status.first}">
 												<td class="imagebx" rowspan="${fn:length(listFroom)}">
 													<c:forEach var="t" items="${listFroom}">
@@ -1468,6 +1470,7 @@
 			return;
 			}
 		var froomid = $('#frid').val();
+		var temproomyn = $('#temproomYn').val();
 		var date = new Date();
 	    var year = date.getFullYear();
 	    var month = ("0" + (1 + date.getMonth())).slice(-2);
@@ -1503,6 +1506,8 @@
 		contData.JANGJI				= $('#contp1-30').val();
 		contData.REMARK				= $('#contp1-37').val();
 		contData.FROOM_ID			= froomid;
+		contData.TEMP_ROOM			= temproomyn;
+		
 		if(contData.DPERSON_NAME==""){
 			alert("고인의 성함을 입력해 주세요.");
 			$("#contp1-07").focus();
@@ -1565,6 +1570,7 @@
 		var $Aarr =  $(".sRMd");
 		var $Barr =  $(".sRMt");
 		var $Carr =  $(".sRMCharge");
+		var $Darr =  $(".Tmproom");
 		var contp2upd ={};
 		contp2upd.CONTRACT_ID = Number(CONid);
 		console.log(contp2upd);
@@ -1583,6 +1589,7 @@
 		contp2data.DAYS = $Aarr[i].innerText;
 		contp2data.TIMES = $Barr[i].innerText;
 		contp2data.RCHARGE = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
+		contp2data.TEMP_ROOM = $Darr[i].innerText;
 		console.log(contp2data);
 		$.ajax({
 			url : "${path}/cont/insertP2.do",  
@@ -2573,11 +2580,13 @@
 		var $infoarr = $(".CHKroom");
 		var $sinfoarr = $(".CHKsrm");
 		var $FRinfoarr = $(".FRMID");
+		var $Darr = $(".Tmproom");
 		for (var i = 0; i < $infoarr.length; i++) {
 			if($($infoarr[i]).is(":checked")==true){
 			$($sinfoarr[i]).attr("checked",true);
 			$($sinfoarr[i]).parent().parent().show();
 			$("#frid").val($FRinfoarr[i].value);
+			$("#temproomYn").val($Darr[i].innerText);
 			$("#rmchk").val("OK");
 			}
 			else{

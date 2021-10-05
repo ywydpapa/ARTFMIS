@@ -210,14 +210,10 @@
 	
 	function canccheckupdR(data){
 		if(confirm("물품 주문을 취소하시겠습니까?")){
-			var ques = prompt('암호를 입력해 주십시오.','암호');
-			var opt = "1234";
-			if(ques == opt){
 			var $Aarr = $(".CHKcfnR");
 			var $Barr = $(".ordRid");
 			var $Carr = $(".ORDP");
 			for (var i = 0; i < $Aarr.length; i++) {
-				
 				if($($Aarr[i]).is(":disabled")==false){
 				if($($Aarr[i]).is(":checked")==true){
 					if ($Carr[i].value == 'M'){
@@ -230,7 +226,6 @@
 							dataType : "json" // 서버에서 보내줄 데이터의 타입 
 						}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
 						.done(function(data) {
-							
 						})
 						.fail(function(xhr, status, errorThrown) {
 							alert("통신 실패");
@@ -256,11 +251,8 @@
 				else{}
 			}
 				var cid = $("#contid").val();
-				tableListLoad("${path}/room/orderlistall.do");
-	}else{
-		alert("주문암호가 다릅니다.");
-		return;
-	}
+				tableListLoad("${path}/room/orderlistall.do",function(){selectedroom();});
+				/* tableDetailLoad1(); */
 			}
 	}
 	

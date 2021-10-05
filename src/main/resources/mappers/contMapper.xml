@@ -10,11 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </select>
  
  <select id="listCont" resultType="contDto">
- 	select gf.FROOM_TITLE, case when gc.SETT_DATE is null then '입실' else '퇴실' end inRoom, substr(gc.START_DATE,1,10) STDATE,substr(gc.END_DATE,1,10) EDDATE, gc.* from GHT_CONT gc left join GHT_FROOM gf on gf.FROOM_ID = gc.FROOM_ID
+ 	 	select case when gc.TEMP_ROOM = 'Y' then concat('(임시) ',gf.FROOM_ALIS) else gf.FROOM_TITLE end FROOM_TITLE, case when gc.SETT_DATE is null then '입실' else '퇴실' end inRoom, substr(gc.START_DATE,1,10) STDATE,substr(gc.END_DATE,1,10) EDDATE, gc.* from GHT_CONT gc left join GHT_FROOM gf on gf.FROOM_ID = gc.FROOM_ID
  </select>
  
  <select id="listContcombo" resultType="contDto">
-select gc.CONTRACT_ID , gc.START_DATE, gc.END_DATE, gc.FROOM_ID, gf.FROOM_TITLE  from GHT_CONT gc left join GHT_FROOM gf on gf.FROOM_ID = gc.FROOM_ID where SETT_DATE is NULL group by gc.FROOM_ID
+select gc.CONTRACT_ID , gc.START_DATE, gc.END_DATE, gc.FROOM_ID, gf.FROOM_TITLE, gf.FROOM_ALIS, gc.TEMP_ROOM  from GHT_CONT gc left join GHT_FROOM gf on gf.FROOM_ID = gc.FROOM_ID where SETT_DATE is NULL
 </select>
 
  <select id="listAltar"  resultType="contDto">
@@ -22,14 +22,14 @@ select gc.CONTRACT_ID , gc.START_DATE, gc.END_DATE, gc.FROOM_ID, gf.FROOM_TITLE 
  </select>
  
  <select id="listFroom" resultType="contDto">
- 	SELECT a.FROOM_ID roomID,a.*, b.CONTRACT_ID from GHT_FROOM a 
+SELECT a.FROOM_ID roomID,a.*, b.CONTRACT_ID, 'N' TEMP_ROOM from GHT_FROOM a 
  	left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.SETT_DATE is null
 	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' group by a.FROOM_ID
 	union all
-	SELECT a.FROOM_ID+1000 roomID, a.FROOM_ID ,a.FROOM_ALIS FROOM_TITLE ,a.FROOM_CAT ,a.FROOM_TYP ,a.FROOM_DAY_PRICE ,a.FROOM_TIME_PRICE ,a.FROOM_MAX_PERS ,a.FROOM_AREA ,a.FROOM_AREA_KOR ,a.FROOM_REMARK ,a.CONT_ID ,a.FROOM_RENT_FR ,a.FROOM_RENT_TO ,
+	SELECT a.FROOM_ID roomID, a.FROOM_ID ,a.FROOM_ALIS FROOM_TITLE ,a.FROOM_CAT ,a.FROOM_TYP ,a.FROOM_DAY_PRICE ,a.FROOM_TIME_PRICE ,a.FROOM_MAX_PERS ,a.FROOM_AREA ,a.FROOM_AREA_KOR ,a.FROOM_REMARK ,a.CONT_ID ,a.FROOM_RENT_FR ,a.FROOM_RENT_TO ,
 	a.FROOM_CHK_INOUT ,a.FROOM_PASSWD ,a.FROOM_TML_CODE ,a.FROOM_ALIS ,a.FROOM_USE_YN ,a.FROOM_REG_USER ,a.FROOM_REG_DATETIME ,a.FROOM_MOD_USER ,a.FROOM_MOD_DATETIME ,a.FROOM_PC ,a.FROOM_ORDNO ,a.IMSI_YN 
-	,a.CLEAN_CHARGE ,a.FROOM_IMAGE ,a.INC_YN , null CONTRACT_ID from GHT_FROOM a left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID 
-	and b.SETT_DATE is null where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' and length(a.FROOM_ALIS) > 0 and IMSI_YN = 'Y' group by a.FROOM_ID 
+	,a.CLEAN_CHARGE ,a.FROOM_IMAGE ,a.INC_YN , null CONTRACT_ID, 'Y' TEMP_ROOM from GHT_FROOM a left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID 
+	and b.SETT_DATE is null where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' and length(a.FROOM_ALIS) > 0 and IMSI_YN = 'Y' group by a.FROOM_ID  
  </select>
  
  <select id="listaddRoom" resultType="contDto">
@@ -222,6 +222,7 @@ INSERT INTO GHT_CONT (
 ,REMARK
 ,REG_DATE
 ,FROOM_ID
+,TEMP_ROOM
 ) VALUES (
  #{INS_DATE}
 ,#{INS_TIME}
@@ -265,6 +266,7 @@ INSERT INTO GHT_CONT (
 ,#{REMARK}
 ,now()
 ,#{FROOM_ID}
+,#{TEMP_ROOM}
 )
 <selectKey keyProperty="CONTRACT_ID" resultType="integer"  order="AFTER">
 		 SELECT LAST_INSERT_ID()
@@ -330,7 +332,7 @@ INSERT INTO GHT_CONT (
 ,#{FROOM_ID}
 ,#{DAYS}
 ,#{TIMES}
-,#{RCHARGE} 
+,#{RCHARGE}
 ,#{REMARK}
 ,now()
 ,'10000'
