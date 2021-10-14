@@ -591,7 +591,7 @@ CONTRACT_ID
 
  <update id="updcontp2">
  update GHT_CONT_FROOM
- set MOD_DATE = now(), attrib = 'XXXXX' where CONTRACT_ID = #{CONTRACT_ID} and FROOM_ID not in (select froom_id from GHT_FROOM where FROOM_TYP = '5')
+ set MOD_DATE = now(), attrib = 'XXXUP' where CONTRACT_ID = #{CONTRACT_ID} and FROOM_ID not in (select froom_id from GHT_FROOM where FROOM_TYP = '5')
  </update>
  
  <update id="updcontp3">
@@ -641,7 +641,7 @@ values (#{CONTRACT_ID},#{FROOM_ID},#{DAYS},#{TIMES},now(),#{RCHARGE},#{STORE_SNA
 
 <update id="delRoom">
 update GHT_CONT_FROOM set
-attrib ='XXXXX',
+attrib ='XXXDL',
 MOD_DATE = now()
 where CONT_FROOM_ID = ${CONT_FROOM_ID}
 </update>

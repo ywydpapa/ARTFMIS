@@ -359,7 +359,7 @@
 											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
 											<td style="background-color:#F5F6CE"><input type="number" class = "sRMd form-control" style="text-align: right; border:none;background-color:#F5F6CE" min="0" value="${row.DAYS}"></td>
-											<td style="background-color:#F5F6CE"><input type="number"  class = "sRMt form-control" style="text-align: right;border:none;background-color:#F5F6CE" min="0" value="${row.TIMES}"></td>
+											<td style="background-color:#F5F6CE"><input type="number"  class = "sRMt form-control" style="text-align: right;border:none;background-color:#F5F6CE" min="0" max="23" value="${row.TIMES}"></td>
 											<td class = "sRMcharge" style="text-align: right;"><fmt:formatNumber
 													value="${row.RCHARGE}" pattern="#,###" /></td>
 											<td style="text-align: center; display:none"><input type="checkbox" class="CHKsrm form-control" <c:if test="${row.CHKED eq 'Y'}">checked</c:if>></td>										</tr>
@@ -372,13 +372,12 @@
 										<col width="10%" />
 										<col width="10%" />
 										<col width="10%" />
-										<col width="8%" />
+										<col width="10%" />
 										<col width="12%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
+										<col width="12%" />
+										<col width="12%" />
+										<col width="12%" />
+										<col width="12%" />
 								</colgroup>
 								<tr>
 								<td class="text-center">삭제</td>
@@ -388,7 +387,6 @@
 								<td class="text-center">환경부담금일수</td>
 								<td class="text-center">냉장고사용</td>
 								<td class="text-center">일회용품사용</td>
-								<td class="text-center">마른안주사용</td>
 								<td class="text-center">입실여부</td>
 								<td class="text-center"></td>
 								</tr>
@@ -402,7 +400,7 @@
 								</select>
 								</td>
 								<td><input id="add2" class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
-								<td><input id="add3"class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
+								<td><input id="add3"class="form-control" style="text-align: right" type="number" min="0" max="23" value="0"></td>
 								<td><input id="add4"class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
 								<td>
 								<select id="add5" class="form-control">
@@ -415,12 +413,6 @@
 								<option value="Y">예</option>
 								<option value="N">아니오</option>
 								</select></td>
-								<td>
-								<select id="add7" class="form-control">
-								<option value="Y">예</option>
-								<option value="N">아니오</option>
-								</select>
-								</td>
 								<td>
 								<select id="add8" class="form-control">
 								<option value="Y">예</option>
@@ -438,7 +430,6 @@
 									<td style="text-align:right">${addlist.CLEAN_CHARGE_DAYS}</td>
 									<td style="text-align:center"><c:if test="${addlist.STORE_REFG_YN eq 'Y'}">예</c:if><c:if test="${addlist.STORE_REFG_YN eq 'N'}">아니오</c:if></td>
 									<td style="text-align:center"><c:if test="${addlist.STORE_ITEM_YN eq 'Y'}">예</c:if><c:if test="${addlist.STORE_ITEM_YN eq 'N'}">아니오</c:if></td>
-									<td style="text-align:center"><c:if test="${addlist.STORE_SNACK_YN eq 'Y'}">예</c:if><c:if test="${addlist.STORE_SNACK_YN eq 'N'}">아니오</c:if></td>
 									<td style="text-align:center"><c:if test="${addlist.CHKED eq 'Y'}">예</c:if><c:if test="${addlist.CHKED eq 'N'}">아니오</c:if></td>
 									<td style="text-align:center"><button class="btn btn-secondary" onclick="delRoom(this,${addlist.CONT_FROOM_ID},${addlist.FROOM_ID} )">삭제</button></td>
 								</c:forEach>
@@ -510,7 +501,6 @@
 		addrData.CLEAN_CHARGE_DAYS = $('#add4').val();
 		addrData.STORE_REFG_YN = $('#add5').val();
 		addrData.STORE_ITEM_YN = $('#add6').val();
-		addrData.STORE_SNACK_YN = $('#add7').val();
 		console.log(addrData);
 		$.ajax({
 			url : "${path}/cont/addRoom.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
@@ -528,7 +518,6 @@
 				innerHtml += '<td style="text-align:right">'+$("#add4").text()+'</td>';
 				innerHtml += '<td style="text-align:center">'+$("#add5 option:checked").text()+'</td>';
 				innerHtml += '<td style="text-align:center">'+$("#add6 option:checked").text()+'</td>';
-				innerHtml += '<td style="text-align:center">'+$("#add7 option:checked").text()+'</td>';
 				innerHtml += '<td style="text-align:center">'+$("#add8 option:checked").text()+'</td>';
 				innerHtml += '<td style="text-align:center"><button class="btn btn-secondary" onclick="delRoom(this,'+data.froomid+','+ $('#add1').val() +')">삭제</button></td>';
 				innerHtml += "</tr>";
@@ -576,7 +565,7 @@
 		var chkr = $('#rmchk').val();
 		if (chkr != "OK")
 			{
-			alert ("호실사용가능여부 조회를 먼저 해야 합니다.");
+			alert ("호실사용에 문제가 있습니다.");
 			return;
 			}
 		var froomid = $('#frid').val();
@@ -617,12 +606,12 @@
 		contData.REMARK				= $('#contp1-37').val();
 		contData.FROOM_ID			= froomid;
 		if(contData.DPERSON_NAME==""){
-			alert("고인의 성함을 입력해 주세요.");
+			alert("고인의 성함을 입력해 주세요. 필수 항목입니다.");
 			$("#contp1-07").focus();
 			return;
 		}
 		else if(contData.SANGJU_NAME==""){
-			alert("상주 성함을 입력해 주세요.");
+			alert("상주 성함을 입력해 주세요. 필수 항목입니다.");
 			$("#contp1-20").focus();
 			return;
 		}
@@ -649,10 +638,10 @@
 		var CONid = $("#contid").val();
 		if (CONid != ""){
 		var froomid = $('#frid').val();
-		var $Chkarr = $(".CHKsrm");
-		var $Aarr =  $(".sRMd");
-		var $Barr =  $(".sRMt");
-		var $Carr =  $(".sRMcharge");
+		var $Chk2arr = $(".CHKsrm");
+		var $A2arr =  $(".sRMd");
+		var $B2arr =  $(".sRMt");
+		var $C2arr =  $(".sRMcharge");
 		var contp2upd ={};
 		contp2upd.CONTRACT_ID = Number(CONid);
 		console.log(contp2upd);
@@ -663,14 +652,14 @@
 			dataType : "json"  
 		})
 		.done(function(data) {
-		for (var i=0; i<$Aarr.length; i++){
-		if($($Chkarr[i]).is(":checked")==true){
+		for (var i=0; i<$A2arr.length; i++){
+		if($($Chk2arr[i]).is(":checked")==true){
 		var contp2data = {};
 		contp2data.CONTRACT_ID = CONid;
 		contp2data.FROOM_ID = froomid;
-		contp2data.DAYS = Number($Aarr[i].value.replace(/[\D\s\._\-]+/g, ""))
-		contp2data.TIMES = Number($Barr[i].value.replace(/[\D\s\._\-]+/g, ""))
-		contp2data.RCHARGE = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
+		contp2data.DAYS = Number($A2arr[i].value.replace(/[\D\s\._\-]+/g, ""))
+		contp2data.TIMES = Number($B2arr[i].value.replace(/[\D\s\._\-]+/g, ""))
+		contp2data.RCHARGE = Number($C2arr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
 		console.log(contp2data);
 		$.ajax({
 			url : "${path}/cont/insertP2.do",  
@@ -999,3 +988,4 @@
 
 
 </script>
+
