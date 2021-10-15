@@ -173,6 +173,7 @@ function fn_Insertsetupinfo() {
 	setupData.SETUP_DESC = $("#setupDesc").val();
 	setupData.USE_YN = $("#useYn").val();
 	setupData.SETUP_TYPE = "INFO";
+	setupData.SETUP_KEY = $("#defYn").val();
 	console.log(setupData);
 	$.ajax({
 		url : "${path}/setup/insert.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
@@ -201,6 +202,7 @@ function fn_Updatesetupinfo() {
 	setupData.SETUP_CONTENTS = $("#setupContents").val();
 	setupData.SETUP_DESC = $("#setupDesc").val();
 	setupData.USE_YN = $("#useYn").val();
+	setupData.SETUP_KEY = $("#defYn").val();
 	console.log(setupData);
 	$.ajax({
 		url : "${path}/setup/update.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 

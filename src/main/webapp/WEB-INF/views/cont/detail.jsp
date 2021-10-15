@@ -308,7 +308,7 @@
 									</thead>
 									<tbody>
 									<c:forEach var="row" items="${listFroom}" varStatus="status">
-										<tr style="vertical-align:middle;text-align:center" id="contWrite_Room_${row.FROOM_ID}">
+										<tr style="vertical-align:middle;text-align:center" id="contWrite_Room_${row.FROOM_ID}${row.TEMP_ROOM}">
 											<td style="vertical-align:middle;text-align: center;">
 												<input type="checkbox" <c:if test="${not empty row.CONTRACT_ID}">disabled</c:if><c:if test="${empty row.CONTRACT_ID}">disabled</c:if> <c:if test="${row.CONTRACT_ID eq CONTid}">checked</c:if> class="CHKroom form-control" onclick="oneCheck(this);"/>
 											</td>
@@ -322,7 +322,7 @@
 											<c:if test="${status.first}">
 												<td class="imagebx" rowspan="${fn:length(listFroom)}">
 													<c:forEach var="t" items="${listFroom}">
-														<img id="imageHidden_t01_${t.FROOM_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.FROOM_IMAGE}">src="${path}/image/${t.FROOM_IMAGE}"</c:if>
+														<img id="imageHidden_t01_${t.FROOM_ID}${t.TEMP_ROOM}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.FROOM_IMAGE}">src="${path}/image/${t.FROOM_IMAGE}"</c:if>
 															 <c:if test="${empty t.FROOM_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
 													</c:forEach>
 												</td>
@@ -364,23 +364,23 @@
 													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 											<td class = "RMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber
 													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td class = "sRMd" style="vertical-align:middle;text-align: right;">사용일</td>
-											<td class = "sRMt" style="vertical-align:middle;text-align: right;">사용시간</td>
+											<td class = "sRMd" style="vertical-align:middle;text-align: center;" >${row.DAYS}</td>
+											<td class = "sRMt" style="vertical-align:middle;text-align: center;" >${row.TIMES}</td>
 											<td class = "sRMcharge" style="vertical-align:middle;text-align: right;"><fmt:formatNumber
-													value="" pattern="#,###" /></td>
+													value="${row.RCHARGE}" pattern="#,###" /></td>
 											<td style="text-align: center; display:none"><input type="checkbox"
-												class="CHKsrm form-control" /></td>
+												class="CHKsrm form-control" <c:if test="${not empty row.RCHARGE}">checked</c:if> /></td>
 										</tr>
 									</c:forEach>
-									<c:forEach var="row" items="${listEtcroom}">
+									<c:forEach var="row" items="${contpage2fr2}">
 										<tr>
 											<td style="vertical-align:middle;text-align:center" class="second">부대시설</td>
 											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}<input type="hidden" class="etcrid"value="${row.FROOM_ID}"></td>
 											<td class = "EA" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 											<td class = "EB" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td style="vertical-align:middle;text-align: right;"><input style="text-align: right"class="form-control Eday" type="number" min="0" max="30" value="0"/></td>
-											<td style="vertical-align:middle;text-align: right;"><input style="text-align: right"class="form-control Etime" type="number" min="0" max="30" value="0"/></td>
-											<td class = "Esum" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="0" pattern="#,###" /></td>
+											<td style="vertical-align:middle;text-align: right;"><input style="text-align: center"class="form-control Eday" type="number" min="0" max="30" value="${row.DAYS}"/></td>
+											<td style="vertical-align:middle;text-align: right;"><input style="text-align: center"class="form-control Etime" type="number" min="0" max="30" value="${row.TIMES}"/></td>
+											<td class = "Esum" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.RCHARGE}" pattern="#,###" /></td>
 										</tr>
 									</c:forEach>
 									</tbody>
@@ -1324,9 +1324,10 @@
 											
 										</tr>
 									</thead>
-									<c:forEach var="row" items="${listEtcroom2}">
+									<c:forEach var="row" items="${contpage8}">
 										<tr>
-											<td style="text-align: center;"><input type="checkbox" class="CHKe form-control" /></td>
+											<td style="text-align: center;"><input type="checkbox" class="CHKe form-control" 
+											<c:if test="${row.RCHARGE > '0'}">checked</c:if> /></td>
 											<td>${row.FROOM_TITLE}</td>
 											<td></td>
 											<td class = "EA" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
@@ -1372,17 +1373,17 @@
 											<th style="display:none" class="text-center">선택</th>
 										</tr>
 									</thead>
-									<c:forEach var="row" items="${listEtcroom2}">
+									<c:forEach var="row" items="${contpage8}">
 										<tr>
-											<td><input type="hidden" class="sETCid" value="${row.FROOM_ID}>"/>${row.FROOM_TITLE}</td>
+											<td><input type="hidden" class="sETCid" value="${row.FROOM_ID}"/>${row.FROOM_TITLE}</td>
 											<td class = "sEA" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 											<td class = "sEB" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
 											<td class = "sEC" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td><input style="text-align: right;" class = "sED" type="number" min="0" value = "0"></td>
-											<td><input style="text-align: right;" class = "sEE" type="number" min="0" value = "0"></td>
+											<td><input style="text-align: right;" class = "sED" type="number" min="0" value = "${row.DAYS}"></td>
+											<td><input style="text-align: right;" class = "sEE" type="number" min="0" value = "${row.TIMES}"></td>
 											<td><input style="text-align: right;" class = "sEF" type="number" min="0" value = "0"></td>
-											<td class = "sEG" style="text-align: right;"><fmt:formatNumber value="" pattern="#,###" /></td>
-											<td style="text-align:center; display:none"><input type="checkbox" class="sCHKe form-control" /></td>
+											<td class = "sEG" style="text-align: right;"><fmt:formatNumber value="${row.RCHARGE}" pattern="#,###" /></td>
+											<td style="text-align:center; display:none"><input type="checkbox" class="sCHKe form-control" <c:if test="${row.RCHARGE ne 0}">checked</c:if> /></td>
 										</tr>
 									</c:forEach>
 								</table>
@@ -1970,7 +1971,7 @@
 		});
 		}
 		}
-		alert("저장성공");
+		alert("저장성공(8)");
 		});
 		}
 		else
@@ -2006,31 +2007,30 @@
 	$(firstElement).attr('rowspan', i);
 	
 	
-	var i = 1;
-	var str = undefined;
-	var element = $(".second2");
-	var firstElement = undefined;
-	element.each(function() {
-		console.dir(i + $(this).text());
-		if (str == undefined && firstElement == undefined) {
-			str = $(".second2")[0].innerText;
-			firstElement = $(".second2")[0];
+	/* var i2 = 1;
+	var str2 = undefined;
+	var element2 = $(".second2");
+	var firstElement2 = undefined;
+	element2.each(function() {
+		console.dir(i2 + $(this).text());
+		if (str2 == undefined && firstElement2 == undefined) {
+			str2 = $(".second2")[0].innerText;
+			firstElement2 = $(".second2")[0];
 			return;
 		}
-		if (str == $(this).text()) {
-			i++;
-			console.dir('--> ' + i + $(this).text());
+		if (str2 == $(this).text()) {
+			i2++;
+			console.dir('--> ' + i2 + $(this).text());
 			$(this).remove();
 		} else {
-			$(firstElement).attr('rowspan', i);
-			i = 1;
-			str = $(this).text();
-			firstElement = $(this);
+			$(firstElement2).attr('rowspan', i2);
+			i2 = 1;
+			str2 = $(this).text();
+			firstElement2 = $(this);
 		}
 	});
 	// 마지막꺼까지 반영
-	$(firstElement).attr('rowspan', i);
-
+	$(firstElement2).attr('rowspan', i2); */
 	
 	function calculateM() {
 		var $infoarr = $(".infoM");
@@ -2304,12 +2304,6 @@
 	var contDay = parseInt((contDay3 - contDay2)/(1000*60*60*24));
 	var contTime = parseInt(((contDay3 - contDay2)%(1000*60*60*24))/(1000*60*60));
 	var $infoarr = $(".CHKsrm");
-	var $Aarr = $(".sRMd");
-	var $Barr = $(".sRMt");
-	for (var i = 0; i < $infoarr.length; i++) {
-		$Aarr[i].innerText = contDay;
-		$Barr[i].innerText = contTime;
-		}
 	}
 	
 	function numberWithCommas(x) {
@@ -2824,7 +2818,13 @@ function oneCheckalt2and3Not(chk){
 
 $("#contp1-01").change(function(){
 	var contno = $("#contp1-01").val();
-	var url = "${path}/cont/detail/"+contno;
+	if (contno == ""){
+		var url = "${path}/cont/listview.do";	
+	}
+	else
+		{
+		var url = "${path}/cont/detail/"+contno;	
+		}
 	fnSetcontdetail(url);
 })
 

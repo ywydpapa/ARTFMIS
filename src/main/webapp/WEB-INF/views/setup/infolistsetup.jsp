@@ -21,7 +21,7 @@
 							<td style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${row.SETUP_CONTENTS}"</td>
 							<td>${row.SETUP_DESC}"</td>
 							<td><c:if test="${row.USE_YN eq 'Y'}">사용</c:if><c:if test="${row.USE_YN eq 'N'}">미사용</c:if></td>
-							<td><input type="checkbox" class="def form-control" <c:if test="${row.USE_YN eq 'N'}">disabled</c:if> onclick="oneCheck(this)"></td>
+							<td><input type="checkbox" class="def form-control" <c:if test="${row.SETUP_KEY eq 'Y'}">checked</c:if> onclick="oneCheck(this)"></td>
 						</tr>
 					</c:forEach>
 				</tbody>

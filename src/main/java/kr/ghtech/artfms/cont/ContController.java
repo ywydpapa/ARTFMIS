@@ -176,6 +176,7 @@ public class ContController {
 		mav.addObject("contCombo", contService.listContcombo());
 		mav.addObject("listFroom", contService.doslistFroom());
 		mav.addObject("listEtcroom", contService.doslistEtcroom());
+		mav.addObject("listEtcroom2", contService.doslistEtcroom2());
 		mav.addObject("listFgoodsM", contService.doslistFgoodsM());
 		mav.addObject("listFgoodsM13", contService.doslistFgoodsMn(13));
 		mav.addObject("listFgoodsM14", contService.doslistFgoodsMn(14));
@@ -195,6 +196,7 @@ public class ContController {
 		mav.addObject("frelation", codeService.listconBcode("5"));
 		mav.addObject("detailCont", contService.detailCont(CONTRACT_ID));
 		mav.addObject("contpage2fr", contService.reloadP2froom(CONTRACT_ID));
+		mav.addObject("contpage2fr2", contService.reloadP2froom2(CONTRACT_ID));
 		mav.addObject("contpage3", contService.reloadP3(CONTRACT_ID));
 		mav.addObject("contpage4m", contService.reloadP4m(CONTRACT_ID));
 		mav.addObject("contpage4t", contService.reloadP4t(CONTRACT_ID));

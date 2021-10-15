@@ -300,7 +300,7 @@
 									</thead>
 									<tbody>
 									<c:forEach var="row" items="${listFroom}" varStatus="status">
-										<tr style="vertical-align:middle;text-align:center" id="contWrite_Room_${row.roomID}">
+										<tr style="vertical-align:middle;text-align:center" id="contWrite_Room_${row.roomID}${row.TEMP_ROOM}">
 											<td style="vertical-align:middle;text-align: center;">
 												<input type="checkbox" <c:if test="${not empty row.CONTRACT_ID}">disabled</c:if> class="CHKroom form-control" onclick="oneCheck(this);"/>
 											</td>
@@ -315,7 +315,7 @@
 											<c:if test="${status.first}">
 												<td class="imagebx" rowspan="${fn:length(listFroom)}">
 													<c:forEach var="t" items="${listFroom}">
-														<img id="imageHidden_t01_${t.roomID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.FROOM_IMAGE}">src="${path}/image/${t.FROOM_IMAGE}"</c:if>
+														<img id="imageHidden_t01_${t.roomID}${t.TEMP_ROOM}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.FROOM_IMAGE}">src="${path}/image/${t.FROOM_IMAGE}"</c:if>
 															 <c:if test="${empty t.FROOM_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
 													</c:forEach>
 												</td>
@@ -2739,6 +2739,7 @@ function oneCheck(chk){
 	if(chk.checked){
 		let tr = $(chk).closest('tr');
 		let trId = tr.attr('id').split("_")[2];
+		console.log(trId);
 
 		$("img[id^='imageHidden_t01_']").hide();
 		$("img[id^='imageHidden_t01_"+trId+"']").show();
