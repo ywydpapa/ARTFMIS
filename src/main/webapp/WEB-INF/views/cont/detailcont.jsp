@@ -425,8 +425,8 @@
 								<tr name="addroomlist"> 
 									<td style="text-align:center"><input type="checkbox" class="chkAddroom form-control"></td>
 									<td style="text-align:center">${addlist.FROOM_TITLE}</td>
-									<td style="text-align:right">${addlist.DAYS}</td>
-									<td style="text-align:right">${addlist.TIMES}</td>
+									<td style="text-align:center">${addlist.DAYS}</td>
+									<td style="text-align:center">${addlist.TIMES}</td>
 									<td style="text-align:right">${addlist.CLEAN_CHARGE_DAYS}</td>
 									<td style="text-align:center"><c:if test="${addlist.STORE_REFG_YN eq 'Y'}">예</c:if><c:if test="${addlist.STORE_REFG_YN eq 'N'}">아니오</c:if></td>
 									<td style="text-align:center"><c:if test="${addlist.STORE_ITEM_YN eq 'Y'}">예</c:if><c:if test="${addlist.STORE_ITEM_YN eq 'N'}">아니오</c:if></td>
@@ -513,9 +513,9 @@
 				var innerHtml = "";
 				innerHtml += '<tr style="text-align:center" name="addroomlist"> <td><input type="checkbox" class="chkAddroom form-control"></td>';
 				innerHtml += '<td style="text-align:center">'+$("#add1 option:checked").text()+' </td>';
-				innerHtml += '<td style="text-align:right">'+$("#add2").text()+'</td>';
-				innerHtml += '<td style="text-align:right">'+$("#add3").text()+'</td>';
-				innerHtml += '<td style="text-align:right">'+$("#add4").text()+'</td>';
+				innerHtml += '<td style="text-align:right">'+$("#add2").val()+'</td>';
+				innerHtml += '<td style="text-align:right">'+$("#add3").val()+'</td>';
+				innerHtml += '<td style="text-align:right">'+$("#add4").val()+'</td>';
 				innerHtml += '<td style="text-align:center">'+$("#add5 option:checked").text()+'</td>';
 				innerHtml += '<td style="text-align:center">'+$("#add6 option:checked").text()+'</td>';
 				innerHtml += '<td style="text-align:center">'+$("#add8 option:checked").text()+'</td>';
