@@ -3,8 +3,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<fmt:parseDate var="STDate" value="${detailCont.START_DATE}" pattern="yyyy-MM-dd"/>
-<fmt:parseDate var="ENDate" value="${detailCont.END_DATE}" pattern="yyyy-MM-dd"/>
+<fmt:parseDate var="STDate" value="${detailCont.START_DATE}"
+	pattern="yyyy-MM-dd" />
+<fmt:parseDate var="ENDate" value="${detailCont.END_DATE}"
+	pattern="yyyy-MM-dd" />
 <div class="listcont">
 	<div class="page-header2">
 		<div class="row align-items-end">
@@ -18,36 +20,363 @@
 		</div>
 	</div>
 	<div class="c-container">
-	<div>
-<!--Page-header end 페이지 타이틀 -->
-	<div class="cnt_wr">
-	<!-- Row start -->
-	<div class="row">
-		<div class="col-lg-12 col-xl-12">
-		<div class="table-responsive">
-				<table class="table  table-bordered nowrap">
-				<tr>
-				<td><input id="frid" type="hidden" value = "${frid}"><input id="contid" type="hidden" value = "${CONTid}">
-				<input id="rmchk" type="hidden" value = "OK"><span>계약번호 :  </span>${CONTid}</td>
-				<td></td>
-				</tr>
-				</table>
-				</div>
-			<div class="tab-content tabs m-t-20">
-				<div class="tab-pane active" id="tab01" role="tabpanel">
-					<div class="cnt_wr">
-						<div class="row">
-							<div class="col-sm-12">
+		<div>
+			<!--Page-header end 페이지 타이틀 -->
+			<div class="cnt_wr">
+				<!-- Row start -->
+				<div class="row">
+					<div class="col-lg-12 col-xl-12">
+						<div class="table-responsive">
+							<table class="table  table-bordered nowrap">
+								<tr>
+									<td><input id="frid" type="hidden" value="${frid}"><input
+										id="contid" type="hidden" value="${CONTid}"> <input
+										id="rmchk" type="hidden" value="OK"><span>계약번호
+											: </span>${CONTid}</td>
+									<td></td>
+								</tr>
+							</table>
+						</div>
+						<div class="tab-content tabs m-t-20">
+							<div class="tab-pane active" id="tab01" role="tabpanel">
+								<div class="cnt_wr">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="card-block table-border-style">
+												<div class="table-responsive">
+													<table class="table table-sm bst02">
+														<tbody>
+															<tr>
+																<th scope="row">계약기본사항</th>
+															</tr>
+														</tbody>
+													</table>
+													<table class="table table-sm bst02" id="basicTable">
+														<colgroup>
+															<col width="10%" />
+															<col width="10%" />
+															<col width="10%" />
+															<col width="10%" />
+															<col width="10%" />
+															<col width="10%" />
+															<col width="10%" />
+														</colgroup>
+														<tbody>
+															<tr>
+																<th
+																	style="vertical-align: center; text-align: center; background-color: #CEF6E3"
+																	rowspan="2">계약기간</th>
+																<td class="text-center">계약호실</td>
+																<td><select class="form-control" id="contp1-01"
+																	disabled>
+																		<c:forEach var="listroom" items="${listroom}">
+																			<option value="${listroom.FROOM_ID}">${listroom.FROOM_TITLE}</option>
+																		</c:forEach>
+																</select></td>
+																<td class="text-center">기간</td>
+																<td><input type="date" class="form-control"
+																	id="contp1-02" name="contp1-02" value="${STDate}"
+																	disabled></td>
+																<td><input type="date" class="form-control"
+																	id="contp1-03" name="contp1-03" value="${ENDate}"
+																	disabled></td>
+																<td></td>
+															</tr>
+															<tr>
+																<td class="text-center">행사업체</td>
+																<td><input type="text" class="form-control"
+																	id="contp1-04"></td>
+																<td></td>
+																<td></td>
+																<td></td>
+																<td></td>
+															</tr>
+															<tr>
+																<th
+																	style="vertical-align: center; text-align: center; background-color: #CEF6E3"
+																	rowspan="5">고인</th>
+																<td class="text-center">성명</td>
+																<td><input type="text"
+																	class="form-control form-control-sm" id="contp1-07"
+																	name="contp1-07" value="${detailCont.DPERSON_NAME}">
+																</td>
+																<td class="text-center">주민등록번호</td>
+																<td><input type="text" size="13" maxlength="15"
+																	class="form-control form-control-sm jumin"
+																	id="contp1-08" name="contp1-08"
+																	value="${detailCont.DPERSON_JMNO}"></td>
+																<td class="text-center">성별</td>
+																<td><select class="form-control" id="contp1-09">
+																		<option value="">선택</option>
+																		<option value="1">남</option>
+																		<option value="2">여</option>
+																</select></td>
+															</tr>
+															<tr>
+																<td class="text-center">주소</td>
+																<td colspan="2"><input type="text"
+																	class="form-control form-control-sm" id="contp1-10"
+																	name="contp1-10" value="${detailCont.DPERSON_ADDR1}">
+																</td>
+																<td></td>
+																<td class="text-center">본관</td>
+																<td><input type="text"
+																	class="form-control form-control-sm" id="contp1-11"
+																	name="contp1-11" value=""></td>
+															</tr>
+															<tr>
+																<td class="text-center">상세주소</td>
+																<td colspan="2"><input type="text"
+																	class="form-control form-control-sm" id="contp1-12"
+																	name="contp1-12" value="${detailCont.DPERSON_ADDR2}">
+																</td>
+																<td></td>
+																<td class="text-center">종교</td>
+																<td><select class="form-control" id="contp1-13">
+																		<option value="">선택</option>
+																		<c:forEach var="regc" items="${regioncode}">
+																			<option value="${regc.BCD_ID}">${regc.BCD_TITLE}</option>
+																		</c:forEach>
+																</select></td>
+															</tr>
+															<tr>
+																<td class="text-center">사망일시</td>
+																<td><input type="date"
+																	style="width: 70%; float: left"
+																	class="form-control form-control-sm" id="contp1-14"
+																	name="contp1-14" value=""><input type="text"
+																	class="form-control form-control-sm timepicker"
+																	style="width: 25%; float: right" id="contp1-14-1"
+																	name="contp1-14-1" value=""></td>
+																<td class="text-center">나이</td>
+																<td><input type="number" style="text-align: right;"
+																	class="form-control form-control-sm" id="contp1-15"
+																	min="0" max="150" name="contp1-15"
+																	value="${detailCont.DPERSON_AGE}"></td>
+																<td class="text-center">사망종류</td>
+																<td><select class="form-control" id="contp1-16">
+																		<option value="">선택</option>
+																		<option value="1">노환</option>
+																		<option value="2">병사</option>
+																</select></td>
+															</tr>
+															<tr>
+																<td class="text-center">사망장소</td>
+																<td><input type="text"
+																	class="form-control form-control-sm" id="contp1-17"
+																	name="contp1-17" value="${detailCont.DPLACE}">
+																</td>
+																<td class="text-center">지역</td>
+																<td><input type="text"
+																	class="form-control form-control-sm" id="contp1-18"
+																	name="contp1-18" value=""></td>
+																<td class="text-center">화장/매장</td>
+																<td><select class="form-control" id="contp1-19">
+																		<option value="1">화장</option>
+																		<option value="2">매장</option>
+																		<option value="9">기타</option>
+																</select></td>
+															</tr>
+															<tr>
+																<th
+																	style="vertical-align: center; text-align: center; background-color: #CEF6E3"
+																	rowspan="3">유족</th>
+																<td class="text-center">상주성명</td>
+																<td><input type="text"
+																	class="form-control form-control-sm" id="contp1-20"
+																	name="contp1-20" value="${detailCont.SANGJU_NAME}">
+																</td>
+																<td class="text-center">주민등록번호</td>
+																<td><input type="text" size="13" maxlength="15"
+																	class="form-control form-control-sm jumin"
+																	id="contp1-21" name="contp1-21"
+																	value="${detailCont.SANGJU_JMNO}"></td>
+																<td class="text-center">관계</td>
+																<td><select class="form-control" id="contp1-22">
+																		<option value="">선택</option>
+																		<c:forEach var="regc" items="${frelation}">
+																			<option value="${regc.BCD_ID}">${regc.BCD_TITLE}</option>
+																		</c:forEach>
+																</select></td>
+															</tr>
+															<tr>
+																<td class="text-center">주소</td>
+																<td colspan="2"><input type="text"
+																	class="form-control form-control-sm" id="contp1-23"
+																	name="contp1-23" value="${detailCont.SANGJU_ADDR1}">
+																</td>
+																<td></td>
+																<td class="text-center">연락처</td>
+																<td><input type="text"
+																	class="form-control form-control-sm" id="contp1-24"
+																	name="contp1-24" value="${detailCont.SANGJU_TEL}"></td>
+															</tr>
+															<tr>
+																<td class="text-center">상세주소</td>
+																<td colspan="2"><input type="text"
+																	class="form-control form-control-sm" id="contp1-25"
+																	name="contp1-25" value="${detailCont.SANGJU_ADDR2}">
+																</td>
+																<td></td>
+																<td></td>
+															</tr>
+															<tr>
+																<th
+																	style="vertical-align: center; text-align: center; background-color: #CEF6E3"
+																	rowspan="2">일정</th>
+																<td class="text-center">입실일시*</td>
+																<td><input type="date"
+																	style="width: 70%; float: left"
+																	class="form-control form-control-sm" id="contp1-26"
+																	name="contp1-26" value=""> <input type="text"
+																	style="width: 25%; float: right"
+																	class="form-control form-control-sm timepicker"
+																	id="contp1-26-1" name="contp1-26-1" value="">
+																</td>
+																<td class="text-center">안치일시</td>
+																<td><input type="date"
+																	style="width: 70%; float: left"
+																	class="form-control form-control-sm" id="contp1-27"
+																	name="contp1-27" value=""> <input type="text"
+																	style="width: 25%; float: right"
+																	class="form-control form-control-sm timepicker"
+																	id="contp1-27-1" name="contp1-27-1" value=""></td>
+																<td></td>
+																<td></td>
+															</tr>
+															<tr>
+																<td class="text-center">입관일시</td>
+																<td><input type="date"
+																	style="width: 70%; float: left"
+																	class="form-control form-control-sm" id="contp1-28"
+																	name="contp1-28" value=""> <input type="text"
+																	style="width: 25%; float: right"
+																	class="form-control form-control-sm timepicker"
+																	id="contp1-28-1" name="contp1-28-1" value="">
+																</td>
+																<td class="text-center">발인일시*</td>
+																<td><input type="date"
+																	style="width: 70%; float: left"
+																	class="form-control form-control-sm" id="contp1-29"
+																	name="contp1-29" value=""> <input type="text"
+																	style="width: 25%; float: right"
+																	class="form-control form-control-sm timepicker"
+																	id="contp1-29-1" name="contp1-29-1" value=""></td>
+																<td></td>
+																<td></td>
+															</tr>
+															<tr align="center">
+																<td
+																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">장지</td>
+																<td colspan="3"><input type="text"
+																	class="form-control form-control-sm" id="contp1-30"
+																	name="contp1-30" value="${detailCont.JANGJI}">
+																</td>
+																<td></td>
+																<td></td>
+																<td></td>
+															</tr>
+															<tr name="yujoklist" class="text-center">
+																<th
+																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">유족정보</th>
+																<td><select class="form-control" id="contp1-31">
+																		<option value="">선택</option>
+																		<c:forEach var="regc" items="${frelation}">
+																			<option value="${regc.BCD_ID}">${regc.BCD_TITLE}</option>
+																		</c:forEach>
+																</select></td>
+																<td><input type="text"
+																	class="form-control form-control-sm" id="contp1-32"
+																	name="contp1-31" value=""></td>
+																<td><button class="btn btn-primary"
+																		onclick="fn_addyujok()">추가</button></td>
+																<td></td>
+																<td></td>
+																<td></td>
+															</tr>
+															<c:forEach var="yujok" items="${listYujok}">
+																<tr id="sj${yujok.CONT_SANGJU_ID}">
+																	<td
+																		style="vertical-align: center; text-align: center; background-color: #CEF6E3"></td>
+																	<td class="text-center">${yujok.RELATION_TITLE}</td>
+																	<td>${yujok.SANGJU_NAMEs}</td>
+																	<td><button
+																			onclick="fn_delyujok('${yujok.CONT_SANGJU_ID}')">삭제</button></td>
+																</tr>
+															</c:forEach>
+															<tr align="center">
+																<td
+																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">비고</td>
+																<td colspan="6"><input type="text"
+																	class="form-control form-control-sm" id="contp1-37"
+																	name="contp1-37" value="${detailCont.REMARK}"></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--//계약기본등록-->
+							</div>
+							<div class="tab-pane active" id="tab02" role="tabpanel">
 								<div class="card-block table-border-style">
-									<div class="table-responsive">
-										<table class="table table-sm bst02">
-											<tbody>
-												<tr>
-													<th scope="row">계약기본사항</th>
-												</tr>
-											</tbody>
-										</table>
-										<table class="table table-sm bst02" id="basicTable">
+									<div class="table-responsive" style="overflow-x: hidden">
+										<form name="room2" method="post" onsubmit="return false;">
+											<table class="table table-sm bst02">
+												<tbody>
+													<tr>
+														<th scope="row">시설사용정보</th>
+													</tr>
+												</tbody>
+											</table>
+											<table class="table table-bordered nowrap" id="roomList">
+												<colgroup>
+													<col width="10%" />
+													<col width="10%" />
+													<col width="10%" />
+													<col width="10%" />
+													<col width="10%" />
+													<col width="10%" />
+													<col width="10%" />
+												</colgroup>
+												<thead>
+													<tr>
+														<th class="text-center">호실명</th>
+														<th class="text-center">일일사용료</th>
+														<th class="text-center">시간당사용료</th>
+														<th class="text-center">면적(m<sup>2</sup>)
+														</th>
+														<th class="text-center">평수</th>
+														<th class="text-center">수용인원</th>
+														<th class="text-center">임시호실명</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach var="row" items="${contpage2}">
+														<tr
+															<c:if test="${row.CHKED eq 'N'}">style="display:none"</c:if>>
+															<td>${row.FROOM_TITLE}<input type="hidden"
+																class="FRMID" value="${row.FROOM_ID}"></td>
+															<td class="RMday" style="text-align: right;"><fmt:formatNumber
+																	value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
+															<td class="RMtime" style="text-align: right;"><fmt:formatNumber
+																	value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+															<td style="text-align: right;">${row.FROOM_AREA}</td>
+															<td style="text-align: right;">${row.FROOM_AREA_KOR}</td>
+															<td style="text-align: right;">${row.FROOM_MAX_PERS}</td>
+															<td style="text-align: center;">${row.FROOM_ALIS}</td>
+															<td style="display: none"><input type="checkbox"
+																class="CHKroom form-control"
+																<c:if test="${row.CHKED eq 'Y'}">checked</c:if>></td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</form>
+										<br> <br>
+										<table class="table table-bordered nowrap" id="SltdroomList">
 											<colgroup>
 												<col width="10%" />
 												<col width="10%" />
@@ -55,403 +384,143 @@
 												<col width="10%" />
 												<col width="10%" />
 												<col width="10%" />
-												<col width="10%" />
 											</colgroup>
+											<thead>
+												<tr>
+													<th class="text-center">계약호실명</th>
+													<th class="text-center">일일사용료</th>
+													<th class="text-center">시간당사용료</th>
+													<th class="text-center">사용일</th>
+													<th class="text-center">사용시간</th>
+													<th class="text-center">사용요금</th>
+													<th style="display: none" class="text-center">선택</th>
+												</tr>
+											</thead>
 											<tbody>
-												<tr >
-													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3" rowspan="2">계약기간</th>
-													<td class="text-center">계약호실</td>
-													<td><select class="form-control" id="contp1-01" disabled>
-															<c:forEach var="listroom" items="${listroom}">
-																<option value="${listroom.FROOM_ID}">${listroom.FROOM_TITLE}</option>
-															</c:forEach>
-													</select></td>
-													<td class="text-center">기간</td>
-													<td><input type="date" class="form-control" id="contp1-02" name="contp1-02" value="${STDate}" disabled></td>
-													<td><input type="date" class="form-control" id="contp1-03" name="contp1-03" value="${ENDate}" disabled></td>
-													<td></td>
-												</tr>
-												<tr >
-													<td class="text-center">행사업체</td>
-													<td><input type="text" class="form-control" id="contp1-04"></td>
-													<td></td>													
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr >
-													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3" rowspan="5">고인</th>
-													<td class="text-center">성명</td>
-													<td><input type="text" 
-														class="form-control form-control-sm" id="contp1-07"
-														name="contp1-07" value="${detailCont.DPERSON_NAME}" >
-													</td>
-													<td class="text-center">주민등록번호</td>
-													<td><input type="text" size="13" maxlength="15"
-														class="form-control form-control-sm jumin" id="contp1-08"
-														name="contp1-08" value="${detailCont.DPERSON_JMNO}"></td>
-													<td class="text-center">성별</td>
-													<td>
-														<select class="form-control" id="contp1-09">
-														<option value = "">선택</option>
-														<option value = "1">남</option>
-														<option value = "2">여</option>
-														</select>
-														</td>
-												</tr>
-												<tr >
-													<td class="text-center">주소</td>
-													<td colspan="2"><input type="text"
-														class="form-control form-control-sm" id="contp1-10"
-														name="contp1-10" value="${detailCont.DPERSON_ADDR1}" >
-													</td>
-													<td></td>
-													<td class="text-center">본관</td>
-													<td><input type="text"
-														class="form-control form-control-sm" id="contp1-11"
-														name="contp1-11" value=""></td>
-												</tr>
-												<tr >
-													<td class="text-center">상세주소</td>
-													<td colspan="2"><input type="text"
-														class="form-control form-control-sm" id="contp1-12"
-														name="contp1-12" value="${detailCont.DPERSON_ADDR2}" >
-													</td>
-													<td></td>
-													<td class="text-center">종교</td>
-													<td><select class="form-control" id="contp1-13">
-															<option value="">선택</option>
-															<c:forEach var="regc" items="${regioncode}">
-																<option value="${regc.BCD_ID}">${regc.BCD_TITLE}</option>
-															</c:forEach>
-															</select></td>
-												</tr>
-												<tr >
-													<td class="text-center">사망일시</td>
-													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-14"
-														name="contp1-14" value=""><input type="text" class="form-control form-control-sm timepicker"  style="width:25%;float:right" id="contp1-14-1"
-														name="contp1-14-1" value=""></td>
-													<td class="text-center">나이</td>
-													<td><input type="number" style="text-align:right;"
-														class="form-control form-control-sm" id="contp1-15" min="0" max="150"
-														name="contp1-15" value="${detailCont.DPERSON_AGE}"></td>
-													<td class="text-center">사망종류</td>
-													<td><select class="form-control" id="contp1-16">
-															<option value="">선택</option>
-															<option value="1">노환</option>
-															<option value="2">병사</option>
-													</select></td>
-												</tr>
-												<tr >
-													<td class="text-center">사망장소</td>
-													<td><input type="text"
-														class="form-control form-control-sm" id="contp1-17"
-														name="contp1-17" value="${detailCont.DPLACE}" >
-													</td>
-													<td class="text-center">지역</td>
-													<td><input type="text"
-														class="form-control form-control-sm" id="contp1-18"
-														name="contp1-18" value=""></td>
-													<td class="text-center">화장/매장</td>
-													<td>
-													<select class="form-control" id="contp1-19">
-															<option value="1">화장</option>
-															<option value="2">매장</option>
-															<option value="9">기타</option>
-													</select>
-													</td>
-												</tr>
-												<tr >
-													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3" rowspan="3">유족</th>
-													<td class="text-center">상주성명</td>
-													<td><input type="text"
-														class="form-control form-control-sm" id="contp1-20"
-														name="contp1-20" value="${detailCont.SANGJU_NAME}" >
-													</td>
-													<td class="text-center">주민등록번호</td>
-													<td><input type="text" size="13" maxlength="15"
-														class="form-control form-control-sm jumin" id="contp1-21" 
-														name="contp1-21" value="${detailCont.SANGJU_JMNO}"></td>
-													<td class="text-center">관계</td>
-													<td><select class="form-control" id="contp1-22">
-															<option value="">선택</option>
-															<c:forEach var="regc" items="${frelation}">
-																<option value="${regc.BCD_ID}">${regc.BCD_TITLE}</option>
-															</c:forEach>
-													     </select></td>
-												</tr>
-												<tr >
-													<td class="text-center">주소</td>
-													<td colspan="2"><input type="text"
-														class="form-control form-control-sm" id="contp1-23"
-														name="contp1-23" value="${detailCont.SANGJU_ADDR1}">
-													</td>
-													<td></td>
-													<td class="text-center">연락처</td>
-													<td><input type="text"
-														class="form-control form-control-sm" id="contp1-24"
-														name="contp1-24" value="${detailCont.SANGJU_TEL}"></td>
-												</tr>
-												<tr >
-													<td class="text-center">상세주소</td>
-													<td colspan="2"><input type="text"
-														class="form-control form-control-sm" id="contp1-25"
-														name="contp1-25" value="${detailCont.SANGJU_ADDR2}">
-													</td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr >
-													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3" rowspan="2">일정</th>
-													<td class="text-center">입실일시*</td>
-													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-26" name="contp1-26" value="" >
-													<input type="text" style="width:25%;float:right" class="form-control form-control-sm timepicker" id="contp1-26-1" name="contp1-26-1" value="" >
-													</td>
-													<td class="text-center">안치일시</td>
-													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-27" name="contp1-27" value="">
-													<input type="text" style="width:25%;float:right"class="form-control form-control-sm timepicker" id="contp1-27-1" name="contp1-27-1" value="">
-													</td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr >
-													<td class="text-center">입관일시</td>
-													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-28" name="contp1-28" value="" >
-													<input type="text" style="width:25%;float:right"class="form-control form-control-sm timepicker" id="contp1-28-1" name="contp1-28-1" value="" >
-													</td>
-													<td class="text-center">발인일시*</td>
-													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-29" name="contp1-29" value="">
-													<input type="text" style="width:25%;float:right"class="form-control form-control-sm timepicker" id="contp1-29-1" name="contp1-29-1" value="">
-													</td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr align="center">
-													<td style ="vertical-align:center;text-align:center;background-color:#CEF6E3">장지</td>
-													<td colspan="3"><input type="text"
-														class="form-control form-control-sm" id="contp1-30"
-														name="contp1-30" value="${detailCont.JANGJI}" >
-													</td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-												<tr name="yujoklist" class="text-center">
-													<th style ="vertical-align:center;text-align:center;background-color:#CEF6E3">유족정보</th>
-													<td>
-														<select class="form-control" id="contp1-31">
-															<option value="">선택</option>
-															<c:forEach var="regc" items="${frelation}">
-																<option value="${regc.BCD_ID}">${regc.BCD_TITLE}</option>
-															</c:forEach>
-													     </select>
-													</td>
-													<td><input type="text" class="form-control form-control-sm" id="contp1-32"
-														name="contp1-31" value="" >
-													</td>
-													<td><button class="btn btn-primary"onclick="fn_addyujok()">추가</button></td>
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-													<c:forEach var="yujok" items="${listYujok}">
-													<tr id="sj${yujok.CONT_SANGJU_ID}">
-													<td style ="vertical-align:center;text-align:center;background-color:#CEF6E3"></td>
-													<td  class="text-center">${yujok.RELATION_TITLE}</td>
-													<td>${yujok.SANGJU_NAMEs}</td>
-													<td><button onclick="fn_delyujok('${yujok.CONT_SANGJU_ID}')">삭제</button></td>
-													</tr>	
-													</c:forEach>
-												<tr align="center">
-													<td style ="vertical-align:center;text-align:center;background-color:#CEF6E3">비고</td>
-													<td colspan="6"><input type="text"
-														class="form-control form-control-sm" id="contp1-37"
-														name="contp1-37" value="${detailCont.REMARK}"></td>
-												</tr>
+												<c:forEach var="row" items="${contpage2}">
+													<tr>
+														<td class="text-center">${row.FROOM_TITLE}<c:if
+																test="${row.ADD_YN eq 'Y'}">(추가호실)</c:if>
+															<c:if test="${not row.ADD_YN eq 'Y'}">(계약호실)</c:if><input
+															type="hidden" class="sFRMID" value="${row.FROOM_ID}"></td>
+														<td class="RMday" style="text-align: right;"><fmt:formatNumber
+																value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
+														<td class="RMtime" style="text-align: right;"><fmt:formatNumber
+																value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+														<td style="background-color: #F5F6CE"><input
+															type="number" class="sRMd form-control"
+															style="text-align: right; border: none; background-color: #F5F6CE"
+															min="0" value="${row.DAYS}"></td>
+														<td style="background-color: #F5F6CE"><input
+															type="number" class="sRMt form-control"
+															style="text-align: right; border: none; background-color: #F5F6CE"
+															min="0" max="23" value="${row.TIMES}"></td>
+														<td class="sRMcharge" style="text-align: right;"><fmt:formatNumber
+																value="${row.RCHARGE}" pattern="#,###" /></td>
+														<td style="text-align: center; display: none"><input
+															type="checkbox" class="CHKsrm form-control"
+															<c:if test="${row.CHKED eq 'Y'}">checked</c:if>></td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
+										<div id="addFroom">
+											<table class="table table-bordered nowrap"
+												name="addroomTable" id="addroomTable">
+												<colgroup>
+													<col width="10%" />
+													<col width="10%" />
+													<col width="10%" />
+													<col width="10%" />
+													<col width="12%" />
+													<col width="12%" />
+													<col width="12%" />
+													<col width="12%" />
+													<col width="12%" />
+												</colgroup>
+												<tr>
+													<td class="text-center">삭제</td>
+													<td class="text-center">추가사용호실</td>
+													<td class="text-center">사용일수</td>
+													<td class="text-center">사용시간</td>
+													<td class="text-center">환경부담금일수</td>
+													<td class="text-center">냉장고사용</td>
+													<td class="text-center">일회용품사용</td>
+													<td class="text-center">입실여부</td>
+													<td class="text-center"></td>
+												</tr>
+												<tr name="addroomlist">
+													<td></td>
+													<td><select class="form-control" id="add1">
+															<c:forEach var="row" items="${listroomemp}">
+																<option value="${row.FROOM_ID}">${row.FROOM_TITLE}</option>
+															</c:forEach>
+													</select></td>
+													<td><input id="add2" class="form-control"
+														style="text-align: right" type="number" min="0" max="100"
+														value="0"></td>
+													<td><input id="add3" class="form-control"
+														style="text-align: right" type="number" min="0" max="23"
+														value="0"></td>
+													<td><input id="add4" class="form-control"
+														style="text-align: right" type="number" min="0" max="100"
+														value="0"></td>
+													<td><select id="add5" class="form-control">
+															<option value="Y">예</option>
+															<option value="N">아니오</option>
+													</select></td>
+													<td><select id="add6" class="form-control">
+															<option value="Y">예</option>
+															<option value="N">아니오</option>
+													</select></td>
+													<td><select id="add8" class="form-control">
+															<option value="Y">예</option>
+															<option value="N">아니오</option>
+													</select></td>
+													<td style="text-align: center"><button
+															class="btn btn-primary" onclick="addNewRoom()">추가</button></td>
+												</tr>
+												<c:forEach var="addlist" items="${addlist}">
+													<tr name="addroomlist">
+														<td style="text-align: center"><input type="checkbox"
+															class="chkAddroom form-control"></td>
+														<td style="text-align: center">${addlist.FROOM_TITLE}</td>
+														<td style="text-align: center">${addlist.DAYS}</td>
+														<td style="text-align: center">${addlist.TIMES}</td>
+														<td style="text-align: right">${addlist.CLEAN_CHARGE_DAYS}</td>
+														<td style="text-align: center"><c:if
+																test="${addlist.STORE_REFG_YN eq 'Y'}">예</c:if>
+															<c:if test="${addlist.STORE_REFG_YN eq 'N'}">아니오</c:if></td>
+														<td style="text-align: center"><c:if
+																test="${addlist.STORE_ITEM_YN eq 'Y'}">예</c:if>
+															<c:if test="${addlist.STORE_ITEM_YN eq 'N'}">아니오</c:if></td>
+														<td style="text-align: center"><c:if
+																test="${addlist.CHKED eq 'Y'}">예</c:if>
+															<c:if test="${addlist.CHKED eq 'N'}">아니오</c:if></td>
+														<td style="text-align: center"><button
+																class="btn btn-secondary"
+																onclick="delRoom(this,${addlist.CONT_FROOM_ID},${addlist.FROOM_ID} )">삭제</button></td>
+												</c:forEach>
+											</table>
+										</div>
 									</div>
+								</div>
+								<div class="btn_wr text-right mt-3">
+									<button class="btn btn-md btn-primary"
+										onClick="fn_contUpdate()">저장</button>
 								</div>
 							</div>
 						</div>
-					</div>
-					<!--//계약기본등록-->
-				</div>
-				<div class="tab-pane active" id="tab02" role="tabpanel">
-					<div class="card-block table-border-style">
-						<div class="table-responsive" style="overflow-x:hidden">
-							<form name="room2" method="post" onsubmit="return false;">
-								<table class="table table-sm bst02">
-									<tbody>
-										<tr>
-											<th scope="row">시설사용정보</th>
-										</tr>
-									</tbody>
-								</table>
-								<table class="table  table-bordered nowrap"
-									id="roomList">
-									<colgroup>
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-									</colgroup>
-									<thead>
-										<tr>
-											<th class="text-center">호실명</th>
-											<th class="text-center">일일사용료</th>
-											<th class="text-center">시간당사용료</th>
-											<th class="text-center">면적(m<sup>2</sup>)											</th>
-											<th class="text-center">평수</th>
-											<th class="text-center">수용인원</th>
-											<th class="text-center">임시호실명</th>
-										</tr>
-									</thead>
-									<tbody>
-									<c:forEach var="row" items="${contpage2}">
-										<tr <c:if test="${row.CHKED eq 'N'}">style="display:none"</c:if>>
-											<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
-											<td class = "RMday"style="text-align: right;"><fmt:formatNumber
-													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
-													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;">${row.FROOM_AREA}</td>
-											<td style="text-align: right;">${row.FROOM_AREA_KOR}</td>
-											<td style="text-align: right;">${row.FROOM_MAX_PERS}</td>
-											<td style="text-align: center;">${row.FROOM_ALIS}</td>
-											<td style="display:none"><input type="checkbox" 
-												class="CHKroom form-control" <c:if test="${row.CHKED eq 'Y'}">checked</c:if>></td>
-										</tr>
-									</c:forEach>
-									</tbody>
-								</table>
-							</form>
-							<br> <br>
-							<table class="table table-bordered nowrap" id="SltdroomList">
-									<colgroup>
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-									</colgroup>
-									<thead>
-										<tr>
-											<th class="text-center">계약호실명</th>
-											<th class="text-center">일일사용료</th>
-											<th class="text-center">시간당사용료</th>
-											<th class="text-center">사용일</th>
-											<th class="text-center">사용시간</th>
-											<th class="text-center">사용요금</th>
-											<th style="display:none" class="text-center">선택</th>
-										</tr>
-									</thead>
-									<tbody>
-									<c:forEach var="row" items="${contpage2}">
-										<tr>
-											<td>${row.FROOM_TITLE}<c:if test="${row.ADD_YN eq 'Y'}">(추가호실)</c:if><c:if test="${not row.ADD_YN eq 'Y'}">(계약호실)</c:if><input type="hidden" class = "sFRMID" value = "${row.FROOM_ID}"></td>
-											<td class = "RMday"style="text-align: right;"><fmt:formatNumber
-													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
-													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td style="background-color:#F5F6CE"><input type="number" class = "sRMd form-control" style="text-align: right; border:none;background-color:#F5F6CE" min="0" value="${row.DAYS}"></td>
-											<td style="background-color:#F5F6CE"><input type="number"  class = "sRMt form-control" style="text-align: right;border:none;background-color:#F5F6CE" min="0" max="23" value="${row.TIMES}"></td>
-											<td class = "sRMcharge" style="text-align: right;"><fmt:formatNumber
-													value="${row.RCHARGE}" pattern="#,###" /></td>
-											<td style="text-align: center; display:none"><input type="checkbox" class="CHKsrm form-control" <c:if test="${row.CHKED eq 'Y'}">checked</c:if>></td>										</tr>
-									</c:forEach>
-									</tbody>
-								</table>
-								<div id="addFroom">
-								<table class="table table-bordered nowrap" name="addroomTable" id="addroomTable">
-								<colgroup>
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="12%" />
-										<col width="12%" />
-										<col width="12%" />
-										<col width="12%" />
-										<col width="12%" />
-								</colgroup>
-								<tr>
-								<td class="text-center">삭제</td>
-								<td class="text-center">추가사용호실</td>
-								<td class="text-center">사용일수</td>
-								<td class="text-center">사용시간</td>
-								<td class="text-center">환경부담금일수</td>
-								<td class="text-center">냉장고사용</td>
-								<td class="text-center">일회용품사용</td>
-								<td class="text-center">입실여부</td>
-								<td class="text-center"></td>
-								</tr>
-								<tr name="addroomlist">
-								<td></td>
-								<td>
-								<select  class="form-control" id="add1">
-								<c:forEach var="row" items="${listroomemp}">
-								<option value="${row.FROOM_ID}">${row.FROOM_TITLE}</option>
-								</c:forEach>
-								</select>
-								</td>
-								<td><input id="add2" class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
-								<td><input id="add3"class="form-control" style="text-align: right" type="number" min="0" max="23" value="0"></td>
-								<td><input id="add4"class="form-control" style="text-align: right" type="number" min="0" max="100" value="0"></td>
-								<td>
-								<select id="add5" class="form-control">
-								<option value="Y">예</option>
-								<option value="N">아니오</option>
-								</select>
-								</td>
-								<td>
-								<select id="add6" class="form-control">
-								<option value="Y">예</option>
-								<option value="N">아니오</option>
-								</select></td>
-								<td>
-								<select id="add8" class="form-control">
-								<option value="Y">예</option>
-								<option value="N">아니오</option>
-								</select>
-								</td>
-								<td style="text-align:center"><button class="btn btn-primary" onclick="addNewRoom()">추가</button></td>
-								</tr>
-								<c:forEach var="addlist" items="${addlist}">
-								<tr name="addroomlist"> 
-									<td style="text-align:center"><input type="checkbox" class="chkAddroom form-control"></td>
-									<td style="text-align:center">${addlist.FROOM_TITLE}</td>
-									<td style="text-align:center">${addlist.DAYS}</td>
-									<td style="text-align:center">${addlist.TIMES}</td>
-									<td style="text-align:right">${addlist.CLEAN_CHARGE_DAYS}</td>
-									<td style="text-align:center"><c:if test="${addlist.STORE_REFG_YN eq 'Y'}">예</c:if><c:if test="${addlist.STORE_REFG_YN eq 'N'}">아니오</c:if></td>
-									<td style="text-align:center"><c:if test="${addlist.STORE_ITEM_YN eq 'Y'}">예</c:if><c:if test="${addlist.STORE_ITEM_YN eq 'N'}">아니오</c:if></td>
-									<td style="text-align:center"><c:if test="${addlist.CHKED eq 'Y'}">예</c:if><c:if test="${addlist.CHKED eq 'N'}">아니오</c:if></td>
-									<td style="text-align:center"><button class="btn btn-secondary" onclick="delRoom(this,${addlist.CONT_FROOM_ID},${addlist.FROOM_ID} )">삭제</button></td>
-								</c:forEach>
-								</table>
-								</div>
-						</div>
-					</div>
-					<div class="btn_wr text-right mt-3">
-						<button class="btn btn-md btn-primary" onClick="fn_contUpdate()">저장</button>
+						<!-- Row end -->
 					</div>
 				</div>
 			</div>
-			<!-- Row end -->
 		</div>
 	</div>
 </div>
-</div>
-		</div>
-	</div>
 <!--계약기본등록-->
 <script>
-	function delRoom(obj,roomid,drid){
+function delRoom(obj,roomid,drid){
 		var addrData = {};
 		addrData.CONT_FROOM_ID = roomid;
 		$.ajax({
@@ -491,7 +560,7 @@
 		});
 	}
 	
-	function addNewRoom(){
+function addNewRoom(){
 		var addrData = {};
 		var CONid = $("#contid").val();
 		addrData.CONTRACT_ID = CONid;
@@ -555,12 +624,12 @@
 		});
 	}
 
-	function fn_contUpdate(){
+function fn_contUpdate(){
 		fn_contUpdateP1();
 		fn_contInsertP2();
 	}
 
-	function fn_contUpdateP1() {
+function fn_contUpdateP1() {
 		var contData = {};
 		var chkr = $('#rmchk').val();
 		if (chkr != "OK")
@@ -634,7 +703,7 @@
 		});
 	}
 	
-	function fn_contInsertP2() {
+function fn_contInsertP2() {
 		var CONid = $("#contid").val();
 		if (CONid != ""){
 		var froomid = $('#frid').val();
@@ -674,48 +743,9 @@
 		else
 		{
 		}
-			var CONid = $("#contid").val();
-			if (CONid != ""){
-			var $Aarr =  $(".EA");
-			var $Barr =  $(".EB");
-			var $Carr =  $(".Eday");
-			var $Darr =  $(".Etime");
-			var $Earr =  $(".Esum");
-			var $Harr =  $(".Erid");
-			var contp8upd ={};
-			contp8upd.CONTRACT_ID = Number(CONid);
-			console.log(contp8upd);
-			$.ajax({
-				url : "${path}/cont/updateP8.do",  
-				data : contp8upd,  
-				method : "POST",  
-				dataType : "json"  
-			})
-			.done(function(data) {
-			for (var i=0; i<$Aarr.length; i++){
-			var contp8data = {};
-			contp8data.CONTRACT_ID = CONid;
-			contp8data.FROOM_ID = $Harr[i].value;
-			contp8data.DAYS = $Carr[i].value;
-			contp8data.TIMES = $Darr[i].value;
-			contp8data.RCHARGE = Number($Earr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
-			console.log(contp8data);
-			$.ajax({
-				url : "${path}/cont/insertP8.do",  
-				data : contp8data,  
-				method : "POST",  
-				dataType : "json"  
-			});
-			}
-			});
-			}
-			else
-			{
-
-			}
 	}
 	
-	function chkRoomchange(){
+function chkRoomchange(){
 		var $infoarr = $(".CHKroom");
 		var $sinfoarr = $(".CHKsrm");
 		for (var i = 0; i < $infoarr.length; i++) {
@@ -756,7 +786,7 @@
 	// 마지막꺼까지 반영
 	$(firstElement).attr('rowspan', i);
 	
-	function calculateR() {
+function calculateR() {
 		var $infoarr = $(".CHKsrm");
 		var $Aarr = $(".RMday");
 		var $Barr = $(".RMtime");
@@ -781,12 +811,12 @@
 		chkcalR();
 	});
 
-	function numberWithCommas(x) {
+function numberWithCommas(x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
 
 
-	function chkcalR() {
+function chkcalR() {
 		var $Barr = $(".RB");
 		var chksum = 0;
 		for (var i = 0; i < $Barr.length; i++) {
@@ -796,7 +826,7 @@
 		$('#Roomgrandtotal').val(numberWithCommas(chksum));
 	}
 
-	function Setdate(){
+function Setdate(){
 		let today = new Date();   
 		let year = today.getFullYear(); // 년도
 		let month = today.getMonth() + 1;  // 월
@@ -824,7 +854,7 @@
 		$('#contp1-03').val(to);				
 	}
 	
-	function setComboP1(){
+function setComboP1(){
 		var p109val = ${detailCont.DPERSON_MW};
 		var p113val = ${detailCont.REGION};
 		var p116val = ${detailCont.DTYPE};
@@ -880,7 +910,7 @@
 		$("#contp1-03").val($("#contp1-29").val());
 	})
 
-	function fn_addyujok(){
+function fn_addyujok(){
 			var CONid = $("#contid").val();
 			if (CONid != ""){
 			var froomid = $('#frid').val();
@@ -926,7 +956,7 @@
 		}	
 
 	
-	function fn_delyujok(sangjuid){
+function fn_delyujok(sangjuid){
 		var CONid = $("#contid").val();
 		if (CONid != ""){
 		var froomid = $('#frid').val();
@@ -949,7 +979,7 @@
 			}
 	}	
 
-	$(document).ready(function(){
+$(document).ready(function(){
 		$('.timepicker').timepicker({
 		    timeFormat: 'HH:mm',
 		    interval: 10,
@@ -968,8 +998,7 @@
 	$(".Eday, .Etime").change(function() {
 		chkcalE();
 	});
-	
-	function chkcalE() {
+function chkcalE() {
 		var $Aarr = $(".EA");
 		var $Barr = $(".EB");
 		var $Carr = $(".Eday");
@@ -985,7 +1014,5 @@
 			$Earr[i].innerText = numberWithCommas(chksum);
 		}
 	}
-
-
 </script>
 
