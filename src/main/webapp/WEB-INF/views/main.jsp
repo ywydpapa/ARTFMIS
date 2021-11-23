@@ -159,6 +159,7 @@ function fnSetPage(url, data){
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <c:if test = "${not fn:contains(role1, 'A0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/consult/listview.do')">상담 목록</a></c:if>
               <c:if test = "${not fn:contains(role1, 'B0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/contlist.do')">계약 목록 *</a></c:if>
+              <c:if test = "${not fn:contains(role1, 'B0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/conttrlist.do')">호실 이동 *</a></c:if>
               <c:if test = "${not fn:contains(role1, 'C0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/listview.do')">계약 등록*</a></c:if>
               <a class="dropdown-item" href="javascript:fnSetPage('${path}/room/addorderlistall.do')">호실주문 목록</a>
               <c:if test = "${not fn:contains(role1, 'D0')}"><a class="dropdown-item" href="javascript:fnSetPage('${path}/cont/settlistview.do')">정산 관리</a></c:if>

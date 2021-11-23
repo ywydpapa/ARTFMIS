@@ -73,6 +73,13 @@ public class ContController {
 		return mav;
 	}
 	
+	@RequestMapping("conttrlist.do")
+	public ModelAndView conttrlist(ModelAndView mav) {
+		mav.addObject("listcont", contService.listCont());
+		mav.setViewName("cont/conttrlist");
+		return mav;
+	}
+	
 	@RequestMapping("settlistview.do")
 	public ModelAndView settlist(ModelAndView mav) {
 		mav.addObject("listcont", contService.listCont());
@@ -230,6 +237,27 @@ public class ContController {
 		mav.setViewName("cont/detailcont");
 		return mav;
 	}
+	
+	@RequestMapping("detailconttr/{CONTRACT_ID}")
+	public ModelAndView detailconttr(@PathVariable("CONTRACT_ID") Integer CONTRACT_ID, @ModelAttribute ContDTO dto, ModelAndView mav) {
+		Integer CONT_FROOM_ID = Integer.valueOf(dto.getCONT_FROOM_ID());
+		mav.addObject("frid", CONT_FROOM_ID);
+		mav.addObject("CONTid", CONTRACT_ID);
+		mav.addObject("listroom", goodsService.listRoom(1));
+		mav.addObject("listEtcroom", contService.doslistEtcroom());
+		mav.addObject("code0201", codeService.listCode0201());
+		mav.addObject("regioncode", codeService.listconBcode("3"));
+		mav.addObject("frelation", codeService.listconBcode("5"));
+		mav.addObject("detailCont", contService.detailCont(CONTRACT_ID));
+		mav.addObject("contpage2", contService.reloadP2(CONTRACT_ID));
+		mav.addObject("contpage3", contService.reloadP3(CONTRACT_ID));
+		mav.addObject("listYujok", contService.listYujok(CONTRACT_ID));
+		mav.addObject("listroomemp", contService.doslistFroomemp());
+		mav.addObject("addlist",contService.listAddroom(CONTRACT_ID));
+		mav.setViewName("cont/detailconttr");
+		return mav;
+	}
+
 
 	
 	
