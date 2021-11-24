@@ -2040,7 +2040,34 @@
 		});
 		// 마지막꺼까지 반영
 		$(firstElement).attr('rowspan', i);
-}
+	}
+	
+	function setSecond2(){
+		var i = 1;
+		var str = undefined;
+		var element = $(".storelist");
+		var firstElement = undefined;
+		element.each(function() {
+			console.dir(i + $(this).text());
+			if (str == undefined && firstElement == undefined) {
+				str = $(".storelist")[0].innerText;
+				firstElement = $(".storelist")[0];
+				return;
+			}
+			if (str == $(this).text()) {
+				i++;
+				console.dir('--> ' + i + $(this).text());
+				$(this).remove();
+			} else {
+				$(firstElement).attr('rowspan', i);
+				i = 1;
+				str = $(this).text();
+				firstElement = $(this);
+			}
+		});
+		// 마지막꺼까지 반영
+		$(firstElement).attr('rowspan', i);
+	}
 	
 	function calculateM() {
 		var $infoarr = $(".infoM");
@@ -3075,7 +3102,7 @@ function fnSetcont7page(url, data){
 		setTimeout(function(){
 		}, 500);
 		calculateS();
-		setSecond();
+		setSecond2();
 });
 }
 
