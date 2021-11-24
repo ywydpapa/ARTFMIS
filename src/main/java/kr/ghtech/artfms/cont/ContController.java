@@ -244,16 +244,9 @@ public class ContController {
 		mav.addObject("frid", CONT_FROOM_ID);
 		mav.addObject("CONTid", CONTRACT_ID);
 		mav.addObject("listroom", goodsService.listRoom(1));
-		mav.addObject("listEtcroom", contService.doslistEtcroom());
-		mav.addObject("code0201", codeService.listCode0201());
-		mav.addObject("regioncode", codeService.listconBcode("3"));
-		mav.addObject("frelation", codeService.listconBcode("5"));
 		mav.addObject("detailCont", contService.detailCont(CONTRACT_ID));
 		mav.addObject("contpage2", contService.reloadP2(CONTRACT_ID));
-		mav.addObject("contpage3", contService.reloadP3(CONTRACT_ID));
-		mav.addObject("listYujok", contService.listYujok(CONTRACT_ID));
 		mav.addObject("listroomemp", contService.doslistFroomemp());
-		mav.addObject("addlist",contService.listAddroom(CONTRACT_ID));
 		mav.setViewName("cont/detailconttr");
 		return mav;
 	}

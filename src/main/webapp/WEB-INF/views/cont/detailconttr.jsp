@@ -345,7 +345,7 @@
 											</tr>
 											<tr>
 											<td class="text-center align-middle">
-											<input type="checkbox" class="form-control" id="tropt02">
+											<input type="checkbox" class="form-control" id="tropt02" checked>
 											</td>
 											<td class="text-left align-middle">
 											변경 후 호실 기준 매점초도주문  
@@ -357,18 +357,6 @@
 											<tr>
 											<td class="text-center align-middle">
 											<input type="checkbox" class="form-control" id="tropt03">
-											</td>
-											<td class="text-left align-middle">
-											변경 전 호실에서 사용한 냉장고 수량 처리 
-											</td>
-											<td class="text-left align-middle">
-											* 반드시 반품처리를 먼저 하여야 합니다. <br>
-											* 체크시 : 변경 전 호실의 냉장고 사용수량을 변경 후 호실의 주문수량에 더함
-											</td>
-											</tr>
-											<tr>
-											<td class="text-center align-middle">
-											<input type="checkbox" class="form-control" id="tropt04">
 											</td>
 											<td class="text-left align-middle">
 											변경 후 호실기준 식당 초도주문 생성 

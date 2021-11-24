@@ -40,7 +40,7 @@ where a.FROOM_TYP IN (1) and a.FROOM_USE_YN = 'Y' and b.ADD_YN = 'Y'
  
  <select id="listFroomemp" resultType="contDto">
  	SELECT a.*, b.CONTRACT_ID from GHT_FROOM a 
- 	left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.SETT_DATE is null
+ 	left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.MOD_DATE is null
 	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' and b.CONTRACT_ID is null group by a.FROOM_ID 
  </select>
  
