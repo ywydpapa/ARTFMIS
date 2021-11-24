@@ -10,6 +10,7 @@ public interface ContService {
 	ContDTO detailCont(Integer CONTRACT_ID);
 	int updateCont(ContDTO dto);
 	int updateCont2(ContDTO dto);
+	int updateCont2tr(ContDTO dto);
 	int updateCont3(ContDTO dto);
 	int updateCont4(ContDTO dto);
 	int updateCont5(ContDTO dto);
@@ -76,3 +77,4 @@ public interface ContService {
 	List<ContDTO> reloadP9(Integer CONTRACT_ID);
 	List<ContDTO> listYujok(Integer CONTRACT_ID);
 }
+

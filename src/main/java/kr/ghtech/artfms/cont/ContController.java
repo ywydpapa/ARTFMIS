@@ -452,6 +452,17 @@ public class ContController {
 		return ResponseEntity.ok(param);
 	}
 	
+	@RequestMapping("updateP2tr.do")
+	public ResponseEntity<?> updateP2tr(@ModelAttribute ContDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContP2UPD = contService.updateCont2tr(dto);
+		if (ContP2UPD >= 0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
 	
 	@RequestMapping("updateP3.do")
 	public ResponseEntity<?> updateP3(@ModelAttribute ContDTO dto) {

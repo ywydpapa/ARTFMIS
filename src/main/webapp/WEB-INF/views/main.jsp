@@ -54,6 +54,15 @@ function customAutoRolad(url){
                   a[0].click();
                 }
             }
+        } else if(urlArr[3] === "conttrlist.do"){
+            var element = $("#consult_contract_list_table");
+            if(element.length){
+                var a = element.find("tbody tr:eq(0) > td:eq(1) > a")
+                if(a.length){
+                	console.log("실행");
+                    a[0].click();
+                }
+            }
         } else if(urlArr[3] === "listview.do'"){
             var element = $("#roomTable");
             if(element.length){
@@ -115,6 +124,11 @@ function fnSetPage(url, data){
       #consult_contract_list_table > tbody > tr.active {
          background-color: #9fcdff;
       }
+      
+      #consult_contracttr_list_table > tbody > tr.active {
+         background-color: #9fcdff;
+      }
+      
 
       #roomTable > tbody > tr.active{
          background-color: #9fcdff;

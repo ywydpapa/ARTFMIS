@@ -190,6 +190,12 @@ public class ContServiceImpl implements ContService {
 		// TODO Auto-generated method stub
 		return contDao.updateCont2(dto);
 	}
+	
+	@Override
+	public int updateCont2tr(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.updateCont2tr(dto);
+	}
 
 	@Override
 	public int updateCont3(ContDTO dto) {

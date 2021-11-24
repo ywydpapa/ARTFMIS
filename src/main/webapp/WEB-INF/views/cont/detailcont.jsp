@@ -419,7 +419,7 @@
 																value="${row.RCHARGE}" pattern="#,###" /></td>
 														<td style="text-align: center; display: none"><input
 															type="checkbox" class="CHKsrm form-control"
-															<c:if test="${row.CHKED eq 'Y'}">checked</c:if>></td>
+															<c:if test="${row.CHKED eq 'Y'}">checked</c:if>><input type="hidden" class="sAddYn" value="${row.ADD_YN}"></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -707,10 +707,12 @@ function fn_contInsertP2() {
 		var CONid = $("#contid").val();
 		if (CONid != ""){
 		var froomid = $('#frid').val();
+		var $frid = $(".sFRMID");
 		var $Chk2arr = $(".CHKsrm");
 		var $A2arr =  $(".sRMd");
 		var $B2arr =  $(".sRMt");
 		var $C2arr =  $(".sRMcharge");
+		var $D2arr =  $(".sAddYn");
 		var contp2upd ={};
 		contp2upd.CONTRACT_ID = Number(CONid);
 		console.log(contp2upd);
@@ -725,10 +727,11 @@ function fn_contInsertP2() {
 		if($($Chk2arr[i]).is(":checked")==true){
 		var contp2data = {};
 		contp2data.CONTRACT_ID = CONid;
-		contp2data.FROOM_ID = froomid;
+		contp2data.FROOM_ID = Number($frid[i].value.replace(/[\D\s\._\-]+/g, ""))
 		contp2data.DAYS = Number($A2arr[i].value.replace(/[\D\s\._\-]+/g, ""))
 		contp2data.TIMES = Number($B2arr[i].value.replace(/[\D\s\._\-]+/g, ""))
 		contp2data.RCHARGE = Number($C2arr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
+		contp2data.ADD_YN = $D2arr[i].value;
 		console.log(contp2data);
 		$.ajax({
 			url : "${path}/cont/insertP2.do",  
