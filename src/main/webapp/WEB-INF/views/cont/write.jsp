@@ -81,12 +81,12 @@
 												</tr>
 												<tr align="center">
 													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6;border:1px solid:black;" rowspan="5">고인</th>
-													<td class="cont-title" style="vertical-align: middle;">성명</td>
+													<td class="cont-title" style="vertical-align: middle;">성명(*)</td>
 													<td><input type="text" 
 														class="form-control form-control-sm" id="contp1-07" tabindex="0"
 														name="contp1-07" value="" >
 													</td>
-													<td class="cont-title" style="vertical-align: middle;">주민등록번호</td>
+													<td class="cont-title" style="vertical-align: middle;">주민등록번호(*)</td>
 													<td><input type="text" size="13" maxlength="14"
 														class="form-control form-control-sm jumin" id="contp1-08" tabindex="1"
 														name="contp1-08" value=""></td>
@@ -160,7 +160,7 @@
 												</tr>
 												<tr align="center">
 													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6" rowspan="3">유족</th>
-													<td class="cont-title" style="vertical-align: middle;">상주성명</td>
+													<td class="cont-title" style="vertical-align: middle;">상주성명(*)</td>
 													<td><input type="text"
 														class="form-control form-control-sm" id="contp1-20"
 														name="contp1-20" value="" tabindex="5">
@@ -418,7 +418,7 @@
 										<tbody>
 											<c:forEach var="row" items="${listFtable}" varStatus="status">
 												<tr id="contWrite_Prey_${row.FTABLE_ID}">
-													<td class="second">${row.BCD_TITLE}</td>
+													<td style="vertical-align: middle; text-align: center" class="second">${row.BCD_TITLE}</td>
 													<td style="text-align: center;">
 														<input type="checkbox" <c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if>
 															   				   <c:if test="${row.FTABLE_CAT ne '24'}">onclick="oneCheckftNot(this);"</c:if>
@@ -1496,6 +1496,11 @@
 			$("#contp1-20").focus();
 			return;
 		}
+		else if(contData.DPERSON_JMNO==""){
+			alert("주민등록번호를 입력해 주세요.");
+			$("#contp1-08").focus();
+			return;
+		}
 		console.dir(contData);
 		var CONid = $("#contid").val();
 		if (CONid == ""){
@@ -2013,13 +2018,13 @@
 	function setSecond(){
 		var i = 1;
 		var str = undefined;
-		var element = $(".second");
+		var element = $(".restlist");
 		var firstElement = undefined;
 		element.each(function() {
 			console.dir(i + $(this).text());
 			if (str == undefined && firstElement == undefined) {
-				str = $(".second")[0].innerText;
-				firstElement = $(".second")[0];
+				str = $(".restlist")[0].innerText;
+				firstElement = $(".restlist")[0];
 				return;
 			}
 			if (str == $(this).text()) {

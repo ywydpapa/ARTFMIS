@@ -10,11 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </select>
  
  <select id="listCont" resultType="contDto">
- 	select gf.FROOM_TITLE, case when gc.SETT_DATE is null then '입실' else '퇴실' end inRoom, substr(gc.START_DATE,1,10) STDATE,substr(gc.END_DATE,1,10) EDDATE, gc.* from GHT_CONT gc left join GHT_FROOM gf on gf.FROOM_ID = gc.FROOM_ID
+ 	 	select case when gc.TEMP_ROOM = 'Y' then concat('(임시) ',gf.FROOM_ALIS) else gf.FROOM_TITLE end FROOM_TITLE, case when gc.SETT_DATE is null then '입실' else '퇴실' end inRoom, substr(gc.START_DATE,1,10) STDATE,substr(gc.END_DATE,1,10) EDDATE, gc.* from GHT_CONT gc left join GHT_FROOM gf on gf.FROOM_ID = gc.FROOM_ID
  </select>
  
  <select id="listContcombo" resultType="contDto">
-select gc.CONTRACT_ID , gc.START_DATE, gc.END_DATE, gc.FROOM_ID, gf.FROOM_TITLE  from GHT_CONT gc left join GHT_FROOM gf on gf.FROOM_ID = gc.FROOM_ID where SETT_DATE is NULL group by gc.FROOM_ID
+select gc.CONTRACT_ID , gc.START_DATE, gc.END_DATE, gc.FROOM_ID, gf.FROOM_TITLE, gf.FROOM_ALIS, gc.TEMP_ROOM  from GHT_CONT gc left join GHT_FROOM gf on gf.FROOM_ID = gc.FROOM_ID where SETT_DATE is NULL
 </select>
 
  <select id="listAltar"  resultType="contDto">
@@ -22,10 +22,15 @@ select gc.CONTRACT_ID , gc.START_DATE, gc.END_DATE, gc.FROOM_ID, gf.FROOM_TITLE 
  </select>
  
  <select id="listFroom" resultType="contDto">
- 	SELECT a.*, b.CONTRACT_ID from GHT_FROOM a 
+select * from (SELECT a.FROOM_ID roomID,a.*, b.CONTRACT_ID, 'N' TEMP_ROOM from GHT_FROOM a 
  	left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.SETT_DATE is null
-	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' group by a.FROOM_ID 
- </select>
+	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' group by a.FROOM_ID order by a.FROOM_ORDNO) TA
+	union all
+select * from (SELECT a.FROOM_ID roomID, a.FROOM_ID ,a.FROOM_ALIS FROOM_TITLE ,a.FROOM_CAT ,a.FROOM_TYP ,a.FROOM_DAY_PRICE ,a.FROOM_TIME_PRICE ,a.FROOM_MAX_PERS ,a.FROOM_AREA ,a.FROOM_AREA_KOR ,a.FROOM_REMARK ,a.CONT_ID ,a.FROOM_RENT_FR ,a.FROOM_RENT_TO ,
+	a.FROOM_CHK_INOUT ,a.FROOM_PASSWD ,a.FROOM_TML_CODE ,a.FROOM_ALIS ,a.FROOM_USE_YN ,a.FROOM_REG_USER ,a.FROOM_REG_DATETIME ,a.FROOM_MOD_USER ,a.FROOM_MOD_DATETIME ,a.FROOM_PC ,a.FROOM_ORDNO ,a.IMSI_YN 
+	,a.CLEAN_CHARGE ,a.FROOM_IMAGE, a.INC_YN , b.CONTRACT_ID, 'Y' TEMP_ROOM from GHT_FROOM a left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.TEMP_ROOM = 'Y'
+	and b.SETT_DATE is null where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' and length(a.FROOM_ALIS) > 0 and IMSI_YN = 'Y' group by a.FROOM_ID order by a.FROOM_ORDNO) TB  
+</select>
  
  <select id="listaddRoom" resultType="contDto">
 select b.CONT_FROOM_ID ,b.DAYS, b.TIMEs,b.CLEAN_CHARGE_DAYS,(b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, b.STORE_SNACK_YN, b.STORE_REFG_YN , b.STORE_ITEM_YN , a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
@@ -49,7 +54,8 @@ gf.FTABLE_CAT where FTABLE_CAT IN (24,31,32,34,35,36,72,73,74,75,77,76)
  </select>
  
  <select id="listEtcroom" resultType="contDto">
- select * from GHT_FROOM where FROOM_TYP != 1 and FROOM_USE_YN = 'Y' and FROOM_TYP != 5 
+ select a.*,g.SETL_REMARK, g.SETL_TYPE, g.PAY_YN , g.INCADD_YN from GHT_FROOM a left join GHT_SETL_RULE g on a.FROOM_TYP = g.SETL_FROOM_ID 
+ where a.FROOM_TYP != 1 and a.FROOM_USE_YN = 'Y' and a.FROOM_TYP != 5  
  </select>
 
  <select id="listEtcroom2" resultType="contDto">
@@ -216,6 +222,7 @@ INSERT INTO GHT_CONT (
 ,REMARK
 ,REG_DATE
 ,FROOM_ID
+,TEMP_ROOM
 ) VALUES (
  #{INS_DATE}
 ,#{INS_TIME}
@@ -259,37 +266,53 @@ INSERT INTO GHT_CONT (
 ,#{REMARK}
 ,now()
 ,#{FROOM_ID}
+,#{TEMP_ROOM}
 )
 <selectKey keyProperty="CONTRACT_ID" resultType="integer"  order="AFTER">
 		 SELECT LAST_INSERT_ID()
 	 </selectKey>
- </insert>
+</insert>
+
+<select id="listSrule" resultType="contDto">
+	select * from GHT_SETL_RULE where SETL_TITLE = #{SETL_TITLE} and attrib not like 'XXX%' order by SETL_FROOM_ID
+</select>
  
- <insert id="sruleins">
+<insert id="sruleins">
  update GHT_SETL_RULE
  SET
  MOD_DATE = now()
  where SETL_FROOM_ID = #{SETL_FROOM_ID};
  
  insert into GHT_SETL_RULE (
- SETL_FROOM_ID,
-SETL_TITLE,
-SETL_REMARK,
-SETL_USE_YN, 
-REG_DATE
- ) values (
- #{SETL_FROOM_ID},
-#{SETL_TITLE},
-#{SETL_REMARK},
-#{SETL_USE_YN},
-now()
+	SETL_FROOM_ID,
+	SETL_TITLE,
+	SETL_TYPE,
+	SETL_REMARK,
+	PAY_YN,
+	INCADD_YN, 
+	REG_DATE,
+	attrib
+ 	) values (
+ 	#{SETL_FROOM_ID},
+ 	#{SETL_TITLE},
+	#{SETL_TYPE},
+	#{SETL_REMARK},
+	#{PAY_YN},
+	#{INCADD_YN},
+	now(),
+	'10000'
  ); 
- </insert>
+</insert>
  
  <update id = "sruleuppd">
  update GHT_SETL_RULE
  SET
- MOD_DATE = now()
+ 	SETL_TITLE = #{SETL_TITLE},
+	SETL_TYPE = #{SETL_TYPE},
+	SETL_REMARK = #{SETL_REMARK},
+	PAY_YN = #{PAY_YN},
+	INCADD_YN = #{INCADD_YN}, 
+ 	MOD_DATE = now()
  where SETL_FROOM_ID = #{SETL_FROOM_ID}
  </update>
  
@@ -303,15 +326,17 @@ now()
 ,RCHARGE
 ,REMARK
 ,REG_DATE
+,ADD_YN
 ,attrib
  ) values (
  #{CONTRACT_ID}
 ,#{FROOM_ID}
 ,#{DAYS}
 ,#{TIMES}
-,#{RCHARGE} 
+,#{RCHARGE}
 ,#{REMARK}
 ,now()
+,#{ADD_YN}
 ,'10000'
  )
  </insert>
@@ -549,7 +574,6 @@ CONTRACT_ID
 ,DAYS
 ,TIMES
 ,RCHARGE
-,REMARK
 ,REG_DATE
  ) values (
  #{CONTRACT_ID}
@@ -557,7 +581,6 @@ CONTRACT_ID
 ,#{DAYS}
 ,#{TIMES}
 ,#{RCHARGE} 
-,#{REMARK}
 ,now()
  )
  </insert>
@@ -568,7 +591,12 @@ CONTRACT_ID
 
  <update id="updcontp2">
  update GHT_CONT_FROOM
- set MOD_DATE = now(), attrib = 'XXXXX' where CONTRACT_ID = #{CONTRACT_ID} and FROOM_ID not in (select froom_id from GHT_FROOM where FROOM_TYP = '5')
+ set MOD_DATE = now(), attrib = 'XXXUP' where CONTRACT_ID = #{CONTRACT_ID} and FROOM_ID not in (select froom_id from GHT_FROOM where FROOM_TYP = '5') and MOD_DATE is NOT NULL
+ </update>
+ 
+ <update id="updcontp2tr">
+ update GHT_CONT_FROOM
+ set MOD_DATE = now(), attrib = 'XXXUPTR' where CONTRACT_ID = #{CONTRACT_ID} and FROOM_ID in (select froom_id from GHT_FROOM where FROOM_TYP = '1') and MOD_DATE is NOT NULL and ADD_YN != 'Y' 
  </update>
  
  <update id="updcontp3">
@@ -618,7 +646,7 @@ values (#{CONTRACT_ID},#{FROOM_ID},#{DAYS},#{TIMES},now(),#{RCHARGE},#{STORE_SNA
 
 <update id="delRoom">
 update GHT_CONT_FROOM set
-attrib ='XXXXX',
+attrib ='XXXDL',
 MOD_DATE = now()
 where CONT_FROOM_ID = ${CONT_FROOM_ID}
 </update>
@@ -655,16 +683,23 @@ CONTRACT_ID
  </select>
 
 <select id="reloadContp2" resultType="contDto">
-select b.DAYS, b.TIMEs, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
+select b.DAYS, b.TIMES, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
 left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL 
-where a.FROOM_TYP IN (1,2,3,4,6,7) and b.DAYS is not null and a.FROOM_USE_YN = 'Y' 
+where a.FROOM_TYP IN (1,2,3,4,6,7) and b.DAYS is not null and a.FROOM_USE_YN = 'Y' order by FROOM_TYP
 </select> 
 
 <select id="reloadContp2froom" resultType="contDto">
 select b.DAYS, b.TIMEs, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
 left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL 
-where a.FROOM_TYP IN (1) and a.FROOM_USE_YN = 'Y' 
+where a.FROOM_TYP IN (1) and a.FROOM_USE_YN = 'Y' order by a.FROOM_ORDNO
 </select>
+
+<select id="reloadContp2froom2" resultType="contDto">
+select b.DAYS, b.TIMEs, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
+left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL 
+where a.FROOM_TYP NOT IN (1,5) and a.FROOM_USE_YN = 'Y' order by a.FROOM_ORDNO
+</select>
+
 
 <select id="reloadContp3" resultType="contDto">
 	select gfo.QUTY,gfo.ORD_AMOUNT, gbc.BCD_TITLE, gf.*, CASE WHEN IFNULL(gfo.ORD_AMOUNT,0)>0 then 'Y' else 'N' end CHKED from GHT_FTABLE gf 
@@ -720,7 +755,9 @@ where a.FROOM_TYP IN (1) and a.FROOM_USE_YN = 'Y'
 	order by a.CAT_02_ID, a.GOODS_ORDER 
 </select>
 <select id="reloadContp8" resultType="contDto">
-	SELECT * FROM GHT_ETC_ORDERSHEET where CONTRACT_ID = #{CONTRACT_ID} and MOD_DATE IS NULL
+	select b.DAYS, b.TIMEs, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
+left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL 
+where a.FROOM_TYP IN (5) and a.FROOM_USE_YN = 'Y' order by a.FROOM_ORDNO
 </select>
 <select id="reloadContp9" resultType="contDto">
 	SELECT * FROM GHT_CONT_CFN where CONTRACT_ID = #{CONTRACT_ID} and MOD_DATE IS NULL
