@@ -37,7 +37,7 @@
 		<c:forEach var="row" items="${doslist2}">
 			<tr>
 				<td style="vertical-align: middle; text-align: center"
-					class="second">${row.CAT_TITLE}</td>
+					class="restlist">${row.CAT_TITLE}</td>
 				<td style="vertical-align: middle; text-align: center"><input
 					type="checkbox" class="CHKrest form-control"
 					<c:if test="${row.GOODS_INIT_ORDER eq 'Y'}">checked</c:if>
