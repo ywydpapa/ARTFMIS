@@ -416,7 +416,7 @@
 										<tbody>
 											<c:forEach var="row" items="${contpage3}" varStatus="status">
 												<tr id="contWrite_Prey_${row.FTABLE_ID}">
-													<td class="second">${row.BCD_TITLE}</td>
+													<td style="vertical-align:middle;text-align:center" class="second">${row.BCD_TITLE}</td>
 													<td style="text-align: center;">
 														<input type="checkbox" <c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if>
 															   				   <c:if test="${row.FTABLE_CAT ne '24'}">onclick="oneCheckftNot(this);"</c:if>
@@ -1980,7 +1980,13 @@
 		}
 		
 	}
-
+	
+	$(".mgid").change(function(){
+		if($(this).val() != ""){
+			$(this).parent().prevAll("td").find("[type='checkbox']").prop("checked", true);
+		}
+	});
+	
 	var i = 1;
 	var str = undefined;
 	var element = $(".second");
@@ -2007,7 +2013,7 @@
 	$(firstElement).attr('rowspan', i);
 	
 	
-	/* var i2 = 1;
+	var i2 = 1;
 	var str2 = undefined;
 	var element2 = $(".second2");
 	var firstElement2 = undefined;
@@ -2030,7 +2036,7 @@
 		}
 	});
 	// 마지막꺼까지 반영
-	$(firstElement2).attr('rowspan', i2); */
+	$(firstElement2).attr('rowspan', i2);
 	
 	function calculateM() {
 		var $infoarr = $(".infoM");
@@ -3121,13 +3127,13 @@ function fnSetcont7page(url, data){
 function setSecond(){
 	var i = 1;
 	var str = undefined;
-	var element = $(".second");
+	var element = $(".restlist");
 	var firstElement = undefined;
 	element.each(function() {
 		console.dir(i + $(this).text());
 		if (str == undefined && firstElement == undefined) {
-			str = $(".second")[0].innerText;
-			firstElement = $(".second")[0];
+			str = $(".restlist")[0].innerText;
+			firstElement = $(".restlist")[0];
 			return;
 		}
 		if (str == $(this).text()) {
@@ -3148,13 +3154,13 @@ function setSecond(){
 function setSecond2(){
 	var i = 1;
 	var str = undefined;
-	var element = $(".second2");
+	var element = $(".storelist");
 	var firstElement = undefined;
 	element.each(function() {
 		console.dir(i + $(this).text());
 		if (str == undefined && firstElement == undefined) {
-			str = $(".second2")[0].innerText;
-			firstElement = $(".second2")[0];
+			str = $(".storelist")[0].innerText;
+			firstElement = $(".storelist")[0];
 			return;
 		}
 		if (str == $(this).text()) {

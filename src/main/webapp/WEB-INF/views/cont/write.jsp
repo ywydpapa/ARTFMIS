@@ -1989,6 +1989,12 @@
 		
 	}
 
+	$(".mgid").change(function(){
+		if($(this).val() != ""){
+			$(this).parent().prevAll("td").find("[type='checkbox']").prop("checked", true);
+		}
+	});
+	
 	var i = 1;
 	var str = undefined;
 	var element = $(".second");
