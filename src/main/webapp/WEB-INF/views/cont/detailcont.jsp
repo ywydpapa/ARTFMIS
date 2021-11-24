@@ -727,10 +727,10 @@ function fn_contInsertP2() {
 		if($($Chk2arr[i]).is(":checked")==true){
 		var contp2data = {};
 		contp2data.CONTRACT_ID = CONid;
-		contp2data.FROOM_ID = Number($frid[i].value.replace(/[\D\s\._\-]+/g, ""))
-		contp2data.DAYS = Number($A2arr[i].value.replace(/[\D\s\._\-]+/g, ""))
-		contp2data.TIMES = Number($B2arr[i].value.replace(/[\D\s\._\-]+/g, ""))
-		contp2data.RCHARGE = Number($C2arr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
+		contp2data.FROOM_ID = Number($frid[i].value.replace(/[\D\s\._\-]+/g, ""));
+		contp2data.DAYS = Number($A2arr[i].value.replace(/[\D\s\._\-]+/g, ""));
+		contp2data.TIMES = Number($B2arr[i].value.replace(/[\D\s\._\-]+/g, ""));
+		contp2data.RCHARGE = Number($C2arr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 		contp2data.ADD_YN = $D2arr[i].value;
 		console.log(contp2data);
 		$.ajax({

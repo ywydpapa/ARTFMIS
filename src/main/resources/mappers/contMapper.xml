@@ -596,7 +596,7 @@ CONTRACT_ID
  
  <update id="updcontp2tr">
  update GHT_CONT_FROOM
- set MOD_DATE = now(), attrib = 'XXXUPTR' where CONTRACT_ID = #{CONTRACT_ID} and FROOM_ID in (select froom_id from GHT_FROOM where FROOM_TYP = '1') and MOD_DATE is NOT NULL
+ set MOD_DATE = now(), attrib = 'XXXUPTR' where CONTRACT_ID = #{CONTRACT_ID} and FROOM_ID in (select froom_id from GHT_FROOM where FROOM_TYP = '1') and MOD_DATE is NOT NULL and ADD_YN != 'Y' 
  </update>
  
  <update id="updcontp3">
