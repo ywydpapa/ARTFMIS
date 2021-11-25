@@ -46,5 +46,28 @@ public class ConsultDTO {
 	private Integer RENT_HOURS;
 	private Long RENT_AMOUNT;
 	private String attrib;
+	
+	private String ROOM_TITLE;
+	private String FTABLE_NET_PRICE;
+	private String ALTAR_CAT;
+	private String ORD_PRICE;
+	private String ORD_REMARK;
+	private String ORD_DATE;
+	private String ORD_TIME;
+	private String REG_DATE;
+	private String REG_USER;
+	private String ORD_TYPE;
+	private String CONF_DATE;
+	private String CONF_TIME;
+	private String CANC_DATE;
+	private String CANC_TIME;
+	private String GOODS_CODE;
+	private String SPEC;
+	private String SALES_PRICE;
+	private String QUTY_PERUNIT;
+	private String UNIT_PERQUTY;
+	private String ADD_AMOUNT;
+	private String CONF_YN;
+	private String CANC_YN;
 }
 

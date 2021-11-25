@@ -1,6 +1,7 @@
 package kr.ghtech.artfms.cst;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -151,6 +152,42 @@ public class ConsultController {
 		}
 		return ResponseEntity.ok(param);
 	}
+	
+	@RequestMapping("insertP3.do")
+	public ResponseEntity<?> insertP3(@ModelAttribute ConsultDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContP3Insert = consultService.insertConsult3(dto);
+		if (ContP3Insert >0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
+	@RequestMapping("insertP4.do")
+	public ResponseEntity<?> insertP4(@ModelAttribute ConsultDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContP4Insert = consultService.insertConsult4(dto);
+		if (ContP4Insert >0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
+	@RequestMapping("insertP5.do")
+	public ResponseEntity<?> insertP5(@ModelAttribute ConsultDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContP5Insert = consultService.insertConsult5(dto);
+		if (ContP5Insert >0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
 
 	@RequestMapping("updateCSTRentfee.do")
 	public ResponseEntity<?> updateCSTRentfee(HttpSession session, @ModelAttribute ConsultDTO dto){
@@ -160,6 +197,42 @@ public class ConsultController {
 			param.put("code","10001");
 		} else {
 			param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+	
+	@RequestMapping("updateP3.do")
+	public ResponseEntity<?> updateP3(@ModelAttribute ConsultDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContP3UPD = consultService.updateConsult3(dto);
+		if (ContP3UPD >= 0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+	
+	@RequestMapping("updateP4.do")
+	public ResponseEntity<?> updateP4(@ModelAttribute ConsultDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContP4UPD = consultService.updateConsult4(dto);
+		if (ContP4UPD >0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+	
+	@RequestMapping("updateP5.do")
+	public ResponseEntity<?> updateP5(@ModelAttribute ConsultDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContP5UPD = consultService.updateConsult5(dto);
+		if (ContP5UPD >0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
 		}
 		return ResponseEntity.ok(param);
 	}

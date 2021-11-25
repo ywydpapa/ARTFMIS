@@ -74,5 +74,41 @@ public class ConsultDAOImpl implements ConsultDAO {
 	public int deleteCSTRentfee(ConsultDTO dto) {
 		return sqlSession.update("consult.deleteCstRentfee", dto);
 	}
+	
+	@Override
+	public int updateConsult3(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("consult.updconsultp3",dto);
+	}
+
+	@Override
+	public int updateConsult4(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("consult.updconsultp4",dto);
+	}
+
+	@Override
+	public int updateConsult5(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("consult.updconsultp5",dto);
+	}
+	
+	@Override
+	public int insertConsult3(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("consult.consultp3", dto);
+	}
+
+	@Override
+	public int insertConsult4(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("consult.consultp4", dto);
+	}
+
+	@Override
+	public int insertConsult5(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("consult.consultp5", dto);
+	}
 
 }

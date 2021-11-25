@@ -30,11 +30,47 @@ public class ConsultServiceImpl implements ConsultService {
 		// TODO Auto-generated method stub
 		return consultDao.updateConsult(dto);
 	}
+	
+	@Override
+	public int updateConsult3(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return consultDao.updateConsult3(dto);
+	}
+
+	@Override
+	public int updateConsult4(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return consultDao.updateConsult4(dto);
+	}
+
+	@Override
+	public int updateConsult5(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return consultDao.updateConsult5(dto);
+	}
 
 	@Override
 	public int insertConsult(ConsultDTO dto) {
 		// TODO Auto-generated method stub
 		return consultDao.insertConsult(dto);
+	}
+	
+	@Override
+	public int insertConsult3(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return consultDao.insertConsult3(dto);
+	}
+
+	@Override
+	public int insertConsult4(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return consultDao.insertConsult4(dto);
+	}
+
+	@Override
+	public int insertConsult5(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return consultDao.insertConsult5(dto);
 	}
 
 	@Override

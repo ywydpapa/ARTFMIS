@@ -1,13 +1,12 @@
 package kr.ghtech.artfms.upload;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
@@ -15,7 +14,6 @@ import org.springframework.web.multipart.MultipartRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
-import java.util.UUID;
 
 @Controller
 public class UploadController {
@@ -28,10 +26,12 @@ public class UploadController {
     @RequestMapping(value = "/file/upload", method = RequestMethod.POST)
     @ResponseBody
     public Object uploadFile(MultipartHttpServletRequest request) {
-        String uploadPath = request.getSession().getServletContext().getRealPath("/resources/image/local");
-        //String uploadPath = "C:\\Users\\gusrl\\Pictures\\temp";
+//        String uploadPath = request.getSession().getServletContext().getRealPath("/resources/image/local");
+        String uploadPath = "C:\\artFiles\\";
+        
+        
 
-        String savedName = "";
+//        String savedName = "";
         Iterator<String> itr = request.getFileNames();
         if(itr.hasNext()) {
             MultipartFile mpf = request.getFile(itr.next());
@@ -60,16 +60,27 @@ public class UploadController {
                     return false;
                 }
 
-                UUID uuid = UUID.randomUUID();
-                String uuidStr = uuid.toString();
-                String currentTime = String.valueOf(System.currentTimeMillis());
-                savedName = uuidStr+"_"+currentTime+"."+imgeType;
-                File target = new File(uploadPath, savedName);
+//                UUID uuid = UUID.randomUUID();
+//                String uuidStr = uuid.toString();
+//                String currentTime = String.valueOf(System.currentTimeMillis());
+//                savedName = uuidStr+"_"+currentTime+"."+imgeType;
+//                File target = new File(uploadPath, savedName);
+                int length = mpf.getOriginalFilename().lastIndexOf(".");
+                String folderName = mpf.getOriginalFilename().substring(0, length);
+                
+                File mkdirFolder = new File(uploadPath + folderName);
+                
+                if(!mkdirFolder.exists()) {
+                	mkdirFolder.mkdirs();
+                }
+                
+                File target = new File(uploadPath + folderName + "\\", mpf.getOriginalFilename());
                 FileCopyUtils.copy(mpf.getBytes(), target);
             } catch (IOException e) {
                 System.out.println(e.getMessage()); e.printStackTrace();
             }
-            return savedName;
+//            return savedName;
+            return mpf.getOriginalFilename();
         } else {
             return false;
         }

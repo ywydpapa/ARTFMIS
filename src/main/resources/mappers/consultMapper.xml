@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  <select id="listConsult"
  		resultType="consultDto">
-		select * from GHT_CONSULT where ATTRIB not LIKE 'XXX%'
+		select * from GHT_CONSULT where ATTRIB not LIKE 'XXX%' order by CONSULT_ID desc
  </select>
  
  <update id="updateConsult">
@@ -96,6 +96,123 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	        '10000'
 	        )
 </insert>
+
+<insert id="consultp3">
+ insert into GHT_CONSULT_FTAB
+ (
+CONSULT_ID
+,ROOM_TITLE
+,FTABLE_CODE
+,FTABLE_NET_PRICE
+,QUTY
+,ORD_AMOUNT
+,ORD_REMARK
+,ORD_DATE
+,ORD_TIME
+,REG_DATE
+,ORD_TYPE
+)values(
+#{CONSULT_ID}
+,#{ROOM_TITLE}
+,#{FTABLE_CODE}
+,#{FTABLE_NET_PRICE}
+,#{QUTY}
+,#{ORD_AMOUNT}
+,#{ORD_REMARK}
+,#{ORD_DATE}
+,#{ORD_TIME}
+,now()
+,#{ORD_TYPE}
+);
+</insert>
+
+ <insert id="consultp4">
+insert into GHT_CONSULT_FNRSUPPLIES
+(
+CONSULT_ID
+,ROOM_TITLE
+,GOODS_CODE
+,SPEC
+,ORD_TYPE
+,SALES_UNIT
+,SALES_PRICE
+,QUTY_PERUNIT
+,UNIT_PERQUTY
+,NET_PRICE
+,ORD_QUTY
+,ORD_AMOUNT
+,ADD_AMOUNT
+,CONF_YN
+,CANC_YN
+,PARTNER_YN
+,ORD_DATE
+,ORD_TIME
+,CONF_DATE
+,CONF_TIME
+,CANC_DATE
+,CANC_TIME
+,REMARK
+,REG_DATE
+) values
+(
+#{CONSULT_ID}
+,#{ROOM_TITLE}
+,#{GOODS_CODE}
+,#{SPEC}
+,#{ORD_TYPE}
+,#{SALES_UNIT}
+,#{SALES_PRICE}
+,#{QUTY_PERUNIT}
+,#{UNIT_PERQUTY}
+,#{NET_PRICE}
+,#{ORD_QUTY}
+,#{ORD_AMOUNT}
+,#{ADD_AMOUNT}
+,#{CONF_YN}
+,#{CANC_YN}
+,#{PARTNER_YN}
+,#{ORD_DATE}
+,#{ORD_TIME}
+,#{CONF_DATE}
+,#{CONF_TIME}
+,#{CANC_DATE}
+,#{CANC_TIME}
+,#{REMARK}
+,now()
+) 
+</insert>
+
+ <insert id="consultp5">
+ insert into GHT_CONSULT_ALTAR
+ (
+ CONSULT_ID
+,ROOM_TITLE
+,ALTAR_CAT
+,ALTAR_ID
+,NET_PRICE
+,QUTY
+,ORD_PRICE
+,ORD_REMARK
+,ORD_DATE
+,ORD_TIME
+,REG_DATE
+,ORD_TYPE
+ ) values
+ (
+#{CONSULT_ID}
+,#{ROOM_TITLE}
+,#{ALTAR_CAT}
+,#{ALTAR_ID}
+,#{NET_PRICE}
+,#{QUTY}
+,#{ORD_PRICE}
+,#{ORD_REMARK}
+,#{ORD_DATE}
+,#{ORD_TIME}
+,now()
+,#{ORD_TYPE}
+ )
+ </insert>
  
  <update id="updateCstFtable">
  	UPDATE GHT_CONSULT_FTAB
@@ -118,6 +235,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		RENT_AMOUNT
 	where RENT_ID = #{RENT_ID}
 </update>
+
+ <update id="updconsultp3">
+update GHT_CONSULT_FTAB
+set MOD_DATE = now() where CONSULT_ID = #{CONSULT_ID} 
+ </update>
+ 
+ <update id="updconsultp4">
+update GHT_CONSULT_FNRSUPPLIES 
+set MOD_DATE = now() where CONSULT_ID = #{CONSULT_ID}
+ </update>
+ 
+ <update id="updconsultp5">
+update GHT_CONSULT_ALTAR
+ set MOD_DATE = now() where CONSULT_ID = #{CONSULT_ID}
+ </update>
  
 <update id="deleteConsult">
  update GHT_CONSULT set

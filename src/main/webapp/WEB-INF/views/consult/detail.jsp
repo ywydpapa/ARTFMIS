@@ -20,14 +20,16 @@
 	<div class="row">
 		<div class="col-lg-12 col-xl-12">
 		<div class="table-responsive">
-				<table class="table table-bordered nowrap">
+				<%-- <table class="table table-bordered nowrap">
 					<tr>
 						<td>
 							<input id="frid" type="hidden" value = "${frid}">
-							<input id="contid" type="hidden" value = "">
+							<input id="consultid" type="hidden" value = "">
 						</td>
 					</tr>
-				</table>
+				</table> --%>
+				<input id="frid" type="hidden" value = "${frid}">
+				<input id="consultid" type="hidden" value = "${CONSULT_ID }">
 			</div>
 			<div class="tab-content tabs m-t-20">
 				<div class="tab-pane" id="tab02" role="tabpanel">
@@ -37,7 +39,14 @@
 								<table class="table table-sm bst02">
 									<tbody>
 										<tr>
-											<th scope="row">분향실 선택</th>
+											<th scope="row">
+												<div>
+													<div style="float:left; margin-top:10px">분향실 선택</div>
+													<div style="float:right;" class="btn_wr">
+														<button class="btn btn-md btn-primary" onClick="fn_cstInsertP2()">저장</button>
+													</div>
+												</div>
+											</th>
 										</tr>
 									</tbody>
 								</table>
@@ -127,9 +136,7 @@
 <%--								</table>--%>
 						</div>
 					</div>
-					<div class="btn_wr text-right mt-3">
-						<button class="btn btn-md btn-primary" onClick="fn_cstInsertP2()">등록</button>
-					</div>
+					
 				</div>
 				<div class="tab-pane" id="tab03" role="tabpanel">
 					<div class="card-block table-border-style">
@@ -138,8 +145,14 @@
 								<table class="table table-sm bst02">
 									<tbody>
 									<tr>
-									<td><span> 제물상 </span></td>
-									<td style="text-align: right;"></td>
+										<th scope="row"> 
+											<div>
+												<div style="float:left; margin-top:10px;">제물상</div>
+												<div style="float:right;" class="btn_wr">
+													<button class="btn btn-md btn-primary" onClick="fn_cstInsertP3()">저장</button>
+												</div>
+											</div>
+										</th>
 									</tr>
 									</tbody>
 								</table>
@@ -215,9 +228,7 @@
 							<hr>
 							<div style="text-align:right"><span>선택된 제물상 총액 :</span><input type="text" id="P3total" style="text-align: right; border: none;" readonly>
 							</div>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary" onClick="fn_cstInsertP3()">등록</button>
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -228,14 +239,20 @@
 								<table class="table table-sm bst02">
 									<tbody>
 										<tr>
-											<th scope="row">장의용품 선택</th>
-											<td><select class="form-control" id="selMTR">
-											<option value="M" selected>현대식</option>
-											<option value="T">전통식</option>
-											</select> </td>
-											<td></td>
-											<td></td>
-											<td></td>
+											<th scope="row">
+												<div>
+													<div style="float:left; margin-top:10px">장의용품 선택</div>
+													<div style="float:right; margin-bottom:20px;" class="btn_wr">
+														<button class="btn btn-md btn-primary" onClick="fn_cstInsertP4()">저장</button>
+													</div>
+													<div style="clear:both;">
+														<select class="form-control" id="selMTR">
+															<option value="M" selected>현대식</option>
+															<option value="T">전통식</option>
+														</select> 
+													</div>
+												</div>
+											</th>
 										</tr>
 									</tbody>
 								</table>
@@ -521,7 +538,7 @@
 										<th>주문금액</th>
 									</tr>
 									<tbody>
-									<tr>
+										<tr>
 												<td>관</td>
 												<td><select class="form-control t131 tgid">
 													<option value="">선택</option>
@@ -757,10 +774,6 @@
 									<span>선택된 장의용품 총액 :</span><input	type="text" id="P4total" style="text-align: right; border: none;" readonly>								
 								</div>
 							</form>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary"
-									onClick="fn_cstInsertP4()">등록</button>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -771,8 +784,14 @@
 								<table class="table table-sm bst02">
 									<tbody>
 										<tr>
-											<th scope="row">제단 선택</th>
-											<td style="text-align: right;"></td>
+											<th scope="row">
+												<div>
+													<div style="float:left; margin-top:10px;">제단 선택</div>
+													<div class="btn_wr">
+														<button style="float:right;" class="btn btn-md btn-primary" onClick="fn_cstInsertP5()">저장</button>
+													</div>
+												</div>
+											</th>
 											
 										</tr>
 									</tbody>
@@ -824,39 +843,34 @@
 									</tr>
 								</tbody>
 							</table>
-								<table class="table table-bordered nowrap"
-									id="sAltarTable">
-									<thead>
+							<table class="table table-bordered nowrap" id="sAltarTable">
+								<thead>
+									<tr>
+										<th scope="col" width="20%" align="center">제단구분</th>
+										<th scope="col" width="20%" align="center">제단명</th>
+										<th scope="col" width="20%" align="center">단가</th>
+										<th scope="col" width="10%" align="center">수량</th>
+										<th scope="col" width="20%" align="center">금액</th>
+										<th style="display :none" scope="col" width="10%" align="center">선택여부</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="row" items="${listAltar}">
 										<tr>
-											<th scope="col" width="20%" align="center">제단구분</th>
-											<th scope="col" width="20%" align="center">제단명</th>
-											<th scope="col" width="20%" align="center">단가</th>
-											<th scope="col" width="10%" align="center">수량</th>
-											<th scope="col" width="20%" align="center">금액</th>
-											<th style="display :none" scope="col" width="10%" align="center">선택여부</th>
+											<td><c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if>
+												<c:if test="${row.ALTAR_CAT eq '103'}">헌화</c:if></td>
+											<td>${row.ALTAR_TITLE}<input type = "hidden" class = "sAid" value="${row.ALTAR_ID}"/><input type = "hidden" class = "sAct" value="${row.ALTAR_CAT}"/></td>
+											<td style="text-align: right" class="sAA"><fmt:formatNumber value="${row.ALTAR_NET_PRICE}" pattern="#,###" /></td>
+											<td><input type="number" style="text-align:right;border:0px" class="sAB" min="0" value="${row.ALTAR_QTY}" ></td>
+											<td style="text-align: right" class="sAC"><fmt:formatNumber value="" pattern="#,###" /></td>
+											<td style="display :none" ><input type="checkbox" class="sCHKalt form-control" /></td>
 										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="row" items="${listAltar}">
-											<tr>
-												<td><c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if>
-													<c:if test="${row.ALTAR_CAT eq '103'}">헌화</c:if></td>
-												<td>${row.ALTAR_TITLE}<input type = "hidden" class = "sAid" value="${row.ALTAR_ID}"/><input type = "hidden" class = "sAct" value="${row.ALTAR_CAT}"/></td>
-												<td style="text-align: right" class="sAA"><fmt:formatNumber value="${row.ALTAR_NET_PRICE}" pattern="#,###" /></td>
-												<td><input type="number" style="text-align:right;border:0px" class="sAB" min="0" value="${row.ALTAR_QTY}" ></td>
-												<td style="text-align: right" class="sAC"><fmt:formatNumber value="" pattern="#,###" /></td>
-												<td style="display :none" ><input type="checkbox" class="sCHKalt form-control" /></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-								<hr>
-								<div style="text-align:right">
+									</c:forEach>
+								</tbody>
+							</table>
+							<hr>
+							<div style="text-align:right">
 								<span>선택된 제단용품 총액 :</span><input type="text" id="P5total" style="text-align: right; border: none;" readonly>
-								</div>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary"
-									onClick="fn_cstInsertP5()">등록</button>
 							</div>
 						</div>
 					</div>
@@ -868,7 +882,14 @@
 								<table class="table table-sm bst02">
 									<tbody>
 										<tr>
-											<th scope="row">기타시설</th>
+											<th scope="row">
+												<div>
+													<div style="float:left; margin-top:10px;">기타시설</div>
+													<div class="btn_wr">
+														<button style="float:right;" class="btn btn-md btn-primary" onClick="fn_cstInsertP8()">저장</button>
+													</div>
+												</div>
+											</th>
 										</tr>
 									</tbody>
 								</table>
@@ -920,47 +941,43 @@
 									</tbody>
 								</table>
 							<table class="table table-striped table-bordered nowrap" id="sEtcroom">
-									<colgroup>
-										<col width="15%" />
-										<col width="15%" />
-										<col width="15%" />
-										<col width="15%" />
-										<col width="5%" />
-										<col width="5%" />
-										<col width="5%" />
-										<col width="20%" />
-									</colgroup>
-									<thead>
-										<tr>
-											<th class="text-center">호실명</th>
-											<th class="text-center">일일사용료</th>
-											<th class="text-center">시간당사용료</th>
-											<th class="text-center">회당사용료</th>
-											<th class="text-center">사용일</th>
-											<th class="text-center">사용시간</th>
-											<th class="text-center">사용횟수</th>
-											<th class="text-center">금액</th>
-											<th style="display:none" class="text-center">선택</th>
-										</tr>
-									</thead>
-									<c:forEach var="row" items="${listEtcroom}">
-										<tr>
-											<td>${row.FROOM_TITLE}</td>
-											<td class = "sEA" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "sEB" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td class = "sEC" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td><input style="text-align: right;" class = "sED" type="number" min="0" value = "0"></td>
-											<td><input style="text-align: right;" class = "sEE" type="number" min="0" value = "0"></td>
-											<td><input style="text-align: right;" class = "sEF" type="number" min="0" value = "0"></td>
-											<td class = "sEG" style="text-align: right;"><fmt:formatNumber value="" pattern="#,###" /></td>
-											<td style="text-align:center; display:none"><input type="checkbox" class="sCHKe form-control" /></td>
-										</tr>
-									</c:forEach>
-								</table>
-							<div class="btn_wr text-right mt-3">
-								<button class="btn btn-md btn-primary"
-									onClick="fn_cstInsertP8()">등록</button>
-							</div>
+								<colgroup>
+									<col width="15%" />
+									<col width="15%" />
+									<col width="15%" />
+									<col width="15%" />
+									<col width="5%" />
+									<col width="5%" />
+									<col width="5%" />
+									<col width="20%" />
+								</colgroup>
+								<thead>
+									<tr>
+										<th class="text-center">호실명</th>
+										<th class="text-center">일일사용료</th>
+										<th class="text-center">시간당사용료</th>
+										<th class="text-center">회당사용료</th>
+										<th class="text-center">사용일</th>
+										<th class="text-center">사용시간</th>
+										<th class="text-center">사용횟수</th>
+										<th class="text-center">금액</th>
+										<th style="display:none" class="text-center">선택</th>
+									</tr>
+								</thead>
+								<c:forEach var="row" items="${listEtcroom}">
+									<tr>
+										<td>${row.FROOM_TITLE}</td>
+										<td class = "sEA" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
+										<td class = "sEB" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+										<td class = "sEC" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+										<td><input style="text-align: right;" class = "sED" type="number" min="0" value = "0"></td>
+										<td><input style="text-align: right;" class = "sEE" type="number" min="0" value = "0"></td>
+										<td><input style="text-align: right;" class = "sEF" type="number" min="0" value = "0"></td>
+										<td class = "sEG" style="text-align: right;"><fmt:formatNumber value="" pattern="#,###" /></td>
+										<td style="text-align:center; display:none"><input type="checkbox" class="sCHKe form-control" /></td>
+									</tr>
+								</c:forEach>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -982,7 +999,7 @@
 			alert('기존 삭제할 데이터가 존재하지 않습니다. 새로고침을 하시거나 관리자(개발자)를 부르십시오');
 		} else {
 			$.ajax({
-				url : "${path}/consult/deleteCSTRentfee.do",
+				url : "${path}/cont/deleteCSTRentfee.do",
 				data : data,
 				method : "POST",
 				dataType : "json"
@@ -991,7 +1008,7 @@
 			});
 		}
 	}
-
+	
 	function fn_cstInsertP2(){
 		if('${selectoneFroom.RENT_ID}' !== ''){
 			// 기존 데이터 삭제 먼저 진행
@@ -1021,7 +1038,7 @@
 			}
 
 			$.ajax({
-				url : "${path}/consult/insertCSTRentfee.do",
+				url : "${path}/cont/insertCSTRentfee.do",
 				data : data,
 				method : "POST",
 				dataType : "json"
@@ -1036,8 +1053,8 @@
 		}
 	}
 
-	function fn_contInsertP3() {
-		var CONid = $("#contid").val();
+	function fn_cstInsertP3() {
+		var CONid = $("#consultid").val();
 		if (CONid != ""){
 		var froomid = $('#frid').val();
 		var $Chkarr = $(".sCHKft");
@@ -1058,7 +1075,7 @@
 		for (var i=0; i<$Aarr.length; i++){
 		if($($Chkarr[i]).is(":checked")==true){
 		var contp3data = {};
-		contp3data.CONTRACT_ID = CONid;
+		contp3data.CONSULT_ID = CONid;
 		contp3data.ROOM_TITLE = froomid;
 		contp3data.FTABLE_CODE = $Tidarr[i].value;
 		contp3data.FTABLE_NET_PRICE = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
@@ -1066,7 +1083,7 @@
 		contp3data.ORD_AMOUNT = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
 		console.log(contp3data);
 		$.ajax({
-			url : "${path}/cont/insertP3.do",  
+			url : "${path}/consult/insertP3.do",  
 			data : contp3data,  
 			method : "POST",  
 			dataType : "json"  
@@ -1083,16 +1100,16 @@
 		
 	}
 	
-	function fn_contInsertP4() {
-		var CONid = $("#contid").val();
+	function fn_cstInsertP4() {
+		var CONid = $("#consultid").val();
 			if (CONid != ""){
 				var froomid = $('#frid').val();
 				var sel = $("#selMTR").val();
 				var contp4upd ={};
-				contp4upd.CONTRACT_ID = Number(CONid);
+				contp4upd.CONSULT_ID = Number(CONid);
 				console.log(contp4upd);
 				$.ajax({
-					url : "${path}/cont/updateP4.do",  
+					url : "${path}/consult/updateP4.do",  
 					data : contp4upd,  
 					method : "POST",  
 					dataType : "json"  
@@ -1110,7 +1127,7 @@
 							for (var i=0; i<$GAarr.length; i++){
 								if($($GAarr[i]).value != 0){
 									var contp4data = {};
-										contp4data.CONTRACT_ID = CONid;
+										contp4data.CONSULT_ID = CONid;
 										contp4data.ROOM_TITLE = froomid;
 										contp4data.GOODS_CODE = $mgidarr[i].value;
 										contp4data.ORD_TYPE = "1";
@@ -1119,7 +1136,7 @@
 										contp4data.ORD_AMOUNT = Number($GBarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 										console.log(contp4data);
 								$.ajax({
-									url : "${path}/cont/insertP4.do",  
+									url : "${path}/consult/insertP4.do",  
 									data : contp4data,  
 									method : "POST",  
 									dataType : "json"  
@@ -1130,7 +1147,7 @@
 						for (var i=0; i<$GCarr.length; i++){
 								if($($GCarr[i]).value != 0){
 									var contp4data = {};
-										contp4data.CONTRACT_ID = CONid;
+										contp4data.CONSULT_ID = CONid;
 										contp4data.ROOM_TITLE = froomid;
 										contp4data.GOODS_CODE = $GMarr[i].value;
 										contp4data.ORD_TYPE = "1";
@@ -1139,7 +1156,7 @@
 										contp4data.ORD_AMOUNT = Number($GDarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 										console.log(contp4data);
 								$.ajax({
-									url : "${path}/cont/insertP4.do",  
+									url : "${path}/consult/insertP4.do",  
 									data : contp4data,  
 									method : "POST",  
 									dataType : "json"  
@@ -1161,7 +1178,7 @@
 								for (var i=0; i<$GEarr.length; i++){
 									if($($GEarr[i]).value != 0){
 										var contp4data = {};
-											contp4data.CONTRACT_ID = CONid;
+											contp4data.CONSULT_ID = CONid;
 											contp4data.ROOM_TITLE = froomid;
 											contp4data.GOODS_CODE = $tgidarr[i].value;
 											contp4data.ORD_TYPE = "1";
@@ -1170,7 +1187,7 @@
 											contp4data.ORD_AMOUNT = Number($GFarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 											console.log(contp4data);
 									$.ajax({
-										url : "${path}/cont/insertP4.do",  
+										url : "${path}/consult/insertP4.do",  
 										data : contp4data,  
 										method : "POST",  
 										dataType : "json"  
@@ -1181,7 +1198,7 @@
 							for (var i=0; i<$GGarr.length; i++){
 								if($($GGarr[i]).value != 0){
 									var contp4data = {};
-										contp4data.CONTRACT_ID = CONid;
+										contp4data.CONSULT_ID = CONid;
 										contp4data.ROOM_TITLE = froomid;
 										contp4data.GOODS_CODE = $GTarr[i].value;
 										contp4data.ORD_TYPE = "1";
@@ -1190,7 +1207,7 @@
 										contp4data.ORD_AMOUNT = Number($GHarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 										console.log(contp4data);
 									$.ajax({
-										url : "${path}/cont/insertP4.do",  
+										url : "${path}/consult/insertP4.do",  
 										data : contp4data,  
 										method : "POST",  
 										dataType : "json"  
@@ -1209,8 +1226,8 @@
 				}
 
 	
-	function fn_contInsertP5() {
-		var CONid = $("#contid").val();
+	function fn_cstInsertP5() {
+		var CONid = $("#consultid").val();
 		if (CONid != ""){
 		var froomid = $('#frid').val();
 		var $Chkarr = $(".sCHKalt");
@@ -1226,10 +1243,10 @@
 			return;
 			}
 		var contp5upd ={};
-		contp5upd.CONTRACT_ID = Number(CONid);
+		contp5upd.CONSULT_ID = Number(CONid);
 		console.log(contp5upd);
 		$.ajax({
-			url : "${path}/cont/updateP5.do",  
+			url : "${path}/consult/updateP5.do",  
 			data : contp5upd,  
 			method : "POST",  
 			dataType : "json"  
@@ -1238,7 +1255,7 @@
  		for (var i=0; i<$Aarr.length; i++){
 		if($($Chkarr[i]).is(":checked")==true){
 		var contp5data = {};
-		contp5data.CONTRACT_ID = CONid;
+		contp5data.CONSULT_ID = CONid;
 		contp5data.ROOM_TITLE = froomid;
 		contp5data.ALTAR_CAT = $Actarr[i].value;
 		contp5data.ALTAR_ID = $Aidarr[i].value;
@@ -1247,7 +1264,7 @@
 		contp5data.ORD_PRICE = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
 		console.log(contp5data);
 		$.ajax({
-			url : "${path}/cont/insertP5.do",  
+			url : "${path}/consult/insertP5.do",  
 			data : contp5data,  
 			method : "POST",  
 			dataType : "json"  
@@ -1266,7 +1283,7 @@
 	}
 
 	function fn_contInsertP6() {
-		var CONid = $("#contid").val();
+		var CONid = $("#consultid").val();
 		if (CONid != ""){
 		var froomid = $('#frid').val();
 		var $Gidarr =  $(".GID");
@@ -1274,7 +1291,7 @@
 		var $Barr =  $(".MB");
 		var $infoarr =  $(".infoM");
 		var contp6upd ={};
-		contp6upd.CONTRACT_ID = Number(CONid);
+		contp6upd.CONSULT_ID = Number(CONid);
 		console.log(contp6upd);
 		$.ajax({
 			url : "${path}/cont/updateP6.do",  
@@ -1286,7 +1303,7 @@
 		for (var i=0; i<$Aarr.length; i++){
 		if($Aarr[i].value > 0){
 		var contp6data = {};
-		contp6data.CONTRACT_ID = CONid;
+		contp6data.CONSULT_ID = CONid;
 		contp6data.ROOM_TITLE = froomid;
 		contp6data.GOODS_CODE = $Gidarr[i].value;
 		contp6data.NET_PRICE = Number($infoarr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
@@ -1313,7 +1330,7 @@
 	}
 
 	function fn_contInsertP7() {
-		var CONid = $("#contid").val();
+		var CONid = $("#consultid").val();
 		if (CONid != ""){
 		var froomid = $('#frid').val();
 		var $Gidarr =  $(".GID");
@@ -1321,7 +1338,7 @@
 		var $Barr =  $(".SB");
 		var $infoarr =  $(".infoS");
 		var contp7upd ={};
-		contp7upd.CONTRACT_ID = Number(CONid);
+		contp7upd.CONSULT_ID = Number(CONid);
 		console.log(contp7upd);
 		$.ajax({
 			url : "${path}/cont/updateP7.do",  
@@ -1333,7 +1350,7 @@
 		for (var i=0; i<$Aarr.length; i++){
 		if($Aarr[i].value > 0){
 		var contp7data = {};
-		contp7data.CONTRACT_ID = CONid;
+		contp7data.CONSULT_ID = CONid;
 		contp7data.ROOM_TITLE = froomid;
 		contp7data.GOODS_CODE = $Gidarr[i].value;
 		contp7data.NET_PRICE = Number($infoarr[i].innerText.replace(/[\D\s\._\-]+/g, ""))

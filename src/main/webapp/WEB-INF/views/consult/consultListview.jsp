@@ -150,7 +150,7 @@ function fnSetConsultdefault(url, data){
 		        leadingZeros(cstdate.getDate(), 2);
 		var consultData = {};
 		consultData.CONSULT_DATE	= consultdate;
-		consultData.PATI_NAME 		= "환자명";
+		consultData.PATI_NAME 		= "새상담";
 		console.log(consultData);
 		$.ajax({ url: "${path}/consult/insertConsult.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
 					data: consultData , // HTTP 요청과 함께 서버로 보낼 데이터 

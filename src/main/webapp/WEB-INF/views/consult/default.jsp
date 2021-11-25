@@ -11,7 +11,14 @@
 						<table class="table table-sm bst02">
 							<tbody>
 								<tr>
-									<th scope="row">기본사항</th>
+									<th scope="row">
+										<div>
+											<div style="float:left; margin-top:10px;">기본사항</div>
+											<div class="btn_wr" style="float:right;">
+												<button class="btn btn-md btn-primary" onClick="fn_UpdconsultP1()">저장</button>
+											</div>
+										</div>
+									</th>
 								</tr>
 							</tbody>
 						</table>
@@ -143,9 +150,7 @@
 						</table>
 					</div>
 				</div>
-				<div class="btn_wr text-right mt-3">
-					<button class="btn btn-md btn-primary" onClick="fn_UpdconsultP1()">저장</button>
-				</div>
+				
 			</div>
 		</div>
 	</div>

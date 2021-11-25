@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <div class="page-header2">
@@ -1081,7 +1082,8 @@
 												<c:if test="${status.first}">
 													<td class="imagebx" rowspan="${fn:length(listAltar)}">
 														<c:forEach var="t" items="${listAltar}">
-															<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.ALTAR_IMAGE}">src="${path}/image/${t.ALTAR_IMAGE}"</c:if>
+															<c:set var="length" value="${fn:length(t.ALTAR_IMAGE)}" />
+															<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.ALTAR_IMAGE}">src="<spring:url value='/localImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}'/>"</c:if>
 																 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
 														</c:forEach>
 													</td>
