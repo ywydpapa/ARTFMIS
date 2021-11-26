@@ -111,4 +111,22 @@ public class ConsultDAOImpl implements ConsultDAO {
 		return sqlSession.insert("consult.consultp5", dto);
 	}
 
+	@Override
+	public List<ConsultDTO> reloadP3(Integer CONSULT_ID) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("consult.reloadConsultp3", CONSULT_ID);
+	}
+	
+	@Override
+	public List<ConsultDTO> reloadP4m(Integer CONSULT_ID) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("consult.reloadConsultp4m", CONSULT_ID);
+	}
+
+	@Override
+	public List<ConsultDTO> reloadP5(Integer CONSULT_ID) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("consult.reloadConsultp5", CONSULT_ID);
+	}
+
 }

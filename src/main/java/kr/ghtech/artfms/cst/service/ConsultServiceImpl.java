@@ -111,4 +111,22 @@ public class ConsultServiceImpl implements ConsultService {
 		return consultDao.deleteCSTRentfee(dto);
 	}
 
+	@Override
+	public List<ConsultDTO> reloadP3(Integer CONSULT_ID) {
+		// TODO Auto-generated method stub
+		return consultDao.reloadP3(CONSULT_ID);
+	}
+	
+	@Override
+	public List<ConsultDTO> reloadP4m(Integer CONSULT_ID) {
+		// TODO Auto-generated method stub
+		return consultDao.reloadP4m(CONSULT_ID);
+	}
+
+	@Override
+	public List<ConsultDTO> reloadP5(Integer CONSULT_ID) {
+		// TODO Auto-generated method stub
+		return consultDao.reloadP5(CONSULT_ID);
+	}
+
 }

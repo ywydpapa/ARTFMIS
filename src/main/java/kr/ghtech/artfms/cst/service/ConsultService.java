@@ -27,4 +27,8 @@ public interface ConsultService {
 	int insertConsult3(ConsultDTO dto);
 	int insertConsult4(ConsultDTO dto);
 	int insertConsult5(ConsultDTO dto);
+	
+	List<ConsultDTO> reloadP3(Integer CONSULT_ID);
+	List<ConsultDTO> reloadP4m(Integer CONSULT_ID);
+	List<ConsultDTO> reloadP5(Integer CONSULT_ID);
 }

@@ -56,6 +56,9 @@ public class ConsultController {
 		mav.addObject("listAltar", contService.doslistAltar());
 		mav.addObject("listFroom", contService.doslistFroom());
 		mav.addObject("listFtable", contService.doslistFtable());
+		mav.addObject("consultpage3", consultService.reloadP3(CONSULT_ID));
+		mav.addObject("consultpage4m", consultService.reloadP4m(CONSULT_ID));
+		mav.addObject("consultpage5", consultService.reloadP5(CONSULT_ID));
 		mav.addObject("listEtcroom", contService.doslistEtcroom());
 		mav.addObject("listFgoodsM", contService.doslistFgoodsM());
 		mav.addObject("listFgoodsM13", contService.doslistFgoodsMn(13));

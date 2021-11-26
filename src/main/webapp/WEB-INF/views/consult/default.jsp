@@ -124,6 +124,7 @@
 													</td>
 													<td style="text-align: center; display:none"><input type="checkbox"	class="form-control CHKsrm" /></td>
 												</tr>
+												
 											</c:forEach>
 											<c:forEach var="row" items="${listEtcroom}">
 												<tr>
@@ -136,6 +137,10 @@
 													<td class = "CS_ESum" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="0" pattern="#,###" /></td>
 												</tr>
 											</c:forEach>
+												<tr>
+													<td colspan="5" style="text-align:center;">총합</td>
+													<td colspan="2" style="text-align:right;" class="sumTd">0</td>
+												</tr>
 											</tbody>
 										</table>
 									</td>
@@ -196,6 +201,9 @@ $(".CS_EDay, .CS_ETime").change(function() {
 	var CS_EDay = $(".CS_EDay");
 	var CS_ETime = $(".CS_ETime");
 	var CS_ESum = $(".CS_ESum");
+	var sumTd = $(".sumTd");
+	var temp = 0;
+	
 	for (var i = 0; i < CS_RMday.length; i++) {
 		var chksum = 0;
 		var b1 = Number(CS_RMday[i].innerText.replace(/[\D\s\._\-]+/g, ""));
@@ -203,6 +211,10 @@ $(".CS_EDay, .CS_ETime").change(function() {
 		var c1 = Number(CS_EDay[i].value.replace(/[\D\s\._\-]+/g, ""));
 		var c2 = Number(CS_ETime[i].value.replace(/[\D\s\._\-]+/g, ""));
 		chksum = (b1*c1)+(b2*c2);
+		console.log("chk: " + chksum);
+		temp = temp + chksum;
+		console.log("temp: " + temp);
+		sumTd.html(numberWithCommas(temp));
 		CS_ESum[i].innerText = numberWithCommas(chksum);
 	}
 });

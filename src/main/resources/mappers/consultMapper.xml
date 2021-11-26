@@ -18,6 +18,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from GHT_CONSULT where ATTRIB not LIKE 'XXX%' order by CONSULT_ID desc
  </select>
  
+ <select id="reloadConsultp3" resultType="consultDto">
+	select gfo.QUTY,gfo.ORD_AMOUNT, gbc.BCD_TITLE, gf.*, CASE WHEN IFNULL(gfo.ORD_AMOUNT,0)>0 then 'Y' else 'N' end CHKED from GHT_FTABLE gf 
+ left join GHT_BASE_CODE gbc on gbc.BCD_ID = gf.FTABLE_CAT 
+ left join GHT_CONSULT_FTAB gfo on gfo.FTABLE_CODE = gf.FTABLE_ID and CONSULT_ID = #{CONSULT_ID} and gfo.MOD_DATE is NULL
+ where FTABLE_CAT IN (24,31,32,34,35,36,72,73,74,75,77,76) order by FTABLE_CAT
+</select>
+
+<select id="reloadConsultp4m" resultType="consultDto">
+	select e.ORD_QUTY , e.ORD_AMOUNT , b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID 
+	left join GHT_FNRSUPP_ORD c on a.GOODS_ID = c.FNRS_GOODS_ID and c.FNRS_ORD_FROOM_ID = 121 
+	left join GHT_BASE_CODE d on c.FNRS_ORD_FROOM_ID = d.BCD_ID 
+	left join GHT_CONSULT_FNRSUPPLIES e on a.GOODS_ID = e.GOODS_CODE and e.CONSULT_ID = #{CONSULT_ID} and e.MOD_DATE IS NULL
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='1') and GOODS_USE_YN 
+	= 'Y' and (GOODS_MODERN = '121' or GOODS_MODERN = '123') order by CAT_02_ID, GOODS_ORDER    
+</select>
+ 
+ <select id="reloadConsultp5" resultType="contDto">
+ SELECT b.QUTY ,b.ORD_PRICE ,a.*, CASE WHEN IFNULL(b.ORD_PRICE,0)>0 then 'Y' else 'N' end CHKED from GHT_ALTAR a 
+ left join GHT_CONSULT_ALTAR b on a.ALTAR_ID = b.ALTAR_ID and b.CONSULT_ID = #{CONSULT_ID} and b.MOD_DATE is NULL
+ where a.ALTAR_CAT IN (102,103) and a.ALTAR_USE_YN = 'Y' order by a.ALTAR_CAT
+</select>
+ 
  <update id="updateConsult">
  		update GHT_CONSULT set 
 		PATI_NAME = #{PATI_NAME},
