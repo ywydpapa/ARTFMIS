@@ -1495,35 +1495,40 @@
 		var idxm13 = $(".m131 option").index($(".m131 option:selected"));
 		$(".m132").prop('selectedIndex',idxm13);
 		$(".m133").prop('selectedIndex',idxm13);
-		$(".m134").find("[type='number']").prop("value", "1");
+		$(".m134").prop("value", 1);
+		calculateG();
 	});
 	
 	$(".m141").change(function(){
 		var idxm14 = $(".m141 option").index($(".m141 option:selected"));
 		$(".m142").prop('selectedIndex',idxm14);
 		$(".m143").prop('selectedIndex',idxm14);
-		$(".m144").find("[type='number']").prop("value", 1);
+		$(".m144").prop("value", 1);
+		calculateG();
 	});
 
 	$(".m151").change(function(){
 		var idxm15 = $(".m151 option").index($(".m151 option:selected"));
 		$(".m152").prop('selectedIndex',idxm15);
 		$(".m153").prop('selectedIndex',idxm15);
-		$(".m154").find("[type='number']").prop("value", 1);
+		$(".m154").prop("value", 1);
+		calculateG();
 	});
 
 	$(".m161").change(function(){
 		var idxm16 = $(".m161 option").index($(".m161 option:selected"));
 		$(".m162").prop('selectedIndex',idxm16);
 		$(".m163").prop('selectedIndex',idxm16);
-		$(".m164").find("[type='number']").prop("value", 1);
+		$(".m164").prop("value", 1);
+		calculateG();
 	});
 
 	$(".m171").change(function(){
 		var idxm17 = $(".m171 option").index($(".m171 option:selected"));
 		$(".m172").prop('selectedIndex',idxm17);
 		$(".m173").prop('selectedIndex',idxm17);
-		$(".m174").find("[type='number']").prop("value", 1);
+		$(".m174").prop("value", 1);
+		calculateG();
 	});
 
 	$(".m181").change(function(){
@@ -1531,6 +1536,7 @@
 		$(".m182").prop('selectedIndex',idxm18);
 		$(".m183").prop('selectedIndex',idxm18);
 		$(".m184").prop("value", 1);
+		calculateG();
 	});
 
 	$(".t131").change(function(){
