@@ -77,7 +77,7 @@
 																	rowspan="1">계약호실</th>
 																<td><select class="form-control" id="froomtrbf">
 																		<c:forEach var="listcont" items="${listcont}">
-																			<option value="${listcont.CONTRACT_ID}">${listcont.FROOM_TITLE}</option>
+																			<option value="${listcont.CONTRACT_ID}/${listcont.FROOM_ID}">${listcont.FROOM_TITLE}</option>
 																		</c:forEach>
 																</select>
 																<select style="display:none" class="form-control" id="froomtrbfdp">
@@ -333,15 +333,14 @@
 		chkcalR();
 	});
 	
-	$("#froomtrbf").change(function(){
-		setDSname();
-	});
-	
 	$("#froomtraf, #afday").change(function(){
 		calafRoomDayprice();
+		getSetlaf();
 	});
 	
 	$("#froomtrbf, #bfday").change(function(){
+		setDSname();
+		getSetlbf();
 		calbfRoomDayprice();
 	});
 	
@@ -480,6 +479,27 @@
 		} else {
 			fn_contTrfroomP2();
 		}
+	}
+	
+	function getSetlbf(){
+		console.log("이전호실 설정 로드");
+		var frid = $("#froomtrbf option:selected").val().split('/');
+		var froomid = frid[1];
+		$.ajax({
+			url : "${path}/setup/listfrsetl/" + froomid,
+			method : "POST",
+			dataType : "json"
+		}).done(function(data) {
+			console.log(data);
+		}).fail(function(){
+			alert("로드실패");
+		});
+		
+		
+	}
+	
+	function getSetlaf(){
+		console.log("변경호실 설정 로드");
 	}
 </script>
 

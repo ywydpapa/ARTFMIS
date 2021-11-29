@@ -1,6 +1,7 @@
 package kr.ghtech.artfms.setup;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ghtech.artfms.setup.dto.SetupDTO;
@@ -103,8 +106,15 @@ public class SetupController {
 		mav.setViewName("setup/infodetailsetup");
 		return mav;
 	}
-
 	
+	@ResponseBody
+	@RequestMapping(value="listfrsetl/{SETL_FROOM_ID}", method = RequestMethod.POST)
+	public List<SetupDTO> frsetllist(@PathVariable("SETL_FROOM_ID") int SETL_FROOM_ID){
+		List<SetupDTO> result = setupService.listFroomSetl(SETL_FROOM_ID);
+		return result;
+	}
+
+
 	@RequestMapping("insert.do")
 	public ResponseEntity<?> insert(@ModelAttribute SetupDTO dto){
 		Map<String, Object> param = new HashMap<String, Object>();
