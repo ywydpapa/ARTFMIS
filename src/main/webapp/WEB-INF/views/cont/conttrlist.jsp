@@ -131,7 +131,7 @@
 																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
 																	부과일</th>
 																<td><input type="number"
-																	class="form-control text-right" id="bfaddday" value="0"></td>
+																	class="form-control text-right" id="afaddday" value="0"></td>
 															</tr>
 															<tr align="center">
 																<th style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
@@ -154,6 +154,12 @@
 																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">분향실 사용료</th>
 																<td><input type="text"
 																	class="form-control text-right" id="afrmcharge" value="0" readonly></td>
+															</tr>
+															<tr style="display:none;">
+															<td><input type="text" id="bfotexpay" value=""></td>
+															<td><input type="text" id="bftmexpay" value=""></td>
+															<td><input type="text" id="afotexpay" value=""></td>
+															<td><input type="text" id="aftmexpay" value=""></td>
 															</tr>
 														</tbody>
 													</table>
@@ -333,12 +339,12 @@
 		chkcalR();
 	});
 	
-	$("#froomtraf, #afday").change(function(){
+	$("#froomtraf, #afday, #afaddday").change(function(){
 		calafRoomDayprice();
 		getSetlaf();
 	});
 	
-	$("#froomtrbf, #bfday").change(function(){
+	$("#froomtrbf, #bfday, #bfaddday").change(function(){
 		setDSname();
 		getSetlbf();
 		calbfRoomDayprice();
@@ -349,10 +355,20 @@
 		$('#froomtrafdp option').removeAttr('selected');
 		$('#froomtrafdp option:eq(' + selindex + ')').attr('selected', 'selected');
 		var afrmchg = 0;
+		var afexchg = 0;
 		var dp = $("#froomtrafdp").val();
+		var tp = $("#aftmexpay").val();
 		var afday = $("#afday").val();
+		var afexc = $("#afaddday").val();
+		if (afexc > 0){
+			var ep = $("#afotexpay").val();	
+		} else {
+			var ep = 0;	
+		}
+		afexchg = Number(tp) * Number(afexc) + Number(ep);
 		afrmchg = dp * afday;
 		$("#afrmcharge").val(numberWithCommas(afrmchg));
+		$("#afaddfee").val(numberWithCommas(afexchg));
 	}
 	
 	function calbfRoomDayprice(){
@@ -360,10 +376,21 @@
 		$('#froomtrbfdp option').removeAttr('selected');
 		$('#froomtrbfdp option:eq(' + selindex + ')').attr('selected', 'selected');
 		var bfrmchg = 0;
+		var bfexchg = 0;
+
+		var tp = $("#bftmexpay").val();
 		var dp = $("#froomtrbfdp").val();
+		var bfexc = $("#bfaddday").val();
+		if (bfexc > 0){
+			var ep = $("#bfotexpay").val();	
+		}else{
+			var ep = 0;
+		}
 		var bfday = $("#bfday").val();
 		bfrmchg = dp * bfday;
+		bfexchg = Number(tp) * Number(bfexc) + Number(ep);
 		$("#bfrmcharge").val(numberWithCommas(bfrmchg));
+		$("#bfaddfee").val(numberWithCommas(bfexchg));
 	}
 	
 	function setDSname() {
@@ -445,6 +472,8 @@
 			scrollbar : false
 		});
 		setDSname();
+		getSetlbf();
+		getSetlaf();
 	});
 
 	function chkcalE() {
@@ -482,7 +511,6 @@
 	}
 	
 	function getSetlbf(){
-		console.log("이전호실 설정 로드");
 		var frid = $("#froomtrbf option:selected").val().split('/');
 		var froomid = frid[1];
 		$.ajax({
@@ -490,16 +518,50 @@
 			method : "POST",
 			dataType : "json"
 		}).done(function(data) {
-			console.log(data);
+			var sume = 0;
+			var sumt = 0;
+			for (var i=0; i<data.length; i++){
+				if (data[i].PAY_YN == 'Y'){
+					if (data[i].SETL_TYPE == 'E'){
+						
+						sume = Number(sume) + Number(data[i].SETL_PRICE);
+					} else if (data[i].SETL_TYPE == 'T'){
+						sumt = Number(sumt) + Number(data[i].SETL_PRICE);
+					}	
+				}
+			}
+			$("#bfotexpay").val(sume);
+			$("#bftmexpay").val(sumt);
 		}).fail(function(){
 			alert("로드실패");
 		});
-		
-		
 	}
 	
 	function getSetlaf(){
-		console.log("변경호실 설정 로드");
+		var frid = $("#froomtraf option:selected").val();
+		var froomid = frid;
+		$.ajax({
+			url : "${path}/setup/listfrsetl/" + froomid,
+			method : "POST",
+			dataType : "json"
+		}).done(function(data) {
+			var sume = 0;
+			var sumt = 0;
+			for (var i=0; i<data.length; i++){
+				if (data[i].PAY_YN == 'Y'){
+					if (data[i].SETL_TYPE == 'E'){
+						
+						sume = Number(sume) + Number(data[i].SETL_PRICE);
+					} else if (data[i].SETL_TYPE == 'T'){
+						sumt = Number(sumt) + Number(data[i].SETL_PRICE);
+					}	
+				}
+			}
+			$("#afotexpay").val(sume);
+			$("#aftmexpay").val(sumt);
+		}).fail(function(){
+			alert("로드실패");
+		});
 	}
 </script>
 
