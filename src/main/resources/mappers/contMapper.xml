@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  </select>
  
  <select id="listCont" resultType="contDto">
- 	 	select case when gc.TEMP_ROOM = 'Y' then concat('(임시) ',gf.FROOM_ALIS) else gf.FROOM_TITLE end FROOM_TITLE, case when gc.SETT_DATE is null then '입실' else '퇴실' end inRoom, substr(gc.START_DATE,1,10) STDATE,substr(gc.END_DATE,1,10) EDDATE, gc.* from GHT_CONT gc left join GHT_FROOM gf on gf.FROOM_ID = gc.FROOM_ID
+ 	 	select case when gc.TEMP_ROOM = 'Y' then concat('(임시) ',gf.FROOM_ALIS) else gf.FROOM_TITLE end FROOM_TITLE, case when gc.SETT_DATE is null then '입실' else '퇴실' end inRoom, substr(gc.START_DATE,1,10) STDATE,substr(gc.END_DATE,1,10) EDDATE, gf.FROOM_DAY_PRICE, gc.* from GHT_CONT gc left join GHT_FROOM gf on gf.FROOM_ID = gc.FROOM_ID
  </select>
  
  <select id="listContcombo" resultType="contDto">

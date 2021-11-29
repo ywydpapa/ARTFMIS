@@ -80,6 +80,11 @@
 																			<option value="${listcont.CONTRACT_ID}">${listcont.FROOM_TITLE}</option>
 																		</c:forEach>
 																</select>
+																<select style="display:none" class="form-control" id="froomtrbfdp">
+																		<c:forEach var="listcont" items="${listcont}">
+																			<option value="${listcont.FROOM_DAY_PRICE}">${listcont.FROOM_DAY_PRICE}</option>
+																		</c:forEach>
+																</select>
 																<select style="display:none" class="form-control" id="dperson">
 																		<c:forEach var="listcont" items="${listcont}">
 																			<option value="${listcont.DPERSON_NAME}">${listcont.DPERSON_NAME}</option>
@@ -333,10 +338,14 @@
 	});
 	
 	$("#froomtraf, #afday").change(function(){
-		calRoomDayprice();
+		calafRoomDayprice();
 	});
 	
-	function calRoomDayprice(){
+	$("#froomtrbf, #bfday").change(function(){
+		calbfRoomDayprice();
+	});
+	
+	function calafRoomDayprice(){
 		var selindex = $("#froomtraf option").index( $("#froomtraf option:selected") );
 		$('#froomtrafdp option').removeAttr('selected');
 		$('#froomtrafdp option:eq(' + selindex + ')').attr('selected', 'selected');
@@ -347,6 +356,16 @@
 		$("#afrmcharge").val(numberWithCommas(afrmchg));
 	}
 	
+	function calbfRoomDayprice(){
+		var selindex = $("#froomtrbf option").index( $("#froomtrbf option:selected") );
+		$('#froomtrbfdp option').removeAttr('selected');
+		$('#froomtrbfdp option:eq(' + selindex + ')').attr('selected', 'selected');
+		var bfrmchg = 0;
+		var dp = $("#froomtrbfdp").val();
+		var bfday = $("#bfday").val();
+		bfrmchg = dp * bfday;
+		$("#bfrmcharge").val(numberWithCommas(bfrmchg));
+	}
 	
 	function setDSname() {
 		var selindex = $("#froomtrbf option").index( $("#froomtrbf option:selected") );
