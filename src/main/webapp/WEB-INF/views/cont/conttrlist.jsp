@@ -94,6 +94,11 @@
 																			<option value="${listemp.FROOM_ID}">${listemp.FROOM_TITLE}</option>
 																		</c:forEach>
 																</select>
+																<select style="display:none" class="form-control" id="froomtrafdp">
+																		<c:forEach var="listemp" items="${listroomemp}">
+																			<option value="${listemp.FROOM_DAY_PRICE}">${listemp.FROOM_DAY_PRICE}</option>
+																		</c:forEach>
+																</select>
 																<select style="display:none" class="form-control" id="dsangju">
 																		<c:forEach var="listcont" items="${listcont}">
 																			<option value="${listcont.SANGJU_NAME}">${listcont.SANGJU_NAME}</option>
@@ -124,15 +129,26 @@
 																	class="form-control text-right" id="bfaddday" value="0"></td>
 															</tr>
 															<tr align="center">
+																<th style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
+																	</th>
+																<td><input type="text"
+																	class="form-control text-right" id="bfaddfee" value="0" readonly></td>
+																<th	style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
+																	</th>
+																<td><input type="text"
+																	class="form-control text-right" id="afaddfee" value="0" readonly></td>
+															</tr>
+															
+															<tr align="center">
 																<th
 																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">분향실
 																	사용료</th>
-																<td><input type="number"
-																	class="form-control text-right" id="bfaddday" value="0"></td>
+																<td><input type="text"
+																	class="form-control text-right" id="bfrmcharge" value="0" readonly></td>
 																<th
 																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">분향실 사용료</th>
-																<td><input type="number"
-																	class="form-control text-right" id="bfaddday" value="0"></td>
+																<td><input type="text"
+																	class="form-control text-right" id="afrmcharge" value="0" readonly></td>
 															</tr>
 														</tbody>
 													</table>
@@ -315,6 +331,22 @@
 	$("#froomtrbf").change(function(){
 		setDSname();
 	});
+	
+	$("#froomtraf, #afday").change(function(){
+		calRoomDayprice();
+	});
+	
+	function calRoomDayprice(){
+		var selindex = $("#froomtraf option").index( $("#froomtraf option:selected") );
+		$('#froomtrafdp option').removeAttr('selected');
+		$('#froomtrafdp option:eq(' + selindex + ')').attr('selected', 'selected');
+		var afrmchg = 0;
+		var dp = $("#froomtrafdp").val();
+		var afday = $("#afday").val();
+		afrmchg = dp * afday;
+		$("#afrmcharge").val(numberWithCommas(afrmchg));
+	}
+	
 	
 	function setDSname() {
 		var selindex = $("#froomtrbf option").index( $("#froomtrbf option:selected") );
