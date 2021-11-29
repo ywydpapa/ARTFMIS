@@ -196,8 +196,7 @@
 									</table>
 								</div>
 							</form>
-							<br> <br>
-							<%-- <form name="form3-1" method="post" onsubmit="return false;">
+							<form style="display:none;" name="form3-1" method="post" onsubmit="return false;">
 								<table class="table table-sm bst02">
 									<tbody>
 										<tr>
@@ -229,9 +228,8 @@
 										</tbody>
 									</table>
 							</form>
-							<hr>
-							<div style="text-align:right"><span>선택된 제물상 총액 :</span><input type="text" id="P3total" style="text-align: right; border: none;" readonly>
-							</div> --%>
+							<!-- <div style="text-align:right"><span>선택된 제물상 총액 :</span><input type="text" id="P3total" style="text-align: right; border: none;" readonly>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -312,7 +310,7 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input class="from-control GA" oninput="calculateG()"
+												<td style="text-align: right;"><input class="from-control m134 GA" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 13}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
@@ -347,7 +345,7 @@
 													</select>
 												</td>
 												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
+													class="from-control m144 GA" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 14}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
@@ -382,7 +380,7 @@
 													</select>
 												</td>
 												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
+													class="from-control m154 GA" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 15}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
@@ -417,7 +415,7 @@
 													</select>
 												</td>
 												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
+													class="from-control m164 GA" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 16}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
@@ -452,7 +450,7 @@
 													</select>
 												</td>
 												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
+													class="from-control m174 GA" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 17}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
@@ -486,7 +484,7 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input class="from-control GA" oninput="calculateG()" style="border: none; text-align: right;" type="number" min="0" max="100"
+												<td style="text-align: right;"><input class="from-control m184 GA" oninput="calculateG()" style="border: none; text-align: right;" type="number" min="0" max="100"
 													value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 18}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
@@ -512,7 +510,7 @@
 										</tr>
 									</tbody>
 								</table>
-									<%-- <table class="table table-striped table-bordered nowrap TRD">
+								<table style="display:none;" class="table table-striped table-bordered nowrap TRD">
  									<colgroup>
 										<col width="15%" />
 										<col width="25%" />
@@ -772,7 +770,7 @@
 											<td colspan="2" id="P4total" style="text-align:right;">0</td>
 										</tr>
 									</tbody>
-								</table> --%>
+								</table>
 								<!-- <div>
 									<span>선택된 장의용품 총액 :</span><input	type="text" id="P4total" style="text-align: right; border: none;" readonly>								
 								</div> -->
@@ -841,15 +839,15 @@
 									</tbody>
 								</table>
 							</form>
-							<%-- <br>
-							<table class="table table-sm bst02">
+							<br>
+							<table style="display:none;" class="table table-sm bst02">
 								<tbody>
 									<tr>
 										<th scope="row">선택항목</th>
 									</tr>
 								</tbody>
 							</table>
-							<table class="table table-bordered nowrap" id="sAltarTable">
+							<table style="display:none;" class="table table-bordered nowrap" id="sAltarTable">
 								<thead>
 									<tr>
 										<th scope="col" width="25%" align="center">제단구분</th>
@@ -875,9 +873,9 @@
 								</tbody>
 							</table>
 							<hr>
-							<div style="text-align:right">
+							<!-- <div style="text-align:right">
 								<span>선택된 제단용품 총액 :</span><input type="text" id="P5total" style="text-align: right; border: none;" readonly>
-							</div> --%>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -1497,36 +1495,42 @@
 		var idxm13 = $(".m131 option").index($(".m131 option:selected"));
 		$(".m132").prop('selectedIndex',idxm13);
 		$(".m133").prop('selectedIndex',idxm13);
+		$(".m134").find("[type='number']").prop("value", "1");
 	});
 	
 	$(".m141").change(function(){
 		var idxm14 = $(".m141 option").index($(".m141 option:selected"));
 		$(".m142").prop('selectedIndex',idxm14);
 		$(".m143").prop('selectedIndex',idxm14);
+		$(".m144").find("[type='number']").prop("value", 1);
 	});
 
 	$(".m151").change(function(){
 		var idxm15 = $(".m151 option").index($(".m151 option:selected"));
 		$(".m152").prop('selectedIndex',idxm15);
 		$(".m153").prop('selectedIndex',idxm15);
+		$(".m154").find("[type='number']").prop("value", 1);
 	});
 
 	$(".m161").change(function(){
 		var idxm16 = $(".m161 option").index($(".m161 option:selected"));
 		$(".m162").prop('selectedIndex',idxm16);
 		$(".m163").prop('selectedIndex',idxm16);
+		$(".m164").find("[type='number']").prop("value", 1);
 	});
 
 	$(".m171").change(function(){
 		var idxm17 = $(".m171 option").index($(".m171 option:selected"));
 		$(".m172").prop('selectedIndex',idxm17);
 		$(".m173").prop('selectedIndex',idxm17);
+		$(".m174").find("[type='number']").prop("value", 1);
 	});
 
 	$(".m181").change(function(){
 		var idxm18 = $(".m181 option").index($(".m181 option:selected"));
 		$(".m182").prop('selectedIndex',idxm18);
 		$(".m183").prop('selectedIndex',idxm18);
+		$(".m184").prop("value", 1);
 	});
 
 	$(".t131").change(function(){
