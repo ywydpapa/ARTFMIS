@@ -76,6 +76,7 @@ public class ContController {
 	@RequestMapping("conttrlist.do")
 	public ModelAndView conttrlist(ModelAndView mav) {
 		mav.addObject("listcont", contService.listCont());
+		mav.addObject("listroomemp", contService.doslistFroomemp());
 		mav.setViewName("cont/conttrlist");
 		return mav;
 	}
