@@ -87,6 +87,9 @@ public class ConsultController {
 		mav.addObject("cst", consultService.detailConsult(CONSULT_ID));
 		mav.addObject("listEtcroom", contService.doslistEtcroom());
 		mav.addObject("listFroom", contService.doslistFroom());
+		mav.addObject("consultpage3", consultService.reloadP3(CONSULT_ID));
+		mav.addObject("consultpage4m", consultService.reloadP4m(CONSULT_ID));
+		mav.addObject("consultpage5", consultService.reloadP5(CONSULT_ID));
 		mav.addObject("regioncode", codeService.listconBcode("3"));
 		mav.addObject("setu", setupService.listSetup());
 		mav.addObject("selectoneFroom", consultService.detailCstRentfee(CONSULT_ID));

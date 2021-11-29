@@ -1693,6 +1693,7 @@
 
 	function chkcalG() {
 		var sel = $("#selMTR").val();
+		var sumTemp4 = $("#sumTemp4");
 		if (sel == "M"){
 			var $Barr = $(".GB");
 			var $Darr = $(".GD");
@@ -1706,6 +1707,9 @@
 				chksum = chksum + d1;
 			}
 			$('#P4total').html(numberWithCommas(chksum));
+			$('.defaultP4total').html(numberWithCommas(chksum));
+			sumTemp4.val(chksum);
+			sumT();
 		}
 		else
 		{
@@ -1721,6 +1725,9 @@
 				chksum = chksum + g1;
 			}
 			$('#P4total').html(numberWithCommas(chksum));
+			$('.defaultP4total').html(numberWithCommas(chksum));
+			sumTemp4.val(chksum);
+			sumT();
 		}
 	}
 	
@@ -1762,6 +1769,7 @@
 	}
 	
 	function chkcalA() {
+		var sumTemp5 = $("#sumTemp5");
 		var $infoarr = $(".CHKalt");
 		var $Aarr = $(".AA");
 		var chksum = 0;
@@ -1772,9 +1780,13 @@
 			}
 		}
 		$('#P5total').html(numberWithCommas(chksum));
+		$('.defaultP5total').html(numberWithCommas(chksum));
+		sumTemp5.val(chksum);
+		sumT();
 	}
 	
 	function chkcalT() {
+		var sumTemp3 = $("#sumTemp3");
 		var $infoarr = $(".CHKft");
 		var $Carr = $(".TA");
 		var chksum = 0;
@@ -1786,8 +1798,11 @@
 		}
 		console.log(chksum);
 		$('#P3total').html(numberWithCommas(chksum));
+		$(".defaultP3total").html(numberWithCommas(chksum));
+		sumTemp3.val(chksum);
+		sumT();
 	}
-
+	
 	function Setdate(){
 		let today = new Date();   
 		let year = today.getFullYear(); // 년도
@@ -1976,7 +1991,13 @@
 	});
 	// 마지막꺼까지 반영
 	$(firstElement).attr('rowspan', i);
-
+	
+	function sumT(){
+		var temp = Number($("#sumTemp1").val()) + Number($("#sumTemp3").val()) + Number($("#sumTemp4").val()) + Number($("#sumTemp5").val());
+		
+		$(".sumTd").html(numberWithCommas(temp));
+		
+	}
 
 	$(document).ready(function(){
 		calculateT();
@@ -1991,6 +2012,7 @@
 		chkRoomchange();
 		chkFtablechange();
 		chkAltarchange();
+		sumT();
 	})
 
 	

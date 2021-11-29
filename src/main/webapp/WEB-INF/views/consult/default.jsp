@@ -137,6 +137,22 @@
 													<td class = "CS_ESum" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="0" pattern="#,###" /></td>
 												</tr>
 											</c:forEach>
+												<input type="hidden" id="sumTemp1" value="0">
+												<input type="hidden" id="sumTemp3" value="0">
+												<input type="hidden" id="sumTemp4" value="0">
+												<input type="hidden" id="sumTemp5" value="0">
+												<tr>
+													<td colspan="4" style="vertical-align:middle;text-align:center">제물상</td>
+													<td colspan="3" class="defaultP3total" style="text-align: right;">0</td>
+												</tr>
+												<tr>
+													<td colspan="4" style="vertical-align:middle;text-align:center">장의용품</td>
+													<td colspan="3" class="defaultP4total" style="text-align: right;">0</td>
+												</tr>
+												<tr>
+													<td colspan="4" style="vertical-align:middle;text-align:center">제단</td>
+													<td colspan="3" class="defaultP5total" style="text-align: right;">0</td>
+												</tr>
 												<tr>
 													<td colspan="5" style="text-align:center;">총합</td>
 													<td colspan="2" style="text-align:right;" class="sumTd">0</td>
@@ -202,6 +218,7 @@ $(".CS_EDay, .CS_ETime").change(function() {
 	var CS_ETime = $(".CS_ETime");
 	var CS_ESum = $(".CS_ESum");
 	var sumTd = $(".sumTd");
+	var sumTemp1 = $("#sumTemp1");
 	var temp = 0;
 	
 	for (var i = 0; i < CS_RMday.length; i++) {
@@ -211,12 +228,11 @@ $(".CS_EDay, .CS_ETime").change(function() {
 		var c1 = Number(CS_EDay[i].value.replace(/[\D\s\._\-]+/g, ""));
 		var c2 = Number(CS_ETime[i].value.replace(/[\D\s\._\-]+/g, ""));
 		chksum = (b1*c1)+(b2*c2);
-		console.log("chk: " + chksum);
 		temp = temp + chksum;
-		console.log("temp: " + temp);
-		sumTd.html(numberWithCommas(temp));
+		sumTemp1.val(temp);
 		CS_ESum[i].innerText = numberWithCommas(chksum);
 	}
+	sumT();
 });
 	
 </script>
