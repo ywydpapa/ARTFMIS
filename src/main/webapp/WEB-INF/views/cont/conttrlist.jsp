@@ -267,8 +267,7 @@
 				method : "POST",
 				dataType : "json"
 			}).done(function() {
-				alert("새방 등록");
-				alert("기존방 갱신");
+				alert("분향실 이동 완료");
 			});
 		} else {
 			alert("이전할 계약 호실을 선택해 주십시오");
