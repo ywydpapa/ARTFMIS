@@ -198,7 +198,7 @@
 												<tbody>
 													<tr>
 														<td class="text-center align-middle"><input
-															type="checkbox" class="form-control" id="tropt01">
+															type="checkbox" class="OPTone form-control" id="tropt01" onClick="optCheck(this);">
 														</td>
 														<td class="text-left align-middle">변경 전 호실의 매점물품사용</td>
 														<td class="text-left align-middle">* 체크시 : 변경 전 호실의
@@ -211,7 +211,7 @@
 													</tr>
 													<tr>
 														<td class="text-center align-middle"><input
-															type="checkbox" class="form-control" id="tropt02" checked>
+															type="checkbox" class="OPTone form-control" id="tropt02" onClick="optCheck(this);" checked>
 														</td>
 														<td class="text-left align-middle">변경 후 호실 기준 매점초도주문
 														</td>
@@ -271,6 +271,36 @@
 			});
 		} else {
 			alert("이전할 계약 호실을 선택해 주십시오");
+		}
+		if ($("#tropt01").is(":checked") == true){
+			$.ajax({
+				url : "${path}/cont/tropt01.do",
+				data : contp2upd,
+				method : "POST",
+				dataType : "json"
+			}).done(function() {
+				alert("물품처리 완료(1)");
+			});
+		}
+		if ($("#tropt02").is(":checked") == true){
+			$.ajax({
+				url : "${path}/cont/tropt02.do",
+				data : contp2upd,
+				method : "POST",
+				dataType : "json"
+			}).done(function() {
+				alert("물품처리 완료(2)");
+			});
+		}
+		if ($("#tropt03").is(":checked") == true){
+			$.ajax({
+				url : "${path}/cont/tropt03.do",
+				data : contp2upd,
+				method : "POST",
+				dataType : "json"
+			}).done(function() {
+				alert("물품처리 완료(3)");
+			});
 		}
 	}
 
@@ -508,12 +538,36 @@
 			}
 		}
 	}
+	
+	function optCheck(chk) {
+		var obj = document.getElementsByClassName("OPTone");
+		for (var i = 0; i < obj.length; i++) {
+			if (obj[i] != chk) {
+				obj[i].checked = false;
+			}
+		}
+	}
+
 
 	function fn_FroomTR() {
 		if (!confirm("선택 사항대로 호실을 이동하시겠습니까?")) {
-
 		} else {
-			fn_contTrfroomP2();
+			var optcnt = 0;
+			if ($("#tropt01").is(":checked") == true){
+				optcnt = optcnt + 1;
+			} 
+			if ($("#tropt02").is(":checked") == true){
+				optcnt = optcnt + 1;
+			}
+			if ($("#tropt03").is(":checked") == true){
+				optcnt = optcnt + 1;
+			}
+			if (optcnt < 1){
+				alert("호실이동 선택사항은 하나라도 선택되어야 합니다.");
+				return;
+			} else {
+				fn_contTrfroomP2();	
+			}
 		}
 	}
 	
@@ -570,5 +624,6 @@
 			alert("로드실패");
 		});
 	}
+
 </script>
 

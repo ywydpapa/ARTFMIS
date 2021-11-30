@@ -33,6 +33,9 @@ public interface ContService {
 	int insertAddroom(ContDTO dto);
 	int deleteAddroom(ContDTO dto);
 	int chkRoom(ContDTO dto);
+	int tropt01(ContDTO dto);
+	int tropt02(ContDTO dto);
+	int tropt03(ContDTO dto);
 	
 	Integer contCheck(ContDTO dto);
 	List<ContDTO> doscontlist121();

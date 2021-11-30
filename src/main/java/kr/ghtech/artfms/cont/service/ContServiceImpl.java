@@ -432,5 +432,23 @@ public class ContServiceImpl implements ContService {
 		return contDao.reloadP2froom2(CONTRACT_ID);
 	}
 
+	@Override
+	public int tropt01(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.tropt01(dto);
+	}
+
+	@Override
+	public int tropt02(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.tropt02(dto);
+	}
+
+	@Override
+	public int tropt03(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return contDao.tropt03(dto);
+	}
+
 
 }

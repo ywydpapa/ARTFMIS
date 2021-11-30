@@ -429,5 +429,23 @@ public class ContDAOImpl implements ContDAO {
 		return sqlSession.selectList("cont.reloadContp2froom2", CONTRACT_ID);
 	}
 
+	@Override
+	public int tropt01(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("cont.troption01", dto);
+	}
+
+	@Override
+	public int tropt02(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("cont.troption02", dto);
+	}
+
+	@Override
+	public int tropt03(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("cont.troption03", dto);
+	}
+
 	
 }
