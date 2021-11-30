@@ -115,23 +115,23 @@
 																<th
 																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">사용일</th>
 																<td class="text-center"><input type="number"
-																	class="form-control text-right" id="bfday" value="0"></td>
+																	class="form-control text-right" id="bfday" value="0" min="0"></td>
 																<th
 																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">사용일</th>
 																<td class="text-center"><input type="number"
-																	class="form-control text-right" id="afday" value="0"></td>
+																	class="form-control text-right" id="afday" value="0" min="0"></td>
 															</tr>
 															<tr align="center">
 																<th
 																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
 																	부과일</th>
 																<td><input type="number"
-																	class="form-control text-right" id="bfaddday" value="0"></td>
+																	class="form-control text-right" id="bfaddday" value="0" min="0"></td>
 																<th
 																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
 																	부과일</th>
 																<td><input type="number"
-																	class="form-control text-right" id="afaddday" value="0"></td>
+																	class="form-control text-right" id="afaddday" value="0" min="0"></td>
 															</tr>
 															<tr align="center">
 																<th style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
@@ -247,12 +247,19 @@
 <!--계약기본등록-->
 <script>
 	function fn_contTrfroomP2() {
-		var CONid = $("#froomtrbf").val();
+		var contid = $("#froomtrbf").val().split('/');
+		var CONid = contid[0];
+		var bfrmid = contid[1];
 		if (CONid != "") {
 			var frmid = $("#froomtraf").val();
 			var contp2upd = {};
 			contp2upd.CONTRACT_ID = Number(CONid);
-			contp2upd.FROOM_ID = Number(frmid);
+			contp2upd.AFFROOM_ID = Number(frmid);
+			contp2upd.BFFROOM_ID = Number(bfrmid);
+			contp2upd.BFDAYS = $("#bfday").val();
+			contp2upd.BFCHARGE = $("#bfrmcharge").val().replace(/[\D\s\._\-]+/g, "");
+			contp2upd.AFDAYS = $("#afday").val();
+			contp2upd.AFCHARGE = $("#afrmcharge").val().replace(/[\D\s\._\-]+/g, "");
 			console.log(contp2upd);
 			$.ajax({
 				url : "${path}/cont/updateP2tr.do",
@@ -260,7 +267,8 @@
 				method : "POST",
 				dataType : "json"
 			}).done(function() {
-				alert("호실변경 완료");
+				alert("새방 등록");
+				alert("기존방 갱신");
 			});
 		} else {
 			alert("이전할 계약 호실을 선택해 주십시오");

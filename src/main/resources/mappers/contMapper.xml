@@ -595,8 +595,9 @@ CONTRACT_ID
  </update>
  
  <update id="updcontp2tr">
- update GHT_CONT_FROOM
- set MOD_DATE = now(), attrib = 'XXXUPTR' where CONTRACT_ID = #{CONTRACT_ID} and FROOM_ID in (select froom_id from GHT_FROOM where FROOM_TYP = '1') and MOD_DATE is NOT NULL and ADD_YN is NULL 
+update GHT_CONT set FROOM_ID = #{AFFROOM_ID} where CONTRACT_ID = #{CONTRACT_ID};
+update GHT_CONT_FROOM set REMARK = '이동호실', DAYS=#{BFDAYS}, TIMES='0', RCHARGE=#{BFCHARGE} where FROOM_ID = #{BFFROOM_ID} and CONTRACT_ID = #{CONTRACT_ID};
+insert into GHT_CONT_FROOM (CONTRACT_ID, FROOM_ID, DAYS, TIMES, RCHARGE ,REG_DATE, attrib) values (#{CONTRACT_ID},#{AFFROOM_ID},#{AFDAYS},'0', #{AFCHARGE},now(),'10000'); 
  </update>
  
  <update id="updcontp3">
@@ -683,19 +684,19 @@ CONTRACT_ID
  </select>
 
 <select id="reloadContp2" resultType="contDto">
-select b.DAYS, b.TIMES, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
+select b.REMARK, b.DAYS, b.TIMES, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
 left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL 
 where a.FROOM_TYP IN (1,2,3,4,6,7) and b.DAYS is not null and a.FROOM_USE_YN = 'Y' order by FROOM_TYP
 </select> 
 
 <select id="reloadContp2froom" resultType="contDto">
-select b.DAYS, b.TIMEs, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
+select b.REMARK, b.DAYS, b.TIMEs, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
 left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL 
 where a.FROOM_TYP IN (1) and a.FROOM_USE_YN = 'Y' order by a.FROOM_ORDNO
 </select>
 
 <select id="reloadContp2froom2" resultType="contDto">
-select b.DAYS, b.TIMEs, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
+select b.REMARK, b.DAYS, b.TIMEs, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
 left join GHT_CONT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL 
 where a.FROOM_TYP NOT IN (1,5) and a.FROOM_USE_YN = 'Y' order by a.FROOM_ORDNO
 </select>

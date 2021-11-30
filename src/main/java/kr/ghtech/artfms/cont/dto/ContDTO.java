@@ -165,6 +165,8 @@ public class ContDTO {
 	private String STORE_GOODS_INIT_QTY;
 	private String STORE_GOODS_ADD_QTY;
 	private int CONT_FROOM_ID;
+	private int AFFROOM_ID;
+	private int BFFROOM_ID;
 	private String GOODS_ID;
 	private int SETL_ID;
 	private String SETL_FROOM_ID;
@@ -237,6 +239,9 @@ public class ContDTO {
 	private String PAY_YN;
 	private String INCADD_YN;
 	private String TEMP_ROOM;
-	
+	private String BFDAYS;
+	private String AFDAYS;
+	private String BFCHARGE;
+	private String AFCHARGE;
 	
 }

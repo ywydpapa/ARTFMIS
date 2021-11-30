@@ -401,8 +401,9 @@
 													<tr>
 														<td class="text-center">${row.FROOM_TITLE}<c:if
 																test="${row.ADD_YN eq 'Y'}">(추가호실)</c:if>
-															<c:if test="${not row.ADD_YN eq 'Y'}">(계약호실)</c:if><input
-															type="hidden" class="sFRMID" value="${row.FROOM_ID}"></td>
+															<c:if test="${not row.ADD_YN eq 'Y'}">(계약호실)</c:if>
+															<c:if test="${not empty row.REMARK}">(${row.REMARK})</c:if>
+															<input type="hidden" class="sFRMID" value="${row.FROOM_ID}"></td>
 														<td class="RMday" style="text-align: right;"><fmt:formatNumber
 																value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 														<td class="RMtime" style="text-align: right;"><fmt:formatNumber
