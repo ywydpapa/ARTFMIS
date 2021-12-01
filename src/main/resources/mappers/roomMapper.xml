@@ -53,7 +53,7 @@ SELECT '매점' ORDP, a.ORD_DATE, count(a.ORD_DATE)-count(a.CONF_DATE) CORDDATE,
  UNION ALL 
  SELECT 'S' ORDP, b.CAT_TITLE, b.GOODS_TITLE, b.GOODS_UNIT, a.* from GHT_STORE_ORDSHEET a 
  left join ghtech.GHT_GOODS_COMBO b on a.GOODS_CODE = b.GOODS_ID 
- where a.CONTRACT_ID= #{CONTRACT_ID} and a.MOD_DATE is NULL and DATE_FORMAT(ORD_DATE,'%Y%m%d%H%i%s') = #{ORD_DATE} 
+ where a.CONTRACT_ID= #{CONTRACT_ID} and a.MOD_DATE is NULL and DATE_FORMAT(ORD_DATE,'%Y%m%d%H%i%s') = #{ORD_DATE} ORDER BY CAT_TITLE
  </select>
 
 <select id="restOrdlist" resultType="roomDto">
