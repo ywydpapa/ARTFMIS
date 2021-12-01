@@ -33,4 +33,5 @@ public interface ConsultDAO {
 	List<ConsultDTO> doslistEtcroom();
 	List<ConsultDTO> ConsultGet(int CONSULT_ID);
 	List<ConsultDTO> reloadP2froom2(Integer CONSULT_ID);
+	List<ConsultDTO> consultSeleteGet(Integer CONSULT_ID);
 }

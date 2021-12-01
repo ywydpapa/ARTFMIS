@@ -66,6 +66,10 @@ select b.DAYS, b.TIMEs, (b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) 
 left join GHT_CONSULT_FROOM b on a.FROOM_ID = b.FROOM_ID and b.CONSULT_ID = #{CONSULT_ID} and b.MOD_DATE is NULL 
 where a.FROOM_TYP NOT IN (1,5) and a.FROOM_USE_YN = 'Y' order by a.FROOM_ORDER asc
 </select>
+
+<select id="consultSeleteGet" resultType="consultDto">
+	select * from GHT_CONSULT where CONSULT_ID = #{CONSULT_ID}
+</select>
  
  <update id="updateConsult">
  		update GHT_CONSULT set 

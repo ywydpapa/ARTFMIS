@@ -1,8 +1,7 @@
 package kr.ghtech.artfms.cst;
 
 import java.util.HashMap;
-
-
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -13,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ghtech.artfms.code.service.CodeService;
@@ -49,7 +49,6 @@ public class ConsultController {
 		return mav;
 	}
 	
-
 	@RequestMapping("/detailConsult/{CONSULT_ID}")
 	public ModelAndView detail(@PathVariable("CONSULT_ID") int CONSULT_ID, ModelAndView mav) {
 		mav.addObject("cst", consultService.detailConsult(CONSULT_ID));
@@ -283,5 +282,12 @@ public class ConsultController {
 		}
 		return ResponseEntity.ok(param);
 	}
-
+	
+	@ResponseBody
+	@RequestMapping("/consultSeleteGet/{CONSULT_ID}")
+	public List<ConsultDTO> consultSeleteGet(@PathVariable("CONSULT_ID") int CONSULT_ID) {
+		List<ConsultDTO> consultSelete = consultService.consultSeleteGet(CONSULT_ID);
+		return consultSelete;
+	}
+	
 }

@@ -35,4 +35,5 @@ public interface ConsultService {
 	List<ConsultDTO> doslistEtcroom();
 	List<ConsultDTO> ConsultGet(Integer CONSULT_ID);
 	List<ConsultDTO> reloadP2froom2(Integer CONSULT_ID);
+	List<ConsultDTO> consultSeleteGet(Integer CONSULT_ID);
 }

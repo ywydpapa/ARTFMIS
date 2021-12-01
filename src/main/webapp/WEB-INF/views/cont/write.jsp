@@ -89,7 +89,7 @@
 													<td class="cont-title" style="vertical-align: middle;">성명(*)</td>
 													<td><input type="text" 
 														class="form-control form-control-sm" id="contp1-07" tabindex="0"
-														name="contp1-07" value="${cst.PATI_NAME}" >
+														name="contp1-07" value="" >
 													</td>
 													<td class="cont-title" style="vertical-align: middle;">주민등록번호(*)</td>
 													<td><input type="text" size="13" maxlength="14"
@@ -3154,29 +3154,17 @@ function fnSetcont7page(url, data){
 	})
 
 	function fn_ReloadConsult(){
-		var num = $("#consult_list").val();
-		var url = "${path}/consult/detailConsult/"+num;
-		var url2 = "${path}/consult/defaultConsult/"+num;
-		fnSetConsultdefault(url2);
-		fnSetConsultdetail(url);
-		console.log("실행");
-	}
-	function fnSetConsultdetail(url, data){
-		<!-- $.LoadingOverlay("show", true); -->
-		    $("#detailTable").empty();
-			$("#detailTable").load(url, data, function(){
-				setTimeout(function(){
-				}, 500);
-		});
-	}
-	
-	function fnSetConsultdefault(url, data){
-		<!-- $.LoadingOverlay("show", true); -->
-		    $("#defaultTable").empty();
-			$("#defaultTable").load(url, data, function(){
-				setTimeout(function(){
-				}, 500);
-		});
+		$.ajax({
+			url: "${path}/consult/consultSeleteGet/"+$("#consult_list").val(),
+			method: "post",
+			success: function(data){
+				$("#contp1-07").val(data[0].PATI_NAME);
+				$("#contp1-20").val(data[0].BFAMILY_NAME);
+				$("#contp1-24").val(data[0].TEL_NO);
+				$("#contp1-13").val(data[0].RELIGION);
+				$("#contp1-19").val(data[0].BURI_YN);
+			}
+		})
 	}
 	
 </script>

@@ -164,5 +164,9 @@ public class ConsultServiceImpl implements ConsultService {
 		return consultDao.reloadP2froom2(CONSULT_ID);
 	}
 
-
+	@Override
+	public List<ConsultDTO> consultSeleteGet(Integer CONSULT_ID) {
+		// TODO Auto-generated method stub
+		return consultDao.consultSeleteGet(CONSULT_ID);
+	}
 }

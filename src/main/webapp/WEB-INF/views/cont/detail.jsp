@@ -72,8 +72,8 @@
 												<tr align="center">
 													<td class="cont-title" style="vertical-align: middle;">상담/계약 조회</td>
 													<td><input type="text" class="form-control"
-														id="contp1-05" name="contp1-05" value=""></td>
-													<td><button class="form-control" id="contp1-06">상담조회</button></td>
+														id="contp1-05" name="contp1-05" value="" readonly></td>
+													<td><button class="form-control" id="contp1-06" style="display:none;">상담조회</button></td>
 													<td></td>
 													<td class="cont-title" style="vertical-align: middle;">행사업체</td>
 													<td><input type="text" class="form-control" id="contp1-04"></td>
