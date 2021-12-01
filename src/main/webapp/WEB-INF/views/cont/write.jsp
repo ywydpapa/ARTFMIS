@@ -73,9 +73,13 @@
 												</tr>
 												<tr align="center">
 													<td class="cont-title" style="vertical-align: middle;">상담/계약 조회</td>
-													<td><input type="text" class="form-control"
-														id="contp1-05" name="contp1-05" value=""></td>
-													<td><button class="form-control" id="contp1-06">상담조회</button></td>
+													<td><select id="consult_list" class="form-control">
+															<c:forEach var="row" items="${listconsult}">
+															<option value="${row.CONSULT_ID}">${row.PATI_NAME}<span>  :  </span>${row.CONSULT_DATE}</option>
+															</c:forEach>				
+														</select>
+													</td>
+													<td><button class="form-control" id="contp1-06" onClick="fn_ReloadConsult()">상담조회</button></td>
 													<td></td>
 													<td class="cont-title" style="vertical-align: middle;">행사업체</td>
 													<td><input type="text" class="form-control" id="contp1-04"></td>
@@ -85,7 +89,7 @@
 													<td class="cont-title" style="vertical-align: middle;">성명(*)</td>
 													<td><input type="text" 
 														class="form-control form-control-sm" id="contp1-07" tabindex="0"
-														name="contp1-07" value="" >
+														name="contp1-07" value="${cst.PATI_NAME}" >
 													</td>
 													<td class="cont-title" style="vertical-align: middle;">주민등록번호(*)</td>
 													<td><input type="text" size="13" maxlength="14"
@@ -187,7 +191,7 @@
 													<td class="cont-title" style="vertical-align: middle;">연락처</td>
 													<td><input type="text"
 														class="form-control form-control-sm phone" id="contp1-24" maxlength="13"
-														name="contp1-24" value="" tabindex="8"></td>
+														name="contp1-24" value="${cst.TEL_NO}" tabindex="8"></td>
 												</tr>
 												<tr align="center">
 													<td class="cont-title" style="vertical-align: middle;">상세주소</td>
@@ -200,7 +204,7 @@
 												</tr>
 												<tr align="center">
 													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6" rowspan="2">일정</th>
-													<td class="cont-title" style="vertical-align: middle;">입실일시*</td>
+													<td class="cont-title" style="vertical-align: middle;">입실일시(*)</td>
 													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-26" name="contp1-26" value="" tabindex="9">
 													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-26-1" name="contp1-26-1" value="" tabindex="10" >
 													</td>
@@ -214,7 +218,7 @@
 													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-28" name="contp1-28" value="" tabindex="13" >
 													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-28-1 " name="contp1-28-1" value="" tabindex="14" >
 													</td>
-													<td class="cont-title" style="vertical-align: middle;">발인일시*</td>
+													<td class="cont-title" style="vertical-align: middle;">발인일시(*)</td>
 													<td colspan="2"><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-29" name="contp1-29" value="" tabindex="15">
 													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-29-1" name="contp1-29-1" value="" tabindex="16">
 													</td>
@@ -3149,4 +3153,30 @@ function fnSetcont7page(url, data){
 
 	})
 
+	function fn_ReloadConsult(){
+		var num = $("#consult_list").val();
+		var url = "${path}/consult/detailConsult/"+num;
+		var url2 = "${path}/consult/defaultConsult/"+num;
+		fnSetConsultdefault(url2);
+		fnSetConsultdetail(url);
+		console.log("실행");
+	}
+	function fnSetConsultdetail(url, data){
+		<!-- $.LoadingOverlay("show", true); -->
+		    $("#detailTable").empty();
+			$("#detailTable").load(url, data, function(){
+				setTimeout(function(){
+				}, 500);
+		});
+	}
+	
+	function fnSetConsultdefault(url, data){
+		<!-- $.LoadingOverlay("show", true); -->
+		    $("#defaultTable").empty();
+			$("#defaultTable").load(url, data, function(){
+				setTimeout(function(){
+				}, 500);
+		});
+	}
+	
 </script>

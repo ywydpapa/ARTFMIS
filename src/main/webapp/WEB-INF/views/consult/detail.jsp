@@ -42,9 +42,9 @@
 											<th scope="row">
 												<div>
 													<div style="float:left; margin-top:10px">분향실 선택</div>
-													<div style="float:right;" class="btn_wr">
+													<!-- <div style="float:right;display:none;" class="btn_wr subBtn2">
 														<button class="btn btn-md btn-primary" onClick="fn_cstInsertP2()">저장</button>
-													</div>
+													</div> -->
 												</div>
 											</th>
 										</tr>
@@ -53,9 +53,9 @@
 								<table class="table table-striped table-bordered nowrap" id="roomList">
 									<colgroup>
 										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
+										<col width="20%" />
+										<col width="20%" />
+										<col width="20%" />
 										<col width="10%" />
 										<col width="10%" />
 										<col width="10%" />
@@ -64,76 +64,92 @@
 									</colgroup>
 									<thead>
 										<tr>
-											<th class="text-center">선택</th>
-											<th class="text-center">호실명</th>
-											<th class="text-center">사용유무</th>
-											<th class="text-center">일일사용료</th>
-											<th class="text-center">시간당사용료</th>
-											<th class="text-center">면적(m<sup>2</sup>)</th>
-											<th class="text-center">평수</th>
-											<th class="text-center">수용인원</th>
-											<th class="text-center">임시호실명</th>
+											<th style="vertical-align:middle;text-align:center">선택</th>
+											<th style="vertical-align:middle;text-align:center">호실명</th>
+											<th style="vertical-align:middle;text-align:center">일일사용료</th>
+											<th style="vertical-align:middle;text-align:center">시간당사용료</th>
+											<th style="vertical-align:middle;text-align:center">면적(m<sup>2</sup>)</th>
+											<th style="vertical-align:middle;text-align:center">평수</th>
+											<th style="vertical-align:middle;text-align:center">수용인원</th>
+											<th style="display:none">임시호실</th>
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach var="row" items="${listFroom}">
-										<tr id="${row.FROOM_ID}">
-											<td style="text-align: center;"><input type="checkbox" class="CHKroom form-control"  onclick="oneCheck(this);" <c:if test="${row.FROOM_TITLE eq selectoneFroom.RENT_NAME}">checked</c:if>/></td>
-											<td>${row.FROOM_TITLE}</td>
-											<td></td>
-											<td class = "RMday"style="text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;">${row.FROOM_AREA}</td>
-											<td style="text-align: right;">${row.FROOM_AREA_KOR}</td>
-											<td style="text-align: right;">${row.FROOM_MAX_PERS}</td>
-											<td style="text-align: center;">${row.FROOM_ALIS}</td>
+									<c:forEach var="row" items="${listFroom}" varStatus="status">
+										<tr style="vertical-align:middle;text-align:center" id="contWrite_Room_${row.roomID}${row.TEMP_ROOM}">
+											<td style="vertical-align:middle;text-align: center;">
+												<c:choose>
+													<c:when test="${empty consultGet}">
+														<input type="checkbox" class="CHKroom form-control" onclick="oneCheck(this);"/>
+													</c:when>
+													<c:otherwise>
+														<c:forEach var="rowGet" items="${consultGet}">
+															<c:choose>
+																<c:when test="${row.FROOM_TITLE eq rowGet.RENT_TITLE}">
+																	<input type="checkbox" class="CHKroom form-control" onclick="oneCheck(this);" checked="checked"/>
+																</c:when>
+																<c:otherwise>
+																	<input type="checkbox" class="CHKroom form-control" onclick="oneCheck(this);"/>
+																</c:otherwise>
+															</c:choose>
+														</c:forEach>
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}</td>
+											<td class = "RMday"style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
+											<td class = "RMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+											<td style="vertical-align:middle;text-align: right;">${row.FROOM_AREA}</td>
+											<td style="vertical-align:middle;text-align: right;">${row.FROOM_AREA_KOR}</td>
+											<td style="vertical-align:middle;text-align: right;">${row.FROOM_MAX_PERS}</td>
+											<td class="Tmproom"  style="display:none">${row.TEMP_ROOM}</td>
 										</tr>
 									</c:forEach>
 									</tbody>
 								</table>
 							</form>
-<%--							<br> <br>--%>
-<%--							<table class="table table-striped table-bordered nowrap" id="SltdroomList">--%>
-<%--									<colgroup>--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--										<col width="10%" />--%>
-<%--									</colgroup>--%>
-<%--									<thead>--%>
-<%--										<tr>--%>
-<%--											<th class="text-center">호실명</th>--%>
-<%--											<th class="text-center">일일사용료</th>--%>
-<%--											<th class="text-center">시간당사용료</th>--%>
-<%--											<th class="text-center">사용일</th>--%>
-<%--											<th class="text-center">사용시간</th>--%>
-<%--											<th class="text-center">사용요금</th>--%>
-<%--											<th style="display:none" class="text-center">선택</th>--%>
-<%--										</tr>--%>
-<%--									</thead>--%>
-<%--									<tbody>--%>
-<%--									<c:forEach var="row" items="${listFroom}">--%>
-<%--										<tr>--%>
-<%--											<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>--%>
-<%--											<td class = "RMday"style="text-align: right;"><fmt:formatNumber--%>
-<%--													value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>--%>
-<%--											<td class = "RMtime" style="text-align: right;"><fmt:formatNumber--%>
-<%--													value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>--%>
-<%--											<td class = "sRMd" style="text-align: right;">2</td>--%>
-<%--											<td class = "sRMt" style="text-align: right;">0</td>--%>
-<%--											<td class = "RMcharge" style="text-align: right;"><fmt:formatNumber--%>
-<%--													value="" pattern="#,###" /></td>--%>
-<%--											<td style="text-align: center; display:none"><input type="checkbox"--%>
-<%--												class="CHKsrm form-control" /></td>--%>
-<%--										</tr>--%>
-<%--									</c:forEach>--%>
-<%--									</tbody>--%>
-<%--								</table>--%>
+							<%-- <br> <br>
+							<table style="display:none;" class="table table-striped table-bordered nowrap" id="SltdroomList">
+								<colgroup>
+									<col width="10%" />
+									<col width="10%" />
+									<col width="10%" />
+									<col width="10%" />
+									<col width="10%" />
+									<col width="10%" />
+									<col width="10%" />
+									<col width="10%" />
+									<col width="10%" />
+								</colgroup>
+								<thead>
+									<tr>
+										<th class="text-center">호실명</th>
+										<th class="text-center">일일사용료</th>
+										<th class="text-center">시간당사용료</th>
+										<th class="text-center">사용일</th>
+										<th class="text-center">사용시간</th>
+										<th class="text-center">사용요금</th>
+										<th style="display:none" class="text-center">선택</th>
+									</tr>
+								</thead>
+								<tbody>
+								<c:forEach var="row" items="${listFroom}">
+									<tr>
+										<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
+										<td class = "RMday"style="text-align: right;"><fmt:formatNumber
+												value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
+										<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
+												value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+										<td class = "sRMd" style="text-align: right;">1</td>
+										<td class = "sRMt" style="text-align: right;">0</td>
+										<td class = "RMcharge" style="text-align: right;"><fmt:formatNumber
+												value="" pattern="#,###" /></td>
+										<td style="text-align: center; display:none"><input type="checkbox"
+											class="CHKsrm form-control" /></td>
+									</tr>
+								</c:forEach>
+								</tbody>
+							</table> --%>
 						</div>
 					</div>
 					
@@ -148,9 +164,9 @@
 										<th scope="row"> 
 											<div>
 												<div style="float:left; margin-top:10px;">제물상</div>
-												<div style="float:right;" class="btn_wr">
+												<!-- <div style="float:right;display:none;" class="btn_wr subBtn3">
 													<button class="btn btn-md btn-primary" onClick="fn_cstInsertP3()">저장</button>
-												</div>
+												</div> -->
 											</div>
 										</th>
 									</tr>
@@ -222,7 +238,7 @@
 													<td style="text-align: right" class="sTA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
 													<td style="text-align: right; border-right:none"><input style="text-align:right;border:0px" type="number" class="sTB from-control" min="0" value = "1"></td><td style = "border-left:none">${row.FTABLE_UNIT}</td>
 													<td style="text-align: right" class="sTC"><fmt:formatNumber value="" pattern="#,###" /></td>
-													<td style="display :none"><input type="checkbox" class="sCHKft form-control" /></td>
+													<td style="display :none"><input type="checkbox" class="sCHKft form-control" checked/></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -243,9 +259,9 @@
 											<th scope="row">
 												<div>
 													<div style="float:left; margin-top:10px">장의용품 선택</div>
-													<div style="float:right; margin-bottom:20px;" class="btn_wr">
+													<!-- <div style="float:right; margin-bottom:20px; display:none;" class="btn_wr subBtn4">
 														<button class="btn btn-md btn-primary" onClick="fn_cstInsertP4()">저장</button>
-													</div>
+													</div> -->
 													<div style="clear:both;">
 														<select class="form-control" id="selMTR">
 															<option value="M" selected>현대식</option>
@@ -788,9 +804,9 @@
 											<th scope="row">
 												<div>
 													<div style="float:left; margin-top:10px;">제단 선택</div>
-													<div class="btn_wr">
+													<!-- <div style="display:none;" class="btn_wr subBtn5">
 														<button style="float:right;" class="btn btn-md btn-primary" onClick="fn_cstInsertP5()">저장</button>
-													</div>
+													</div> -->
 												</div>
 											</th>
 											
@@ -867,7 +883,7 @@
 											<td style="text-align: right" class="sAA"><fmt:formatNumber value="${row.ALTAR_NET_PRICE}" pattern="#,###" /></td>
 											<td><input type="number" style="text-align:right;border:0px" class="sAB" min="0" value="${row.ALTAR_QTY}" ></td>
 											<td style="text-align: right" class="sAC"><fmt:formatNumber value="" pattern="#,###" /></td>
-											<td style="display :none" ><input type="checkbox" class="sCHKalt form-control" /></td>
+											<td style="display :none" ><input type="checkbox" class="sCHKalt form-control" checked/></td>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -1014,47 +1030,86 @@
 	}
 	
 	function fn_cstInsertP2(){
-		if('${selectoneFroom.RENT_ID}' !== ''){
-			// 기존 데이터 삭제 먼저 진행
-			fn_const_oldDeleteP2();
-		}
-		var data ={};
-		var CONid = '${CONSULT_ID}';
-		var roomCheck = $("#roomList .CHKroom:checked");
-		if (CONid != "" && roomCheck.length === 1){
-			data.CONSULT_ID = '${CONSULT_ID}';
-			var roomNameOgn = roomCheck.parent().next()[0].innerText
-			var roomNameTr =  $('#SltdroomList > tbody > tr:not([style*="display: none"])');
-			if(roomNameOgn === roomNameTr.find('td:eq(1)')[0].innerText){
-				data.RENT_TITLE =  roomNameTr.find('td:eq(1)')[0].innerText;
-				// data.RENT_TYPE = null;
-				data.RENT_NAME =  roomNameTr.find('td:eq(1)')[0].innerText;
-				// data.CHARGE_TYPE = null;
-				// data.CHARGE_YN = null;
-				data.CHARGE_PERDAY = Number(roomNameTr.find('td:eq(2)')[0].innerText.replace(/[\D\s\._\-]+/g, ""));
-				data.CHARGE_PERHOUR = Number(roomNameTr.find('td:eq(3)')[0].innerText.replace(/[\D\s\._\-]+/g, ""));
-				data.RENT_DAYS = Number(roomNameTr.find('td:eq(4)')[0].children[0].value.replace(/[\D\s\._\-]+/g, ""));
-				data.RENT_HOURS = Number(roomNameTr.find('td:eq(5)')[0].children[0].value.replace(/[\D\s\._\-]+/g, ""));
-				data.RENT_AMOUNT = Number(roomNameTr.find('td:eq(6)')[0].innerText.replace(/[\D\s\._\-]+/g, ""));
-				console.log(data);
-			} else {
-				alert('상담호실 > 분향실이 선택되지 않았습니다.'); return  false;
-			}
-
+		var CONid = $("#consultid").val();
+		
+		if (CONid != ""){
+			var froomid = $('#frid').val();
+			var $Chkarr = $(".CHKsrm");
+			var $Aarr =  $(".CS_aDay");
+			var $Barr =  $(".CS_aTime");
+			var $Qarr = $(".CS_qMay");
+			var $Warr = $(".CS_qMtime");
+			var $Carr =  $(".CS_aSum");
+			var $Darr =  $(".Tmproom");
+			var contp2upd ={};
+			contp2upd.CONSULT_ID = Number(CONid);
+			console.log(contp2upd);
 			$.ajax({
-				url : "${path}/cont/insertCSTRentfee.do",
-				data : data,
-				method : "POST",
-				dataType : "json"
+				url : "${path}/consult/updateP2.do",  
+				data : contp2upd,  
+				method : "POST",  
+				dataType : "json"  
 			})
 			.done(function(data) {
-				alert("저장성공");
+				for (var i=0; i<$Aarr.length; i++){
+					if($($Chkarr[i]).is(":checked")==true){
+						var contp2data = {};
+						var contp3data = {};
+						contp2data.CONSULT_ID = CONid;
+						contp2data.FROOM_ID = froomid;
+						contp2data.DAYS = $Aarr[i].value;
+						contp2data.TIMES = $Barr[i].value;
+						contp2data.RCHARGE = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+						contp2data.TEMP_ROOM = $Darr[i].innerText;
+						console.log(contp2data);
+						contp3data.CONSULT_ID = CONid;
+						contp3data.RENT_TITLE = $Aarr[i].parentNode.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerText;
+						contp3data.RENT_DAYS = $Aarr[i].value;
+						contp3data.RENT_HOURS = $Barr[i].value;
+						contp3data.RENT_AMOUNT = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+						$.ajax({
+							url : "${path}/consult/insertP2.do",  
+							data : contp2data,  
+							method : "POST",  
+							dataType : "json"  
+						});
+						$.ajax({
+							url : "${path}/consult/insertCSTRentfee.do",  
+							data : contp3data,  
+							method : "POST",  
+							dataType : "json"  
+						});
+					}
+				}
+				var $EAarr = $(".etcrid");
+				var $EBarr = $(".CS_EDay");
+				var $ECarr = $(".CS_ETime");
+				var $EDarr = $(".CS_ESum");
+				for (var i=0; i<$EAarr.length; i++){
+					var contp2data = {};
+					contp2data.CONSULT_ID = CONid;
+					contp2data.FROOM_ID = $EAarr[i].value;
+					contp2data.DAYS = $EBarr[i].value;
+					contp2data.TIMES = $ECarr[i].value;
+					contp2data.RCHARGE = Number($EDarr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
+					console.log(contp2data);
+					$.ajax({
+						url : "${path}/consult/insertP2.do",  
+						data : contp2data,  
+						method : "POST",  
+						dataType : "json"  
+					});
+				}
+				/* alert("호실 저장성공"); */
 			});
-		} else if(roomCheck.length > 1){
-			alert("분향실은 1개만 선택할수 있습니다.")
-		} else {
-			alert("계약기본사항을 먼저 저장해 주세요!!");
 		}
+		/* else
+		{
+			if (chkr != "OK")
+			{
+			  alert("계약기본사항을 확인해 주세요!!(P2)");
+			}
+		} */
 	}
 
 	function fn_cstInsertP3() {
@@ -1085,7 +1140,7 @@
 		contp3data.FTABLE_NET_PRICE = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
 		contp3data.QUTY = $Barr[i].value;
 		contp3data.ORD_AMOUNT = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
-		console.log(contp3data);
+		console.log("확인 : " + contp3data);
 		$.ajax({
 			url : "${path}/consult/insertP3.do",  
 			data : contp3data,  
@@ -1094,7 +1149,7 @@
 		});
 		}
 		}
-		alert("저장성공");
+		/* alert("저장성공"); */
 		});
 		}
 		else
@@ -1221,7 +1276,7 @@
 								}
 							}
 					});
-					alert("저장성공");
+					/* alert("저장성공"); */
 				}
 					else
 					{
@@ -1277,7 +1332,7 @@
 		});
 		}
 		}
-		alert("저장성공");
+		/* alert("저장성공"); */
 		});
 		}
 		else
@@ -1324,7 +1379,7 @@
 		});
 		}
 		}
-		alert("저장성공");
+		/* alert("저장성공"); */
 		});
 		}
 		else
@@ -1592,6 +1647,15 @@
 	});
 	
 	$(".CHKroom, .sRMd , .sRMt").change(function() {
+		var sumTemp2 = $("#sumTemp2");
+
+		if(this.checked == true){
+			$(".CS_aDay").val(0);
+			$(".CS_aTime").val(0);
+			sumTemp2.val(0);
+			sumT();
+		}
+		
 		chkRoomchange();
 	});
 	
@@ -1844,13 +1908,20 @@
 	function chkRoomchange(){
 		var $infoarr = $(".CHKroom");
 		var $sinfoarr = $(".CHKsrm");
+		var $FRinfoarr = $(".FRMID");
+		var $Darr = $(".Tmproom");
+		var $RMcharge = $(".RMcharge");
+		
 		for (var i = 0; i < $infoarr.length; i++) {
-			if($($infoarr[i]).is(":checked")==true){
-			$($sinfoarr[i]).attr("checked",true);
-			$($sinfoarr[i]).parent().parent().show();
+			if($($infoarr[i]).is(":checked") == true){
+				$($sinfoarr[i]).prop("checked",true);
+				$($sinfoarr[i]).parent().parent().show();
+				$("#frid").val($FRinfoarr[i].value);
+				$("#temproomYn").val($Darr[i].innerText);
+				$("#rmchk").val("OK");
 			}
 			else{
-				$($sinfoarr[i]).attr("checked",false);
+				$($sinfoarr[i]).prop("checked",false);
 				$($sinfoarr[i]).parent().parent().hide();
 			}
 		}
@@ -1861,11 +1932,11 @@
 		var $sinfoarr = $(".sCHKft");
 		for (var i = 0; i < $infoarr.length; i++) {
 			if($($infoarr[i]).is(":checked")==true){
-			$($sinfoarr[i]).attr("checked",true);
+			$($sinfoarr[i]).prop("checked",true);
 			$($sinfoarr[i]).parent().parent().show();
 			}
 			else{
-				$($sinfoarr[i]).attr("checked",false);
+				$($sinfoarr[i]).prop("checked",false);
 				$($sinfoarr[i]).parent().parent().hide();
 			}
 		}
@@ -1893,6 +1964,17 @@
 	            obj[i].checked = false;
 	        }
 	    }
+
+		if(chk.checked){
+			let tr = $(chk).closest('tr');
+			let trId = tr.attr('id').split("_")[2];
+			console.log(trId);
+
+			$("img[id^='imageHidden_t01_']").hide();
+			$("img[id^='imageHidden_t01_"+trId+"']").show();
+		} else {
+			$("img[id^='imageHidden_t01_']").hide();
+		}
 	}
 
 	function oneCheckft(chk){
@@ -1925,7 +2007,6 @@
 			$("img[id^='imageHidden_t02_']").hide();
 		}
 	}
-
 	function oneCheckalt2(chk){
 	    var obj = document.getElementsByName("ALTAR102");
 	    for(var i=0; i<obj.length; i++){
@@ -2003,10 +2084,9 @@
 	$(firstElement).attr('rowspan', i);
 	
 	function sumT(){
-		var temp = Number($("#sumTemp1").val()) + Number($("#sumTemp3").val()) + Number($("#sumTemp4").val()) + Number($("#sumTemp5").val());
+		var temp = Number($("#sumTemp1").val()) + Number($("#sumTemp2").val()) + Number($("#sumTemp3").val()) + Number($("#sumTemp4").val()) + Number($("#sumTemp5").val());
 		
 		$(".sumTd").html(numberWithCommas(temp));
-		
 	}
 
 	$(document).ready(function(){
@@ -2024,7 +2104,16 @@
 		chkAltarchange();
 		sumT();
 	})
-
 	
-
+	function fn_eventAllClick(){
+		fn_UpdconsultP1();
+		fn_cstInsertP2();
+		fn_cstInsertP3();
+		fn_cstInsertP4();
+		fn_cstInsertP5();
+		alert("저장성공");
+		setTimeout(() => {
+			fn_ReloadConsult();
+		}, 1000);
+	}
 </script>

@@ -30,7 +30,12 @@ public class ConsultServiceImpl implements ConsultService {
 		// TODO Auto-generated method stub
 		return consultDao.updateConsult(dto);
 	}
-	
+
+	@Override
+	public int updateConsult2(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return consultDao.updateConsult2(dto);
+	}
 	@Override
 	public int updateConsult3(ConsultDTO dto) {
 		// TODO Auto-generated method stub
@@ -54,7 +59,13 @@ public class ConsultServiceImpl implements ConsultService {
 		// TODO Auto-generated method stub
 		return consultDao.insertConsult(dto);
 	}
-	
+
+	@Override
+	public int insertConsult2(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return consultDao.insertConsult2(dto);
+	}
+
 	@Override
 	public int insertConsult3(ConsultDTO dto) {
 		// TODO Auto-generated method stub
@@ -128,5 +139,30 @@ public class ConsultServiceImpl implements ConsultService {
 		// TODO Auto-generated method stub
 		return consultDao.reloadP5(CONSULT_ID);
 	}
+
+	@Override
+	public List<ConsultDTO> doslistFroom() {
+		// TODO Auto-generated method stub
+		return consultDao.doslistFroom();
+	}
+
+	@Override
+	public List<ConsultDTO> doslistEtcroom() {
+		// TODO Auto-generated method stub
+		return consultDao.doslistEtcroom();
+	}
+
+	@Override
+	public List<ConsultDTO> ConsultGet(Integer CONSULT_ID) {
+		// TODO Auto-generated method stub
+		return consultDao.ConsultGet(CONSULT_ID);
+	}
+
+	@Override
+	public List<ConsultDTO> reloadP2froom2(Integer CONSULT_ID) {
+		// TODO Auto-generated method stub
+		return consultDao.reloadP2froom2(CONSULT_ID);
+	}
+
 
 }

@@ -74,6 +74,12 @@ public class ConsultDAOImpl implements ConsultDAO {
 	public int deleteCSTRentfee(ConsultDTO dto) {
 		return sqlSession.update("consult.deleteCstRentfee", dto);
 	}
+
+	@Override
+	public int updateConsult2(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("consult.updconsultp2",dto);
+	}
 	
 	@Override
 	public int updateConsult3(ConsultDTO dto) {
@@ -92,7 +98,13 @@ public class ConsultDAOImpl implements ConsultDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.update("consult.updconsultp5",dto);
 	}
-	
+
+	@Override
+	public int insertConsult2(ConsultDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("consult.consultp2", dto);
+	}
+
 	@Override
 	public int insertConsult3(ConsultDTO dto) {
 		// TODO Auto-generated method stub
@@ -127,6 +139,30 @@ public class ConsultDAOImpl implements ConsultDAO {
 	public List<ConsultDTO> reloadP5(Integer CONSULT_ID) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("consult.reloadConsultp5", CONSULT_ID);
+	}
+
+	@Override
+	public List<ConsultDTO> doslistFroom() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("consult.listFroom");
+	}
+
+	@Override
+	public List<ConsultDTO> doslistEtcroom() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("consult.listEtcroom");
+	}
+
+	@Override
+	public List<ConsultDTO> ConsultGet(int CONSULT_ID) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("consult.consultget", CONSULT_ID);
+	}
+
+	@Override
+	public List<ConsultDTO> reloadP2froom2(Integer CONSULT_ID) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("consult.reloadContp2froom2", CONSULT_ID);
 	}
 
 }

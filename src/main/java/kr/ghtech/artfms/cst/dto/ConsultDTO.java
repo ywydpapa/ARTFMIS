@@ -120,5 +120,22 @@ public class ConsultDTO {
 	private String FNRS_GOODS_NET_PRICE;
 	private String FNRS_GOODS_INIT_QTY;
 	private String FNRS_GOODS_ADD_QTY;
+	
+	private Integer roomID;
+	private String TEMP_ROOM;
+	private Integer FROOM_ID;
+	private String FROOM_TITLE;
+	private String FROOM_CAT;
+	private String FROOM_TYP;
+	private String FROOM_DAY_PRICE;
+	private String FROOM_TIME_PRICE;
+	private String FROOM_MAX_PERS;
+	private String FROOM_AREA;
+	private String FROOM_AREA_KOR;
+	private String FROOM_REMARK;
+	private Integer DAYS;
+	private Integer TIMES;
+	private String RCHARGE;
+	private String ADD_YN;
 }
 

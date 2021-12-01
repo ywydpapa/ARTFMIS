@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.ghtech.artfms.code.service.CodeService;
 import kr.ghtech.artfms.cont.dto.ContDTO;
 import kr.ghtech.artfms.cont.service.ContService;
+import kr.ghtech.artfms.cst.service.ConsultService;
 import kr.ghtech.artfms.goods.service.GoodsService;
 import kr.ghtech.artfms.setup.service.SetupService;
 
@@ -31,6 +32,9 @@ public class ContController {
 	
 	@Inject
 	CodeService codeService;
+	
+	@Inject
+	ConsultService consultService;
 	
 	@Inject
 	SetupService setupService;
@@ -49,7 +53,7 @@ public class ContController {
 	
 	
 	@RequestMapping("contdetail/{CONT_FROOM_ID}")
-	public ModelAndView write(@PathVariable("CONT_FROOM_ID") int CONT_FROOM_ID,ModelAndView mav) {
+	public ModelAndView write(@PathVariable("CONT_FROOM_ID") int CONT_FROOM_ID, ModelAndView mav) {
 		mav.addObject("listroom", goodsService.listRoom(1));
 		mav.addObject("code0201", codeService.listCode0201());
 		mav.addObject("doslist2", contService.doscontlist2(CONT_FROOM_ID));
@@ -169,6 +173,7 @@ public class ContController {
 		mav.addObject("infocont", setupService.infoCont());
 		mav.addObject("pagetitle", FROOM_TITLE);
 		mav.addObject("frid", CONT_FROOM_ID);
+		mav.addObject("listconsult", consultService.listconsut());
 		mav.setViewName("cont/write");
 		return mav;
 	}

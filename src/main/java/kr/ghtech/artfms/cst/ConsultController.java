@@ -2,6 +2,7 @@ package kr.ghtech.artfms.cst;
 
 import java.util.HashMap;
 
+
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -54,7 +55,8 @@ public class ConsultController {
 		mav.addObject("cst", consultService.detailConsult(CONSULT_ID));
 		mav.addObject("listroom", goodsService.listRoom(1));
 		mav.addObject("listAltar", contService.doslistAltar());
-		mav.addObject("listFroom", contService.doslistFroom());
+		mav.addObject("listEtcroom", consultService.doslistEtcroom());
+		mav.addObject("listFroom", consultService.doslistFroom());
 		mav.addObject("listFtable", contService.doslistFtable());
 		mav.addObject("consultpage3", consultService.reloadP3(CONSULT_ID));
 		mav.addObject("consultpage4m", consultService.reloadP4m(CONSULT_ID));
@@ -74,9 +76,10 @@ public class ConsultController {
 		mav.addObject("listFgoodsT16", contService.doslistFgoodsTn(16));
 		mav.addObject("listFgoodsT17", contService.doslistFgoodsTn(17));
 		mav.addObject("listFgoodsT18", contService.doslistFgoodsTn(18));
+		mav.addObject("consultGet", consultService.ConsultGet(CONSULT_ID));
 		mav.addObject("code0201", codeService.listCode0201());
 		mav.addObject("regioncode", codeService.listconBcode("3"));
-		mav.addObject("selectoneFroom", consultService.detailCstRentfee(CONSULT_ID));
+//		mav.addObject("selectoneFroom", consultService.detailCstRentfee(CONSULT_ID));
 		mav.addObject("CONSULT_ID",CONSULT_ID);
 		mav.setViewName("consult/detail");
 		return mav;
@@ -85,15 +88,17 @@ public class ConsultController {
 	@RequestMapping("/defaultConsult/{CONSULT_ID}")
 	public ModelAndView defaultcon(@PathVariable("CONSULT_ID") int CONSULT_ID, ModelAndView mav) {
 		mav.addObject("cst", consultService.detailConsult(CONSULT_ID));
-		mav.addObject("listEtcroom", contService.doslistEtcroom());
-		mav.addObject("listFroom", contService.doslistFroom());
+		mav.addObject("listEtcroom", consultService.doslistEtcroom());
+		mav.addObject("listFroom", consultService.doslistFroom());
 		mav.addObject("consultpage3", consultService.reloadP3(CONSULT_ID));
 		mav.addObject("consultpage4m", consultService.reloadP4m(CONSULT_ID));
 		mav.addObject("consultpage5", consultService.reloadP5(CONSULT_ID));
 		mav.addObject("regioncode", codeService.listconBcode("3"));
+		mav.addObject("consultGet", consultService.ConsultGet(CONSULT_ID));
 		mav.addObject("setu", setupService.listSetup());
-		mav.addObject("selectoneFroom", consultService.detailCstRentfee(CONSULT_ID));
+//		mav.addObject("selectoneFroom", consultService.detailCstRentfee(CONSULT_ID));
 		mav.setViewName("consult/default");
+		mav.addObject("contpage2fr2", consultService.reloadP2froom2(CONSULT_ID));
 		return mav;
 	}
 
@@ -158,6 +163,18 @@ public class ConsultController {
 		}
 		return ResponseEntity.ok(param);
 	}
+
+	@RequestMapping("insertP2.do")
+	public ResponseEntity<?> insertP2(@ModelAttribute ConsultDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContP2Insert = consultService.insertConsult2(dto);
+		if (ContP2Insert >0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
 	
 	@RequestMapping("insertP3.do")
 	public ResponseEntity<?> insertP3(@ModelAttribute ConsultDTO dto) {
@@ -203,6 +220,18 @@ public class ConsultController {
 			param.put("code","10001");
 		} else {
 			param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+	
+	@RequestMapping("updateP2.do")
+	public ResponseEntity<?> updateP2(@ModelAttribute ConsultDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContP2UPD = consultService.updateConsult2(dto);
+		if (ContP2UPD >= 0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
 		}
 		return ResponseEntity.ok(param);
 	}

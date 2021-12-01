@@ -15,7 +15,7 @@
 										<div>
 											<div style="float:left; margin-top:10px;">기본사항</div>
 											<div class="btn_wr" style="float:right;">
-												<button class="btn btn-md btn-primary" onClick="fn_UpdconsultP1()">저장</button>
+												<button class="btn btn-md btn-primary" onClick="fn_eventAllClick()">저장</button>
 											</div>
 										</div>
 									</th>
@@ -99,48 +99,73 @@
 											</thead>
 											<tbody>
 											<c:forEach var="row" items="${listFroom}">
-												<tr <c:if test="${!(row.FROOM_TITLE eq selectoneFroom.RENT_NAME)}">style="display: none"</c:if>>
+												<tr style="display:none;">
 													<td style="vertical-align:middle;text-align:center">분향실</td>
 													<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
-													<td class = "RMday CS_RMday" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-													<td class = "RMtime CS_RMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-													<td style="text-align: right;">
-														<c:choose>
-															<c:when test="${row.FROOM_TITLE eq selectoneFroom.RENT_NAME}"><input style="text-align: right" class="form-control CS_EDay" type="number" min="0" value="${selectoneFroom.RENT_DAYS}"/></c:when>
-															<c:otherwise><input style="text-align: right" class="form-control CS_EDay" type="number" min="0" value="0"/></c:otherwise>
-														</c:choose>
-													</td>
-													<td style="text-align: right;">
-														<c:choose>
-															<c:when test="${row.FROOM_TITLE eq selectoneFroom.RENT_NAME}"><input style="text-align: right" class="form-control CS_ETime" type="number" min="0" value="${selectoneFroom.RENT_HOURS}"/></c:when>
-															<c:otherwise><input style="text-align: right" class="form-control CS_ETime" type="number" min="0" value="0"/></c:otherwise>
-														</c:choose>
-													</td>
-													<td class="CS_ESum" style="vertical-align:middle;text-align: right;">
-														<c:choose>
-															<c:when test="${row.FROOM_TITLE eq selectoneFroom.RENT_NAME}"><fmt:formatNumber value="${(row.FROOM_DAY_PRICE * selectoneFroom.RENT_DAYS) + (row.FROOM_TIME_PRICE * selectoneFroom.RENT_HOURS)}" pattern="#,###" /></c:when>
-															<c:otherwise><fmt:formatNumber value="0" pattern="#,###" /></c:otherwise>
-														</c:choose>
-													</td>
+													<td class = "qMday CS_qMday" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
+													<td class = "qMtime CS_qMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
+													<c:choose>
+														<c:when test="${empty consultGet}">
+															<td style="text-align: right;">
+																<input style="text-align: right" class="form-control CS_aDay" type="number" min="0" value="0"/>
+															</td>
+															<td style="text-align: right;">
+																<input style="text-align: right" class="form-control CS_aTime" type="number" min="0" value="0"/>
+															</td>
+															<td class="CS_aSum" style="vertical-align:middle;text-align: right;">
+																<fmt:formatNumber value="0" pattern="#,###" />
+															</td>
+														</c:when>
+														<c:otherwise>
+															<c:forEach var="rowGet" items="${consultGet}">
+																<td style="text-align: right;">
+																	<c:choose>
+																		<c:when test="${rowGet.RENT_DAYS > 0 && row.FROOM_TITLE eq rowGet.RENT_TITLE}">
+																			<input style="text-align: right" class="form-control CS_aDay" type="number" min="0" value="${rowGet.RENT_DAYS}"/>
+																		</c:when>
+																		<c:otherwise>
+																			<input style="text-align: right" class="form-control CS_aDay" type="number" min="0" value="0"/>
+																		</c:otherwise>
+																	</c:choose>
+																</td>
+																<td style="text-align: right;">
+																	<c:choose>
+																		<c:when test="${rowGet.RENT_HOURS > 0 && row.FROOM_TITLE eq rowGet.RENT_TITLE}">
+																			<input style="text-align: right" class="form-control CS_aTime" type="number" min="0" value="${rowGet.RENT_HOURS}"/>
+																		</c:when>
+																		<c:otherwise>
+																			<input style="text-align: right" class="form-control CS_aTime" type="number" min="0" value="0"/>
+																		</c:otherwise>
+																	</c:choose>
+																</td>
+																<td class="CS_aSum" style="vertical-align:middle;text-align: right;">
+																	<c:choose>
+																		<c:when test="${rowGet.RENT_AMOUNT > 0 && row.FROOM_TITLE eq rowGet.RENT_TITLE}">
+																			<fmt:formatNumber value="${rowGet.RENT_AMOUNT}" pattern="#,###" />
+																		</c:when>
+																		<c:otherwise>
+																			<fmt:formatNumber value="0" pattern="#,###" />
+																		</c:otherwise>
+																	</c:choose>
+																</td>
+															</c:forEach>
+														</c:otherwise>
+													</c:choose>
 													<td style="text-align: center; display:none"><input type="checkbox"	class="form-control CHKsrm" /></td>
 												</tr>
 												
 											</c:forEach>
-											<c:forEach var="row" items="${listEtcroom}">
+											<c:forEach var="row" items="${contpage2fr2}">
 												<tr>
 													<td class="second" style="vertical-align:middle;text-align:center">부대시설</td>
 													<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}<input type="hidden" class="etcrid"value="${row.FROOM_ID}"></td>
 													<td class = "CS_RMday" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 													<td class = "CS_RMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-													<td style="text-align: right;"><input style="vertical-align:middle;text-align: right"class="form-control CS_EDay" type="number" min="0" max="30" value="0"/></td>
-													<td style="text-align: right;"><input style="vertical-align:middle;text-align: right"class="form-control CS_ETime" type="number" min="0" max="30" value="0"/></td>
-													<td class = "CS_ESum" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="0" pattern="#,###" /></td>
+													<td style="text-align: right;"><input style="vertical-align:middle;text-align: right"class="form-control CS_EDay" type="number" min="0" max="30" value="${row.DAYS}"/></td>
+													<td style="text-align: right;"><input style="vertical-align:middle;text-align: right"class="form-control CS_ETime" type="number" min="0" max="30" value="${row.TIMES}"/></td>
+													<td class = "CS_ESum" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.RCHARGE}" pattern="#,###" /></td>
 												</tr>
 											</c:forEach>
-												<input type="hidden" id="sumTemp1" value="0">
-												<input type="hidden" id="sumTemp3" value="0">
-												<input type="hidden" id="sumTemp4" value="0">
-												<input type="hidden" id="sumTemp5" value="0">
 												<tr>
 													<td colspan="4" style="vertical-align:middle;text-align:center">제물상</td>
 													<td colspan="3" class="defaultP3total" style="text-align: right;">0</td>
@@ -154,8 +179,8 @@
 													<td colspan="3" class="defaultP5total" style="text-align: right;">0</td>
 												</tr>
 												<tr>
-													<td colspan="5" style="text-align:center;">총합</td>
-													<td colspan="2" style="text-align:right;" class="sumTd">0</td>
+													<td colspan="4" style="text-align:center;">총합</td>
+													<td colspan="3" style="text-align:right;" class="sumTd">0</td>
 												</tr>
 											</tbody>
 										</table>
@@ -169,6 +194,36 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						<c:forEach var="row" items="${listFroom}">
+							<c:forEach var="rowGet" items="${consultGet}">
+								<c:if test="${row.FROOM_TITLE eq rowGet.RENT_TITLE}">
+									<c:set var="aSUM" value="${rowGet.RENT_AMOUNT}" />
+								</c:if>							
+							</c:forEach>
+						</c:forEach>
+						<c:forEach var="row" items="${contpage2fr2}">
+							<c:set var="eSUM" value="${eSUM + row.RCHARGE}" />
+						</c:forEach>
+						<c:choose>
+							<c:when test="${eSUM > 0}">
+								<input type="hidden" id="sumTemp1" value="${eSUM}">
+							</c:when>
+							<c:otherwise>
+								<input type="hidden" id="sumTemp1" value="0">
+							</c:otherwise>
+						</c:choose>
+						<c:choose>
+							<c:when test="${aSUM > 0}">
+								<input type="hidden" id="sumTemp2" value="${aSUM}">
+							</c:when>
+							<c:otherwise>
+								<input type="hidden" id="sumTemp2" value="0">
+							</c:otherwise>
+						</c:choose>
+						<input type="hidden" id="sumTemp3" value="0">
+						<input type="hidden" id="sumTemp4" value="0">
+						<input type="hidden" id="sumTemp5" value="0">
+						
 					</div>
 				</div>
 				
@@ -210,6 +265,31 @@ $('.phone').keydown(function(event) {
 // $(".Eday, .Etime").change(function() {
 // 	chkcalE();
 // });
+
+$(".CS_aDay, .CS_aTime").change(function() {
+	var CS_qMday = $(".CS_qMday");
+	var CS_qMtime = $(".CS_qMtime");
+	var CS_aDay = $(".CS_aDay");
+	var CS_aTime = $(".CS_aTime");
+	var CS_aSum = $(".CS_aSum");
+	var sumTd = $(".sumTd");
+	var sumTemp2 = $("#sumTemp2");
+	var temp = 0;
+	
+	for (var i = 0; i < CS_qMday.length; i++) {
+		var chksum = 0;
+		var b1 = Number(CS_qMday[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+		var b2 = Number(CS_qMtime[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+		var c1 = Number(CS_aDay[i].value.replace(/[\D\s\._\-]+/g, ""));
+		var c2 = Number(CS_aTime[i].value.replace(/[\D\s\._\-]+/g, ""));
+		chksum = (b1*c1)+(b2*c2);
+		temp = temp + chksum;
+		sumTemp2.val(temp);
+		CS_aSum[i].innerText = numberWithCommas(chksum);
+	}
+	sumT();
+});
+	
 
 $(".CS_EDay, .CS_ETime").change(function() {
 	var CS_RMday = $(".CS_RMday");
