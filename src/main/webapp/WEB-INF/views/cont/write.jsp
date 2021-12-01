@@ -73,9 +73,10 @@
 												</tr>
 												<tr align="center">
 													<td class="cont-title" style="vertical-align: middle;">상담/계약 조회</td>
-													<td><select id="consult_list" class="form-control">
+													<td><select id="consult_list" class="form-control" style="appearance:none;">
+															<option value=''></option>
 															<c:forEach var="row" items="${listconsult}">
-															<option value="${row.CONSULT_ID}">${row.PATI_NAME}<span>  :  </span>${row.CONSULT_DATE}</option>
+																<option value="${row.CONSULT_ID}">${row.PATI_NAME}<span>  :  </span>${row.CONSULT_DATE}</option>
 															</c:forEach>				
 														</select>
 													</td>
@@ -3152,7 +3153,9 @@ function fnSetcont7page(url, data){
 		SetDT();
 
 	})
-
+	
+	$("#consult_list").children("option[value='']").hide();
+	
 	function fn_ReloadConsult(){
 		$.ajax({
 			url: "${path}/consult/consultSeleteGet/"+$("#consult_list").val(),

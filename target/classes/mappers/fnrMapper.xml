@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="fnr">
+
+
+<select id="detailFnr" resultType="fnrDto">
+ 	SELECT * from GHT_FNR_MST where FNR_ID=#{FNR_ID}
+</select>
+
+<select id="listFnr" resultType="fnrDto">
+ 	SELECT * from GHT_FNR_MST where attrib not like 'XXX%'
+</select>
+
+<update id="updateFnr">
+	update GHT_FNR_MST set
+	FNR_SITEID = #{FNR_SITEID}
+	,FNR_NAMEK = #{FNR_NAMEK} 
+	,FNR_NAMEE = #{FNR_NAMEE}
+	,FNR_CM_NAMEK = #{FNR_CM_NAMEK}
+	,FNR_VATNO = #{FNR_VATNO}
+	,FNR_POSTNO = #{FNR_POSTNO}
+	,FNR_ADDR1 = #{FNR_ADDR1}
+	,FNR_ADDR2 = #{FNR_ADDR2}
+	,FNR_TELNO1 = #{FNR_TELNO1}
+	,FNR_TELNO2 = #{FNR_TELNO2}
+	,FNR_FAXNO = #{FNR_FAXNO}
+	,FNR_EMAIL = #{FNR_EMAIL}
+	,FNR_URL = #{FNR_URL} 
+	,FNR_LOGO = #{FNR_LOGO}
+	,FNR_STAMP = #{FNR_STAMP}
+	,FNR_UPDATE_DAT = #{FNR_UPDATE_DAT}
+	,FNR_UPDATE_USER = #{FNR_UPDATE_USER}
+	where FNR_ID = #{FNR_ID}
+</update>
+ 
+ 
+</mapper>
