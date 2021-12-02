@@ -10,12 +10,7 @@
 
 <div class="c-container">
 	<div class="listcont col-sm-10" style="width:1592px; margin:10px auto;">
-		<div style="position:absolute; left:50%; top:10px;">
-			<h5>호실 이동</h5>
-		</div>
-		<div style="position:relative; text-align:right;">
-			<button class="btn btn-md btn-primary" onClick="fn_FroomTR()">호실이동</button>
-		</div>
+		
 		<!-- <div class="page-header2">
 			<div class="row align-items-end">
 				<div class="col-lg-12">
@@ -47,7 +42,13 @@
 						<div class="cnt_wr">
 							<div class="row">
 								<div class="col-sm-12">
-									<div class="card-block table-border-style">
+									<div style="position:absolute; left:50%; top:10px;">
+										<h5>호실 이동</h5>
+									</div>
+									<div style="position:relative; text-align:right;">
+										<button class="btn btn-md btn-primary" onClick="fn_FroomTR()">호실이동</button>
+									</div>
+									<div class="card-block table-border-style" style="margin-top:10px;">
 										<div class="table-responsive">
 											<table class="table table-sm bst02" id="basicTable">
 												<colgroup>
