@@ -42,7 +42,7 @@
 }
 </style>
 <div class="listcont">
-	<div class="page-header2">
+	<!-- <div class="page-header2">
 		<div class="row align-items-end">
 			<div class="col-lg-12">
 				<div class="page-header-title">
@@ -52,25 +52,13 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<table class="table table-bordered nowrap"
-		style="width: 50%;">
-		<colgroup>
-			<col width="10%" />
-			<col width="20%" />
-		</colgroup>
-		<tr style="display:none">
-			<td>호실현황</td>
-			<td><select name="FROOM_SEL" id="FROOM_SEL" class="form-control form-control-sm">
-					<c:forEach var="row" items="${listFroom}">
-					<option value="${path}/cont/write/${row.FROOM_ID}?FROOM_TITLE=${row.FROOM_TITLE}">${row.FROOM_TITLE}</option>
-					</c:forEach>
-				</select></td>
-		</tr>
-</table>
+	</div> -->
 	<div class="h-container">
 		<div class="item">
-	<table class="table table-bordered table-hover" id="roomTable">
+			<div style="position:absolute;left:35px;top:84px;">
+				<h5>계약 관리</h5>
+			</div>
+			<table class="table table-bordered table-hover" id="roomTable" style="margin-top:33px;">
 				<thead>
 					<tr>
 						<th scope="col" width="200" align="center">계약 단계</th>
@@ -107,10 +95,25 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="item cont">
+		<div class="item cont" style="padding:0 20px;">
 			<div id="detailftable" class="detailftable"></div>
 		</div>
 	</div>
+	<table class="table table-bordered nowrap"
+		style="width: 50%;">
+		<colgroup>
+			<col width="10%" />
+			<col width="20%" />
+		</colgroup>
+		<tr style="display:none">
+			<td>호실현황</td>
+			<td><select name="FROOM_SEL" id="FROOM_SEL" class="form-control form-control-sm">
+					<c:forEach var="row" items="${listFroom}">
+					<option value="${path}/cont/write/${row.FROOM_ID}?FROOM_TITLE=${row.FROOM_TITLE}">${row.FROOM_TITLE}</option>
+					</c:forEach>
+				</select></td>
+		</tr>
+	</table>
 </div>
 <script>
 

@@ -7,18 +7,9 @@
 	pattern="yyyy-MM-dd" />
 <fmt:parseDate var="ENDate" value="${detailCont.END_DATE}"
 	pattern="yyyy-MM-dd" />
-<div class="listcont">
-	<div class="page-header2">
-		<div class="row align-items-end">
-			<div class="col-lg-12">
-				<div class="page-header-title">
-					<div class="d-inline">
-						<h5>계약내용</h5>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="listcont" style="position:relative;">
+	<h5>계약 내용</h5>
+</div>
 	<div class="c-container">
 		<div>
 			<!--Page-header end 페이지 타이틀 -->
@@ -27,13 +18,12 @@
 				<div class="row">
 					<div class="col-lg-12 col-xl-12">
 						<div class="table-responsive">
-							<table class="table  table-bordered nowrap">
+							<table class="table table-bordered nowrap" style="margin-top:8px;">
 								<tr>
 									<td><input id="frid" type="hidden" value="${frid}"><input
 										id="contid" type="hidden" value="${CONTid}"> <input
 										id="rmchk" type="hidden" value="OK"><span>계약번호
 											: </span>${CONTid}</td>
-									<td></td>
 								</tr>
 							</table>
 						</div>
@@ -44,14 +34,15 @@
 										<div class="col-sm-12">
 											<div class="card-block table-border-style">
 												<div class="table-responsive">
-													<table class="table table-sm bst02">
-														<tbody>
-															<tr>
-																<th scope="row">계약기본사항</th>
-															</tr>
-														</tbody>
-													</table>
-													<table class="table table-sm bst02" id="basicTable">
+													<div style="width:100%;">
+														<div style="float:left;margin-top:10px;">
+															<h6 style="font-weight:600;">계약기본사항</h6>
+														</div>
+														<div style="float:right;">
+															<button class="btn btn-md btn-primary" onClick="fn_contUpdate()">저장</button>
+														</div>
+													</div>
+													<table class="table table-sm bst02" id="basicTable" style="margin-top:55px;">
 														<colgroup>
 															<col width="10%" />
 															<col width="10%" />
@@ -506,10 +497,10 @@
 										</div>
 									</div>
 								</div>
-								<div class="btn_wr text-right mt-3">
+								<!-- <div class="btn_wr text-right mt-3">
 									<button class="btn btn-md btn-primary"
 										onClick="fn_contUpdate()">저장</button>
-								</div>
+								</div> -->
 							</div>
 						</div>
 						<!-- Row end -->

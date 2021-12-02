@@ -26,11 +26,8 @@ public class UploadController {
     @RequestMapping(value = "/file/upload", method = RequestMethod.POST)
     @ResponseBody
     public Object uploadFile(MultipartHttpServletRequest request) {
-//        String uploadPath = request.getSession().getServletContext().getRealPath("/resources/image/local");
-        String uploadPath = "C:\\artFiles\\";
-        
-        
-
+        String uploadPath = request.getSession().getServletContext().getRealPath("/resources/image/local");
+//        String uploadPath = "C:\\artFiles\\";
 //        String savedName = "";
         Iterator<String> itr = request.getFileNames();
         if(itr.hasNext()) {
@@ -41,7 +38,7 @@ public class UploadController {
                 System.out.println("file length : " + mpf.getBytes().length);
                 System.out.println("file name : " + mpf.getOriginalFilename());
                 System.out.println("file ContentType : " + mpf.getContentType());
-
+                
                 String imgeType = "";
                 String contentType = mpf.getContentType();
                 if ("image/gif".equals(contentType)) {

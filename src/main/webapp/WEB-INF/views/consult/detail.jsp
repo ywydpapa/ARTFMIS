@@ -888,7 +888,6 @@
 									</c:forEach>
 								</tbody>
 							</table>
-							<hr>
 							<!-- <div style="text-align:right">
 								<span>선택된 제단용품 총액 :</span><input type="text" id="P5total" style="text-align: right; border: none;" readonly>
 							</div> -->

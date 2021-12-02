@@ -6,7 +6,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<div class="page-header2">
+<!-- <div class="page-header2">
 	<div class="row align-items-end">
 		<div class="col-lg-12">
 			<div class="page-header-title">
@@ -14,9 +14,9 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 <!--Page-header end 페이지 타이틀 -->
-	<div class="cnt_wr">
+	<div class="cnt_wr" style="position:relative;">
 	<!-- Row start -->
 	<div class="row">
 		<div class="col-lg-12 col-xl-12">
@@ -35,7 +35,15 @@
 							<div class="col-sm-12">
 								<div class="card-block table-border-style">
 									<div class="table-responsive" style="overflow-x:hidden">
-										<table class="table table-sm bst02">
+										<div style="width:100%;">
+											<div style="float:left;margin-top:10px;">
+												<h5>계약기본사항</h5>
+											</div>
+											<div style="float:right;">
+												<button class="btn btn-md btn-primary" onClick="fn_contInsertP1()">등록</button>
+											</div>
+										</div>
+										<!-- <table class="table table-sm bst02">
 											<tbody>
 												<tr>
 													<td>계약기본사항</td>
@@ -44,8 +52,8 @@
 													</td>
 												</tr>
 											</tbody>
-										</table>
-										<table class="table table-sm bst02" style="border-collapse: collapse"id="basicTable">
+										</table> -->
+										<table class="table table-sm bst02" style="border-collapse: collapse; margin-top:50px;"id="basicTable">
 											<colgroup>
 												<col width="12%" />
 												<col width="10%" />
@@ -270,14 +278,22 @@
 					<div class="card-block table-border-style">
 						<div class="table-responsive" style="overflow-x:hidden">
 							<form name="room2" method="post" onsubmit="return false;">
-								<table class="table table-sm bst02">
+								<div style="width:100%;">
+									<div style="float:left;margin-top:10px;">
+										<h5>분향실 선택</h5>
+									</div>
+									<div style="float:right;">
+										<button class="btn btn-md btn-primary" onClick="fn_contInsertP2()">등록</button>
+									</div>
+								</div>
+								<!-- <table class="table table-sm bst02">
 									<tbody>
 										<tr>
 											<td>분향실 선택</td>
 											<td align="right"><button class="btn btn-md btn-primary" onClick="fn_contInsertP2()">등록</button></td>
 										</tr>
 									</tbody>
-								</table>
+								</table> -->
 								<table class="table table-bordered table-hover" id="roomList">
 									<colgroup>
 										<col width="5%" />
@@ -402,15 +418,23 @@
 					<div class="card-block table-border-style">
 						<div class="table-responsive" style="overflow-x: hidden;">
 							<form name="form3" method="post" onsubmit="return false;">
-								<table class="table table-sm bst02">
+								<div style="width:100%;">
+									<div style="float:left;margin-top:10px;">
+										<h5>제물상</h5>
+									</div>
+									<div style="float:right;">
+										<button class="btn btn-md btn-primary" onClick="fn_contInsertP3()">등록</button>
+									</div>
+								</div>
+								<!-- <table class="table table-sm bst02">
 									<tbody>
 									<tr>
 									<td><span> 제물상 </span></td>
 									<td align="right"><button class="btn btn-md btn-primary" onClick="fn_contInsertP3()">등록</button></td>
 									</tr>
 									</tbody>
-								</table>
-								<div class="row">
+								</table> -->
+								<div class="row" style="clear:both;margin-top:20px;">
 									<table class="table table-bordered table-hover" id="ftTable">
 										<thead  style="background-color:#E0E6F8">
 											<tr>
@@ -489,7 +513,21 @@
 					<div class="card-block table-border-style">
 						<div class="table-responsive" style="overflow-x:hidden">
 							<form name="form4" method="post" onsubmit="return false;">
-								<table class="table table-sm bst02">
+								<div style="width:100%;">
+									<div style="float:left;margin-top:10px;">
+										<h5>장의용품 선택</h5>
+									</div>
+									<div style="float:right;">
+										<button class="btn btn-md btn-primary" onClick="fn_contInsertP4()">등록</button>
+									</div>
+								</div>
+								<div>
+									<select class="form-control" id="selMTR">
+										<option value="M" selected>현대식</option>
+										<option value="T">전통식</option>
+									</select>
+								</div>
+								<!-- <table class="table table-sm bst02">
 									<tbody>
 										<tr>
 											<td>장의용품 선택</td>
@@ -502,8 +540,8 @@
 											<td align="right"><button class="btn btn-md btn-primary" onClick="fn_contInsertP4()">등록</button></td>
 										</tr>
 									</tbody>
-								</table>
-								<table class="table  table-bordered table-hover MOD">
+								</table> -->
+								<table class="table  table-bordered table-hover MOD" style="margin-top:10px;">
 									<colgroup>
 										<col width="10%" />
 										<col width="5%" />
@@ -520,15 +558,15 @@
 										<th colspan="5" style="text-align: center;">상세정보</th>
 									</tr>
 									<thead  style="text-align:center;background-color:#E0E6F8">
-									<tr  style="background-color:#E0E6F8; text-align: center;">
-										<th >종류</th>
-										<th><a onclick="chkallmod();">선</a><a onclick="chkunmod();">택</a></th>
-										<th>제품명</th>
-										<th>단위</th>
-										<th>개당단가</th>
-										<th>기본금액</th>
-										<th>주문수량</th>
-										<th>주문금액</th>
+									<tr style="background-color:#E0E6F8;">
+										<th style="text-align: center;">종류</th>
+										<th style="text-align: center;"><a onclick="chkalltrd();">선</a><a onclick="chkuntrd();">택</a></th>
+										<th style="text-align: center;">제품명</th>
+										<th style="text-align: center;">단위</th>
+										<th style="text-align: center;">개당단가</th>
+										<th style="text-align: center;">기본금액</th>
+										<th style="text-align: center;">주문수량</th>
+										<th style="text-align: center;">주문금액</th>
 									</tr>
 									</thead>
 									<tbody>
@@ -752,26 +790,26 @@
 												<td  style="vertical-align:middle;text-align:center" class="second">${row.CAT_TITLE}</td>
 												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control"
 												<c:if test="${row.GOODS_INIT_ORDER eq 'Y'}">checked</c:if> /></td>
-												<td>${row.GOODS_TITLE}</td>
-												<td>${row.GOODS_UNIT}<input type="hidden" class="FRID"
+												<td style="vertical-align:middle;">${row.GOODS_TITLE}</td>
+												<td style="vertical-align:middle;">${row.GOODS_UNIT}<input type="hidden" class="FRID"
 													value="${frid}"><input type="hidden" class="GIDm"
 													value="${row.GOODS_ID}"></td>
-												<td style="text-align: right;"><fmt:formatNumber
+												<td style="vertical-align:middle; text-align: right;"><fmt:formatNumber
 														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td>
-												<td style="text-align: right;" class="infoG2"><fmt:formatNumber
+												<td style="vertical-align:middle; text-align: right;" class="infoG2"><fmt:formatNumber
 														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></td>
-												<td style="text-align: right;"><input
+												<td style="vertical-align:middle; text-align: right;"><input
 													class="from-control GC" oninput="calculateG()"
 													style="border: none; text-align: right;" type="number"
 													min="0" max="100"
 													value="<c:if test="${row.FNRS_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.FNRS_GOODS_INIT_QTY ne null }">${row.FNRS_GOODS_INIT_QTY}</c:if>"
 													required></td>
-												<td class="GD GM from-control" style="text-align: right;"></td>
+												<td class="GD GM from-control" style="vertical-align:middle; text-align: right;"></td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
-									<table class="table table-bordered table-hover TRD">
+								<table class="table table-bordered table-hover TRD" style="margin-top:10px;">
  									<colgroup>
 										<col width="10%" />
 										<col width="5%" />
@@ -1051,14 +1089,22 @@
 					<div class="card-block table-border-style">
 						<div class="table-responsive" style="overflow-x:hidden">
 							<form name="form5" method="post" onsubmit="return false;">
-								<table class="table table-sm bst02">
+								<div style="width:100%;">
+									<div style="float:left;margin-top:10px;">
+										<h5>제단 선택</h5>
+									</div>
+									<div style="float:right;">
+										<button class="btn btn-md btn-primary" onClick="fn_contInsertP5()">등록</button>
+									</div>
+								</div>
+								<!-- <table class="table table-sm bst02">
 									<tbody>
 										<tr>
 											<td>제단 선택</td>
 											<td align="right"><button class="btn btn-md btn-primary" onClick="fn_contInsertP5()">등록</button></td>
 										</tr>
 									</tbody>
-								</table>
+								</table> -->
 								<table class="table  table-bordered nowrap"
 									id="altarTable">
 									<thead  style="text-align:center;background-color:#E0E6F8">
@@ -1088,7 +1134,7 @@
 													<td class="imagebx" rowspan="${fn:length(listAltar)}">
 														<c:forEach var="t" items="${listAltar}">
 															<c:set var="length" value="${fn:length(t.ALTAR_IMAGE)}" />
-															<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.ALTAR_IMAGE}">src="<spring:url value='/localImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}'/>"</c:if>
+															<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.ALTAR_IMAGE}">src="<%-- <spring:url value='/localImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}'/> --%>${path}/image/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}"</c:if>
 																 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
 														</c:forEach>
 													</td>
@@ -1142,7 +1188,18 @@
 				<div class="tab-pane" id="tab06" role="tabpanel">
 					<div class="card-block table-border-style">
 						<div class="table-responsive" style="overflow-x:hidden">
-							<table class="table table-sm bst02">
+							<div style="width:100%;">
+								<div style="float:left;margin-top:10px;">
+									<h5>식당품목 선택</h5>
+								</div>
+								<div style="float:right;">
+									<button class="btn btn-md btn-primary" onClick="fn_contInsertP6()">등록</button>
+								</div>
+								<div style="float:right; margin-right:5px;">
+									<button class="btn btn-primary" onclick="callRestlist()" >호실별 식당품목 블러오기</button>
+								</div>
+							</div>
+							<!-- <table class="table table-sm bst02">
 								<tbody>
 									<tr>
 										<th scope="row">식당품목 선택</th>
@@ -1151,7 +1208,7 @@
 										</td>
 									</tr>
 								</tbody>
-							</table>
+							</table> -->
 						</div>
 						<div class="table-responsive" style="overflow-x:hidden" id="calledRest">
 							<table id="MESS01" class="table table-bordered table-hover">
@@ -1217,7 +1274,18 @@
 				<div class="tab-pane" id="tab07" role="tabpanel">
 					<div class="card-block table-border-style">
 						<div class="table-responsive" style="overflow-x:hidden">
-							<table class="table table-sm bst02">
+							<div style="width:100%;">
+								<div style="float:left;margin-top:10px;">
+									<h5>매점품목 선택</h5>
+								</div>
+								<div style="float:right;">
+									<button class="btn btn-md btn-primary" onClick="fn_contInsertP7()">등록</button>
+								</div>
+								<div style="float:right; margin-right:5px;">
+									<button class="btn btn-primary" onclick="callStorelist()" >호실별 매점품목 블러오기</button>
+								</div>
+							</div>
+							<!-- <table class="table table-sm bst02">
 								<tbody>
 									<tr>
 										<th scope="row">매점품목 선택</th>
@@ -1226,7 +1294,7 @@
 										</td>
 									</tr>
 								</tbody>
-							</table>
+							</table> -->
 						</div>
 						<div class="table-responsive" style="overflow-x:hidden" id="calledStore">
 							<table class="table table-bordered table-hover">
@@ -1292,7 +1360,15 @@
 					<div class="card-block table-border-style">
 						<div class="table-responsive" style="overflow-x:hidden">
 							<form name="form8" method="post" onsubmit="return false;">
-								<table class="table table-sm bst02">
+								<div style="width:100%;">
+									<div style="float:left;margin-top:10px;">
+										<h5>기타시설</h5>
+									</div>
+									<div style="float:right;">
+										<button class="btn btn-md btn-primary" onClick="fn_contInsertP8()">등록</button>
+									</div>
+								</div>
+								<!-- <table class="table table-sm bst02">
 									<tbody>
 										<tr>
 											<td>기타시설</td>
@@ -1301,7 +1377,7 @@
 											</td>
 										</tr>
 									</tbody>
-								</table>
+								</table> -->
 								<table class="table table-bordered table-hover"
 									id="roomList">
 									<colgroup>
@@ -1396,7 +1472,18 @@
 					<div class="card-block table-border-style">
 						<div class="table-responsive" style="overflow-x:hidden">
 							<form name="form9" method="post" onsubmit="return false;">
-								<table class="table table-sm bst02">
+								<div style="width:100%;">
+									<div style="float:left;margin-top:10px;">
+										<h5>안내문</h5>
+									</div>
+									<div style="float:right;">
+										<button class="btn btn-md btn-inverse">취소</button>
+									</div>
+									<div style="float:right; margin-right:5px;">
+										<button class="btn btn-md btn-primary" onClick="fn_contInsertP9()">최종 등록</button>
+									</div>
+								</div>
+								<!-- <table class="table table-sm bst02">
 									<tbody>
 										<tr>
 											<td>안내문</td>
@@ -1406,7 +1493,7 @@
 											</td>
 										</tr>
 									</tbody>
-								</table>
+								</table> -->
 								<table class="table table-sm bst02" id="guide">
 									<colgroup>
 										<col width="20%" />

@@ -7,239 +7,244 @@
 	pattern="yyyy-MM-dd" />
 <fmt:parseDate var="ENDate" value="${detailCont.END_DATE}"
 	pattern="yyyy-MM-dd" />
-<div class="listcont">
-	<div class="page-header2">
-		<div class="row align-items-end">
-			<div class="col-lg-12">
-				<div class="page-header-title text-center">
-					<div class="d-inline">
-						<h5>호실이동</h5>
+
+<div class="c-container">
+	<div class="listcont col-sm-10" style="width:1592px; margin:10px auto;">
+		<div style="position:absolute; left:50%; top:10px;">
+			<h5>호실 이동</h5>
+		</div>
+		<div style="position:relative; text-align:right;">
+			<button class="btn btn-md btn-primary" onClick="fn_FroomTR()">호실이동</button>
+		</div>
+		<!-- <div class="page-header2">
+			<div class="row align-items-end">
+				<div class="col-lg-12">
+					<div class="page-header-title text-center">
+						<div class="d-inline">
+							<h5>호실 이동</h5>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+			</div> 
+			</div>-->
 	</div>
-	<div class="c-container">
-		<div>
-			<!--Page-header end 페이지 타이틀 -->
-			<div class="cnt_wr">
-				<!-- Row start -->
-				<div class="row">
-					<div style="margin-left: 12%;" class="col-lg-9 col-xl-9">
-						<div class="table-responsive">
-							<table class="table  table-bordered nowrap">
-								<tr>
-									<td style="text-align: right;">
-										<button class="btn btn-md btn-primary" onClick="fn_FroomTR()">호실이동</button>
-									</td>
-								</tr>
-							</table>
-						</div>
-						<div class="tab-content tabs m-t-20">
-							<div class="tab-pane active" id="tab01" role="tabpanel">
-								<div class="cnt_wr">
-									<div class="row">
-										<div class="col-sm-12">
-											<div class="card-block table-border-style">
-												<div class="table-responsive">
-													<table class="table table-sm bst02" id="basicTable">
-														<colgroup>
-															<col width="25%" />
-															<col width="25%" />
-															<col width="25%" />
-															<col width="25%" />
-														</colgroup>
-														<thead>
-															<tr>
-																<th class="text-center"
-																	style="background-color: #CEF6E3;" colspan="2">이전할
-																	호실</th>
-																<th class="text-center"
-																	style="background-color: #CEF6E3;" colspan="2">이전후
-																	호실</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr align="center">
-																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">고인명</th>
-																<td><input type="text"
-																	class="form-control text-right" id="goinName" value=""></td>
-																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">상주명</th>
-																<td><input type="text"
-																	class="form-control text-right" id="sangjuName" value=""></td>
-															</tr>
-
-															<tr>
-																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3"
-																	rowspan="1">계약호실</th>
-																<td><select class="form-control" id="froomtrbf">
-																		<c:forEach var="listcont" items="${listcont}">
-																			<option value="${listcont.CONTRACT_ID}/${listcont.FROOM_ID}">${listcont.FROOM_TITLE}</option>
-																		</c:forEach>
-																</select>
-																<select style="display:none" class="form-control" id="froomtrbfdp">
-																		<c:forEach var="listcont" items="${listcont}">
-																			<option value="${listcont.FROOM_DAY_PRICE}">${listcont.FROOM_DAY_PRICE}</option>
-																		</c:forEach>
-																</select>
-																<select style="display:none" class="form-control" id="dperson">
-																		<c:forEach var="listcont" items="${listcont}">
-																			<option value="${listcont.DPERSON_NAME}">${listcont.DPERSON_NAME}</option>
-																		</c:forEach>
-																</select>
-																</td>
-																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3"
-																	rowspan="1">이전호실</th>
-																<td><select class="form-control" id="froomtraf">
-																		<c:forEach var="listemp" items="${listroomemp}">
-																			<option value="${listemp.FROOM_ID}">${listemp.FROOM_TITLE}</option>
-																		</c:forEach>
-																</select>
-																<select style="display:none" class="form-control" id="froomtrafdp">
-																		<c:forEach var="listemp" items="${listroomemp}">
-																			<option value="${listemp.FROOM_DAY_PRICE}">${listemp.FROOM_DAY_PRICE}</option>
-																		</c:forEach>
-																</select>
-																<select style="display:none" class="form-control" id="dsangju">
-																		<c:forEach var="listcont" items="${listcont}">
-																			<option value="${listcont.SANGJU_NAME}">${listcont.SANGJU_NAME}</option>
-																		</c:forEach>
-																</select>
-																</td>
-															</tr>
-															<tr>
-																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">사용일</th>
-																<td class="text-center"><input type="number"
-																	class="form-control text-right" id="bfday" value="0" min="0"></td>
-																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">사용일</th>
-																<td class="text-center"><input type="number"
-																	class="form-control text-right" id="afday" value="0" min="0"></td>
-															</tr>
-															<tr align="center">
-																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
-																	부과일</th>
-																<td><input type="number"
-																	class="form-control text-right" id="bfaddday" value="0" min="0"></td>
-																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
-																	부과일</th>
-																<td><input type="number"
-																	class="form-control text-right" id="afaddday" value="0" min="0"></td>
-															</tr>
-															<tr align="center">
-																<th style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
-																	</th>
-																<td><input type="text"
-																	class="form-control text-right" id="bfaddfee" value="0" readonly></td>
-																<th	style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
-																	</th>
-																<td><input type="text"
-																	class="form-control text-right" id="afaddfee" value="0" readonly></td>
-															</tr>
-															
-															<tr align="center">
-																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">분향실
-																	사용료</th>
-																<td><input type="text"
-																	class="form-control text-right" id="bfrmcharge" value="0" readonly></td>
-																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">분향실 사용료</th>
-																<td><input type="text"
-																	class="form-control text-right" id="afrmcharge" value="0" readonly></td>
-															</tr>
-															<tr style="display:none;">
-															<td><input type="text" id="bfotexpay" value=""></td>
-															<td><input type="text" id="bftmexpay" value=""></td>
-															<td><input type="text" id="afotexpay" value=""></td>
-															<td><input type="text" id="aftmexpay" value=""></td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<!--//계약기본등록-->
-							</div>
-							<div class="tab-pane active" id="tab02" role="tabpanel">
-								<div class="card-block table-border-style">
-									<div class="table-responsive" style="overflow-x: hidden">
-										<form name="room2" method="post" onsubmit="return false;">
-											<table class="table table-sm bst02">
-												<tbody>
-													<tr>
-														<th scope="row">호실 이동 선택 사항</th>
-													</tr>
-												</tbody>
-											</table>
-
-											<table class="table table-bordered nowrap" id="TRoption">
+<!--Page-header end 페이지 타이틀 -->
+	<div class="cnt_wr" style="clear:both;">
+		<!-- Row start -->
+		<div class="row">
+			<div style="margin-left: 12%;" class="col-lg-9 col-xl-9">
+				<!-- <div class="table-responsive">
+					<table class="table  table-bordered nowrap">
+						<tr>
+							<td style="text-align: right;">
+								<button class="btn btn-md btn-primary" onClick="fn_FroomTR()">호실이동</button>
+							</td>
+						</tr>
+					</table>
+				</div> -->
+				<div class="tab-content tabs m-t-20">
+					<div class="tab-pane active" id="tab01" role="tabpanel">
+						<div class="cnt_wr">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="card-block table-border-style">
+										<div class="table-responsive">
+											<table class="table table-sm bst02" id="basicTable">
 												<colgroup>
-													<col width="10%" />
-													<col width="30%" />
-													<col width="60%" />
+													<col width="25%" />
+													<col width="25%" />
+													<col width="25%" />
+													<col width="25%" />
 												</colgroup>
 												<thead>
 													<tr>
-														<th class="text-center">선택</th>
-														<th class="text-center">항목</th>
-														<th class="text-center">설명</th>
+														<th class="text-center"
+															style="background-color: #CEF6E3;" colspan="2">이전할
+															호실</th>
+														<th class="text-center"
+															style="background-color: #CEF6E3;" colspan="2">이전후
+															호실</th>
 													</tr>
 												</thead>
 												<tbody>
+													<tr align="center">
+														<th
+															style="vertical-align: center; text-align: center; background-color: #CEF6E3">고인명</th>
+														<td><input type="text"
+															class="form-control text-right" id="goinName" value=""></td>
+														<th
+															style="vertical-align: center; text-align: center; background-color: #CEF6E3">상주명</th>
+														<td><input type="text"
+															class="form-control text-right" id="sangjuName" value=""></td>
+													</tr>
+	
 													<tr>
-														<td class="text-center align-middle"><input
-															type="checkbox" class="OPTone form-control" id="tropt01" onClick="optCheck(this);">
+														<th
+															style="vertical-align: center; text-align: center; background-color: #CEF6E3"
+															rowspan="1">계약호실</th>
+														<td><select class="form-control" id="froomtrbf">
+																<c:forEach var="listcont" items="${listcont}">
+																	<option value="${listcont.CONTRACT_ID}/${listcont.FROOM_ID}">${listcont.FROOM_TITLE}</option>
+																</c:forEach>
+														</select>
+														<select style="display:none" class="form-control" id="froomtrbfdp">
+																<c:forEach var="listcont" items="${listcont}">
+																	<option value="${listcont.FROOM_DAY_PRICE}">${listcont.FROOM_DAY_PRICE}</option>
+																</c:forEach>
+														</select>
+														<select style="display:none" class="form-control" id="dperson">
+																<c:forEach var="listcont" items="${listcont}">
+																	<option value="${listcont.DPERSON_NAME}">${listcont.DPERSON_NAME}</option>
+																</c:forEach>
+														</select>
 														</td>
-														<td class="text-left align-middle">변경 전 호실의 매점물품사용</td>
-														<td class="text-left align-middle">* 체크시 : 변경 전 호실의
-															매점 초도주문을 그대로 가져옵니다.(냉장고 물품 제외) <br>
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;변경
-															후 호실을 기준으로 냉장고 초도주문을 생성합니다. <br>
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;변경
-															후 호실에 있던 매점 용품을 수거하여 보관합니다. <br>
+														<th
+															style="vertical-align: center; text-align: center; background-color: #CEF6E3"
+															rowspan="1">이전호실</th>
+														<td><select class="form-control" id="froomtraf">
+																<c:forEach var="listemp" items="${listroomemp}">
+																	<option value="${listemp.FROOM_ID}">${listemp.FROOM_TITLE}</option>
+																</c:forEach>
+														</select>
+														<select style="display:none" class="form-control" id="froomtrafdp">
+																<c:forEach var="listemp" items="${listroomemp}">
+																	<option value="${listemp.FROOM_DAY_PRICE}">${listemp.FROOM_DAY_PRICE}</option>
+																</c:forEach>
+														</select>
+														<select style="display:none" class="form-control" id="dsangju">
+																<c:forEach var="listcont" items="${listcont}">
+																	<option value="${listcont.SANGJU_NAME}">${listcont.SANGJU_NAME}</option>
+																</c:forEach>
+														</select>
 														</td>
 													</tr>
 													<tr>
-														<td class="text-center align-middle"><input
-															type="checkbox" class="OPTone form-control" id="tropt02" onClick="optCheck(this);" checked>
-														</td>
-														<td class="text-left align-middle">변경 후 호실 기준 매점초도주문
-														</td>
-														<td class="text-left align-middle">* 체크시 : 변경 후
-															호실기준으로 매점 초도주문을 생성합니다.(냉장고 물품 포함) <br>
-														</td>
+														<th
+															style="vertical-align: center; text-align: center; background-color: #CEF6E3">사용일</th>
+														<td class="text-center"><input type="number"
+															class="form-control text-right" id="bfday" value="0" min="0"></td>
+														<th
+															style="vertical-align: center; text-align: center; background-color: #CEF6E3">사용일</th>
+														<td class="text-center"><input type="number"
+															class="form-control text-right" id="afday" value="0" min="0"></td>
 													</tr>
-													<tr>
-														<td class="text-center align-middle"><input
-															type="checkbox" class="form-control" id="tropt03">
-														</td>
-														<td class="text-left align-middle">변경 후 호실기준 식당 초도주문
-															생성</td>
-														<td class="text-left align-middle">*
-															체크시&nbsp;&nbsp;:&nbsp;변경 후 호실의 식당 초도주문을 생성합니다.<br> *
-															미체크시&nbsp;:&nbsp;변경 전 호실의 식당 초도주문을 그대로 사용합니다.<br>
-														</td>
+													<tr align="center">
+														<th
+															style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
+															부과일</th>
+														<td><input type="number"
+															class="form-control text-right" id="bfaddday" value="0" min="0"></td>
+														<th
+															style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
+															부과일</th>
+														<td><input type="number"
+															class="form-control text-right" id="afaddday" value="0" min="0"></td>
+													</tr>
+													<tr align="center">
+														<th style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
+															</th>
+														<td><input type="text"
+															class="form-control text-right" id="bfaddfee" value="0" readonly></td>
+														<th	style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
+															</th>
+														<td><input type="text"
+															class="form-control text-right" id="afaddfee" value="0" readonly></td>
+													</tr>
+													
+													<tr align="center">
+														<th
+															style="vertical-align: center; text-align: center; background-color: #CEF6E3">분향실
+															사용료</th>
+														<td><input type="text"
+															class="form-control text-right" id="bfrmcharge" value="0" readonly></td>
+														<th
+															style="vertical-align: center; text-align: center; background-color: #CEF6E3">분향실 사용료</th>
+														<td><input type="text"
+															class="form-control text-right" id="afrmcharge" value="0" readonly></td>
+													</tr>
+													<tr style="display:none;">
+													<td><input type="text" id="bfotexpay" value=""></td>
+													<td><input type="text" id="bftmexpay" value=""></td>
+													<td><input type="text" id="afotexpay" value=""></td>
+													<td><input type="text" id="aftmexpay" value=""></td>
 													</tr>
 												</tbody>
 											</table>
-										</form>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- Row end -->
+						<!--//계약기본등록-->
+					</div>
+					<div class="tab-pane active" id="tab02" role="tabpanel">
+						<div class="card-block table-border-style">
+							<div class="table-responsive" style="overflow-x: hidden">
+								<form name="room2" method="post" onsubmit="return false;">
+									<table class="table table-sm bst02">
+										<tbody>
+											<tr>
+												<th scope="row">호실 이동 선택 사항</th>
+											</tr>
+										</tbody>
+									</table>
+	
+									<table class="table table-bordered nowrap" id="TRoption">
+										<colgroup>
+											<col width="10%" />
+											<col width="30%" />
+											<col width="60%" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th class="text-center">선택</th>
+												<th class="text-center">항목</th>
+												<th class="text-center">설명</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="text-center align-middle"><input
+													type="checkbox" class="OPTone form-control" id="tropt01" onClick="optCheck(this);">
+												</td>
+												<td class="text-left align-middle">변경 전 호실의 매점물품사용</td>
+												<td class="text-left align-middle">* 체크시 : 변경 전 호실의
+													매점 초도주문을 그대로 가져옵니다.(냉장고 물품 제외) <br>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;변경
+													후 호실을 기준으로 냉장고 초도주문을 생성합니다. <br>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;변경
+													후 호실에 있던 매점 용품을 수거하여 보관합니다. <br>
+												</td>
+											</tr>
+											<tr>
+												<td class="text-center align-middle"><input
+													type="checkbox" class="OPTone form-control" id="tropt02" onClick="optCheck(this);" checked>
+												</td>
+												<td class="text-left align-middle">변경 후 호실 기준 매점초도주문
+												</td>
+												<td class="text-left align-middle">* 체크시 : 변경 후
+													호실기준으로 매점 초도주문을 생성합니다.(냉장고 물품 포함) <br>
+												</td>
+											</tr>
+											<tr>
+												<td class="text-center align-middle"><input
+													type="checkbox" class="form-control" id="tropt03">
+												</td>
+												<td class="text-left align-middle">변경 후 호실기준 식당 초도주문
+													생성</td>
+												<td class="text-left align-middle">*
+													체크시&nbsp;&nbsp;:&nbsp;변경 후 호실의 식당 초도주문을 생성합니다.<br> *
+													미체크시&nbsp;:&nbsp;변경 전 호실의 식당 초도주문을 그대로 사용합니다.<br>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
+			<!-- Row end -->
 			</div>
 		</div>
 	</div>

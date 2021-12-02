@@ -56,7 +56,7 @@
 </style>
 <div class="listcont">
 	<div class="listcategory">
-		<table class="table table-bordered nowrap" style="width: 80%;">
+		<table class="table table-bordered" style="width: 80%;">
 		<colgroup>
 			<col width="20%" />
 			<col width="60%" />
@@ -70,10 +70,8 @@
 				</c:forEach>				
 			</select></td>
 			<td>
-			<div class="text-right">
-			<button class="btn btn-md btn-success" value="불러오기" onClick="fn_ReloadConsult()">불러오기</button>
-			<button class="btn btn-md btn-success" value="추가" onClick="fn_newConsult()">추가</button>
-			</div>
+				<button class="btn btn-md btn-success" value="불러오기" onClick="fn_ReloadConsult()">불러오기</button>
+				<button class="btn btn-md btn-success" value="추가" onClick="fn_newConsult()">추가</button>
 			</td>
 		</tr>
 		</table>

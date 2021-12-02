@@ -46,7 +46,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="item cont">
+<div class="item cont" style="width:83%;margin-top:5px;">
 <div class="page-header2">
 	<div class="row align-items-end">
 		<div class="col-lg-12">
@@ -457,10 +457,10 @@
 						</div>
 					</div>
 			<!-- Row end -->
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-</div>
 </div>
 
 <!--계약기본등록-->

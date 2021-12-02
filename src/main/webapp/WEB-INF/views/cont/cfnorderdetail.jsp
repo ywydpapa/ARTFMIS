@@ -39,8 +39,8 @@
 								</colgroup>
 
 								<tr>
-									<th colspan="2" style="text-align: center;">분류</th>
-									<th colspan="8" style="text-align: center;">상세정보</th>
+									<th colspan="5" style="text-align: center;">분류</th>
+									<th colspan="5" style="text-align: center;">상세정보</th>
 								</tr>
 								<tr style="text-align: center;">
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">종류</th>

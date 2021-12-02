@@ -48,47 +48,50 @@
 		<div class="col-lg-12 col-xl-12">
 			<div class="tab-content tabs m-t-20">
 				<div class="card-block table-border-style">
-					<table class="table  table-bordered nowrap">
+					<!-- <table class="table  table-bordered nowrap">
 						<tbody>
 							<tr>
 								<th scope="row">계약 목록</th>
 							</tr>
 						</tbody>
-					</table>
+					</table> -->
 					<div class="h-container">
 						<div class="item">
-							<div class="table-responsive">
-								<table id="consult_sett_list_table" class="table table-bordered nowrap">
+							<div style="text-align:center;">
+								<h5>계약 목록</h5>
+							</div>
+							<div class="table-responsive table-bordered">
+								<table id="consult_sett_list_table" class="table table-bordered">
 									<colgroup>
 										<col width="25%" />
 										<col width="50%" />
 										<col width="25%" />
 									</colgroup>
-									<thead>
+									<thead style="border:1px;">
 										<tr style="text-align: center;">
-											<th>분향실</th>
-											<th>계약일자</th>
-											<th>고인성명</th>
+											<th style="text-align: center;">분향실</th>
+											<th style="text-align: center;">계약일자</th>
+											<th style="text-align: center;">고인성명</th>
 										</tr>
 									</thead>
 									<tbody>
 										<c:forEach var="row" items="${listcont}">
 											<tr>
-												<td>${row.FROOM_TITLE}<input type="hidden"
+												<td style="text-align:center;vertical-align:middle;">${row.FROOM_TITLE}<input type="hidden"
 													class="FRMID" value="${row.FROOM_ID}"></td>
-												<td class="CONTPERIOD" style="text-align: center;"><a
+												<td style="text-align:center;vertical-align:middle;" class="CONTPERIOD" ><a
 													href="<c:if test="${row.CONTRACT_ID eq 0 }">#</c:if><c:if test="${row.CONTRACT_ID ne 0 }">javascript:fnSetcontdetail('${path}/cont/settdetail/${row.CONTRACT_ID}?CONT_FROOM_ID=${row.FROOM_ID}')</c:if>">${row.STDATE}<span>
 															<br>~
 													</span> ${row.EDDATE}
 												</a></td>
-												<td class="DPNAME" style="text-align: center;">${row.DPERSON_NAME}</td>
+												<td style="text-align:center;vertical-align:middle;" class="DPNAME">${row.DPERSON_NAME}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 							</div>
 						</div>
-						<div class="item cont">
+						<div class="item cont" style="padding:0;">
 							<div id="detailtable" class="detailtable"></div>
 						</div>
 					</div>

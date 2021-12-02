@@ -28,7 +28,7 @@
 }
 </style>
 <div class="listcategory">
-	<table class="table nowrap">
+	<%-- <table class="table nowrap">
 		<colgroup>
 			<col width="30%" />
 			<col width="70%" />
@@ -45,52 +45,66 @@
 				</div>
 			</td>
 		</tr>
-	</table>
+	</table> --%>
 	<div class="h-container">
 		<div class="item">
-		<div>
-		<table class="table"> 
-		<tr>
-		<td style="width:30%" class="text-center align-middle">주문 호실</td>
-		<td style="width:70%" class="text-center align-middle">
-		<select class="form-control" id="froomselect">
-		<option value="ALL">전체</option>
-		<c:forEach var= "rlist" items="${ordroom}">
-		<option value="${rlist.FROOM_TITLE}">${rlist.FROOM_TITLE}</option>
-		</c:forEach>
-		</select>
-		</td>
-		</tr>
-		</table>
-		</div>
-		<div id="ordlistTable">
-			<table class="table table-hover table-bordered">
-				<thead>
-					<tr class="table-info">
-						<th class="align-middle text-center" >주문호실</th>
-						<th class="align-middle text-center" >주문구분</th>
-						<th class="align-middle text-center" >주문시간</th>
-						<th class="align-middle text-center" >확인</th>
-						<th class="align-middle text-center" >미확인</th>
-						<th class="align-middle text-center" >취소</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="row" items="${ordlist}">
-						<tr class="rmlist">
-							<td class="align-middle text-center rmtitle">${row.FROOM_TITLE}</td>
-							<td class="align-middle text-center"><a href="javascript:fnSetupdetail('${path}/room/orddetail2/${row.ORDDATE2}?CONTRACT_ID=${row.CONTRACT_ID}')">${row.ORDP}</a></td>
-							<td class="align-middle text-center">${row.ORD_DATE}</td>
-							<td class="align-middle text-center">${row.CCONFDATE}</td>
-							<td class="align-middle text-center <c:if test="${row.CORDDATE ne '0'}">table-danger</c:if>"><c:if test="${row.CORDDATE eq '0'}"></c:if><c:if test="${row.CORDDATE ne '0'}">${row.CORDDATE}</c:if></td>
-							<td class="align-middle text-center"<c:if test="${row.CCANCDATE eq '0'}"></c:if><c:if test="${row.CCANCDATE ne '0'}">style="background-color :#F7FE2E;color:#FF0000; font-weight:bolder"</c:if>><c:if test="${row.CCANCDATE ne '0'}">${row.CCANCDATE}</c:if></td>
+			<div style="margin-top:20px;">
+				<h5 style="font-weight:600; text-align:center;">분항실별 주문 내역</h5>
+			</div>
+			<div style="width:100%;">
+				<div style="float:left; margin-top:10px;">
+					<h5>주문 호실</h5>
+				</div>
+				<div style="float:right;">
+					<select class="form-control" id="froomselect">
+						<option value="ALL">전체</option>
+						<c:forEach var= "rlist" items="${ordroom}">
+							<option value="${rlist.FROOM_TITLE}">${rlist.FROOM_TITLE}</option>
+						</c:forEach>
+					</select>
+				</div>
+			<%-- <table class="table"> 
+			<tr>
+			<td style="width:30%" class="text-center align-middle">주문 호실</td>
+			<td style="width:70%" class="text-center align-middle">
+			<select class="form-control" id="froomselect">
+			<option value="ALL">전체</option>
+			<c:forEach var= "rlist" items="${ordroom}">
+			<option value="${rlist.FROOM_TITLE}">${rlist.FROOM_TITLE}</option>
+			</c:forEach>
+			</select>
+			</td>
+			</tr>
+			</table> --%>
+			</div>
+			<div id="ordlistTable">
+				<table class="table table-hover table-bordered">
+					<thead>
+						<tr class="table-info">
+							<th class="align-middle text-center" >주문호실</th>
+							<th class="align-middle text-center" >주문구분</th>
+							<th class="align-middle text-center" >주문시간</th>
+							<th class="align-middle text-center" >확인</th>
+							<th class="align-middle text-center" >미확인</th>
+							<th class="align-middle text-center" >취소</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<c:forEach var="row" items="${ordlist}">
+							<tr class="rmlist">
+								<td class="align-middle text-center rmtitle">${row.FROOM_TITLE}</td>
+								<td class="align-middle text-center"><a href="javascript:fnSetupdetail('${path}/room/orddetail2/${row.ORDDATE2}?CONTRACT_ID=${row.CONTRACT_ID}')">${row.ORDP}</a></td>
+								<td class="align-middle text-center">${row.ORD_DATE}</td>
+								<td class="align-middle text-center">${row.CCONFDATE}</td>
+								<td class="align-middle text-center <c:if test="${row.CORDDATE ne '0'}">table-danger</c:if>"><c:if test="${row.CORDDATE eq '0'}"></c:if><c:if test="${row.CORDDATE ne '0'}">${row.CORDDATE}</c:if></td>
+								<td class="align-middle text-center"<c:if test="${row.CCANCDATE eq '0'}"></c:if><c:if test="${row.CCANCDATE ne '0'}">style="background-color :#F7FE2E;color:#FF0000; font-weight:bolder"</c:if>><c:if test="${row.CCANCDATE ne '0'}">${row.CCANCDATE}</c:if></td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
 		</div>
-		<div class="item cont">
+		<div class="item cont" style="padding:0 20px;">
 			<div id="detailTable" class="detailTable"></div>
 		</div>
 	</div>
