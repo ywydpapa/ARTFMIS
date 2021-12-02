@@ -447,5 +447,11 @@ public class ContDAOImpl implements ContDAO {
 		return sqlSession.update("cont.troption03", dto);
 	}
 
+	@Override
+	public int tropt0301(ContDTO dto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("cont.troption03-1", dto);
+	}
+
 	
 }

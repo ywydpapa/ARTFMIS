@@ -250,6 +250,11 @@
 		var contid = $("#froomtrbf").val().split('/');
 		var CONid = contid[0];
 		var bfrmid = contid[1];
+		var afnum = Number($("#afday").val()); 
+		if (afnum < 1){
+			alert("이동후 호실 사용일이 잘못 입력되어 있습니다.");
+			return;
+		}
 		if (CONid != "") {
 			var frmid = $("#froomtraf").val();
 			var contp2upd = {};
@@ -268,40 +273,50 @@
 				dataType : "json"
 			}).done(function() {
 				alert("분향실 이동 완료");
+			if ($("#tropt01").is(":checked") == true){
+					$.ajax({
+						url : "${path}/cont/tropt01.do",
+						data : contp2upd,
+						method : "POST",
+						dataType : "json"
+					}).done(function() {
+						alert("물품처리 완료(1)");
+					});
+				}
+			if ($("#tropt02").is(":checked") == true){
+				$.ajax({
+					url : "${path}/cont/tropt02.do",
+					data : contp2upd,
+					method : "POST",
+					dataType : "json"
+				}).done(function() {
+					alert("물품처리 완료(2)");
+				});
+			}
+			if ($("#tropt03").is(":checked") == true){
+				$.ajax({
+					url : "${path}/cont/tropt03.do",
+					data : contp2upd,
+					method : "POST",
+					dataType : "json"
+				}).done(function() {
+					alert("물품처리 완료(3)");
+				});
+			}else{
+				$.ajax({
+					url : "${path}/cont/tropt03-1.do",
+					data : contp2upd,
+					method : "POST",
+					dataType : "json"
+				}).done(function() {
+					alert("식당물품 이전 완료(3)");
+				});
+			}
 			});
 		} else {
 			alert("이전할 계약 호실을 선택해 주십시오");
 		}
-		if ($("#tropt01").is(":checked") == true){
-			$.ajax({
-				url : "${path}/cont/tropt01.do",
-				data : contp2upd,
-				method : "POST",
-				dataType : "json"
-			}).done(function() {
-				alert("물품처리 완료(1)");
-			});
-		}
-		if ($("#tropt02").is(":checked") == true){
-			$.ajax({
-				url : "${path}/cont/tropt02.do",
-				data : contp2upd,
-				method : "POST",
-				dataType : "json"
-			}).done(function() {
-				alert("물품처리 완료(2)");
-			});
-		}
-		if ($("#tropt03").is(":checked") == true){
-			$.ajax({
-				url : "${path}/cont/tropt03.do",
-				data : contp2upd,
-				method : "POST",
-				dataType : "json"
-			}).done(function() {
-				alert("물품처리 완료(3)");
-			});
-		}
+		fnSetPage("${path}/cont/conttrlist.do");
 	}
 
 	function chkRoomchange() {

@@ -614,8 +614,8 @@ public class ContController {
 	@RequestMapping("tropt02.do")
 	public ResponseEntity<?> tropt02(@ModelAttribute ContDTO dto) {
 		Map<String, Object> param = new HashMap<String, Object>();
-		int updOPT01 = contService.tropt02(dto);
-		if (updOPT01 >0) {
+		int updOPT02 = contService.tropt02(dto);
+		if (updOPT02 >0) {
 			param.put("code","10001"); 
 		}
 		else {param.put("code","20001");
@@ -626,8 +626,20 @@ public class ContController {
 	@RequestMapping("tropt03.do")
 	public ResponseEntity<?> tropt03(@ModelAttribute ContDTO dto) {
 		Map<String, Object> param = new HashMap<String, Object>();
-		int updOPT01 = contService.tropt03(dto);
-		if (updOPT01 >0) {
+		int updOPT03 = contService.tropt03(dto);
+		if (updOPT03 >0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+	
+	@RequestMapping("tropt03-1.do")
+	public ResponseEntity<?> tropt0301(@ModelAttribute ContDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int updOPT031 = contService.tropt0301(dto);
+		if (updOPT031 >0) {
 			param.put("code","10001"); 
 		}
 		else {param.put("code","20001");

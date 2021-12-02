@@ -596,9 +596,16 @@ CONTRACT_ID
  
  <update id="updcontp2tr">
 update GHT_CONT set FROOM_ID = #{AFFROOM_ID} where CONTRACT_ID = #{CONTRACT_ID};
-update GHT_CONT_FROOM set REMARK = '이동호실', DAYS=#{BFDAYS}, TIMES='0', RCHARGE=#{BFCHARGE} where FROOM_ID = #{BFFROOM_ID} and CONTRACT_ID = #{CONTRACT_ID};
+	<choose>
+		<when test="BFCHARGE != 0">//조건1
+			update GHT_CONT_FROOM set REMARK = '이동호실', DAYS=#{BFDAYS}, TIMES='0', RCHARGE=#{BFCHARGE} where FROOM_ID = #{BFFROOM_ID} and CONTRACT_ID = #{CONTRACT_ID};
+		</when>
+		<otherwise>
+			update GHT_CONT_FROOM set REMARK = '이동호실', DAYS=#{BFDAYS}, TIMES='0', RCHARGE=#{BFCHARGE}, MOD_DATE=now() where FROOM_ID = #{BFFROOM_ID} and CONTRACT_ID = #{CONTRACT_ID};
+		</otherwise>
+	</choose>
 insert into GHT_CONT_FROOM (CONTRACT_ID, FROOM_ID, DAYS, TIMES, RCHARGE ,REG_DATE, attrib) values (#{CONTRACT_ID},#{AFFROOM_ID},#{AFDAYS},'0', #{AFCHARGE},now(),'10000'); 
- </update>
+</update>
  
  <update id="updcontp3">
 update GHT_FTAB_ORDERSHEET
@@ -871,6 +878,10 @@ select #{CONTRACT_ID},#{AFFROOM_ID},a.GOODS_ID , 1, a.GOODS_SALE_PRICE, c.MESSR_
 from GHT_GOODS a 
 left join GHT_MESSR_ORD c on a.GOODS_ID = c.MESSR_GOODS_ID and c.MESSR_ORD_FROOM_ID = ${AFFROOM_ID} 
 where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='2') and GOODS_USE_YN = 'Y' and GOODS_INIT_ORDER = 'Y' and MESSR_GOODS_INIT_QTY > 0  
+</update>
+
+<update id="troption03-1">
+update GHT_REST_ORDERSHEET set ROOM_TITLE = #{AFFROOM_ID}, REMARK='주문호실 변경' where CONTRACT_ID = #{CONTRACT_ID};
 </update>
 
 </mapper>

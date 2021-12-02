@@ -36,6 +36,7 @@ public interface ContService {
 	int tropt01(ContDTO dto);
 	int tropt02(ContDTO dto);
 	int tropt03(ContDTO dto);
+	int tropt0301(ContDTO dto);
 	
 	Integer contCheck(ContDTO dto);
 	List<ContDTO> doscontlist121();
