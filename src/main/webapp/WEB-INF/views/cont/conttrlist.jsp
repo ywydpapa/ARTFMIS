@@ -272,7 +272,7 @@
 				method : "POST",
 				dataType : "json"
 			}).done(function() {
-				alert("분향실 이동 완료");
+			alert("분향실 이동 완료");
 			if ($("#tropt01").is(":checked") == true){
 					$.ajax({
 						url : "${path}/cont/tropt01.do",
@@ -282,7 +282,7 @@
 					}).done(function() {
 						alert("물품처리 완료(1)");
 					});
-				}
+			}
 			if ($("#tropt02").is(":checked") == true){
 				$.ajax({
 					url : "${path}/cont/tropt02.do",
@@ -316,7 +316,10 @@
 		} else {
 			alert("이전할 계약 호실을 선택해 주십시오");
 		}
-		fnSetPage("${path}/cont/conttrlist.do");
+		
+		setTimeout(() => {
+			fnSetPage("${path}/cont/conttrlist.do");
+		}, 1000);
 	}
 
 	function chkRoomchange() {
