@@ -26,8 +26,19 @@ public class UploadController {
     @RequestMapping(value = "/file/upload", method = RequestMethod.POST)
     @ResponseBody
     public Object uploadFile(MultipartHttpServletRequest request) {
-        String uploadPath = request.getSession().getServletContext().getRealPath("/resources/image/local");
+//        String uploadPath = request.getSession().getServletContext().getRealPath("/resources/image/local");
 //        String uploadPath = "C:\\artFiles\\";
+    	String uploadPath = "";
+    	String folderName = "";
+    	String tempPath = "";
+    	
+    	if(request.getSession().getServletContext().getRealPath("/").contains("apache-tomcat")) {
+    		uploadPath = request.getSession().getServletContext().getRealPath("/resources/image/artFiles/");
+    		tempPath = "/";
+    	}else {
+    		tempPath = "\\";
+    		uploadPath = "C:\\dev_test\\scw_temp1\\ARTFMIS\\src\\main\\webapp\\resources\\image\\artFiles\\";
+    	}
 //        String savedName = "";
         Iterator<String> itr = request.getFileNames();
         if(itr.hasNext()) {
@@ -63,7 +74,7 @@ public class UploadController {
 //                savedName = uuidStr+"_"+currentTime+"."+imgeType;
 //                File target = new File(uploadPath, savedName);
                 int length = mpf.getOriginalFilename().lastIndexOf(".");
-                String folderName = mpf.getOriginalFilename().substring(0, length);
+                folderName = mpf.getOriginalFilename().substring(0, length);
                 
                 File mkdirFolder = new File(uploadPath + folderName);
                 
@@ -71,7 +82,7 @@ public class UploadController {
                 	mkdirFolder.mkdirs();
                 }
                 
-                File target = new File(uploadPath + folderName + "\\", mpf.getOriginalFilename());
+                File target = new File(uploadPath + folderName + tempPath, mpf.getOriginalFilename());
                 FileCopyUtils.copy(mpf.getBytes(), target);
             } catch (IOException e) {
                 System.out.println(e.getMessage()); e.printStackTrace();

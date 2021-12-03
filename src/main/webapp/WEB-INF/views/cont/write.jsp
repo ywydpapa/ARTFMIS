@@ -1134,8 +1134,16 @@
 													<td class="imagebx" rowspan="${fn:length(listAltar)}">
 														<c:forEach var="t" items="${listAltar}">
 															<c:set var="length" value="${fn:length(t.ALTAR_IMAGE)}" />
-															<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.ALTAR_IMAGE}">src="<%-- <spring:url value='/localImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}'/> --%>${path}/image/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}"</c:if>
-																 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
+															<c:choose>
+																<c:when test="${fn:contains(path, 'ARTFMIS')}">
+																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.ALTAR_IMAGE}">src="${path}/artImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}"</c:if>
+																		 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
+																</c:when>
+																<c:otherwise>
+																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.ALTAR_IMAGE}">src="<spring:url value='/localImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}'/>"</c:if>
+																		 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
+																</c:otherwise>
+															</c:choose>
 														</c:forEach>
 													</td>
 												</c:if>
