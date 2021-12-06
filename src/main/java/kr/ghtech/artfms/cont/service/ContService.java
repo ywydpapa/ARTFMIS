@@ -51,6 +51,7 @@ public interface ContService {
 	List<ContDTO> doslistFgoodsMn(int CAT_02_ID);
 	List<ContDTO> doslistFgoodsTn(int CAT_02_ID);
 	List<ContDTO> doslistFroom();
+	List<ContDTO> doslistFroom2();
 	List<ContDTO> listAddroom(int CONTRACT_ID);
 	List<ContDTO> doslistFroomemp();	
 	List<ContDTO> listContcombo();

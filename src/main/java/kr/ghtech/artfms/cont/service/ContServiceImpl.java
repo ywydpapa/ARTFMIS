@@ -456,5 +456,11 @@ public class ContServiceImpl implements ContService {
 		return contDao.tropt0301(dto);
 	}
 
+	@Override
+	public List<ContDTO> doslistFroom2() {
+		// TODO Auto-generated method stub
+		return contDao.doslistFroom2();
+	}
+
 
 }

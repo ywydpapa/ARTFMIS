@@ -31,6 +31,17 @@ select * from (SELECT a.FROOM_ID roomID, a.FROOM_ID ,a.FROOM_ALIS FROOM_TITLE ,a
 	,a.CLEAN_CHARGE ,a.FROOM_IMAGE, a.INC_YN , b.CONTRACT_ID, 'Y' TEMP_ROOM from GHT_FROOM a left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.TEMP_ROOM = 'Y'
 	and b.SETT_DATE is null where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' and length(a.FROOM_ALIS) > 0 and IMSI_YN = 'Y' group by a.FROOM_ID order by a.FROOM_ORDNO) TB  --> 
 </select>
+
+ <select id="listFroom2" resultType="contDto">
+select * from (SELECT a.FROOM_ID roomID,a.*, b.CONTRACT_ID, 'N' TEMP_ROOM from GHT_FROOM a 
+ 	left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.SETT_DATE is null
+	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' group by a.FROOM_ID order by a.FROOM_ORDNO) TA
+	union all
+select * from (SELECT a.FROOM_ID roomID, a.FROOM_ID ,a.FROOM_ALIS FROOM_TITLE ,a.FROOM_CAT ,a.FROOM_TYP ,a.FROOM_DAY_PRICE ,a.FROOM_TIME_PRICE ,a.FROOM_MAX_PERS ,a.FROOM_AREA ,a.FROOM_AREA_KOR ,a.FROOM_REMARK ,a.FROOM_ORDER, a.FROOM_RENT_FR ,a.FROOM_RENT_TO ,
+	a.FROOM_CHK_INOUT ,a.FROOM_PASSWD ,a.FROOM_TML_CODE ,a.FROOM_ALIS ,a.FROOM_USE_YN ,a.FROOM_REG_USER ,a.FROOM_REG_DATETIME ,a.FROOM_MOD_USER ,a.FROOM_MOD_DATETIME ,a.FROOM_PC ,a.FROOM_ORDNO ,a.IMSI_YN 
+	,a.CLEAN_CHARGE ,a.FROOM_IMAGE, a.INC_YN , null CONTRACT_ID, 'Y' TEMP_ROOM from GHT_FROOM a left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.TEMP_ROOM = 'Y'
+	and b.SETT_DATE is null where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' and length(a.FROOM_ALIS) > 0 and IMSI_YN = 'Y' group by a.FROOM_ID order by a.FROOM_ORDNO) TB  
+</select>
  
  <select id="listaddRoom" resultType="contDto">
 select b.CONT_FROOM_ID ,b.DAYS, b.TIMEs,b.CLEAN_CHARGE_DAYS,(b.DAYS*a.FROOM_DAY_PRICE)+(b.TIMES*a.FROOM_TIME_PRICE) RCHARGE, b.ADD_YN, b.STORE_SNACK_YN, b.STORE_REFG_YN , b.STORE_ITEM_YN , a.*, CASE WHEN IFNULL(b.RCHARGE,0)>0 then 'Y' WHEN (b.ADD_YN is not null) then 'Y' else 'N' end CHKED from GHT_FROOM a
@@ -595,13 +606,13 @@ CONTRACT_ID
  </update>
  
  <update id="updcontp2tr">
-update GHT_CONT set FROOM_ID = #{AFFROOM_ID} where CONTRACT_ID = #{CONTRACT_ID};
+update GHT_CONT set FROOM_ID = #{AFFROOM_ID}, TEMP_ROOM='' where CONTRACT_ID = #{CONTRACT_ID};
 	<choose>
 		<when test="BFCHARGE != 0">//조건1
 			update GHT_CONT_FROOM set REMARK = '이동호실', DAYS=#{BFDAYS}, TIMES='0', RCHARGE=#{BFCHARGE} where FROOM_ID = #{BFFROOM_ID} and CONTRACT_ID = #{CONTRACT_ID};
 		</when>
 		<otherwise>
-			update GHT_CONT_FROOM set CONTRACT_ID = '', REMARK = '이동호실', DAYS=#{BFDAYS}, TIMES='0', RCHARGE=#{BFCHARGE}, MOD_DATE=now() where FROOM_ID = #{BFFROOM_ID} and CONTRACT_ID = #{CONTRACT_ID};
+			update GHT_CONT_FROOM set CONTRACT_ID = null, REMARK = '이동호실', DAYS=#{BFDAYS}, TIMES='0', RCHARGE=#{BFCHARGE}, MOD_DATE=now() where FROOM_ID = #{BFFROOM_ID} and CONTRACT_ID = #{CONTRACT_ID};
 		</otherwise>
 	</choose>
 insert into GHT_CONT_FROOM (CONTRACT_ID, FROOM_ID, DAYS, TIMES, RCHARGE ,REG_DATE, attrib) values (#{CONTRACT_ID},#{AFFROOM_ID},#{AFDAYS},'0', #{AFCHARGE},now(),'10000'); 

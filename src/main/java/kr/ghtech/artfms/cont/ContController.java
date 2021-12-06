@@ -146,7 +146,7 @@ public class ContController {
 	public ModelAndView write2(@PathVariable("CONT_FROOM_ID") Integer CONT_FROOM_ID, @RequestParam("FROOM_TITLE") String FROOM_TITLE,ModelAndView mav) {
 		mav.addObject("listroom", goodsService.listRoom(1));
 		mav.addObject("listAltar", contService.doslistAltar());
-		mav.addObject("listFroom", contService.doslistFroom());
+		mav.addObject("listFroom", contService.doslistFroom2());
 		mav.addObject("listFtable", contService.doslistFtable());
 		mav.addObject("listEtcroom", contService.doslistEtcroom());
 		mav.addObject("listEtcroom2", contService.doslistEtcroom2());
