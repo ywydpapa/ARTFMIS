@@ -71,7 +71,9 @@
 													<td><select class="form-control" id="contp1-01">
 															<option value="">새계약 작성</option>
 															<c:forEach var="contcombo" items="${contCombo}">
-																<option value="${contcombo.CONTRACT_ID}?CONT_FROOM_ID=${contcombo.FROOM_ID}"><c:if test="${contcombo.TEMP_ROOM eq 'N'}">${contcombo.FROOM_TITLE}</c:if><c:if test="${contcombo.TEMP_ROOM eq 'Y'}">(임시호실) : ${contcombo.FROOM_ALIS}</c:if></option>
+																<option value="${contcombo.CONTRACT_ID}?CONT_FROOM_ID=${contcombo.FROOM_ID}"><c:if test="${contcombo.TEMP_ROOM eq 'N'}">${contcombo.FROOM_TITLE}</c:if>
+																<c:if test="${empty contcombo.TEMP_ROOM}">${contcombo.FROOM_TITLE}</c:if>
+																<c:if test="${contcombo.TEMP_ROOM eq 'Y'}">(임시호실) : ${contcombo.FROOM_ALIS}</c:if></option>
 															</c:forEach>
 													</select></td>
 													<td class="cont-title" style="vertical-align: middle;">기간</td>
