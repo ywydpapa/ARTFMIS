@@ -261,6 +261,7 @@
 			alert("이동후 호실 사용일이 잘못 입력되어 있습니다.");
 			return;
 		}
+		
 		if (CONid != "") {
 			var frmid = $("#froomtraf").val();
 			var contp2upd = {};
@@ -322,7 +323,6 @@
 		} else {
 			alert("이전할 계약 호실을 선택해 주십시오");
 		}
-		
 		setTimeout(() => {
 			fnSetPage("${path}/cont/conttrlist.do");
 		}, 1000);
