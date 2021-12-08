@@ -333,7 +333,7 @@
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">도복,원삼</td>
+												<td style="vertical-align:middle;text-align:center">수의</td>
 												<td><select class="form-control m141 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${consultpage4m}">
@@ -368,7 +368,7 @@
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">영정</td>
+												<td style="vertical-align:middle;text-align:center">염베</td>
 												<td><select class="form-control m151 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${consultpage4m}">
@@ -403,7 +403,7 @@
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">수의</td>
+												<td style="vertical-align:middle;text-align:center">명정</td>
 												<td><select class="form-control m161 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${consultpage4m}">
@@ -438,7 +438,7 @@
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">염베</td>
+												<td style="vertical-align:middle;text-align:center">도복,원삼</td>
 												<td><select class="form-control m171 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${consultpage4m}">
