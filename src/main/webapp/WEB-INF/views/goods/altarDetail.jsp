@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <c:set var="path" value ="${pageContext.request.contextPath}"/>
 
 <!--제물상/제단 등록-->
@@ -85,7 +87,15 @@
 					<h5 class="card-header">상품이미지</h5>
 					<div class="card-body" id="oldImage">
 						<c:if test="${dto.ALTAR_IMAGE ne null && dto.ALTAR_IMAGE ne ''}">
-							<div id="imagebefore" style="height: 100%; background-image: url('${path}/resources/image/local/${dto.ALTAR_IMAGE}')"></div>
+							<c:set var="length" value="${fn:length(dto.ALTAR_IMAGE)}" />
+							<c:choose>
+								<c:when test="${fn:contains(path, 'ARTFMIS')}">
+									<div id="imagebefore" style="height: 100%; background-image: url('${path}/artImage/${fn:substring(dto.ALTAR_IMAGE, 0, length-4)}/${dto.ALTAR_IMAGE}')"></div>
+								</c:when>
+								<c:otherwise>
+									<div id="imagebefore" style="height: 100%; background-image: url('<spring:url value='/localImage/${fn:substring(dto.ALTAR_IMAGE, 0, length-4)}/${dto.ALTAR_IMAGE}'/>')"></div>
+								</c:otherwise>
+							</c:choose>
 						</c:if>
 					</div>
 					<div class="card-body" id="newImage" style="display: none">
