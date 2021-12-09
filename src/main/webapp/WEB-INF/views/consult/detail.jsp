@@ -131,7 +131,7 @@
 									<table class="table  table-bordered nowrap">
 									<c:forEach var="row" items="${consultpage3}" varStatus="status">
 									<tr>
-									<td style="vertical-align:middle;text-align:center">${row.BCD_TITLE}</td>
+									<td style="vertical-align:middle;text-align:center" class="second2 sel_${row.FTABLE_ID}">${row.BCD_TITLE}</td>
 									</tr>
 									</c:forEach>
 									</table>
@@ -156,7 +156,7 @@
 										<tbody>
 											<c:forEach var="row" items="${consultpage3}" varStatus="status">
 												<tr id="contWrite_Prey_${row.FTABLE_ID}">
-													<td style="vertical-align:middle;text-align:center" class="second">${row.BCD_TITLE}</td>
+													<td style="vertical-align:middle;text-align:center" class="sel_${row.FTABLE_ID}">${row.BCD_TITLE}</td>
 													<td style="text-align: center;">
 														<input type="checkbox" <c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if>
 															   				   <c:if test="${row.FTABLE_CAT ne '24'}">onclick="oneCheckftNot(this);"</c:if>
@@ -2047,6 +2047,32 @@
 	// 마지막꺼까지 반영
 	$(firstElement).attr('rowspan', i);
 	
+	
+	function setbutton(){
+		var i = 1;
+		var str = undefined;
+		var element = $(".second2");
+		var firstElement = undefined;
+		element.each(function() {
+			console.dir(i + $(this).text());
+			if (str == undefined && firstElement == undefined) {
+				str = $(".second2")[0].innerText;
+				firstElement = $(".second2")[0];
+				return;
+			}
+			if (str == $(this).text()) {
+				i++;
+				console.dir('--> ' + i + $(this).text());
+				$(this).remove();
+			} else {
+				$(firstElement).attr('rowspan', i);
+				i = 1;
+				str = $(this).text();
+				firstElement = $(this);
+			}
+		});
+	}
+	
 	function sumT(){
 		var temp = Number($("#sumTemp1").val()) + Number($("#sumTemp2").val()) + Number($("#sumTemp3").val()) + Number($("#sumTemp4").val()) + Number($("#sumTemp5").val());
 		
@@ -2067,6 +2093,7 @@
 		chkFtablechange();
 		chkAltarchange();
 		sumT();
+		setbutton();
 	})
 	
 	function fn_eventAllClick(){
