@@ -60,29 +60,22 @@
 												<thead>
 													<tr>
 														<th class="text-center"
-															style="background-color: #CEF6E3;" colspan="2">이전할
-															호실</th>
+															style="background-color: #CEF6E3;" colspan="2">변경 전 호실</th>
 														<th class="text-center"
-															style="background-color: #CEF6E3;" colspan="2">이전후
-															호실</th>
+															style="background-color: #CEF6E3;" colspan="2">변경 후 호실</th>
 													</tr>
 												</thead>
 												<tbody>
 													<tr align="center">
-														<th
-															style="vertical-align: center; text-align: center; background-color: #CEF6E3">고인명</th>
-														<td><input type="text"
-															class="form-control text-right" id="goinName" value=""></td>
-														<th
-															style="vertical-align: center; text-align: center; background-color: #CEF6E3">상주명</th>
-														<td><input type="text"
-															class="form-control text-right" id="sangjuName" value=""></td>
+														<th style="vertical-align: center; text-align: center; background-color: #CEF6E3">고인명</th>
+														<td><input type="text" class="form-control text-right" id="goinName" value=""></td>
+														<th style="vertical-align: center; text-align: center; background-color: #CEF6E3">상주명</th>
+														<td><input type="text" class="form-control text-right" id="sangjuName" value=""></td>
 													</tr>
-	
 													<tr>
 														<th
 															style="vertical-align: center; text-align: center; background-color: #CEF6E3"
-															rowspan="1">계약호실</th>
+															rowspan="1">변경 전 호실</th>
 														<td><select class="form-control" id="froomtrbf">
 																<c:forEach var="listcont" items="${listcont}">
 																	<option value="${listcont.CONTRACT_ID}/${listcont.FROOM_ID}">${listcont.FROOM_TITLE}</option>
@@ -100,8 +93,8 @@
 														</select>
 														</td>
 														<th
-															style="vertical-align: center; text-align: center; background-color: #CEF6E3"
-															rowspan="1">이전호실</th>
+															style="vertical-align: center; text-align: center; background-color: #28a745a8"
+															rowspan="1">변경 후 호실</th>
 														<td><select class="form-control" id="froomtraf">
 																<c:forEach var="listemp" items="${listroomemp}">
 																	<option value="${listemp.FROOM_ID}">${listemp.FROOM_TITLE}</option>
@@ -121,11 +114,11 @@
 													</tr>
 													<tr>
 														<th
-															style="vertical-align: center; text-align: center; background-color: #CEF6E3">사용일</th>
+															style="vertical-align: center; text-align: center; background-color: #CEF6E3">변경 전 호실 사용일</th>
 														<td class="text-center"><input type="number"
 															class="form-control text-right" id="bfday" value="0" min="0"></td>
 														<th
-															style="vertical-align: center; text-align: center; background-color: #CEF6E3">사용일</th>
+															style="vertical-align: center; text-align: center; background-color: #28a745a8">변경 후 호실 사용일</th>
 														<td class="text-center"><input type="number"
 															class="form-control text-right" id="afday" value="0" min="0"></td>
 													</tr>
@@ -136,7 +129,7 @@
 														<td><input type="number"
 															class="form-control text-right" id="bfaddday" value="0" min="0"></td>
 														<th
-															style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
+															style="vertical-align: center; text-align: center; background-color: #28a745a8">부가사용료
 															부과일</th>
 														<td><input type="number"
 															class="form-control text-right" id="afaddday" value="0" min="0"></td>
@@ -146,7 +139,7 @@
 															</th>
 														<td><input type="text"
 															class="form-control text-right" id="bfaddfee" value="0" readonly></td>
-														<th	style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
+														<th	style="vertical-align: center; text-align: center; background-color: #28a745a8">부가사용료
 															</th>
 														<td><input type="text"
 															class="form-control text-right" id="afaddfee" value="0" readonly></td>
@@ -159,7 +152,7 @@
 														<td><input type="text"
 															class="form-control text-right" id="bfrmcharge" value="0" readonly></td>
 														<th
-															style="vertical-align: center; text-align: center; background-color: #CEF6E3">분향실 사용료</th>
+															style="vertical-align: center; text-align: center; background-color: #28a745a8">분향실 사용료</th>
 														<td><input type="text"
 															class="form-control text-right" id="afrmcharge" value="0" readonly></td>
 													</tr>
