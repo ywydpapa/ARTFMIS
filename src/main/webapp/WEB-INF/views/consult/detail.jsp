@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <c:set var="path" value="${pageContext.request.contextPath}" />
 
 <div class="page-header2">
@@ -794,10 +795,19 @@
 												<td>${row.ALTAR_TITLE}<input type = "hidden" class = "Aid" value="${row.ALTAR_ID}"/></td>
 												<td style="text-align: right" class="AA"><fmt:formatNumber value="${row.ALTAR_AMOUNT}" pattern="#,###" /></td>
 												<c:if test="${status.first}">
-													<td class="imagebx" rowspan="${fn:length(listAltar)}">
-														<c:forEach var="t" items="${contpage5}">
-															<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.ALTAR_IMAGE}">src="${path}/image/${t.ALTAR_IMAGE}"</c:if>
-																 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
+													<td class="imagebx" rowspan="${fn:length(consultpage5)}">
+														<c:forEach var="t" items="${consultpage5}">
+															<c:set var="length" value="${fn:length(t.ALTAR_IMAGE)}" />
+															<c:choose>
+																<c:when test="${fn:contains(path, 'ARTFMIS')}">
+																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: auto;" <c:if test="${not empty t.ALTAR_IMAGE}">src="${path}/artImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}"</c:if>
+																		 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
+																</c:when>
+																<c:otherwise>
+																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: auto;" <c:if test="${not empty t.ALTAR_IMAGE}">src="<spring:url value='/localImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}'/>"</c:if>
+																		 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
+																</c:otherwise>
+															</c:choose>
 														</c:forEach>
 													</td>
 												</c:if>

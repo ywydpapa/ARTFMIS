@@ -461,7 +461,7 @@
 													<c:if test="${status.first}">
 														<td class="imagebx" rowspan="${fn:length(listFtable)}">
 															<c:forEach var="t" items="${listFtable}">
-																<img id="imageHidden_t02_${t.FTABLE_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.FTABLE_IMAGE}">src="${path}/image/${t.FTABLE_IMAGE}"</c:if>
+																<img id="imageHidden_t02_${t.FTABLE_ID}" style="display: none; width: 100%; height: auto;" <c:if test="${not empty t.FTABLE_IMAGE}">src="${path}/image/${t.FTABLE_IMAGE}"</c:if>
 																	 <c:if test="${empty t.FTABLE_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
 															</c:forEach>
 														</td>
@@ -1138,11 +1138,11 @@
 															<c:set var="length" value="${fn:length(t.ALTAR_IMAGE)}" />
 															<c:choose>
 																<c:when test="${fn:contains(path, 'ARTFMIS')}">
-																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.ALTAR_IMAGE}">src="${path}/artImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}"</c:if>
+																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: auto;" <c:if test="${not empty t.ALTAR_IMAGE}">src="${path}/artImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}"</c:if>
 																		 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
 																</c:when>
 																<c:otherwise>
-																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 500px;" <c:if test="${not empty t.ALTAR_IMAGE}">src="<spring:url value='/localImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}'/>"</c:if>
+																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: auto;" <c:if test="${not empty t.ALTAR_IMAGE}">src="<spring:url value='/localImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}'/>"</c:if>
 																		 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
 																</c:otherwise>
 															</c:choose>
