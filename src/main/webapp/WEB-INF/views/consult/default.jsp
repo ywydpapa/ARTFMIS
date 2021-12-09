@@ -32,7 +32,7 @@
 							<tbody>
 								<tr>
 									<td style="vertical-align:middle;text-align:center">상담일자</td>
-									<td style="text-align:center">${cst.CONSULT_DATE}<input type="hidden" value="${cst.CONSULT_ID}" id="consultId"/></td>
+									<td style="text-align:center"><input type="date" class="form-control" value="${cst.CONSULT_DATE}"><input type="hidden" value="${cst.CONSULT_ID}" id="consultId"/></td>
 									<td></td>
 									<td></td>
 								</tr>
@@ -107,7 +107,7 @@
 													<c:choose>
 														<c:when test="${empty consultGet}">
 															<td style="text-align: right;">
-																<input style="text-align: right" class="form-control CS_aDay" type="number" min="0" value="0"/>
+																<input style="text-align: right" class="form-control CS_aDay" type="number" min="0" value="2"/>
 															</td>
 															<td style="text-align: right;">
 																<input style="text-align: right" class="form-control CS_aTime" type="number" min="0" value="0"/>
@@ -124,7 +124,7 @@
 																			<input style="text-align: right" class="form-control CS_aDay" type="number" min="0" value="${rowGet.RENT_DAYS}"/>
 																		</c:when>
 																		<c:otherwise>
-																			<input style="text-align: right" class="form-control CS_aDay" type="number" min="0" value="0"/>
+																			<input style="text-align: right" class="form-control CS_aDay" type="number" min="0" value="2"/>
 																		</c:otherwise>
 																	</c:choose>
 																</td>
@@ -166,6 +166,10 @@
 													<td class = "CS_ESum" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.RCHARGE}" pattern="#,###" /></td>
 												</tr>
 											</c:forEach>
+												<tr>
+													<td colspan="4" style="vertical-align:middle;text-align:center">부가사용료</td>
+													<td colspan="3" class="addPay1" style="text-align: right;">0</td>
+												</tr>
 												<tr>
 													<td colspan="4" style="vertical-align:middle;text-align:center">제물상</td>
 													<td colspan="3" class="defaultP3total" style="text-align: right;">0</td>

@@ -53,14 +53,11 @@
 								<table class="table table-striped table-bordered nowrap" id="roomList">
 									<colgroup>
 										<col width="10%" />
+										<col width="18%" />
 										<col width="20%" />
 										<col width="20%" />
-										<col width="20%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
-										<col width="10%" />
+										<col width="18%" />
+										<col width="14%" />
 									</colgroup>
 									<thead>
 										<tr>
@@ -68,8 +65,7 @@
 											<th style="vertical-align:middle;text-align:center">호실명</th>
 											<th style="vertical-align:middle;text-align:center">일일사용료</th>
 											<th style="vertical-align:middle;text-align:center">시간당사용료</th>
-											<th style="vertical-align:middle;text-align:center">면적(m<sup>2</sup>)</th>
-											<th style="vertical-align:middle;text-align:center">평수</th>
+											<th style="vertical-align:middle;text-align:center">면적(m<sup>2</sup>)/평</th>
 											<th style="vertical-align:middle;text-align:center">수용인원</th>
 											<th style="display:none">임시호실</th>
 										</tr>
@@ -99,8 +95,7 @@
 											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}</td>
 											<td class = "RMday"style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 											<td class = "RMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-											<td style="vertical-align:middle;text-align: right;">${row.FROOM_AREA}</td>
-											<td style="vertical-align:middle;text-align: right;">${row.FROOM_AREA_KOR}</td>
+											<td style="vertical-align:middle;text-align: right;">${row.FROOM_AREA}/${row.FROOM_AREA_KOR}</td>
 											<td style="vertical-align:middle;text-align: right;">${row.FROOM_MAX_PERS}</td>
 											<td class="Tmproom"  style="display:none">${row.TEMP_ROOM}</td>
 										</tr>
@@ -108,48 +103,6 @@
 									</tbody>
 								</table>
 							</form>
-							<%-- <br> <br>
-							<table style="display:none;" class="table table-striped table-bordered nowrap" id="SltdroomList">
-								<colgroup>
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-									<col width="10%" />
-								</colgroup>
-								<thead>
-									<tr>
-										<th class="text-center">호실명</th>
-										<th class="text-center">일일사용료</th>
-										<th class="text-center">시간당사용료</th>
-										<th class="text-center">사용일</th>
-										<th class="text-center">사용시간</th>
-										<th class="text-center">사용요금</th>
-										<th style="display:none" class="text-center">선택</th>
-									</tr>
-								</thead>
-								<tbody>
-								<c:forEach var="row" items="${listFroom}">
-									<tr>
-										<td>${row.FROOM_TITLE}<input type="hidden" class = "FRMID" value = "${row.FROOM_ID}"></td>
-										<td class = "RMday"style="text-align: right;"><fmt:formatNumber
-												value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
-										<td class = "RMtime" style="text-align: right;"><fmt:formatNumber
-												value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-										<td class = "sRMd" style="text-align: right;">1</td>
-										<td class = "sRMt" style="text-align: right;">0</td>
-										<td class = "RMcharge" style="text-align: right;"><fmt:formatNumber
-												value="" pattern="#,###" /></td>
-										<td style="text-align: center; display:none"><input type="checkbox"
-											class="CHKsrm form-control" /></td>
-									</tr>
-								</c:forEach>
-								</tbody>
-							</table> --%>
 						</div>
 					</div>
 					
@@ -173,13 +126,29 @@
 									</tbody>
 								</table>
 								<div class="row">
+								<div style="float:left;width:10%;">
+									<table class="table  table-bordered nowrap">
+									<c:forEach var="row" items="${consultpage3}" varStatus="status">
+									<tr>
+									<td style="vertical-align:middle;text-align:center">${row.BCD_TITLE}</td>
+									</tr>
+									</c:forEach>
+									</table>
+								</div>
+								<div style="float:right;width:89%;">
 									<table class="table  table-bordered nowrap" style="width:95%; margin:0 auto;" id="ftTable">
+										<colgroup>
+										<col width="15%" />
+										<col width="10%" />
+										<col width="20%" />
+										<col width="50%" />
+									</colgroup>
 										<thead>
 											<tr>
 												<th scope="col" width="10%" align="center">구분</th>
-												<th scope="col" width="10%" align="center">선택여부</th>
+												<th scope="col" width="10%" align="center">선택</th>
 												<th scope="col" width="10%" align="center">금액</th>
-												<th scope="col" width="10%" align="center">단위</th>
+												<th scope="col" width="10%" align="center">설명</th>
 												<!-- <th scope="col" width="30%" align="center">상품이미지</th> -->
 											</tr>
 										</thead>
@@ -193,7 +162,7 @@
 															   name = "FT${row.FTABLE_CAT}" class="CHKft form-control" <c:if test="${row.CHKED eq 'Y'}">checked</c:if> />
 													</td>
 													<td style="text-align: right" class="TA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
-													<td style="text-align: right">${row.FTABLE_UNIT}</td>
+													<td style="text-align: left">${row.FTABLE_REMARK}</td>
 													<%-- <c:if test="${status.first}">
 														<td class="imagebx" rowspan="${fn:length(listFtable)}">
 															<c:forEach var="t" items="${contpage3}">
@@ -204,12 +173,13 @@
 													</c:if> --%>
 												</tr>
 											</c:forEach>
-											<tr>
+											<tr style="display:none">
 												<td colspan="3">선택된 제물상 총액</td>
 												<td id="P3total" style="text-align: right;">0</td>
 											</tr>
 										</tbody>
 									</table>
+									</div>
 								</div>
 							</form>
 							<form style="display:none;" name="form3-1" method="post" onsubmit="return false;">
@@ -273,29 +243,27 @@
 										</tr>
 									</tbody>
 								</table>
-								<table class="table table-striped table-bordered nowrap MOD">
+								<table class="table table-bordered nowrap MOD">
 									<colgroup>
-										<col width="15%" />
-										<col width="25%" />
-										<col width="10%" />
-										<col width="15%" />
-										<col width="15%" />
+										<col width="20%" />
+										<col width="35%" />
 										<col width="5%" />
 										<col width="20%" />
+										<col width="5%" />
+										<col width="15%" />
 									</colgroup>
 
 									<tr>
 										<th colspan="2" style="text-align: center;">분류(현대식)</th>
 										<th colspan="8" style="text-align: center;">상세정보</th>
 									</tr>
-									<tr style="text-align: center;">
-										<th>종류</th>
-										<th>제품명</th>
-										<th>단위</th>
-										<th>개당단가</th>
-										<th>기본금액</th>
-										<th>주문수량</th>
-										<th>주문금액</th>
+									<tr>
+										<th class="text-center">종류</th>
+										<th class="text-center">제품명</th>
+										<th class="text-center">단위</th>
+										<th class="text-center">단가</th>
+										<th class="text-center">수량</th>
+										<th class="text-center">금액</th>
 									</tr>
 									<tbody>
 											<tr>
@@ -309,17 +277,15 @@
 												</td>
 												<td>EA</td>
 												<td style="text-align: right;">
-												<select class="form-control m132" disabled>
+												    <select class="form-control m132" disabled style="display:none">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${consultpage4m}">
 													<c:if test="${row.CAT_02_ID eq 13}"><option value="${row.GOODS_NET_PRICE}" <c:if test="${!empty row.ORD_QUTY}">selected</c:if> ><fmt:formatNumber
 														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option></c:if>
 													</c:forEach>
 													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control m133 infoG1" disabled>
-													<option value="">선택</option>
+													<select class="form-control m133 infoG1 text-right" disabled>
+													<option value=""></option>
 													<c:forEach var="row" items="${consultpage4m}">
 													<c:if test="${row.CAT_02_ID eq 13}"><option value="${row.GOODS_SALE_PRICE}" <c:if test="${!empty row.ORD_QUTY}">selected</c:if> ><fmt:formatNumber
 														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option></c:if>
@@ -343,17 +309,15 @@
 												</td>
 												<td>EA</td>
 												<td style="text-align: right;">
-												<select class="form-control m142" disabled>
-													<option value="">선택</option>
+												<select class="form-control m142" disabled style="display:none">
+													<option value=""></option>
 													<c:forEach var="row" items="${consultpage4m}">
 													<c:if test="${row.CAT_02_ID eq 14}"><option value="${row.GOODS_NET_PRICE}" <c:if test="${!empty row.ORD_QUTY}">selected</c:if> ><fmt:formatNumber
 														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option></c:if>
 													</c:forEach>
 													</select>
-												</td>
-												<td style="text-align: right;">
-												<select class="form-control m143 infoG1" disabled>
-													<option value="">선택</option>
+													<select class="form-control m143 infoG1" disabled>
+													<option value=""></option>
 													<c:forEach var="row" items="${consultpage4m}">
 													<c:if test="${row.CAT_02_ID eq 14}"><option value="${row.GOODS_SALE_PRICE}" <c:if test="${!empty row.ORD_QUTY}">selected</c:if> ><fmt:formatNumber
 														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option></c:if>
@@ -378,17 +342,15 @@
 												</td>
 												<td>EA</td>
 												<td style="text-align: right;">
-												<select class="form-control m152" disabled>
-													<option value="">선택</option>
+												<select class="form-control m152" disabled style="display:none">
+													<option value=""></option>
 													<c:forEach var="row" items="${consultpage4m}">
 													<c:if test="${row.CAT_02_ID eq 15}"><option value="${row.GOODS_NET_PRICE}" <c:if test="${!empty row.ORD_QUTY}">selected</c:if> ><fmt:formatNumber
 														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option></c:if>
 													</c:forEach>
 													</select>
-												</td>
-												<td style="text-align: right;">
 												<select class="form-control m153 infoG1" disabled>
-													<option value="">선택</option>
+													<option value=""></option>
 													<c:forEach var="row" items="${consultpage4m}">
 													<c:if test="${row.CAT_02_ID eq 15}"><option value="${row.GOODS_SALE_PRICE}" <c:if test="${!empty row.ORD_QUTY}">selected</c:if> ><fmt:formatNumber
 														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option></c:if>
@@ -413,17 +375,15 @@
 												</td>
 												<td>EA</td>
 												<td style="text-align: right;">
-												<select class="form-control m162" disabled>
-													<option value="">선택</option>
+												<select class="form-control m162" disabled style="display:none">
+													<option value=""></option>
 													<c:forEach var="row" items="${consultpage4m}">
 													<c:if test="${row.CAT_02_ID eq 16}"><option value="${row.GOODS_NET_PRICE}" <c:if test="${!empty row.ORD_QUTY}">selected</c:if> ><fmt:formatNumber
 														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option></c:if>
 													</c:forEach>
 													</select>
-												</td>
-												<td style="text-align: right;">
 												<select class="form-control m163 infoG1" disabled>
-													<option value="">선택</option>
+													<option value=""></option>
 													<c:forEach var="row" items="${consultpage4m}">
 													<c:if test="${row.CAT_02_ID eq 16}"><option value="${row.GOODS_SALE_PRICE}" <c:if test="${!empty row.ORD_QUTY}">selected</c:if> ><fmt:formatNumber
 														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option></c:if>
@@ -448,17 +408,15 @@
 												</td>
 												<td>EA</td>
 												<td style="text-align: right;">
-												<select class="form-control m172" disabled>
-													<option value="">선택</option>
+												<select class="form-control m172" disabled style="display:none">
+													<option value=""></option>
 													<c:forEach var="row" items="${consultpage4m}">
 													<c:if test="${row.CAT_02_ID eq 17}"><option value="${row.GOODS_NET_PRICE}" <c:if test="${!empty row.ORD_QUTY}">selected</c:if> ><fmt:formatNumber
 														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option></c:if>
 													</c:forEach>
 													</select>
-												</td>
-												<td style="text-align: right;">
 												<select class="form-control m173 infoG1" disabled>
-													<option value="">선택</option>
+													<option value=""></option>
 													<c:forEach var="row" items="${consultpage4m}">
 													<c:if test="${row.CAT_02_ID eq 17}"><option value="${row.GOODS_SALE_PRICE}" <c:if test="${!empty row.ORD_QUTY}">selected</c:if> ><fmt:formatNumber
 														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option></c:if>
@@ -483,17 +441,15 @@
 												</td>
 												<td>EA</td>
 												<td style="text-align: right;">
-												<select class="form-control m182" disabled>
-													<option value="">선택</option>
+												<select class="form-control m182" disabled style="display:none">
+													<option value=""></option>
 													<c:forEach var="row" items="${consultpage4m}">
 													<c:if test="${row.CAT_02_ID eq 18}"><option value="${row.GOODS_NET_PRICE}" <c:if test="${!empty row.ORD_QUTY}">selected</c:if> ><fmt:formatNumber
 														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></option></c:if>
 													</c:forEach>
 													</select>
-												</td>
-												<td style="text-align: right;">
 												<select class="form-control m183 infoG1" disabled>
-													<option value="">선택</option>
+													<option value=""></option>
 													<c:forEach var="row" items="${consultpage4m}">
 													<c:if test="${row.CAT_02_ID eq 18}"><option value="${row.GOODS_SALE_PRICE}" <c:if test="${!empty row.ORD_QUTY}">selected</c:if> ><fmt:formatNumber
 														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></option></c:if>
@@ -511,16 +467,16 @@
 												<c:if test="${row.CAT_02_ID > 18}"><td>${row.GOODS_UNIT}<input type="hidden" class="FRID"
 													value="${frid}"><input type="hidden" class="GIDm"
 													value="${row.GOODS_ID}"></td></c:if>
-												<c:if test="${row.CAT_02_ID > 18}"><td style="text-align: right;"><fmt:formatNumber
+												<c:if test="${row.CAT_02_ID > 18}"><td style="display:none;text-align: right;"><fmt:formatNumber
 														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td></c:if>
 												<c:if test="${row.CAT_02_ID > 18}"><td style="text-align: right;" class="infoG2"><fmt:formatNumber
 														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></td></c:if>
-												<c:if test="${row.CAT_02_ID > 18}"><td style="text-align: right;"><input class="from-control GC" oninput="calculateG()" 
-													style="border: none; text-align: right;" type="number" min="0" max="100" value="${row.ORD_QUTY}" required></td></c:if>
+												<c:if test="${row.CAT_02_ID > 18}"><td style="text-align: right;background-color:yellow;"><input class="from-control GC" oninput="calculateG()" 
+													style="border: none; text-align: right;background-color:yellow;" type="number" min="0" max="100" value="${row.ORD_QUTY}" required></td></c:if>
 												<c:if test="${row.CAT_02_ID > 18}"><td class="GD from-control" style="text-align: right;"></td></c:if>
 											<c:if test="${row.CAT_02_ID > 18}"></tr></c:if>
 										</c:forEach>
-										<tr>
+										<tr style="display:none">
 											<td colspan="5" style="text-align:center;">선택된 장의용품 총액</td>
 											<td colspan="2" id="P4total" style="text-align:right;">0</td>
 										</tr>
@@ -545,10 +501,9 @@
 										<th>종류</th>
 										<th>제품명</th>
 										<th>단위</th>
-										<th>개당단가</th>
-										<th>기본금액</th>
-										<th>주문수량</th>
-										<th>주문금액</th>
+										<th>단가</th>
+										<th>수량</th>
+										<th>금액</th>
 									</tr>
 									<tbody>
 										<tr>
@@ -781,7 +736,7 @@
 												<td class="GH from-control" style="text-align: right;"></td>
 											</tr>
 										</c:forEach>
-										<tr>
+										<tr style="display:none">
 											<td colspan="5" style="text-align:center;">선택된 장의용품 총액</td>
 											<td colspan="2" id="P4total" style="text-align:right;">0</td>
 										</tr>
@@ -803,7 +758,7 @@
 										<tr>
 											<th scope="row">
 												<div>
-													<div style="float:left; margin-top:10px;">제단 선택</div>
+													<div style="float:left; margin-top:10px;">제단</div>
 													<!-- <div style="display:none;" class="btn_wr subBtn5">
 														<button style="float:right;" class="btn btn-md btn-primary" onClick="fn_cstInsertP5()">저장</button>
 													</div> -->
@@ -817,8 +772,8 @@
 									id="altarTable">
 									<thead>
 										<tr>
-											<th scope="col" width="15%" style="text-align:center">제단구분</th>
-											<th scope="col" width="15%" style="text-align:center">선택여부</th>
+											<th scope="col" width="15%" style="text-align:center">구분</th>
+											<th scope="col" width="15%" style="text-align:center">선택</th>
 											<th scope="col" width="15%" style="text-align:center">제단명</th>
 											<th scope="col" width="10%" style="text-align:center">금액</th>
 											<th scope="col" width="30%" style="text-align:center">이미지</th>
@@ -848,7 +803,7 @@
 												</c:if>
 											</tr>
 										</c:forEach>
-										<tr>
+										<tr style="display:none">
 											<td colspan="3" style="text-align:center;">선택된 제단용품 총액</td>
 											<td colspan="2" id="P5total" style="text-align:right;">0</td>
 										</tr>
@@ -1015,7 +970,7 @@
 		var data = {}
 		data.RENT_ID = '${selectoneFroom.RENT_ID}';
 		if(data.RENT_ID === ''){
-			alert('기존 삭제할 데이터가 존재하지 않습니다. 새로고침을 하시거나 관리자(개발자)를 부르십시오');
+			alert('기존 삭제할 데이터가 존재하지 않습니다. 새로고침을 하시거나 관리자에게 연락하십시오');
 		} else {
 			$.ajax({
 				url : "${path}/cont/deleteCSTRentfee.do",

@@ -33,7 +33,7 @@
 
 .h-container .item {
 	float: left;
-	width: 10%;
+	width: 7%;
 	height: 100%;
 	text-align: center;
 	background: white;
@@ -49,7 +49,7 @@
 
 .h-container .item.cont {
 	float: left;
-	width: 38%;
+	width: 43%;
 	border-right: none;
 	text-align: center;
 }
@@ -63,15 +63,16 @@
 			<col width="20%" />
 		</colgroup>
 		<tr>
-			<td style="text-align:center;vertical-align:middle">조회가능한 상담목록</td>
+			<td style="text-align:center;vertical-align:middle">상담 조회</td>
 			<td><select id="consult_list" class="form-control">
+				<option value=""></option>
 				<c:forEach var="row" items="${listconsult}">
 				<option value="${row.CONSULT_ID}">${row.PATI_NAME}<span>  :  </span>${row.CONSULT_DATE}</option>
 				</c:forEach>				
 			</select></td>
 			<td>
 				<button class="btn btn-md btn-success" value="불러오기" onClick="fn_ReloadConsult()">불러오기</button>
-				<button class="btn btn-md btn-success" value="추가" onClick="fn_newConsult()">추가</button>
+				<button class="btn btn-md btn-success" value="추가" onClick="fn_newConsult()">새상담</button>
 			</td>
 		</tr>
 		</table>
