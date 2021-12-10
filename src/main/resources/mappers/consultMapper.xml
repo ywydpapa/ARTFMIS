@@ -72,7 +72,8 @@ where a.FROOM_TYP NOT IN (1,5) and a.FROOM_USE_YN = 'Y' order by a.FROOM_ORDER a
 </select>
  
  <update id="updateConsult">
- 		update GHT_CONSULT set 
+ 		update GHT_CONSULT set
+ 		CONSULT_DATE = #{CONSULT_DATE}, 
 		PATI_NAME = #{PATI_NAME},
 		BFAMILY_NAME = #{BFAMILY_NAME},
 		TEL_NO = #{TEL_NO},

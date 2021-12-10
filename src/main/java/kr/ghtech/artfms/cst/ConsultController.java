@@ -49,6 +49,34 @@ public class ConsultController {
 		return mav;
 	}
 	
+	@RequestMapping("/detailConsultNew.do")
+	public ModelAndView detailNew(ModelAndView mav) {
+		mav.addObject("listroom", goodsService.listRoom(1));
+		mav.addObject("listAltar", contService.doslistAltar());
+		mav.addObject("listEtcroom", consultService.doslistEtcroom());
+		mav.addObject("listFroom", consultService.doslistFroom());
+		mav.addObject("listFtable", contService.doslistFtable());
+		mav.addObject("listEtcroom", contService.doslistEtcroom());
+		mav.addObject("listFgoodsM", contService.doslistFgoodsM());
+		mav.addObject("listFgoodsM13", contService.doslistFgoodsMn(13));
+		mav.addObject("listFgoodsM14", contService.doslistFgoodsMn(14));
+		mav.addObject("listFgoodsM15", contService.doslistFgoodsMn(15));
+		mav.addObject("listFgoodsM16", contService.doslistFgoodsMn(16));
+		mav.addObject("listFgoodsM17", contService.doslistFgoodsMn(17));
+		mav.addObject("listFgoodsM18", contService.doslistFgoodsMn(18));
+		mav.addObject("listFgoodsT", contService.doslistFgoodsT());
+		mav.addObject("listFgoodsT13", contService.doslistFgoodsTn(13));
+		mav.addObject("listFgoodsT14", contService.doslistFgoodsTn(14));
+		mav.addObject("listFgoodsT15", contService.doslistFgoodsTn(15));
+		mav.addObject("listFgoodsT16", contService.doslistFgoodsTn(16));
+		mav.addObject("listFgoodsT17", contService.doslistFgoodsTn(17));
+		mav.addObject("listFgoodsT18", contService.doslistFgoodsTn(18));
+		mav.addObject("code0201", codeService.listCode0201());
+		mav.addObject("regioncode", codeService.listconBcode("3"));
+		mav.setViewName("consult/detail");
+		return mav;
+	}
+	
 	@RequestMapping("/detailConsult/{CONSULT_ID}")
 	public ModelAndView detail(@PathVariable("CONSULT_ID") int CONSULT_ID, ModelAndView mav) {
 		mav.addObject("cst", consultService.detailConsult(CONSULT_ID));
@@ -100,7 +128,16 @@ public class ConsultController {
 		mav.addObject("contpage2fr2", consultService.reloadP2froom2(CONSULT_ID));
 		return mav;
 	}
-
+	
+	@RequestMapping("/defaultConsultNew.do")
+	public ModelAndView defaultconNew(ModelAndView mav) {
+		mav.addObject("listEtcroom", consultService.doslistEtcroom());
+		mav.addObject("listFroom", consultService.doslistFroom());
+		mav.addObject("regioncode", codeService.listconBcode("3"));
+		mav.addObject("setu", setupService.listSetup());
+		mav.setViewName("consult/default");
+		return mav;
+	}
 	
 	@RequestMapping("insertConsult.do")
 	public ResponseEntity<?> insertconsult(@ModelAttribute ConsultDTO dto) {

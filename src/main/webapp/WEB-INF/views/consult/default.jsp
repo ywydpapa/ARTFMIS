@@ -32,7 +32,7 @@
 							<tbody>
 								<tr>
 									<td style="vertical-align:middle;text-align:center">상담일자</td>
-									<td style="text-align:center"><input type="date" class="form-control" value="${cst.CONSULT_DATE}"><input type="hidden" value="${cst.CONSULT_ID}" id="consultId"/></td>
+									<td style="text-align:center"><input type="date" class="form-control" id="consultDate"value="${cst.CONSULT_DATE}"><input type="hidden" value="${cst.CONSULT_ID}" id="consultId"/></td>
 									<td></td>
 									<td></td>
 								</tr>

@@ -72,7 +72,7 @@
 			</select></td>
 			<td>
 				<button class="btn btn-md btn-success" value="불러오기" onClick="fn_ReloadConsult()">불러오기</button>
-				<button class="btn btn-md btn-success" value="추가" onClick="fn_newConsult()">새상담</button>
+				<button class="btn btn-md btn-success" value="추가" onClick="fn_NewConsult()">새상담</button>
 			</td>
 		</tr>
 		</table>
@@ -117,6 +117,14 @@
 	</div>
 </div>
 <script>
+function fn_NewConsult(){
+	var num=$("#consult_list").val();
+	var url = "${path}/consult/detailConsultNew.do";
+	var url2 = "${path}/consult/defaultConsultNew.do";
+	fnSetConsultdefault(url2);
+	fnSetConsultdetail(url);
+}
+
 function fn_ReloadConsult(){
 	var num=$("#consult_list").val();
 	var url = "${path}/consult/detailConsult/"+num;
@@ -149,7 +157,7 @@ function fnSetConsultdefault(url, data){
 		        leadingZeros(cstdate.getDate(), 2);
 		var consultData = {};
 		consultData.CONSULT_DATE	= consultdate;
-		consultData.PATI_NAME 		= "새상담";
+		consultData.PATI_NAME 		= "";
 		console.log(consultData);
 		$.ajax({ url: "${path}/consult/insertConsult.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
 					data: consultData , // HTTP 요청과 함께 서버로 보낼 데이터 
@@ -203,6 +211,7 @@ function fnSetConsultdefault(url, data){
 	} */ 
 	function fn_UpdconsultP1(){
 		var consultData = {};
+		consultData.CONSULT_DATE = $("#consultDate").val();
 		consultData.PATI_NAME = $("#patiName").val();
 		consultData.BFAMILY_NAME = $("#bfamilyName").val();
 		consultData.TEL_NO = $("#telNo").val();
