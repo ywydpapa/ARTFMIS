@@ -125,6 +125,14 @@
 			var name = $('#ALTAR_TYP option:selected').text();
 			console.log(name);
 			$('#typename').val(name);
+			
+			$('input').keydown(function(e) {
+				var idx = $('input').index(this);
+				
+				if (e.keyCode === 13) {
+					$('input').eq(idx+1).focus();
+				};
+			});
 
 		});
 		

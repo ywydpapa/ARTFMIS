@@ -15,6 +15,7 @@
 										<div>
 											<div style="float:left; margin-top:10px;">기본사항</div>
 											<div class="btn_wr" style="float:right;">
+												<button class="btn btn-md btn-success" value="불러오기" onClick="fn_ReloadConsult()">불러오기</button>
 												<button class="btn btn-md btn-primary" onClick="fn_eventAllClick()">저장</button>
 											</div>
 										</div>
@@ -124,7 +125,7 @@
 																			<input style="text-align: right" class="form-control CS_aDay" type="number" min="0" value="${rowGet.RENT_DAYS}"/>
 																		</c:when>
 																		<c:otherwise>
-																			<input style="text-align: right" class="form-control CS_aDay" type="number" min="0" value="2"/>
+																			<input style="text-align: right" class="form-control CS_aDay" type="number" min="0" value="0"/>
 																		</c:otherwise>
 																	</c:choose>
 																</td>
@@ -162,8 +163,26 @@
 													<td class = "CS_RMday" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 													<td class = "CS_RMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
 													<td style="text-align: right;"><input style="vertical-align:middle;text-align: right"class="form-control CS_EDay" type="number" min="0" max="30" value="${row.DAYS}"/></td>
-													<td style="text-align: right;"><input style="vertical-align:middle;text-align: right"class="form-control CS_ETime" type="number" min="0" max="30" value="${row.TIMES}"/></td>
-													<td class = "CS_ESum" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.RCHARGE}" pattern="#,###" /></td>
+													<td style="text-align: right;">
+														<c:choose>
+															<c:when test="${row.TIMES > 0}">
+																<input style="vertical-align:middle;text-align: right"class="form-control CS_ETime" type="number" min="0" max="30" value="${row.TIMES}"/>
+															</c:when>
+															<c:otherwise>
+																<input style="vertical-align:middle;text-align: right"class="form-control CS_ETime" type="number" min="0" max="30" value="0"/>
+															</c:otherwise>
+														</c:choose>
+													</td>
+													<td class = "CS_ESum" style="vertical-align:middle;text-align: right;">
+														<c:choose>
+															<c:when test="${row.RCHARGE > 0}">
+																<fmt:formatNumber value="${row.RCHARGE}" pattern="#,###" />
+															</c:when>
+															<c:otherwise>
+																<fmt:formatNumber value="0" pattern="#,###" />
+															</c:otherwise>
+														</c:choose>
+													</td>
 												</tr>
 											</c:forEach>
 												<tr>
@@ -235,6 +254,14 @@
 		</div>
 	</div>
 <script>
+$('input').keydown(function(e) {
+	var idx = $('input').index(this);
+	
+	if (e.keyCode === 13) {
+		$('input').eq(idx+1).focus();
+	};
+});
+
 $('.phone').keydown(function(event) {
     var key = event.charCode || event.keyCode || 0;
     $text = $(this);
@@ -269,6 +296,26 @@ $('.phone').keydown(function(event) {
 // $(".Eday, .Etime").change(function() {
 // 	chkcalE();
 // });
+
+$(".CS_EDay").each(function(index, item){
+	var temp = Number($("#sumTemp1").val());
+	var sum = 0;
+	
+	if(index == 0 && item.value == 0){
+		item.value = 2;
+		sum = Number(item.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.innerText.replace(/[\D\s\._\-]+/g, "")) * 2;
+		temp = temp + sum;
+		$("#sumTemp1").val(temp);
+		item.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.innerText = numberWithCommas(sum);
+	}else if(index != 0 && item.value == 0){
+		item.value = 1;
+		sum = Number(item.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.innerText.replace(/[\D\s\._\-]+/g, ""));
+		temp = temp + sum;
+		$("#sumTemp1").val(temp);
+		item.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.innerText = numberWithCommas(sum);
+	}
+	sumT();
+});
 
 $(".CS_aDay, .CS_aTime").change(function() {
 	var CS_qMday = $(".CS_qMday");

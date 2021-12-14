@@ -1543,6 +1543,14 @@
 </div>
 <!--계약기본등록-->
 <script>
+	$('input').keydown(function(e) {
+		var idx = $('input').index(this);
+		
+		if (e.keyCode === 13) {
+			$('input').eq(idx+1).focus();
+		};
+	});
+
 	function fn_contInsertP1() {
 		var contData = {};
 		var chkr = $('#rmchk').val();

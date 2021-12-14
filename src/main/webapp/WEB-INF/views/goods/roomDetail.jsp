@@ -275,6 +275,15 @@
 			$('.Bset').attr('disabled', false);
 			$('.Bset').css('background-color', '#FFFFFF');
 		}
+		
+		$('input').keydown(function(e) {
+			var idx = $('input').index(this);
+			
+			if (e.keyCode === 13) {
+				$('input').eq(idx+1).focus();
+			};
+		});
+
 	});
 
 	function recal() {

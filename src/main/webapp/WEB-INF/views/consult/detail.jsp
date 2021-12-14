@@ -1614,9 +1614,10 @@
 		var sumTemp2 = $("#sumTemp2");
 
 		if(this.checked == true){
-			$(".CS_aDay").val(0);
+			$(".CS_aDay").val(2);
 			$(".CS_aTime").val(0);
-			sumTemp2.val(0);
+			sumTemp2.val(Number($(this).parent().next().next("td").html().replace(/[\D\s\._\-]+/g, "")) * 2);
+		 	$(".CS_aSum").html(numberWithCommas(sumTemp2.val()));	
 			sumT();
 		}
 		

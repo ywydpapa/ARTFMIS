@@ -512,6 +512,14 @@
 </div>
 <!--계약기본등록-->
 <script>
+$('input').keydown(function(e) {
+	var idx = $('input').index(this);
+	
+	if (e.keyCode === 13) {
+		$('input').eq(idx+1).focus();
+	};
+});
+
 function delRoom(obj,roomid,drid){
 		var addrData = {};
 		addrData.CONT_FROOM_ID = roomid;
