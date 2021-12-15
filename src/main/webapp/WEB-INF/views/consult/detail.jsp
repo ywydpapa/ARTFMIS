@@ -972,6 +972,27 @@
 </div>
 <!--계약기본등록-->
 <script>
+	$(".CS_EDay").each(function(index, item){
+		var temp = Number($("#sumTemp1").val());
+		var sum = 0;
+		
+		if(index == 0 && item.value == 0){
+			item.value = 2;
+			sum = Number(item.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.innerText.replace(/[\D\s\._\-]+/g, "")) * 2;
+			temp = temp + sum;
+			$("#sumTemp1").val(temp);
+			item.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.innerText = numberWithCommas(sum);
+		}
+		if(index != 0 && item.value == 0){
+			item.value = 1;
+			sum = Number(item.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.innerText.replace(/[\D\s\._\-]+/g, ""));
+			temp = temp + sum;
+			$("#sumTemp1").val(temp);
+			item.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.innerText = numberWithCommas(sum);
+		}
+		sumT();
+	});
+
 	$('#contStatus').val('${dto.contStatus}').prop("selected", true);
 	$('#contType').val('${dto.contType}').prop("selected", true);
 	$('#contSource').val('${dto.contSource}').prop("selected", true);

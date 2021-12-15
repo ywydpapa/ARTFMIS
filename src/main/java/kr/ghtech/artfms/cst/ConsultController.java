@@ -327,4 +327,11 @@ public class ConsultController {
 		return consultSelete;
 	}
 	
+	@ResponseBody
+	@RequestMapping("consultModalList.do")
+	public List<ConsultDTO> consultModalList(){
+		List<ConsultDTO> consultList = consultService.consultModalList();
+		return consultList;
+	}
+	
 }

@@ -65,7 +65,6 @@
 		<tr>
 			<td style="text-align:center;vertical-align:middle">상담 조회</td>
 			<td><select id="consult_list" class="form-control">
-				<option value=""></option>
 				<c:forEach var="row" items="${listconsult}">
 				<option value="${row.CONSULT_ID}">${row.PATI_NAME}<span>  :  </span>${row.CONSULT_DATE}</option>
 				</c:forEach>				
@@ -117,6 +116,16 @@
 	</div>
 </div>
 <script>
+$(document).on("dblclick", "#consultSelect", function(){
+	modal.hide();
+	
+	var id = $(this).attr("data-id");
+	var pathDetail = "${path}/consult/detailConsult/" + id;
+	var pathDefault = "${path}/consult/defaultConsult/" + id;
+	
+	fnSetConsultdefault(pathDefault);
+	fnSetConsultdetail(pathDetail);
+});
 function fn_NewConsult(){
 	var num=$("#consult_list").val();
 	var url = "${path}/consult/detailConsultNew.do";

@@ -15,7 +15,38 @@
 										<div>
 											<div style="float:left; margin-top:10px;">기본사항</div>
 											<div class="btn_wr" style="float:right;">
-												<button class="btn btn-md btn-success" value="불러오기" onClick="fn_ReloadConsult()">불러오기</button>
+												<button class="btn btn-md btn-success" id="modalBtn"><i class="icofont icofont-search"></i>불러오기</button>
+												<div class="modal" id="consultModal" tabindex="-1"
+													role="dialog">
+													<div class="modal-dialog modal-lg" role="document">
+														<div class="modal-content modal-lg">
+															<div class="modal-header">
+																<h4 class="modal-title">상담 조회</h4>
+																<button type="button" class="close" data-dismiss="modal"
+																	aria-label="Close">
+																	<span aria-hidden="true">&times;</span>
+																</button>
+															</div>
+															<div class="modal-body">
+																<table class="table table-hover" id="consultModalTable" style="width:100%;">
+																	<thead>
+																		<tr>
+																			<th>상담일자</th>
+																			<th>상담호실</th>
+																			<th>환자명</th>
+																			<th>보호자명</th>
+																		</tr>
+																	</thead>
+																	<tbody></tbody>
+																</table>
+															</div>
+															<div class="modal-footer">
+																<button type="button" id="cancelBtn" class="btn btn-default waves-effect" data-dismiss="modal">닫기</button>
+															</div>
+														</div>
+													</div>
+												</div>
+												<button class="btn btn-md btn-success" value="추가" onClick="fn_NewConsult()">새상담</button>
 												<button class="btn btn-md btn-primary" onClick="fn_eventAllClick()">저장</button>
 											</div>
 										</div>
@@ -246,14 +277,42 @@
 						<input type="hidden" id="sumTemp3" value="0">
 						<input type="hidden" id="sumTemp4" value="0">
 						<input type="hidden" id="sumTemp5" value="0">
-						
 					</div>
 				</div>
-				
 			</div>
 		</div>
 	</div>
 <script>
+var modal = $(".modal");
+var modal_body = $(".modal").find(".modal-body");
+var modal_footer = $(".modal").find(".modal-footer");
+
+$(".close").click(function(){
+	modal.hide();
+});
+
+modal_footer.find("#cancelBtn").click(function(){
+	modal.hide();
+});
+
+$("#modalBtn").on("click", function(){
+	modal_body.find("table tbody").html("");
+	modal.show();
+	
+	$.ajax({
+		url: "${path}/consult/consultModalList.do",
+		method: "post",
+		async : false,
+		dataType: "json",
+		success:function(data){
+			$.each(data, function(index, item){
+				modal_body.find("table tbody").append("<tr id='consultSelect' data-id='"+item.CONSULT_ID+"'><td>" + item.CONSULT_DATE + "</td><td>" + item.FROOM_TITLE + "</td><td>" + item.PATI_NAME + "</td><td>" + item.BFAMILY_NAME + "</td></tr>");
+			});
+		}
+	});
+});
+
+
 $('input').keydown(function(e) {
 	var idx = $('input').index(this);
 	
@@ -275,47 +334,27 @@ $('.phone').keydown(function(event) {
     }
     return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));          
 });
-	
-// function chkcalE() {
-// 	var $Aarr = $(".EA");
-// 	var $Barr = $(".EB");
-// 	var $Carr = $(".Eday");
-// 	var $Darr = $(".Etime");
-// 	var $Earr = $(".Esum");
-// 	for (var i = 0; i < $Earr.length; i++) {
-// 		var chksum = 0;
-// 		var b1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-// 		var b2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-// 		var c1 = Number($Carr[i].value.replace(/[\D\s\._\-]+/g, ""));
-// 		var c2 = Number($Darr[i].value.replace(/[\D\s\._\-]+/g, ""));
-// 		chksum = (b1*c1)+(b2*c2);
-// 		$Earr[i].innerText = numberWithCommas(chksum);
-// 	}
-// }
-//
-// $(".Eday, .Etime").change(function() {
-// 	chkcalE();
-// });
+	/* function chkcalE() {
+		var $Aarr = $(".EA");
+		var $Barr = $(".EB");
+		var $Carr = $(".Eday");
+		var $Darr = $(".Etime");
+		var $Earr = $(".Esum");
+		for (var i = 0; i < $Earr.length; i++) {
+			var chksum = 0;
+			var b1 = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var b2 = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+			var c1 = Number($Carr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			var c2 = Number($Darr[i].value.replace(/[\D\s\._\-]+/g, ""));
+			chksum = (b1*c1)+(b2*c2);
+			$Earr[i].innerText = numberWithCommas(chksum);
+		}
+	} */
 
-$(".CS_EDay").each(function(index, item){
-	var temp = Number($("#sumTemp1").val());
-	var sum = 0;
-	
-	if(index == 0 && item.value == 0){
-		item.value = 2;
-		sum = Number(item.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.innerText.replace(/[\D\s\._\-]+/g, "")) * 2;
-		temp = temp + sum;
-		$("#sumTemp1").val(temp);
-		item.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.innerText = numberWithCommas(sum);
-	}else if(index != 0 && item.value == 0){
-		item.value = 1;
-		sum = Number(item.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.innerText.replace(/[\D\s\._\-]+/g, ""));
-		temp = temp + sum;
-		$("#sumTemp1").val(temp);
-		item.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.innerText = numberWithCommas(sum);
-	}
-	sumT();
+$(".Eday, .Etime").change(function() {
+	chkcalE();
 });
+
 
 $(".CS_aDay, .CS_aTime").change(function() {
 	var CS_qMday = $(".CS_qMday");

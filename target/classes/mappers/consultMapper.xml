@@ -29,6 +29,13 @@ select * from (SELECT a.FROOM_ID roomID, a.FROOM_ID ,a.FROOM_ALIS FROOM_TITLE ,a
 	and b.SETT_DATE is null where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' and length(a.FROOM_ALIS) > 0 and IMSI_YN = 'Y' group by a.FROOM_ID order by a.FROOM_ORDNO) TB  --> 
 </select>
 
+<select id="consultModalList" resultType="consultDto">
+SELECT a.*, c.FROOM_TITLE FROM GHT_CONSULT a
+LEFT JOIN GHT_CONSULT_FROOM b ON a.CONSULT_ID = b.CONSULT_ID
+LEFT JOIN GHT_FROOM c ON b.FROOM_ID = c.FROOM_ID
+WHERE c.FROOM_ORDER BETWEEN 1 AND 8 AND b.attrib = 'XXXUP' GROUP BY b.CONSULT_ID;
+</select>
+
  <select id="listEtcroom" resultType="consultDto">
  select a.*,g.SETL_REMARK, g.SETL_TYPE, g.PAY_YN , g.INCADD_YN from GHT_FROOM a left join GHT_SETL_RULE g on a.FROOM_TYP = g.SETL_FROOM_ID 
  where a.FROOM_TYP != 1 and a.FROOM_USE_YN = 'Y' and a.FROOM_TYP != 5  

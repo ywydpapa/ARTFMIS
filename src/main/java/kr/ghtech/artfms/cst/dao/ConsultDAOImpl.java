@@ -171,4 +171,10 @@ public class ConsultDAOImpl implements ConsultDAO {
 		return sqlSession.selectList("consult.consultSeleteGet", CONSULT_ID);
 	}
 
+	@Override
+	public List<ConsultDTO> consultModalList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("consult.consultModalList");
+	}
+
 }
