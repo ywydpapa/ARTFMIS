@@ -83,14 +83,47 @@
 												</tr>
 												<tr align="center">
 													<td class="cont-title" style="vertical-align: middle;">상담/계약 조회</td>
-													<td><select id="consult_list" class="form-control" style="appearance:none;">
+													<%-- <td><select id="consult_list" class="form-control" style="appearance:none;">
 															<option value=''></option>
 															<c:forEach var="row" items="${listconsult}">
 																<option value="${row.CONSULT_ID}">${row.PATI_NAME}<span>  :  </span>${row.CONSULT_DATE}</option>
 															</c:forEach>				
 														</select>
+													</td> --%>
+													<td><input class="form-control" type="text" readonly></td>
+													<!-- <td><button class="form-control" id="contp1-06" onClick="fn_ReloadConsult()">상담조회</button></td> -->
+													<td>
+														<button class="form-control" id="contp1-06">상담조회</button>
+														<div class="modal" id="consultModal" tabindex="-1" role="dialog">
+															<div class="modal-dialog modal-lg" role="document">
+																<div class="modal-content modal-lg">
+																	<div class="modal-header">
+																		<h4 class="modal-title">상담 조회</h4>
+																		<button type="button" class="close" data-dismiss="modal"
+																			aria-label="Close">
+																			<span aria-hidden="true">&times;</span>
+																		</button>
+																	</div>
+																	<div class="modal-body">
+																		<table class="table table-hover" id="consultModalTable" style="width:100%;">
+																			<thead>
+																				<tr>
+																					<th>상담일자</th>
+																					<th>상담호실</th>
+																					<th>환자명</th>
+																					<th>보호자명</th>
+																				</tr>
+																			</thead>
+																			<tbody></tbody>
+																		</table>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" id="cancelBtn" class="btn btn-default waves-effect" data-dismiss="modal">닫기</button>
+																	</div>
+																</div>
+															</div>
+														</div>
 													</td>
-													<td><button class="form-control" id="contp1-06" onClick="fn_ReloadConsult()">상담조회</button></td>
 													<td></td>
 													<td class="cont-title" style="vertical-align: middle;">행사업체</td>
 													<td><input type="text" class="form-control" id="contp1-04"></td>
@@ -1543,6 +1576,55 @@
 </div>
 <!--계약기본등록-->
 <script>
+	var modal = $(".modal");
+	var modal_body = $(".modal").find(".modal-body");
+	var modal_footer = $(".modal").find(".modal-footer");
+	
+	$(".close").click(function(){
+		modal.hide();
+	});
+	
+	modal_footer.find("#cancelBtn").click(function(){
+		modal.hide();
+	});
+	
+	$("#contp1-06").on("click", function(){
+		modal_body.find("table tbody").html("");
+		modal.show();
+		
+		$.ajax({
+			url: "${path}/consult/consultModalList.do",
+			method: "post",
+			async : false,
+			dataType: "json",
+			success:function(data){
+				$.each(data, function(index, item){
+					console.log(item);
+					modal_body.find("table tbody").append("<tr id='consultSelect' data-id='"+item.CONSULT_ID+"'><td>" + item.CONSULT_DATE + "</td><td>" + item.FROOM_TITLE + "</td><td>" + item.PATI_NAME + "</td><td>" + item.BFAMILY_NAME + "</td></tr>");
+				});
+			}
+		});
+	});
+	
+	$(document).on("dblclick", "#consultSelect", function(){
+		modal.hide();
+		
+		$.ajax({
+			url: "${path}/consult/writeConsultSelect/" + $(this).attr("data-id"),
+			method: "post",
+			dataType: "json",
+			success:function(data){
+				$.each(data, function(index, item){
+					$("#contp1-07").val(item.PATI_NAME);
+					$("#contp1-20").val(item.BFAMILY_NAME);
+					$("#contp1-24").val(item.TEL_NO);
+					$("#contp1-13").val(item.RELIGION);
+					$("#contp1-19").val(item.BURI_YN);
+				});
+			}
+		})
+	});
+	
 	$('input').keydown(function(e) {
 		var idx = $('input').index(this);
 		
@@ -3260,19 +3342,5 @@ function fnSetcont7page(url, data){
 	})
 	
 	$("#consult_list").children("option[value='']").hide();
-	
-	function fn_ReloadConsult(){
-		$.ajax({
-			url: "${path}/consult/consultSeleteGet/"+$("#consult_list").val(),
-			method: "post",
-			success: function(data){
-				$("#contp1-07").val(data[0].PATI_NAME);
-				$("#contp1-20").val(data[0].BFAMILY_NAME);
-				$("#contp1-24").val(data[0].TEL_NO);
-				$("#contp1-13").val(data[0].RELIGION);
-				$("#contp1-19").val(data[0].BURI_YN);
-			}
-		})
-	}
 	
 </script>

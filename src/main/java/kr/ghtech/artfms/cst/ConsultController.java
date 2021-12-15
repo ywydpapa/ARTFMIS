@@ -334,4 +334,11 @@ public class ConsultController {
 		return consultList;
 	}
 	
+	@ResponseBody
+	@RequestMapping("writeConsultSelect/{CONSULT_ID}")
+	public List<ConsultDTO> writeConsultSelect(@PathVariable("CONSULT_ID") int CONSULT_ID){
+		List<ConsultDTO> consultList = consultService.writeConsultSelect(CONSULT_ID);
+		return consultList;
+	}
+	
 }
