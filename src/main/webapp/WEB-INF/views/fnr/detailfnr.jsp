@@ -132,68 +132,57 @@
 }
 </style>
 <!--//상품등록-->
-
+<script src="${path}/js/onloadScript.js"></script>
 <script>
-		$(document).ready(function() {
-			$('input').keydown(function(e) {
-				var idx = $('input').index(this);
-				
-				if (e.keyCode === 13) {
-					$('input').eq(idx+1).focus();
-				};
-			});
-		});
+	$("#flogo_upload").change(function (event) {
+		var formData = new FormData(document.getElementById("uploadForm1"));
 
-		$("#flogo_upload").change(function (event) {
-			var formData = new FormData(document.getElementById("uploadForm1"));
-
-			if(this.files && this.files[0]){
-				var reader = new FileReader();
-				reader.onload = function (data) {
-					$("#oldImage1").remove();
-					$("#newImage1").show();
-					$("#imagenow1").attr("src", data.target.result);
-				}
-				reader.readAsDataURL(this.files[0]);
+		if(this.files && this.files[0]){
+			var reader = new FileReader();
+			reader.onload = function (data) {
+				$("#oldImage1").remove();
+				$("#newImage1").show();
+				$("#imagenow1").attr("src", data.target.result);
 			}
+			reader.readAsDataURL(this.files[0]);
+		}
 
-			$.ajax({
-				type: "post",
-				url	:'${path}/file/upload',
-				data: formData,
-				contentType: false,
-				processData: false,
-				success:function (data){
-					$("#flogo").val(data);
-					console.log('이미지 업로드 성공');
-				}
-			})
-		})
-
-		$("#fstamp_upload").change(function (event) {
-			var formData = new FormData(document.getElementById("uploadForm2"));
-
-			if(this.files && this.files[0]){
-				var reader = new FileReader();
-				reader.onload = function (data) {
-					$("#oldImage2").remove();
-					$("#newImage2").show();
-					$("#imagenow2").attr("src", data.target.result);
-				}
-				reader.readAsDataURL(this.files[0]);
+		$.ajax({
+			type: "post",
+			url	:'${path}/file/upload',
+			data: formData,
+			contentType: false,
+			processData: false,
+			success:function (data){
+				$("#flogo").val(data);
+				console.log('이미지 업로드 성공');
 			}
-
-			$.ajax({
-				type: "post",
-				url	:'${path}/file/upload',
-				data: formData,
-				contentType: false,
-				processData: false,
-				success:function (data){
-					$("#fstamp").val(data);
-					console.log('이미지 업로드 성공');
-				}
-			})
 		})
+	})
 
+	$("#fstamp_upload").change(function (event) {
+		var formData = new FormData(document.getElementById("uploadForm2"));
+
+		if(this.files && this.files[0]){
+			var reader = new FileReader();
+			reader.onload = function (data) {
+				$("#oldImage2").remove();
+				$("#newImage2").show();
+				$("#imagenow2").attr("src", data.target.result);
+			}
+			reader.readAsDataURL(this.files[0]);
+		}
+
+		$.ajax({
+			type: "post",
+			url	:'${path}/file/upload',
+			data: formData,
+			contentType: false,
+			processData: false,
+			success:function (data){
+				$("#fstamp").val(data);
+				console.log('이미지 업로드 성공');
+			}
+		})
+	})
 </script>

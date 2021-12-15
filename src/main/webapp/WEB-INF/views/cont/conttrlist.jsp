@@ -244,15 +244,8 @@
 	</div>
 </div>
 <!--계약기본등록-->
+<script src="${path}/js/onloadScript.js"></script>
 <script>
-$('input').keydown(function(e) {
-	var idx = $('input').index(this);
-	
-	if (e.keyCode === 13) {
-		$('input').eq(idx+1).focus();
-	};
-});
-
 function fn_contTrfroomP2() {
 	var contid = $("#froomtrbf").val().split('/');
 	var CONid = contid[0];

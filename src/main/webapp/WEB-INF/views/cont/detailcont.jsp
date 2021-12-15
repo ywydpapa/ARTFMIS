@@ -7,17 +7,17 @@
 	pattern="yyyy-MM-dd" />
 <fmt:parseDate var="ENDate" value="${detailCont.END_DATE}"
 	pattern="yyyy-MM-dd" />
-<div class="listcont" style="position:relative;">
-	<h5>계약 내용</h5>
-</div>
 	<div class="c-container">
 		<div>
 			<!--Page-header end 페이지 타이틀 -->
 			<div class="cnt_wr">
 				<!-- Row start -->
 				<div class="row">
-					<div class="col-lg-12 col-xl-12">
+					<div class="col-lg-12 col-xl-10">
 						<div class="table-responsive">
+							<div class="listcont" style="position:relative;">
+								<h5>계약 내용</h5>
+							</div>
 							<table class="table table-bordered nowrap" style="margin-top:8px;">
 								<tr>
 									<td><input id="frid" type="hidden" value="${frid}"><input
@@ -296,11 +296,8 @@
 																</tr>
 															</c:forEach>
 															<tr align="center">
-																<td
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">비고</td>
-																<td colspan="6"><input type="text"
-																	class="form-control form-control-sm" id="contp1-37"
-																	name="contp1-37" value="${detailCont.REMARK}"></td>
+																<td style="vertical-align: middle; text-align: center; background-color: #CEF6E3">비고</td>
+																<td colspan="6"><textarea rows="10" class="form-control form-control-sm" id="contp1-37" name="contp1-37">${detailCont.REMARK}</textarea></td>
 															</tr>
 														</tbody>
 													</table>
@@ -314,7 +311,7 @@
 							<div class="tab-pane active" id="tab02" role="tabpanel">
 								<div class="card-block table-border-style">
 									<div class="table-responsive" style="overflow-x: hidden">
-										<form name="room2" method="post" onsubmit="return false;">
+										<%-- <form name="room2" method="post" onsubmit="return false;">
 											<table class="table table-sm bst02">
 												<tbody>
 													<tr>
@@ -365,7 +362,7 @@
 													</c:forEach>
 												</tbody>
 											</table>
-										</form>
+										</form> --%>
 										<br> <br>
 										<table class="table table-bordered nowrap" id="SltdroomList">
 											<colgroup>
@@ -511,15 +508,8 @@
 	</div>
 </div>
 <!--계약기본등록-->
+<script src="${path}/js/onloadScript.js"></script>
 <script>
-$('input').keydown(function(e) {
-	var idx = $('input').index(this);
-	
-	if (e.keyCode === 13) {
-		$('input').eq(idx+1).focus();
-	};
-});
-
 function delRoom(obj,roomid,drid){
 		var addrData = {};
 		addrData.CONT_FROOM_ID = roomid;

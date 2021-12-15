@@ -27,7 +27,6 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.css"/>
   <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
-  
 <script>
 function customAutoRolad(url){
     let urlArr = url.split("/");
@@ -295,7 +294,6 @@ function fnSetPage(url, data){
   <!-- Bootstrap core JavaScript -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js" integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J" crossorigin="anonymous"></script>
   <script src="${path}/js/customTabJs.js"></script>
-  <script src="${path}/js/customTableClickJs.js"></script>  
+  <script src="${path}/js/customTableClickJs.js"></script>
 </body>
-
 </html>

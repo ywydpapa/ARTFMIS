@@ -282,6 +282,7 @@
 			</div>
 		</div>
 	</div>
+<script src="${path}/js/onloadScript.js"></script>
 <script>
 var modal = $(".modal");
 var modal_body = $(".modal").find(".modal-body");
@@ -310,15 +311,6 @@ $("#modalBtn").on("click", function(){
 			});
 		}
 	});
-});
-
-
-$('input').keydown(function(e) {
-	var idx = $('input').index(this);
-	
-	if (e.keyCode === 13) {
-		$('input').eq(idx+1).focus();
-	};
 });
 
 $('.phone').keydown(function(event) {

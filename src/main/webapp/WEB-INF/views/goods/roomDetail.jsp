@@ -254,6 +254,7 @@
 	padding-top: 66.64%;
 }
 </style>
+<script src="${path}/js/onloadScript.js"></script>
 <script>
 	$(document).ready(function() {
 		$('#useYn').val('${dtoRoom.FROOM_USE_YN}').prop("selected", true);
@@ -275,15 +276,6 @@
 			$('.Bset').attr('disabled', false);
 			$('.Bset').css('background-color', '#FFFFFF');
 		}
-		
-		$('input').keydown(function(e) {
-			var idx = $('input').index(this);
-			
-			if (e.keyCode === 13) {
-				$('input').eq(idx+1).focus();
-			};
-		});
-
 	});
 
 	function recal() {

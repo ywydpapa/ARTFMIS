@@ -19,7 +19,7 @@
 	<div class="cnt_wr" style="position:relative;">
 	<!-- Row start -->
 	<div class="row">
-		<div class="col-lg-12 col-xl-12">
+		<div class="col-lg-12 col-xl-10">
 		<div class="table-responsive" style="overflow-x:hidden">
 				<table class="table  table-bordered nowrap" style="display:none">
 				<tr>
@@ -68,8 +68,8 @@
 												<tr align="center">
 													<td style="vertical-align: middle; text-align:center;background-color:#E0F8E6;border:1px solid:black;" rowspan="2">계약조회</td>
 													<td class="cont-title" style="vertical-align: middle;">조회호실</td>
-													<td><select class="form-control" id="contp1-01">
-															<option value="">새계약 작성</option>
+													<td><select class="form-control" id="contp1-01" style="appearance:none;">
+															<option value=""></option>
 															<c:forEach var="contcombo" items="${contCombo}">
 																<option value="${contcombo.CONTRACT_ID}?CONT_FROOM_ID=${contcombo.FROOM_ID}"><c:if test="${contcombo.TEMP_ROOM eq 'N'}">${contcombo.FROOM_TITLE}</c:if>
 																<c:if test="${empty contcombo.TEMP_ROOM}">${contcombo.FROOM_TITLE}</c:if>
@@ -296,9 +296,7 @@
 												</tr>
 												<tr align="center">
 													<td style="vertical-align: middle; text-align:center;background-color:#E0F8E6">비고</td>
-													<td colspan="6"><input type="text"
-														class="form-control form-control-sm" id="contp1-37"
-														name="contp1-37" value=""></td>
+													<td colspan="6"><textarea rows="10" class="form-control form-control-sm" id="contp1-37" name="contp1-37"></textarea></td>
 												</tr>
 											</tbody>
 										</table>
@@ -362,7 +360,7 @@
 												<input type="checkbox" <c:if test="${not empty row.CONTRACT_ID}">disabled</c:if> class="CHKroom form-control" onclick="oneCheck(this);"/>
 											</td>
 											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}</td>
-											<td style="vertical-align:middle;text-align: center;"><c:if test="${not empty row.CONTRACT_ID}">사용중</c:if></td>
+											<td style="vertical-align:middle;text-align: center;color:blue; font-weight:600;"><c:if test="${not empty row.CONTRACT_ID}">사용중</c:if></td>
 											<td class = "RMday"style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 											<td class = "RMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
 											<td style="vertical-align:middle;text-align: right;">${row.FROOM_AREA}</td>
@@ -474,10 +472,9 @@
 										<thead  style="background-color:#E0E6F8">
 											<tr>
 												<th scope="col" width="10%" align="center">구분</th>
-												<th scope="col" width="10%" align="center">선택여부</th>
+												<th scope="col" width="5%" align="center">선택여부</th>
 												<th scope="col" width="20%" align="center">금액</th>
-												<th scope="col" width="10%" align="center">단위</th>
-												<th scope="col" width="30%" align="center">상품이미지</th>
+												<th scope="col" width="65%" align="center">상품이미지</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -490,12 +487,11 @@
 															   name = "FT${row.FTABLE_CAT}" class="CHKft form-control" />
 													</td>
 													<td style="text-align: right" class="TA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
-													<td style="text-align: right">${row.FTABLE_UNIT}</td>
 													<c:if test="${status.first}">
-														<td class="imagebx" rowspan="${fn:length(listFtable)}">
+														<td class="imagebx" rowspan="${fn:length(listFtable)}" style="text-align:center;">
 															<c:forEach var="t" items="${listFtable}">
-																<img id="imageHidden_t02_${t.FTABLE_ID}" style="display: none; width: 100%; height: auto;" <c:if test="${not empty t.FTABLE_IMAGE}">src="${path}/image/${t.FTABLE_IMAGE}"</c:if>
-																	 <c:if test="${empty t.FTABLE_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
+																<img id="imageHidden_t02_${t.FTABLE_ID}" <c:if test="${not empty t.FTABLE_IMAGE}">style="display: none; width: 99%; height:100%;" src="${path}/image/${t.FTABLE_IMAGE}"</c:if>
+																	 <c:if test="${empty t.FTABLE_IMAGE}">style="display: none; width: 700px; height:700px;" src="${path}/resources/image/No_image_available.png"</c:if>/>
 															</c:forEach>
 														</td>
 													</c:if>
@@ -1575,10 +1571,13 @@
 	</div>
 </div>
 <!--계약기본등록-->
+<script src="${path}/js/onloadScript.js"></script>
 <script>
 	var modal = $(".modal");
 	var modal_body = $(".modal").find(".modal-body");
 	var modal_footer = $(".modal").find(".modal-footer");
+	
+	$("#contp1-01").children("option[value='']").hide();
 	
 	$(".close").click(function(){
 		modal.hide();
@@ -1625,14 +1624,6 @@
 		})
 	});
 	
-	$('input').keydown(function(e) {
-		var idx = $('input').index(this);
-		
-		if (e.keyCode === 13) {
-			$('input').eq(idx+1).focus();
-		};
-	});
-
 	function fn_contInsertP1() {
 		var contData = {};
 		var chkr = $('#rmchk').val();
@@ -3340,7 +3331,4 @@ function fnSetcont7page(url, data){
 		SetDT();
 
 	})
-	
-	$("#consult_list").children("option[value='']").hide();
-	
 </script>

@@ -246,18 +246,9 @@ function fn_codeInsert02() {
 					</div>
 				</div>
 			</div>
-		
 	<!-- Row end -->
-
+<script src="${path}/js/onloadScript.js"></script>
 <script>
-$('input').keydown(function(e) {
-	var idx = $('input').index(this);
-	
-	if (e.keyCode === 13) {
-		$('input').eq(idx+1).focus();
-	};
-});
-
 $("#code21").change(function(){
 	var code=$("#code21").val();
 	var url="${path}/code/listcon02/"+code;

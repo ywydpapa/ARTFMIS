@@ -161,16 +161,8 @@
 		</div>
 	</div>
 </div>
-
+<script src="${path}/js/onloadScript.js"></script>
 <script>
-$('input').keydown(function(e) {
-	var idx = $('input').index(this);
-	
-	if (e.keyCode === 13) {
-		$('input').eq(idx+1).focus();
-	};
-});
-
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
