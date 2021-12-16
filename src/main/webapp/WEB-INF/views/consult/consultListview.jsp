@@ -116,7 +116,7 @@
 	</div>
 </div>
 <script>
-$(document).on("dblclick", "#consultSelect", function(){
+$(document).off("dblclick").on("dblclick", "#consultSelect", function(){
 	modal.hide();
 	
 	var id = $(this).attr("data-id");
