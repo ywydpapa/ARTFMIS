@@ -3,6 +3,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<style>
+#basicTable tr td{
+	vertical-align: middle;
+	border-bottom: 1px solid #dee2e6;
+}
+
+</style>
 <fmt:parseDate var="STDate" value="${detailCont.START_DATE}"
 	pattern="yyyy-MM-dd" />
 <fmt:parseDate var="ENDate" value="${detailCont.END_DATE}"
@@ -34,11 +41,12 @@
 										<div class="col-sm-12">
 											<div class="card-block table-border-style">
 												<div class="table-responsive">
-													<div style="width:100%;">
+													<div style="width:100%;" id="printHead">
 														<div style="float:left;margin-top:10px;">
 															<h6 style="font-weight:600;">계약기본사항</h6>
 														</div>
 														<div style="float:right;">
+															<button class="btn btn-success" id="contPrintBtn">계약서 출력</button>
 															<button class="btn btn-md btn-primary" onClick="fn_contUpdate()">저장</button>
 														</div>
 													</div>
@@ -55,13 +63,13 @@
 														<tbody>
 															<tr>
 																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3"
+																	style="vertical-align: middle; text-align: center; background-color: #CEF6E3;"
 																	rowspan="2">계약기간</th>
 																<td class="text-center">계약호실</td>
 																<td><select class="form-control" id="contp1-01"
 																	disabled>
 																		<c:forEach var="listroom" items="${listroom}">
-																			<option value="${listroom.FROOM_ID}">${listroom.FROOM_TITLE}</option>
+																			<option value="${listroom.FROOM_ID}" id="${listroom.FROOM_TITLE}">${listroom.FROOM_TITLE}</option>
 																		</c:forEach>
 																</select></td>
 																<td class="text-center">기간</td>
@@ -84,7 +92,7 @@
 															</tr>
 															<tr>
 																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3"
+																	style="vertical-align: middle; text-align: center; background-color: #CEF6E3"
 																	rowspan="5">고인</th>
 																<td class="text-center">성명</td>
 																<td><input type="text"
@@ -170,7 +178,7 @@
 															</tr>
 															<tr>
 																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3"
+																	style="vertical-align: middle; text-align: center; background-color: #CEF6E3"
 																	rowspan="3">유족</th>
 																<td class="text-center">상주성명</td>
 																<td><input type="text"
@@ -213,7 +221,7 @@
 															</tr>
 															<tr>
 																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3"
+																	style="vertical-align: middle; text-align: center; background-color: #CEF6E3"
 																	rowspan="2">일정</th>
 																<td class="text-center">입실일시*</td>
 																<td><input type="date"
@@ -257,8 +265,8 @@
 																<td></td>
 															</tr>
 															<tr align="center">
-																<td
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">장지</td>
+																<th
+																	style="vertical-align: middle; text-align: center; background-color: #CEF6E3">장지</th>
 																<td colspan="3"><input type="text"
 																	class="form-control form-control-sm" id="contp1-30"
 																	name="contp1-30" value="${detailCont.JANGJI}">
@@ -269,7 +277,7 @@
 															</tr>
 															<tr name="yujoklist" class="text-center">
 																<th
-																	style="vertical-align: center; text-align: center; background-color: #CEF6E3">유족정보</th>
+																	style="vertical-align: middle; text-align: center; background-color: #CEF6E3">유족정보</th>
 																<td><select class="form-control" id="contp1-31">
 																		<option value="">선택</option>
 																		<c:forEach var="regc" items="${frelation}">
@@ -288,7 +296,7 @@
 															<c:forEach var="yujok" items="${listYujok}">
 																<tr id="sj${yujok.CONT_SANGJU_ID}">
 																	<td
-																		style="vertical-align: center; text-align: center; background-color: #CEF6E3"></td>
+																		style="vertical-align: middle; text-align: center; background-color: #CEF6E3"></td>
 																	<td class="text-center">${yujok.RELATION_TITLE}</td>
 																	<td>${yujok.SANGJU_NAMEs}</td>
 																	<td><button
@@ -296,7 +304,7 @@
 																</tr>
 															</c:forEach>
 															<tr align="center">
-																<td style="vertical-align: middle; text-align: center; background-color: #CEF6E3">비고</td>
+																<th style="vertical-align: middle; text-align: center; background-color: #CEF6E3">비고</th>
 																<td colspan="6"><textarea rows="10" class="form-control form-control-sm" id="contp1-37" name="contp1-37">${detailCont.REMARK}</textarea></td>
 															</tr>
 														</tbody>
@@ -308,6 +316,7 @@
 								</div>
 								<!--//계약기본등록-->
 							</div>
+							<div id="copyPrint" style="display:none;"></div>
 							<div class="tab-pane active" id="tab02" role="tabpanel">
 								<div class="card-block table-border-style">
 									<div class="table-responsive" style="overflow-x: hidden">
@@ -510,6 +519,61 @@
 <!--계약기본등록-->
 <script src="${path}/js/onloadScript.js"></script>
 <script>
+$("#contPrintBtn").on("click", function(){
+	document.getElementById("copyPrint").innerHTML = document.getElementById("tab01").innerHTML;
+	
+	$("#tab01").find("input[type='text']").each(function(index, item){
+		$("#copyPrint").find("input[type='text']").eq(index).val(item.value);
+	});
+	
+	$("#tab01").find("input[type='number']").each(function(index, item){
+		$("#copyPrint").find("input[type='number']").eq(index).val(item.value);
+	});
+	
+	$("#copyPrint").find("input[type='number']").each(function(index, item){
+		$(this).parent().html($(this).val());
+	});
+	
+	$("#tab01").find("select").each(function(index, item){
+		$("#copyPrint").find("select").eq(index).val(item.value);
+	});
+	
+	$("#copyPrint").find("select").each(function(index, item){
+		$(this).parent().html($(this).find("option:selected").html());
+	});
+	
+	$("#tab01").find("input[type='date']").each(function(index, item){
+		$("#copyPrint").find("input[type='date']").eq(index).val(item.value);
+	});
+	
+	$("#copyPrint").find("input[type='date']").each(function(index, item){
+		if($(this).next().val() === undefined || $(this).next().val() === ""){
+			$(this).parent().html($(this).val());
+		}else{
+			$(this).parent().html($(this).val() + " " + $(this).next().val());
+		}
+	});
+	
+	$("#copyPrint").find("input[type='text']").each(function(index, item){
+		$(this).parent().html($(this).val());
+	});
+	
+	var open = window.open();
+
+	open.document.write("<html><head><link href='${path}/css/bootstrap.vertical-tabs.min.css' rel='stylesheet'><link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css' integrity='sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX' crossorigin='anonymous'></head><title>계약서 출력</title><style>h3{text-align:center;}input[type='text'], input[type='date'], input[type='number']{border:none;}select.form-control{border:none;appearance:none;}button.btn{display:none;}table tr th{border-bottom:1px solid #dee2e6 !important;border-right: 1px solid #dee2e6 !important;}#printHead{display:none;}table tr td{vertical-align: middle;border-bottom: 1px solid #dee2e6;}</style><body><h3>계약서 출력</h3>" + $("#copyPrint").html() + "</body></html>");
+	setTimeout(() => {
+		open.window.print();
+	}, 500);
+	
+	open.window.onafterprint = function(){
+		open.window.close();
+	}
+	
+	return false;
+	
+})
+
+
 function delRoom(obj,roomid,drid){
 		var addrData = {};
 		addrData.CONT_FROOM_ID = roomid;
