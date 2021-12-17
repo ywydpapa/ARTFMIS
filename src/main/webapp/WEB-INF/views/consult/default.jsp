@@ -28,7 +28,33 @@
 																</button>
 															</div>
 															<div class="modal-body">
-																<table class="table table-hover" id="consultModalTable" style="width:100%;">
+																<div style="width:100%;">
+																	<div>
+																		<h6>상담일자</h6>
+																	</div>
+																	<div style="float:left;">
+																		<input type="date" class="form-control" id="searchDateFrom"> 
+																	</div>
+																	<div style="float:left;">&ensp;~&ensp;</div>
+																	<div style="float:left;">
+																		<input type="date" class="form-control" id="searchDateEnd">
+																	</div>
+																</div>
+																<div style="width:100%;clear:both; margin-top:60px; margin-bottom: 60px;">
+																	<div style="float:left; margin-right:20px;">
+																		<h6>환자명</h6>
+																		<input type="text" class="form-control" id="searchPatiName">
+																	</div>&ensp;&ensp;&ensp;
+																	<div style="float:left; margin-right:20px;">
+																		<h6>보호자명</h6>
+																		<input type="text" class="form-control" id="searchBfamilyName">
+																	</div>
+																	<div style="float:left; margin-top:27px;">
+																		<button type="button" class="btn btn-primary" id="searchBtn">검색</button>
+																		<button type="button" class="btn btn-secondary" id="resetBtn">초기화</button>
+																	</div>
+																</div>
+																<table class="table table-hover" id="consultModalTable" style="width:100%; margin-top:20px;">
 																	<thead>
 																		<tr>
 																			<th>상담일자</th>
@@ -288,6 +314,85 @@ var modal = $(".modal");
 var modal_body = $(".modal").find(".modal-body");
 var modal_footer = $(".modal").find(".modal-footer");
 
+$(document).on("change", "#searchDateFrom", function(){
+	var dateValue = $(this).val();
+	var dateValueArr = dateValue.split("-");
+	var dateValueCom = new Date(dateValueArr[0], parseInt(dateValueArr[1])-1, dateValueArr[2]);
+	var EdateValue = $("#searchDateEnd").val();
+	var EdateDateArr = EdateValue.split("-");
+	var EdateDateCom = new Date(EdateDateArr[0], parseInt(EdateDateArr[1])-1, EdateDateArr[2]);
+	
+	if(EdateValue == ""){
+		dateValueCom.setDate(dateValueCom.getDate()+1);
+	}else if(dateValueCom.getTime() > EdateDateCom.getTime()){
+		alert("시작일이 종료일보다 클 수 없습니다.");
+		dateValueCom.setDate(dateValueCom.getDate()+1);
+	}else{
+		return null;
+	}
+	
+	var year = dateValueCom.getFullYear();
+	var month = dateValueCom.getMonth()+1;
+	var day = dateValueCom.getDate();
+	
+	if(day < 10){
+		day = "0" + day;
+	}
+	
+	$("#searchDateEnd").val(year + "-" + month + "-" + day);
+});
+
+$(document).on("change", "#searchDateEnd", function(){
+	var SdateValue = $("#searchDateFrom").val();
+	var SdateValueArr = SdateValue.split("-");
+	var SdateValueCom = new Date(SdateValueArr[0], parseInt(SdateValueArr[1])-1, SdateValueArr[2]);
+	var thisDateValue = $(this).val();
+	var thisDateArr = thisDateValue.split("-");
+	var thisDateCom = new Date(thisDateArr[0], parseInt(thisDateArr[1])-1, thisDateArr[2]);
+	
+	if(SdateValue == ""){
+		thisDateCom.setDate(thisDateCom.getDate()-1);
+	}else if(SdateValueCom.getTime() > thisDateCom.getTime()){
+		alert("종료일이 시작일보다 작을 수 없습니다.");
+		thisDateCom.setDate(thisDateCom.getDate()-1);
+	}else{
+		return null;
+	}
+	
+	var year = thisDateCom.getFullYear();
+	var month = thisDateCom.getMonth()+1;
+	var day = thisDateCom.getDate();
+	
+	if(day < 10){
+		day = "0" + day;
+	}
+	
+	$("#searchDateFrom").val(year + "-" + month + "-" + day);
+});
+
+$(document).on("click", "#searchBtn", function(){
+	var consultData = {};
+	modal_body.find("table tbody").html("");
+	
+	consultData.from = $("#searchDateFrom").val();
+	consultData.end = $("#searchDateEnd").val();
+	consultData.PATI_NAME = $("#searchPatiName").val();
+	console.log($("#searchPatiName").val());
+	consultData.BFAMILY_NAME = $("#searchBfamilyName").val();
+	
+	$.ajax({
+		url: "${path}/consult/consultModalSearch.do",
+		method: "post",
+		data: consultData,
+		dataType: "json",
+		success:function(data){
+			$.each(data, function(index, item){
+				modal_body.find("table tbody").append("<tr id='consultSelect' data-id='"+item.CONSULT_ID+"'><td>" + item.CONSULT_DATE + "</td><td>" + item.FROOM_TITLE + "</td><td>" + item.PATI_NAME + "</td><td>" + item.BFAMILY_NAME + "</td></tr>");
+			});
+		}
+	})
+})
+
 $(".close").click(function(){
 	modal.hide();
 });
@@ -296,7 +401,8 @@ modal_footer.find("#cancelBtn").click(function(){
 	modal.hide();
 });
 
-$("#modalBtn").on("click", function(){
+$("#modalBtn, #resetBtn").on("click", function(){
+	modal.find("input").val("");
 	modal_body.find("table tbody").html("");
 	modal.show();
 	

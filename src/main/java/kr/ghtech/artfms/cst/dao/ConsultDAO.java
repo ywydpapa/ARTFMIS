@@ -35,5 +35,6 @@ public interface ConsultDAO {
 	List<ConsultDTO> reloadP2froom2(Integer CONSULT_ID);
 	List<ConsultDTO> consultSeleteGet(Integer CONSULT_ID);
 	List<ConsultDTO> consultModalList();
+	List<ConsultDTO> consultModalSearch(ConsultDTO dto);
 	List<ConsultDTO> writeConsultSelect(Integer CONSULT_ID);
 }

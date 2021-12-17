@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.http.ResponseEntity;
@@ -331,6 +332,13 @@ public class ConsultController {
 	@RequestMapping("consultModalList.do")
 	public List<ConsultDTO> consultModalList(){
 		List<ConsultDTO> consultList = consultService.consultModalList();
+		return consultList;
+	}
+	
+	@ResponseBody
+	@RequestMapping("consultModalSearch.do")
+	public List<ConsultDTO> consultModalSearch(@ModelAttribute ConsultDTO dto){
+		List<ConsultDTO> consultList = consultService.consultModalSearch(dto);
 		return consultList;
 	}
 	

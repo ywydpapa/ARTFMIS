@@ -33,7 +33,25 @@ select * from (SELECT a.FROOM_ID roomID, a.FROOM_ID ,a.FROOM_ALIS FROOM_TITLE ,a
 SELECT a.*, c.FROOM_TITLE FROM GHT_CONSULT a
 LEFT JOIN GHT_CONSULT_FROOM b ON a.CONSULT_ID = b.CONSULT_ID
 LEFT JOIN GHT_FROOM c ON b.FROOM_ID = c.FROOM_ID
-WHERE c.FROOM_ORDER BETWEEN 1 AND 8 AND b.attrib = 'XXXUP' GROUP BY b.CONSULT_ID;
+WHERE c.FROOM_ORDER BETWEEN 1 AND 8 AND b.attrib = '10000'
+GROUP BY b.CONSULT_ID
+</select>
+
+<select id="consultModalSearch" resultType="consultDto">
+SELECT a.*, c.FROOM_TITLE FROM GHT_CONSULT a
+LEFT JOIN GHT_CONSULT_FROOM b ON a.CONSULT_ID = b.CONSULT_ID
+LEFT JOIN GHT_FROOM c ON b.FROOM_ID = c.FROOM_ID
+WHERE c.FROOM_ORDER BETWEEN 1 AND 8 AND b.attrib = '10000'
+<if test="from != null and from != ''">
+	AND a.CONSULT_DATE BETWEEN #{from} AND #{end}
+</if>
+<if test="PATI_NAME != null and PATI_NAME != ''">
+	AND a.PATI_NAME = #{PATI_NAME}
+</if>
+<if test="BFAMILY_NAME != null and BFAMILY_NAME != ''">
+	AND a.BFAMILY_NAME = #{BFAMILY_NAME}
+</if>
+GROUP BY b.CONSULT_ID
 </select>
 
 <select id="writeConsultSelect" resultType="consultDto">

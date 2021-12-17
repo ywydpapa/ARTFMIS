@@ -137,5 +137,8 @@ public class ConsultDTO {
 	private Integer TIMES;
 	private String RCHARGE;
 	private String ADD_YN;
+	
+	private String from;
+	private String end;
 }
 
