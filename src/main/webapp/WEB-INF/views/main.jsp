@@ -32,7 +32,7 @@ function customAutoRolad(url){
     let urlArr = url.split("/");
     if(urlArr[2] === "consult"){
         if(urlArr[3] === "listview.do"){
-            var element = $("#consult_list");
+            /* var element = $("#consult_list");
             if(element.length){
                 var option = element.find("option:selected");
                 if(option.length > 0){
@@ -42,7 +42,11 @@ function customAutoRolad(url){
                     var b = "${path}/consult/defaultConsult/"+index;
                     fnSetConsultdefault(b);
                 }
-            }
+            } */
+        	var a = "${path}/consult/detailConsult/0";
+            fnSetConsultdetail(a);
+            var b = "${path}/consult/defaultConsult/0";
+            fnSetConsultdefault(b);
         }
     } else if(urlArr[2] === "cont"){
         if(urlArr[3] === "contlist.do"){

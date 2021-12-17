@@ -314,7 +314,7 @@ var modal = $(".modal");
 var modal_body = $(".modal").find(".modal-body");
 var modal_footer = $(".modal").find(".modal-footer");
 
-$(document).on("change", "#searchDateFrom", function(){
+$("#searchDateFrom").change(function(){
 	var dateValue = $(this).val();
 	var dateValueArr = dateValue.split("-");
 	var dateValueCom = new Date(dateValueArr[0], parseInt(dateValueArr[1])-1, dateValueArr[2]);
@@ -342,7 +342,7 @@ $(document).on("change", "#searchDateFrom", function(){
 	$("#searchDateEnd").val(year + "-" + month + "-" + day);
 });
 
-$(document).on("change", "#searchDateEnd", function(){
+$("#searchDateEnd").change(function(){
 	var SdateValue = $("#searchDateFrom").val();
 	var SdateValueArr = SdateValue.split("-");
 	var SdateValueCom = new Date(SdateValueArr[0], parseInt(SdateValueArr[1])-1, SdateValueArr[2]);
@@ -370,7 +370,7 @@ $(document).on("change", "#searchDateEnd", function(){
 	$("#searchDateFrom").val(year + "-" + month + "-" + day);
 });
 
-$(document).on("click", "#searchBtn", function(){
+$("#searchBtn").click(function(){
 	var consultData = {};
 	modal_body.find("table tbody").html("");
 	
@@ -390,8 +390,8 @@ $(document).on("click", "#searchBtn", function(){
 				modal_body.find("table tbody").append("<tr id='consultSelect' data-id='"+item.CONSULT_ID+"'><td>" + item.CONSULT_DATE + "</td><td>" + item.FROOM_TITLE + "</td><td>" + item.PATI_NAME + "</td><td>" + item.BFAMILY_NAME + "</td></tr>");
 			});
 		}
-	})
-})
+	});
+});
 
 $(".close").click(function(){
 	modal.hide();
@@ -401,7 +401,7 @@ modal_footer.find("#cancelBtn").click(function(){
 	modal.hide();
 });
 
-$("#modalBtn, #resetBtn").on("click", function(){
+$("#modalBtn, #resetBtn").click(function(){
 	modal.find("input").val("");
 	modal_body.find("table tbody").html("");
 	modal.show();

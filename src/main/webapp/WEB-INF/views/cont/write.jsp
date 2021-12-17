@@ -105,6 +105,32 @@
 																		</button>
 																	</div>
 																	<div class="modal-body">
+																		<div style="width:100%;">
+																			<div style="text-align:left;">
+																				<h6>상담일자</h6>
+																			</div>
+																			<div style="float:left;">
+																				<input type="date" class="form-control" id="searchDateFrom"> 
+																			</div>
+																			<div style="float:left;">&ensp;~&ensp;</div>
+																			<div style="float:left;">
+																				<input type="date" class="form-control" id="searchDateEnd">
+																			</div>
+																		</div>
+																		<div style="width:100%;clear:both; margin-top:60px; margin-bottom: 60px;">
+																			<div style="text-align:left; float:left; margin-right:20px;">
+																				<h6>환자명</h6>
+																				<input type="text" class="form-control" id="searchPatiName">
+																			</div>&ensp;&ensp;&ensp;
+																			<div style="text-align:left; float:left; margin-right:20px;">
+																				<h6>보호자명</h6>
+																				<input type="text" class="form-control" id="searchBfamilyName">
+																			</div>
+																			<div style="float:left; margin-top:27px;">
+																				<button type="button" class="btn btn-primary" id="searchBtn">검색</button>
+																				<button type="button" class="btn btn-secondary" id="resetBtn">초기화</button>
+																			</div>
+																		</div>
 																		<table class="table table-hover" id="consultModalTable" style="width:100%;">
 																			<thead>
 																				<tr>
@@ -357,7 +383,7 @@
 									<c:forEach var="row" items="${listFroom}" varStatus="status">
 										<tr style="vertical-align:middle;text-align:center" id="contWrite_Room_${row.roomID}${row.TEMP_ROOM}">
 											<td style="vertical-align:middle;text-align: center;">
-												<input type="checkbox" <c:if test="${not empty row.CONTRACT_ID}">disabled</c:if> class="CHKroom form-control" onclick="oneCheck(this);"/>
+												<input type="checkbox" data-name="${row.FROOM_TITLE}" <c:if test="${not empty row.CONSULT_ID}"> id="froomCheck_${row.CONSULT_ID}"</c:if><c:if test="${not empty row.CONTRACT_ID}">disabled</c:if> class="CHKroom form-control" onclick="oneCheck(this);"/>
 											</td>
 											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}</td>
 											<td style="vertical-align:middle;text-align: center;color:blue; font-weight:600;"><c:if test="${not empty row.CONTRACT_ID}">사용중</c:if></td>
@@ -1579,6 +1605,87 @@
 	
 	$("#contp1-01").children("option[value='']").hide();
 	
+	$("#searchDateFrom").change(function(){
+		var dateValue = $(this).val();
+		var dateValueArr = dateValue.split("-");
+		var dateValueCom = new Date(dateValueArr[0], parseInt(dateValueArr[1])-1, dateValueArr[2]);
+		var EdateValue = $("#searchDateEnd").val();
+		var EdateDateArr = EdateValue.split("-");
+		var EdateDateCom = new Date(EdateDateArr[0], parseInt(EdateDateArr[1])-1, EdateDateArr[2]);
+		
+		if(EdateValue == ""){
+			dateValueCom.setDate(dateValueCom.getDate()+1);
+		}else if(dateValueCom.getTime() > EdateDateCom.getTime()){
+			alert("시작일이 종료일보다 클 수 없습니다.");
+			dateValueCom.setDate(dateValueCom.getDate()+1);
+		}else{
+			return null;
+		}
+		
+		var year = dateValueCom.getFullYear();
+		var month = dateValueCom.getMonth()+1;
+		var day = dateValueCom.getDate();
+		
+		if(day < 10){
+			day = "0" + day;
+		}
+		
+		$("#searchDateEnd").val(year + "-" + month + "-" + day);
+	});
+
+	$("#searchDateEnd").change(function(){
+		var SdateValue = $("#searchDateFrom").val();
+		var SdateValueArr = SdateValue.split("-");
+		var SdateValueCom = new Date(SdateValueArr[0], parseInt(SdateValueArr[1])-1, SdateValueArr[2]);
+		var thisDateValue = $(this).val();
+		var thisDateArr = thisDateValue.split("-");
+		var thisDateCom = new Date(thisDateArr[0], parseInt(thisDateArr[1])-1, thisDateArr[2]);
+		
+		if(SdateValue == ""){
+			thisDateCom.setDate(thisDateCom.getDate()-1);
+		}else if(SdateValueCom.getTime() > thisDateCom.getTime()){
+			alert("종료일이 시작일보다 작을 수 없습니다.");
+			thisDateCom.setDate(thisDateCom.getDate()-1);
+		}else{
+			return null;
+		}
+		
+		var year = thisDateCom.getFullYear();
+		var month = thisDateCom.getMonth()+1;
+		var day = thisDateCom.getDate();
+		
+		if(day < 10){
+			day = "0" + day;
+		}
+		
+		$("#searchDateFrom").val(year + "-" + month + "-" + day);
+	});
+
+	$("#searchBtn").click(function(){
+		var consultData = {};
+		modal_body.find("table tbody").html("");
+		
+		consultData.from = $("#searchDateFrom").val();
+		consultData.end = $("#searchDateEnd").val();
+		consultData.PATI_NAME = $("#searchPatiName").val();
+		console.log($("#searchPatiName").val());
+		consultData.BFAMILY_NAME = $("#searchBfamilyName").val();
+		
+		$.ajax({
+			url: "${path}/consult/consultModalSearch.do",
+			method: "post",
+			data: consultData,
+			dataType: "json",
+			success:function(data){
+				$.each(data, function(index, item){
+					modal_body.find("table tbody").append("<tr id='consultSelect' data-id='"+item.CONSULT_ID+"'><td>" + item.CONSULT_DATE + "</td><td>" + item.FROOM_TITLE + "</td><td>" + item.PATI_NAME + "</td><td>" + item.BFAMILY_NAME + "</td></tr>");
+				});
+			}
+		});
+		
+		return false;
+	});
+	
 	$(".close").click(function(){
 		modal.hide();
 	});
@@ -1587,7 +1694,8 @@
 		modal.hide();
 	});
 	
-	$("#contp1-06").on("click", function(){
+	$("#contp1-06, #resetBtn").click(function(){
+		modal.find("input").val("");
 		modal_body.find("table tbody").html("");
 		modal.show();
 		
@@ -1605,7 +1713,7 @@
 		});
 	});
 	
-	$(document).on("dblclick", "#consultSelect", function(){
+	$(document).off("dblclick").on("dblclick", "#consultSelect", function(){
 		modal.hide();
 		
 		$.ajax({
@@ -1619,6 +1727,13 @@
 					$("#contp1-24").val(item.TEL_NO);
 					$("#contp1-13").val(item.RELIGION);
 					$("#contp1-19").val(item.BURI_YN);
+					
+					if($("#froomCheck_"+item.CONSULT_ID).attr("disabled") === undefined){
+						$("#froomCheck_"+item.CONSULT_ID).trigger("click");
+					}else{
+						var name = $("#froomCheck_"+item.CONSULT_ID).data("name");
+						$("input[type='checkbox'][data-name='" + name + "-1']").trigger("click");
+					}
 				});
 			}
 		})

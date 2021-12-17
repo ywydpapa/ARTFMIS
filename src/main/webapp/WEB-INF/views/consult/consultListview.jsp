@@ -55,7 +55,7 @@
 }
 </style>
 <div class="listcont">
-	<div class="listcategory">
+	<%-- <div class="listcategory">
 		<table class="table table-bordered" style="width: 80%;">
 		<colgroup>
 			<col width="20%" />
@@ -76,7 +76,7 @@
 		</tr>
 		</table>
 	</div>			
-<hr>
+<hr> --%>
 	<div class="h-container">
 		<div class="item">
 		<table class="table table-bordered nowrap listcont" id="listTable">

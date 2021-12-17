@@ -33,13 +33,14 @@ select * from (SELECT a.FROOM_ID roomID, a.FROOM_ID ,a.FROOM_ALIS FROOM_TITLE ,a
 </select>
 
  <select id="listFroom2" resultType="contDto">
-select * from (SELECT a.FROOM_ID roomID,a.*, b.CONTRACT_ID, 'N' TEMP_ROOM from GHT_FROOM a 
+select * from (SELECT a.FROOM_ID roomID,a.*, b.CONTRACT_ID, c.CONSULT_ID, 'N' TEMP_ROOM from GHT_FROOM a 
  	left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.SETT_DATE is null
+ 	left join GHT_CONSULT_FROOM c on a.FROOM_ID = c.FROOM_ID and b.SETT_DATE is NULL AND c.attrib = '10000'
 	where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' group by a.FROOM_ID order by a.FROOM_ORDNO) TA
 	union all
 select * from (SELECT a.FROOM_ID roomID, a.FROOM_ID ,a.FROOM_ALIS FROOM_TITLE ,a.FROOM_CAT ,a.FROOM_TYP ,a.FROOM_DAY_PRICE ,a.FROOM_TIME_PRICE ,a.FROOM_MAX_PERS ,a.FROOM_AREA ,a.FROOM_AREA_KOR ,a.FROOM_REMARK ,a.FROOM_ORDER, a.FROOM_RENT_FR ,a.FROOM_RENT_TO ,
 	a.FROOM_CHK_INOUT ,a.FROOM_PASSWD ,a.FROOM_TML_CODE ,a.FROOM_ALIS ,a.FROOM_USE_YN ,a.FROOM_REG_USER ,a.FROOM_REG_DATETIME ,a.FROOM_MOD_USER ,a.FROOM_MOD_DATETIME ,a.FROOM_PC ,a.FROOM_ORDNO ,a.IMSI_YN 
-	,a.CLEAN_CHARGE ,a.FROOM_IMAGE, a.INC_YN , null CONTRACT_ID, 'Y' TEMP_ROOM from GHT_FROOM a left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.TEMP_ROOM = 'Y'
+	,a.CLEAN_CHARGE ,a.FROOM_IMAGE, a.INC_YN , null CONTRACT_ID, CONSULT_ID, 'Y' TEMP_ROOM from GHT_FROOM a left join GHT_CONT b on a.FROOM_ID = b.FROOM_ID and b.TEMP_ROOM = 'Y'
 	and b.SETT_DATE is null where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' and length(a.FROOM_ALIS) > 0 and IMSI_YN = 'Y' group by a.FROOM_ID order by a.FROOM_ORDNO) TB  
 </select>
  
