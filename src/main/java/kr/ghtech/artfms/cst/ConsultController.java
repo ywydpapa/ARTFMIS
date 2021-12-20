@@ -349,4 +349,28 @@ public class ConsultController {
 		return consultList;
 	}
 	
+	@ResponseBody
+	@RequestMapping("writeConsultFtable/{CONSULT_ID}")
+	public List<ConsultDTO> writeConsultFtable(@PathVariable("CONSULT_ID") int CONSULT_ID){
+		List<ConsultDTO> consultList = consultService.reloadP3(CONSULT_ID);
+		
+		return consultList;
+	}
+	
+	@ResponseBody
+	@RequestMapping("writeConsultGoods/{CONSULT_ID}")
+	public List<ConsultDTO> writeConsultGoods(@PathVariable("CONSULT_ID") int CONSULT_ID){
+		List<ConsultDTO> consultList = consultService.reloadP4m(CONSULT_ID);
+		
+		return consultList;
+	}
+	
+	@ResponseBody
+	@RequestMapping("writeConsultAltar/{CONSULT_ID}")
+	public List<ConsultDTO> writeConsultAltar(@PathVariable("CONSULT_ID") int CONSULT_ID){
+		List<ConsultDTO> consultList = consultService.reloadP5(CONSULT_ID);
+		
+		return consultList;
+	}
+	
 }

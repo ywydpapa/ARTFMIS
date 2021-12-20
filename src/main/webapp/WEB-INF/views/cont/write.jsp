@@ -598,7 +598,7 @@
 										</tr>
 									</tbody>
 								</table> -->
-								<table class="table  table-bordered table-hover MOD" style="margin-top:10px;">
+								<table class="table table-bordered table-hover MOD" id="goodTable" style="margin-top:10px;">
 									<colgroup>
 										<col width="10%" />
 										<col width="5%" />
@@ -1714,6 +1714,7 @@
 	});
 	
 	$(document).off("dblclick").on("dblclick", "#consultSelect", function(){
+		var i = 0;
 		modal.hide();
 		
 		$.ajax({
@@ -1721,6 +1722,18 @@
 			method: "post",
 			dataType: "json",
 			success:function(data){
+				$("[id^='contWrite_Prey_']").find(".CHKft").each(function(index, item){
+					item.checked = false;
+				});
+				
+				$("[id^='contWrite_Altar_']").find(".CHKalt").each(function(index, item){
+					item.checked = false;
+				});
+				
+				$("#goodTable").find(".mgid").each(function(){
+					$(this).val("").trigger("change");
+				});
+				
 				$.each(data, function(index, item){
 					$("#contp1-07").val(item.PATI_NAME);
 					$("#contp1-20").val(item.BFAMILY_NAME);
@@ -1734,9 +1747,49 @@
 						var name = $("#froomCheck_"+item.CONSULT_ID).data("name");
 						$("input[type='checkbox'][data-name='" + name + "-1']").trigger("click");
 					}
+					
+					$.ajax({
+						url: "${path}/consult/writeConsultFtable/" + item.CONSULT_ID,
+						method: "post",
+						dataType: "json",
+						success:function(ftData){
+							$.each(ftData, function(index, item){
+								if(item.CHKED === "Y"){
+									$("#contWrite_Prey_"+item.FTABLE_ID).find(".CHKft").trigger("click");
+								}
+							});
+						}
+					});
+					
+					$.ajax({
+						url: "${path}/consult/writeConsultGoods/" + item.CONSULT_ID,
+						method: "post",
+						dataType: "json",
+						success:function(goodData){
+							$.each(goodData, function(index, item){
+								if(item.ORD_AMOUNT !== '' && item.ORD_AMOUNT !== null && item.ORD_AMOUNT !== undefined){
+									$("#goodTable").find(".mgid").eq(i).val(item.GOODS_ID).trigger("change");
+									i++;
+								}
+							});
+						}
+					});
+					
+					$.ajax({
+						url: "${path}/consult/writeConsultAltar/" + item.CONSULT_ID,
+						method: "post",
+						dataType: "json",
+						success:function(alterData){
+							$.each(alterData, function(index, item){
+								if(item.CHKED === "Y"){
+									$("#contWrite_Altar_"+item.ALTAR_ID).find(".CHKalt").trigger("click");
+								}
+							});
+						}
+					});
 				});
 			}
-		})
+		});
 	});
 	
 	function fn_contInsertP1() {
@@ -2292,6 +2345,8 @@
 	$(".mgid").change(function(){
 		if($(this).val() != ""){
 			$(this).parent().prevAll("td").find("[type='checkbox']").prop("checked", true);
+		}else{
+			$(this).parent().prevAll("td").find("[type='checkbox']").prop("checked", false);
 		}
 	});
 	

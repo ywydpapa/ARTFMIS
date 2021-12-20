@@ -310,7 +310,7 @@
 												</td>
 												<td>EA</td>
 												<td style="text-align: right;">
-												<select class="form-control m142" disabled style="display:none">
+												<select class="form-control m142" disabled style="display:none;">
 													<option value=""></option>
 													<c:forEach var="row" items="${consultpage4m}">
 													<c:if test="${row.CAT_02_ID eq 14}"><option value="${row.GOODS_NET_PRICE}" <c:if test="${!empty row.ORD_QUTY}">selected</c:if> ><fmt:formatNumber
