@@ -188,4 +188,10 @@ public class ConsultServiceImpl implements ConsultService {
 		// TODO Auto-generated method stub
 		return consultDao.writeConsultSelect(CONSULT_ID);
 	}
+
+	@Override
+	public List<ConsultDTO> getConsultId() {
+		// TODO Auto-generated method stub
+		return consultDao.getConsultId();
+	}
 }

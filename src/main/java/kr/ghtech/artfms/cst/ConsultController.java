@@ -322,7 +322,7 @@ public class ConsultController {
 	}
 	
 	@ResponseBody
-	@RequestMapping("/consultSeleteGet/{CONSULT_ID}")
+	@RequestMapping("consultSeleteGet/{CONSULT_ID}")
 	public List<ConsultDTO> consultSeleteGet(@PathVariable("CONSULT_ID") int CONSULT_ID) {
 		List<ConsultDTO> consultSelete = consultService.consultSeleteGet(CONSULT_ID);
 		return consultSelete;
@@ -369,6 +369,14 @@ public class ConsultController {
 	@RequestMapping("writeConsultAltar/{CONSULT_ID}")
 	public List<ConsultDTO> writeConsultAltar(@PathVariable("CONSULT_ID") int CONSULT_ID){
 		List<ConsultDTO> consultList = consultService.reloadP5(CONSULT_ID);
+		
+		return consultList;
+	}
+	
+	@ResponseBody
+	@RequestMapping("getConsultId.do")
+	public List<ConsultDTO> getConsultId(){
+		List<ConsultDTO> consultList = consultService.getConsultId();
 		
 		return consultList;
 	}

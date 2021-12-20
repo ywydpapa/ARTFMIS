@@ -37,4 +37,5 @@ public interface ConsultDAO {
 	List<ConsultDTO> consultModalList();
 	List<ConsultDTO> consultModalSearch(ConsultDTO dto);
 	List<ConsultDTO> writeConsultSelect(Integer CONSULT_ID);
+	List<ConsultDTO> getConsultId();
 }

@@ -189,4 +189,10 @@ public class ConsultDAOImpl implements ConsultDAO {
 		return sqlSession.selectList("consult.writeConsultSelect", CONSULT_ID);
 	}
 
+	@Override
+	public List<ConsultDTO> getConsultId() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("consult.getConsultId");
+	}
+
 }

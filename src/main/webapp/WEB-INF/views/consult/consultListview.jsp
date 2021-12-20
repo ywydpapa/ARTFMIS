@@ -136,8 +136,8 @@ function fn_NewConsult(){
 
 function fn_ReloadConsult(){
 	var num=$("#consult_list").val();
-	var url = "${path}/consult/detailConsult/"+num;
-	var url2 = "${path}/consult/defaultConsult/"+num;
+	var url = "${path}/consult/detailConsult/0";
+	var url2 = "${path}/consult/defaultConsult/0";
 	fnSetConsultdefault(url2);
 	fnSetConsultdetail(url);
 }
@@ -218,7 +218,7 @@ function fnSetConsultdefault(url, data){
 		$('.tab-pane').removeClass('active');
 		$('#tab08').addClass('active');
 	} */ 
-	function fn_UpdconsultP1(){
+	function fn_UpdconsultP1(consultId){
 		var consultData = {};
 		consultData.CONSULT_DATE = $("#consultDate").val();
 		consultData.PATI_NAME = $("#patiName").val();
@@ -228,7 +228,7 @@ function fnSetConsultdefault(url, data){
 		consultData.RELIGION = $("#religion").val();
 		consultData.BURI_YN = $("#buriYn").val();
 		consultData.REMARK = $("#remark").val();
-		consultData.CONSULT_ID = $("#consultId").val(); 
+		consultData.CONSULT_ID = consultId; 
 		console.log(consultData);
 		$.ajax({ url: "${path}/consult/updateConsult.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
 					data: consultData , // HTTP 요청과 함께 서버로 보낼 데이터 
@@ -236,15 +236,44 @@ function fnSetConsultdefault(url, data){
 					dataType: "json" // 서버에서 보내줄 데이터의 타입 
 				}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
 				.done(function(data) {
-					/* if(data.code == 10001){
+					if(data.code == 10001){
 						fnSetPage('${path}/consult/listview.do');
 					}else{
 						alert("저장 실패");
-					} */
+					} 
 				}) // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
 				.fail(function(xhr, status, errorThrown) { 
 					alert("통신 실패");
 				});
+		
+	}
+	
+	function fn_InsertConsult(){
+		var consultData = {};
+		consultData.CONSULT_DATE = $("#consultDate").val();
+		consultData.PATI_NAME = $("#patiName").val();
+		consultData.BFAMILY_NAME = $("#bfamilyName").val();
+		consultData.TEL_NO = $("#telNo").val();
+		consultData.HOSPITAL = $("#hospital").val();
+		consultData.RELIGION = $("#religion").val();
+		consultData.BURI_YN = $("#buriYn").val();
+		consultData.REMARK = $("#remark").val();
+		$.ajax({ 
+			url: "${path}/consult/insertConsult.do", // 클라이언트가 HTTP 요청을 보낼 서버의 URL 주소 
+			data: consultData , // HTTP 요청과 함께 서버로 보낼 데이터 
+			method: "POST", // HTTP 요청 메소드(GET, POST 등) 
+			dataType: "json" // 서버에서 보내줄 데이터의 타입 
+		}) // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨. .
+		.done(function(data) {
+			/* if(data.code == 10001){
+				fnSetPage('${path}/consult/listview.do');
+			}else{
+				alert("저장 실패");
+			}  */
+		}) // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨. 
+		.fail(function(xhr, status, errorThrown) { 
+			alert("통신 실패");
+		});
 		
 	}
 </script>

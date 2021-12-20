@@ -988,6 +988,22 @@
 	$('#contType').val('${dto.contType}').prop("selected", true);
 	$('#contSource').val('${dto.contSource}').prop("selected", true);
 
+	function InsertConsultId(){
+		var getConsultId = 0;
+		
+		$.ajax({
+			url: '${path}/consult/getConsultId.do',
+			method: 'post',
+			dataType: 'json',
+			async: false,
+			success:function(data){
+				getConsultId = data[0].CONSULT_ID;
+			}
+		});
+		
+		return getConsultId;
+	}
+	
 	function fn_const_oldDeleteP2(){
 		var data = {}
 		data.RENT_ID = '${selectoneFroom.RENT_ID}';
@@ -1005,9 +1021,7 @@
 		}
 	}
 	
-	function fn_cstInsertP2(){
-		var CONid = $("#consultid").val();
-		
+	function fn_cstInsertP2(CONid){
 		if (CONid != ""){
 			var froomid = $('#frid').val();
 			var $Chkarr = $(".CHKsrm");
@@ -1088,8 +1102,7 @@
 		} */
 	}
 
-	function fn_cstInsertP3() {
-		var CONid = $("#consultid").val();
+	function fn_cstInsertP3(CONid) {
 		if (CONid != ""){
 		var froomid = $('#frid').val();
 		var $Chkarr = $(".sCHKft");
@@ -1135,134 +1148,132 @@
 		
 	}
 	
-	function fn_cstInsertP4() {
-		var CONid = $("#consultid").val();
-			if (CONid != ""){
-				var froomid = $('#frid').val();
-				var sel = $("#selMTR").val();
-				var contp4upd ={};
-				contp4upd.CONSULT_ID = Number(CONid);
-				console.log(contp4upd);
-				$.ajax({
-					url : "${path}/consult/updateP4.do",  
-					data : contp4upd,  
-					method : "POST",  
-					dataType : "json"  
-				})
-				.done(function(data) {
-					if (sel == "M"){
-						var $mgidarr = $(".mgid");
-						var $GAarr = $(".GA");
-						var $GBarr = $(".GB");
-						var $GCarr = $(".GC");
-						var $GDarr = $(".GD");
-						var $InfoG1arr = $(".infoG1");
-						var $InfoG2arr = $(".infoG2");
-						var $GMarr = $(".GIDm");
-							for (var i=0; i<$GAarr.length; i++){
-								if($($GAarr[i]).value != 0){
-									var contp4data = {};
-										contp4data.CONSULT_ID = CONid;
-										contp4data.ROOM_TITLE = froomid;
-										contp4data.GOODS_CODE = $mgidarr[i].value;
-										contp4data.ORD_TYPE = "1";
-										contp4data.NET_PRICE = Number($InfoG1arr[i].value.replace(/[\D\s\._\-]+/g, ""));
-										contp4data.ORD_QUTY = $GAarr[i].value;
-										contp4data.ORD_AMOUNT = Number($GBarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-										console.log(contp4data);
-								$.ajax({
-									url : "${path}/consult/insertP4.do",  
-									data : contp4data,  
-									method : "POST",  
-									dataType : "json"  
-										})
-									.done(function(data) {});
-								}
-							}
-						for (var i=0; i<$GCarr.length; i++){
-								if($($GCarr[i]).value != 0){
-									var contp4data = {};
-										contp4data.CONSULT_ID = CONid;
-										contp4data.ROOM_TITLE = froomid;
-										contp4data.GOODS_CODE = $GMarr[i].value;
-										contp4data.ORD_TYPE = "1";
-										contp4data.NET_PRICE = Number($InfoG2arr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-										contp4data.ORD_QUTY = $GCarr[i].value;
-										contp4data.ORD_AMOUNT = Number($GDarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-										console.log(contp4data);
-								$.ajax({
-									url : "${path}/consult/insertP4.do",  
-									data : contp4data,  
-									method : "POST",  
-									dataType : "json"  
-									})
-									.done(function(data) {});
-								}
-							}
+	function fn_cstInsertP4(CONid) {
+	if (CONid != ""){
+		var froomid = $('#frid').val();
+		var sel = $("#selMTR").val();
+		var contp4upd ={};
+		contp4upd.CONSULT_ID = Number(CONid);
+		console.log(contp4upd);
+		$.ajax({
+			url : "${path}/consult/updateP4.do",  
+			data : contp4upd,  
+			method : "POST",  
+			dataType : "json"  
+		})
+		.done(function(data) {
+			if (sel == "M"){
+				var $mgidarr = $(".mgid");
+				var $GAarr = $(".GA");
+				var $GBarr = $(".GB");
+				var $GCarr = $(".GC");
+				var $GDarr = $(".GD");
+				var $InfoG1arr = $(".infoG1");
+				var $InfoG2arr = $(".infoG2");
+				var $GMarr = $(".GIDm");
+					for (var i=0; i<$GAarr.length; i++){
+						if($($GAarr[i]).value != 0){
+							var contp4data = {};
+								contp4data.CONSULT_ID = CONid;
+								contp4data.ROOM_TITLE = froomid;
+								contp4data.GOODS_CODE = $mgidarr[i].value;
+								contp4data.ORD_TYPE = "1";
+								contp4data.NET_PRICE = Number($InfoG1arr[i].value.replace(/[\D\s\._\-]+/g, ""));
+								contp4data.ORD_QUTY = $GAarr[i].value;
+								contp4data.ORD_AMOUNT = Number($GBarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+								console.log(contp4data);
+						$.ajax({
+							url : "${path}/consult/insertP4.do",  
+							data : contp4data,  
+							method : "POST",  
+							dataType : "json"  
+								})
+							.done(function(data) {});
 						}
-				else
-						{
-							var $tgidarr = $(".tgid");
-							var $GEarr = $(".GE");
-							var $GFarr = $(".GF");
-							var $GGarr = $(".GG");
-							var $GHarr = $(".GH");
-							var $InfoG3arr = $(".infoG3");
-							var $InfoG4arr = $(".infoG4");
-							var $GTarr = $(".GIDt");
-								for (var i=0; i<$GEarr.length; i++){
-									if($($GEarr[i]).value != 0){
-										var contp4data = {};
-											contp4data.CONSULT_ID = CONid;
-											contp4data.ROOM_TITLE = froomid;
-											contp4data.GOODS_CODE = $tgidarr[i].value;
-											contp4data.ORD_TYPE = "1";
-											contp4data.NET_PRICE = Number($InfoG3arr[i].value.replace(/[\D\s\._\-]+/g, ""));
-											contp4data.ORD_QUTY = $GEarr[i].value;
-											contp4data.ORD_AMOUNT = Number($GFarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-											console.log(contp4data);
-									$.ajax({
-										url : "${path}/consult/insertP4.do",  
-										data : contp4data,  
-										method : "POST",  
-										dataType : "json"  
-										})
-										.done(function(data) {});
-									}
-								}
-							for (var i=0; i<$GGarr.length; i++){
-								if($($GGarr[i]).value != 0){
-									var contp4data = {};
-										contp4data.CONSULT_ID = CONid;
-										contp4data.ROOM_TITLE = froomid;
-										contp4data.GOODS_CODE = $GTarr[i].value;
-										contp4data.ORD_TYPE = "1";
-										contp4data.NET_PRICE = Number($InfoG4arr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-										contp4data.ORD_QUTY = $GGarr[i].value;
-										contp4data.ORD_AMOUNT = Number($GHarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-										console.log(contp4data);
-									$.ajax({
-										url : "${path}/consult/insertP4.do",  
-										data : contp4data,  
-										method : "POST",  
-										dataType : "json"  
-										})
-										.done(function(data) {});
-									}
-								}
-							}
-					});
-					/* alert("저장성공"); */
-				}
-					else
-					{
-						alert("계약기본사항을 먼저 저장해 주세요!!");	
+					}
+				for (var i=0; i<$GCarr.length; i++){
+						if($($GCarr[i]).value != 0){
+							var contp4data = {};
+								contp4data.CONSULT_ID = CONid;
+								contp4data.ROOM_TITLE = froomid;
+								contp4data.GOODS_CODE = $GMarr[i].value;
+								contp4data.ORD_TYPE = "1";
+								contp4data.NET_PRICE = Number($InfoG2arr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+								contp4data.ORD_QUTY = $GCarr[i].value;
+								contp4data.ORD_AMOUNT = Number($GDarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+								console.log(contp4data);
+						$.ajax({
+							url : "${path}/consult/insertP4.do",  
+							data : contp4data,  
+							method : "POST",  
+							dataType : "json"  
+							})
+							.done(function(data) {});
+						}
 					}
 				}
+		else
+				{
+					var $tgidarr = $(".tgid");
+					var $GEarr = $(".GE");
+					var $GFarr = $(".GF");
+					var $GGarr = $(".GG");
+					var $GHarr = $(".GH");
+					var $InfoG3arr = $(".infoG3");
+					var $InfoG4arr = $(".infoG4");
+					var $GTarr = $(".GIDt");
+						for (var i=0; i<$GEarr.length; i++){
+							if($($GEarr[i]).value != 0){
+								var contp4data = {};
+									contp4data.CONSULT_ID = CONid;
+									contp4data.ROOM_TITLE = froomid;
+									contp4data.GOODS_CODE = $tgidarr[i].value;
+									contp4data.ORD_TYPE = "1";
+									contp4data.NET_PRICE = Number($InfoG3arr[i].value.replace(/[\D\s\._\-]+/g, ""));
+									contp4data.ORD_QUTY = $GEarr[i].value;
+									contp4data.ORD_AMOUNT = Number($GFarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+									console.log(contp4data);
+							$.ajax({
+								url : "${path}/consult/insertP4.do",  
+								data : contp4data,  
+								method : "POST",  
+								dataType : "json"  
+								})
+								.done(function(data) {});
+							}
+						}
+					for (var i=0; i<$GGarr.length; i++){
+						if($($GGarr[i]).value != 0){
+							var contp4data = {};
+								contp4data.CONSULT_ID = CONid;
+								contp4data.ROOM_TITLE = froomid;
+								contp4data.GOODS_CODE = $GTarr[i].value;
+								contp4data.ORD_TYPE = "1";
+								contp4data.NET_PRICE = Number($InfoG4arr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+								contp4data.ORD_QUTY = $GGarr[i].value;
+								contp4data.ORD_AMOUNT = Number($GHarr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+								console.log(contp4data);
+							$.ajax({
+								url : "${path}/consult/insertP4.do",  
+								data : contp4data,  
+								method : "POST",  
+								dataType : "json"  
+								})
+								.done(function(data) {});
+							}
+						}
+					}
+			});
+			/* alert("저장성공"); */
+		}
+			else
+			{
+				alert("계약기본사항을 먼저 저장해 주세요!!");	
+			}
+	}
 
 	
-	function fn_cstInsertP5() {
-		var CONid = $("#consultid").val();
+	function fn_cstInsertP5(CONid) {
 		if (CONid != ""){
 		var froomid = $('#frid').val();
 		var $Chkarr = $(".sCHKalt");
@@ -2110,11 +2121,25 @@
 	})
 	
 	function fn_eventAllClick(){
-		fn_UpdconsultP1();
-		fn_cstInsertP2();
-		fn_cstInsertP3();
-		fn_cstInsertP4();
-		fn_cstInsertP5();
+		var getConsultId = 0;
+		
+		if($("#consultid").val() > 0){
+			getConsultId = $("#consultid").val();
+			fn_UpdconsultP1(getConsultId);
+			fn_cstInsertP2(getConsultId);
+			fn_cstInsertP3(getConsultId);
+			fn_cstInsertP4(getConsultId);
+			fn_cstInsertP5(getConsultId);
+		}else{
+			fn_InsertConsult();
+			setTimeout(() => {
+				getConsultId = InsertConsultId();
+				fn_cstInsertP2(getConsultId);
+				fn_cstInsertP3(getConsultId);
+				fn_cstInsertP4(getConsultId);
+				fn_cstInsertP5(getConsultId);
+			}, 300);
+		}
 		alert("저장성공");
 		setTimeout(() => {
 			fn_ReloadConsult();

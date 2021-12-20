@@ -1662,28 +1662,29 @@
 	});
 
 	$("#searchBtn").click(function(){
-		var consultData = {};
 		modal_body.find("table tbody").html("");
 		
-		consultData.from = $("#searchDateFrom").val();
-		consultData.end = $("#searchDateEnd").val();
-		consultData.PATI_NAME = $("#searchPatiName").val();
-		console.log($("#searchPatiName").val());
-		consultData.BFAMILY_NAME = $("#searchBfamilyName").val();
-		
-		$.ajax({
-			url: "${path}/consult/consultModalSearch.do",
-			method: "post",
-			data: consultData,
-			dataType: "json",
-			success:function(data){
-				$.each(data, function(index, item){
-					modal_body.find("table tbody").append("<tr id='consultSelect' data-id='"+item.CONSULT_ID+"'><td>" + item.CONSULT_DATE + "</td><td>" + item.FROOM_TITLE + "</td><td>" + item.PATI_NAME + "</td><td>" + item.BFAMILY_NAME + "</td></tr>");
-				});
-			}
-		});
-		
-		return false;
+		if($("#searchDateFrom").val() === "" && $("#searchDateEnd").val() === "" && $("#searchPatiName").val() === "" && $("#searchBfamilyName").val() === ""){
+			alert("검색할 항목을 입력해주세요.");
+		}else{
+			var consultData = {};
+			consultData.from = $("#searchDateFrom").val();
+			consultData.end = $("#searchDateEnd").val();
+			consultData.PATI_NAME = $("#searchPatiName").val();
+			consultData.BFAMILY_NAME = $("#searchBfamilyName").val();
+			
+			$.ajax({
+				url: "${path}/consult/consultModalSearch.do",
+				method: "post",
+				data: consultData,
+				dataType: "json",
+				success:function(data){
+					$.each(data, function(index, item){
+						modal_body.find("table tbody").append("<tr id='consultSelect' data-id='"+item.CONSULT_ID+"'><td>" + item.CONSULT_DATE + "</td><td>" + item.FROOM_TITLE + "</td><td>" + item.PATI_NAME + "</td><td>" + item.BFAMILY_NAME + "</td></tr>");
+					});
+				}
+			});
+		}
 	});
 	
 	$(".close").click(function(){
@@ -1705,10 +1706,9 @@
 			async : false,
 			dataType: "json",
 			success:function(data){
-				$.each(data, function(index, item){
-					console.log(item);
+				/* $.each(data, function(index, item){
 					modal_body.find("table tbody").append("<tr id='consultSelect' data-id='"+item.CONSULT_ID+"'><td>" + item.CONSULT_DATE + "</td><td>" + item.FROOM_TITLE + "</td><td>" + item.PATI_NAME + "</td><td>" + item.BFAMILY_NAME + "</td></tr>");
-				});
+				}); */
 			}
 		});
 	});
