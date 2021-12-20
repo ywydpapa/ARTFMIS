@@ -127,15 +127,6 @@
 									</tbody>
 								</table>
 								<div class="row">
-								<div style="float:left;width:10%;">
-									<table class="table  table-bordered nowrap">
-									<c:forEach var="row" items="${consultpage3}" varStatus="status">
-									<tr>
-									<td style="vertical-align:middle;text-align:center" class="second2 sel_${row.FTABLE_ID}">${row.BCD_TITLE}</td>
-									</tr>
-									</c:forEach>
-									</table>
-								</div>
 								<div style="float:right;width:89%;">
 									<table class="table  table-bordered nowrap" style="width:95%; margin:0 auto;" id="ftTable">
 										<colgroup>
@@ -472,8 +463,8 @@
 														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td></c:if>
 												<c:if test="${row.CAT_02_ID > 18}"><td style="text-align: right;" class="infoG2"><fmt:formatNumber
 														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></td></c:if>
-												<c:if test="${row.CAT_02_ID > 18}"><td style="text-align: right;background-color:yellow;"><input class="from-control GC" oninput="calculateG()" 
-													style="border: none; text-align: right;background-color:yellow;" type="number" min="0" max="100" value="${row.ORD_QUTY}" required></td></c:if>
+												<c:if test="${row.CAT_02_ID > 18}"><td style="text-align: right;"><input class="from-control GC" oninput="calculateG()" 
+													style="border: none; text-align: right;" type="number" min="0" max="100" value="${row.ORD_QUTY}" required></td></c:if>
 												<c:if test="${row.CAT_02_ID > 18}"><td class="GD from-control" style="text-align: right;"></td></c:if>
 											<c:if test="${row.CAT_02_ID > 18}"></tr></c:if>
 										</c:forEach>
