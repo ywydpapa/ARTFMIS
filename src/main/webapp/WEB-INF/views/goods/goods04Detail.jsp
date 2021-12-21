@@ -13,25 +13,23 @@
 	<div class="row" align="center">
 		<div class="col-lg-12">
 			<div class="card_box sch_it">
-						<div class="btn_wr text-right mt-3">
-				<div id = "updbtn">
+				<div class="btn_wr text-right mt-3">
+				<!-- <div id = "updbtn">
 				<button class="btn btn-md btn-primary"  onClick="fn_goodsUpdate01()">저장</button>
-				</div>
+				</div> -->
 				<div id = "istbtn"> 
 				<button class="btn btn-md btn-primary"  onClick="fn_goodsInsert01()">새항목 저장</button>
 				</div>
 			</div>
-			<hr>
 				<form name="form1" id="form1" onSubmit="return false;">
 					<table class="table table-bordered nowrap">
 						<colgroup>
 							<col width="15%" />
-							<col width="20%" />
+							<col width="15%" />
 							<col width="15%" />
 							<col width="20%" />
 							<col width="15%" />
 							<col width="20%" />
-
 						</colgroup>
 						<tbody>
 							<tr>
@@ -43,8 +41,8 @@
 									class="form-control" value="" id="GOODS_02TEXT" readonly>
 								</td>
 								<td style="vertical-align:middle;text-align:center">
-									<button class="btn btn-md btn-success" value="추가"
-										onClick="fn_setinsertmode()">새항목 추가</button>
+									<button class="btn btn-md btn-success" value="추가" onClick="fn_setinsertmode()">새항목 추가</button>
+									<button class="btn btn-md btn-primary"  onClick="fn_goodsUpdate01()">저장</button>
 								</td>
 							</tr>
 							<tr>

@@ -73,7 +73,7 @@
 			</table>
 			
 		</div>
-		<div class="item cont">
+		<div class="item cont" style="padding:0 20px;">
 			<div id="detailTable" class="detailTable"></div>
 		</div>
 	</div>

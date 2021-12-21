@@ -11,9 +11,9 @@
 			<div class="card-block table-border-style">
 			<div class="btn_wr text-right mt-3">
 			<c:if test = "${not empty list.SETUP_ID}">
-			<div id="udtbtn">
+			<!-- <div id="udtbtn">
 				<button class="btn btn-md btn-primary " onClick="fn_Updatesetupinfo()">저장</button>
-			</div>
+			</div> -->
 			</c:if>
 			<c:if test = "${empty list.SETUP_ID}">
 			<div id="istbtn">
@@ -21,12 +21,11 @@
 			</div>
 			</c:if>
 			</div>
-			<hr>
 				<div class="table-responsive">
 					<table class="table table-sm bst02">
 						<colgroup>
 							<col width="15%" />
-							<col width="35%" />
+							<col width="30%" />
 							<col width="15%" />
 							<col width="20%" />
 							<col width="15%" />
@@ -37,6 +36,7 @@
 								<td colspan="3"><input type="text" class="form-control" id="setupTitle" value="${list.SETUP_TITLE}" placeholder=""></td>
 									<td>
 									<button style="text-align:right;" class="btn btn-md btn-success" value="추가" onClick="fn_setNewInfo()">새항목 추가</button>
+									<button class="btn btn-md btn-primary " onClick="fn_Updatesetupinfo()">저장</button>
 									</td>
 							</tr>
 							<tr>

@@ -9,11 +9,11 @@
 		<div class="col-sm-12">
 			<div class="card-block table-border-style">
 			<div class="btn_wr text-right mt-3">
-			<c:if test="${not empty list.USER_ID}">
+			<%-- <c:if test="${not empty list.USER_ID}">
 				<div id="udtbtn">
 					<button class="btn btn-md btn-primary " onClick="fn_Updateuser()">저장</button>
 				</div>
-			</c:if>
+			</c:if> --%>
 			<c:if test="${empty list.USER_ID}">
 				<div id="istbtn">
 					<button class="btn btn-md btn-primary " onClick="fn_Insertuser()">새로
@@ -21,12 +21,11 @@
 				</div>
 			</c:if>
 			</div>
-			<hr>
 				<div class="table-responsive">
 					<table class="table table-sm bst02">
 						<colgroup>
 							<col width="15%" />
-							<col width="35%" />
+							<col width="20%" />
 							<col width="15%" />
 							<col width="20%" />
 							<col width="15%" />
@@ -41,8 +40,10 @@
 								<th class="table-success" style="text-align: center" scope="row">로그인아이디</th>
 								<td><input class="form-control" type="text" id="uId" value="${list.USER_LOGINID}"></td>
 								<td>
-									<button style="text-align: right;" class="btn btn-md btn-success" value="추가"
-										onClick="fn_setNewuser()">새사용자 추가</button>
+									<button style="text-align: right;" class="btn btn-md btn-success" value="추가" onClick="fn_setNewuser()">새사용자 추가</button>
+									<c:if test="${not empty list.USER_ID}">
+										<button class="btn btn-md btn-primary " onClick="fn_Updateuser()">저장</button>
+									</c:if>
 								</td>
 							</tr>
 							<tr>

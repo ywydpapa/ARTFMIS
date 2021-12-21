@@ -34,7 +34,7 @@
 <div class="page-header2">
 </div>
 	<table class="table  table-bordered nowrap"
-		style="width: 50%;">
+		style="width: 100%;">
 		<colgroup>
 			<col width="10%" />
 			<col width="20%" />
@@ -62,7 +62,7 @@
 			</table>
 		</div>
 		<div class="item cont">
-		<div id="detailroom" class="detailroom">
+		<div id="detailroom" class="detailroom" style="padding:0 12px;">
 		
 		</div>
 		</div>

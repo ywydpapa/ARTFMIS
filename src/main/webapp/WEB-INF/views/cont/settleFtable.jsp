@@ -9,14 +9,14 @@
 		<div class="col-sm-12">
 			<div class="card-block table-border-style">
 				<div class="table-responsive" style="overflow-x:hidden">
-				<table class="table  table-bordered nowrap">
-				<tr>
-				<td class="align-middle"><input id="frid" type="hidden" value = "${frid}"><span>제물상 비용 정산설정</span></td>
-				<td class="align-middle"><div class="btn_wr text-right mt-3"><button class="btn btn-md btn-primary " onClick="fn_Sruleupd()">저장</button></div></td>
-				</tr>
-				</table>
+					<div style="float:left; margin-top:7px;">
+						<input id="frid" type="hidden" value = "${frid}"><span>제물상 비용 정산설정</span>
+					</div>
+					<div class="btn_wr" style="float:right;">
+						<button class="btn btn-md btn-primary " onClick="fn_Sruleupd()">저장</button>
+					</div>
 				</div>
-				<div class="table-responsive" style="overflow-x:hidden">
+				<div class="table-responsive" style="overflow-x:hidden; margin-top: 20px;">
 					<table id = "DOS01" class="table  table-bordered nowrap">
 						<colgroup>
 							<col width="20%"/>
@@ -31,29 +31,29 @@
 								<th class="align-middle text-center table-info">정산서 포함여부</th>
 							</tr>
 						<tbody>
-<c:forEach var="row" items="${rowT}">	
-							<tr style="text-align:center;">
-								<td>제물상<input type="hidden" class="FID" value="123"/></td>
-								<td>
-								<select class="form-control form-control-sm STYP">
-										<option value="TIME" <c:if test ="${row.SETL_TYPE eq 'FNR'}">selected</c:if> >장례식장 결재</option>
-										<option value="COUNT" <c:if test ="${row.SETL_TYPE eq 'EXT'}">selected</c:if> >외부업체 결제</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm UYN">
-										<option value="Y" <c:if test ="${row.PAY_YN eq 'Y'}">selected</c:if> >부과</option>
-										<option value="N" <c:if test ="${row.PAY_YN eq 'N'}">selected</c:if> >미부과</option>
-								</select>
-								</td>
-								<td>
-								<select class="form-control form-control-sm INCYN">
-										<option value="Y" <c:if test ="${row.INCADD_YN eq 'Y'}">selected</c:if> >포함</option>
-										<option value="N" <c:if test ="${row.INCADD_YN eq 'N'}">selected</c:if> >미포함</option>
-								</select>
-								</td>
-							</tr>
-</c:forEach>
+							<c:forEach var="row" items="${rowT}">	
+								<tr style="text-align:center;">
+									<td>제물상<input type="hidden" class="FID" value="123"/></td>
+									<td>
+									<select class="form-control form-control-sm STYP">
+											<option value="TIME" <c:if test ="${row.SETL_TYPE eq 'FNR'}">selected</c:if> >장례식장 결재</option>
+											<option value="COUNT" <c:if test ="${row.SETL_TYPE eq 'EXT'}">selected</c:if> >외부업체 결제</option>
+									</select>
+									</td>
+									<td>
+									<select class="form-control form-control-sm UYN">
+											<option value="Y" <c:if test ="${row.PAY_YN eq 'Y'}">selected</c:if> >부과</option>
+											<option value="N" <c:if test ="${row.PAY_YN eq 'N'}">selected</c:if> >미부과</option>
+									</select>
+									</td>
+									<td>
+									<select class="form-control form-control-sm INCYN">
+											<option value="Y" <c:if test ="${row.INCADD_YN eq 'Y'}">selected</c:if> >포함</option>
+											<option value="N" <c:if test ="${row.INCADD_YN eq 'N'}">selected</c:if> >미포함</option>
+									</select>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>

@@ -40,7 +40,7 @@
 }
 </style>
 <div class="listrooms">
-		<table class="table table-bordered nowrap" style="width: 50%;">
+		<table class="table table-bordered nowrap" style="width: 100%;">
 		<colgroup>
 			<col width="10%" />
 			<col width="20%" />
@@ -78,10 +78,9 @@
 					</c:forEach>
 				</tbody>
 			</table>
-			
 		</div>
 		<div class="item cont">
-			<div id="detailaltar" class="detailaltar"></div>
+			<div id="detailaltar" class="detailaltar" style="padding: 0 12px;"></div>
 		</div>
 	</div>
 </div>

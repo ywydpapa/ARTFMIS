@@ -42,7 +42,7 @@
 <div class="listrooms">
 
 	<table class="table table-bordered "
-		style="width: 50%;">
+		style="width: 100%;">
 		<colgroup>
 			<col width="10%" />
 			<col width="20%" />
@@ -83,7 +83,7 @@
 
 		</div>
 		<div class="item cont">
-			<div id="detailftable" class="detailftable"></div>
+			<div id="detailftable" class="detailftable" style="padding:0 12px;"></div>
 		</div>
 	</div>
 </div>

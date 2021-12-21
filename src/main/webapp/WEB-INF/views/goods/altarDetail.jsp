@@ -12,19 +12,18 @@
 		<div class="col-sm-12">
 			<div class="card-block table-border-style">
 			<div class="btn_wr text-right mt-3">
-			<div id="udtbtn">
+			<!-- <div id="udtbtn">
 				<button class="btn btn-md btn-primary " onClick="fn_Updatealtar()">저장</button>
-			</div>
+			</div> -->
 			<div id="istbtn">
 				<button class="btn btn-md btn-primary " onClick="fn_Insertaltar()">새로 저장</button>
 			</div>
 			</div>
-			<hr>
 				<div class="table-responsive">
 					<table class="table table-sm bst02">
 						<colgroup>
 							<col width="15%" />
-							<col width="35%" />
+							<col width="25%" />
 							<col width="15%" />
 							<col width="20%" />
 							<col width="15%" />
@@ -35,9 +34,10 @@
 								<td><input class="form-control" id="typename" value="" readonly></td>
 								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">제단명<input type="hidden" id="altarID" value="${dto.ALTAR_ID}"></th>
 								<td ><input type="text" class="form-control" id="altarTitle" name="altarTitle" value="${dto.ALTAR_TITLE}" placeholder=""></td>
-									<td style="text-align:center;">
+								<td style="text-align:center;">
 									<button style="text-align:center;" class="btn btn-md btn-success" value="추가" onClick="fn_setinsert()">새항목 추가</button>
-									</td>
+									<button class="btn btn-md btn-primary " onClick="fn_Updatealtar()">저장</button>
+								</td>
 							</tr>
 							<tr >
 								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">단가</th>

@@ -8,15 +8,15 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="card-block table-border-style">
-				<div class="table-responsive" style="overflow-x:hidden">
-				<table class="table  table-bordered nowrap">
-				<tr>
-				<td class="align-middle"><input id="frid" type="hidden" value = "${frid}">시설물 정산설정</td>
-				<td class="align-middle"><div class="btn_wr text-right mt-3"><button class="btn btn-md btn-primary " onClick="fn_Sruleupd()">저장</button></div></td>
-				</tr>
-				</table>
+				<div class="table-responsive" style="overflow-x:hidden;">
+					<div style="float:left; margin-top:7px;">
+						<input id="frid" type="hidden" value = "${frid}">시설물 정산설정
+					</div>
+					<div class="btn_wr" style="float:right;">
+						<button class="btn btn-md btn-primary " onClick="fn_Sruleupd()">저장</button>
+					</div>
 				</div>
-				<div class="table-responsive" style="overflow-x:hidden">
+				<div class="table-responsive" style="overflow-x:hidden; margin-top: 20px;">
 					<table id = "DOS01" class="table  table-bordered nowrap">
 						<colgroup>
 							<col width="20%"/>

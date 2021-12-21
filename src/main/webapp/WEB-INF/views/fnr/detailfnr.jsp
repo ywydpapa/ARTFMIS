@@ -9,11 +9,11 @@
 		<div class="col-sm-12">
 			<div class="card-block table-border-style">
 			<div class="btn_wr text-right mt-3">
-			<c:if test="${not empty list.FNR_ID}">
+			<%-- <c:if test="${not empty list.FNR_ID}">
 				<div id="udtbtn">
 					<button class="btn btn-md btn-primary " onClick="fn_Updatefnr()">저장</button>
 				</div>
-			</c:if>
+			</c:if> --%>
 			<c:if test="${empty list.FNR_ID}">
 				<div id="istbtn">
 					<button class="btn btn-md btn-primary " onClick="fn_Insertfnr()">새로
@@ -21,7 +21,6 @@
 				</div>
 			</c:if>
 			</div>
-			<hr>
 				<div class="table-responsive">
 					<table class="table table-sm bst02">
 						<colgroup>
@@ -34,9 +33,15 @@
 						<tbody>
 							<tr>
 								<th class="align-middle table-info" style="text-align: center" scope="row">장례식장명</th>
-								<td><input type="text" class="form-control"
-									id="fnamek" value="${list.FNR_NAMEK}" placeholder=""></td>
-								<td style="border:none"><input class="form-control" type="hidden" id="fid" value="${list.FNR_ID}"></td>
+								<td><input type="text" class="form-control" id="fnamek" value="${list.FNR_NAMEK}" placeholder=""></td>
+								<td><input class="form-control" type="hidden" id="fid" value="${list.FNR_ID}">
+								</td>
+								<td></td>
+								<td style="text-align:right;">
+									<c:if test="${not empty list.FNR_ID}">
+										<button class="btn btn-md btn-primary " onClick="fn_Updatefnr()">저장</button>
+									</c:if>
+								</td>
 							</tr>
 							<tr>
 								<th class="align-middle table-info" style="text-align: center" scope="row">대표번호</th>

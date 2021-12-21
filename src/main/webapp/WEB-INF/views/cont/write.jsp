@@ -476,6 +476,7 @@
 				<div class="tab-pane" id="tab03" role="tabpanel">
 					<div class="card-block table-border-style">
 						<div class="table-responsive" style="overflow-x: hidden;">
+							<div style="text-align:left"><span>선택된 제물상 총액 :</span><input type="text" id="P3total" style="text-align: left; border: none;" readonly></div>
 							<form name="form3" method="post" onsubmit="return false;">
 								<div style="width:100%;">
 									<div style="float:left;margin-top:10px;">
@@ -560,15 +561,13 @@
 										</tbody>
 									</table>
 							</form>
-							<hr>
-							<div style="text-align:right"><span>선택된 제물상 총액 :</span><input type="text" id="P3total" style="text-align: right; border: none;" readonly>
-							</div>
 						</div>
 					</div>
 				</div>
 				<div class="tab-pane" id="tab04" role="tabpanel">
 					<div class="card-block table-border-style">
 						<div class="table-responsive" style="overflow-x:hidden">
+							<div style="text-align:left"><span>선택된 장의용품 총액 :</span><input type="text" id="P4total" style="text-align: left; border: none;" readonly></div>
 							<form name="form4" method="post" onsubmit="return false;">
 								<div style="width:100%;">
 									<div style="float:left;margin-top:10px;">
@@ -1137,14 +1136,15 @@
 									</tbody>
 								</table>
 							</form>
-							<hr>
-							<div style="text-align:right"><span>선택된 장의용품 총액 :</span><input type="text" id="P4total" style="text-align: right; border: none;" readonly></div>
 						</div>
 					</div>
 				</div>
 				<div class="tab-pane" id="tab05" role="tabpanel">
 					<div class="card-block table-border-style">
 						<div class="table-responsive" style="overflow-x:hidden">
+							<div style="text-align:left;">
+								<span>선택된 제단용품 총액 :</span><input type="text" id="P5total" style="text-align: left; border: none;" readonly>
+							</div>
 							<form name="form5" method="post" onsubmit="return false;">
 								<div style="width:100%;">
 									<div style="float:left;margin-top:10px;">
@@ -1188,16 +1188,16 @@
 												<td>${row.ALTAR_TITLE}<input type = "hidden" class = "Aid" value="${row.ALTAR_ID}"/></td>
 												<td style="text-align: right" class="AA"><fmt:formatNumber value="${row.ALTAR_AMOUNT}" pattern="#,###" /></td>
 												<c:if test="${status.first}">
-													<td class="imagebx" rowspan="${fn:length(listAltar)}">
+													<td class="imagebx" rowspan="${fn:length(listAltar)}" style="text-align:center;">
 														<c:forEach var="t" items="${listAltar}">
 															<c:set var="length" value="${fn:length(t.ALTAR_IMAGE)}" />
 															<c:choose>
 																<c:when test="${fn:contains(path, 'ARTFMIS')}">
-																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: auto;" <c:if test="${not empty t.ALTAR_IMAGE}">src="${path}/artImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}"</c:if>
+																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: auto; height: auto;" <c:if test="${not empty t.ALTAR_IMAGE}">src="${path}/artImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}"</c:if>
 																		 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
 																</c:when>
 																<c:otherwise>
-																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: auto;" <c:if test="${not empty t.ALTAR_IMAGE}">src="<spring:url value='/localImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}'/>"</c:if>
+																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 100%;" <c:if test="${not empty t.ALTAR_IMAGE}">src="<spring:url value='/localImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}'/>"</c:if>
 																		 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
 																</c:otherwise>
 															</c:choose>
@@ -1243,15 +1243,18 @@
 										</c:forEach>
 									</tbody>
 								</table>
-								<hr>
-								<div style="text-align:right">
-								<span>선택된 제단용품 총액 :</span><input type="text" id="P5total" style="text-align: right; border: none;" readonly>
-								</div>
 						</div>
 					</div>
 				</div>
 				<div class="tab-pane" id="tab06" role="tabpanel">
 					<div class="card-block table-border-style">
+						<table class="table  table-bordered nowrap" style="border:0px">
+							<tr>
+								<td style="border-right:none"></td>
+								<td style="text-align: right;border-left:none"><span>선택된 주문 총액 :</span><input type="text" id="messgrandtotal"
+									style="text-align: right; border: none;" readonly></td>
+							</tr>
+						</table>
 						<div class="table-responsive" style="overflow-x:hidden">
 							<div style="width:100%;">
 								<div style="float:left;margin-top:10px;">
@@ -1327,17 +1330,18 @@
 								</tbody>
 							</table>
 						</div>
-						<table class="table  table-bordered nowrap" style="border:0px">
-								<tr>
-									<td style="border-right:none"></td>
-									<td style="text-align: right;border-left:none"><span>선택된 주문 총액 :</span><input type="text" id="messgrandtotal"
-										style="text-align: right; border: none;" readonly></td>
-								</tr>
-							</table>
 					</div>
 				</div>
 				<div class="tab-pane" id="tab07" role="tabpanel">
 					<div class="card-block table-border-style">
+						<table class="table  table-bordered nowrap">
+							<tr>
+								<td style="border-right:none"></td>
+								<td style="text-align: right;border-left:none"><span>선택된 주문 총액 :</span><input
+									type="text" id="storegrandtotal"
+									style="text-align: right; border: none;" readonly></td>
+							</tr>
+						</table>
 						<div class="table-responsive" style="overflow-x:hidden">
 							<div style="width:100%;">
 								<div style="float:left;margin-top:10px;">
@@ -1409,14 +1413,6 @@
 										</tr>
 									</c:forEach>
  --%>								</tbody>
-							</table>
-							<table class="table  table-bordered nowrap">
-								<tr>
-									<td style="border-right:none"></td>
-									<td style="text-align: right;border-left:none"><span>선택된 주문 총액 :</span><input
-										type="text" id="storegrandtotal"
-										style="text-align: right; border: none;" readonly></td>
-								</tr>
 							</table>
 						</div>
 					</div>

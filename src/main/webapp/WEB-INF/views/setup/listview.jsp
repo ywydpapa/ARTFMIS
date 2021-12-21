@@ -80,7 +80,7 @@
 			
 		</div>
 		<div class="item cont">
-			<div id="detailTable" class="detailTable"></div>
+			<div id="detailTable" class="detailTable" style="padding:0 12px;"></div>
 		</div>
 	</div>
 </div>

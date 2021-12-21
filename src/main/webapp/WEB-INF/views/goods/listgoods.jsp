@@ -14,7 +14,7 @@
 </style>
 
 <div class="listgoods">
-	<table class="table table-bordered nowrap" style="width: 50%;">
+	<table class="table table-bordered nowrap" style="width: 100%;">
 		<colgroup>
 			<col width="20%" />
 			<col width="30%" />
@@ -69,7 +69,7 @@
 					</table>
 				</div>
 			</td>
-			<td>
+			<td style="padding: 0;">
 				<div id="detail02"></div>
 			</td>
 		</tr>

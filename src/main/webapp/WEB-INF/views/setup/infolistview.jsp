@@ -93,7 +93,7 @@
 			
 		</div>
 		<div class="item cont">
-			<div id="detailTable" class="detailTable"></div>
+			<div id="detailTable" class="detailTable""></div>
 		</div>
 	</div>
 </div>

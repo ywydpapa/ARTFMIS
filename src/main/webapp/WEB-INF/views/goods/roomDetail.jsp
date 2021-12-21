@@ -3,13 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<div class="btn_wr text-right mt-6" id="udtbtn">
+<!-- <div class="btn_wr text-right mt-6" id="udtbtn">
 	<button class="btn btn-md btn-primary" onClick="fn_Updateroom()">저장</button>
-</div>
+</div> -->
 <div class="btn_wr text-right mt-6" id="insbtn">
 	<button class="btn btn-md btn-primary" onClick="fn_Insertroom()">새로저장</button>
 </div>
-<hr>
 <table class="table table-sm bst02">
 	<colgroup>
 		<col width="15%" />
@@ -36,8 +35,8 @@
 					</c:forEach>
 			</select></td>
 			<td style="vertical-align: middle; text-align: center">
-				<button class="btn btn-md btn-success" value="추가"
-					onClick="fn_setinsertmode()">새호실 추가</button>
+				<button class="btn btn-md btn-success" value="추가" onClick="fn_setinsertmode()">새호실 추가</button>
+				<button class="btn btn-md btn-primary" onClick="fn_Updateroom()">저장</button>
 			</td>
 		</tr>
 		<tr>

@@ -12,14 +12,13 @@
 		<div class="col-sm-12">
 			<div class="card-block table-border-style">
 			<div class="btn_wr text-right mt-3">
-			<div id="udtbtn">
+			<!-- <div id="udtbtn">
 				<button class="btn btn-md btn-primary alt_D" onClick="fn_Updateftable()">저장</button>
-			</div>
+			</div> -->
 			<div id="istbtn">
 				<button class="btn btn-md btn-primary alt_D" onClick="fn_Inserttable()">새로 저장</button>
 			</div>
 			</div>
-			<hr>
 				<div class="table-responsive">
 					<table class="table table-sm bst02">
 						<colgroup>
@@ -35,7 +34,7 @@
 									class="form-control"
 									id="typename" name="typename" value="" readonly placeholder=""></td>
 								<td></td>
-								<td style="text-align:right;"><button class="btn btn-md btn-success" onClick="fn_setinsert()">새항목 추가</button></td>
+								<td style="text-align:right;"><button class="btn btn-md btn-success" onClick="fn_setinsert()" style="margin-right: 5px;">새항목 추가</button><button class="btn btn-md btn-primary alt_D" onClick="fn_Updateftable()">저장</button></td>
 								</tr>
 								<tr class="alt_B">
 								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">금액</th>

@@ -40,20 +40,20 @@
 		<div class="col-lg-12">
 			<div class="page-header-title">
 				<div class="d-inline">
-					<h3>호실등록</h3>
+					<h3 style="text-align:center;">호실등록</h3>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 	<table class="table  table-bordered nowrap"
-		style="width: 50%;">
+		style="width: 100%;">
 		<colgroup>
 			<col width="10%" />
 			<col width="20%" />
 		</colgroup>
 		<tr>
-			<td style="vertical-align:middle;background-color:#E6F8E0">시설구분</td>
+			<td style="vertical-align:middle;background-color:#E6F8E0; text-align:center;">시설구분</td>
 			<td style="vertical-align:middle"><select name="FROOM_TYP" id="FROOM_TYP"
 				class="form-control form-control-sm">
 					<option value="1">분향실</option>
@@ -92,9 +92,7 @@
 			</table>
 		</div>
 		<div class="item cont">
-		<div id="detailroom" class="detailroom">
-		
-		</div>
+		<div id="detailroom" class="detailroom" style="padding:0 12px;"></div>
 		</div>
 	</div>
 
