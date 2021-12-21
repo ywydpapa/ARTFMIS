@@ -2104,6 +2104,12 @@
 	}
 
 	$(document).ready(function(){
+		if($("#consultid").val() == 0){
+			var nowDate = new Date();
+			
+			$("#consultDate").val(nowDate.getFullYear() + "-" + parseInt(nowDate.getMonth()+1) + "-" + nowDate.getDate());
+		}
+		
 		calculateT();
 		chkcalT();
 		calculateR();
