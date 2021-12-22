@@ -14,37 +14,74 @@
 </style>
 <div class="card-block table-border-style swcCard">
 	<div class="table-responsive" style="overflow-x: hidden">
+	<table class="table nowrap">
+		<colgroup>
+			<col width="30%" />
+			<col width="70%" />
+		</colgroup>
+		<tr>
+			<td>
+				<div class="col col-lg-12">
+					<div class="card h-40">
+						<h5 class="card-header"> 분향실 : ${USER_NAMK}</h5>
+						<div class="card-body">
+							<div style="float:left">
+							<p class="card-text"><h5>고인명:${cont.DPERSON_NAME}</h5></p>
+							<p class="card-text"><h5>상주:${cont.SANGJU_NAME}</h5></p>
+							</div>
+							<div style="float:right">
+							<canvas id="canvas" width="100" height="100" style="background-color:white"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+			</td>
+			<td>
+			<div class="col col-lg-12">
+					<div class="card h-100">
+						<h6 class="card-header"> 주문 시간 안내</h6>
+						<div class="card-body">
+							<div class="card-deck">
+							<c:forEach var="row" items="${time}">
+							<div style="float:left" class="card bg-light" style="max-width: 18rem;">
+  								<div style="text-align:center" class="card-header"><h5>${row.SETUP_TITLE}</h5></div>
+  								<div style="text-align:center" class="card-body">
+    								<h5 class="card-title">${row.START_TIME}<span> ~ </span>${row.END_TIME}</h5>
+  								</div>
+							</div>
+							</c:forEach>
+							</div>
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
 		<table class="table  table-bordered nowrap">
+			<colgroup>
+				<col width="20%" />
+				<col width="20%" />
+				<col width="60%" />
+			</colgroup>
 			<tr
 				style="vertical-align: middle; text-align: left; background-color: #EFFBF8">
 				<th style="vertical-align: middle;">매점품목 추가주문</th>
+				<th style="vertical-align: middle;">
+				<select class="form-control selRad" name="cat02" id="selCat02">
+						<option value="999">전체 항목</option>
+						<c:forEach var="row" items="${list2n}">
+							<option value="${row.CAT_ID}">${row.CAT_TITLE}</option>
+						</c:forEach>
+				</select>
+				</th>
 				<th style="float: right"><button class="btn btn-md btn-primary"
 						onClick="fn_addStore()">추가주문</button></th>
 			</tr>
 		</table>
 	</div>
 	<div>
-		<div style="float: left; width: 20%; padding: 10px">
-			<table id="MESST" class="table table-bordered table-hover">
-					<colgroup>
-				<col width="100%" />
-				</colgroup>
-				<tr>
-					<td class="align-middle">
-						<label><input type="radio" class="selRad" name="cat02" value="999" checked> 전체 항목</label>
-					</td>
-				</tr>
-			<c:forEach var="row" items="${list2n}">
-				<tr>
-					<td class="align-middle">
-						<label><input type="radio" name="cat02" class="selRad" value="${row.CAT_ID}"> ${row.CAT_TITLE}</label>
-					</td>
-				</tr>
-			</c:forEach>
-			</table>
-		</div>
 		<div class="table-responsive"
-			style="overflow-x: hidden; float: left; width: 40%; padding: 10px">
+			style="overflow-x: hidden; float: left; width: 50%; padding: 10px">
 			<table id="STORE01" class="table table-bordered">
 				<colgroup>
 					<col width="20%" />
@@ -84,7 +121,7 @@
 			</table>
 		</div>
 		<div class="table-responsive"
-			style="overflow-x: hidden; float: left; width: 40%; padding: 10px">
+			style="overflow-x: hidden; float: left; width: 50%; padding: 10px">
 			<table id="STORE02" class="table table-bordered">
 				<colgroup>
 					<col width="20%" />
@@ -203,7 +240,7 @@
 	}
 	
 	function catView(){
-		var selRadio = $('input[name="cat02"]:checked').val();
+		var selRadio = $('#selCat02').val();
 		$Aarr= $(".TRA");
 		$Barr= $(".CATa");
 		for (var i = 0; i < $Aarr.length; i++) {
@@ -257,5 +294,85 @@
 		} else {
 			alert("계약사항을 확인해 주세요!!");
 		}
+	}
+	
+	var canvas = document.getElementById("canvas");
+	var ctx = canvas.getContext("2d");
+	var radius = canvas.height / 2;
+	ctx.translate(radius, radius);
+	radius = radius * 0.90
+	setInterval(drawClock, 1000);
+
+	function drawClock() {
+	  drawFace(ctx, radius);
+	  drawNumbers(ctx, radius);
+	  drawTime(ctx, radius);
+	}
+
+	function drawFace(ctx, radius) {
+	  var grad;
+	  ctx.beginPath();
+	  ctx.arc(0, 0, radius, 0, 2*Math.PI);
+	  ctx.fillStyle = 'white';
+	  ctx.fill();
+	  grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
+	  grad.addColorStop(0, '#333');
+	  grad.addColorStop(0.5, 'white');
+	  grad.addColorStop(1, '#333');
+	  ctx.strokeStyle = grad;
+	  ctx.lineWidth = radius*0.1;
+	  ctx.stroke();
+	  ctx.beginPath();
+	  ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
+	  ctx.fillStyle = '#333';
+	  ctx.fill();
+	}
+
+	function drawNumbers(ctx, radius) {
+	  var ang;
+	  var num;
+	  ctx.font = radius*0.15 + "px arial";
+	  ctx.textBaseline="middle";
+	  ctx.textAlign="center";
+	  for(num = 1; num < 13; num++){
+	    ang = num * Math.PI / 6;
+	    ctx.rotate(ang);
+	    ctx.translate(0, -radius*0.85);
+	    ctx.rotate(-ang);
+	    ctx.fillText(num.toString(), 0, 0);
+	    ctx.rotate(ang);
+	    ctx.translate(0, radius*0.85);
+	    ctx.rotate(-ang);
+	  }
+	}
+
+	function drawTime(ctx, radius){
+	    var now = new Date();
+	    var hour = now.getHours();
+	    var minute = now.getMinutes();
+	    var second = now.getSeconds();
+	    //hour
+	    hour=hour%12;
+	    hour=(hour*Math.PI/6)+
+	    (minute*Math.PI/(6*60))+
+	    (second*Math.PI/(360*60));
+	    drawHand(ctx, hour, radius*0.5, radius*0.07);
+	    //minute
+	    minute=(minute*Math.PI/30)+(second*Math.PI/(30*60));
+	    drawHand(ctx, minute, radius*0.8, radius*0.07);
+	    // second
+	    second=(second*Math.PI/30);
+	    drawHand(ctx, second, radius*0.9, radius*0.02);
+	}
+
+	function drawHand(ctx, pos, length, width) {
+	    ctx.beginPath();
+	    ctx.lineWidth = width;
+	    ctx.lineCap = "round";
+	    ctx.moveTo(0,0);
+	    ctx.rotate(pos);
+	    ctx.lineTo(0, -length);
+	    ctx.stroke();
+	    ctx.rotate(-pos);
 	}
 </script>

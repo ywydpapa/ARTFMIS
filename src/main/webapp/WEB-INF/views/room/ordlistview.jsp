@@ -50,7 +50,7 @@
 					</div>
 				</div>
 			</td>
-			<td>
+			<td style="display:none">
 			<div class="col col-lg-12">
 					<div class="card h-100">
 						<h6 class="card-header"> 주문 시간 안내</h6>
