@@ -343,6 +343,13 @@ public class ConsultController {
 	}
 	
 	@ResponseBody
+	@RequestMapping("writeConsultGet/{CONSULT_ID}")
+	public List<ConsultDTO> writeConsultGet(@PathVariable("CONSULT_ID") int CONSULT_ID){
+		List<ConsultDTO> consultList = consultService.ConsultGet(CONSULT_ID);
+		return consultList;
+	}
+	
+	@ResponseBody
 	@RequestMapping("writeConsultSelect/{CONSULT_ID}")
 	public List<ConsultDTO> writeConsultSelect(@PathVariable("CONSULT_ID") int CONSULT_ID){
 		List<ConsultDTO> consultList = consultService.writeConsultSelect(CONSULT_ID);

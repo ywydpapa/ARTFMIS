@@ -5,6 +5,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<style>
+*{
+	font-size: 18px !important;
+}
+</style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- <div class="page-header2">
 	<div class="row align-items-end">
@@ -383,7 +388,7 @@
 									<c:forEach var="row" items="${listFroom}" varStatus="status">
 										<tr style="vertical-align:middle;text-align:center" id="contWrite_Room_${row.roomID}${row.TEMP_ROOM}">
 											<td style="vertical-align:middle;text-align: center;">
-												<input type="checkbox" data-name="${row.FROOM_TITLE}" <c:if test="${not empty row.CONSULT_ID}"> id="froomCheck_${row.CONSULT_ID}"</c:if><c:if test="${not empty row.CONTRACT_ID}">disabled</c:if> class="CHKroom form-control" onclick="oneCheck(this);"/>
+												<input type="checkbox" data-name="${row.FROOM_TITLE}" <c:if test="${not empty row.CONSULT_ID}"> id="froomCheck_${row.FROOM_TITLE}"</c:if><c:if test="${not empty row.CONTRACT_ID}">disabled</c:if> class="CHKroom form-control" onclick="oneCheck(this);"/>
 											</td>
 											<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}</td>
 											<td style="vertical-align:middle;text-align: center;color:blue; font-weight:600;"><c:if test="${not empty row.CONTRACT_ID}">사용중</c:if></td>
@@ -501,7 +506,6 @@
 												<th scope="col" width="10%" align="center">구분</th>
 												<th scope="col" width="5%" align="center">선택여부</th>
 												<th scope="col" width="10%" align="center">금액</th>
-												<th scope="col" width="10%" align="center">수량</th>
 												<th scope="col" width="65%" align="center">상품이미지</th>
 											</tr>
 										</thead>
@@ -515,23 +519,6 @@
 															   name = "FT${row.FTABLE_CAT}" class="CHKft form-control" />
 													</td>
 													<td style="text-align: right" class="TA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
-													<td>
-														<c:choose>
-															<c:when test="${row.FTABLE_CAT eq '24'}">
-																<c:choose>
-																	<c:when test="${row.QUTY > 0}">
-																		<input type="number" class="form-control ftEa" id="idFtEa_${row.FTABLE_ID}" style="text-align:right;" min="0" value="${row.QUTY}">
-																	</c:when>
-																	<c:otherwise>
-																		<input type="number" class="form-control ftEa" id="idFtEa_${row.FTABLE_ID}" style="text-align:right;" min="0" value="0" readonly>
-																	</c:otherwise>
-																</c:choose>
-															</c:when>
-															<c:otherwise>
-																<input type="number" class="form-control" style="text-align:right;" min="0" value="1" readonly>
-															</c:otherwise>
-														</c:choose>
-													</td>
 													<c:if test="${status.first}">
 														<td class="imagebx" rowspan="${fn:length(listFtable)}" style="text-align:center;">
 															<c:forEach var="t" items="${listFtable}">
@@ -1627,12 +1614,6 @@
 	var modal_body = $(".modal").find(".modal-body");
 	var modal_footer = $(".modal").find(".modal-footer");
 	
-	$(".ftEa").change(function(){
-		$("#sFtable").find("#"+$(this).attr("id")).val($(this).val());
-		calculateT();
-		chkcalT();
-	});
-	
 	$("#contp1-01").children("option[value='']").hide();
 	
 	$("#searchDateFrom").change(function(){
@@ -1752,6 +1733,10 @@
 			method: "post",
 			dataType: "json",
 			success:function(data){
+				$("[id^='contWrite_Room_']").find(".CHKroom").each(function(index, item){
+					item.checked = false;
+				});
+				
 				$("[id^='contWrite_Prey_']").find(".CHKft").each(function(index, item){
 					item.checked = false;
 				});
@@ -1771,12 +1756,19 @@
 					$("#contp1-13").val(item.RELIGION);
 					$("#contp1-19").val(item.BURI_YN);
 					
-					if($("#froomCheck_"+item.CONSULT_ID).attr("disabled") === undefined){
-						$("#froomCheck_"+item.CONSULT_ID).trigger("click");
-					}else{
-						var name = $("#froomCheck_"+item.CONSULT_ID).data("name");
-						$("input[type='checkbox'][data-name='" + name + "-1']").trigger("click");
-					}
+					$.ajax({
+						url: "${path}/consult/writeConsultGet/" + item.CONSULT_ID,
+						method: "post",
+						dataType: "json",
+						success:function(froomData){
+							if($("#froomCheck_"+froomData[0].RENT_TITLE).attr("disabled") === undefined){
+								$("#froomCheck_"+froomData[0].RENT_TITLE).trigger("click");
+							}else{
+								var name = $("#froomCheck_"+froomData[0].RENT_TITLE).data("name");
+								$("input[type='checkbox'][data-name='" + name + "-1']").trigger("click");
+							}
+						}
+					})
 					
 					$.ajax({
 						url: "${path}/consult/writeConsultFtable/" + item.CONSULT_ID,
@@ -2691,14 +2683,6 @@
 	});
 	
 	$(".CHKft").change(function(){
-		if($(this).is(":checked") == false){
-			/* $(this).parent().next().next().find(".ftEa").val(0); */
-			$(this).parent().next().next().find(".ftEa").attr("readonly", true);
-		}else{
-			/* $(this).parent().next().next().find(".ftEa").val(1); */
-			$(this).parent().next().next().find(".ftEa").removeAttr("readonly");
-		}
-		
 		chkFtablechange();
 		calculateT();
 		chkcalT();
@@ -2952,7 +2936,7 @@
 		var chksum = 0;
 		for (var i = 0; i < $infoarr.length; i++) {
 			if($($infoarr[i]).is(":checked")==true){
-				var t1 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, "")) * $(".TA").eq(i).next().find("input[type='number']").val();
+				var t1 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
 				chksum = chksum + (t1);
 			}
 		}
@@ -3020,7 +3004,6 @@
 		var $sinfoarr = $(".sCHKft");
 		for (var i = 0; i < $infoarr.length; i++) {
 			if($($infoarr[i]).is(":checked")==true){
-				$($sinfoarr[i]).parent().prev().prev().prev().find(".sTB").val($($infoarr[i]).parent().next().next().find("input[type='number']").val());
 				$($sinfoarr[i]).attr("checked",true);
 				$($sinfoarr[i]).parent().parent().show();
 			}

@@ -3,6 +3,9 @@
  * Copyright 2013-2020 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-logomodern-business-nav/blob/master/LICENSE)
  */
+ 
+
+ 
 a { text-decoration:none }
 
 
@@ -11,8 +14,7 @@ a { text-decoration:none }
 .ver{vertical-align:middle !important;}
 .center{text-align:center !important;}
 
-
-/* Ã¼Å©¹Ú½º ¼öÁ¤ */
+/* Ã¼Å©ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 [type=checkbox] {width:20px !important; display:inline-block;}
 .CHK{width:20px !important; display:inline-block;}
 .CHKroom {width:20px !important; display:inline-block;} 
@@ -20,12 +22,12 @@ a { text-decoration:none }
 .CHKalt{width:20px !important; display:inline-block;}
 input#checkbox0{width:20px !important; display:inline-block;}
 
-/* »ó´ã¸ñ·Ï ¿ÞÂÊ Å×ÀÌºí ÀÛ¾÷ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Û¾ï¿½ */
 #listTable {border:0px !important; height: 450px !important;} 
 #listTable td, th {border:0px solid #eee !important; text-align:left;} 
 
 
-/* Å×ÀÌºí ÀÛ¾÷ */
+/* ï¿½ï¿½ï¿½Ìºï¿½ ï¿½Û¾ï¿½ */
 .h-container .item {padding-right:15px;}
 .bun2 {border:1px solid #dee2e6 !important;}
 #sAltarTable{border:1px solid #dee2e6 !important;}
@@ -47,24 +49,24 @@ input#checkbox0{width:20px !important; display:inline-block;}
 #listTable td:first-child{text-align:center !important;}
 table#listtable td input {text-align:center;}
 
-/* ±âÅ¸½Ã¼³- ¼±ÅÃµÈ±âÅ¸½Ã¼³ ÀÎÇ² ÀÛ¾÷ */
+/* ï¿½ï¿½Å¸ï¿½Ã¼ï¿½- ï¿½ï¿½ï¿½ÃµÈ±ï¿½Å¸ï¿½Ã¼ï¿½ ï¿½ï¿½Ç² ï¿½Û¾ï¿½ */
 #sEtcroom input {max-width:100px;}
 
-/* °è¾à°ü¸® - °è¾à±âº»»çÇ×  */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½âº»ï¿½ï¿½ï¿½ï¿½  */
 button#contp1-06 {min-width:100px; background:#215792; color:#fff; }
 
 
-/* ±âÃÊÄÚµå¸ñ·Ï */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ */
 table#list01table th {text-align:center;}
 .list01table_p {padding:15px;}
 .d-inline h3  {padding:15px;}
 
 
-/* ¸ÞÀÎÀÛ¾÷ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½Û¾ï¿½ */
 .main_box {width:100%; max-width:1200px; margin:0 auto; padding:15px;  text-align:center;}
 .m_i {width:90%; max-width:160px;}
 
-/* °è¾àÀÛ¼º ¾ç½Ä */
+/* ï¿½ï¿½ï¿½ï¿½Û¼ï¿½ ï¿½ï¿½ï¿½ */
 .cont-title {vertical-align: middle; text-align: center; background-color: #FBF8EF }
 
 

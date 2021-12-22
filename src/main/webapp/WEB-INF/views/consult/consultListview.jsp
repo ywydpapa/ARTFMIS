@@ -4,6 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <style>
+*{
+	font-size: 18px !important;
+}
 .listcont {
 	width: 100%;
 	height: 100%;
