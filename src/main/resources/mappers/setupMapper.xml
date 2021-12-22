@@ -98,7 +98,7 @@ where SETL_ID=#{SETL_ID}
 <select id="listfroomAddsetl" resultType="setupDto">
 select a.BCD_ID, a.BCD_TITLE , g.* from GHT_BASE_CODE a 
 left join GHT_FROOM_SETL g on a.BCD_ID = g.SETL_REMARK and g.SETL_FROOM_ID = #{SETL_FROOM_ID}
-where a.BCD_CAT_TYPE='9'and g.MOD_DATE is null order by BCD_ORDER  
+where a.BCD_CAT_TYPE='9' order by BCD_ORDER  
 </select>
   
   
