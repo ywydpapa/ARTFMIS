@@ -411,7 +411,7 @@
 												<th scope="col" width="10%" align="center">구분</th>
 												<th scope="col" width="10%" align="center">선택여부</th>
 												<th scope="col" width="20%" align="center">금액</th>
-												<th scope="col" width="10%" align="center">단위</th>
+												<th scope="col" width="10%" align="center">수량</th>
 												<th scope="col" width="30%" align="center">상품이미지</th>
 											</tr>
 										</thead>
@@ -425,7 +425,23 @@
 															   name = "FT${row.FTABLE_CAT}" class="CHKft form-control" <c:if test="${row.CHKED eq 'Y'}">checked</c:if> />
 													</td>
 													<td style="text-align: right" class="TA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
-													<td style="text-align: right">${row.FTABLE_UNIT}</td>
+													<td>
+														<c:choose>
+															<c:when test="${row.FTABLE_CAT eq '24'}">
+																<c:choose>
+																	<c:when test="${row.QUTY > 0}">
+																		<input type="number" class="form-control ftEa" id="idFtEa_${row.FTABLE_ID}" style="text-align:right;" min="0" value="${row.QUTY}">
+																	</c:when>
+																	<c:otherwise>
+																		<input type="number" class="form-control ftEa" id="idFtEa_${row.FTABLE_ID}" style="text-align:right;" min="0" value="0" readonly>
+																	</c:otherwise>
+																</c:choose>
+															</c:when>
+															<c:otherwise>
+																<input type="number" class="form-control" style="text-align:right;" min="0" value="1" readonly>
+															</c:otherwise>
+														</c:choose>
+													</td>
 													<c:if test="${status.first}">
 														<td class="imagebx" rowspan="${fn:length(listFtable)}">
 															<c:forEach var="t" items="${contpage3}">
@@ -457,7 +473,7 @@
 											<tr>
 												<th scope="col" width="20%" style="text-align:center">구분</th>
 												<th scope="col" width="20%" style="text-align:center">금액</th>
-												<th scope="col" colspan="2" width="20%" style="text-align:center">단위</th>
+												<th scope="col" colspan="2" width="20%" style="text-align:center">수량</th>
 												<th scope="col" width="30%" style="text-align:center">금액</th>
 												<th style="display :none" scope="col" width="10%" style="text-align:center">선택</th>
 											</tr>
@@ -467,7 +483,17 @@
 												<tr>
 													<td>${row.BCD_TITLE}<input type="hidden" class = "sTid" value = "${row.FTABLE_ID}"/></td>
 													<td style="text-align: right" class="sTA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
-													<td style="text-align: right; border-right:none"><input style="text-align:right;border:0px" type="number" class="sTB from-control" min="0" value = "1"></td><td style = "border-left:none">${row.FTABLE_UNIT}</td>
+													<td style="text-align: right; border-right:none">
+														<c:choose>
+															<c:when test="${row.QUTY > 0}">
+																<input style="text-align:right;border:0px" type="number" class="sTB from-control" min="0" value = "${row.QUTY}" id="idFtEa_${row.FTABLE_ID}">
+															</c:when>
+															<c:otherwise>
+																<input style="text-align:right;border:0px" type="number" class="sTB from-control" min="0" value = "1" id="idFtEa_${row.FTABLE_ID}">
+															</c:otherwise>
+														</c:choose>
+													</td>
+													<%-- <td style = "border-left:none">${row.FTABLE_UNIT}</td> --%>
 													<td style="text-align: right" class="sTC"><fmt:formatNumber value="" pattern="#,###" /></td>
 													<td style="display :none"><input type="checkbox" class="sCHKft form-control" /></td>
 												</tr>
@@ -1447,6 +1473,12 @@
 <!--계약기본등록-->
 <script src="${path}/js/onloadScript.js"></script>
 <script>
+	$(".ftEa").change(function(){
+		$("#sFtable").find("#"+$(this).attr("id")).val($(this).val());
+		calculateT();
+		chkcalT();
+	});
+	
 	function fn_contUpdateP1() {
 		var contData = {};
 		var chkr = $('#rmchk').val();
@@ -2271,7 +2303,21 @@
 		chkcalA();
 	});
 	
-	$(".sTB ,.sCHKft, .CHKft").change(function() {
+	$(".CHKft").change(function(){
+		if($(this).is(":checked") == false){
+			/* $(this).parent().next().next().find(".ftEa").val(0); */
+			$(this).parent().next().next().find(".ftEa").attr("readonly", true);
+		}else{
+			/* $(this).parent().next().next().find(".ftEa").val(1); */
+			$(this).parent().next().next().find(".ftEa").removeAttr("readonly");
+		}
+		
+		chkFtablechange();
+		calculateT();
+		chkcalT();
+	});
+	
+	$(".sTB ,.sCHKft").change(function() {
 		chkFtablechange();
 		calculateT();
 		chkcalT();
@@ -2513,8 +2559,8 @@
 		var chksum = 0;
 		for (var i = 0; i < $infoarr.length; i++) {
 			if($($infoarr[i]).is(":checked")==true){
-			var t1 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-			chksum = chksum + (t1);
+				var t1 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, "")) * $(".TA").eq(i).next().find("input[type='number']").val();
+				chksum = chksum + (t1);
 			}
 		}
 		console.log(chksum);
@@ -2579,8 +2625,9 @@
 		var $sinfoarr = $(".sCHKft");
 		for (var i = 0; i < $infoarr.length; i++) {
 			if($($infoarr[i]).is(":checked")==true){
-			$($sinfoarr[i]).attr("checked",true);
-			$($sinfoarr[i]).parent().parent().show();
+				$($sinfoarr[i]).parent().prev().prev().prev().find(".sTB").val($($infoarr[i]).parent().next().next().find("input[type='number']").val());
+				$($sinfoarr[i]).attr("checked",true);
+				$($sinfoarr[i]).parent().parent().show();
 			}
 			else{
 				$($sinfoarr[i]).attr("checked",false);
@@ -2748,6 +2795,7 @@ function oneCheckft(chk){
     for(var i=0; i<obj.length; i++){
         if(obj[i] != chk){
             obj[i].checked = false;
+            obj[i].parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1].readOnly = true;
         }
     }
 

@@ -133,6 +133,7 @@
 										<col width="15%" />
 										<col width="10%" />
 										<col width="20%" />
+										<col width="20%" />
 										<col width="50%" />
 									</colgroup>
 										<thead>
@@ -140,6 +141,7 @@
 												<th scope="col" width="10%" align="center">구분</th>
 												<th scope="col" width="10%" align="center">선택</th>
 												<th scope="col" width="10%" align="center">금액</th>
+												<th scope="col" width="10%" align="center">수량</th>
 												<th scope="col" width="10%" align="center">설명</th>
 												<!-- <th scope="col" width="30%" align="center">상품이미지</th> -->
 											</tr>
@@ -147,13 +149,30 @@
 										<tbody>
 											<c:forEach var="row" items="${consultpage3}" varStatus="status">
 												<tr id="contWrite_Prey_${row.FTABLE_ID}">
-													<td style="vertical-align:middle;text-align:center" class="sel_${row.FTABLE_ID}">${row.BCD_TITLE}</td>
+													<td class="second" style="vertical-align:middle;text-align:center" class="sel_${row.FTABLE_ID}">${row.BCD_TITLE}</td>
 													<td style="text-align: center;">
 														<input type="checkbox" <c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if>
 															   				   <c:if test="${row.FTABLE_CAT ne '24'}">onclick="oneCheckftNot(this);"</c:if>
 															   name = "FT${row.FTABLE_CAT}" class="CHKft form-control" <c:if test="${row.CHKED eq 'Y'}">checked</c:if> />
 													</td>
 													<td style="text-align: right" class="TA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
+													<td>
+														<c:choose>
+															<c:when test="${row.FTABLE_CAT eq '24'}">
+																<c:choose>
+																	<c:when test="${row.QUTY > 0}">
+																		<input type="number" class="form-control ftEa" id="idFtEa_${row.FTABLE_ID}" style="text-align:right;" min="0" value="${row.QUTY}">
+																	</c:when>
+																	<c:otherwise>
+																		<input type="number" class="form-control ftEa" id="idFtEa_${row.FTABLE_ID}" style="text-align:right;" min="0" value="0" readonly>
+																	</c:otherwise>
+																</c:choose>
+															</c:when>
+															<c:otherwise>
+																<input type="number" class="form-control" style="text-align:right;" min="0" value="1" readonly>
+															</c:otherwise>
+														</c:choose>
+													</td>
 													<td style="text-align: left">${row.FTABLE_REMARK}</td>
 													<%-- <c:if test="${status.first}">
 														<td class="imagebx" rowspan="${fn:length(listFtable)}">
@@ -198,7 +217,17 @@
 												<tr>
 													<td>${row.BCD_TITLE}<input type="hidden" class = "sTid" value = "${row.FTABLE_ID}"/></td>
 													<td style="text-align: right" class="sTA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
-													<td style="text-align: right; border-right:none"><input style="text-align:right;border:0px" type="number" class="sTB from-control" min="0" value = "1"></td><td style = "border-left:none">${row.FTABLE_UNIT}</td>
+													<td style="text-align: right; border-right:none">
+														<c:choose>
+															<c:when test="${row.QUTY > 0}">
+																<input style="text-align:right;border:0px" type="number" class="sTB from-control" min="0" value = "${row.QUTY}" id="idFtEa_${row.FTABLE_ID}">
+															</c:when>
+															<c:otherwise>
+																<input style="text-align:right;border:0px" type="number" class="sTB from-control" min="0" value = "1" id="idFtEa_${row.FTABLE_ID}">
+															</c:otherwise>
+														</c:choose>
+													</td>
+													<%-- <td style = "border-left:none">${row.FTABLE_UNIT}</td> --%>
 													<td style="text-align: right" class="sTC"><fmt:formatNumber value="" pattern="#,###" /></td>
 													<td style="display :none"><input type="checkbox" class="sCHKft form-control" checked/></td>
 												</tr>
@@ -963,6 +992,12 @@
 </div>
 <!--계약기본등록-->
 <script>
+	$(".ftEa").change(function(){
+		$("#sFtable").find("#"+$(this).attr("id")).val($(this).val());
+		calculateT();
+		chkcalT();
+	});
+
 	$(".CS_EDay").each(function(index, item){
 		var temp = Number($("#sumTemp1").val());
 		var sum = 0;
@@ -1129,7 +1164,6 @@
 		contp3data.FTABLE_NET_PRICE = Number($Aarr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
 		contp3data.QUTY = $Barr[i].value;
 		contp3data.ORD_AMOUNT = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""))
-		console.log("확인 : " + contp3data);
 		$.ajax({
 			url : "${path}/consult/insertP3.do",  
 			data : contp3data,  
@@ -1659,7 +1693,21 @@
 		chkcalA();
 	});
 	
-	$(".sTB ,.sCHKft, .CHKft").change(function() {
+	$(".CHKft").change(function(){
+		if($(this).is(":checked") == false){
+			/* $(this).parent().next().next().find(".ftEa").val(0); */
+			$(this).parent().next().next().find(".ftEa").attr("readonly", true);
+		}else{
+			/* $(this).parent().next().next().find(".ftEa").val(1); */
+			$(this).parent().next().next().find(".ftEa").removeAttr("readonly");
+		}
+		
+		chkFtablechange();
+		calculateT();
+		chkcalT();
+	});
+	
+	$(".sTB ,.sCHKft").change(function() {
 		chkFtablechange();
 		calculateT();
 		chkcalT();
@@ -1854,11 +1902,10 @@
 		var chksum = 0;
 		for (var i = 0; i < $infoarr.length; i++) {
 			if($($infoarr[i]).is(":checked")==true){
-			var t1 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-			chksum = chksum + (t1);
+				var t1 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, "")) * $(".TA").eq(i).next().find("input[type='number']").val();
+				chksum = chksum + (t1);
 			}
 		}
-		console.log(chksum);
 		$('#P3total').html(numberWithCommas(chksum));
 		$(".defaultP3total").html(numberWithCommas(chksum));
 		sumTemp3.val(chksum);
@@ -1920,8 +1967,9 @@
 		var $sinfoarr = $(".sCHKft");
 		for (var i = 0; i < $infoarr.length; i++) {
 			if($($infoarr[i]).is(":checked")==true){
-			$($sinfoarr[i]).prop("checked",true);
-			$($sinfoarr[i]).parent().parent().show();
+				$($sinfoarr[i]).parent().prev().prev().prev().find(".sTB").val($($infoarr[i]).parent().next().next().find("input[type='number']").val());
+				$($sinfoarr[i]).prop("checked",true);
+				$($sinfoarr[i]).parent().parent().show();
 			}
 			else{
 				$($sinfoarr[i]).prop("checked",false);
@@ -1970,6 +2018,8 @@
 	    for(var i=0; i<obj.length; i++){
 	        if(obj[i] != chk){
 	            obj[i].checked = false;
+	            /* obj[i].parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1].value = 0; */
+	            obj[i].parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1].readOnly = true;
 	        }
 	    }
 
