@@ -97,7 +97,7 @@
             <p class="card-text">분향실에서 필요한 물품을 주문하는 곳입니다. </p>
           </div>
           <div class="card-footer">
-            <a href="javascript:fnSetPage('${path}/room/restord/${USER_FROOM_ID}')" class="btn btn-primary">주문</a>
+            <a href="javascript:fnSetPage('${path}/room/restord/${USER_FROOM_ID}')" class="btn btn-primary" id="restordPage">주문</a>
           </div>
         </div>
       </div>
@@ -108,7 +108,7 @@
             <p class="card-text">분향실에서 필요한 물품을 주문하는 곳입니다. </p>
           </div>
           <div class="card-footer">
-            <a href="javascript:fnSetPage('${path}/room/storeord/${USER_FROOM_ID}')" class="btn btn-primary">주문</a>
+            <a href="javascript:fnSetPage('${path}/room/storeord/${USER_FROOM_ID}')" class="btn btn-primary"  id="storeordPage">주문</a>
           </div>
         </div>
       </div>
@@ -174,11 +174,15 @@
 				var url2 = "javascript:fnSetPage('${path}/room/addorderlist/" + data.contid + "')";
 				var url3 = "javascript:fnSetPage('${path}/room/confirmord/" + data.contid + "')";
 				var url4 = "javascript:fnSetPage('${path}/room/confirminiord/" + data.contid + "')";
+				var url5 = "javascript:fnSetPage('${path}/room/restord/"+ ${USER_FROOM_ID} + "/"+ data.contid + "')";
+				var url6 = "javascript:fnSetPage('${path}/room/storeord/"+ ${USER_FROOM_ID} + "/"+ data.contid + "')";
 				$("#listlink").attr("href",url1);
 				$("#addlistlink").attr("href",url2);
 				$("#cfnlistlink").attr("href",url3);
 				$("#cfnlistlink2").attr("href",url3);
 				$("#cfninilist").attr("href",url4);
+				$("#restordPage").attr("href",url5);
+				$("#storeordPage").attr("href",url6);
 			} else {
 				alert("계약이 안된 호실입니다.");
 				history.go(-1);

@@ -8,7 +8,8 @@ public interface SetupService {
 	
 	List<SetupDTO> listSetup();
 	List<SetupDTO> timelistSetup();
-	List<SetupDTO> timelist();
+	List<SetupDTO> rtimelist();
+	List<SetupDTO> stimelist();
 	List<SetupDTO> infolistSetup();
 	List<SetupDTO> infolist();
 	List<SetupDTO> listFroomSetl(int SETL_FROOM_ID);

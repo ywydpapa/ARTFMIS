@@ -70,10 +70,17 @@ public class SetupServiceImpl implements SetupService {
 	}
 
 	@Override
-	public List<SetupDTO> timelist() {
+	public List<SetupDTO> rtimelist() {
 		// TODO Auto-generated method stub
-		return setupDao.timelist();
+		return setupDao.rtimelist();
 	}
+	
+	@Override
+	public List<SetupDTO> stimelist() {
+		// TODO Auto-generated method stub
+		return setupDao.stimelist();
+	}
+
 
 	@Override
 	public List<SetupDTO> infolist() {

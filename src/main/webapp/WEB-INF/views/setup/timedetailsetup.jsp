@@ -16,10 +16,10 @@
 			</div> -->
 			</c:if>
 			<c:if test = "${empty list.SETUP_ID}">
-			<div id="istbtn">
+<!-- 			<div id="istbtn">
 				<button class="btn btn-md btn-primary " onClick="fn_Insertsetuptime()">새로 저장</button>
 			</div>
-			</c:if>
+ -->			</c:if>
 			</div>
 				<div class="table-responsive">
 					<table class="table table-sm bst02">
@@ -33,10 +33,17 @@
 						<tbody>
 							<tr>
 								<th class="align-middle table-info" style="text-align:center" scope="row">구분명<input type="hidden" id="setupId" value="${list.SETUP_ID}"></th>
-								<td colspan="3"><input type="text" class="form-control" id="setupTitle" value="${list.SETUP_TITLE}" placeholder=""></td>
+								<td>
+								<select id="timetype" class="form-control">
+								<option value="RTIME">식당운영시간</option>
+								<option value="STIME">매점운영시간</option>
+								</select>
+								</td>
+								<td colspan="2"><input type="text" class="form-control" id="setupTitle" value="${list.SETUP_TITLE}" placeholder=""></td>
 									<td>
-									<button style="text-align:right;" class="btn btn-md btn-success" value="추가" onClick="fn_setNewTime()">새항목 추가</button>
-									<button class="btn btn-md btn-primary " onClick="fn_Updatesetuptime()">저장</button>
+									<button style="text-align:right;" class="btn btn-md btn-success" value="추가" onClick="fn_setNewTime()">새항목</button>
+									<button id="udtbtn" class="btn btn-md btn-primary" onClick="fn_Updatesetuptime()">저장</button>
+									<button id="istbtn" class="btn btn-md btn-primary" onClick="fn_Insertsetuptime()">새로 저장</button>
 									</td>
 							</tr>
 							<tr>

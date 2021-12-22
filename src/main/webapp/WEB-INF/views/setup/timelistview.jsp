@@ -62,17 +62,17 @@
 						<th scope="col" width="10%" style="text-align:center">구분</th>
 						<th scope="col" width="15%" style="text-align:center">운영시작시간</th>
 						<th scope="col" width="15%" style="text-align:center">운영종료시간</th>
-						<th scope="col" width="30%" style="text-align:center">문구설명</th>
+						<th scope="col" width="30%" style="text-align:center">구분명</th>
 						<th scope="col" width="20%" style="text-align:center">사용여부</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="row" items="${list}">
 						<tr>
-							<td><a href="javascript:fnSetupdetail('${path}/setup/timedetail/${row.SETUP_ID}')">${row.SETUP_TITLE}</a></td>
+							<td><c:if test="${row.SETUP_TYPE eq 'RTIME'}">식당</c:if><c:if test="${row.SETUP_TYPE eq 'STIME'}">매점</c:if></td>
 							<td>${row.START_TIME}</td>
 							<td>${row.END_TIME}</td>
-							<td>${row.SETUP_DESC}</td>
+							<td><a href="javascript:fnSetupdetail('${path}/setup/timedetail/${row.SETUP_ID}')">${row.SETUP_TITLE}</a></td>
 							<td><c:if test="${row.USE_YN eq 'Y'}">사용</c:if><c:if test="${row.USE_YN eq 'N'}">미사용</c:if></td>
 						</tr>
 					</c:forEach>
@@ -104,7 +104,7 @@ function tableDetailLoad(){
 			success : function(html){
 				$("#detailTable").empty();
 				$("#detailTable").append(html);
-				$("#insbtn").hide();
+				$("#istbtn").hide();
 				$("#udtbtn").show();
 			},
 			error : function(xhr){
@@ -112,6 +112,7 @@ function tableDetailLoad(){
 			}
 		});
 	} else {
+		alert("new");
 		fn_setNewTime();
 	}
 }
@@ -150,8 +151,8 @@ function fn_setNewTime(){
 		$("#setupContents").val("");
 		$("#setupDesc").val("");
 		$("#useYn").val("Y");
-		$("#uptbtn").hide();
-		$("#insbtn").show();
+		$("#udtbtn").hide();
+		$("#istbtn").show();
 }
 
 function fn_Insertsetuptime() {
@@ -160,7 +161,7 @@ function fn_Insertsetuptime() {
 	setupData.START_TIME = $("#stime").val();
 	setupData.END_TIME = $("#etime").val();
 	setupData.SETUP_DESC = $("#setupDesc").val();
-	setupData.SETUP_TYPE = 'TIME';
+	setupData.SETUP_TYPE = $("#timetype").val();
 	setupData.USE_YN = $("#useYn").val();
 	console.log(setupData);
 	$.ajax({
@@ -190,6 +191,7 @@ function fn_Updatesetuptime() {
 	setupData.START_TIME = $("#stime").val();
 	setupData.END_TIME = $("#etime").val();
 	setupData.SETUP_DESC = $("#setupDesc").val();
+	setupData.SETUP_TYPE = $("#timetype").val();
 	setupData.USE_YN = $("#useYn").val();
 	console.log(setupData);
 	$.ajax({
@@ -214,7 +216,9 @@ function fn_Updatesetuptime() {
 
 
 $(document).ready(function() {
-	tableDetailLoad();	
+	tableDetailLoad();
+	$("#udtbtn").show();
+	$("#istbtn").hide();
 });
 	
 

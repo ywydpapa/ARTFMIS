@@ -97,7 +97,6 @@ public class RoomController {
 	public ModelAndView cfnwrite2(@PathVariable("CONTRACT_ID") int CONTRACT_ID,ModelAndView mav) {
 		mav.addObject("cont",contService.detailCont(CONTRACT_ID));
 		mav.addObject("ord", roomService.listOrder(CONTRACT_ID));
-		mav.addObject("time",setupService.timelist());
 		mav.setViewName("room/ordlistview");
 		return mav;
 	}
@@ -111,18 +110,22 @@ public class RoomController {
 		return mav;
 	}
 	
-	@RequestMapping("restord/{FROOM_ID}")
-	public ModelAndView restordlist(@PathVariable("FROOM_ID") int FROOM_ID, ModelAndView mav) {
+	@RequestMapping("restord/{FROOM_ID}/{CONTRACT_ID}")
+	public ModelAndView restordlist(@PathVariable("FROOM_ID") int FROOM_ID,@PathVariable("CONTRACT_ID") int CONTRACT_ID,ModelAndView mav) {
+		mav.addObject("cont",contService.detailCont(CONTRACT_ID));
 		mav.addObject("list2n", codeService.listCode020n(2));
 		mav.addObject("doslist2", contService.doscontlist2f(FROOM_ID));
+		mav.addObject("time",setupService.rtimelist());
 		mav.setViewName("room/restOrdlist");
 		return mav;
 	}
 
-	@RequestMapping("storeord/{FROOM_ID}")
-	public ModelAndView storeordlist(@PathVariable("FROOM_ID") int FROOM_ID,ModelAndView mav) {
+	@RequestMapping("storeord/{FROOM_ID}/{CONTRACT_ID}")
+	public ModelAndView storeordlist(@PathVariable("FROOM_ID") int FROOM_ID,@PathVariable("CONTRACT_ID") int CONTRACT_ID,ModelAndView mav) {
+		mav.addObject("cont",contService.detailCont(CONTRACT_ID));
 		mav.addObject("list2n", codeService.listCode020n(3));
 		mav.addObject("doslist3", contService.doscontlist3f(FROOM_ID));
+		mav.addObject("time",setupService.stimelist());
 		mav.setViewName("room/storeOrdlist");
 		return mav;
 	}

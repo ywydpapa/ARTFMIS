@@ -70,9 +70,15 @@ public class SetupDAOImpl implements SetupDAO {
 	}
 
 	@Override
-	public List<SetupDTO> timelist() {
+	public List<SetupDTO> rtimelist() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("setup.timelist");
+		return sqlSession.selectList("setup.timelistrest");
+	}
+	
+	@Override
+	public List<SetupDTO> stimelist() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("setup.timeliststore");
 	}
 
 	@Override
