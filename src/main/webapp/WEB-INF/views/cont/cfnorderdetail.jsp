@@ -15,11 +15,11 @@
 						<div class="table-responsive">
 							<table class="table  table-bordered nowrap">
 								<tr>
-									<th class="align-middle text-center table-info">주문현황</th>
 									<th style="text-align: right;">
-									<!-- <button class="btn btn-primary" onclick="chkall()">전체선택</button>
-									<button class="btn btn-primary" onclick="chkun()">전체선택해제</button> -->
-									<button class="btn btn-danger" onclick="canccheckupdR()">주문취소</button></th>
+										<!-- <button class="btn btn-primary" onclick="chkall()">전체선택</button>
+										<button class="btn btn-primary" onclick="chkun()">전체선택해제</button> -->
+										<button class="btn btn-danger" onclick="canccheckupdR()">주문취소</button>
+									</th>
 								</tr>
 							</table>
 						</div>
@@ -37,11 +37,6 @@
 									<col width="10%" />
 									<col width="10%" />
 								</colgroup>
-
-								<tr>
-									<th colspan="5" style="text-align: center;">분류</th>
-									<th colspan="5" style="text-align: center;">상세정보</th>
-								</tr>
 								<tr style="text-align: center;">
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">종류</th>
 									<th style="vertical-align:middle; text-align: center; background-color:#CED8F6">제품명</th>

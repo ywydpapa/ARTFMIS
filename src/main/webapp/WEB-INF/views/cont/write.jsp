@@ -450,8 +450,7 @@
 											<td class = "sRMt" style="vertical-align:middle;text-align: right;">사용시간</td>
 											<td class = "sRMcharge" style="vertical-align:middle;text-align: right;"><fmt:formatNumber
 													value="" pattern="#,###" /></td>
-											<td style="text-align: center; display:none"><input type="checkbox"
-												class="CHKsrm form-control" /></td>
+											<td style="text-align: center; display:none"><input type="checkbox" class="CHKsrm form-control" /></td>
 										</tr>
 									</c:forEach>
 									<c:forEach var="row" items="${listEtcroom}">
@@ -484,10 +483,10 @@
 							<div style="text-align:left"><span>선택된 제물상 총액 :</span><input type="text" id="P3total" style="text-align: left; border: none;" readonly></div>
 							<form name="form3" method="post" onsubmit="return false;">
 								<div style="width:100%;">
-									<div style="float:left;margin-top:10px;">
+									<div style="float:left;margin-top:20px;">
 										<h5>제물상</h5>
 									</div>
-									<div style="float:right;">
+									<div style="float:right;margin-bottom:20px;">
 										<button class="btn btn-md btn-primary" onClick="fn_contInsertP3()">등록</button>
 									</div>
 								</div>
@@ -499,38 +498,54 @@
 									</tr>
 									</tbody>
 								</table> -->
-								<div class="row" style="clear:both;margin-top:20px;">
-									<table class="table table-bordered table-hover" id="ftTable">
-										<thead  style="background-color:#E0E6F8">
-											<tr>
-												<th scope="col" width="10%" align="center">구분</th>
-												<th scope="col" width="5%" align="center">선택여부</th>
-												<th scope="col" width="10%" align="center">금액</th>
-												<th scope="col" width="65%" align="center">상품이미지</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="row" items="${listFtable}" varStatus="status">
-												<tr id="contWrite_Prey_${row.FTABLE_ID}">
-													<td style="vertical-align: middle; text-align: center" class="second">${row.BCD_TITLE}</td>
-													<td style="text-align: center;">
-														<input type="checkbox" <c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if>
-															   				   <c:if test="${row.FTABLE_CAT ne '24'}">onclick="oneCheckftNot(this);"</c:if>
-															   name = "FT${row.FTABLE_CAT}" class="CHKft form-control" />
-													</td>
-													<td style="text-align: right" class="TA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
-													<c:if test="${status.first}">
-														<td class="imagebx" rowspan="${fn:length(listFtable)}" style="text-align:center;">
-															<c:forEach var="t" items="${listFtable}">
-																<img id="imageHidden_t02_${t.FTABLE_ID}" <c:if test="${not empty t.FTABLE_IMAGE}">style="display: none; width: 99%; height:100%;" src="${path}/image/${t.FTABLE_IMAGE}"</c:if>
-																	 <c:if test="${empty t.FTABLE_IMAGE}">style="display: none; width: 700px; height:700px;" src="${path}/resources/image/No_image_available.png"</c:if>/>
-															</c:forEach>
-														</td>
-													</c:if>
+								<div style="clear:both;width: 100%;">
+									<div style="float:left; margin-right: 20px; width:30%;">
+										<table class="table table-bordered table-hover" id="ftTable">
+											<thead style="background-color:#E0E6F8">
+												<tr>
+													<th style="text-align:center;">구분</th>
+													<th style="text-align:center;">선택여부</th>
+													<th style="text-align:center;">금액</th>
 												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
+											</thead>
+											<tbody>
+												<c:forEach var="row" items="${listFtable}" varStatus="status">
+													<tr id="contWrite_Prey_${row.FTABLE_ID}">
+														<td style="vertical-align: middle; text-align: center" class="second">${row.BCD_TITLE}</td>
+														<td style="text-align: center;">
+															<input type="checkbox" <c:if test="${row.FTABLE_CAT eq '24'}">onclick="oneCheckft(this);"</c:if>
+																   				   <c:if test="${row.FTABLE_CAT ne '24'}">onclick="oneCheckftNot(this);"</c:if>
+																   name = "FT${row.FTABLE_CAT}" class="CHKft form-control" />
+														</td>
+														<td style="text-align: right" class="TA"><fmt:formatNumber value="${row.FTABLE_AMOUNT}" pattern="#,###" /></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</div>
+									<div style="float:right; width: 68%; height:auto;">
+										<table class="table table-bordered table-hover" style="height:900px;">
+											<thead style="background-color:#E0E6F8">
+												<tr>
+													<th style="text-align:center;">상품이미지</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="row" items="${listFtable}" varStatus="status">
+													<tr>
+														<c:if test="${status.first}">
+															<td class="imagebx" rowspan="${fn:length(listFtable)}" style="text-align:center;">
+																<c:forEach var="t" items="${listFtable}">
+																	<img id="imageHidden_t02_${t.FTABLE_ID}" <c:if test="${not empty t.FTABLE_IMAGE}">style="display: none; width: 100%; height:100%;" src="${path}/image/${t.FTABLE_IMAGE}"</c:if>
+																		 <c:if test="${empty t.FTABLE_IMAGE}">style="display: none; width: 800px; height:800px;" src="${path}/resources/image/No_image_available.png"</c:if>/>
+																</c:forEach>
+															</td>
+														</c:if>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</form>
 							<br> <br>
@@ -1162,10 +1177,10 @@
 							</div>
 							<form name="form5" method="post" onsubmit="return false;">
 								<div style="width:100%;">
-									<div style="float:left;margin-top:10px;">
+									<div style="float:left;margin-top:20px;">
 										<h5>제단 선택</h5>
 									</div>
-									<div style="float:right;">
+									<div style="float:right; margin-bottom: 20px;">
 										<button class="btn btn-md btn-primary" onClick="fn_contInsertP5()">등록</button>
 									</div>
 								</div>
@@ -1177,52 +1192,69 @@
 										</tr>
 									</tbody>
 								</table> -->
-								<table class="table  table-bordered nowrap"
-									id="altarTable">
-									<thead  style="text-align:center;background-color:#E0E6F8">
-										<tr>
-											<th scope="col" width="10%" style="text-align:center">제단구분</th>
-											<th scope="col" width="10%" style="text-align:center">선택여부</th>
-											<th scope="col" width="15%" style="text-align:center">제단명</th>
-											<th scope="col" width="10%" style="text-align:center">금액</th>
-											<th scope="col" width="40%" style="text-align:center">이미지</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="row" items="${listAltar}" varStatus="status">
-											<tr id="contWrite_Altar_${row.ALTAR_ID}">
-												<td style="vertical-align:middle" class="second">
-													<c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if>
-													<c:if test="${row.ALTAR_CAT eq '103'}">헌화</c:if>
-												</td>
-												<td style="text-align: center"><input type="checkbox" onclick ="<c:if test="${row.ALTAR_CAT eq '102'}">oneCheckalt2(this)</c:if>
-																					<c:if test="${row.ALTAR_CAT eq '103'}">oneCheckalt3(this)</c:if>
-																					<c:if test="${row.ALTAR_CAT ne '102' and row.ALTAR_CAT ne '103'}">oneCheckalt2and3Not(this)</c:if>"
-														   class="CHKalt form-control" name="ALTAR${row.ALTAR_CAT}"  />
-												</td>
-												<td>${row.ALTAR_TITLE}<input type = "hidden" class = "Aid" value="${row.ALTAR_ID}"/></td>
-												<td style="text-align: right" class="AA"><fmt:formatNumber value="${row.ALTAR_AMOUNT}" pattern="#,###" /></td>
-												<c:if test="${status.first}">
-													<td class="imagebx" rowspan="${fn:length(listAltar)}" style="text-align:center;">
-														<c:forEach var="t" items="${listAltar}">
-															<c:set var="length" value="${fn:length(t.ALTAR_IMAGE)}" />
-															<c:choose>
-																<c:when test="${fn:contains(path, 'ARTFMIS')}">
-																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: auto; height: auto;" <c:if test="${not empty t.ALTAR_IMAGE}">src="${path}/artImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}"</c:if>
-																		 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
-																</c:when>
-																<c:otherwise>
-																	<img id="imageHidden_t03_${t.ALTAR_ID}" style="display: none; width: 100%; height: 100%;" <c:if test="${not empty t.ALTAR_IMAGE}">src="<spring:url value='/localImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}'/>"</c:if>
-																		 <c:if test="${empty t.ALTAR_IMAGE}">src="${path}/resources/image/No_image_available.png"</c:if>/>
-																</c:otherwise>
-															</c:choose>
-														</c:forEach>
-													</td>
-												</c:if>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
+								<div style="clear:both;">
+									<div style="float:left; width:40%;">
+										<table class="table  table-bordered nowrap" id="altarTable">
+											<thead  style="text-align:center;background-color:#E0E6F8">
+												<tr>
+													<th style="text-align:center">제단구분</th>
+													<th style="text-align:center">선택여부</th>
+													<th style="text-align:center">제단명</th>
+													<th style="text-align:center">금액</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="row" items="${listAltar}" varStatus="status">
+													<tr id="contWrite_Altar_${row.ALTAR_ID}">
+														<td style="vertical-align:middle" class="second">
+															<c:if test="${row.ALTAR_CAT eq '102'}">제단</c:if>
+															<c:if test="${row.ALTAR_CAT eq '103'}">헌화</c:if>
+														</td>
+														<td style="text-align: center"><input type="checkbox" onclick ="<c:if test="${row.ALTAR_CAT eq '102'}">oneCheckalt2(this)</c:if>
+																							<c:if test="${row.ALTAR_CAT eq '103'}">oneCheckalt3(this)</c:if>
+																							<c:if test="${row.ALTAR_CAT ne '102' and row.ALTAR_CAT ne '103'}">oneCheckalt2and3Not(this)</c:if>"
+																   class="CHKalt form-control" name="ALTAR${row.ALTAR_CAT}"  />
+														</td>
+														<td>${row.ALTAR_TITLE}<input type = "hidden" class = "Aid" value="${row.ALTAR_ID}"/></td>
+														<td style="text-align: right" class="AA"><fmt:formatNumber value="${row.ALTAR_AMOUNT}" pattern="#,###" /></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</div>
+									<div style="float:right; width:59%;">
+										<table class="table  table-bordered nowrap" style="height:400px;">
+											<thead  style="text-align:center;background-color:#E0E6F8">
+												<tr>
+													<th style="text-align:center">이미지</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="row" items="${listAltar}" varStatus="status">
+													<tr>
+														<c:if test="${status.first}">
+															<td class="imagebx" rowspan="${fn:length(listAltar)}" style="text-align:center;">
+																<c:forEach var="t" items="${listAltar}">
+																	<c:set var="length" value="${fn:length(t.ALTAR_IMAGE)}" />
+																	<c:choose>
+																		<c:when test="${fn:contains(path, 'ARTFMIS')}">
+																			<img id="imageHidden_t03_${t.ALTAR_ID}" <c:if test="${not empty t.ALTAR_IMAGE}"> style="display: none; width: 100%; height: 100%;" src="${path}/artImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}"</c:if>
+																				 <c:if test="${empty t.ALTAR_IMAGE}">style="display: none; width: 400px; height: 300px;" src="${path}/resources/image/No_image_available.png"</c:if>/>
+																		</c:when>
+																		<c:otherwise>
+																			<img id="imageHidden_t03_${t.ALTAR_ID}"  <c:if test="${not empty t.ALTAR_IMAGE}"> style="display: none; width: 100%; height: 100%;" src="<spring:url value='/localImage/${fn:substring(t.ALTAR_IMAGE, 0, length-4)}/${t.ALTAR_IMAGE}'/>"</c:if>
+																				 <c:if test="${empty t.ALTAR_IMAGE}">style="display: none; width: 400px; height: 300px;" src="${path}/resources/image/No_image_available.png"</c:if>/>
+																		</c:otherwise>
+																	</c:choose>
+																</c:forEach>
+															</td>
+														</c:if>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</div>
+								</div>
 							</form>
 							<br>
 							<table class="table table-sm bst02">
@@ -1263,7 +1295,7 @@
 				</div>
 				<div class="tab-pane" id="tab06" role="tabpanel">
 					<div class="card-block table-border-style">
-						<table class="table  table-bordered nowrap" style="border:0px">
+						<table class="table  table-bordered nowrap" style="border:0">
 							<tr>
 								<td style="border-right:none"></td>
 								<td style="text-align: right;border-left:none"><span>선택된 주문 총액 :</span><input type="text" id="messgrandtotal"
@@ -3174,7 +3206,6 @@ function oneCheckft(chk){
     for(var i=0; i<obj.length; i++){
         if(obj[i] != chk){
             obj[i].checked = false;
-            obj[i].parentNode.nextSibling.nextSibling.nextSibling.nextSibling.childNodes[1].readOnly = true;
         }
     }
 
