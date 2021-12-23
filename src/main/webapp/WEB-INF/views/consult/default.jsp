@@ -33,11 +33,11 @@
 																		<h6>상담일자</h6>
 																	</div>
 																	<div style="float:left;">
-																		<input type="date" class="form-control" id="searchDateFrom"> 
+																		<input type="date" class="form-control" id="searchDateFrom" max="9999-12-31"> 
 																	</div>
 																	<div style="float:left;">&ensp;~&ensp;</div>
 																	<div style="float:left;">
-																		<input type="date" class="form-control" id="searchDateEnd">
+																		<input type="date" class="form-control" id="searchDateEnd" max="9999-12-31">
 																	</div>
 																</div>
 																<div style="width:100%;clear:both; margin-top:60px; margin-bottom: 60px;">
@@ -90,7 +90,7 @@
 							<tbody>
 								<tr>
 									<td style="vertical-align:middle;text-align:center">상담일자</td>
-									<td style="text-align:center"><input type="date" class="form-control" id="consultDate"value="${cst.CONSULT_DATE}"><input type="hidden" value="${cst.CONSULT_ID}" id="consultId"/></td>
+									<td style="text-align:center"><input type="date" class="form-control" id="consultDate"value="${cst.CONSULT_DATE}" max="9999-12-31"><input type="hidden" value="${cst.CONSULT_ID}" id="consultId"/></td>
 									<td></td>
 									<td></td>
 								</tr>
@@ -219,14 +219,14 @@
 													<td style="vertical-align:middle;text-align:center">${row.FROOM_TITLE}<input type="hidden" class="etcrid"value="${row.FROOM_ID}"></td>
 													<td class = "CS_RMday" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_DAY_PRICE}" pattern="#,###" /></td>
 													<td class = "CS_RMtime" style="vertical-align:middle;text-align: right;"><fmt:formatNumber value="${row.FROOM_TIME_PRICE}" pattern="#,###" /></td>
-													<td style="text-align: right;"><input style="vertical-align:middle;text-align: right"class="form-control CS_EDay" type="number" min="0" max="30" value="${row.DAYS}"/></td>
+													<td style="text-align: right;"><input style="vertical-align:middle;text-align: right"class="form-control CS_EDay" type="text" data-type="number" value="${row.DAYS}"/></td>
 													<td style="text-align: right;">
 														<c:choose>
 															<c:when test="${row.TIMES > 0}">
-																<input style="vertical-align:middle;text-align: right"class="form-control CS_ETime" type="number" min="0" max="30" value="${row.TIMES}"/>
+																<input style="vertical-align:middle;text-align: right"class="form-control CS_ETime" type="text" data-type="number" value="${row.TIMES}"/>
 															</c:when>
 															<c:otherwise>
-																<input style="vertical-align:middle;text-align: right"class="form-control CS_ETime" type="number" min="0" max="30" value="0"/>
+																<input style="vertical-align:middle;text-align: right"class="form-control CS_ETime" type="text" data-type="number" value="0"/>
 															</c:otherwise>
 														</c:choose>
 													</td>
@@ -457,7 +457,7 @@ $(".Eday, .Etime").change(function() {
 });
 
 
-$(".CS_aDay, .CS_aTime").change(function() {
+$(".CS_aDay, .CS_aTime").keyup(function() {
 	var CS_qMday = $(".CS_qMday");
 	var CS_qMtime = $(".CS_qMtime");
 	var CS_aDay = $(".CS_aDay");
@@ -482,7 +482,7 @@ $(".CS_aDay, .CS_aTime").change(function() {
 });
 	
 
-$(".CS_EDay, .CS_ETime").change(function() {
+$(".CS_EDay, .CS_ETime").keyup(function() {
 	var CS_RMday = $(".CS_RMday");
 	var CS_RMtime = $(".CS_RMtime");
 	var CS_EDay = $(".CS_EDay");

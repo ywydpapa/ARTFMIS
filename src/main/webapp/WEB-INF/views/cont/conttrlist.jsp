@@ -115,24 +115,24 @@
 													<tr>
 														<th
 															style="vertical-align: center; text-align: center; background-color: #CEF6E3">변경 전 호실 사용일</th>
-														<td class="text-center"><input type="number"
-															class="form-control text-right" id="bfday" value="0" min="0"></td>
+														<td class="text-center"><input type="text" data-type="number"
+															class="form-control text-right" id="bfday" value="0"></td>
 														<th
 															style="vertical-align: center; text-align: center; background-color: #28a745a8">변경 후 호실 사용일</th>
-														<td class="text-center"><input type="number"
-															class="form-control text-right" id="afday" value="0" min="0"></td>
+														<td class="text-center"><input type="text" data-type="number"
+															class="form-control text-right" id="afday" value="0"></td>
 													</tr>
 													<tr align="center">
 														<th
 															style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
 															부과일</th>
-														<td><input type="number"
-															class="form-control text-right" id="bfaddday" value="0" min="0"></td>
+														<td><input type="text" data-type="number"
+															class="form-control text-right" id="bfaddday" value="0"></td>
 														<th
 															style="vertical-align: center; text-align: center; background-color: #28a745a8">부가사용료
 															부과일</th>
-														<td><input type="number"
-															class="form-control text-right" id="afaddday" value="0" min="0"></td>
+														<td><input type="text" data-type="number"
+															class="form-control text-right" id="afaddday" value="0"></td>
 													</tr>
 													<tr align="center">
 														<th style="vertical-align: center; text-align: center; background-color: #CEF6E3">부가사용료
@@ -246,6 +246,14 @@
 <!--계약기본등록-->
 <script src="${path}/js/onloadScript.js"></script>
 <script>
+$("input[type='text']").each(function(index, item){
+	if($(item).data("type") === "number"){
+		$(item).attr("maxlength", 6);
+		$(item).attr("onKeyup", "this.value = this.value.replace(/[^0-9]/g, '');");
+		$(item).attr("style", "text-align:right;");
+	}
+});
+
 function fn_contTrfroomP2() {
 	var contid = $("#froomtrbf").val().split('/');
 	var CONid = contid[0];
@@ -394,12 +402,23 @@ $(".CHGroom, .CHKroom, .sRMd, .sRMt").change(function() {
 	chkcalR();
 });
 
-$("#froomtraf, #afday, #afaddday").change(function(){
+$("#afday, #afaddday").keyup(function(){
 	calafRoomDayprice();
 	getSetlaf();
 });
 
-$("#froomtrbf, #bfday, #bfaddday").change(function(){
+$("#bfday, #bfaddday").keyup(function(){
+	setDSname();
+	getSetlbf();
+	calbfRoomDayprice();
+});
+
+$("#froomtraf").change(function(){
+	calafRoomDayprice();
+	getSetlaf();
+});
+
+$("#froomtrbf").change(function(){
 	setDSname();
 	getSetlbf();
 	calbfRoomDayprice();

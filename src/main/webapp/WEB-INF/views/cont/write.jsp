@@ -206,7 +206,7 @@
 												</tr>
 												<tr align="center">
 													<td class="cont-title" style="vertical-align: middle;">사망일시</td>
-													<td><input style="width:70%;float:left" type="date" class="form-control form-control-sm" id="contp1-14" name="contp1-14" value="" tabindex="2">
+													<td><input style="width:70%;float:left" type="date" class="form-control form-control-sm" id="contp1-14" name="contp1-14" value="" tabindex="2" max="9999-12-31">
 													<input style="width:30%;float:right" type="text" required class="form-control form-control-sm timepicker" id="contp1-14-1" name="contp1-14-1" value="" tabindex="3">
 													</td>
 													<td class="cont-title" style="vertical-align: middle;">나이</td>
@@ -280,21 +280,21 @@
 												<tr align="center">
 													<th style="vertical-align: middle; text-align:center;background-color:#E0F8E6" rowspan="2">일정</th>
 													<td class="cont-title" style="vertical-align: middle;">입실일시(*)</td>
-													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-26" name="contp1-26" value="" tabindex="9">
+													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-26" name="contp1-26" value="" tabindex="9" max="9999-12-31">
 													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-26-1" name="contp1-26-1" value="" tabindex="10" >
 													</td>
 													<td class="cont-title" style="vertical-align: middle;">안치일시</td>
-													<td colspan="2"><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-27" name="contp1-27" value="" tabindex="11">
+													<td colspan="2"><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-27" name="contp1-27" value="" tabindex="11" max="9999-12-31">
 													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-27-1" name="contp1-27-1" value="" tabindex="12">
 													</td>
 												</tr>
 												<tr align="center">
 													<td class="cont-title" style="vertical-align: middle;">입관일시</td>
-													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-28" name="contp1-28" value="" tabindex="13" >
+													<td><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-28" name="contp1-28" value="" tabindex="13" max="9999-12-31">
 													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-28-1 " name="contp1-28-1" value="" tabindex="14" >
 													</td>
 													<td class="cont-title" style="vertical-align: middle;">발인일시(*)</td>
-													<td colspan="2"><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-29" name="contp1-29" value="" tabindex="15">
+													<td colspan="2"><input type="date" style="width:70%;float:left" class="form-control form-control-sm" id="contp1-29" name="contp1-29" value="" tabindex="15" max="9999-12-31">
 													<input type="text" style="width:30%;float:right" class="form-control form-control-sm timepicker" id="contp1-29-1" name="contp1-29-1" value="" tabindex="16">
 													</td>
 												</tr>
@@ -576,10 +576,10 @@
 													<td style="text-align: right; border-right:none">
 														<c:choose>
 															<c:when test="${row.QUTY > 0}">
-																<input style="text-align:right;border:0px" type="number" class="sTB from-control" min="0" value = "${row.QUTY}" id="idFtEa_${row.FTABLE_ID}">
+																<input style="text-align:right;border:0px" type="text" data-type="number" class="sTB from-control" value = "${row.QUTY}" id="idFtEa_${row.FTABLE_ID}">
 															</c:when>
 															<c:otherwise>
-																<input style="text-align:right;border:0px" type="number" class="sTB from-control" min="0" value = "1" id="idFtEa_${row.FTABLE_ID}">
+																<input style="text-align:right;border:0px" type="text" data-type="number" class="sTB from-control" value = "1" id="idFtEa_${row.FTABLE_ID}">
 															</c:otherwise>
 														</c:choose>
 													</td>
@@ -684,11 +684,9 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="1" required></td>
+												<td style="text-align: right;">
+													<input class="from-control GA" oninput="calculateG()" style="border: none; text-align: right;" type="text" data-type="number" value="1" required>
+												</td>
 												<td class="GB GM from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -720,11 +718,9 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="1" required></td>
+												<td style="text-align: right;">
+													<input class="from-control GA" oninput="calculateG()" style="border: none; text-align: right;" type="text" data-type="number" value="1" required>
+												</td>
 												<td class="GB GM from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -756,11 +752,8 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="1" required></td>
+												<td style="text-align: right;">
+													<input class="from-control GA" oninput="calculateG()" style="border: none; text-align: right;" type="text" data-type="number" value="1" required></td>
 												<td class="GB GM from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -792,11 +785,8 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="1" required></td>
+												<td style="text-align: right;">
+													<input class="from-control GA" oninput="calculateG()" style="border: none; text-align: right;" type="text" data-type="number" value="1" required></td>
 												<td class="GB GM from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -828,11 +818,9 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="1" required></td>
+												<td style="text-align: right;">
+													<input class="from-control GA" oninput="calculateG()" style="border: none; text-align: right;" type="text" data-type="number" value="1" required>
+												</td>
 												<td class="GB GM from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -864,11 +852,9 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input
-													class="from-control GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="1" required></td>
+												<td style="text-align: right;">
+													<input class="from-control GA" oninput="calculateG()" style="border: none; text-align: right;" type="text" data-type="number" value="1" required>
+												</td>
 												<td class="GB GM from-control" style="text-align: right;"></td>
 											</tr>
 										<c:forEach var="row" items="${listFgoodsM}">
@@ -884,12 +870,8 @@
 														value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td>
 												<td style="vertical-align:middle; text-align: right;" class="infoG2"><fmt:formatNumber
 														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></td>
-												<td style="vertical-align:middle; text-align: right;"><input
-													class="from-control GC" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="<c:if test="${row.FNRS_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.FNRS_GOODS_INIT_QTY ne null }">${row.FNRS_GOODS_INIT_QTY}</c:if>"
-													required></td>
+												<td style="vertical-align:middle; text-align: right;">
+													<input class="from-control GC" oninput="calculateG()" style="border: none; text-align: right;" type="text" data-type="number" value="<c:if test="${row.FNRS_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.FNRS_GOODS_INIT_QTY ne null }">${row.FNRS_GOODS_INIT_QTY}</c:if>" required></td>
 												<td class="GD GM from-control" style="vertical-align:middle; text-align: right;"></td>
 											</tr>
 										</c:forEach>
@@ -1645,6 +1627,14 @@
 	var modal = $(".modal");
 	var modal_body = $(".modal").find(".modal-body");
 	var modal_footer = $(".modal").find(".modal-footer");
+	
+	$("input[type='text']").each(function(index, item){
+		if($(item).data("type") === "number"){
+			$(item).attr("maxlength", 6);
+			$(item).attr("onKeyup", "this.value = this.value.replace(/[^0-9]/g, '');");
+			$(item).attr("style", "width:110px;text-align:right;");
+		}
+	});
 	
 	$("#contp1-01").children("option[value='']").hide();
 	
@@ -2720,7 +2710,13 @@
 		chkcalT();
 	});
 	
-	$(".sTB ,.sCHKft").change(function() {
+	$(".sTB").keyup(function(){
+		chkFtablechange();
+		calculateT();
+		chkcalT();
+	});
+	
+	$(".sCHKft").change(function() {
 		chkFtablechange();
 		calculateT();
 		chkcalT();

@@ -148,9 +148,9 @@
 																	style="width: 25%; float: right" id="contp1-14-1"
 																	name="contp1-14-1" value=""></td>
 																<td class="text-center">나이</td>
-																<td><input type="number" style="text-align: right;"
+																<td><input type="text" data-type="number"
 																	class="form-control form-control-sm" id="contp1-15"
-																	min="0" max="150" name="contp1-15"
+																	name="contp1-15"
 																	value="${detailCont.DPERSON_AGE}"></td>
 																<td class="text-center">사망종류</td>
 																<td><select class="form-control" id="contp1-16">
@@ -227,7 +227,7 @@
 																<td><input type="date"
 																	style="width: 70%; float: left"
 																	class="form-control form-control-sm" id="contp1-26"
-																	name="contp1-26" value=""> <input type="text"
+																	name="contp1-26" value="" max="9999-12-31"> <input type="text"
 																	style="width: 25%; float: right"
 																	class="form-control form-control-sm timepicker"
 																	id="contp1-26-1" name="contp1-26-1" value="">
@@ -236,7 +236,7 @@
 																<td><input type="date"
 																	style="width: 70%; float: left"
 																	class="form-control form-control-sm" id="contp1-27"
-																	name="contp1-27" value=""> <input type="text"
+																	name="contp1-27" value="" max="9999-12-31"> <input type="text"
 																	style="width: 25%; float: right"
 																	class="form-control form-control-sm timepicker"
 																	id="contp1-27-1" name="contp1-27-1" value=""></td>
@@ -248,7 +248,7 @@
 																<td><input type="date"
 																	style="width: 70%; float: left"
 																	class="form-control form-control-sm" id="contp1-28"
-																	name="contp1-28" value=""> <input type="text"
+																	name="contp1-28" value="" max="9999-12-31"> <input type="text"
 																	style="width: 25%; float: right"
 																	class="form-control form-control-sm timepicker"
 																	id="contp1-28-1" name="contp1-28-1" value="">
@@ -257,7 +257,7 @@
 																<td><input type="date"
 																	style="width: 70%; float: left"
 																	class="form-control form-control-sm" id="contp1-29"
-																	name="contp1-29" value=""> <input type="text"
+																	name="contp1-29" value="" max="9999-12-31"> <input type="text"
 																	style="width: 25%; float: right"
 																	class="form-control form-control-sm timepicker"
 																	id="contp1-29-1" name="contp1-29-1" value=""></td>
@@ -571,8 +571,15 @@ $("#contPrintBtn").on("click", function(){
 	
 	return false;
 	
-})
+});
 
+$("input[type='text']").each(function(index, item){
+	if($(item).data("type") === "number"){
+		$(item).attr("maxlength", 6);
+		$(item).attr("onKeyup", "this.value = this.value.replace(/[^0-9]/g, '');");
+		$(item).attr("style", "width:110px;text-align:right;");
+	}
+});
 
 function delRoom(obj,roomid,drid){
 		var addrData = {};

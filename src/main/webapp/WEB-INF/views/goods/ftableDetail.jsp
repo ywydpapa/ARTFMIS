@@ -56,9 +56,9 @@
 							</tr>
 							<tr>
 								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">정렬순서</th>
-								<td><input type="number" style="text-align: right;"
+								<td><input type="text" data-type="number" style="text-align: right;"
 									class="form-control num_only num_comma num_sum CHKcal" id="sortNo"
-									name="sortNo" value="${dto.FTABLE_ORDER}"  min="0" max="1000" placeholder="">
+									name="sortNo" value="${dto.FTABLE_ORDER}" placeholder="">
 								</td>
 								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">사용여부</th>
 								<td><select name="useYn" id="useYn"
@@ -120,6 +120,14 @@
 <!--//상품등록-->
 <script src="${path}/js/onloadScript.js"></script>
 	<script>
+		$("input[type='text']").each(function(index, item){
+			if($(item).data("type") === "number"){
+				$(item).attr("maxlength", 6);
+				$(item).attr("onKeyup", "this.value = this.value.replace(/[^0-9]/g, '');");
+				$(item).attr("style", "text-align:right;");
+			}
+		});
+		
 		function fn_Updateftable() {
 			var altarData = {};
 			altarData.FTABLE_ID = $("#ftableID").val();

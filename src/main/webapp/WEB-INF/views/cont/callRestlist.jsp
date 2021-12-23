@@ -50,14 +50,20 @@
 						value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td>
 				<td style="text-align: right; vertical-align: middle" class="infoM"><fmt:formatNumber
 						value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></td>
-				<td style="text-align: right; vertical-align: middle"><input
-					class="from-control MA" oninput="calculateM()"
-					style="border: none; text-align: right;" type="number" min="0"
-					max="100"
-					value="<c:if test="${row.MESSR_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.MESSR_GOODS_INIT_QTY ne null }">${row.MESSR_GOODS_INIT_QTY}</c:if>"
-					required></td>
+				<td style="text-align: right; vertical-align: middle">
+					<input class="from-control MA" oninput="calculateM()" style="border: none; text-align: right;" type="text" data-type="number" value="<c:if test="${row.MESSR_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.MESSR_GOODS_INIT_QTY ne null }">${row.MESSR_GOODS_INIT_QTY}</c:if>" required>
+				</td>
 				<td class="MB" style="text-align: right; vertical-align: middle"></td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
+<script>
+$("input[type='text']").each(function(index, item){
+	if($(item).data("type") === "number"){
+		$(item).attr("maxlength", 6);
+		$(item).attr("onKeyup", "this.value = this.value.replace(/[^0-9]/g, '');");
+		$(item).attr("style", "width:110px;text-align:right;");
+	}
+});
+</script>

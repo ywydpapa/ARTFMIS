@@ -69,13 +69,13 @@
 				style="vertical-align: middle; text-align: center; background-color: #E6F8E0"
 				scope="row">면적(m<sup>2</sup>)
 			</th>
-			<td><input type="number" style="text-align: right"
+			<td><input type="text" data-type="number" style="text-align: right"
 				class="Bset form-control form-control-sm" id="roomSize"
 				name="roomSize" value="${dtoRoom.FROOM_AREA}"></td>
 			<th
 				style="vertical-align: middle; text-align: center; background-color: #E6F8E0"
 				scope="row">평수</th>
-			<td colspan="2"><input type="number" style="text-align: right;"
+			<td colspan="2"><input type="text" data-type="number" style="text-align: right;"
 				class="Bset form-control form-control-sm" name="pyungSize"
 				id="pyungSize" value="${dtoRoom.FROOM_AREA_KOR}"></td>
 		</tr>
@@ -85,7 +85,7 @@
 				scope="row">수용인원수</th>
 			<td><input name="roomCap" id="roomCap"
 				style="text-align: right;" class="Bset form-control form-control-sm"
-				type="number" value="${dtoRoom.FROOM_MAX_PERS}"></td>
+				type="text" data-type="number" value="${dtoRoom.FROOM_MAX_PERS}"></td>
 			<th
 				style="vertical-align: middle; text-align: center; background-color: #E6F8E0"
 				scope="row">컴퓨터이름</th>
@@ -116,7 +116,7 @@
 			<th
 				style="vertical-align: middle; text-align: center; background-color: #E6F8E0"
 				scope="row">정렬순서</th>
-			<td><input type="number" style="text-align: right;"
+			<td><input type="text" data-type="number" style="text-align: right;"
 				class="form-control form-control-sm" id="orderNo" name="orderNo"
 				value="${dtoRoom.FROOM_ORDNO}"></td>
 			<th
@@ -255,6 +255,14 @@
 </style>
 <script src="${path}/js/onloadScript.js"></script>
 <script>
+	$("input[type='text']").each(function(index, item){
+		if($(item).data("type") === "number"){
+			$(item).attr("maxlength", 6);
+			$(item).attr("onKeyup", "this.value = this.value.replace(/[^0-9]/g, '');");
+			$(item).attr("style", "text-align:right;");
+		}
+	});
+	
 	$(document).ready(function() {
 		$('#useYn').val('${dtoRoom.FROOM_USE_YN}').prop("selected", true);
 		$('#roomType').val('${dtoRoom.FROOM_TYP}').prop("selected", true);

@@ -161,15 +161,15 @@
 															<c:when test="${row.FTABLE_CAT eq '24'}">
 																<c:choose>
 																	<c:when test="${row.QUTY > 0}">
-																		<input type="number" class="form-control ftEa" id="idFtEa_${row.FTABLE_ID}" style="text-align:right;" min="0" value="${row.QUTY}">
+																		<input type="text" data-type="number" class="form-control ftEa" id="idFtEa_${row.FTABLE_ID}" style="text-align:right;" value="${row.QUTY}">
 																	</c:when>
 																	<c:otherwise>
-																		<input type="number" class="form-control ftEa" id="idFtEa_${row.FTABLE_ID}" style="text-align:right;" min="0" value="0" readonly>
+																		<input type="text" data-type="number" class="form-control ftEa" id="idFtEa_${row.FTABLE_ID}" style="text-align:right;" value="0" readonly>
 																	</c:otherwise>
 																</c:choose>
 															</c:when>
 															<c:otherwise>
-																<input type="number" class="form-control" style="text-align:right;" min="0" value="1" readonly>
+																<input type="text" data-type="number" class="form-control" style="text-align:right;" value="1" readonly>
 															</c:otherwise>
 														</c:choose>
 													</td>
@@ -313,10 +313,9 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input class="from-control m134 GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 13}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
+												<td style="text-align: right;">
+													<input class="from-control m134 GA" oninput="calculateG()" style="border: none; text-align: right;" type="text" data-type="number" value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 13}">${row.ORD_QUTY}</c:if></c:forEach>" required>
+												</td>
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -345,11 +344,8 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input
-													class="from-control m144 GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 14}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
+												<td style="text-align: right;">
+													<input class="from-control m144 GA" oninput="calculateG()" style="border: none; text-align: right;" type="text" data-type="number" value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 14}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -378,11 +374,8 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input
-													class="from-control m154 GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 15}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
+												<td style="text-align: right;">
+													<input class="from-control m154 GA" oninput="calculateG()" style="border: none; text-align: right;" type="text" data-type="number" value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 15}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -411,11 +404,8 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input
-													class="from-control m164 GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 16}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
+												<td style="text-align: right;">
+													<input class="from-control m164 GA" oninput="calculateG()" style="border: none; text-align: right;" type="text" data-type="number" value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 16}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -444,11 +434,8 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input
-													class="from-control m174 GA" oninput="calculateG()"
-													style="border: none; text-align: right;" type="number"
-													min="0" max="100"
-													value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 17}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
+												<td style="text-align: right;">
+													<input class="from-control m174 GA" oninput="calculateG()" style="border: none; text-align: right;" type="text" data-type="number" value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 17}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
@@ -477,8 +464,9 @@
 													</c:forEach>
 													</select>
 												</td>
-												<td style="text-align: right;"><input class="from-control m184 GA" oninput="calculateG()" style="border: none; text-align: right;" type="number" min="0" max="100"
-													value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 18}">${row.ORD_QUTY}</c:if></c:forEach>" required></td>
+												<td style="text-align: right;">
+													<input class="from-control m184 GA" oninput="calculateG()" style="border: none; text-align: right;" type="text" data-type="number" value="<c:forEach var="row" items="${consultpage4m}"><c:if test="${row.CAT_02_ID eq 18}">${row.ORD_QUTY}</c:if></c:forEach>" required>
+												</td>
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 										<c:forEach var="row" items="${consultpage4m}">
@@ -493,7 +481,7 @@
 												<c:if test="${row.CAT_02_ID > 18}"><td style="text-align: right;" class="infoG2"><fmt:formatNumber
 														value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></td></c:if>
 												<c:if test="${row.CAT_02_ID > 18}"><td style="text-align: right;"><input class="from-control GC" oninput="calculateG()" 
-													style="border: none; text-align: right;" type="number" min="0" max="100" value="${row.ORD_QUTY}" required></td></c:if>
+													style="border: none; text-align: right;" type="text" data-type="number" value="${row.ORD_QUTY}" required></td></c:if>
 												<c:if test="${row.CAT_02_ID > 18}"><td class="GD from-control" style="text-align: right;"></td></c:if>
 											<c:if test="${row.CAT_02_ID > 18}"></tr></c:if>
 										</c:forEach>
@@ -992,7 +980,27 @@
 </div>
 <!--계약기본등록-->
 <script>
-	$(".ftEa").change(function(){
+	$("input[type='text']").each(function(index, item){
+		if($(item).data("type") === "number"){
+			$(item).attr("maxlength", 6);
+			$(item).attr("onKeyup", "this.value = this.value.replace(/[^0-9]/g, '');");
+			$(item).attr("style", "width:110px;text-align:right;");
+		}
+	});
+	
+	$(".GA").each(function(index, item){
+		if($(item).val() === ""){
+			$(item).val(0);
+		}
+	});
+	
+	$(".GC").each(function(index, item){
+		if($(item).val() === ""){
+			$(item).val(0);
+		}
+	});
+
+	$(".ftEa").keyup(function(){
 		$("#sFtable").find("#"+$(this).attr("id")).val($(this).val());
 		calculateT();
 		chkcalT();
@@ -1902,7 +1910,7 @@
 		var chksum = 0;
 		for (var i = 0; i < $infoarr.length; i++) {
 			if($($infoarr[i]).is(":checked")==true){
-				var t1 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, "")) * $(".TA").eq(i).next().find("input[type='number']").val();
+				var t1 = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, "")) * $(".TA").eq(i).next().find("input[type='text']").val();
 				chksum = chksum + (t1);
 			}
 		}
@@ -1967,7 +1975,7 @@
 		var $sinfoarr = $(".sCHKft");
 		for (var i = 0; i < $infoarr.length; i++) {
 			if($($infoarr[i]).is(":checked")==true){
-				$($sinfoarr[i]).parent().prev().prev().prev().find(".sTB").val($($infoarr[i]).parent().next().next().find("input[type='number']").val());
+				$($sinfoarr[i]).parent().prev().prev().prev().find(".sTB").val($($infoarr[i]).parent().next().next().find("input[type='text']").val());
 				$($sinfoarr[i]).prop("checked",true);
 				$($sinfoarr[i]).parent().parent().show();
 			}

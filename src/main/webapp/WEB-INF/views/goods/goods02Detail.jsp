@@ -59,7 +59,7 @@
 							</tr>
 							<tr>
 								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">단위당수량</td>
-								<td style="vertical-align:middle"><input type="number" class="form-control CHKcal"
+								<td style="vertical-align:middle"><input type="text" data-type="number" class="form-control CHKcal"
 									style="text-align: right;" required name="GOODS_SALE_UNIT"
 									id="GOODS_SALE_UNIT" value="${dto.GOODS_SALE_UNIT}" /></td>
 								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">단위수량단위</td>
@@ -67,7 +67,7 @@
 									name="GOODS_UNIT_QTY" id="GOODS_UNIT_QTY"
 									value="${dto.GOODS_UNIT_QTY}" /></td>
 								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">개당가격</td>
-								<td style="vertical-align:middle"><input type="text" class="form-control CHKcal"
+								<td style="vertical-align:middle"><input type="text" class="form-control"
 									style="text-align: right;" required name="GOODS_NET_PRICE"
 									id="GOODS_NET_PRICE" value="<fmt:formatNumber value="${dto.GOODS_NET_PRICE}" pattern="#,###"/>" /></td>
 							</tr>
@@ -145,8 +145,8 @@
 							</tr>
 							<tr>
 								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">정렬순서</td>
-								<td style="vertical-align:middle"><input type="number" class="form-control"
-									style="text-align: right;" step="1" min = "0" name="GOODS_ORDER" id="GOODS_ORDER"
+								<td style="vertical-align:middle"><input type="text" data-type="number" class="form-control"
+									style="text-align: right;" name="GOODS_ORDER" id="GOODS_ORDER"
 									value="${dto.GOODS_ORDER}" onchange="this.value = Math.floor(Math.max(this.value,0))" /></td>
 								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">사용유무</td>
 								<td style="vertical-align:middle"><select class="form-control form-control-sm"
@@ -169,6 +169,14 @@
 </div>
 <script src="${path}/js/onloadScript.js"></script>
 <script>
+$("input[type='text']").each(function(index, item){
+	if($(item).data("type") === "number"){
+		$(item).attr("maxlength", 6);
+		$(item).attr("onKeyup", "this.value = this.value.replace(/[^0-9]/g, '');");
+		$(item).attr("style", "text-align:right;");
+	}
+});
+
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -268,14 +276,14 @@ function numberWitioutCommas(x) {
 	}
 
 	
-	$(function() {
+	/* $(function() {
 		$("#GOODS_NET_PRICE,#GOODS_SALE_UNIT").on('keyup', function() {
 			var sum1 = parseInt($("#GOODS_NET_PRICE").val() || 0);
 			var sum2 = parseInt($("#GOODS_SALE_UNIT").val() || 0);
 			var sum = sum1 * sum2;
 			$("#GOODS_SALE_PRICE").val(sum);
 		});
-	});
+	}); */
 	
 	
 	function fn_setinsertmode(){
@@ -320,7 +328,7 @@ function numberWitioutCommas(x) {
 			$("#GOODS_NET_PRICE").val(numberWithCommas(sum1));
 	  }
 	  
-	  $(".CHKcal").change(function(){
+	  $(".CHKcal").keyup(function(){
 			recal();  
 	  });
 	
