@@ -16,12 +16,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  
  <select id="timelistSetup"
  		resultType="setupDto">
- 		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%' and SETUP_TYPE='TIME'
+ 		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%' and SETUP_TYPE like '%TIME'
  </select>
  
-  <select id="timelist"
+ <select id="timelistrest"
  		resultType="setupDto">
- 		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%' and SETUP_TYPE='TIME' and USE_YN='Y'
+ 		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%' and SETUP_TYPE='RTIME' and USE_YN='Y'
+ </select>
+ 
+ <select id="timeliststore"
+ 		resultType="setupDto">
+ 		SELECT * from GHT_SETUP where ATTRIB not like 'XXX%' and SETUP_TYPE='STIME' and USE_YN='Y'
  </select>
  
  <select id="infolistSetup" resultType="setupDto">
@@ -98,7 +103,7 @@ where SETL_ID=#{SETL_ID}
 <select id="listfroomAddsetl" resultType="setupDto">
 select a.BCD_ID, a.BCD_TITLE , g.* from GHT_BASE_CODE a 
 left join GHT_FROOM_SETL g on a.BCD_ID = g.SETL_REMARK and g.SETL_FROOM_ID = #{SETL_FROOM_ID}
-where a.BCD_CAT_TYPE='9'and g.MOD_DATE is null order by BCD_ORDER  
+where a.BCD_CAT_TYPE='9' order by BCD_ORDER  
 </select>
   
   

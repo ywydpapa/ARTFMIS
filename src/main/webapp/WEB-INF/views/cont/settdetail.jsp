@@ -110,7 +110,7 @@
 											<td style="text-align: right;" class="sprice"><fmt:formatNumber value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td>
 											<td style="text-align: right;">${row.ORD_QUTY}</td>	
 											<td style="text-align: right;" class="ordamt"><fmt:formatNumber value="${row.ORD_AMOUNT}" pattern="#,###" /></td>
-											<td style="text-align: right;"><input class="rquty" style="text-align:right; border:none" type="number" value="0" min="0"></td>																																
+											<td style="text-align: right;"><input class="rquty" style="text-align:right; border:none" type="number" value="0" min="0" ></td>
 											<td style="text-align: right;" class="ramount"></td>
 											<td style="text-align: right;" class="remainT"></td>
 											</tr>
@@ -124,10 +124,10 @@
 										</table>
 									</div>
 								</div>
-								<div class="btn_wr text-right mt-3">
+<%--								<div class="btn_wr text-right mt-3">
 									<button class="btn btn-md btn-primary"
 										onClick="fn_UpdateReturn()">반품처리</button>
-								</div>
+								</div>--%>
 							</div>
 						</div>
 					</div>
@@ -395,59 +395,61 @@
 							<hr>
 							<div style="text-align:right"><span>총액 :</span><input type="text" id="sumPage3total" style="text-align: right; border: none;" readonly>
 							</div>
+							<div class="table-responsive">
+								<table class="table table-sm bst02">
+									<tbody>
+									<tr>
+										<th scope="row">장례 비용 총계</th>
+									</tr>
+									</tbody>
+								</table>
+								<table class="table table-sm bst02">
+									<tbody>
+									<tr>
+										<td class="form-control">총 장례 비용 합계</td>
+										<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4grdsum" value=""></td>
+									</tr>
+									<tr>
+										<td class="form-control">반품 금액 합계</td>
+										<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4rtn" value=""></td>
+									</tr>
+									<tr>
+										<td class="form-control">할인 금액 합계</td>
+										<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4disc" value=""></td>
+									</tr>
+									<tr>
+										<td class="form-control">업체에 직접 지불하실 비용 합계</td>
+										<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4ext" value=""></td>
+									</tr>
+									<tr>
+										<td class="form-control"><input type="checkbox" id="cashbillchk"><span> </span> 현금영수증 발행 (발행용 전화번호 입력)</td>
+										<td><input style="text-align: right; border:none" class="form-control" type="tel" id="page4cashbill" value=""></td>
+									</tr>
+									<tr>
+										<td class="form-control">현금 수납 금액</td>
+										<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4cash" value="0"></td>
+									</tr>
+									<tr>
+										<td class="form-control">카드 수납 금액</td>
+										<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4card" value="0"></td>
+									</tr>
+									<tr>
+										<td class="form-control">추가 기재 사항</td>
+										<td><textarea style="border:none" class="form-control" id="page4rmk"></textarea></td>
+									</tr>
+									</tbody>
+								</table>
+								<div style="text-align: right">
+									<span>수납 대상 총액 :</span><input type="text" id="Conttotal"
+																  style="text-align: right; border: none;" readonly>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 						<div class="tab-pane" id="tab04" role="tabpanel">
 							<div class="card-block table-border-style">
 								<div class="table-responsive">
-									<table class="table table-sm bst02">
-										<tbody>
-											<tr>
-												<th scope="row">장례 비용 총계</th>
-											</tr>
-										</tbody>
-									</table>
-									<table class="table table-sm bst02">
-										<tbody>
-											<tr>
-												<td class="form-control">총 장례 비용 합계</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4grdsum" value=""></td>
-											</tr>
-											<tr>
-												<td class="form-control">반품 금액 합계</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4rtn" value=""></td>
-											</tr>
-											<tr>
-												<td class="form-control">할인 금액 합계</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4disc" value=""></td>
-											</tr>
-											<tr>
-												<td class="form-control">업체에 직접 지불하실 비용 합계</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4ext" value=""></td>
-											</tr>
-											<tr>
-												<td class="form-control"><input type="checkbox" id="cashbillchk"><span> </span> 현금영수증 발행 (발행용 전화번호 입력)</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="tel" id="page4cashbill" value=""></td>
-											</tr>
-											<tr>
-												<td class="form-control">현금 수납 금액</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4cash" value="0"></td>
-											</tr>
-											<tr>
-												<td class="form-control">카드 수납 금액</td>
-												<td><input style="text-align: right; border:none" class="form-control" type="text" id="page4card" value="0"></td>
-											</tr>
-											<tr>
-												<td class="form-control">추가 기재 사항</td>
-												<td><textarea style="border:none" class="form-control" id="page4rmk"></textarea></td>
-											</tr>
-										</tbody>
-									</table>
-									<div style="text-align: right">
-										<span>수납 대상 총액 :</span><input type="text" id="Conttotal"
-											style="text-align: right; border: none;" readonly>
-									</div>
 									<div class="btn_wr text-right mt-3">
 										<button class="btn btn-md btn-primary"
 											onClick="fn_contFinish()">수납/퇴실처리 완료</button>
@@ -595,7 +597,8 @@
 		calReturn();
 		sumsmall();
 	});
-	
+
+
 	function dtlhide(){
 		$(".hidedetail").hide();
 	}
@@ -848,6 +851,14 @@
 		var t3 = Number($("#page4disc").val().replace(/[\D\s\._\-]+/g, ""));
 		var t4 = Number($("#page4ext").val().replace(/[\D\s\._\-]+/g, ""));
 		$("#Conttotal").val(numberWithCommas(t1-t2-t3-t4));
+	}
+
+	function nextInput(data){
+
+		let idx = $('Input').index();
+
+		alert (idx);
+
 	}
 
 </script>

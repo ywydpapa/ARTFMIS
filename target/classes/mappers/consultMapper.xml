@@ -29,6 +29,10 @@ select * from (SELECT a.FROOM_ID roomID, a.FROOM_ID ,a.FROOM_ALIS FROOM_TITLE ,a
 	and b.SETT_DATE is null where a.FROOM_TYP=1 and a.FROOM_USE_YN='Y' and length(a.FROOM_ALIS) > 0 and IMSI_YN = 'Y' group by a.FROOM_ID order by a.FROOM_ORDNO) TB  --> 
 </select>
 
+<select id="getConsultId" resultType="consultDto">
+	select * from GHT_CONSULT order by CONSULT_ID desc limit 1
+</select>
+
 <select id="consultModalList" resultType="consultDto">
 SELECT a.*, c.FROOM_TITLE FROM GHT_CONSULT a
 LEFT JOIN GHT_CONSULT_FROOM b ON a.CONSULT_ID = b.CONSULT_ID
@@ -118,11 +122,23 @@ where a.FROOM_TYP NOT IN (1,5) and a.FROOM_USE_YN = 'Y' order by a.FROOM_ORDER a
   			(
 				CONSULT_DATE,
 				PATI_NAME,
+				BFAMILY_NAME,
+				TEL_NO,
+				HOSPITAL,
+				RELIGION,
+				BURI_YN,
+				REMARK,
 				ATTRIB
   			) VALUES
   			(
 				#{CONSULT_DATE},
 				#{PATI_NAME},
+				#{BFAMILY_NAME},
+				#{TEL_NO},
+				#{HOSPITAL},
+				#{RELIGION},
+				#{BURI_YN},
+				#{REMARK},
 				'10000'
   			)
  </insert>
