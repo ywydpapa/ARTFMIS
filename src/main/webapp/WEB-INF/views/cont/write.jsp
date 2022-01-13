@@ -3520,7 +3520,7 @@ function fnSetcont7page(url, data){
 		}, 500);
 		calculateS();
 		setSecond2();
-});
+	});
 }
 
 	$(document).ready(function(){
@@ -3554,6 +3554,5 @@ function fnSetcont7page(url, data){
 		chkAltarchange();
 		chkEtcchange();
 		SetDT();
-
 	})
 </script>

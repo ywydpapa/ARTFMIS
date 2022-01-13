@@ -70,6 +70,21 @@
 	<button class="btn btn-md btn-primary" onClick="fn_contInsertP7()">등록</button>
 </div>
 <script>
+$('input').on("keypress", function(e) {
+    if (e.keyCode == 13) {
+        var inputs = $(this).parents("tbody").eq(0).find(":input[type='text']");
+        var idx = inputs.index(this);
+
+        if (idx == inputs.length - 1) {
+            inputs[0].select();
+        } else {
+            inputs[idx + 1].focus(); 
+            inputs[idx + 1].select();
+        }
+        return false;
+    }
+});
+
 $("input[type='text']").each(function(index, item){
 	if($(item).data("type") === "number"){
 		$(item).attr("maxlength", 6);

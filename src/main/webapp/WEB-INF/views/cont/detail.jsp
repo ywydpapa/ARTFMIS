@@ -1224,9 +1224,7 @@
 													value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></td>
 											<td style="text-align: right;vertical-align:middle"><input
 												class="from-control MA" oninput="calculateM()"
-												style="border: none; text-align: right;" type="number"
-												min="0" max="100"
-												value="<c:if test="${row.MESSR_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.MESSR_GOODS_INIT_QTY ne null }">${row.MESSR_GOODS_INIT_QTY}</c:if>"
+												style="border: none; text-align: right;" type="text" value="<c:if test="${row.MESSR_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.MESSR_GOODS_INIT_QTY ne null }">${row.MESSR_GOODS_INIT_QTY}</c:if>"
 												required></td>
 											<td class="MB" style="text-align: right;vertical-align:middle"></td>
 										</tr>
@@ -1298,8 +1296,7 @@
 											<td style="text-align: right;vertical-align:middle" class="infoS"><fmt:formatNumber
 													value="${row.GOODS_SALE_PRICE}" pattern="#,###" /></td>
 											<td style="text-align: right;vertical-align:middle"><input class="from-control SA" oninput="calculateS()"
-												style="border: none; text-align: right;" type="number"
-												min="0" max="100" value="<c:if test="${row.STORE_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.STORE_GOODS_INIT_QTY ne null }">${row.STORE_GOODS_INIT_QTY}</c:if>"
+												style="border: none; text-align: right;" type="text" value="<c:if test="${row.STORE_GOODS_INIT_QTY eq null }">1</c:if><c:if test="${row.STORE_GOODS_INIT_QTY ne null }">${row.STORE_GOODS_INIT_QTY}</c:if>"
 												required></td>
 											<td class="SB" style="text-align: right;vertical-align:middle"></td>
 										</tr>
@@ -1476,14 +1473,7 @@
 	</div>
 </div>
 <!--계약기본등록-->
-<script src="${path}/js/onloadScript.js"></script>
 <script>
-	$(".ftEa").change(function(){
-		$("#sFtable").find("#"+$(this).attr("id")).val($(this).val());
-		calculateT();
-		chkcalT();
-	});
-	
 	function fn_contUpdateP1() {
 		var contData = {};
 		var chkr = $('#rmchk').val();
@@ -3235,6 +3225,51 @@ function setSecond2(){
 }
 
 	$(document).ready(function(){
+		$("input").attr("autocomplete", "off");
+		
+		$('#basicTable input').keydown(function(e) {
+			var idx = $('#basicTable input').index(this);
+			
+			if (e.keyCode === 13) {
+				$('#basicTable input').eq(idx+1).focus();
+			};
+		});
+		
+		$("#calledRest input").on("keypress", function(e) {
+		    if (e.keyCode == 13) {
+		        var inputs = $(this).parents("tbody").eq(0).find(":input[type='text']");
+		        var idx = inputs.index(this);
+		
+		        if (idx == inputs.length - 1) {
+		            inputs[0].select();
+		        } else {
+		            inputs[idx + 1].focus(); 
+		            inputs[idx + 1].select();
+		        }
+		        return false;
+		    }
+		});
+		
+		$("#calledStore input").on("keypress", function(e) {
+		    if (e.keyCode == 13) {
+		        var inputs = $(this).parents("tbody").eq(0).find(":input[type='text']");
+		        var idx = inputs.index(this);
+		
+		        if (idx == inputs.length - 1) {
+		            inputs[0].select();
+		        } else {
+		            inputs[idx + 1].focus(); 
+		            inputs[idx + 1].select();
+		        }
+		        return false;
+		    }
+		});
+		
+		$(".ftEa").change(function(){
+			$("#sFtable").find("#"+$(this).attr("id")).val($(this).val());
+			calculateT();
+			chkcalT();
+		});
 		
 		$('.timepicker').timepicker({
 		    timeFormat: 'HH:mm',
@@ -3247,6 +3282,7 @@ function setSecond2(){
 		    dropdown: false,
 		    scrollbar: false
 		});
+		
 		calculateM();
 		chkcalM();
 		calculateS();
@@ -3267,7 +3303,7 @@ function setSecond2(){
 		chkEtcchange();
 		SetDT();
 		setComboP1();
-		setSecond2()
+		setSecond2();
 	})
 
 </script>
