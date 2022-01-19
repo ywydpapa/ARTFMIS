@@ -2,9 +2,12 @@ package kr.ghtech.artfms.cont.dto;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 public class ContDTO {
 	private Integer CONTRACT_ID;
+	private Integer SETTLECONT_ID;
 	private String INS_DATE;
 	private int CONSULT_ID;
 	private String START_DATE;
@@ -243,5 +246,15 @@ public class ContDTO {
 	private String AFDAYS;
 	private String BFCHARGE;
 	private String AFCHARGE;
-	
+	private Integer RET_QUTY;
+	private Integer STORE_SETT_ID;
+	private BigDecimal INIT_AMOUNT;
+	private BigDecimal RET_AMOUNT;
+	private BigDecimal STORE_AMOUNT;
+	private BigDecimal DISCOUNT;
+	private BigDecimal TOTAL_AMOUNT;
+	private Integer SETTLEDISC_ID;
+	private String DISC_POSITION;
+	private BigDecimal DISC_AMOUNT;
+	private String DISC_DESC;
 }

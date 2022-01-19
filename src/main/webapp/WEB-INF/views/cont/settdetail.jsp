@@ -105,7 +105,7 @@
 											<tr>
 											<td class="second" style="text-align: center;">${row.CAT_TITLE}</td>
 											<td style="text-align: center;">${row.GOODS_UNIT}</td>
-											<td style="text-align: center;">${row.GOODS_TITLE}</td>
+											<td style="text-align: center;">${row.GOODS_TITLE}<input type="hidden" class="goodID" value="${row.GOODS_ID}"> </td>
 											<td style="text-align: center;">${row.GOODS_SALE_UNIT}</td>
 											<td style="text-align: right;" class="sprice"><fmt:formatNumber value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td>
 											<td style="text-align: right;">${row.ORD_QUTY}</td>	
@@ -384,7 +384,7 @@
 											<td><input type="text" style="text-align:right;border:none" id="sum39"></td>
 											<td><input type="text" style="text-align:right;border:none" id="sum49" disabled></td></tr>
 											<tr><td style="background-color:lightgray; text-align:center">도우미 비용</td>
-											<td colspan="3" style="text-align:center"><input type="number" style="text-align:center;border:none" id="sum1A" value="">명</td>
+											<td colspan="3" style="text-align:center"><input type="number" style="text-align:center;border:none" id="sum1A" value="">명<input type="text" onkeypress="numberonly();" style="text-align:right;border:none" id="sum1A1" value="">원/일</td>
 											<td><input type="text" style="text-align:right;border:none" id="sum4A" disabled></td></tr>											
 											<tr><td style="background-color:lightgray; text-align:center">장의차 비용</td>
 											<td colspan="3" style="text-align:center"><input type="text" style="text-align:center;border:none" id="sum1B" value="버스기사님께 직접 지불" disabled></td>
@@ -469,7 +469,7 @@
 <script>
 	$('input').on("keypress", function(e) {
 	    if (e.keyCode == 13) {
-	        var inputs = $(this).parents("tbody").eq(0).find(":input");
+	        var inputs = $(this).parents("tbody").eq(0).find(":input[type='number']");
 	        var idx = inputs.index(this);
 	
 	        if (idx == inputs.length - 1) {
@@ -622,7 +622,81 @@
 	}
 	
 	function fn_contFinish(){
-		if(confirm("퇴실 처리 하시겠습니까?")){}
+		if(confirm("반품 처리를 진행 하시겠습니까?")){
+			var contID = $("#contid").val();
+			var $Aarr = $(".goodID");
+			var $Barr = $(".rquty");
+			var $Carr = $(".ramount");
+			for (var i = 0; i < $Aarr.length; i++){
+				if ($Barr[i].value > 0){
+					var settData = {};
+					settData.CONTRACT_ID = contID;
+					settData.STORE_GOODS_ID = $Aarr[i].value;
+					settData.RET_QUTY = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+					settData.RET_AMOUNT = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+					$.ajax({
+						url : "${path}/cont/insertRtnStore.do",
+						data : settData,
+						method : "POST",
+						dataType : "json"
+					})
+							.done(function(data) {
+								if (data.code == 10001) {
+								} else {
+									alert("저장 실패");
+								}
+							})
+							.fail(function(xhr, status, errorThrown) {
+								alert("통신 실패");
+					});
+				}
+			}
+			if(confirm("정산내역에 있는 금액을 처리하고 수납을 진행하시겠습니까?")){
+				var contID = $("#contid").val();
+				var DISC = [];
+				DISC[2]  = Number($("#sum32").val().replace(/[\D\s\._\-]+/g, ""));
+				DISC[3]  = Number($("#sum33").val().replace(/[\D\s\._\-]+/g, ""));
+				DISC[4] = Number($("#sum34").val().replace(/[\D\s\._\-]+/g, ""));
+				DISC[5]  = Number($("#sum35").val().replace(/[\D\s\._\-]+/g, ""));
+				DISC[6]  = Number($("#sum36").val().replace(/[\D\s\._\-]+/g, ""));
+				DISC[7]  = Number($("#sum37").val().replace(/[\D\s\._\-]+/g, ""));
+				DISC[8]  = Number($("#sum38").val().replace(/[\D\s\._\-]+/g, ""));
+				DISC[9]  = Number($("#sum39").val().replace(/[\D\s\._\-]+/g, ""));
+				var DISC9DESC = $("#extdiscount").val();
+				if (DISC9DESC == ""){DISC9DESC = "내용없음";}
+				var HELPER = Number($("#sum1A").val().replace(/[\D\s\._\-]+/g, ""));
+				var HELPERPAY = Number($("#sum1A1").val().replace(/[\D\s\._\-]+/g, ""));
+				var HELPERTOT = Number($("#sum4A").val().replace(/[\D\s\._\-]+/g, ""));
+				var DISCB = Number($("#sum4B").val().replace(/[\D\s\._\-]+/g, ""));
+
+				for (var i = 2; i < 10; i++){
+					var discData = {};
+					discData.CONTRACT_ID = Number(contID);
+					discData.DISC_POSITION = "sum3"+ i.toString();
+					discData.DISC_AMOUNT = DISC[i];
+					if (i==9){
+					discData.DISC_DESC  = DISC9DESC;
+					}
+					console.log(discData);
+					$.ajax({
+						url : "${path}/cont/insertSettDisc.do",
+						data : discData,
+						method : "POST",
+						dataType : "json"
+					})
+							.done(function(data) {
+								if (data.code == 10001) {
+								} else {
+									alert("저장 실패");
+								}
+							})
+							.fail(function(xhr, status, errorThrown) {
+								alert("통신 실패");
+							});
+				}
+			}
+		}
+
 	}
 	
 	function sumCont2(){
@@ -839,7 +913,15 @@
 		$("#page4cash").val("0");
 		page4Reload();
 	});
-	
+
+	$("#sum1A, #sum1A1").change(function(){
+		var totalA1 = Number($('#sum1A').val().replace(/[\D\s\._\-]+/g, "")) * Number($('#sum1A1').val().replace(/[\D\s\._\-]+/g, ""));
+		var sum1a1 = Number($('#sum1A1').val().replace(/[\D\s\._\-]+/g, ""));
+		$("#sum4A").val(numberWithCommas(totalA1));
+		$("#sum1A1").val(numberWithCommas(sum1a1));
+		totalsum();
+	});
+
 	$("#sum4B").change(function(){
 		totalsum();
 		$("#sum4B").val(numberWithCommas($("#sum4B").val()));
@@ -866,6 +948,15 @@
 		var t4 = Number($("#page4ext").val().replace(/[\D\s\._\-]+/g, ""));
 		$("#Conttotal").val(numberWithCommas(t1-t2-t3-t4));
 	}
+
+	function numberonly(){
+
+		if((event.keyCode<48)||(event.keyCode>57))
+
+			event.returnValue=false;
+
+	}
+
 
 	function nextInput(data){
 

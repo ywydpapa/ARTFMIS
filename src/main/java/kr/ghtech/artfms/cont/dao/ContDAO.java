@@ -28,6 +28,9 @@ public interface ContDAO {
 	int insertCont7(ContDTO dto);
 	int insertCont8(ContDTO dto);
 	int insertCont9(ContDTO dto);
+	int insertRtnStore(ContDTO dto);
+	int insertRtnRest(ContDTO dto);
+	int insertSettDisc(ContDTO dto);
 	int insertYujok(ContDTO dto);
 	int updateYujok(ContDTO dto);
 	int insertAddroom(ContDTO dto);

@@ -896,4 +896,76 @@ where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='2') and GOODS_U
 update GHT_REST_ORDERSHEET set ROOM_TITLE = #{AFFROOM_ID}, REMARK='주문호실 변경' where CONTRACT_ID = #{CONTRACT_ID};
 </update>
 
+    <insert id="insSettRtnstore">
+        insert into GHT_STORE_SETT
+        (CONTRACT_ID,
+         STORE_GOODS_ID,
+         INIT_AMOUNT,
+         ADD_AMOUNT,
+         RET_QUTY,
+         RET_AMOUNT,
+         STORE_AMOUNT,
+         DISCOUNT,
+         TOTAL_AMOUNT,
+         REG_DATE,
+        attrib
+        ) values (
+    #{CONTRACT_ID},
+    #{STORE_GOODS_ID},
+    #{INIT_AMOUNT},
+    #{ADD_AMOUNT},
+    #{RET_QUTY},
+    #{RET_AMOUNT},
+    #{STORE_AMOUNT},
+    #{DISCOUNT},
+    #{TOTAL_AMOUNT},
+    now(),
+    '10000' )
+    </insert>
+
+    <insert id="insSettRtnrest">
+        insert into GHT_REST_SETT
+        (CONTRACT_ID,
+         REST_GOODS_ID,
+         INIT_AMOUNT,
+         ADD_AMOUNT,
+         RET_AMOUNT,
+         STORE_AMOUNT,
+         DISCOUNT,
+         TOTAL_AMOUNT,
+         REG_DATE,
+         attrib
+        ) values (
+                     #{CONTRACT_ID},
+                     #{REST_GOODS_ID},
+                     #{INIT_AMOUNT},
+                     #{ADD_AMOUNT},
+                     #{RET_AMOUNT},
+                     #{STORE_AMOUNT},
+                     #{DISCOUNT},
+                     #{TOTAL_AMOUNT},
+                     now(),
+                     '10000' )
+    </insert>
+
+    <insert id="insertSettDisc">
+        insert into GHT_SETT_DETAIL
+        (CONTRACT_ID,
+            SETT_DATE,
+            DISC_POSITION,
+            DISC_AMOUNT,
+            DISC_DESC,
+            REG_DATE,
+            attrib) values (
+                                #{CONTRACT_ID},
+                                now(),
+                                #{DISC_POSITION},
+                                #{DISC_AMOUNT},
+                                #{DISC_DESC},
+                                now(),
+                                '10000')
+    </insert>
+
+
+
 </mapper>

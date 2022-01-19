@@ -401,6 +401,42 @@ public class ContController {
 		}
 		return ResponseEntity.ok(param);
 	}
+
+	@RequestMapping("insertSettDisc.do")
+	public ResponseEntity<?> insertSDisc(@ModelAttribute ContDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContSdisc= contService.insertSettDisc(dto);
+		if (ContSdisc >0) {
+			param.put("code","10001");
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
+	@RequestMapping("insertRtnStore.do")
+	public ResponseEntity<?> insertRtnStore(@ModelAttribute ContDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContRtn = contService.insertRtnStore(dto);
+		if (ContRtn >0) {
+			param.put("code","10001");
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
+	@RequestMapping("insertRtnRest.do")
+	public ResponseEntity<?> insertRtnRest(@ModelAttribute ContDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContRtn = contService.insertRtnRest(dto);
+		if (ContRtn >0) {
+			param.put("code","10001");
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
 	
 	@RequestMapping("updateSrule.do")
 	public ResponseEntity<?> updateSrule(@ModelAttribute ContDTO dto) {

@@ -186,6 +186,21 @@ public class ContServiceImpl implements ContService {
 	}
 
 	@Override
+	public int insertRtnStore(ContDTO dto) {
+		return contDao.insertRtnStore(dto);
+	}
+
+	@Override
+	public int insertRtnRest(ContDTO dto) {
+		return contDao.insertRtnRest(dto);
+	}
+
+	@Override
+	public int insertSettDisc(ContDTO dto) {
+		return contDao.insertSettDisc(dto);
+	}
+
+	@Override
 	public int updateCont2(ContDTO dto) {
 		// TODO Auto-generated method stub
 		return contDao.updateCont2(dto);

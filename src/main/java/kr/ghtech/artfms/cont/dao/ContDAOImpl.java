@@ -183,6 +183,21 @@ public class ContDAOImpl implements ContDAO {
 	}
 
 	@Override
+	public int insertRtnStore(ContDTO dto) {
+		return sqlSession.insert("cont.insSettRtnstore", dto);
+	}
+
+	@Override
+	public int insertRtnRest(ContDTO dto) {
+		return sqlSession.insert("cont.insSettRtnrest", dto);
+	}
+
+	@Override
+	public int insertSettDisc(ContDTO dto) {
+		return sqlSession.insert("cont.insertSettDisc", dto);
+	}
+
+	@Override
 	public int updateCont2(ContDTO dto) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("cont.updcontp2",dto);
