@@ -650,17 +650,19 @@
 								method : "POST",
 								dataType : "json"
 							})
-									.done(function(data) {
-										if (data.code == 10001) {
-										} else {
-											alert("저장 실패");
-										}
-									})
-									.fail(function(xhr, status, errorThrown) {
-										alert("통신 실패");
-									});
+							.done(function(data) {
+								if (data.code == 10001) {
+								} else {
+									alert("저장 실패");
+								}
+							})
+							.fail(function(xhr, status, errorThrown) {
+								alert("통신 실패");
+							});
 						}
 					}
+					
+					fnSetPage('${path}/cont/settlistview.do');
 				}
 			});
 			if(confirm("정산내역에 있는 금액을 처리하고 수납을 진행하시겠습니까?")){

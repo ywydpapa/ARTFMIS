@@ -61,7 +61,7 @@
 								<h5>계약 목록</h5>
 							</div>
 							<div class="table-responsive table-bordered">
-								<table id="consult_sett_list_table" class="table table-bordered" >
+								<table id="consult_sett_list_table" class="table table-bordered" style="overflow:hidden;">
 									<colgroup>
 										<col width="25%" />
 										<col width="30%" />

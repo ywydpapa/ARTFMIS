@@ -980,7 +980,7 @@ update GHT_REST_ORDERSHEET set ROOM_TITLE = #{AFFROOM_ID}, REMARK='주문호실 
     </update>
 
     <insert id="insertSett">
-        update GHT_CONT set SETT_DATE = now where CONTRACT_ID = #{CONTRACT_ID};
+        update GHT_CONT set SETT_DATE = now() where CONTRACT_ID = #{CONTRACT_ID};
 
         insert into GHT_SETT
 	(   
