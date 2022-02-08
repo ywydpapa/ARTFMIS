@@ -25,9 +25,7 @@
 }
 
 .h-container .item {
-	float: left;
-	width: 25%;
-	height: 100%;
+	height: 100px;
 	padding: 15px;
 	text-align: center;
 	background: white;
@@ -35,8 +33,7 @@
 }
 
 .h-container .item.cont {
-	float: left;
-	width: 75%;
+	width: 100%;
 	padding: 15px;
 	border-right: none;
 	text-align: center;
@@ -57,41 +54,17 @@
 					</table> -->
 					<div class="h-container">
 						<div class="item">
-							<div style="text-align:center;">
-								<h5>계약 목록</h5>
-							</div>
 							<div class="table-responsive table-bordered">
 								<table id="consult_sett_list_table" class="table table-bordered" style="overflow:hidden;">
-									<colgroup>
-										<col width="25%" />
-										<col width="30%" />
-										<col width="25%" />
-										<col width="20%" />
-									</colgroup>
-									<thead style="border:1px;">
-										<tr style="text-align: center;">
-											<th style="text-align: center;">분향실</th>
-											<th style="text-align: center;">계약일자</th>
-											<th style="text-align: center;">고인성명</th>
-											<th style="text-align: center;">정산일자</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="row" items="${listcont}">
-											<tr>
-												<td style="text-align:center;vertical-align:middle;">${row.FROOM_TITLE}<input type="hidden"
-													class="FRMID" value="${row.FROOM_ID}"></td>
-												<td style="text-align:center;vertical-align:middle;" class="CONTPERIOD" ><a
-													href="<c:if test="${row.CONTRACT_ID eq 0 }">#</c:if><c:if test="${row.CONTRACT_ID ne 0 }">javascript:fnSetcontdetail('${path}/cont/settdetail/${row.CONTRACT_ID}?CONT_FROOM_ID=${row.FROOM_ID}')</c:if>">${row.STDATE}<span>
-															<br>~
-													</span> ${row.EDDATE}
-												</a></td>
-												<td style="text-align:center;vertical-align:middle;" class="DPNAME">${row.DPERSON_NAME}</td>
-												<td style="text-align:center;vertical-align:middle;" class="DPNAME">${row.SETT_DATE}</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
+									<tr><td> <span> 입실중인 호실 </span>
+										<select id = "contSelect" class="FRMID form-control-md">
+											<c:forEach var="row" items="${listcont}">
+											<c:if test="${not empty row.SETT_DATE}"><option value="${row.FROOM_ID}">${row.FROOM_TITLE}</option></c:if>
+											</c:forEach>
+										</select>
+									</td>
+									</tr>
+										</table>
 							</div>
 						</div>
 						<div class="item cont" style="padding:0;">
