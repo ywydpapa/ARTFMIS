@@ -29,8 +29,11 @@ public interface ContService {
 	int insertCont8(ContDTO dto);
 	int insertCont9(ContDTO dto);
 	int insertRtnStore(ContDTO dto);
+	int updateRtnStore(ContDTO dto);
 	int insertRtnRest(ContDTO dto);
+	int insertSett(ContDTO dto);
 	int insertSettDisc(ContDTO dto);
+	int updateSettDisc(ContDTO dto);
 	int insertYujok(ContDTO dto);
 	int updateYujok(ContDTO dto);
 	int insertAddroom(ContDTO dto);
@@ -42,6 +45,7 @@ public interface ContService {
 	int tropt0301(ContDTO dto);
 	
 	Integer contCheck(ContDTO dto);
+	List<ContDTO> listSettDisc(int CONTRACT_ID);
 	List<ContDTO> doscontlist121();
 	List<ContDTO> doscontlist122();
 	List<ContDTO> doscontlist2(int CONT_FROOM_ID);

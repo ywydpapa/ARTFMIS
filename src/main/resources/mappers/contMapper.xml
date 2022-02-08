@@ -800,23 +800,24 @@ where a.FROOM_TYP IN (5) and a.FROOM_USE_YN = 'Y' order by a.FROOM_ORDNO
 </select>
 
 <select id="settleContp6" resultType="contDto">
-	select e.ORD_QUTY , e.ORD_AMOUNT ,e.ORD_TYPE,e.ORD_DATE,e.CONF_DATE, b.CAT_TITLE, a.*, c.MESSR_GOODS_INIT_QTY, c.MESSR_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	select  e.ORD_QUTY , e.ORD_AMOUNT ,e.ORD_TYPE,e.ORD_DATE,e.CONF_DATE, b.CAT_TITLE, a.*, c.MESSR_GOODS_INIT_QTY, c.MESSR_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a
 	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
 	left join GHT_MESSR_ORD c on a.GOODS_ID = c.MESSR_GOODS_ID and c.MESSR_ORD_FROOM_ID = #{CONT_FROOM_ID}
 	left join GHT_BASE_CODE d on c.MESSR_ORD_FROOM_ID = d.BCD_ID
 	left join GHT_REST_ORDERSHEET e on e.GOODS_CODE = a.GOODS_ID and e.CONTRACT_ID = #{CONTRACT_ID} and e.MOD_DATE IS NULL
-	where a.CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='2')
+    where a.CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='2')
 	and a.GOODS_USE_YN = 'Y' 
 	and e.ORD_QUTY > 0 
 	order by a.CAT_02_ID, a.GOODS_ORDER 
 </select>
 
 <select id="settleContp7" resultType="contDto">
-	select e.ORD_QUTY, e.ORD_AMOUNT, e.ORD_TYPE,e.ORD_DATE,e.CONF_DATE, b.CAT_TITLE , a.* ,c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID from GHT_GOODS a 
+	select f.RET_QUTY ,f.RET_AMOUNT, e.ORD_QUTY, e.ORD_AMOUNT, e.ORD_TYPE,e.ORD_DATE,e.CONF_DATE, b.CAT_TITLE , a.* ,c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID from GHT_GOODS a
 	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
 	left join GHT_STORE_ORD c on a.GOODS_ID = c.STORE_GOODS_ID and c.STORE_ORD_FROOM_ID = #{CONT_FROOM_ID}
 	left join GHT_BASE_CODE d on c.STORE_ORD_FROOM_ID = d.BCD_ID
-	left join GHT_STORE_ORDSHEET e on e.GOODS_CODE = a.GOODS_ID and e.MOD_DATE IS NULL and e.CONTRACT_ID = #{CONTRACT_ID} 
+	left join GHT_STORE_ORDSHEET e on e.GOODS_CODE = a.GOODS_ID and e.MOD_DATE IS NULL and e.CONTRACT_ID = #{CONTRACT_ID}
+    left join GHT_STORE_SETT f on a.GOODS_ID = f.STORE_GOODS_ID and f.attrib not like 'XXX%' and f.CONTRACT_ID = #{CONTRACT_ID}
 	where a.CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='3') 
 	and a.GOODS_USE_YN = 'Y'
 	and e.ORD_QUTY > 0 
@@ -896,6 +897,10 @@ where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='2') and GOODS_U
 update GHT_REST_ORDERSHEET set ROOM_TITLE = #{AFFROOM_ID}, REMARK='주문호실 변경' where CONTRACT_ID = #{CONTRACT_ID};
 </update>
 
+<update id="updSettRtnstore">
+    update GHT_STORE_SETT set attrib = 'XXXUP' where CONTRACT_ID = #{CONTRACT_ID};
+</update>
+
     <insert id="insSettRtnstore">
         insert into GHT_STORE_SETT
         (CONTRACT_ID,
@@ -920,7 +925,7 @@ update GHT_REST_ORDERSHEET set ROOM_TITLE = #{AFFROOM_ID}, REMARK='주문호실 
     #{DISCOUNT},
     #{TOTAL_AMOUNT},
     now(),
-    '10000' )
+    '10000' );
     </insert>
 
     <insert id="insSettRtnrest">
@@ -966,6 +971,53 @@ update GHT_REST_ORDERSHEET set ROOM_TITLE = #{AFFROOM_ID}, REMARK='주문호실 
                                 '10000')
     </insert>
 
+    <select id="listSettDisc" resultType="contDto">
+        select * from GHT_SETT_DETAIL where CONTRACT_ID = #{CONTRACT_ID} and attrib not like 'XXX%'
+    </select>
+
+    <update id="updSettDisc">
+        update GHT_SETT_DETAIL set attrib = 'XXXUP' where CONTRACT_ID = #{CONTRACT_ID}
+    </update>
+
+    <insert id="insSett">
+        insert into GHT_SETT
+(   CONTRACT_ID,
+    SETT_DATE,
+    DISC_TYPE,
+    DISC_DESC,
+    DISC_AMOUNT,
+    INT_AMOUNT,
+    EXT_AMOUNT,
+    SETT_AMOUNT,
+    INC_DATE,
+    INC_CASH,
+    INC_CARD,
+    CASHBILL_YN,
+    CASHBILL_TELNO,
+    REMARK,
+    PIC_ID,
+    REG_DATE,
+    attrib
+) values (
+               #{CONTRACT_ID},
+               now(),
+               #{DISC_TYPE},
+               #{DISC_DESC},
+               #{DISC_AMOUNT},
+               #{INT_AMOUNT},
+               #{EXT_AMOUNT},
+               #{SETT_AMOUNT},
+               #{INC_DATE},
+               #{INC_CASH},
+               #{INC_CARD},
+               #{CASHBILL_YN},
+               #{CASHBILL_TELNO},
+               #{REMARK},
+               #{PIC_ID},
+               now(),
+               '100001'
+                 );
+    </insert>
 
 
 </mapper>

@@ -188,13 +188,28 @@ public class ContDAOImpl implements ContDAO {
 	}
 
 	@Override
+	public int updateRtnStore(ContDTO dto) {
+		return sqlSession.insert("cont.updSettRtnstore", dto);
+	}
+
+	@Override
 	public int insertRtnRest(ContDTO dto) {
 		return sqlSession.insert("cont.insSettRtnrest", dto);
 	}
 
 	@Override
+	public int insertSett(ContDTO dto) {
+		return sqlSession.insert("cont.insertSett", dto );
+	}
+
+	@Override
 	public int insertSettDisc(ContDTO dto) {
 		return sqlSession.insert("cont.insertSettDisc", dto);
+	}
+
+	@Override
+	public int updateSettDisc(ContDTO dto) {
+		return sqlSession.update("cont.updSettDisc", dto);
 	}
 
 	@Override
@@ -274,6 +289,11 @@ public class ContDAOImpl implements ContDAO {
 	public Integer contCheck(ContDTO dto) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("cont.contCheck", dto);
+	}
+
+	@Override
+	public List<ContDTO> listSettDisc(int CONTRACT_ID) {
+		return sqlSession.selectList("cont.listSettDisc", CONTRACT_ID );
 	}
 
 	@Override

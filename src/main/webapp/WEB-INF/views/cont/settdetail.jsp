@@ -7,7 +7,7 @@
 <style>
 .settle .item {
 	float: left;
-	width: 15%;
+	width: 10%;
 	height: 100%;
 	text-align: center;
 	background: white;
@@ -16,7 +16,7 @@
 
 .settle .item.cont {
 	float: left;
-	width: 78%;
+	width: 90%;
 	padding: 10px;
 	border-right: none;
 	text-align: center;
@@ -27,7 +27,7 @@
 		<table class="table table-bordered nowrap" id="roomTable">
 				<thead>
 					<tr>
-						<th scope="col" width="200" align="center">정산처리</th>
+						<th scope="col" class="text-center">정산처리</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -110,8 +110,8 @@
 											<td style="text-align: right;" class="sprice"><fmt:formatNumber value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td>
 											<td style="text-align: right;">${row.ORD_QUTY}</td>	
 											<td style="text-align: right;" class="ordamt"><fmt:formatNumber value="${row.ORD_AMOUNT}" pattern="#,###" /></td>
-											<td style="text-align: right;"><input class="rquty" style="text-align:right; border:none" type="number" value="0" min="0" ></td>
-											<td style="text-align: right;" class="ramount"></td>
+											<td style="text-align: right;"><input class="rquty" style="text-align:right; border:none" type="number" value="${row.RET_QUTY}" min="0" ></td>
+											<td style="text-align: right;" class="ramount"><fmt:formatNumber value="${row.RET_AMOUNT}" pattern="#,###" /></td>
 											<td style="text-align: right;" class="remainT"></td>
 											</tr>
 											</c:forEach>
@@ -627,30 +627,42 @@
 			var $Aarr = $(".goodID");
 			var $Barr = $(".rquty");
 			var $Carr = $(".ramount");
-			for (var i = 0; i < $Aarr.length; i++){
-				if ($Barr[i].value > 0){
-					var settData = {};
-					settData.CONTRACT_ID = contID;
-					settData.STORE_GOODS_ID = $Aarr[i].value;
-					settData.RET_QUTY = Number($Barr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-					settData.RET_AMOUNT = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
-					$.ajax({
-						url : "${path}/cont/insertRtnStore.do",
-						data : settData,
-						method : "POST",
-						dataType : "json"
-					})
-							.done(function(data) {
-								if (data.code == 10001) {
-								} else {
-									alert("저장 실패");
-								}
+			var updData = {};
+				updData.CONTRACT_ID = contID;
+			$.ajax({
+				url : "${path}/cont/updateRtnStore.do",
+				data : updData,
+				method : "POST",
+				async: false,
+				dataType : "json",
+				success : function(){
+					for (var i = 0; i < $Aarr.length; i++){
+						if ($Barr[i].value > 0){
+							var settData = {};
+							settData.CONTRACT_ID = contID;
+							settData.STORE_GOODS_ID = $Aarr[i].value;
+							settData.RET_QUTY = Number($Barr[i].value.replace(/[\D\s\._\-]+/g, ""));
+							settData.RET_AMOUNT = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+							$.ajax({
+								url : "${path}/cont/insertRtnStore.do",
+								data : settData,
+								async: false,
+								method : "POST",
+								dataType : "json"
 							})
-							.fail(function(xhr, status, errorThrown) {
-								alert("통신 실패");
-					});
+									.done(function(data) {
+										if (data.code == 10001) {
+										} else {
+											alert("저장 실패");
+										}
+									})
+									.fail(function(xhr, status, errorThrown) {
+										alert("통신 실패");
+									});
+						}
+					}
 				}
-			}
+			});
 			if(confirm("정산내역에 있는 금액을 처리하고 수납을 진행하시겠습니까?")){
 				var contID = $("#contid").val();
 				var DISC = [];
@@ -668,35 +680,63 @@
 				var HELPERPAY = Number($("#sum1A1").val().replace(/[\D\s\._\-]+/g, ""));
 				var HELPERTOT = Number($("#sum4A").val().replace(/[\D\s\._\-]+/g, ""));
 				var DISCB = Number($("#sum4B").val().replace(/[\D\s\._\-]+/g, ""));
-
-				for (var i = 2; i < 10; i++){
-					var discData = {};
-					discData.CONTRACT_ID = Number(contID);
-					discData.DISC_POSITION = "sum3"+ i.toString();
-					discData.DISC_AMOUNT = DISC[i];
-					if (i==9){
-					discData.DISC_DESC  = DISC9DESC;
-					}
-					console.log(discData);
-					$.ajax({
-						url : "${path}/cont/insertSettDisc.do",
-						data : discData,
-						method : "POST",
-						dataType : "json"
-					})
-							.done(function(data) {
-								if (data.code == 10001) {
-								} else {
-									alert("저장 실패");
-								}
+				var updData = {};
+				updData.CONTRACT_ID = contID;
+				$.ajax({
+					url : "${path}/cont/updateSettDisc.do",
+					data : updData,
+					method : "POST",
+					async: false,
+					dataType : "json",
+					success : function(){
+						for (var i = 2; i < 10; i++){
+							var discData = {};
+							discData.CONTRACT_ID = Number(contID);
+							discData.DISC_POSITION = "sum3"+ i.toString();
+							discData.DISC_AMOUNT = DISC[i];
+							if (i==9){
+								discData.DISC_DESC  = DISC9DESC;
+							}
+							console.log(discData);
+							$.ajax({
+								url : "${path}/cont/insertSettDisc.do",
+								data : discData,
+								method : "POST",
+								dataType : "json"
 							})
-							.fail(function(xhr, status, errorThrown) {
-								alert("통신 실패");
-							});
-				}
+									.done(function(data) {
+										if (data.code == 10001) {
+										} else {
+											alert("저장 실패");
+										}
+									})
+									.fail(function(xhr, status, errorThrown) {
+										alert("통신 실패");
+									});
+						}
+					}});
+				var Settdata = {};
+				Settdata.CONTRACT_ID = contID;
+                Settdata.DISC_DESC = $("#extdiscount").val();
+				Settdata.DISC_AMOUNT = Number($("#sum39").val().replace(/[\D\s\._\-]+/g, ""));
+				Settdata.INT_AMOUNT = Number($("#page4grdsum").val().replace(/[\D\s\._\-]+/g, ""));
+				Settdata.EXT_AMOUNT = Number($("#page4ext").val().replace(/[\D\s\._\-]+/g, ""));
+				Settdata.SETT_AMOUNT = Number($("#sumPage3total").val().replace(/[\D\s\._\-]+/g, ""));
+				Settdata.INC_CASH = Number($("#page4cash").val().replace(/[\D\s\._\-]+/g, ""));
+				Settdata.INC_CARD = Number($("#page4card").val().replace(/[\D\s\._\-]+/g, ""));
+				/*Settdata.CASHBILL_YN =*/
+				Settdata.CASHBILL_TELNO = Number($("#page4cashbill").val().replace(/[\D\s\._\-]+/g, ""));
+				Settdata.REMARK= $("#page4rmk").val();
+				Settdata.PIC_ID = ${USER_ID};
+				console.log(Settdata);
+				$.ajax({
+					url : "${path}/cont/insertSett.do",
+					data : Settdata,
+					method : "POST",
+					dataType : "json"
+				});
 			}
 		}
-
 	}
 	
 	function sumCont2(){

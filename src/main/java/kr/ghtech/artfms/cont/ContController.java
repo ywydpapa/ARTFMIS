@@ -274,6 +274,7 @@ public class ContController {
 		mav.addObject("spage6", contService.settleP6(dto));
 		mav.addObject("spage7", contService.settleP7(dto));
 		mav.addObject("spage8", contService.settleP8(dto));
+		mav.addObject("settdisc", contService.listSettDisc(CONTRACT_ID));
 		mav.setViewName("cont/settdetail");
 		return mav;
 	}
@@ -402,7 +403,19 @@ public class ContController {
 		return ResponseEntity.ok(param);
 	}
 
-	@RequestMapping("insertSettDisc.do")
+	@RequestMapping("insertSett.do")
+	public ResponseEntity<?> insertSett(@ModelAttribute ContDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContSdisc= contService.insertSett(dto);
+		if (ContSdisc >0) {
+			param.put("code","10001");
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
+
 	public ResponseEntity<?> insertSDisc(@ModelAttribute ContDTO dto) {
 		Map<String, Object> param = new HashMap<String, Object>();
 		int ContSdisc= contService.insertSettDisc(dto);
@@ -410,6 +423,18 @@ public class ContController {
 			param.put("code","10001");
 		}
 		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
+	@RequestMapping("updateSettDisc.do")
+	public ResponseEntity<?> updateSDisc(@ModelAttribute ContDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContSdisc= contService.updateSettDisc(dto);
+		if (ContSdisc >0) {
+			param.put("code","10001");
+		}
+		else {param.put("code","10001");
 		}
 		return ResponseEntity.ok(param);
 	}
@@ -422,6 +447,18 @@ public class ContController {
 			param.put("code","10001");
 		}
 		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+
+	@RequestMapping("updateRtnStore.do")
+	public ResponseEntity<?> updateRtnStore(@ModelAttribute ContDTO dto) {
+		Map<String, Object> param = new HashMap<String, Object>();
+		int ContRtn = contService.updateRtnStore(dto);
+		if (ContRtn >0) {
+			param.put("code","10001");
+		}
+		else {param.put("code","10001");
 		}
 		return ResponseEntity.ok(param);
 	}

@@ -26,7 +26,7 @@
 
 .h-container .item {
 	float: left;
-	width: 20%;
+	width: 25%;
 	height: 100%;
 	padding: 15px;
 	text-align: center;
@@ -36,7 +36,7 @@
 
 .h-container .item.cont {
 	float: left;
-	width: 80%;
+	width: 75%;
 	padding: 15px;
 	border-right: none;
 	text-align: center;
@@ -61,17 +61,19 @@
 								<h5>계약 목록</h5>
 							</div>
 							<div class="table-responsive table-bordered">
-								<table id="consult_sett_list_table" class="table table-bordered">
+								<table id="consult_sett_list_table" class="table table-bordered" >
 									<colgroup>
 										<col width="25%" />
-										<col width="50%" />
+										<col width="30%" />
 										<col width="25%" />
+										<col width="20%" />
 									</colgroup>
 									<thead style="border:1px;">
 										<tr style="text-align: center;">
 											<th style="text-align: center;">분향실</th>
 											<th style="text-align: center;">계약일자</th>
 											<th style="text-align: center;">고인성명</th>
+											<th style="text-align: center;">정산일자</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -85,6 +87,7 @@
 													</span> ${row.EDDATE}
 												</a></td>
 												<td style="text-align:center;vertical-align:middle;" class="DPNAME">${row.DPERSON_NAME}</td>
+												<td style="text-align:center;vertical-align:middle;" class="DPNAME">${row.SETT_DATE}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
