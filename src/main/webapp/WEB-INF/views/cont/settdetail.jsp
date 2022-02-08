@@ -80,6 +80,7 @@
 											<tbody>
 												<tr>
 													<th scope="row">반품 처리</th>
+													<td class="text-right"><button class="btn btn-danger" onclick="fnSaveRtn();">반품 저장</button> </td>
 												</tr>
 											</tbody>
 										</table>
@@ -89,11 +90,11 @@
 											<thead>
 											<tr>
 											<th class="text-center">구분</th>
-											<th class="text-center">단위</th>
 											<th class="text-center">품명</th>
+											<th class="text-center">단위</th>
 											<th class="text-center">단위수량</th>
 											<th class="text-center">단가</th>
-											<th class="text-center">주문량</th>
+											<th class="text-center">주문수량</th>
 											<th class="text-center">주문금액</th>
 											<th class="text-center">반품수량(개별)</th>
 											<th class="text-center">반품금액</th>
@@ -104,13 +105,13 @@
 											<c:forEach var="row" items="${rtnpage7}">
 											<tr>
 											<td class="second" style="text-align: center;">${row.CAT_TITLE}</td>
-											<td style="text-align: center;">${row.GOODS_UNIT}</td>
-											<td style="text-align: center;">${row.GOODS_TITLE}<input type="hidden" class="goodID" value="${row.GOODS_ID}"> </td>
+											<td style="text-align: center;">${row.GOODS_TITLE}</td>
+											<td style="text-align: center;">${row.GOODS_UNIT}<input type="hidden" class="goodID" value="${row.GOODS_ID}"> </td>
 											<td style="text-align: center;">${row.GOODS_SALE_UNIT}</td>
 											<td style="text-align: right;" class="sprice"><fmt:formatNumber value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td>
-											<td style="text-align: right;">${row.ORD_QUTY}</td>	
+											<td style="text-align: right;">${row.ORD_QUTY * row.GOODS_SALE_UNIT}</td>
 											<td style="text-align: right;" class="ordamt"><fmt:formatNumber value="${row.ORD_AMOUNT}" pattern="#,###" /></td>
-											<td style="text-align: right;"><input class="rquty" style="text-align:right; border:none" type="number" value="${row.RET_QUTY}" min="0" ></td>
+											<td style="text-align: right;"><input class="rquty" style="text-align:right; border:none" type="number" value="${row.RET_QUTY}" max="${row.ORD_QUTY * row.GOODS_SALE_UNIT}" min="0" ></td>
 											<td style="text-align: right;" class="ramount"><fmt:formatNumber value="${row.RET_AMOUNT}" pattern="#,###" /></td>
 											<td style="text-align: right;" class="remainT"></td>
 											</tr>
@@ -1005,6 +1006,50 @@
 
 		alert (idx);
 
+	}
+
+	function fnSaveRtn(){
+		var contID = $("#contid").val();
+		var $Aarr = $(".goodID");
+		var $Barr = $(".rquty");
+		var $Carr = $(".ramount");
+		var updData = {};
+		updData.CONTRACT_ID = contID;
+		$.ajax({
+			url : "${path}/cont/updateRtnStore.do",
+			data : updData,
+			method : "POST",
+			async: false,
+			dataType : "json",
+			success : function(){
+				for (var i = 0; i < $Aarr.length; i++){
+					if ($Barr[i].value > 0){
+						var settData = {};
+						settData.CONTRACT_ID = contID;
+						settData.STORE_GOODS_ID = $Aarr[i].value;
+						settData.RET_QUTY = Number($Barr[i].value.replace(/[\D\s\._\-]+/g, ""));
+						settData.RET_AMOUNT = Number($Carr[i].innerText.replace(/[\D\s\._\-]+/g, ""));
+						$.ajax({
+							url : "${path}/cont/insertRtnStore.do",
+							data : settData,
+							async: false,
+							method : "POST",
+							dataType : "json"
+						})
+								.done(function(data) {
+									if (data.code == 10001) {
+									} else {
+										alert("저장 실패");
+									}
+								})
+								.fail(function(xhr, status, errorThrown) {
+									alert("통신 실패");
+								});
+					}
+				}
+				alert("반품 저장 완료");
+			}
+		});
 	}
 
 </script>
