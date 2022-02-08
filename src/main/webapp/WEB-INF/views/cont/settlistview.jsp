@@ -59,7 +59,7 @@
 									<tr><td> <span> 입실중인 호실 </span>
 										<select id = "contSelect" class="FRMID form-control-md">
 											<c:forEach var="row" items="${listcont}">
-											<c:if test="${not empty row.SETT_DATE}"><option value="${row.FROOM_ID}">${row.FROOM_TITLE}</option></c:if>
+											<c:if test="${empty row.SETT_DATE}"><option value="${path}/cont/settdetail/${row.CONTRACT_ID}?CONT_FROOM_ID=${row.FROOM_ID}">${row.FROOM_TITLE}</option></c:if>
 											</c:forEach>
 										</select>
 									</td>
@@ -86,4 +86,14 @@
 			}, 500);
 		});
 	}
+
+	$("#contSelect").change(function() {
+		var url = $("#contSelect").val();
+		fnSetcontdetail(url);
+	});
+
+	$(document).ready(function(){
+		var url = $("#contSelect").val();
+		fnSetcontdetail(url);
+	});
 </script>
