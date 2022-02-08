@@ -109,7 +109,7 @@
 					<option value="N">미사용</option>
 			</select></td>
 			<td>
-			<button id="imsiBtn" class="btn btn-md btn-success form-control-sm" <c:if test="${dtoRoom.IMSI_YN eq 'N'}">disabled</c:if>>임시호실 생성</button>
+			<button id="imsiBtn" class="btn btn-md btn-success form-control-sm" style="line-height: 5px;" <c:if test="${dtoRoom.IMSI_YN eq 'N'}">disabled</c:if>>임시호실 생성</button>
 			</td>
 		</tr>
 		<tr>
@@ -133,10 +133,10 @@
 				style="vertical-align: middle; text-align: center; background-color: #E6F8E0"
 				scope="row">이미지등록</th>
 			<td>
-				<form id="uploadForm" enctype="multipart/form-data" method="post">
+				<form id="uploadForm" style="margin-bottom: -10px;" enctype="multipart/form-data" method="post">
 					<input type="hidden" id="uploadServerImageName"
 						value="${dtoRoom.FROOM_IMAGE}"> <input type="file"
-						style="text-align: right;" class="form-control form-control-sm"
+						style="text-align: right; height:120%;" class="form-control form-control-sm"
 						name="altarImage" id="altarImage">
 				</form>
 			</td>

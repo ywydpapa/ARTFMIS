@@ -61,18 +61,18 @@
 									name="sortNo" value="${dto.FTABLE_ORDER}" placeholder="">
 								</td>
 								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">사용여부</th>
-								<td><select name="useYn" id="useYn"
+								<td><select name="useYn" id="useYn" style="height: 38px;"
 									class="form-control form-control-sm">
 										<option value="Y">사용</option>
 										<option value="N">미사용</option>
 								</select></td>
 							</tr>
 							<tr>
-								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">이미지등록</th>
+								<th style="vertical-align:middle;padding: 9px 5px;text-align:center;background-color:#E6F8E0" scope="row">이미지등록</th>
 								<td>
-									<form id="uploadForm" enctype="multipart/form-data" method="post">
+									<form id="uploadForm" style="margin-bottom:-10px;" enctype="multipart/form-data" method="post">
 										<input type="hidden" id="uploadServerImageName" value="${dto.FTABLE_IMAGE}">
-										<input type="file" style="text-align: right;" class="form-control form-control-sm" name="altarImage" id="altarImage">
+										<input type="file" style="text-align: right;height: 120%;" class="form-control form-control-sm" name="altarImage" id="altarImage">
 									</form>
 								</td>
 								<th></th>

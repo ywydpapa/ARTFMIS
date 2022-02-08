@@ -15,7 +15,7 @@
 }
 
 .detailcont {
-	width: 100%;
+	width: 95%;
 	height: 100%;
 	padding: 20px;
 	background: white;
@@ -36,7 +36,7 @@
 
 .h-container .item {
 	float: left;
-	width: 7%;
+	width: 8%;
 	height: 100%;
 	text-align: center;
 	background: white;
@@ -52,9 +52,12 @@
 
 .h-container .item.cont {
 	float: left;
-	width: 43%;
+	width: 42%;
 	border-right: none;
 	text-align: center;
+}
+.row {
+	margin-right: 0px;
 }
 </style>
 <div class="listcont">

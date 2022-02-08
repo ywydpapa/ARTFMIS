@@ -35,8 +35,8 @@
 								<th class="align-middle table-info" style="text-align:center" scope="row">문구명<input type="hidden" id="setupId" value="${list.SETUP_ID}"></th>
 								<td colspan="3"><input type="text" class="form-control" id="setupTitle" value="${list.SETUP_TITLE}" placeholder=""></td>
 									<td>
-									<button style="text-align:right;" class="btn btn-md btn-success" value="추가" onClick="fn_setNew()">새항목 추가</button>
-									<button class="btn btn-md btn-primary " onClick="fn_Updatesetup()">저장</button>
+									<button style="text-align:right;" class="btn btn-md btn-success" value="추가" onClick="fn_setNew()">새항목</button>
+									<button class="btn btn-md btn-primary" onClick="fn_Updatesetup()">저장</button>
 									</td>
 							</tr>
 							<tr>

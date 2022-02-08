@@ -24,7 +24,7 @@
 				<form name="form1" id="form1" onSubmit="return false;">
 					<table class="table table-bordered table-hover">
 						<colgroup>
-							<col width="10%" />
+							<col width="15%" />
 							<col width="20%" />
 							<col width="15%" />
 							<col width="20%" />
@@ -35,8 +35,8 @@
 							<tr>
 								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0"><input type="hidden" id="GOODS_ID" name="GOODS_ID" value="${dto.GOODS_ID}" />품목 구분</td>
 								<td style="vertical-align:middle;text-align:center;" colspan="2"><input class="form-control" type="text" value="" id="GOODS_01TEXT" readonly></td>
-								<td style="vertical-align:middle;text-align:center;" colspan="2"><input type="text" class="form-control" value="" id="GOODS_02TEXT" readonly></td>
-								<td style="vertical-align:middle;text-align:center;" ><button class="btn btn-md btn-success" value="추가"	onClick="fn_setinsertmode()" style="margin-right:10px;">새항목 추가</button><button class="btn btn-md btn-primary"  onClick="fn_goodsUpdate01()">저장</button></td>
+								<td style="vertical-align:middle;text-align:center;" colspan="1"><input type="text" class="form-control" value="" id="GOODS_02TEXT" readonly></td>
+								<td style="vertical-align:middle;text-align:center;" colspan="2"><button class="btn btn-md btn-success" value="추가"	onClick="fn_setinsertmode()" style="margin-right:10px;">새항목 추가</button><button class="btn btn-md btn-primary"  onClick="fn_goodsUpdate01()">저장</button></td>
 							</tr>
 							<tr>
 								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">품명</td>

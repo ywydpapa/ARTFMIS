@@ -74,16 +74,16 @@
 							<tr>
 								<th class="align-middle table-info" style="text-align: center" scope="row">로고</th>
 								<td>
-									<form id="uploadForm1" enctype="multipart/form-data" method="post">
+									<form id="uploadForm1" style="margin-bottom: -5px;" enctype="multipart/form-data" method="post">
 										<input type="hidden" id="flogo" value="${list.FNR_LOGO}">
-										<input type="file" style="text-align: right;" class="form-control form-control-sm" name="FNR_LOGO" id="flogo_upload" value="">
+										<input type="file" style="text-align: right;height:120%;" class="form-control form-control-sm" name="FNR_LOGO" id="flogo_upload" value="">
 									</form>
 								</td>
 								<th class="align-middle table-info" style="text-align: center" scope="row">도장파일</th>
 								<td colspan="2">
-									<form id="uploadForm2" enctype="multipart/form-data" method="post">
+									<form id="uploadForm2" style="margin-bottom: -5px;" enctype="multipart/form-data" method="post">
 										<input type="hidden" id="fstamp" value="${list.FNR_STAMP}">
-										<input type="file" style="text-align: right;" class="form-control form-control-sm" name="FNR_STAMP" id="fstamp_upload" value="">
+										<input type="file" style="text-align: right;height:120%;" class="form-control form-control-sm" name="FNR_STAMP" id="fstamp_upload" value="">
 									</form>
 								</td>
 							</tr>

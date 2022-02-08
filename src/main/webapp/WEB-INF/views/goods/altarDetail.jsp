@@ -65,15 +65,15 @@
 							</tr>
 							<tr>
 								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">사용여부</th>
-								<td><select name="useYn" id="useYn" class="form-control">
+								<td><select name="useYn" id="useYn" class="form-control" style="height:45px;">
 										<option value="Y">사용</option>
 										<option value="N">미사용</option>
 								</select></td>
 									<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">이미지등록</th>
 									<td colspan="2">
-										<form id="uploadForm" enctype="multipart/form-data" method="post">
+										<form id="uploadForm" style="margin-bottom: -10px;" enctype="multipart/form-data" method="post">
 											<input type="hidden" id="uploadServerImageName" value="${dto.ALTAR_IMAGE}">
-											<input type="file" style="text-align: right;" class="form-control" name="altarImage" id="altarImage">
+											<input type="file" style="text-align: right;height:120%;" class="form-control" name="altarImage" id="altarImage">
 										</form>
 									</td>
 							</tr>
