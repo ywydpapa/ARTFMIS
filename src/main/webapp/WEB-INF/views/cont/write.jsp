@@ -943,7 +943,7 @@
 												<td class="GF GT from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">도복,원삼</td>
+												<td style="vertical-align:middle;text-align:center">수의</td>
 												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t141 tgid">
 													<option value="">선택</option>
@@ -979,7 +979,7 @@
 												<td class="GF GT from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">영정</td>
+												<td style="vertical-align:middle;text-align:center">염베</td>
 												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t151 tgid">
 													<option value="">선택</option>
@@ -1015,7 +1015,7 @@
 												<td class="GF GT from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">수의</td>
+												<td style="vertical-align:middle;text-align:center">명정</td>
 												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t161 tgid">
 													<option value="">선택</option>
@@ -1051,7 +1051,7 @@
 												<td class="GF GT from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">염베</td>
+												<td style="vertical-align:middle;text-align:center">도복,원삼</td>
 												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t171 tgid">
 													<option value="">선택</option>

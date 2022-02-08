@@ -598,9 +598,9 @@
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">도복,원삼</td>
+												<td style="vertical-align:middle;text-align:center">수의</td>
 												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control" <c:forEach var="row" items="${contpage4m}">
-												<c:if test="${row.CAT_02_ID eq 13}"> <c:if test="${!empty row.ORD_QUTY}">checked</c:if></c:if></c:forEach> /></td>
+												<c:if test="${row.CAT_02_ID eq 14}"> <c:if test="${!empty row.ORD_QUTY}">checked</c:if></c:if></c:forEach> /></td>
 												<td><select class="form-control m141 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${contpage4m}">
@@ -635,9 +635,9 @@
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">영정</td>
+												<td style="vertical-align:middle;text-align:center">염베</td>
 												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control" <c:forEach var="row" items="${contpage4m}">
-												<c:if test="${row.CAT_02_ID eq 13}"> <c:if test="${!empty row.ORD_QUTY}">checked</c:if></c:if></c:forEach>/></td>
+												<c:if test="${row.CAT_02_ID eq 15}"> <c:if test="${!empty row.ORD_QUTY}">checked</c:if></c:if></c:forEach>/></td>
 												<td><select class="form-control m151 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${contpage4m}">
@@ -672,9 +672,9 @@
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">수의</td>
+												<td style="vertical-align:middle;text-align:center">명정</td>
 												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control" <c:forEach var="row" items="${contpage4m}">
-												<c:if test="${row.CAT_02_ID eq 13}"> <c:if test="${!empty row.ORD_QUTY}">checked</c:if></c:if></c:forEach> /></td>
+												<c:if test="${row.CAT_02_ID eq 16}"> <c:if test="${!empty row.ORD_QUTY}">checked</c:if></c:if></c:forEach> /></td>
 												<td><select class="form-control m161 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${contpage4m}">
@@ -709,9 +709,9 @@
 												<td class="GB from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">염베</td>
+												<td style="vertical-align:middle;text-align:center">도복,원삼</td>
 												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control" <c:forEach var="row" items="${contpage4m}">
-												<c:if test="${row.CAT_02_ID eq 13}"> <c:if test="${!empty row.ORD_QUTY}">checked</c:if></c:if></c:forEach>/></td>
+												<c:if test="${row.CAT_02_ID eq 17}"> <c:if test="${!empty row.ORD_QUTY}">checked</c:if></c:if></c:forEach>/></td>
 												<td><select class="form-control m171 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${contpage4m}">
@@ -748,7 +748,7 @@
 											<tr>
 												<td style="vertical-align:middle;text-align:center">천금지금</td>
 												<td style="text-align:center"><input type="checkbox" class="CHKmod form-control" <c:forEach var="row" items="${contpage4m}">
-												<c:if test="${row.CAT_02_ID eq 13}"> <c:if test="${!empty row.ORD_QUTY}">checked</c:if></c:if></c:forEach> /></td>
+												<c:if test="${row.CAT_02_ID eq 18}"> <c:if test="${!empty row.ORD_QUTY}">checked</c:if></c:if></c:forEach> /></td>
 												<td><select class="form-control m181 mgid">
 													<option value="">선택</option>
 													<c:forEach var="row" items="${contpage4m}">
@@ -864,7 +864,7 @@
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">도복,원삼</td>
+												<td style="vertical-align:middle;text-align:center">수의</td>
 												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t141 tgid">
 													<option value="">선택</option>
@@ -900,7 +900,7 @@
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">영정</td>
+												<td style="vertical-align:middle;text-align:center">염베</td>
 												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t151 tgid">
 													<option value="">선택</option>
@@ -936,7 +936,7 @@
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">수의</td>
+												<td style="vertical-align:middle;text-align:center">명정</td>
 												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t161 tgid">
 													<option value="">선택</option>
@@ -972,7 +972,7 @@
 												<td class="GF from-control" style="text-align: right;"></td>
 											</tr>
 											<tr>
-												<td style="vertical-align:middle;text-align:center">염베</td>
+												<td style="vertical-align:middle;text-align:center">도복,원삼</td>
 												<td style="vertical-align:middle;text-align:center"><input type="checkbox" class="CHKtrd form-control"/></td>
 												<td><select class="form-control t171 tgid">
 													<option value="">선택</option>
