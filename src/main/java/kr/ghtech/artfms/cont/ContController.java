@@ -416,6 +416,7 @@ public class ContController {
 	}
 
 
+	@RequestMapping("insertSDisc.do")
 	public ResponseEntity<?> insertSDisc(@ModelAttribute ContDTO dto) {
 		Map<String, Object> param = new HashMap<String, Object>();
 		int ContSdisc= contService.insertSettDisc(dto);

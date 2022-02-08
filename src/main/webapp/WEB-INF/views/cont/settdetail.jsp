@@ -699,7 +699,7 @@
 							}
 							console.log(discData);
 							$.ajax({
-								url : "${path}/cont/insertSettDisc.do",
+								url : "${path}/cont/insertSDisc.do",
 								data : discData,
 								method : "POST",
 								dataType : "json"
@@ -724,14 +724,13 @@
 				Settdata.SETT_AMOUNT = Number($("#sumPage3total").val().replace(/[\D\s\._\-]+/g, ""));
 				Settdata.INC_CASH = Number($("#page4cash").val().replace(/[\D\s\._\-]+/g, ""));
 				Settdata.INC_CARD = Number($("#page4card").val().replace(/[\D\s\._\-]+/g, ""));
-				/*Settdata.CASHBILL_YN =*/
-				Settdata.CASHBILL_TELNO = Number($("#page4cashbill").val().replace(/[\D\s\._\-]+/g, ""));
+				Settdata.CASHBILL_TELNO = $("#page4cashbill").val();
 				Settdata.REMARK= $("#page4rmk").val();
-				Settdata.PIC_ID = ${USER_ID};
 				console.log(Settdata);
 				$.ajax({
 					url : "${path}/cont/insertSett.do",
 					data : Settdata,
+					async: false,
 					method : "POST",
 					dataType : "json"
 				});
