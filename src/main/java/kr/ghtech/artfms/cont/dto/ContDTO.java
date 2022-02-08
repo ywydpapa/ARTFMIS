@@ -257,4 +257,14 @@ public class ContDTO {
 	private String DISC_POSITION;
 	private BigDecimal DISC_AMOUNT;
 	private String DISC_DESC;
+	private int DISC_TYPE;
+	private BigDecimal INT_AMOUNT;
+	private BigDecimal EXT_AMOUNT;
+	private BigDecimal SETT_AMOUNT;
+	private String INC_DATE;
+	private BigDecimal INC_CASH;
+	private BigDecimal INC_CARD;
+	private int CASHBILL_YN;
+	private String CASHBILL_TELNO;
+	private String PIC_ID;
 }

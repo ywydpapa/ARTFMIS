@@ -979,26 +979,27 @@ update GHT_REST_ORDERSHEET set ROOM_TITLE = #{AFFROOM_ID}, REMARK='주문호실 
         update GHT_SETT_DETAIL set attrib = 'XXXUP' where CONTRACT_ID = #{CONTRACT_ID}
     </update>
 
-    <insert id="insSett">
+    <insert id="insertSett">
         insert into GHT_SETT
-(   CONTRACT_ID,
-    SETT_DATE,
-    DISC_TYPE,
-    DISC_DESC,
-    DISC_AMOUNT,
-    INT_AMOUNT,
-    EXT_AMOUNT,
-    SETT_AMOUNT,
-    INC_DATE,
-    INC_CASH,
-    INC_CARD,
-    CASHBILL_YN,
-    CASHBILL_TELNO,
-    REMARK,
-    PIC_ID,
-    REG_DATE,
-    attrib
-) values (
+	(   
+		CONTRACT_ID,
+	    SETT_DATE,
+	    DISC_TYPE,
+	    DISC_DESC,
+	    DISC_AMOUNT,
+	    INT_AMOUNT,
+	    EXT_AMOUNT,
+	    SETT_AMOUNT,
+	    INC_DATE,
+	    INC_CASH,
+	    INC_CARD,
+	    CASHBILL_YN,
+	    CASHBILL_TELNO,
+	    REMARK,
+	    PIC_ID,
+	    REG_DATE,
+	    attrib
+	) values (
                #{CONTRACT_ID},
                now(),
                #{DISC_TYPE},
