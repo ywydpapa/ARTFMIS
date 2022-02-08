@@ -24,24 +24,24 @@
 </style>
 	<div class="settle">
 		<div class="item">
-		<table id="consult_sett_list_table" class="table table-bordered table-hover" id="roomTable">
+		<table class="table table-bordered nowrap" id="roomTable">
 				<thead>
 					<tr>
 						<th scope="col" class="text-center">정산처리</th>
 					</tr>
 				</thead>
-				<tbody style="color:#007bff;">
+				<tbody>
 						<tr>
-							<td onclick="javascript:tab01active()">반품</td>
+							<td><a href="javascript:tab01active()">반품</a></td>
 						</tr>
 						<tr>
-							<td onclick="javascript:tab02active()">조회</td>
+							<td><a href="javascript:tab02active()">조회</a></td>
 						</tr>
 						<tr>
-							<td onclick="javascript:tab03active()">정산</td>
+							<td><a href="javascript:tab03active()">정산</a></td>
 						</tr>
 						<tr>
-							<td onclick="javascript:tab04active()">퇴실</td>
+							<td><a href="javascript:tab04active()">퇴실</a></td>
 						</tr>
 				</tbody>
 			</table>

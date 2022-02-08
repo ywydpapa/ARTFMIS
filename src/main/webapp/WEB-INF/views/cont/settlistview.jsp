@@ -55,18 +55,16 @@
 					<div class="h-container">
 						<div class="item">
 							<div class="table-responsive table-bordered">
-								<table id="" class="" style="margin-top: 10px; margin-bottom: 10px;">
-									<tr>
-										<td style="border:1px solid white;"> 
-											<span> 입실중인 호실 </span>
-											<select id = "contSelect" class="FRMID form-control-md">
+								<table id="consult_sett_list_table" class="table table-bordered" style="overflow:hidden;">
+									<tr><td> <span> 입실중인 호실 </span>
+										<select id = "contSelect" class="FRMID form-control-md">
 											<c:forEach var="row" items="${listcont}">
-												<c:if test="${empty row.SETT_DATE}"><option value="${path}/cont/settdetail/${row.CONTRACT_ID}?CONT_FROOM_ID=${row.FROOM_ID}">${row.FROOM_TITLE}</option></c:if>
+											<c:if test="${empty row.SETT_DATE}"><option value="${path}/cont/settdetail/${row.CONTRACT_ID}?CONT_FROOM_ID=${row.FROOM_ID}">${row.FROOM_TITLE}</option></c:if>
 											</c:forEach>
-											</select>
-										</td>
+										</select>
+									</td>
 									</tr>
-								</table>
+										</table>
 							</div>
 						</div>
 						<div class="item cont" style="padding:0;">
