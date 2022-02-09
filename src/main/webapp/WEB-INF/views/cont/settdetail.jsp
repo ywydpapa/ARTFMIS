@@ -111,7 +111,7 @@
 											<td style="text-align: right;" class="sprice"><fmt:formatNumber value="${row.GOODS_NET_PRICE}" pattern="#,###" /></td>
 											<td style="text-align: right;">${row.ORD_QUTY * row.GOODS_SALE_UNIT}</td>
 											<td style="text-align: right;" class="ordamt"><fmt:formatNumber value="${row.ORD_AMOUNT}" pattern="#,###" /></td>
-											<td style="text-align: right;"><input class="rquty" style="text-align:right; border:none" type="number" value="${row.RET_QUTY}" max="${row.ORD_QUTY * row.GOODS_SALE_UNIT}" min="0" ></td>
+											<td style="text-align: right;"><input class="rquty" style="text-align:right; border:none; width:100%; background-color: #FAED7D;" type="number" value="${row.RET_QUTY}" max="${row.ORD_QUTY * row.GOODS_SALE_UNIT}" min="0" ></td>
 											<td style="text-align: right;" class="ramount"><fmt:formatNumber value="${row.RET_AMOUNT}" pattern="#,###" /></td>
 											<td style="text-align: right;" class="remainT"></td>
 											</tr>

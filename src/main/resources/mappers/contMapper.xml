@@ -787,15 +787,17 @@ where a.FROOM_TYP IN (5) and a.FROOM_USE_YN = 'Y' order by a.FROOM_ORDNO
 </select>
 
 <select id="setrtnContp7" resultType="contDto">
-	select e.ORD_QUTY, e.ORD_AMOUNT, b.CAT_TITLE , a.* ,c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID from GHT_GOODS a 
+	select e.ORD_QUTY, e.ORD_AMOUNT, b.CAT_TITLE , a.* ,c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID, f.RET_QUTY from GHT_GOODS a 
 	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
 	left join GHT_STORE_ORD c on a.GOODS_ID = c.STORE_GOODS_ID and c.STORE_ORD_FROOM_ID = #{CONT_FROOM_ID}
 	left join GHT_BASE_CODE d on c.STORE_ORD_FROOM_ID = d.BCD_ID
 	left join GHT_STORE_ORDSHEET e on e.GOODS_CODE = a.GOODS_ID and e.MOD_DATE IS NULL and e.CONTRACT_ID = #{CONTRACT_ID} 
+	left join (select STORE_SETT_ID, STORE_GOODS_ID, RET_QUTY FROM GHT_STORE_SETT group by STORE_SETT_ID) f on a.GOODS_ID = f.STORE_GOODS_ID
 	where a.CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='3') 
 	and a.GOODS_USE_YN = 'Y'
 	and a.GOODS_RETURN_YN = 'Y'
 	and e.ORD_QUTY > 0
+	GROUP BY a.GOODS_ID
 	order by a.CAT_02_ID, a.GOODS_ORDER 
 </select>
 
