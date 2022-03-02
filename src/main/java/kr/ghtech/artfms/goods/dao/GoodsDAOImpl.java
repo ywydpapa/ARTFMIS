@@ -212,5 +212,39 @@ public class GoodsDAOImpl implements GoodsDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("goods.doslistRoom",FROOM_TYP);
 	}
-
+	@Override
+	public int uploadFile(GoodsDTO froomfiledata) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("goods.uploadFile", froomfiledata);
+	}
+	@Override
+	public List<GoodsDTO> detailRoomfile(int FROOM_ID) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("goods.detailRoomfile", FROOM_ID);
+	}
+	@Override
+	public Integer deletefile(GoodsDTO froomfiledata) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("goods.deletefile", froomfiledata);
+	}
+	@Override
+	public int uploadFile2(GoodsDTO froomfiledata) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("goods.uploadFile2", froomfiledata);
+	}
+	@Override
+	public int selectnewroom(GoodsDTO froomfiledata) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("goods.selectnewroom", froomfiledata);
+	}
+	@Override
+	public List<GoodsDTO> selectnewroom1(GoodsDTO froomfiledata) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("goods.selectnewroom1", froomfiledata);
+	}
+	@Override
+	public List<GoodsDTO> detailRoomfile(String fileId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("goods.detailRoomfile1", fileId);
+	}
 }

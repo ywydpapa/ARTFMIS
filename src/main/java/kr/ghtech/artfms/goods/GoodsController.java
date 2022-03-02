@@ -1,16 +1,24 @@
 package kr.ghtech.artfms.goods;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.ghtech.artfms.code.service.CodeService;
@@ -254,16 +262,26 @@ public class GoodsController {
 
 	
 	@RequestMapping("/detailRoom/{FROOM_ID}")
-	public ModelAndView detailroom(@PathVariable("FROOM_ID") int FROOM_ID, ModelAndView mav) {
+	public ModelAndView detailroom(@PathVariable("FROOM_ID") int FROOM_ID, ModelAndView mav){
 		mav.addObject("listroom", codeService.listconBcode("2"));
-		mav.addObject("etcsetl", setupService.listFroomSetl(FROOM_ID));
+		//mav.addObject("etcsetl", setupService.listFroomSetl(FROOM_ID));
 		mav.addObject("menu006",goodsService.menu006());
 		mav.addObject("dtoRoom", goodsService.detailRoom(FROOM_ID));
+		mav.addObject("dtoRoom2", goodsService.detailRoomfile(FROOM_ID));
+		
 		mav.setViewName("goods/roomDetail");
 		return mav;
 	}
-
 	
+	@RequestMapping("/image1.do/{fileId}")
+	public void Test1(Model model, HttpServletResponse response, @PathVariable("fileId") String fileId) throws IOException {   
+		List <GoodsDTO> dtoRoom2 = goodsService.detailRoomfile1(fileId);
+		OutputStream os = response.getOutputStream();
+		byte[] imageByte = dtoRoom2.get(0).getFileContent();
+		os.write(imageByte);
+		os.close();
+	}
+
 	@RequestMapping("write.do")
 		public ModelAndView write(ModelAndView mav) {
 			mav.addObject("listData0201", codeService.listCode0201());
@@ -390,6 +408,23 @@ public class GoodsController {
 		}
 		return ResponseEntity.ok(param);
 	}
+	
+	@RequestMapping("roomfileinsert.do")
+	public ResponseEntity<?> roomfileinsert(HttpSession session, @ModelAttribute GoodsDTO dto, MultipartHttpServletRequest fileList) throws IOException {
+		Map<String, Object> param = new HashMap<String, Object>();
+		List <GoodsDTO> selectnewroom1 = goodsService.selectnewroom1(fileList);
+		int test = selectnewroom1.get(0).getFROOM_ID();
+		int uploadFile2 = goodsService.uploadFile2(session, test, fileList);
+			
+		if (uploadFile2 >0) {
+			param.put("code","10001"); 
+		}
+		else {param.put("code","20001");
+		}
+		return ResponseEntity.ok(param);
+	}
+	
+	
 
 	@RequestMapping("insertDos1.do")
 	public ResponseEntity<?> insertdos1(@ModelAttribute GoodsDTO dto) {
@@ -488,7 +523,31 @@ public class GoodsController {
 		return ResponseEntity.ok(param);
 	}
 
+	@RequestMapping("updatefiledata.do")
+	public ResponseEntity<?> updatefiledata(HttpSession session, @ModelAttribute GoodsDTO froomfiledata, MultipartHttpServletRequest fileList) throws IOException {
+		int uploadFile = goodsService.uploadFile(session, fileList);
+		Map<String, Object> param = new HashMap<>();
+		if(uploadFile > 0) {
+			param.put("code", "10001");
+		} else {
+			param.put("code", "20001");
+		}
+		return ResponseEntity.ok(param);
+	}
 	
+
+	@RequestMapping("deletefiledata.do")
+	public ResponseEntity<?> deletefiledata(HttpSession session, @ModelAttribute GoodsDTO froomfiledata){
+		int uploadFile = goodsService.deletefile(session, froomfiledata);
+		Map<String, Object> param = new HashMap<>();
+		if(uploadFile > 0) {
+			param.put("code", "10001");
+		} else {
+			param.put("code", "20001");
+		}
+		return ResponseEntity.ok(param);
+	
+	}
 	
 	@RequestMapping("delete.do")
 			public ResponseEntity<?> delete(@ModelAttribute GoodsDTO dto) {

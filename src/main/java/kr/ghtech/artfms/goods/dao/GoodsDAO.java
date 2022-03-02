@@ -44,4 +44,11 @@ public interface GoodsDAO {
 	int deleteDos1(String FNRS_ORD_FROOM_ID);
 	int deleteDos2(String MESSR_ORD_FROOM_ID);
 	int deleteDos3(String STORE_ORD_FROOM_ID);
+	int uploadFile(GoodsDTO froomfiledata);
+	List<GoodsDTO> detailRoomfile(int FROOM_ID);
+	Integer deletefile(GoodsDTO froomfiledata);
+	int uploadFile2(GoodsDTO froomfiledata);
+	int selectnewroom(GoodsDTO froomfiledata);
+	List<GoodsDTO> selectnewroom1(GoodsDTO froomfiledata);
+	List<GoodsDTO> detailRoomfile(String fileId);
 }

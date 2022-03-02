@@ -123,4 +123,12 @@ public class GoodsDTO {
 	private String INC_YN;
 	private String attrib;
 	
+	private String fileId;
+	private String fileName;
+	private String uploadDate;
+	private byte[] fileContent;
+	private String fileExtention;
+	private String fileSize;
+	private String regDatetime;
+	private String FROOM_IDX;
 }

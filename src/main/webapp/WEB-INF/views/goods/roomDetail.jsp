@@ -134,10 +134,9 @@
 				scope="row">이미지등록</th>
 			<td>
 				<form id="uploadForm" style="margin-bottom: -10px;" enctype="multipart/form-data" method="post">
-					<input type="hidden" id="uploadServerImageName"
-						value="${dtoRoom.FROOM_IMAGE}"> <input type="file"
-						style="text-align: right; height:120%;" class="form-control form-control-sm"
-						name="altarImage" id="altarImage">
+					<input type="hidden" id="uploadServerImageName_old" value="${dtoRoom.FROOM_IMAGE}"> 
+					<input type="hidden" id="uploadServerImageName" value="">
+					<input type="file" style="text-align: right; height:120%;"multiple="multiple"  class="form-control form-control-sm" name="altarImage" id="altarImage">
 				</form>
 			</td>
 			<th
@@ -233,15 +232,22 @@
 	<div class="card h-80">
 		<h5 class="card-header">상품이미지</h5>
 		<div class="card-body" id="oldImage">
-			<c:if
-				test="${dtoRoom.FROOM_IMAGE ne null && dtoRoom.FROOM_IMAGE ne ''}">
-				<div id="imagebefore"
-					style="height: 100%; background-image: url('${path}/resources/image/local/${dtoRoom.FROOM_IMAGE}')"></div>
-			</c:if>
+			<c:forEach var="row" items="${dtoRoom2}" varStatus="c">
+				<input type="hidden" name="fileId" id="fileId" value="${c.count}">
+				<input type="hidden" name="fileId" id="fileId" value="${row.fileId}">
+				<input type="hidden" name="fileId" id="fileId" value="${row.fileContent}">
+				<img src="${path}/goods/image1.do/${row.fileId}" style="width: 350px; height: 300px;"/><br>
+				<span style="margin-right: 5px;">${row.fileName}</span><button class="btn btn-sm btn-success" onclick="javascript:filedelete('${row.fileId}');">삭제</button><br><br>
+			</c:forEach>
+			<!--<c:if test="${dtoRoom.FROOM_IMAGE ne null && dtoRoom.FROOM_IMAGE ne ''}">
+				<div id="imagebefore" style="height: 100%; background-image: url('${path}/resources/image/local/${dtoRoom.FROOM_IMAGE}')"></div>
+			</c:if>-->
 		</div>
-		<div class="card-body" id="newImage" style="display: none">
-			<img id="imagenow" style="width: 100%;">
+		
+		<div class="card-body" id="newImage">
 		</div>
+			<div id="preview">
+			</div>
 	</div>
 </div>
 <style>
@@ -301,9 +307,46 @@
 	});
 
 	$("#altarImage").change(function(event) {
-		var formData = new FormData(document.getElementById("uploadForm"));
 
-		if (this.files && this.files[0]) {
+		 //var formData = new FormData(document.getElementById("uploadForm"));
+		var formData = new FormData();
+		var fileInput = document.getElementById("altarImage");
+		var files = fileInput.files;
+		var arr =Array.prototype.slice.call(files);
+		 
+		//과거 이미지 파일 없애고.
+		$("#oldImage").remove();
+		 
+		arr.forEach(function(f){
+		        
+			//파일명이 길면 파일명...으로 처리
+			var fileName = f.name;
+			if(fileName.length > 10){
+			fileName = fileName.substring(0,12)+"...";
+			}
+
+		    //div에 이미지 추가
+		    var str = '<div style="display: inline-flex; padding: 10px;"><li>';
+		    str += '<span>'+fileName+'</span><br>';
+	     	//이미지 파일 미리보기
+		    if(f.type.match('image.*')){
+				var reader = new FileReader(); //파일을 읽기 위한 FileReader객체 생성
+		   		reader.onload = function (e) { //파일 읽어들이기를 성공했을때 호출되는 이벤트 핸들러
+		        	str += '<img style="width: 100%;" src=\'' + e.target.result + '\' />';
+		            $(str).appendTo('#preview');
+		            $("#uploadServerImageName").attr('value', fileName);
+		          } 
+		          reader.readAsDataURL(f);
+		        }else{
+		        	alert("이미지 파일이 아닙니다.");
+		        	$("input[type='file']").val("");  //파일 초기화
+		        	return false;
+		        }
+		 
+		})
+		 
+		 // 기존에 존재하는 이미지 미리보기 임.
+		 /* if (this.files && this.files[0]) {
 			var reader = new FileReader();
 			reader.onload = function(data) {
 				$("#oldImage").remove();
@@ -311,21 +354,23 @@
 				$("#imagenow").attr("src", data.target.result);
 			}
 			reader.readAsDataURL(this.files[0]);
-		}
-
-		$.ajax({
-			type : "post",
-			url : '${path}/file/upload',
-			data : formData,
-			contentType : false,
-			processData : false,
-			success : function(data) {
-				console.log(data);
-				$("#uploadServerImageName").val(data);
-				console.log('이미지 업로드 성공');
-			}
-		})
-	})
+		}  */
+			$.ajax({
+				type : "post",
+				url : '${path}/file/upload',
+				data : formData,
+				contentType : false,
+				processData : false,
+				success : function(e) {
+					//console.log(e);
+					//$("#uploadServerImageName").val(e);
+					console.log('이미지 업로드 성공');
+				}
+			})
+			//초기화
+/* 			var formData = new FormData();
+		} */
+	});
 
 	function saveEtc() {
 		$Aarr = $(".modalid");
@@ -392,4 +437,25 @@
 		}
 		
 	});
+	
+	function filedelete(fileId) {
+		var deleteData = {};
+		deleteData.fileId = fileId;
+		
+		$.ajax({
+			url : "${path}/goods/deletefiledata.do/",
+			method : "POST",
+			data : deleteData
+		}).done(function(result, status, xhr){
+			if(result.code == 10001){
+				alert("파일 삭제 성공");
+				location.href="javascript:fnSetPage('/artfms/goods/listroomview.do')";
+			}else {
+				alert("파일 삭제 실패");
+			};
+		}).fail(function(xhr, status, errorThrown) {
+			alert("test진행중 실패");
+		});
+		
+	}
 </script>

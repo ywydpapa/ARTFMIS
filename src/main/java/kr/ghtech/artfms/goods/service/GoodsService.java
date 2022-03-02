@@ -1,6 +1,11 @@
 package kr.ghtech.artfms.goods.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.ghtech.artfms.goods.dto.GoodsDTO;
 
@@ -44,4 +49,11 @@ public interface GoodsService {
 	int deleteDos1(String FNRS_ORD_FROOM_ID);
 	int deleteDos2(String MESSR_ORD_FROOM_ID);
 	int deleteDos3(String STORE_ORD_FROOM_ID);
+	int uploadFile(HttpSession session, MultipartHttpServletRequest fileList) throws IOException;
+	List<GoodsDTO> detailRoomfile(int FROOM_ID);
+	Integer deletefile(HttpSession session, GoodsDTO froomfiledata);
+	int uploadFile2(HttpSession session, Integer test, MultipartHttpServletRequest fileList) throws IOException;
+	int selectnewroom(MultipartHttpServletRequest fileList);
+	List<GoodsDTO> selectnewroom1(MultipartHttpServletRequest fileList);
+	List<GoodsDTO> detailRoomfile1(String fileId);
 }

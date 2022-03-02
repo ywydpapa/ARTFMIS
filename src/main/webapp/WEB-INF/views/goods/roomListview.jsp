@@ -160,12 +160,24 @@ function numberWitioutCommas(x) {
 	  return x.toString().replace(/[\D\s\._\-]+/g, "");
 }
 
-
+///////////////////////////////////////////////////////////
 function fn_Updateroom() {
 	var roomData = {};
 	roomData.FROOM_ID		= $("#FROOM_ID").val();
 	roomData.FROOM_TYP		= $("#FROOM_TYP").val(); 
 	var roomtyp = $('#FROOM_TYP').val();
+	
+	var filesTempArr = [];
+	var formData = new FormData();
+	var fileInput = document.getElementById("altarImage");
+	var files = fileInput.files;
+	var arr =Array.prototype.slice.call(files);
+	
+	filesTempArr = arr;
+	
+	var filesArrLen = arr.length;
+	var filesTempArrLen = filesTempArr.length;
+	
 	if (roomtyp == '1')
 		{
 	roomData.FROOM_MAX_PERS	= $("#roomCap").val();
@@ -193,8 +205,6 @@ function fn_Updateroom() {
 			.done(function(data) {
 				if(data.code == 10001){
 					alert("저장 성공");
-					var url ="${path}/goods/listroom/"+$("#FROOM_TYP").val();
-					fnSetRoomlist(url);
 				}else{
 					alert("저장 실패");
 				}
@@ -202,11 +212,49 @@ function fn_Updateroom() {
 			.fail(function(xhr, status, errorThrown) { 
 				alert("입력값을 확인해 주십시오!");
 			});
-}
-
+	if(arr != null){
+		for(var i=0, filesTempArrLen = filesTempArr.length; i<filesTempArrLen; i++) {
+			 formData.append('file', arr[i]);
+			var test1 = $("#FROOM_ID").val();
+			formData.append('FROOM_IDX', test1);
+			$.ajax({
+				url : "${path}/goods/updatefiledata.do",
+				method : "POST",
+				enctype:'multipart/form-data',
+				data : formData,
+				contentType : false,
+				processData : false
+			}).done(function(result){
+				if(result.code == 10001){
+					console,log("파일 업로드 성공");
+				}else {
+					alert('파일 업로드 실패');
+				};
+			}).fail(function(xhr, status, errorThrown) {
+			});
+			var formData = new FormData(); 
+		}
+	};
+	location.href="javascript:fnSetPage('/artfms/goods/listroomview.do')";
+	//var url ="${path}/goods/listroom/"+$("#FROOM_TYP").val();
+	//fnSetRoomlist(url);
+};
+///////////////////////////////////////////////////////////////////
 function fn_Insertroom() {
 	var roomData = {};
 	roomData.FROOM_TYP		= $("#FROOM_TYP").val(); 
+	
+	var filesTempArr = [];
+	var formData = new FormData();
+	var fileInput = document.getElementById("altarImage");
+	var files = fileInput.files;
+	var arr =Array.prototype.slice.call(files);
+	
+	filesTempArr = arr;
+	
+	var filesArrLen = arr.length;
+	var filesTempArrLen = filesTempArr.length;
+	
 	var roomtyp = $('#FROOM_TYP').val();
 	if (roomtyp == '1')
 		{
@@ -235,8 +283,6 @@ function fn_Insertroom() {
 			.done(function(data) {
 				if(data.code == 10001){
 					alert("저장 성공");
-					var url ="${path}/goods/listroom/"+$("#FROOM_TYP").val();
-					fnSetRoomlist(url);
 				}else{
 					alert("저장 실패");
 				}
@@ -244,7 +290,33 @@ function fn_Insertroom() {
 			.fail(function(xhr, status, errorThrown) { 
 				alert("입력값을 확인해 주십시오!");
 			});
-}
+	
+	if(arr != null){
+		for(var i=0, filesTempArrLen = filesTempArr.length; i<filesTempArrLen; i++) {
+			formData.append('FROOM_TITLE', $("#roomTitle").val());
+			formData.append('file', arr[i]);
+			$.ajax({
+				url : "${path}/goods/roomfileinsert.do",
+				method : "POST",
+				enctype:'multipart/form-data',
+				data : formData,
+				contentType : false,
+				processData : false
+			}).done(function(result){
+				if(result.code == 10001){
+					console.log("파일 업로드 성공");
+				}else {
+					alert('파일 업로드 실패');
+				};
+			}).fail(function(xhr, status, errorThrown) {
+			});
+			var formData = new FormData(); 
+		}
+	};
+	location.href="javascript:fnSetPage('/artfms/goods/listroomview.do')";
+	//var url ="${path}/goods/listroom/"+$("#FROOM_TYP").val();
+	//fnSetRoomlist(url);
+};
 
 function tableListLoad(url){
 	$.ajax({

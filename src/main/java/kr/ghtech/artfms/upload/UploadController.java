@@ -33,7 +33,7 @@ public class UploadController {
     	String tempPath = "";
     	
     	if(request.getSession().getServletContext().getRealPath("/").contains("apache-tomcat")) {
-    		uploadPath = request.getSession().getServletContext().getRealPath("/resources/image/artFiles/");
+    		uploadPath = request.getSession().getServletContext().getRealPath("/resources/image/local/");
     		tempPath = "/";
     	}else {
     		tempPath = "\\";

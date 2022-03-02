@@ -501,6 +501,68 @@ where FROOM_TYP = #{FROOM_TYP} order by FROOM_ORDNO
 		,now()
 		)
 </insert>
+<insert id="uploadFile">
+	insert into ght_froomfiledata
+	(
+		fileId,
+		fileName,
+		uploadDate,
+		fileContent,
+		fileExtention,
+		FROOM_IDX,
+		regDatetime
+	)
+ 	values 
+ 	(
+ 		#{fileId},
+ 		#{fileName},
+ 		now(),
+ 		#{fileContent},
+ 		#{fileExtention},
+ 		#{FROOM_IDX},
+ 	 	now()
+ 	)
+ </insert>
+ 
+<select id="detailRoomfile" resultType="goodsDto">
+	select * from ght_froomfiledata
+	where FROOM_IDX = #{FROOM_ID}
+</select>
 
-  
+<select id="detailRoomfile1" resultType="goodsDto">
+	select * from ght_froomfiledata
+	where fileId = #{fileId}
+</select>
+<delete id="deletefile">
+	delete from ght_froomfiledata
+	where fileId = #{fileId};
+</delete>
+
+<insert id="uploadFile2">
+	insert into ght_froomfiledata
+	(
+		fileId,
+		fileName,
+		uploadDate,
+		fileContent,
+		fileExtention,
+		FROOM_IDX,
+		regDatetime
+	)
+ 	values 
+ 	(
+ 		#{fileId},
+ 		#{fileName},
+ 		now(),
+ 		#{fileContent},
+ 		#{fileExtention},
+ 		#{FROOM_ID},
+ 	 	now()
+ 	)
+ </insert>
+<select id="selectnewroom1" resultType="goodsDto">
+	select FROOM_ID from ght_froom
+	where FROOM_TITLE = #{FROOM_TITLE}
+</select>
+
 </mapper>

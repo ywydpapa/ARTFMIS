@@ -1,10 +1,18 @@
 package kr.ghtech.artfms.goods.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.ghtech.artfms.goods.dao.GoodsDAO;
 import kr.ghtech.artfms.goods.dto.GoodsDTO;
@@ -211,5 +219,65 @@ public class GoodsServiceImpl implements GoodsService {
 		// TODO Auto-generated method stub
 		return goodsDao.doslistRoom(FROOM_TYP);
 	}
-
+	@Override
+	public int uploadFile(HttpSession session, MultipartHttpServletRequest fileList) throws IOException {
+		MultipartFile file = fileList.getFile("file");
+		GoodsDTO froomfiledata = new GoodsDTO();
+		froomfiledata.setFileId(UUID.randomUUID().toString());
+		froomfiledata.setFileName(file.getOriginalFilename());
+		froomfiledata.setFileContent(file.getBytes());
+		Path mimeType_base = Paths.get("D:/"+ file.getOriginalFilename());
+		String mimeType = Files.probeContentType(mimeType_base);
+		froomfiledata.setFileExtention(mimeType);
+		froomfiledata.setFileSize(fileList.getParameter("fileSize"));
+		froomfiledata.setFROOM_IDX(fileList.getParameter("FROOM_IDX"));
+		return goodsDao.uploadFile(froomfiledata);
+	}
+	@Override
+	public List<GoodsDTO> detailRoomfile(int FROOM_ID) {
+		// TODO Auto-generated method stub
+		return goodsDao.detailRoomfile(FROOM_ID);
+	}
+	@Override
+	public Integer deletefile(HttpSession session, GoodsDTO froomfiledata) {
+		// TODO Auto-generated method stub
+		return goodsDao.deletefile(froomfiledata);
+	}
+	@Override
+	public int uploadFile2(HttpSession session, Integer test, MultipartHttpServletRequest fileList) throws IOException {
+		MultipartFile file = fileList.getFile("file");
+		GoodsDTO froomfiledata = new GoodsDTO();
+		froomfiledata.setFileId(UUID.randomUUID().toString());
+		//System.out.println(test);
+		//System.out.println(test.toString());
+		froomfiledata.setFROOM_ID(test);
+		froomfiledata.setFileName(file.getOriginalFilename());
+		froomfiledata.setFileContent(file.getBytes());
+		Path mimeType_base = Paths.get("D:/"+ file.getOriginalFilename());
+		String mimeType = Files.probeContentType(mimeType_base);
+		froomfiledata.setFileExtention(mimeType);
+		froomfiledata.setFileSize(fileList.getParameter("fileSize"));
+		froomfiledata.setFROOM_IDX(fileList.getParameter("FROOM_IDX"));
+		return goodsDao.uploadFile2(froomfiledata);
+	}
+	@Override
+	public int selectnewroom(MultipartHttpServletRequest fileList) {
+		// TODO Auto-generated method stub
+		GoodsDTO froomfiledata = new GoodsDTO();
+		froomfiledata.setFROOM_TITLE(fileList.getParameter("FROOM_TITLE"));
+		return goodsDao.selectnewroom(froomfiledata);
+	}
+	@Override
+	public List<GoodsDTO> selectnewroom1(MultipartHttpServletRequest fileList) {
+		GoodsDTO froomfiledata = new GoodsDTO();
+		System.out.println(fileList.getParameter("FROOM_TITLE"));
+		froomfiledata.setFROOM_TITLE(fileList.getParameter("FROOM_TITLE"));
+		return goodsDao.selectnewroom1(froomfiledata);
+	}
+	@Override
+	public List<GoodsDTO> detailRoomfile1(String fileId) {
+		// TODO Auto-generated method stub
+		return goodsDao.detailRoomfile(fileId);
+	}
+	
 }
