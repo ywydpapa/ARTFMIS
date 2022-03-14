@@ -17,9 +17,9 @@
 				<!-- <div id = "updbtn">
 				<button class="btn btn-md btn-primary"  onClick="fn_goodsUpdate01()">저장</button>
 				</div> -->
-				<div id = "istbtn"> 
+				<%--<div id = "istbtn">
 				<button class="btn btn-md btn-primary"  onClick="fn_goodsInsert01()">새항목 저장</button>
-				</div>
+				</div>--%>
 			</div>
 				<form name="form1" id="form1" onSubmit="return false;">
 					<table class="table table-bordered table-hover">
@@ -41,8 +41,17 @@
 									class="form-control" value="" id="GOODS_02TEXT" readonly>
 								</td>
 								<td style="vertical-align:middle;text-align:center">
-									<button class="btn btn-md btn-success" value="추가" onClick="fn_setinsertmode()">새항목 추가</button>
-									<button class="btn btn-md btn-primary"  onClick="fn_goodsUpdate01()">저장</button>
+									<div class="row" style="margin:0 auto;">
+										<div >
+											<button class="btn btn-md btn-success" value="추가"	onClick="fn_setinsertmode()" style="margin-right:10px;">새항목 추가</button>
+										</div>
+										<div id = "updbtn">
+											<button class="btn btn-md btn-primary"  onClick="fn_goodsUpdate01()">저장</button>
+										</div>
+										<div id = "istbtn">
+											<button class="btn btn-md btn-primary"  onClick="fn_goodsInsert01()">새항목 저장</button>
+										</div>
+									</div>
 								</td>
 							</tr>
 							<tr>
