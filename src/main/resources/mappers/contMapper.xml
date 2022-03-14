@@ -80,7 +80,7 @@ select b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITL
 a left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID left join GHT_FNRSUPP_ORD c on a.GOODS_ID 
 = c.FNRS_GOODS_ID and c.FNRS_ORD_FROOM_ID = 121 left join GHT_BASE_CODE d on c.FNRS_ORD_FROOM_ID 
 = d.BCD_ID where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='1') and GOODS_USE_YN 
-= 'Y' and (GOODS_MODERN = '121' or GOODS_MODERN = '123') and a.CAT_02_ID not in (13,14,15,16,17,18) order by CAT_02_ID, GOODS_ORDER    	  	
+= 'Y' and (GOODS_MODERN = '121' or GOODS_MODERN = '123') and a.CAT_02_ID not in (1,2,4,19,20,21) order by CAT_02_ID, GOODS_ORDER
  </select>
 
  <select id="listFgoodsMn"  resultType="contDto">
@@ -96,7 +96,7 @@ select b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITL
 a left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID left join GHT_FNRSUPP_ORD c on a.GOODS_ID 
 = c.FNRS_GOODS_ID and c.FNRS_ORD_FROOM_ID = 121 left join GHT_BASE_CODE d on c.FNRS_ORD_FROOM_ID 
 = d.BCD_ID where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='1') and GOODS_USE_YN 
-= 'Y' and (GOODS_MODERN = '122' or GOODS_MODERN = '123') and a.CAT_02_ID not in (13,14,15,16,17,18) order by CAT_02_ID, GOODS_ORDER    	  	
+= 'Y' and (GOODS_MODERN = '122' or GOODS_MODERN = '123') and a.CAT_02_ID not in (1,2,4,19,20,21) order by CAT_02_ID, GOODS_ORDER
  </select>
 
  <select id="listFgoodsTn"  resultType="contDto">

@@ -449,7 +449,7 @@
 		}).done(function(result, status, xhr){
 			if(result.code == 10001){
 				alert("파일 삭제 성공");
-				location.href="javascript:fnSetPage('/artfms/goods/listroomview.do')";
+				location.href="javascript:fnSetPage('${path}/goods/listroomview.do')";
 			}else {
 				alert("파일 삭제 실패");
 			};
