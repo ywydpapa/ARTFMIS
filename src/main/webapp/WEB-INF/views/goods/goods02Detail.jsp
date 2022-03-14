@@ -241,7 +241,7 @@ function numberWitioutCommas(x) {
 
 	function fn_goodsInsert01() {
 		var goodsData = {};
-		goodsData.GOODS_ID = $("#GOODS_ID").val();
+		/* goodsData.GOODS_ID = $("#GOODS_ID").val(); */
 		goodsData.CAT_01_ID = $("#selcode01").val();
 		goodsData.CAT_02_ID = $("#selcode02").val();
 		goodsData.GOODS_TITLE = $("#GOODS_TITLE").val();
