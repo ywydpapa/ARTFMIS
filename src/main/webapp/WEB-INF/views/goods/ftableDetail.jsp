@@ -15,9 +15,9 @@
 			<!-- <div id="udtbtn">
 				<button class="btn btn-md btn-primary alt_D" onClick="fn_Updateftable()">저장</button>
 			</div> -->
-			<div id="istbtn">
+			<!-- <div id="istbtn">
 				<button class="btn btn-md btn-primary alt_D" onClick="fn_Inserttable()">새로 저장</button>
-			</div>
+			</div> -->
 			</div>
 				<div class="table-responsive">
 					<table class="table table-sm bst02">
@@ -33,8 +33,19 @@
 								<td><input type="text"
 									class="form-control"
 									id="typename" name="typename" value="" readonly placeholder=""></td>
-								<td></td>
-								<td style="text-align:right;"><button class="btn btn-md btn-success" onClick="fn_setinsert()" style="margin-right: 5px;">새항목 추가</button><button class="btn btn-md btn-primary alt_D" onClick="fn_Updateftable()">저장</button></td>
+								<td colspan="2" style="text-align:left;">
+									<div class="row" style="margin:0 auto;">
+										<div>
+											<button class="btn btn-md btn-success" value="추가"	onClick="fn_setinsert()" style="margin-right:10px;">항목추가</button>
+										</div>
+										<div id = "udtbtn">
+											<button class="btn btn-md btn-primary"  onClick="fn_Updateftable()">저장</button>
+										</div>
+										<div id = "istbtn">
+											<button class="btn btn-md btn-primary"  onClick="fn_Inserttable()">새로저장</button>
+										</div>
+									</div>
+								</td>
 								</tr>
 								<tr class="alt_B">
 								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">금액</th>

@@ -76,7 +76,7 @@
 									name="GOODS_UNIT_QTY" id="GOODS_UNIT_QTY"
 									value="${dto.GOODS_UNIT_QTY}" /></td>
 								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">개당가격</td>
-								<td style="vertical-align:middle"><input type="text" class="form-control"
+								<td style="vertical-align:middle"><input type="text" class="form-control CHKcal"
 									style="text-align: right;" required name="GOODS_NET_PRICE"
 									id="GOODS_NET_PRICE" value="<fmt:formatNumber value="${dto.GOODS_NET_PRICE}" pattern="#,###"/>" /></td>
 							</tr>

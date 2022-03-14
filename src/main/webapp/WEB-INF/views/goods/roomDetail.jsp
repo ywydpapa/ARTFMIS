@@ -5,10 +5,10 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!-- <div class="btn_wr text-right mt-6" id="udtbtn">
 	<button class="btn btn-md btn-primary" onClick="fn_Updateroom()">저장</button>
-</div> -->
+</div>
 <div class="btn_wr text-right mt-6" id="insbtn">
 	<button class="btn btn-md btn-primary" onClick="fn_Insertroom()">새로저장</button>
-</div>
+</div> -->
 <table class="table table-sm bst02">
 	<colgroup>
 		<col width="15%" />
@@ -34,9 +34,16 @@
 						<option value="${menu008.BCD_ID}">${menu008.BCD_TITLE}</option>
 					</c:forEach>
 			</select></td>
-			<td style="vertical-align: middle; text-align: center">
-				<button class="btn btn-md btn-success" value="추가" onClick="fn_setinsertmode()">새호실 추가</button>
-				<button class="btn btn-md btn-primary" onClick="fn_Updateroom()">저장</button>
+			<td>
+				<div style="float:left; margin-right:5px; margin-left:5px;">
+					<button class="btn btn-md btn-success" value="추가" onClick="fn_setinsertmode()">새호실 추가</button>
+				</div>
+				<div id="udtbtn">
+					<button class="btn btn-md btn-primary" onClick="fn_Updateroom()">저장</button>
+				</div>
+				<div id="insbtn">
+					<button class="btn btn-md btn-primary" onClick="fn_Insertroom()">새로저장</button>
+				</div>
 			</td>
 		</tr>
 		<tr>

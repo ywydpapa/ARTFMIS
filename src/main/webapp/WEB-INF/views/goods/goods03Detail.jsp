@@ -17,9 +17,9 @@
 				<!-- <div id = "updbtn">
 				<button class="btn btn-md btn-primary"  onClick="fn_goodsUpdate01()">저장</button>
 				</div> -->
-				<div id = "istbtn"> 
+				<!-- <div id = "istbtn"> 
 				<button class="btn btn-md btn-primary"  onClick="fn_goodsInsert01()">새항목 저장</button>
-				</div>
+				</div> -->
 			</div>
 				<form name="form1" id="form1" onSubmit="return false;">
 					<table class="table  table-bordered nowrap">
@@ -42,8 +42,17 @@
 									class="form-control" value="" id="GOODS_02TEXT" readonly>
 								</td>
 								<td style="vertical-align:middle;text-align:center">
-									<button class="btn btn-md btn-success" value="추가" onClick="fn_setinsertmode()">새항목 추가</button>
-									<button class="btn btn-md btn-primary"  onClick="fn_goodsUpdate01()">저장</button>
+									<div class="row" style="margin:0 auto;">
+										<div >
+											<button class="btn btn-md btn-success" value="추가"	onClick="fn_setinsertmode()" style="margin-right:10px;">새항목 추가</button>
+										</div>
+										<div id = "updbtn">
+											<button class="btn btn-md btn-primary"  onClick="fn_goodsUpdate01()">저장</button>
+										</div>
+										<div id = "istbtn">
+											<button class="btn btn-md btn-primary"  onClick="fn_goodsInsert01()">새항목 저장</button>
+										</div>
+									</div>
 								</td>
 							</tr>
 							<tr>
@@ -68,7 +77,7 @@
 									name="GOODS_UNIT_QTY" id="GOODS_UNIT_QTY"
 									value="${dto.GOODS_UNIT_QTY}" /></td>
 								<td style="vertical-align:middle;text-align:center;background-color:#E6F8E0">개당가격</td>
-								<td style="vertical-align:middle"><input type="text" class="form-control"
+								<td style="vertical-align:middle"><input type="text" class="form-control CHKcal"
 									style="text-align: right;" required name="GOODS_NET_PRICE"
 									id="GOODS_NET_PRICE" value="<fmt:formatNumber value="${dto.GOODS_NET_PRICE}" pattern="#,###"/>" /></td>
 							</tr>

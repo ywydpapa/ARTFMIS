@@ -15,9 +15,9 @@
 			<!-- <div id="udtbtn">
 				<button class="btn btn-md btn-primary " onClick="fn_Updatealtar()">저장</button>
 			</div> -->
-			<div id="istbtn">
+			<!-- <div id="istbtn">
 				<button class="btn btn-md btn-primary " onClick="fn_Insertaltar()">새로 저장</button>
-			</div>
+			</div> -->
 			</div>
 				<div class="table-responsive">
 					<table class="table table-sm bst02">
@@ -32,11 +32,20 @@
 							<tr>
 								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0">구분</th>
 								<td><input class="form-control" id="typename" value="" readonly></td>
-								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0" scope="row">제단명<input type="hidden" id="altarID" value="${dto.ALTAR_ID}"></th>
-								<td ><input type="text" class="form-control" id="altarTitle" name="altarTitle" value="${dto.ALTAR_TITLE}" placeholder=""></td>
+								<th style="vertical-align:middle;text-align:center;background-color:#E6F8E0;" scope="row">제단명<input type="hidden" id="altarID" value="${dto.ALTAR_ID}"></th>
+								<td style="width:1%;"><input type="text" class="form-control" id="altarTitle" name="altarTitle" value="${dto.ALTAR_TITLE}" placeholder=""></td>
 								<td style="text-align:center;">
-									<button style="text-align:center;" class="btn btn-md btn-success" value="추가" onClick="fn_setinsert()">새항목 추가</button>
-									<button class="btn btn-md btn-primary " onClick="fn_Updatealtar()">저장</button>
+									<div class="row" style="margin:0 auto;">
+										<div >
+											<button class="btn btn-md btn-success" value="추가"	onClick="fn_setinsert()" style="margin-right:10px;">항목추가</button>
+										</div>
+										<div id = "udtbtn">
+											<button class="btn btn-md btn-primary"  onClick="fn_Updatealtar()">저장</button>
+										</div>
+										<div id = "istbtn">
+											<button class="btn btn-md btn-primary"  onClick="fn_Insertaltar()">새로저장</button>
+										</div>
+									</div>
 								</td>
 							</tr>
 							<tr >
