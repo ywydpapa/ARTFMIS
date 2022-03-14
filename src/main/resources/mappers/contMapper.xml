@@ -722,10 +722,13 @@ where a.FROOM_TYP NOT IN (1,5) and a.FROOM_USE_YN = 'Y' order by a.FROOM_ORDNO
 
 
 <select id="reloadContp3" resultType="contDto">
-	select gfo.QUTY,gfo.ORD_AMOUNT, gbc.BCD_TITLE, gf.*, CASE WHEN IFNULL(gfo.ORD_AMOUNT,0)>0 then 'Y' else 'N' end CHKED from GHT_FTABLE gf 
+	<!-- select gfo.QUTY,gfo.ORD_AMOUNT, gbc.BCD_TITLE, gf.*, CASE WHEN IFNULL(gfo.ORD_AMOUNT,0)>0 then 'Y' else 'N' end CHKED from GHT_FTABLE gf 
  left join GHT_BASE_CODE gbc on gbc.BCD_ID = gf.FTABLE_CAT 
  left join GHT_FTAB_ORDERSHEET gfo on gfo.FTABLE_CODE = gf.FTABLE_ID and CONTRACT_ID = #{CONTRACT_ID} and gfo.MOD_DATE is NULL
- where FTABLE_CAT IN (24,31,32,34,35,36,72,73,74,75,77,76) order by FTABLE_CAT
+ where FTABLE_CAT IN (24,31,32,34,35,36,72,73,74,75,77,76) order by FTABLE_CAT -->
+ select gfo.QUTY,gfo.ORD_AMOUNT, gbc.BCD_TITLE, gf.*, CASE WHEN IFNULL(gfo.ORD_AMOUNT,0)>0 then 'Y' else 'N' end CHKED from GHT_FTABLE gf 
+ left join GHT_BASE_CODE gbc on gbc.BCD_ID = gf.FTABLE_CAT 
+ left join GHT_FTAB_ORDERSHEET gfo on gfo.FTABLE_CODE = gf.FTABLE_ID and CONTRACT_ID = #{CONTRACT_ID} and gfo.MOD_DATE is NULL order by FTABLE_CAT
 </select>
 <select id="reloadContp4m" resultType="contDto">
 	select e.ORD_QUTY , e.ORD_AMOUNT , b.CAT_TITLE, a.*, c.FNRS_GOODS_INIT_QTY, c.FNRS_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
@@ -746,12 +749,15 @@ where a.FROOM_TYP NOT IN (1,5) and a.FROOM_USE_YN = 'Y' order by a.FROOM_ORDNO
 	= 'Y' and (GOODS_MODERN = '122' or GOODS_MODERN = '123') order by CAT_02_ID, GOODS_ORDER    
 </select>
 <select id="reloadContp5" resultType="contDto">
+ <!-- SELECT b.QUTY ,b.ORD_PRICE ,a.*, CASE WHEN IFNULL(b.ORD_PRICE,0)>0 then 'Y' else 'N' end CHKED from GHT_ALTAR a 
+ left join GHT_ALTAR_ORDERSHEET b on a.ALTAR_ID = b.ALTAR_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL
+ where a.ALTAR_CAT IN (102,103) and a.ALTAR_USE_YN = 'Y' order by a.ALTAR_CAT -->
  SELECT b.QUTY ,b.ORD_PRICE ,a.*, CASE WHEN IFNULL(b.ORD_PRICE,0)>0 then 'Y' else 'N' end CHKED from GHT_ALTAR a 
  left join GHT_ALTAR_ORDERSHEET b on a.ALTAR_ID = b.ALTAR_ID and b.CONTRACT_ID = #{CONTRACT_ID} and b.MOD_DATE is NULL
- where a.ALTAR_CAT IN (102,103) and a.ALTAR_USE_YN = 'Y' order by a.ALTAR_CAT
+ where a.ALTAR_USE_YN = 'Y' order by a.ALTAR_CAT
 </select>
 <select id="reloadContp6" resultType="contDto">
-	select e.ORD_QUTY , e.ORD_AMOUNT , b.CAT_TITLE, a.*, c.MESSR_GOODS_INIT_QTY, c.MESSR_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	<!-- select e.ORD_QUTY , e.ORD_AMOUNT , b.CAT_TITLE, a.*, c.MESSR_GOODS_INIT_QTY, c.MESSR_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
 	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
 	left join GHT_MESSR_ORD c on a.GOODS_ID = c.MESSR_GOODS_ID and c.MESSR_ORD_FROOM_ID = #{CONT_FROOM_ID}
 	left join GHT_BASE_CODE d on c.MESSR_ORD_FROOM_ID = d.BCD_ID
@@ -760,7 +766,13 @@ where a.FROOM_TYP NOT IN (1,5) and a.FROOM_USE_YN = 'Y' order by a.FROOM_ORDNO
 	and a.GOODS_USE_YN = 'Y' 
 	and a.GOODS_INIT_ORDER = 'Y'
 	and c.MESSR_GOODS_INIT_QTY > 0 
-	order by a.CAT_02_ID, a.GOODS_ORDER 
+	order by a.CAT_02_ID, a.GOODS_ORDER  -->
+	select b.CAT_TITLE, a.*, c.MESSR_GOODS_INIT_QTY, c.MESSR_GOODS_ADD_QTY, d.BCD_TITLE from GHT_GOODS a 
+	left join GHT_CAT_02 b on b.CAT_ID = a.CAT_02_ID
+	left join GHT_MESSR_ORD c on a.GOODS_ID = c.MESSR_GOODS_ID and c.MESSR_ORD_FROOM_ID = #{CONT_FROOM_ID}
+	left join GHT_BASE_CODE d on c.MESSR_ORD_FROOM_ID = d.BCD_ID
+	where CAT_02_ID in (select CAT_ID from GHT_CAT_02 where CAT_01 ='2')
+	order by CAT_02_ID, GOODS_ORDER 
 </select>
 <select id="reloadContp7" resultType="contDto">
 	select e.ORD_QUTY, e.ORD_AMOUNT, b.CAT_TITLE , a.* ,c.STORE_GOODS_INIT_QTY, c.STORE_GOODS_ADD_QTY, d.BCD_ID from GHT_GOODS a 
