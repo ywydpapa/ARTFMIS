@@ -609,7 +609,7 @@ CONTRACT_ID
  <update id="updcontp2tr">
 update GHT_CONT set FROOM_ID = #{AFFROOM_ID}, TEMP_ROOM='' where CONTRACT_ID = #{CONTRACT_ID};
 	<choose>
-		<when test="BFCHARGE != 0">//조건1
+		<when test="BFCHARGE != 0">
 			update GHT_CONT_FROOM set REMARK = '이동호실', DAYS=#{BFDAYS}, TIMES='0', RCHARGE=#{BFCHARGE} where FROOM_ID = #{BFFROOM_ID} and CONTRACT_ID = #{CONTRACT_ID};
 		</when>
 		<otherwise>

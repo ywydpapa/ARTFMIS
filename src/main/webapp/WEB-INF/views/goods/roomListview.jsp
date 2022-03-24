@@ -313,7 +313,7 @@ function fn_Insertroom() {
 			var formData = new FormData(); 
 		}
 	};
-	location.href="javascript:fnSetPage('/artfms/goods/listroomview.do')";
+	location.href="javascript:fnSetPage('/ARTFMS/goods/listroomview.do')";
 	//var url ="${path}/goods/listroom/"+$("#FROOM_TYP").val();
 	//fnSetRoomlist(url);
 };
