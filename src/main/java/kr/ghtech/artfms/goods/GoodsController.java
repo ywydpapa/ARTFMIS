@@ -202,7 +202,7 @@ public class GoodsController {
 	@RequestMapping("altarListview.do")
 	public ModelAndView listview(ModelAndView mav) {
 		mav.addObject("clist", codeService.listconBcode("16"));
-		mav.addObject("list", goodsService.listAltar(102));
+		mav.addObject("list", goodsService.listAltar(24));
 		mav.setViewName("goods/altarListview");
 		return mav;
 	}
@@ -211,7 +211,7 @@ public class GoodsController {
 	@RequestMapping("ftableListview.do")
 	public ModelAndView listftableview(ModelAndView mav) {
 		mav.addObject("listftab", codeService.listconBcode("1"));
-		mav.addObject("list", goodsService.listFtable(24));
+		mav.addObject("list", goodsService.listFtable(1));
 		mav.setViewName("goods/ftableListview");
 		return mav;
 	}

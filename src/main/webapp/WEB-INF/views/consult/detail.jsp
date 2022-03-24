@@ -2188,6 +2188,7 @@
 		var getConsultId = 0;
 		
 		if($("#consultid").val() > 0){
+			console.log("첫번째");
 			getConsultId = $("#consultid").val();
 			fn_UpdconsultP1(getConsultId);
 			fn_cstInsertP2(getConsultId);
@@ -2195,6 +2196,7 @@
 			fn_cstInsertP4(getConsultId);
 			fn_cstInsertP5(getConsultId);
 		}else{
+			console.log("두번째");
 			fn_InsertConsult();
 			setTimeout(() => {
 				getConsultId = InsertConsultId();
